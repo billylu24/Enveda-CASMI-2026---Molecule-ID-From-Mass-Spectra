@@ -1,0 +1,22 @@
+{
+  "status": "experimental_positive_point_estimates_statistical_gate_failed",
+  "encoder_family": "scale",
+  "config": {
+    "name": "residual_60k_pubchemlite_fixed_historical_route",
+    "kind": "free_top1",
+    "base": "coconut15",
+    "threshold": 0.5,
+    "weight": 0.75
+  },
+  "checkpoint": "/home/giaok/PycharmProjects/Enveda CASMI 2026/artifacts/scale_20260929/runs/wide_enhanced_60000/model.pt",
+  "checkpoint_sha256": "0bce6b953f084c1f841b607df99ec46703d7b92a487c8f0812be3db176b3c564",
+  "refit": false,
+  "kaggle_submitted": false,
+  "selection": "selection.json",
+  "holdout_report": "fresh_report.json",
+  "candidate_expansion": {
+    "path": "/home/giaok/PycharmProjects/Enveda CASMI 2026/external/pubchemlite/structures.parquet",
+    "sha256": "fce315874053a8ed29eba782d7b3f58a4b9cef6dcc0f073a412ade174c16382d",
+    "weight": 1.0
+  }
+}

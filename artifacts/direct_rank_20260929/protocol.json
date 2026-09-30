@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "encoder_sha256": "0bce6b953f084c1f841b607df99ec46703d7b92a487c8f0812be3db176b3c564",
+  "encoder_frozen": true,
+  "representations": [
+    "fingerprint",
+    "graph"
+  ],
+  "graph": "3 message passing layers, 128 hidden + fingerprint residual branch",
+  "training": "60K existing train-only molecules; 15 nearest-mass negatives per example; CE listwise target; random one spectrum per molecule per epoch",
+  "negative_pool": "up to 128 nearest-mass training molecules, prioritize within35ppm/floor.006; no evaluation structures as training targets/negatives",
+  "evaluation": "one deterministic query spectrum per molecule in both known and unknown scenarios; references rebuilt around single-query masses; known reference excludes query and exact spectrum duplicates",
+  "epochs": 16,
+  "patience": 4,
+  "minimum_epochs": 6,
+  "lr": 0.0003,
+  "batch_size": 128,
+  "neural_blend_weights": [
+    0.25,
+    0.5,
+    1.0
+  ],
+  "routing": {
+    "threshold": 0.5,
+    "weight": 0.75
+  },
+  "selection": "max dev unknown routed MRR; known MRR >= baseline-.001 and known top1 >= baseline-.005; require strict unknown improvement",
+  "acceptance": "new2000 unknown paired CI95 lower>0; known MRR point delta>=-.001 and top1 delta>=-.005",
+  "note": "Candidate universe unchanged. Training positives used only in training, never inserted into evaluation pools. One-query validation is a controlled stress test, not an estimate of competition query-count distribution."
+}

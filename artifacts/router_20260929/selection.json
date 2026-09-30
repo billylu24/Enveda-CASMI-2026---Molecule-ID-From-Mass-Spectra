@@ -1,0 +1,50 @@
+{
+  "winner": {
+    "config": {
+      "name": "logistic_H_F_0.2",
+      "type": "logistic",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.2
+    },
+    "unknown": {
+      "molecules": 2000,
+      "mrr25": 0.022758508194068834,
+      "candidate_recall": 0.084,
+      "top1": 0.012,
+      "top5": 0.035,
+      "top25": 0.0635
+    },
+    "known": {
+      "molecules": 1187,
+      "mrr25": 0.7782356274412102,
+      "candidate_recall": 0.987363100252738,
+      "top1": 0.7203032855939343,
+      "top5": 0.8365627632687447,
+      "top25": 0.9048020219039595
+    },
+    "eligible": true
+  },
+  "baseline": {
+    "unknown": {
+      "molecules": 2000,
+      "mrr25": 0.01728262975222307,
+      "candidate_recall": 0.084,
+      "top1": 0.0075,
+      "top5": 0.03,
+      "top25": 0.061
+    },
+    "known": {
+      "molecules": 1187,
+      "mrr25": 0.771697454799918,
+      "candidate_recall": 0.987363100252738,
+      "top1": 0.7219882055602359,
+      "top5": 0.8087615838247684,
+      "top25": 0.8820556023588879
+    }
+  },
+  "model_path": "artifacts/router_20260929/router.joblib",
+  "model_sha256": "abe5ef47a951cf3f4595a3760e37b85f3eb5784cab099961c213e2a943b6d04e",
+  "protocol_sha256": "970ffeeeab6afeab3143234e4b88e729afd069b248ac8bf8aebc569e5db0365e",
+  "frozen_before_fresh_holdout": true
+}

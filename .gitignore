@@ -1,0 +1,33 @@
+# Local environments and editor state
+.venv*/
+.idea/
+.agents/
+.codex/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.env
+.env.*
+kaggle.json
+# Raw data, model assets, generated packages and logs
+data/
+external/
+artifacts/
+kaggle_bundle/
+kaggle_output/
+kaggle_release*/bundle/
+kaggle_release*/dataset/
+kaggle_release*/run_output/
+kaggle_release*/kaggle_output*/
+*.pt
+*.pth
+*.pkl
+*.joblib
+*.npy
+*.npz
+*.parquet
+*.zip
+*.log
+submission*.csv
+kaggle_release*/packaged_submission*

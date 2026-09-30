@@ -1,0 +1,161 @@
+{
+  "encoder_sha256": "0bce6b953f084c1f841b607df99ec46703d7b92a487c8f0812be3db176b3c564",
+  "features": [
+    "confidence",
+    "margin",
+    "relative_margin",
+    "log_candidates",
+    "mean_peaks",
+    "neutral_mass",
+    "probability_entropy",
+    "predicted_bits",
+    "neural_score",
+    "neural_gap",
+    "reference_in_neural_rr",
+    "neural_in_reference_rr",
+    "neural_in_union_rr",
+    "top1_agreement",
+    "top5_overlap",
+    "top25_overlap"
+  ],
+  "configs": [
+    {
+      "name": "baseline",
+      "type": "baseline"
+    },
+    {
+      "name": "logistic_t0.2_g0.95",
+      "type": "logistic",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.2,
+      "guard": 0.95
+    },
+    {
+      "name": "logistic_t0.2_g0.99",
+      "type": "logistic",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.2,
+      "guard": 0.99
+    },
+    {
+      "name": "logistic_t0.4_g0.95",
+      "type": "logistic",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.4,
+      "guard": 0.95
+    },
+    {
+      "name": "logistic_t0.4_g0.99",
+      "type": "logistic",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.4,
+      "guard": 0.99
+    },
+    {
+      "name": "logistic_t0.6_g0.95",
+      "type": "logistic",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.6,
+      "guard": 0.95
+    },
+    {
+      "name": "logistic_t0.6_g0.99",
+      "type": "logistic",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.6,
+      "guard": 0.99
+    },
+    {
+      "name": "logistic_t0.8_g0.95",
+      "type": "logistic",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.8,
+      "guard": 0.95
+    },
+    {
+      "name": "logistic_t0.8_g0.99",
+      "type": "logistic",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.8,
+      "guard": 0.99
+    },
+    {
+      "name": "boosted_t0.2_g0.95",
+      "type": "boosted",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.2,
+      "guard": 0.95
+    },
+    {
+      "name": "boosted_t0.2_g0.99",
+      "type": "boosted",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.2,
+      "guard": 0.99
+    },
+    {
+      "name": "boosted_t0.4_g0.95",
+      "type": "boosted",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.4,
+      "guard": 0.95
+    },
+    {
+      "name": "boosted_t0.4_g0.99",
+      "type": "boosted",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.4,
+      "guard": 0.99
+    },
+    {
+      "name": "boosted_t0.6_g0.95",
+      "type": "boosted",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.6,
+      "guard": 0.95
+    },
+    {
+      "name": "boosted_t0.6_g0.99",
+      "type": "boosted",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.6,
+      "guard": 0.99
+    },
+    {
+      "name": "boosted_t0.8_g0.95",
+      "type": "boosted",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.8,
+      "guard": 0.95
+    },
+    {
+      "name": "boosted_t0.8_g0.99",
+      "type": "boosted",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.8,
+      "guard": 0.99
+    }
+  ],
+  "folds": "SHA256(key) mod 5, same molecule grouped across modes",
+  "selection": "maximize unknown OOF MRR; known MRR >= baseline-.001 and top1 >= baseline-.005; prefer baseline on ties",
+  "acceptance": "fresh unknown paired CI95 lower >0; known MRR difference >=-.001 and top1 difference >=-.005",
+  "fresh_molecules": 2000,
+  "motivation": "Remove direct query-count shortcut; explicitly preserve high-similarity reference ranking.",
+  "limitations": "Other features can still correlate with query count. Encoder selected on development; only router is OOF. Final new holdout required."
+}

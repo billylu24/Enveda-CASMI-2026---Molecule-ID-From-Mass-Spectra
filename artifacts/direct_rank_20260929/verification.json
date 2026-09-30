@@ -1,0 +1,64 @@
+{
+  "training_dev_molecule_overlap": 0,
+  "query_count_equal": true,
+  "modes": {
+    "unknown": {
+      "molecules": 2000,
+      "query_spectra_per_molecule": 1,
+      "covered_union": 163,
+      "reference": {
+        "final": false,
+        "excluded_source": null,
+        "exclude_queries": false,
+        "spectra": 980127
+      }
+    },
+    "known": {
+      "molecules": 1777,
+      "query_spectra_per_molecule": 1,
+      "covered_union": 1551,
+      "reference": {
+        "final": true,
+        "excluded_source": null,
+        "exclude_queries": true,
+        "spectra": 995242
+      }
+    }
+  },
+  "tests_passed": 27,
+  "ruff": "passed",
+  "deployment_parity": {
+    "groups": 28,
+    "max_abs_score_difference": 9.015202522277832e-07,
+    "top1_matches": 28,
+    "full_order_matches": 22,
+    "tolerance_passed": true
+  },
+  "final_inference_path": "Exact per-group CPU deployment path for both baseline fingerprint probabilities and new candidate scores. Enabled before any fresh holdout metrics were produced; cohort and frozen selection unchanged.",
+  "fresh_prior_overlap": {
+    "artifacts/experiment/train.parquet": 0,
+    "artifacts/experiment/dev.parquet": 0,
+    "artifacts/experiment/holdout.parquet": 0,
+    "artifacts/experiment/fresh_holdout.parquet": 0,
+    "artifacts/experiment/diagnostic.parquet": 0,
+    "artifacts/experiment/final_train.parquet": 0,
+    "artifacts/ablation_20260928/fresh.parquet": 0,
+    "artifacts/scale_20260929/fresh.parquet": 0,
+    "artifacts/scale_20260929/train60k.parquet": 0,
+    "artifacts/router_20260929/fresh.parquet": 0
+  },
+  "frozen_selection_matches_manifest": true,
+  "fresh_queries": 2000,
+  "multi_spectrum_aggregation_invariant": "Joint score equals mean of separate per-spectrum scores, verified at tolerance 2e-6",
+  "training_negative_manifest": {
+    "molecules": 60000,
+    "spectra": 214804,
+    "train_only": true,
+    "molecules_with_same_mass_negative": 57360,
+    "encoder_sha256": "0bce6b953f084c1f841b607df99ec46703d7b92a487c8f0812be3db176b3c564"
+  },
+  "accepted": false,
+  "uploaded": false,
+  "submitted": false,
+  "final_inference_completed": true
+}

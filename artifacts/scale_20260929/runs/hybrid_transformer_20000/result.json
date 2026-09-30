@@ -1,0 +1,13 @@
+{
+  "architecture": "hybrid_transformer",
+  "training_molecules": 20000,
+  "training_spectra": 71503,
+  "parameters": 6192384,
+  "best_mrr25": 0.017582889850629616,
+  "best_epoch": 29,
+  "epochs_completed": 30,
+  "seconds": 188.49590789200738,
+  "gpu_peak_mib": 569.7666015625,
+  "stop_reason": "epoch_limit",
+  "checkpoint": "artifacts/scale_20260929/runs/hybrid_transformer_20000/model.pt"
+}

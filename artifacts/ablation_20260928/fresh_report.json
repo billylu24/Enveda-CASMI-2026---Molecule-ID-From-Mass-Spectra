@@ -1,0 +1,258 @@
+{
+  "selection": {
+    "name": "current_guard",
+    "base": "union35",
+    "kind": "current_guard"
+  },
+  "results": {
+    "coconut15": {
+      "config": {
+        "name": "coconut15",
+        "base": "coconut15",
+        "kind": "retrieval"
+      },
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.0875,
+        "mrr25": 0.012369795992845191,
+        "top1": 0.0,
+        "top5": 0.031,
+        "top25": 0.0585,
+        "conditional_mrr25": 0.14136909706108788,
+        "vs_historical": {
+          "difference": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "known": {
+        "molecules": 1132,
+        "candidate_recall": 0.9867491166077739,
+        "mrr25": 0.7939001390040539,
+        "top1": 0.7526501766784452,
+        "top5": 0.8224381625441696,
+        "top25": 0.8931095406360424,
+        "conditional_mrr25": 0.8045612867973043,
+        "vs_historical": {
+          "difference": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "coconut35": {
+      "config": {
+        "name": "coconut35",
+        "base": "coconut35",
+        "kind": "retrieval"
+      },
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.0885,
+        "mrr25": 0.012077343993296005,
+        "top1": 0.0,
+        "top5": 0.0295,
+        "top25": 0.0575,
+        "conditional_mrr25": 0.13646716376605655,
+        "vs_historical": {
+          "difference": -0.0002924519995491862,
+          "ci95": [
+            -0.0006580312268187909,
+            -7.12766142993165e-06
+          ]
+        }
+      },
+      "known": {
+        "molecules": 1132,
+        "candidate_recall": 0.9867491166077739,
+        "mrr25": 0.7938001457503503,
+        "top1": 0.7526501766784452,
+        "top5": 0.8215547703180212,
+        "top25": 0.8931095406360424,
+        "conditional_mrr25": 0.8044599507514741,
+        "vs_historical": {
+          "difference": -9.999325370350104e-05,
+          "ci95": [
+            -0.0002884353695970304,
+            6.189586081370523e-05
+          ]
+        }
+      }
+    },
+    "union15": {
+      "config": {
+        "name": "union15",
+        "base": "union15",
+        "kind": "retrieval"
+      },
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.087,
+        "mrr25": 0.008907570915067045,
+        "top1": 0.0,
+        "top5": 0.02,
+        "top25": 0.0475,
+        "conditional_mrr25": 0.10238587258697752,
+        "vs_historical": {
+          "difference": -0.0034622250777781465,
+          "ci95": [
+            -0.004572177849606142,
+            -0.00243773496141661
+          ]
+        }
+      },
+      "known": {
+        "molecules": 1132,
+        "candidate_recall": 0.9867491166077739,
+        "mrr25": 0.8202646284856594,
+        "top1": 0.7526501766784452,
+        "top5": 0.9107773851590106,
+        "top25": 0.9469964664310954,
+        "conditional_mrr25": 0.83127982045279,
+        "vs_historical": {
+          "difference": 0.02636448948160566,
+          "ci95": [
+            0.021895783338739976,
+            0.030972662515727126
+          ]
+        }
+      }
+    },
+    "union35": {
+      "config": {
+        "name": "union35",
+        "base": "union35",
+        "kind": "retrieval"
+      },
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.092,
+        "mrr25": 0.010658423979925192,
+        "top1": 0.0015,
+        "top5": 0.0215,
+        "top25": 0.0505,
+        "conditional_mrr25": 0.11585243456440425,
+        "vs_historical": {
+          "difference": -0.0017113720129200002,
+          "ci95": [
+            -0.0036867874532891653,
+            0.0005946535245599161
+          ]
+        }
+      },
+      "known": {
+        "molecules": 1132,
+        "candidate_recall": 0.9867491166077739,
+        "mrr25": 0.8201289999140586,
+        "top1": 0.7526501766784452,
+        "top5": 0.9107773851590106,
+        "top25": 0.9452296819787986,
+        "conditional_mrr25": 0.8311423705485358,
+        "vs_historical": {
+          "difference": 0.02622886091000495,
+          "ci95": [
+            0.02180430415898687,
+            0.030830209902908197
+          ]
+        }
+      }
+    },
+    "current_guard": {
+      "config": {
+        "name": "current_guard",
+        "base": "union35",
+        "kind": "current_guard"
+      },
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.092,
+        "mrr25": 0.011822868563119775,
+        "top1": 0.0015,
+        "top5": 0.0255,
+        "top25": 0.056,
+        "conditional_mrr25": 0.1285094409034758,
+        "vs_historical": {
+          "difference": -0.0005469274297254171,
+          "ci95": [
+            -0.002756587945538107,
+            0.0019786304864982704
+          ]
+        }
+      },
+      "known": {
+        "molecules": 1132,
+        "candidate_recall": 0.9867491166077739,
+        "mrr25": 0.8204600271925354,
+        "top1": 0.7526501766784452,
+        "top5": 0.9107773851590106,
+        "top25": 0.9487632508833922,
+        "conditional_mrr25": 0.831477843135139,
+        "vs_historical": {
+          "difference": 0.026559888188481626,
+          "ci95": [
+            0.02201696770342458,
+            0.03122847509110376
+          ]
+        }
+      }
+    },
+    "free_top1_t0.5_w0.75_mNone": {
+      "config": {
+        "name": "free_top1_t0.5_w0.75_mNone",
+        "base": "coconut15",
+        "kind": "free_top1",
+        "threshold": 0.5,
+        "weight": 0.75,
+        "margin": null
+      },
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.0925,
+        "mrr25": 0.01627576641131561,
+        "top1": 0.003,
+        "top5": 0.0365,
+        "top25": 0.063,
+        "conditional_mrr25": 0.17595423147368225,
+        "vs_historical": {
+          "difference": 0.003905970418470419,
+          "ci95": [
+            0.0016553602994227995,
+            0.00641774694055944
+          ]
+        }
+      },
+      "known": {
+        "molecules": 1132,
+        "candidate_recall": 0.9867491166077739,
+        "mrr25": 0.7941946030794366,
+        "top1": 0.7526501766784452,
+        "top5": 0.823321554770318,
+        "top25": 0.8939929328621908,
+        "conditional_mrr25": 0.8048597051798767,
+        "vs_historical": {
+          "difference": 0.0002944640753828033,
+          "ci95": [
+            0.0,
+            0.0008833922261484099
+          ]
+        }
+      }
+    }
+  },
+  "accepted": false,
+  "balanced_delta": 0.013006480379378104,
+  "note": "No selection or retuning from these results. Equal-weight mixture is an explicit proxy, not the unknown competition class distribution.",
+  "secondary_selection": {
+    "name": "free_top1_t0.5_w0.75_mNone",
+    "base": "coconut15",
+    "kind": "free_top1",
+    "threshold": 0.5,
+    "weight": 0.75,
+    "margin": null
+  },
+  "secondary_accepted": true
+}

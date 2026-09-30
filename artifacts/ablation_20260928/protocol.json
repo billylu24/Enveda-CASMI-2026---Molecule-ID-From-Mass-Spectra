@@ -1,0 +1,235 @@
+{
+  "version": 1,
+  "checkpoint": "artifacts/experiment/runs/metadata_42/model.pt",
+  "checkpoint_sha256": "3400c0aca876a8521363239b1d7777a2a73a055959a50706211544df94f1ddc1",
+  "configs": [
+    {
+      "name": "coconut15",
+      "base": "coconut15",
+      "kind": "retrieval"
+    },
+    {
+      "name": "coconut35",
+      "base": "coconut35",
+      "kind": "retrieval"
+    },
+    {
+      "name": "union15",
+      "base": "union15",
+      "kind": "retrieval"
+    },
+    {
+      "name": "union35",
+      "base": "union35",
+      "kind": "retrieval"
+    },
+    {
+      "name": "current_guard",
+      "base": "union35",
+      "kind": "current_guard"
+    },
+    {
+      "name": "protect_top1_t0.35_w0.5_mNone",
+      "base": "coconut15",
+      "kind": "protect_top1",
+      "threshold": 0.35,
+      "weight": 0.5,
+      "margin": null
+    },
+    {
+      "name": "free_top1_t0.35_w0.5_mNone",
+      "base": "coconut15",
+      "kind": "free_top1",
+      "threshold": 0.35,
+      "weight": 0.5,
+      "margin": null
+    },
+    {
+      "name": "margin_t0.35_w0.5_m0.05",
+      "base": "coconut15",
+      "kind": "margin",
+      "threshold": 0.35,
+      "weight": 0.5,
+      "margin": 0.05
+    },
+    {
+      "name": "margin_t0.35_w0.5_m0.15",
+      "base": "coconut15",
+      "kind": "margin",
+      "threshold": 0.35,
+      "weight": 0.5,
+      "margin": 0.15
+    },
+    {
+      "name": "protect_top1_t0.35_w0.75_mNone",
+      "base": "coconut15",
+      "kind": "protect_top1",
+      "threshold": 0.35,
+      "weight": 0.75,
+      "margin": null
+    },
+    {
+      "name": "free_top1_t0.35_w0.75_mNone",
+      "base": "coconut15",
+      "kind": "free_top1",
+      "threshold": 0.35,
+      "weight": 0.75,
+      "margin": null
+    },
+    {
+      "name": "margin_t0.35_w0.75_m0.05",
+      "base": "coconut15",
+      "kind": "margin",
+      "threshold": 0.35,
+      "weight": 0.75,
+      "margin": 0.05
+    },
+    {
+      "name": "margin_t0.35_w0.75_m0.15",
+      "base": "coconut15",
+      "kind": "margin",
+      "threshold": 0.35,
+      "weight": 0.75,
+      "margin": 0.15
+    },
+    {
+      "name": "protect_top1_t0.5_w0.5_mNone",
+      "base": "coconut15",
+      "kind": "protect_top1",
+      "threshold": 0.5,
+      "weight": 0.5,
+      "margin": null
+    },
+    {
+      "name": "free_top1_t0.5_w0.5_mNone",
+      "base": "coconut15",
+      "kind": "free_top1",
+      "threshold": 0.5,
+      "weight": 0.5,
+      "margin": null
+    },
+    {
+      "name": "margin_t0.5_w0.5_m0.05",
+      "base": "coconut15",
+      "kind": "margin",
+      "threshold": 0.5,
+      "weight": 0.5,
+      "margin": 0.05
+    },
+    {
+      "name": "margin_t0.5_w0.5_m0.15",
+      "base": "coconut15",
+      "kind": "margin",
+      "threshold": 0.5,
+      "weight": 0.5,
+      "margin": 0.15
+    },
+    {
+      "name": "protect_top1_t0.5_w0.75_mNone",
+      "base": "coconut15",
+      "kind": "protect_top1",
+      "threshold": 0.5,
+      "weight": 0.75,
+      "margin": null
+    },
+    {
+      "name": "free_top1_t0.5_w0.75_mNone",
+      "base": "coconut15",
+      "kind": "free_top1",
+      "threshold": 0.5,
+      "weight": 0.75,
+      "margin": null
+    },
+    {
+      "name": "margin_t0.5_w0.75_m0.05",
+      "base": "coconut15",
+      "kind": "margin",
+      "threshold": 0.5,
+      "weight": 0.75,
+      "margin": 0.05
+    },
+    {
+      "name": "margin_t0.5_w0.75_m0.15",
+      "base": "coconut15",
+      "kind": "margin",
+      "threshold": 0.5,
+      "weight": 0.75,
+      "margin": 0.15
+    },
+    {
+      "name": "protect_top1_t0.65_w0.5_mNone",
+      "base": "coconut15",
+      "kind": "protect_top1",
+      "threshold": 0.65,
+      "weight": 0.5,
+      "margin": null
+    },
+    {
+      "name": "free_top1_t0.65_w0.5_mNone",
+      "base": "coconut15",
+      "kind": "free_top1",
+      "threshold": 0.65,
+      "weight": 0.5,
+      "margin": null
+    },
+    {
+      "name": "margin_t0.65_w0.5_m0.05",
+      "base": "coconut15",
+      "kind": "margin",
+      "threshold": 0.65,
+      "weight": 0.5,
+      "margin": 0.05
+    },
+    {
+      "name": "margin_t0.65_w0.5_m0.15",
+      "base": "coconut15",
+      "kind": "margin",
+      "threshold": 0.65,
+      "weight": 0.5,
+      "margin": 0.15
+    },
+    {
+      "name": "protect_top1_t0.65_w0.75_mNone",
+      "base": "coconut15",
+      "kind": "protect_top1",
+      "threshold": 0.65,
+      "weight": 0.75,
+      "margin": null
+    },
+    {
+      "name": "free_top1_t0.65_w0.75_mNone",
+      "base": "coconut15",
+      "kind": "free_top1",
+      "threshold": 0.65,
+      "weight": 0.75,
+      "margin": null
+    },
+    {
+      "name": "margin_t0.65_w0.75_m0.05",
+      "base": "coconut15",
+      "kind": "margin",
+      "threshold": 0.65,
+      "weight": 0.75,
+      "margin": 0.05
+    },
+    {
+      "name": "margin_t0.65_w0.75_m0.15",
+      "base": "coconut15",
+      "kind": "margin",
+      "threshold": 0.65,
+      "weight": 0.75,
+      "margin": 0.15
+    }
+  ],
+  "dev_molecules": 2000,
+  "fresh_holdout_molecules": 2000,
+  "selection": "maximize equal-weight known/unknown development MRR, subject to known MRR >= historical hybrid - 0.001 and unknown MRR >= historical hybrid; retrieval simplicity breaks ties",
+  "acceptance": "frozen winner unknown MRR > historical, known MRR >= historical - 0.001, balanced delta > 0",
+  "holdout": "unused holdout keys, deterministic SHA256 order, seed 20260928 reservoir, no retuning",
+  "reference_note": "shared filtered reference index for all variants; historical ranking oracle checked; missing-reference fallback evaluated separately on visible test",
+  "coverage": "development only; extended charge-aware median and union of per-spectrum mass hypotheses; no query labels used to generate masses",
+  "public_scores": {
+    "hybrid": 0.176,
+    "guarded": 0.162
+  }
+}

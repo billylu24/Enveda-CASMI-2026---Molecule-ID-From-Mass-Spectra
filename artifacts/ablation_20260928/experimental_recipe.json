@@ -1,0 +1,22 @@
+{
+  "status": "secondary_endpoint_passed_local_acceptance",
+  "config": {
+    "name": "free_top1_t0.5_w0.75_mNone",
+    "base": "coconut15",
+    "kind": "free_top1",
+    "threshold": 0.5,
+    "weight": 0.75,
+    "margin": null
+  },
+  "checkpoint": "artifacts/experiment/runs/metadata_42/model.pt",
+  "checkpoint_sha256": "3400c0aca876a8521363239b1d7777a2a73a055959a50706211544df94f1ddc1",
+  "reference_ranking": "historical hybrid candidate rule; preserve complete high-confidence list",
+  "neural_candidates": "existing common mass-matched pool; extend historical list with current baseline then RRF",
+  "rrf_constant": 60,
+  "refit": false,
+  "mass_conversion_experiments_included_in_ranking": false,
+  "holdout_report": "fresh_report.json",
+  "visible_csv": "visible_secondary.csv",
+  "production_config_changed": false,
+  "kaggle_submitted": false
+}

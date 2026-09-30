@@ -1,0 +1,4 @@
+{
+  "timing": "Before training or development model evaluation",
+  "reason": "Rebuild references for the actual single-query mass centers instead of reusing references filtered at original multi-query median masses. No training or model selection results observed."
+}

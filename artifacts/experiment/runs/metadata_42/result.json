@@ -1,0 +1,13 @@
+{
+  "architecture": "metadata",
+  "seed": 42,
+  "best_epoch": 13,
+  "best_mrr25": 0.01502288404503171,
+  "seconds": 85.10966514900065,
+  "parameters": 1350912,
+  "spectra": 71503,
+  "peak_rss_mib": 7064.47265625,
+  "stop_reason": "early_stopping",
+  "final_refit": false,
+  "checkpoint": "artifacts/experiment/runs/metadata_42/model.pt"
+}

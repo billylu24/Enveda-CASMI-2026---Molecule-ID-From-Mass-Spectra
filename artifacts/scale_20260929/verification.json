@@ -1,0 +1,22 @@
+{
+  "completed_at_utc": "2026-09-29T08:29:31.610138+00:00",
+  "fresh_molecules": 2000,
+  "overlap_with_all_prior_queries_or_training": 0,
+  "tests_passed": 18,
+  "large_encoder_both_deployment_branches_tested": true,
+  "ruff_passed": true,
+  "external_directory_package_output_byte_identical": true,
+  "submitted_to_kaggle": false,
+  "sha256": {
+    "artifacts/scale_20260929/selection.json": "94e8a30fe163cc42820e8163d1e911ae59aa8b2b0983cfc27da93c6e4c9d0d6d",
+    "artifacts/scale_20260929/protocol.json": "b5a46773af98baf19210c8484419d15a1b76fcafc52e015284a82dc54a3a44ae",
+    "artifacts/scale_20260929/fresh_report.json": "5d513902f50a164338f96be0819e1370b12281c69b049f9942f1ae95645431e7",
+    "artifacts/scale_20260929/runs/wide_enhanced_60000/model.pt": "0bce6b953f084c1f841b607df99ec46703d7b92a487c8f0812be3db176b3c564",
+    "artifacts/scale_20260929/deployment_recipe.json": "7b50f2586808ad42fa0630ac6460ef43b001748e949e47bc025059d8b8785e83",
+    "artifacts/scale_20260929/submission.csv": "96a128d4a3a55da5572e205d17a551b07bab3ad2e0006def92fee0b65fc52f01",
+    "kaggle_release_scale/dataset/casmi_scale_bundle.zip": "ae063b14759286a359ecda18be0cc9fc4e6586abb37bc830df7c21bfb2421675",
+    "casmi_ml/scale_experiment.py": "b617c6972ee8fedccfd760936b4162941aa176a976e876804ddd650c9d5d9331",
+    "casmi_ml/scale_models.py": "a13834da8b13fe065bb95b770e0f20b4bb415fdb24c76cbcbda0de2676957d82",
+    "casmi_ml/secondary_inference.py": "3a6f926905bf5ee6a5c5da7759fbe75bee8c5c8ab855b36076692e01bdbc5bfb"
+  }
+}

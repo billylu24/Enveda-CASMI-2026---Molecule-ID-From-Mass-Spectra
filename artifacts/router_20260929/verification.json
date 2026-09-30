@@ -1,0 +1,33 @@
+{
+  "fresh_molecules": 2000,
+  "prior_cohort_overlap": {
+    "artifacts/experiment/train.parquet": 0,
+    "artifacts/experiment/dev.parquet": 0,
+    "artifacts/experiment/holdout.parquet": 0,
+    "artifacts/experiment/fresh_holdout.parquet": 0,
+    "artifacts/experiment/diagnostic.parquet": 0,
+    "artifacts/experiment/final_train.parquet": 0,
+    "artifacts/ablation_20260928/fresh.parquet": 0,
+    "artifacts/scale_20260929/fresh.parquet": 0,
+    "artifacts/scale_20260929/train60k.parquet": 0
+  },
+  "molecule_grouped_folds": true,
+  "frozen_selection_hash_matches": true,
+  "cache_fix": "Large encoder caches use encoder_<split>_probabilities.npy; old control encoder caches remain separate. Interrupted initial control generation before output was saved; restarted without changing cohort or selection.",
+  "tests": "21 passed",
+  "shared_feature_exact_match_groups": 50,
+  "deployment_branch_tests_passed": true,
+  "sklearn_version": "1.9.1",
+  "joblib_version": "1.6.0",
+  "visible_inference": {
+    "molecules": 400,
+    "same_full_ranking": 184,
+    "same_top1": 301,
+    "historical_action": 184,
+    "neural_fusion_action": 216,
+    "confidence_min": 0.9999998807907104,
+    "note": "Visible spectra have high reference similarity but calibrated routing may select fusion. This is a distribution-shift diagnostic, not leaderboard evidence; no post-holdout retuning."
+  },
+  "full_tests": "21 passed",
+  "ruff": "passed"
+}

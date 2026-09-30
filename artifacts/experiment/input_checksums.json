@@ -1,0 +1,14 @@
+{
+  "data/train.parquet": {
+    "bytes": 3033286496,
+    "sha256": "9423f90ec08b941a9646b535bf0606183e86ff0c5a297978f5a70693d41bcd98"
+  },
+  "data/test.parquet": {
+    "bytes": 4848729,
+    "sha256": "2fa29c4aa06e93b48e0cd6619fd2de3f4e956f0019d242141678b7287f2b43e0"
+  },
+  "external/coconut_structures.parquet": {
+    "bytes": 43721495,
+    "sha256": "6d8bd9206fa576fecd2741c020ba64f5f4e60609f767bd8aad8a6628a5b87bbd"
+  }
+}

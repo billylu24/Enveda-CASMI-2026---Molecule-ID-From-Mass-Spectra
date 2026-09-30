@@ -1,0 +1,21 @@
+{
+  "completed_at_utc": "2026-09-29T06:58:02.481167+00:00",
+  "sha256": {
+    "casmi_ml/ablation.py": "726c13498be6bb851f356d5fb8a909ae101fa7a215ff30d829f63873678fbb87",
+    "casmi_ml/visible_ablation.py": "e8b0ab2fab18b9b1766a26c53cc94f3a263bb94a0727ab4fb5ceccaaeae98fe0",
+    "tests/test_ablation.py": "952575a1f062252132ab51b6cd8fc71f6c52fd182f3167aba18dd921d6c8a917",
+    "artifacts/ablation_20260928/protocol.json": "03cf7f8324e899b660e2e32c282e370ce4d04e8bd95e2dcca1c3dd4328efc132",
+    "artifacts/ablation_20260928/selection.json": "ab3b993f9c0e03e914b442b3dbf3f542bd1c5cd78550a6dd29aab70fb760b0f8",
+    "artifacts/ablation_20260928/secondary_selection.json": "ab364542629b81a9ef35efff75f0dbc847a9ba0fe96b7eb63e8cff73925da8a9",
+    "artifacts/ablation_20260928/fresh_report.json": "7682c0637cdd098776be3061b70d12fcef9a1fec553791d2b273e22cd52b80ac",
+    "artifacts/ablation_20260928/fresh.parquet": "871e06f765ba0ea44fef7e91df53a3ad44b64bd3ca12a8f18d2de526230c5ea7",
+    "artifacts/experiment/runs/metadata_42/model.pt": "3400c0aca876a8521363239b1d7777a2a73a055959a50706211544df94f1ddc1"
+  },
+  "tests_passed": 15,
+  "ruff": "passed",
+  "historical_visible_top25_reproduced": 400,
+  "visible_secondary_csv_validated": true,
+  "input_checksum_record": "artifacts/experiment/input_checksums.json",
+  "new_cohort_overlap_with_previous_queries": 0,
+  "source_file_bytes": 3033286496
+}

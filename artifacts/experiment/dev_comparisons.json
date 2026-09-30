@@ -1,0 +1,161 @@
+[
+  {
+    "molecules": 2000,
+    "candidate_recall": 0.083,
+    "mrr25": 0.00807714512096091,
+    "top1": 0.002,
+    "top5": 0.014,
+    "top25": 0.041,
+    "conditional_mrr25": 0.09731500145736037,
+    "neural_weight": 0.0,
+    "architectures": [],
+    "checkpoints": [],
+    "parameters": 0
+  },
+  {
+    "molecules": 2000,
+    "candidate_recall": 0.083,
+    "mrr25": 0.010178485116123761,
+    "top1": 0.0035,
+    "top5": 0.016,
+    "top25": 0.0475,
+    "conditional_mrr25": 0.12263235079667183,
+    "neural_weight": 0.25,
+    "architectures": [
+      "metadata"
+    ],
+    "checkpoints": [
+      "artifacts/experiment/runs/metadata_42/model.pt"
+    ],
+    "parameters": 1350912
+  },
+  {
+    "molecules": 2000,
+    "candidate_recall": 0.083,
+    "mrr25": 0.01280758485474009,
+    "top1": 0.0045,
+    "top5": 0.0235,
+    "top25": 0.0525,
+    "conditional_mrr25": 0.1543082512619288,
+    "neural_weight": 0.5,
+    "architectures": [
+      "metadata"
+    ],
+    "checkpoints": [
+      "artifacts/experiment/runs/metadata_42/model.pt"
+    ],
+    "parameters": 1350912
+  },
+  {
+    "molecules": 2000,
+    "candidate_recall": 0.083,
+    "mrr25": 0.015613673737365517,
+    "top1": 0.008,
+    "top5": 0.023,
+    "top25": 0.049,
+    "conditional_mrr25": 0.18811655105259661,
+    "neural_weight": 0.75,
+    "architectures": [
+      "metadata"
+    ],
+    "checkpoints": [
+      "artifacts/experiment/runs/metadata_42/model.pt"
+    ],
+    "parameters": 1350912,
+    "selection_basis": "development MRR@25; prefer simpler within 0.005; holdout not used for selection",
+    "rules_status": "Current Kaggle rules not reverified: browser access was denied."
+  },
+  {
+    "molecules": 2000,
+    "candidate_recall": 0.083,
+    "mrr25": 0.01502288404503171,
+    "top1": 0.007,
+    "top5": 0.024,
+    "top25": 0.049,
+    "conditional_mrr25": 0.18099860295218928,
+    "neural_weight": 1.0,
+    "architectures": [
+      "metadata"
+    ],
+    "checkpoints": [
+      "artifacts/experiment/runs/metadata_42/model.pt"
+    ],
+    "parameters": 1350912
+  },
+  {
+    "molecules": 2000,
+    "candidate_recall": 0.083,
+    "mrr25": 0.01050648050566714,
+    "top1": 0.004,
+    "top5": 0.0155,
+    "top25": 0.048,
+    "conditional_mrr25": 0.12658410247791732,
+    "neural_weight": 0.25,
+    "architectures": [
+      "metadata",
+      "mlp"
+    ],
+    "checkpoints": [
+      "artifacts/experiment/runs/metadata_42/model.pt",
+      "artifacts/experiment/runs/mlp_42/model.pt"
+    ],
+    "parameters": 2649088
+  },
+  {
+    "molecules": 2000,
+    "candidate_recall": 0.083,
+    "mrr25": 0.012608509550529338,
+    "top1": 0.0045,
+    "top5": 0.021,
+    "top25": 0.052,
+    "conditional_mrr25": 0.1519097536208354,
+    "neural_weight": 0.5,
+    "architectures": [
+      "metadata",
+      "mlp"
+    ],
+    "checkpoints": [
+      "artifacts/experiment/runs/metadata_42/model.pt",
+      "artifacts/experiment/runs/mlp_42/model.pt"
+    ],
+    "parameters": 2649088
+  },
+  {
+    "molecules": 2000,
+    "candidate_recall": 0.083,
+    "mrr25": 0.015109251638790606,
+    "top1": 0.0075,
+    "top5": 0.024,
+    "top25": 0.049,
+    "conditional_mrr25": 0.18203917637097117,
+    "neural_weight": 0.75,
+    "architectures": [
+      "metadata",
+      "mlp"
+    ],
+    "checkpoints": [
+      "artifacts/experiment/runs/metadata_42/model.pt",
+      "artifacts/experiment/runs/mlp_42/model.pt"
+    ],
+    "parameters": 2649088
+  },
+  {
+    "molecules": 2000,
+    "candidate_recall": 0.083,
+    "mrr25": 0.0145834644000314,
+    "top1": 0.0065,
+    "top5": 0.024,
+    "top25": 0.049,
+    "conditional_mrr25": 0.1757043903618241,
+    "neural_weight": 1.0,
+    "architectures": [
+      "metadata",
+      "mlp"
+    ],
+    "checkpoints": [
+      "artifacts/experiment/runs/metadata_42/model.pt",
+      "artifacts/experiment/runs/mlp_42/model.pt"
+    ],
+    "parameters": 2649088
+  }
+]

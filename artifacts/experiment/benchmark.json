@@ -1,0 +1,28 @@
+{
+  "mlp": {
+    "spectra_per_second": 22629.406678075797,
+    "epoch_seconds": 3.159738168003969,
+    "parameters": 1298176
+  },
+  "enhanced": {
+    "spectra_per_second": 15777.202255658225,
+    "epoch_seconds": 4.5320455960027175,
+    "parameters": 1990912
+  },
+  "metadata": {
+    "spectra_per_second": 22689.805799390913,
+    "epoch_seconds": 3.151327103994845,
+    "parameters": 1350912
+  },
+  "deepsets": {
+    "spectra_per_second": 9320.551037987856,
+    "epoch_seconds": 7.671542133997718,
+    "parameters": 628096
+  },
+  "transformer": {
+    "spectra_per_second": 933.9162887349529,
+    "epoch_seconds": 76.562536559733,
+    "parameters": 860288
+  },
+  "common_train_fraction": 1.0
+}

@@ -1,0 +1,56 @@
+{
+  "winner": {
+    "checkpoints": [
+      "artifacts/scale_20260929/runs/wide_enhanced_60000/model.pt"
+    ],
+    "name": "wide_enhanced_60000",
+    "parameters": 10665728,
+    "unknown": {
+      "molecules": 2000,
+      "candidate_recall": 0.084,
+      "mrr25": 0.01728262975222307,
+      "top1": 0.0075,
+      "top5": 0.03,
+      "top25": 0.061,
+      "conditional_mrr25": 0.2057455922883699
+    },
+    "known": {
+      "molecules": 1187,
+      "candidate_recall": 0.987363100252738,
+      "mrr25": 0.7717012841634778,
+      "top1": 0.7219882055602359,
+      "top5": 0.8087615838247684,
+      "top25": 0.8820556023588879,
+      "conditional_mrr25": 0.7815780070836589
+    },
+    "eligible": true
+  },
+  "old_baseline": {
+    "unknown": {
+      "molecules": 2000,
+      "candidate_recall": 0.084,
+      "mrr25": 0.01486280730085263,
+      "top1": 0.005,
+      "top5": 0.0275,
+      "top25": 0.059,
+      "conditional_mrr25": 0.1769381821530075
+    },
+    "known": {
+      "molecules": 1187,
+      "candidate_recall": 0.987363100252738,
+      "mrr25": 0.7708919208225222,
+      "top1": 0.7211457455770851,
+      "top5": 0.8079191238416176,
+      "top25": 0.8812131423757371,
+      "conditional_mrr25": 0.7807582849968719
+    }
+  },
+  "routing": {
+    "kind": "free_top1",
+    "base": "coconut15",
+    "threshold": 0.5,
+    "weight": 0.75
+  },
+  "frozen_before_fresh_holdout": true,
+  "protocol_sha256": "b5a46773af98baf19210c8484419d15a1b76fcafc52e015284a82dc54a3a44ae"
+}

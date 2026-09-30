@@ -1,0 +1,13 @@
+{
+  "architecture": "peak_transformer",
+  "training_molecules": 20000,
+  "training_spectra": 71503,
+  "parameters": 4596736,
+  "best_mrr25": 0.018138882124721586,
+  "best_epoch": 20,
+  "epochs_completed": 25,
+  "seconds": 150.6301057500241,
+  "gpu_peak_mib": 542.5634765625,
+  "stop_reason": "early_stopping",
+  "checkpoint": "artifacts/scale_20260929/runs/peak_transformer_20000/model.pt"
+}

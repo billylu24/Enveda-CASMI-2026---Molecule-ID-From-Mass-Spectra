@@ -1,0 +1,10 @@
+architecture,seed,best_epoch,best_mrr25,seconds,parameters,spectra,peak_rss_mib,stop_reason,final_refit,checkpoint
+mlp,42,20,0.014892461763065312,109.24925047799479,1298176,71503,7064.47265625,epoch_limit,False,artifacts/experiment/runs/mlp_42/model.pt
+enhanced,42,16,0.016265874781822922,121.68705829099781,1990912,71503,7064.47265625,early_stopping,False,artifacts/experiment/runs/enhanced_42/model.pt
+metadata,42,13,0.01502288404503171,85.10966514900065,1350912,71503,7064.47265625,early_stopping,False,artifacts/experiment/runs/metadata_42/model.pt
+deepsets,42,12,0.015742527931529145,165.87201811799605,628096,71503,7064.47265625,early_stopping,False,artifacts/experiment/runs/deepsets_42/model.pt
+transformer,42,6,0.012731186399823834,753.1910833729999,860288,71503,7064.47265625,early_stopping,False,artifacts/experiment/runs/transformer_42/model.pt
+metadata,43,16,0.015358797203081089,99.56417819300259,1350912,71503,7064.47265625,early_stopping,False,artifacts/experiment/runs/metadata_43/model.pt
+metadata,44,18,0.015274174304479865,105.65157847799856,1350912,71503,7064.47265625,epoch_limit,False,artifacts/experiment/runs/metadata_44/model.pt
+mlp,43,8,0.013525949846619183,58.98017850099859,1298176,71503,7064.47265625,early_stopping,False,artifacts/experiment/runs/mlp_43/model.pt
+mlp,44,13,0.014194763678873585,83.03214227200078,1298176,71503,7064.47265625,early_stopping,False,artifacts/experiment/runs/mlp_44/model.pt

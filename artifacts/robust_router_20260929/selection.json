@@ -1,0 +1,47 @@
+{
+  "winner": {
+    "config": {
+      "name": "baseline",
+      "type": "baseline"
+    },
+    "unknown": {
+      "molecules": 2000,
+      "mrr25": 0.01728262975222307,
+      "candidate_recall": 0.084,
+      "top1": 0.0075,
+      "top5": 0.03,
+      "top25": 0.061
+    },
+    "known": {
+      "molecules": 1187,
+      "mrr25": 0.771697454799918,
+      "candidate_recall": 0.987363100252738,
+      "top1": 0.7219882055602359,
+      "top5": 0.8087615838247684,
+      "top25": 0.8820556023588879
+    },
+    "eligible": true
+  },
+  "baseline": {
+    "unknown": {
+      "molecules": 2000,
+      "mrr25": 0.01728262975222307,
+      "candidate_recall": 0.084,
+      "top1": 0.0075,
+      "top5": 0.03,
+      "top25": 0.061
+    },
+    "known": {
+      "molecules": 1187,
+      "mrr25": 0.771697454799918,
+      "candidate_recall": 0.987363100252738,
+      "top1": 0.7219882055602359,
+      "top5": 0.8087615838247684,
+      "top25": 0.8820556023588879
+    }
+  },
+  "model_path": null,
+  "model_sha256": null,
+  "protocol_sha256": "8df0de3eeaf30c0f799d1f9baefbb23f6458285dff69c6fb58bf436e00363355",
+  "frozen_before_fresh_holdout": true
+}

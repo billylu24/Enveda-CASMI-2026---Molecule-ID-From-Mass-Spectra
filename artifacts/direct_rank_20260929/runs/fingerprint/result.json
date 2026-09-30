@@ -1,0 +1,26 @@
+{
+  "architecture": "fingerprint",
+  "best_unknown_mrr": 0.020140770697310944,
+  "checkpoint": "artifacts/direct_rank_20260929/runs/fingerprint/model.pt",
+  "seconds": 28.926656591007486,
+  "baseline": {
+    "unknown": {
+      "molecules": 2000,
+      "candidate_recall": 0.0815,
+      "mrr25": 0.0177261828286093,
+      "top1": 0.008,
+      "top5": 0.0295,
+      "top25": 0.0595,
+      "conditional_mrr25": 0.21749917581115702
+    },
+    "known": {
+      "molecules": 1777,
+      "candidate_recall": 0.8728193584693303,
+      "mrr25": 0.6966061152210974,
+      "top1": 0.6516601012943163,
+      "top5": 0.7259425998874508,
+      "top25": 0.8114800225098481,
+      "conditional_mrr25": 0.7981102944860671
+    }
+  }
+}

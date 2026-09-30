@@ -1,0 +1,16 @@
+{
+  "external_sha256": "fce315874053a8ed29eba782d7b3f58a4b9cef6dcc0f073a412ade174c16382d",
+  "encoder_sha256": "0bce6b953f084c1f841b607df99ec46703d7b92a487c8f0812be3db176b3c564",
+  "configs": [
+    0.0,
+    0.25,
+    0.5,
+    1.0
+  ],
+  "change": "add distinct PubChemLite structure keys to existing train+COCONUT common pool; unchanged 35ppm/floor.006 filter",
+  "ranking": "same frozen 60K fingerprint encoder, .75 neural fusion; historical confidence>=.5 unchanged; blend original and expanded full rankings by RRF at weights 0/.25/.5/1",
+  "development": "previous matched single-query dev2000; same known/unknown reference caches",
+  "selection": "maximum unknown MRR, known MRR>=baseline-.001 and top1>=baseline-.005; strict unknown improvement; smaller weight breaks ties",
+  "acceptance": "new2000 unknown paired CI95 lower>0, known MRR delta>=-.001 and top1 delta>=-.005",
+  "limits": "single-query controlled validation, public candidate sources only; latest competition external-data terms not verified because browser access was declined"
+}

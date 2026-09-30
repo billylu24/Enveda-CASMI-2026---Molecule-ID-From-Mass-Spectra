@@ -1,0 +1,10 @@
+{
+  "valid_molecules": 400,
+  "local_top1_matches": 400,
+  "local_full_order_matches": 92,
+  "previous_kaggle_top1_matches": 400,
+  "previous_kaggle_full_key_order_matches": 400,
+  "previous_kaggle_candidate_set_matches": 400,
+  "local_full_key_order_matches": 263,
+  "local_candidate_set_matches": 392
+}

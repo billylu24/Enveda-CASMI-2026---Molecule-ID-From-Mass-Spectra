@@ -1,0 +1,5 @@
+{
+  "low_confidence_groups": 25,
+  "complete_rank_match": 25,
+  "precision": "CPU float32 per query; recomputed production functions"
+}

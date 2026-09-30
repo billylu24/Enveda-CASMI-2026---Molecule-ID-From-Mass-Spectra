@@ -1,0 +1,17 @@
+{
+  "molecules": 400,
+  "seconds": 67.40630925000005,
+  "peak_rss_mib": 4452.765625,
+  "fallback_molecules": 0,
+  "protected_molecules": 400,
+  "architectures": [
+    "metadata"
+  ],
+  "neural_weight": 0.75,
+  "kaggle_verified": false,
+  "identical_to_project_inference": true,
+  "sha256": "a78ea6ac4b8e1779a997b08691acc0218822514fec1cd9cf959909855b5599a4",
+  "loaded_from_bundle": true,
+  "actual_kaggle_run": false,
+  "visible_test_all_used_protected_branch": true
+}

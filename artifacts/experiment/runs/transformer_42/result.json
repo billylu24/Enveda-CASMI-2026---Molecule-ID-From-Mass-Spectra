@@ -1,0 +1,13 @@
+{
+  "architecture": "transformer",
+  "seed": 42,
+  "best_epoch": 6,
+  "best_mrr25": 0.012731186399823834,
+  "seconds": 753.1910833729999,
+  "parameters": 860288,
+  "spectra": 71503,
+  "peak_rss_mib": 7064.47265625,
+  "stop_reason": "early_stopping",
+  "final_refit": false,
+  "checkpoint": "artifacts/experiment/runs/transformer_42/model.pt"
+}

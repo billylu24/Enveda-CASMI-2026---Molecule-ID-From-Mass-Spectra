@@ -1,0 +1,23 @@
+{
+  "molecules": 2000,
+  "candidate_recall": 0.083,
+  "mrr25": 0.015613673737365517,
+  "top1": 0.008,
+  "top5": 0.023,
+  "top25": 0.049,
+  "conditional_mrr25": 0.18811655105259661,
+  "neural_weight": 0.75,
+  "architectures": [
+    "metadata"
+  ],
+  "checkpoints": [
+    "artifacts/experiment/runs/metadata_42_final/model.pt"
+  ],
+  "parameters": 1350912,
+  "selection_basis": "development MRR@25; prefer simpler within 0.005; holdout not used for selection",
+  "rules_status": "Current Kaggle rules not reverified: browser access was denied.",
+  "validation_checkpoints": [
+    "artifacts/experiment/runs/metadata_42/model.pt"
+  ],
+  "refit_note": "Final refit uses train+dev; held-out metrics describe frozen pre-refit checkpoints."
+}

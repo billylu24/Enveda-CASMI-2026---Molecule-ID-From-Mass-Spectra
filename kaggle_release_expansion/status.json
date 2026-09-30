@@ -1,0 +1,23 @@
+{
+  "status": "scored",
+  "uploaded": true,
+  "submitted": true,
+  "local_holdout_accepted": false,
+  "experimental_submission": true,
+  "submission_basis": "User authorized upload when local metrics improve; both independent point estimates improved. Statistical gate status remains unchanged.",
+  "external_sha256": "fce315874053a8ed29eba782d7b3f58a4b9cef6dcc0f073a412ade174c16382d",
+  "dataset": "giaok246/casmi-2026-pubchemlite-expansion-bundle",
+  "dataset_version": 1,
+  "kernel": "giaok246/casmi-2026-pubchemlite-expansion-inference",
+  "kernel_version": 1,
+  "kernel_url": "https://www.kaggle.com/code/giaok246/casmi-2026-pubchemlite-expansion-inference",
+  "tests_passed": 30,
+  "external_directory_package_verified": true,
+  "updated_at_utc": "2026-09-30T04:23:51.452955+00:00",
+  "kernel_status": "COMPLETE",
+  "submission_id": 56690108,
+  "submission_status": "COMPLETE",
+  "competition": "enveda-CASMI26-molecule-id-mass-spectra",
+  "kaggle_visible_previous_full_matches": 400,
+  "public_score": 0.171
+}

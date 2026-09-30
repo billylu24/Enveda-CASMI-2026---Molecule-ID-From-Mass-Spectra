@@ -1,0 +1,7 @@
+{
+  "groups": 28,
+  "max_abs_score_difference": 9.015202522277832e-07,
+  "top1_matches": 28,
+  "full_order_matches": 22,
+  "tolerance_passed": true
+}

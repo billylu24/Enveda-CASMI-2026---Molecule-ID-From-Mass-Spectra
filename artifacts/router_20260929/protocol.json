@@ -1,0 +1,407 @@
+{
+  "version": 1,
+  "encoder": "artifacts/scale_20260929/runs/wide_enhanced_60000/model.pt",
+  "encoder_sha256": "0bce6b953f084c1f841b607df99ec46703d7b92a487c8f0812be3db176b3c564",
+  "features": [
+    "confidence",
+    "margin",
+    "relative_margin",
+    "log_candidates",
+    "query_spectra",
+    "mean_peaks",
+    "neutral_mass",
+    "probability_entropy",
+    "predicted_bits",
+    "neural_score",
+    "neural_gap",
+    "reference_in_neural_rr",
+    "neural_in_reference_rr",
+    "neural_in_union_rr",
+    "top1_agreement",
+    "top5_overlap",
+    "top25_overlap"
+  ],
+  "folds": 5,
+  "fold_group": "SHA256(inchikey14) mod 5; known/unknown versions of a molecule share the same fold",
+  "label": "historical first candidate is correct, never provided as an input feature",
+  "actions": {
+    "H": "historical hybrid",
+    "U": "common-pool retrieval",
+    "F": "historical-extended neural RRF .75",
+    "N": "neural only"
+  },
+  "configs": [
+    {
+      "name": "baseline",
+      "type": "baseline"
+    },
+    {
+      "name": "fixed_H_F_0.35",
+      "type": "fixed",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.35
+    },
+    {
+      "name": "fixed_H_F_0.5",
+      "type": "fixed",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.5
+    },
+    {
+      "name": "fixed_H_F_0.65",
+      "type": "fixed",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.65
+    },
+    {
+      "name": "fixed_H_F_0.8",
+      "type": "fixed",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.8
+    },
+    {
+      "name": "fixed_H_F_0.9",
+      "type": "fixed",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.9
+    },
+    {
+      "name": "fixed_H_N_0.35",
+      "type": "fixed",
+      "high": "H",
+      "low": "N",
+      "threshold": 0.35
+    },
+    {
+      "name": "fixed_H_N_0.5",
+      "type": "fixed",
+      "high": "H",
+      "low": "N",
+      "threshold": 0.5
+    },
+    {
+      "name": "fixed_H_N_0.65",
+      "type": "fixed",
+      "high": "H",
+      "low": "N",
+      "threshold": 0.65
+    },
+    {
+      "name": "fixed_H_N_0.8",
+      "type": "fixed",
+      "high": "H",
+      "low": "N",
+      "threshold": 0.8
+    },
+    {
+      "name": "fixed_H_N_0.9",
+      "type": "fixed",
+      "high": "H",
+      "low": "N",
+      "threshold": 0.9
+    },
+    {
+      "name": "fixed_U_F_0.35",
+      "type": "fixed",
+      "high": "U",
+      "low": "F",
+      "threshold": 0.35
+    },
+    {
+      "name": "fixed_U_F_0.5",
+      "type": "fixed",
+      "high": "U",
+      "low": "F",
+      "threshold": 0.5
+    },
+    {
+      "name": "fixed_U_F_0.65",
+      "type": "fixed",
+      "high": "U",
+      "low": "F",
+      "threshold": 0.65
+    },
+    {
+      "name": "fixed_U_F_0.8",
+      "type": "fixed",
+      "high": "U",
+      "low": "F",
+      "threshold": 0.8
+    },
+    {
+      "name": "fixed_U_F_0.9",
+      "type": "fixed",
+      "high": "U",
+      "low": "F",
+      "threshold": 0.9
+    },
+    {
+      "name": "fixed_U_N_0.35",
+      "type": "fixed",
+      "high": "U",
+      "low": "N",
+      "threshold": 0.35
+    },
+    {
+      "name": "fixed_U_N_0.5",
+      "type": "fixed",
+      "high": "U",
+      "low": "N",
+      "threshold": 0.5
+    },
+    {
+      "name": "fixed_U_N_0.65",
+      "type": "fixed",
+      "high": "U",
+      "low": "N",
+      "threshold": 0.65
+    },
+    {
+      "name": "fixed_U_N_0.8",
+      "type": "fixed",
+      "high": "U",
+      "low": "N",
+      "threshold": 0.8
+    },
+    {
+      "name": "fixed_U_N_0.9",
+      "type": "fixed",
+      "high": "U",
+      "low": "N",
+      "threshold": 0.9
+    },
+    {
+      "name": "logistic_H_F_0.2",
+      "type": "logistic",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.2
+    },
+    {
+      "name": "logistic_H_F_0.4",
+      "type": "logistic",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.4
+    },
+    {
+      "name": "logistic_H_F_0.6",
+      "type": "logistic",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.6
+    },
+    {
+      "name": "logistic_H_F_0.8",
+      "type": "logistic",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.8
+    },
+    {
+      "name": "logistic_H_N_0.2",
+      "type": "logistic",
+      "high": "H",
+      "low": "N",
+      "threshold": 0.2
+    },
+    {
+      "name": "logistic_H_N_0.4",
+      "type": "logistic",
+      "high": "H",
+      "low": "N",
+      "threshold": 0.4
+    },
+    {
+      "name": "logistic_H_N_0.6",
+      "type": "logistic",
+      "high": "H",
+      "low": "N",
+      "threshold": 0.6
+    },
+    {
+      "name": "logistic_H_N_0.8",
+      "type": "logistic",
+      "high": "H",
+      "low": "N",
+      "threshold": 0.8
+    },
+    {
+      "name": "logistic_U_F_0.2",
+      "type": "logistic",
+      "high": "U",
+      "low": "F",
+      "threshold": 0.2
+    },
+    {
+      "name": "logistic_U_F_0.4",
+      "type": "logistic",
+      "high": "U",
+      "low": "F",
+      "threshold": 0.4
+    },
+    {
+      "name": "logistic_U_F_0.6",
+      "type": "logistic",
+      "high": "U",
+      "low": "F",
+      "threshold": 0.6
+    },
+    {
+      "name": "logistic_U_F_0.8",
+      "type": "logistic",
+      "high": "U",
+      "low": "F",
+      "threshold": 0.8
+    },
+    {
+      "name": "logistic_U_N_0.2",
+      "type": "logistic",
+      "high": "U",
+      "low": "N",
+      "threshold": 0.2
+    },
+    {
+      "name": "logistic_U_N_0.4",
+      "type": "logistic",
+      "high": "U",
+      "low": "N",
+      "threshold": 0.4
+    },
+    {
+      "name": "logistic_U_N_0.6",
+      "type": "logistic",
+      "high": "U",
+      "low": "N",
+      "threshold": 0.6
+    },
+    {
+      "name": "logistic_U_N_0.8",
+      "type": "logistic",
+      "high": "U",
+      "low": "N",
+      "threshold": 0.8
+    },
+    {
+      "name": "boosted_H_F_0.2",
+      "type": "boosted",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.2
+    },
+    {
+      "name": "boosted_H_F_0.4",
+      "type": "boosted",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.4
+    },
+    {
+      "name": "boosted_H_F_0.6",
+      "type": "boosted",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.6
+    },
+    {
+      "name": "boosted_H_F_0.8",
+      "type": "boosted",
+      "high": "H",
+      "low": "F",
+      "threshold": 0.8
+    },
+    {
+      "name": "boosted_H_N_0.2",
+      "type": "boosted",
+      "high": "H",
+      "low": "N",
+      "threshold": 0.2
+    },
+    {
+      "name": "boosted_H_N_0.4",
+      "type": "boosted",
+      "high": "H",
+      "low": "N",
+      "threshold": 0.4
+    },
+    {
+      "name": "boosted_H_N_0.6",
+      "type": "boosted",
+      "high": "H",
+      "low": "N",
+      "threshold": 0.6
+    },
+    {
+      "name": "boosted_H_N_0.8",
+      "type": "boosted",
+      "high": "H",
+      "low": "N",
+      "threshold": 0.8
+    },
+    {
+      "name": "boosted_U_F_0.2",
+      "type": "boosted",
+      "high": "U",
+      "low": "F",
+      "threshold": 0.2
+    },
+    {
+      "name": "boosted_U_F_0.4",
+      "type": "boosted",
+      "high": "U",
+      "low": "F",
+      "threshold": 0.4
+    },
+    {
+      "name": "boosted_U_F_0.6",
+      "type": "boosted",
+      "high": "U",
+      "low": "F",
+      "threshold": 0.6
+    },
+    {
+      "name": "boosted_U_F_0.8",
+      "type": "boosted",
+      "high": "U",
+      "low": "F",
+      "threshold": 0.8
+    },
+    {
+      "name": "boosted_U_N_0.2",
+      "type": "boosted",
+      "high": "U",
+      "low": "N",
+      "threshold": 0.2
+    },
+    {
+      "name": "boosted_U_N_0.4",
+      "type": "boosted",
+      "high": "U",
+      "low": "N",
+      "threshold": 0.4
+    },
+    {
+      "name": "boosted_U_N_0.6",
+      "type": "boosted",
+      "high": "U",
+      "low": "N",
+      "threshold": 0.6
+    },
+    {
+      "name": "boosted_U_N_0.8",
+      "type": "boosted",
+      "high": "U",
+      "low": "N",
+      "threshold": 0.8
+    }
+  ],
+  "selection": "maximum unknown OOF development MRR subject to known >= frozen large-model baseline - .001 and unknown >= baseline; simpler on ties",
+  "acceptance": "fresh unknown paired CI95 lower > 0 and known MRR difference >= -.001",
+  "fresh_molecules": 2000,
+  "note": "OOF applies to router only; encoder was previously selected on development data. Fresh cohort excludes every previous query set."
+}

@@ -1,0 +1,14 @@
+{
+  "architecture": "wide_enhanced",
+  "seed": 43,
+  "training_molecules": 60000,
+  "training_spectra": 214804,
+  "parameters": 10665728,
+  "best_mrr25": 0.025614091580298672,
+  "best_epoch": 12,
+  "epochs_completed": 17,
+  "seconds": 61.28314744497766,
+  "gpu_peak_mib": 242.23046875,
+  "stop_reason": "early_stopping",
+  "checkpoint": "artifacts/scale_20260929/runs/wide_enhanced_60000_seed43/model.pt"
+}

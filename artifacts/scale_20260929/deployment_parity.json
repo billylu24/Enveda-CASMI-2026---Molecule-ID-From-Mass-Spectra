@@ -1,0 +1,5 @@
+{
+  "molecule_groups": 25,
+  "maximum_absolute_probability_difference": 1.1324882507324219e-06,
+  "float32_feature_and_model_parity": true
+}

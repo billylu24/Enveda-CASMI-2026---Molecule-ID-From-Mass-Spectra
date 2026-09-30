@@ -1,0 +1,23 @@
+[
+  {
+    "category": "newly_covered",
+    "molecules": 75,
+    "old_mrr": 0.0,
+    "new_mrr": 0.12703554397672046,
+    "overall_mrr_delta_contribution": 0.004763832899127017
+  },
+  {
+    "category": "previously_covered",
+    "molecules": 165,
+    "old_mrr": 0.2387489480087713,
+    "new_mrr": 0.21279280225316027,
+    "overall_mrr_delta_contribution": -0.0021413820248379076
+  },
+  {
+    "category": "still_absent",
+    "molecules": 1760,
+    "old_mrr": 0.0,
+    "new_mrr": 0.0,
+    "overall_mrr_delta_contribution": 0.0
+  }
+]

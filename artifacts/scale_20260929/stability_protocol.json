@@ -1,0 +1,11 @@
+{
+  "selection_sha256": "94e8a30fe163cc42820e8163d1e911ae59aa8b2b0983cfc27da93c6e4c9d0d6d",
+  "seeds": [
+    43,
+    44
+  ],
+  "checkpoints_to_repeat": [
+    "artifacts/scale_20260929/runs/wide_enhanced_60000/model.pt"
+  ],
+  "purpose": "development-only stability diagnosis; does not change frozen inference weights or selection; no fresh-label scoring"
+}

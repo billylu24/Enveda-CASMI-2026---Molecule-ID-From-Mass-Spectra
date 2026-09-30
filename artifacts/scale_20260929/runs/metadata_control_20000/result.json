@@ -1,0 +1,13 @@
+{
+  "architecture": "metadata_control",
+  "training_molecules": 20000,
+  "training_spectra": 71503,
+  "parameters": 1350912,
+  "best_mrr25": 0.010935185771083437,
+  "best_epoch": 8,
+  "epochs_completed": 13,
+  "seconds": 15.090947303979192,
+  "gpu_peak_mib": 95.4912109375,
+  "stop_reason": "early_stopping",
+  "checkpoint": "artifacts/scale_20260929/runs/metadata_control_20000/model.pt"
+}

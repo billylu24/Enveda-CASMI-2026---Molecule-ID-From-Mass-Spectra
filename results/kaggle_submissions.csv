@@ -1,0 +1,8 @@
+ref,fileName,date,description,status,publicScore,privateScore
+56690108,submission.csv,2026-09-29 23:38:42.633000,"Experimental PubChemLite expansion: independent local MRR point estimates improved, CI crosses zero; frozen 60K encoder and historical guard",SubmissionStatus.COMPLETE,0.171,
+56688097,submission.csv,2026-09-29 21:38:12.690000,60K molecule 10.7M residual neutral-loss fingerprint model; independently validated; fixed historical threshold 0.5 and neural RRF 0.75,SubmissionStatus.COMPLETE,0.173,
+56667967,submission.csv,2026-09-29 07:50:34.113000,Historical hybrid preserved above 0.5 confidence; frozen MLP RRF 0.75 with free top1 below threshold,SubmissionStatus.COMPLETE,0.169,
+56606429,submission.csv,2026-09-27 10:49:59.917000,Confidence-protected spectral retrieval with MLP fingerprint ranking,SubmissionStatus.COMPLETE,0.162,
+56535378,submission.csv,2026-09-25 00:27:08.470000,Spectral consensus plus COCONUT structural analog candidates,SubmissionStatus.COMPLETE,0.176,
+56534532,submission.csv,2026-09-25 00:03:26.543000,Multi-spectrum consensus retrieval validated on held-out natural products,SubmissionStatus.COMPLETE,0.141,
+56533793,submission.csv,2026-09-24 23:41:00.570000,Mass-filtered spectral library retrieval baseline,SubmissionStatus.COMPLETE,0.140,

@@ -1,0 +1,22 @@
+{
+  "status": "submission_complete",
+  "account": "giaok246",
+  "competition": "enveda-CASMI26-molecule-id-mass-spectra",
+  "dataset_path": "kaggle_release/dataset",
+  "notebook_path": "kaggle_release/notebook",
+  "uploaded": true,
+  "submitted": true,
+  "dataset": "giaok246/casmi-2026-cpu-fingerprint-bundle",
+  "dataset_version": 1,
+  "kernel": "giaok246/casmi-2026-guarded-mlp-fingerprint",
+  "kernel_version": 1,
+  "submission_id": 56606429,
+  "submission_status": "COMPLETE",
+  "kernel_status": "COMPLETE",
+  "kernel_url": "https://www.kaggle.com/code/giaok246/casmi-2026-guarded-mlp-fingerprint",
+  "submitted_at_utc": "2026-09-27T10:49:59.917000Z",
+  "public_score": 0.162,
+  "historical_best_public_score": 0.176,
+  "score_checked_on": "2026-09-28",
+  "score_evidence": "artifacts/ablation_20260928/kaggle_submissions.csv"
+}

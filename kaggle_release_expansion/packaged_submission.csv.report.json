@@ -1,0 +1,23 @@
+{
+  "molecules": 400,
+  "protected_molecules": 400,
+  "neural_molecules": 0,
+  "config": {
+    "name": "residual_60k_pubchemlite_fixed_historical_route",
+    "kind": "free_top1",
+    "base": "coconut15",
+    "threshold": 0.5,
+    "weight": 0.75
+  },
+  "checkpoint_sha256": "0bce6b953f084c1f841b607df99ec46703d7b92a487c8f0812be3db176b3c564",
+  "router": null,
+  "direct_ranker": null,
+  "candidate_expansion": {
+    "path": "pubchemlite.parquet",
+    "sha256": "fce315874053a8ed29eba782d7b3f58a4b9cef6dcc0f073a412ade174c16382d",
+    "weight": 1.0
+  },
+  "seconds": 38.864478575007524,
+  "peak_rss_mib": 5603.22265625,
+  "note": "Visible-output consistency is not evidence of leaderboard improvement."
+}

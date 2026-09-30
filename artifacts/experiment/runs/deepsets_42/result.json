@@ -1,0 +1,13 @@
+{
+  "architecture": "deepsets",
+  "seed": 42,
+  "best_epoch": 12,
+  "best_mrr25": 0.015742527931529145,
+  "seconds": 165.87201811799605,
+  "parameters": 628096,
+  "spectra": 71503,
+  "peak_rss_mib": 7064.47265625,
+  "stop_reason": "early_stopping",
+  "final_refit": false,
+  "checkpoint": "artifacts/experiment/runs/deepsets_42/model.pt"
+}

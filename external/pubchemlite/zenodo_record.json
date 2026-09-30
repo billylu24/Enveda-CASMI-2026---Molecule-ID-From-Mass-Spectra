@@ -1,0 +1,176 @@
+{
+  "created": "2026-09-25T06:45:23.714062+00:00",
+  "modified": "2026-09-25T06:51:12.628280+00:00",
+  "id": 22953038,
+  "conceptrecid": "5995885",
+  "doi": "10.5281/zenodo.22953038",
+  "conceptdoi": "10.5281/zenodo.5995885",
+  "doi_url": "https://doi.org/10.5281/zenodo.22953038",
+  "metadata": {
+    "title": "PubChemLite for Exposomics",
+    "doi": "10.5281/zenodo.22953038",
+    "publication_date": "2026-09-25",
+    "description": "<p>This is the repository for regular updates of the PubChemLite for Exposomics data collection. PubChemLite for Exposomics is a subset of\n<a href=\"https://pubchem.ncbi.nlm.nih.gov/\">PubChem</a> selected from major\ncategories of the\n<a href=\"https://pubchem.ncbi.nlm.nih.gov/classification/#hid=72\">Table of Contents</a>\npage at the PubChem Classification Browser, described in\nDOI:<a href=\"https://doi.org/10.1186/s13321-021-00489-0\">10.1186/s13321-021-00489-0</a>.</p>\n<p>PubChemLite for Exposomics (v2.0.0 and higher) is compiled from 11 categories:\nAgroChemInfo, BioPathway, DrugMedicInfo, FoodRelated, PharmacoInfo,\nSafetyInfo, ToxicityInfo, KnownUse, DisorderDisease, Identification, ChemClass.</p>\n<p>PubChemCIDs have been collapsed by InChIKey first block, reporting the\nstructure from the most annotated CID, plus related CIDs. Entries that\nwill be ignored by MetFrag (salts, disconnected substances) or cause\nerrors (e.g. transition metals) have been removed. The Patent and\nPubMed ID counts are extracted from files on the PubChem FTP site. The\n`AnnoTypeCount' term counts how many of the categories are represented, the\nsubsequent column (named per category) counts the number of annotation\ncategories available in the next sub-category of the TOC entry.</p>\n<p>These files can be used `as is' as localCSV for\n<a href=\"https://ipb-halle.github.io/MetFrag/\">MetFrag</a> Command Line.</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Schymanski, Emma",
+        "affiliation": "LCSB, University of Luxembourg",
+        "orcid": "0000-0001-6868-8145"
+      },
+      {
+        "name": "Elapavalore, Anjana",
+        "affiliation": "LCSB, University of Luxembourg",
+        "orcid": "0000-0002-0295-6618"
+      },
+      {
+        "name": "Kondic, Todor",
+        "affiliation": "LCSB, University of Luxembourg",
+        "orcid": "0000-0001-6662-4375"
+      },
+      {
+        "name": "Thiessen, Paul",
+        "affiliation": "NIH/NLM/NCBI",
+        "orcid": "0000-0002-1992-2086"
+      },
+      {
+        "name": "Zhang, Jian (Jeff)",
+        "affiliation": "NIH/NLM/NCBI",
+        "orcid": "0000-0002-6192-4632"
+      },
+      {
+        "name": "Bolton, Evan",
+        "affiliation": "NIH/NLM/NCBI",
+        "orcid": "0000-0002-5959-6190"
+      }
+    ],
+    "keywords": [
+      "PubChem",
+      "non-target screening",
+      "non-target identification",
+      "MetFrag",
+      "exposomics",
+      "exposome",
+      "PubChemLite"
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://pubchem.ncbi.nlm.nih.gov/",
+        "relation": "isDerivedFrom",
+        "scheme": "url"
+      },
+      {
+        "identifier": "https://pubchem.ncbi.nlm.nih.gov/classification/#hid=72",
+        "relation": "isDerivedFrom",
+        "scheme": "url"
+      },
+      {
+        "identifier": "https://msbi.ipb-halle.de/MetFrag/",
+        "relation": "isSupplementTo",
+        "scheme": "url"
+      },
+      {
+        "identifier": "10.1186/s13321-021-00489-0",
+        "relation": "isSupplementTo",
+        "scheme": "doi"
+      }
+    ],
+    "version": "3.3.0",
+    "references": [
+      "Schymanski, E.L., Kondi\u0107, T., Neumann, S. et al. Empowering large chemical knowledge bases for exposomics: PubChemLite meets MetFrag. J Cheminform 13, 19 (2021). https://doi.org/10.1186/s13321-021-00489-0"
+    ],
+    "resource_type": {
+      "title": "Dataset",
+      "type": "dataset"
+    },
+    "license": {
+      "id": "cc-by-4.0"
+    },
+    "communities": [
+      {
+        "id": "lcsb-eci"
+      }
+    ],
+    "relations": {
+      "version": [
+        {
+          "index": 65,
+          "is_last": true,
+          "parent": {
+            "pid_type": "recid",
+            "pid_value": "5995885"
+          }
+        }
+      ]
+    },
+    "notes": "<p>These files can be used \"as is\" for MetFrag (command line) and other\nhigh throughput workflows.</p>\n<p>Please do <b>NOT</b> <em>upload</em> these files directly to the MetFrag web\ninterface, they are too large. The latest updates\nwill be available in a drop-down menu.</p>"
+  },
+  "title": "PubChemLite for Exposomics",
+  "links": {
+    "self": "https://zenodo.org/api/records/22953038",
+    "self_html": "https://zenodo.org/records/22953038",
+    "preview_html": "https://zenodo.org/records/22953038?preview=1",
+    "doi": "https://doi.org/10.5281/zenodo.22953038",
+    "self_doi": "https://doi.org/10.5281/zenodo.22953038",
+    "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.22953038",
+    "reserve_doi": "https://zenodo.org/api/records/22953038/draft/pids/doi",
+    "parent": "https://zenodo.org/api/records/5995885",
+    "parent_html": "https://zenodo.org/records/5995885",
+    "parent_doi": "https://doi.org/10.5281/zenodo.5995885",
+    "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.5995885",
+    "self_iiif_manifest": "https://zenodo.org/api/iiif/record:22953038/manifest",
+    "self_iiif_sequence": "https://zenodo.org/api/iiif/record:22953038/sequence/default",
+    "files": "https://zenodo.org/api/records/22953038/files",
+    "media_files": "https://zenodo.org/api/records/22953038/media-files",
+    "archive": "https://zenodo.org/api/records/22953038/files-archive",
+    "archive_media": "https://zenodo.org/api/records/22953038/media-files-archive",
+    "latest": "https://zenodo.org/api/records/22953038/versions/latest",
+    "latest_html": "https://zenodo.org/records/22953038/latest",
+    "versions": "https://zenodo.org/api/records/22953038/versions",
+    "draft": "https://zenodo.org/api/records/22953038/draft",
+    "access_links": "https://zenodo.org/api/records/22953038/access/links",
+    "access_grants": "https://zenodo.org/api/records/22953038/access/grants",
+    "access_users": "https://zenodo.org/api/records/22953038/access/users",
+    "access_request": "https://zenodo.org/api/records/22953038/access/request",
+    "access": "https://zenodo.org/api/records/22953038/access",
+    "communities": "https://zenodo.org/api/records/22953038/communities",
+    "communities-suggestions": "https://zenodo.org/api/records/22953038/communities-suggestions",
+    "request_deletion": "https://zenodo.org/api/records/22953038/request-deletion",
+    "file_modification": "https://zenodo.org/api/records/22953038/file-modification",
+    "quota_increase": "https://zenodo.org/api/records/22953038/quota-increase",
+    "requests": "https://zenodo.org/api/records/22953038/requests"
+  },
+  "updated": "2026-09-25T06:51:12.628280+00:00",
+  "recid": "22953038",
+  "revision": 6,
+  "files": [
+    {
+      "id": "9586dc00-10d8-4d64-bfc4-2f9f1be0f8e0",
+      "key": "PubChemLite_exposomics_20260925.csv",
+      "size": 200142750,
+      "checksum": "md5:3023e89b20e5b57bd3e2c70dc1366be1",
+      "links": {
+        "self": "https://zenodo.org/api/records/22953038/files/PubChemLite_exposomics_20260925.csv/content"
+      }
+    }
+  ],
+  "swh": {},
+  "owners": [
+    {
+      "id": "301889"
+    }
+  ],
+  "status": "published",
+  "stats": {
+    "downloads": 12940,
+    "unique_downloads": 10979,
+    "views": 17590,
+    "unique_views": 16737,
+    "version_downloads": 11,
+    "version_unique_downloads": 11,
+    "version_unique_views": 43,
+    "version_views": 45
+  },
+  "state": "done",
+  "submitted": true
+}

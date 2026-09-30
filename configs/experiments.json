@@ -1,0 +1,13 @@
+{
+  "seed": 42,
+  "threads": 12,
+  "budget_hours": 24,
+  "benchmark_seconds_per_model": 30,
+  "screen_seconds_per_model": 7200,
+  "repeat_seconds_per_model": 9000,
+  "final_seconds": 10800,
+  "epochs": 20,
+  "lr": 0.001,
+  "architectures": ["mlp", "enhanced", "metadata", "deepsets", "transformer"],
+  "repeat_seeds": [43, 44]
+}

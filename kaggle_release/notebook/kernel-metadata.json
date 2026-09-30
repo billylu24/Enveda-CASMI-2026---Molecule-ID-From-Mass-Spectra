@@ -1,0 +1,20 @@
+{
+  "id": "giaok246/casmi-2026-guarded-mlp-fingerprint",
+  "title": "CASMI 2026 Guarded MLP Fingerprint",
+  "code_file": "casmi_winner.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "competition_sources": [
+    "enveda-CASMI26-molecule-id-mass-spectra"
+  ],
+  "dataset_sources": [
+    "giaok246/casmi-2026-cpu-fingerprint-bundle",
+    "aidensong123/casmi26-coconut-202609"
+  ],
+  "kernel_sources": [],
+  "model_sources": []
+}

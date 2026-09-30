@@ -1,0 +1,9 @@
+{
+  "changed_lists": 137,
+  "inversions_scored": 194,
+  "exact_tie_inversions": 194,
+  "near_tie_inversions": 194,
+  "unscored_inversions": 62,
+  "largest_gap": 0.0,
+  "interpretation": "Inversion scores recomputed locally using the original algorithm. Does not establish which library/version causes ordering differences."
+}

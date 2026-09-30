@@ -1,0 +1,9 @@
+architecture,training_molecules,training_spectra,parameters,best_mrr25,best_epoch,epochs_completed,seconds,gpu_peak_mib,stop_reason,checkpoint
+metadata_control,20000,71503,1350912,0.010935185771083437,8,13,15.090947303979192,95.4912109375,early_stopping,artifacts/scale_20260929/runs/metadata_control_20000/model.pt
+wide_metadata,20000,71503,9705728,0.020252314352314362,13,18,21.024445770017337,225.33349609375,early_stopping,artifacts/scale_20260929/runs/wide_metadata_20000/model.pt
+wide_enhanced,20000,71503,10665728,0.02097671072285204,12,17,22.60031995101599,243.50732421875,early_stopping,artifacts/scale_20260929/runs/wide_enhanced_20000/model.pt
+peak_transformer,20000,71503,4596736,0.018138882124721586,20,25,150.6301057500241,542.5634765625,early_stopping,artifacts/scale_20260929/runs/peak_transformer_20000/model.pt
+hybrid_transformer,20000,71503,6192384,0.017582889850629616,29,30,188.49590789200738,569.7666015625,epoch_limit,artifacts/scale_20260929/runs/hybrid_transformer_20000/model.pt
+metadata_control,60000,214804,1350912,0.01432336117553121,28,30,64.32952024499536,94.8125,epoch_limit,artifacts/scale_20260929/runs/metadata_control_60000/model.pt
+wide_enhanced,60000,214804,10665728,0.026091868474662612,11,16,52.43303369299974,242.5224609375,early_stopping,artifacts/scale_20260929/runs/wide_enhanced_60000/model.pt
+wide_metadata,60000,214804,9705728,0.024809485936768558,11,16,45.987598473002436,222.337890625,early_stopping,artifacts/scale_20260929/runs/wide_metadata_60000/model.pt

@@ -1,0 +1,112 @@
+{
+  "unknown": {
+    "molecules": 2000,
+    "candidate_recall": 0.0895,
+    "mrr25": 0.020205234543802318,
+    "top1": 0.009,
+    "top5": 0.032,
+    "top25": 0.068,
+    "conditional_mrr25": 0.22575681054527733,
+    "baseline": {
+      "molecules": 2000,
+      "candidate_recall": 0.0895,
+      "mrr25": 0.015722641099664755,
+      "top1": 0.004,
+      "top5": 0.029,
+      "top25": 0.064,
+      "conditional_mrr25": 0.17567196759401965
+    },
+    "historical": {
+      "molecules": 2000,
+      "candidate_recall": 0.0895,
+      "mrr25": 0.012035653087676746,
+      "top1": 0.0,
+      "top5": 0.0275,
+      "top25": 0.0615,
+      "conditional_mrr25": 0.13447657081203065
+    },
+    "vs_previous_neural": {
+      "difference": 0.004482593444137562,
+      "ci95": [
+        0.0023704052436267914,
+        0.0070824469980502545
+      ]
+    },
+    "vs_historical": {
+      "difference": 0.008169581456125573,
+      "ci95": [
+        0.0049885524108776984,
+        0.011839831958500434
+      ]
+    }
+  },
+  "known": {
+    "molecules": 1213,
+    "candidate_recall": 0.9917559769167353,
+    "mrr25": 0.7933282474678441,
+    "top1": 0.7493816982687551,
+    "top5": 0.8268755152514426,
+    "top25": 0.8911788953009069,
+    "conditional_mrr25": 0.7999228297410599,
+    "baseline": {
+      "molecules": 1213,
+      "candidate_recall": 0.9917559769167353,
+      "mrr25": 0.7914348880105936,
+      "top1": 0.7477328936521023,
+      "top5": 0.8244023083264633,
+      "top25": 0.8895300906842539,
+      "conditional_mrr25": 0.7980137316349543
+    },
+    "historical": {
+      "molecules": 1213,
+      "candidate_recall": 0.9917559769167353,
+      "mrr25": 0.7915876138228413,
+      "top1": 0.7477328936521023,
+      "top5": 0.8252267106347898,
+      "top25": 0.8887056883759274,
+      "conditional_mrr25": 0.798167726988451
+    },
+    "vs_previous_neural": {
+      "difference": 0.001893359457250636,
+      "ci95": [
+        0.00011777175833235189,
+        0.004278157264554626
+      ]
+    },
+    "vs_historical": {
+      "difference": 0.0017406336450029774,
+      "ci95": [
+        -0.00029442939583087976,
+        0.004444854403634288
+      ]
+    }
+  },
+  "accepted": true,
+  "selection": {
+    "checkpoints": [
+      "artifacts/scale_20260929/runs/wide_enhanced_60000/model.pt"
+    ],
+    "name": "wide_enhanced_60000",
+    "parameters": 10665728,
+    "unknown": {
+      "molecules": 2000,
+      "candidate_recall": 0.084,
+      "mrr25": 0.01728262975222307,
+      "top1": 0.0075,
+      "top5": 0.03,
+      "top25": 0.061,
+      "conditional_mrr25": 0.2057455922883699
+    },
+    "known": {
+      "molecules": 1187,
+      "candidate_recall": 0.987363100252738,
+      "mrr25": 0.7717012841634778,
+      "top1": 0.7219882055602359,
+      "top5": 0.8087615838247684,
+      "top25": 0.8820556023588879,
+      "conditional_mrr25": 0.7815780070836589
+    },
+    "eligible": true
+  },
+  "inference_precision": "CPU float32, matching intended offline deployment; training/development screening used GPU BF16"
+}

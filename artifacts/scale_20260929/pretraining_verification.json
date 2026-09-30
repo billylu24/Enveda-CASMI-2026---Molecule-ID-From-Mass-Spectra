@@ -1,0 +1,7 @@
+{
+  "old_raw_mrr_reproduced": 0.015022884045031706,
+  "nested_20k_rows_exact": true,
+  "train60k_molecules": 60000,
+  "training_only": true,
+  "tests_passed": 18
+}

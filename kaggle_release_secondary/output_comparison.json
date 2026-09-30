@@ -1,0 +1,14 @@
+{
+  "local_packaged": {
+    "same_top1": 400,
+    "same_full_order": 263,
+    "same_set": 392,
+    "mean_overlap": 24.7525
+  },
+  "historical_kaggle": {
+    "same_top1": 400,
+    "same_full_order": 400,
+    "same_set": 400,
+    "mean_overlap": 24.7725
+  }
+}

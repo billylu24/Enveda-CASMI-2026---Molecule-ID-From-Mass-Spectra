@@ -1,0 +1,12 @@
+{
+  "doi": "10.5281/zenodo.22953038",
+  "license": "cc-by-4.0",
+  "source_sha256": "6a258459e1ccf29a5d08e82fcf5240a2fc8afbabe5ba9c678e39aa0801dd89cd",
+  "derived_sha256": "fce315874053a8ed29eba782d7b3f58a4b9cef6dcc0f073a412ade174c16382d",
+  "input_rows": 469602,
+  "structures": 469579,
+  "invalid": 13,
+  "identity_mismatch": 10,
+  "mass_disagreement": 0,
+  "filtering": "structure validity and public source identity/mass consistency only; no query labels used"
+}

@@ -1,0 +1,16 @@
+{
+  "molecules": 400,
+  "protected_molecules": 400,
+  "neural_molecules": 0,
+  "config": {
+    "name": "wide_enhanced_60k_historical_free_top1",
+    "kind": "free_top1",
+    "base": "coconut15",
+    "threshold": 0.5,
+    "weight": 0.75
+  },
+  "checkpoint_sha256": "0bce6b953f084c1f841b607df99ec46703d7b92a487c8f0812be3db176b3c564",
+  "seconds": 39.34081201101071,
+  "peak_rss_mib": 5455.6796875,
+  "note": "Visible-output consistency is not evidence of leaderboard improvement."
+}

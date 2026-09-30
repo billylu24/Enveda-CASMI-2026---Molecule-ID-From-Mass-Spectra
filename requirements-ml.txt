@@ -1,0 +1,5 @@
+-r requirements.txt
+# Install torch from the official CPU wheel index separately; see docs/EXPERIMENTS.md.
+torch>=2.6
+scikit-learn==1.9.1
+joblib==1.6.0

@@ -1,0 +1,363 @@
+{
+  "molecules": 2000,
+  "counts": {
+    "absent_from_database": 1816,
+    "candidate_present": 166,
+    "mass_filter_miss": 18
+  },
+  "by_source": [
+    {
+      "failure": "absent_from_database",
+      "source": "drug_plus|pluskal_ms2",
+      "molecules": 1
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "enveda-180",
+      "molecules": 1330
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "enveda-180|gnps|pluskal_ms2",
+      "molecules": 1
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "enveda-180|pluskal_ms2",
+      "molecules": 14
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "gnps",
+      "molecules": 134
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "gnps|massbank",
+      "molecules": 1
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "gnps|massbank|pluskal_ms2",
+      "molecules": 1
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "gnps|massbank|riken",
+      "molecules": 6
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "gnps|mona|msdial",
+      "molecules": 1
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "gnps|pluskal_ms2",
+      "molecules": 29
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "gnps|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "massbank",
+      "molecules": 3
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "massbank|mona|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "massbank|msdial",
+      "molecules": 1
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "massbank|msdial|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "massbank|riken",
+      "molecules": 2
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "mona",
+      "molecules": 4
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "mona|riken",
+      "molecules": 3
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "msdial",
+      "molecules": 5
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "msdial|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "pluskal_ms2",
+      "molecules": 222
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "pluskal_ms2|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "absent_from_database",
+      "source": "spectraverse",
+      "molecules": 53
+    },
+    {
+      "failure": "candidate_present",
+      "source": "drug_plus|gnps|msdial",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "drug_plus|gnps|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "enveda-180",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "gnps",
+      "molecules": 53
+    },
+    {
+      "failure": "candidate_present",
+      "source": "gnps|massbank",
+      "molecules": 2
+    },
+    {
+      "failure": "candidate_present",
+      "source": "gnps|massbank|mona",
+      "molecules": 2
+    },
+    {
+      "failure": "candidate_present",
+      "source": "gnps|massbank|mona|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "gnps|massbank|msdial",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "gnps|massbank|msdial|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "gnps|massbank|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "gnps|mona",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "gnps|mona|msdial",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "gnps|mona|msdial|riken",
+      "molecules": 2
+    },
+    {
+      "failure": "candidate_present",
+      "source": "gnps|mona|riken",
+      "molecules": 3
+    },
+    {
+      "failure": "candidate_present",
+      "source": "gnps|msdial",
+      "molecules": 3
+    },
+    {
+      "failure": "candidate_present",
+      "source": "gnps|msdial|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "gnps|pluskal_ms2",
+      "molecules": 10
+    },
+    {
+      "failure": "candidate_present",
+      "source": "gnps|riken",
+      "molecules": 5
+    },
+    {
+      "failure": "candidate_present",
+      "source": "massbank",
+      "molecules": 2
+    },
+    {
+      "failure": "candidate_present",
+      "source": "massbank|mona|msdial|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "massbank|msdial|pluskal_ms2|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "massbank|msdial|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "massbank|pluskal_ms2|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "massbank|riken",
+      "molecules": 3
+    },
+    {
+      "failure": "candidate_present",
+      "source": "mona",
+      "molecules": 2
+    },
+    {
+      "failure": "candidate_present",
+      "source": "mona|msdial",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "mona|msdial|pluskal_ms2",
+      "molecules": 2
+    },
+    {
+      "failure": "candidate_present",
+      "source": "mona|msdial|riken",
+      "molecules": 6
+    },
+    {
+      "failure": "candidate_present",
+      "source": "mona|pluskal_ms2|riken",
+      "molecules": 6
+    },
+    {
+      "failure": "candidate_present",
+      "source": "mona|riken",
+      "molecules": 6
+    },
+    {
+      "failure": "candidate_present",
+      "source": "msdial",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "msdial|pluskal_ms2|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "candidate_present",
+      "source": "pluskal_ms2",
+      "molecules": 12
+    },
+    {
+      "failure": "candidate_present",
+      "source": "pluskal_ms2|riken",
+      "molecules": 5
+    },
+    {
+      "failure": "candidate_present",
+      "source": "riken",
+      "molecules": 14
+    },
+    {
+      "failure": "candidate_present",
+      "source": "spectraverse",
+      "molecules": 11
+    },
+    {
+      "failure": "mass_filter_miss",
+      "source": "gnps",
+      "molecules": 5
+    },
+    {
+      "failure": "mass_filter_miss",
+      "source": "gnps|massbank|pluskal_ms2|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "mass_filter_miss",
+      "source": "gnps|mona|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "mass_filter_miss",
+      "source": "gnps|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "mass_filter_miss",
+      "source": "massbank|mona|msdial",
+      "molecules": 1
+    },
+    {
+      "failure": "mass_filter_miss",
+      "source": "massbank|mona|msdial|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "mass_filter_miss",
+      "source": "massbank|msdial|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "mass_filter_miss",
+      "source": "massbank|pluskal_ms2|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "mass_filter_miss",
+      "source": "mona|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "mass_filter_miss",
+      "source": "msdial|riken",
+      "molecules": 1
+    },
+    {
+      "failure": "mass_filter_miss",
+      "source": "riken",
+      "molecules": 4
+    }
+  ],
+  "oracle_mrr_upper_bound_current_pool": 0.083,
+  "oracle_mrr_upper_bound_ignoring_mass_filter": 0.092,
+  "scope": "previous development proxy, not competition hidden distribution; no external library expansion or truth-based candidate insertion"
+}

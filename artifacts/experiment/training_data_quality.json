@@ -1,0 +1,7 @@
+{
+  "training_spectra": 71503,
+  "mean_on_bits": 45.99819587989315,
+  "supported_adduct_fraction": 0.8368599918884523,
+  "collision_energy_missing_fraction": 0.10501657273121408,
+  "max_sampled_spectra_per_molecule": 4
+}

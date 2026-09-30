@@ -1,0 +1,66 @@
+[
+  {
+    "architecture": "wide_enhanced",
+    "seed": 43,
+    "training_molecules": 60000,
+    "training_spectra": 214804,
+    "parameters": 10665728,
+    "best_mrr25": 0.025614091580298672,
+    "best_epoch": 12,
+    "epochs_completed": 17,
+    "seconds": 61.28314744497766,
+    "gpu_peak_mib": 242.23046875,
+    "stop_reason": "early_stopping",
+    "checkpoint": "artifacts/scale_20260929/runs/wide_enhanced_60000_seed43/model.pt",
+    "unknown": {
+      "molecules": 2000,
+      "candidate_recall": 0.084,
+      "mrr25": 0.016797376656617638,
+      "top1": 0.0065,
+      "top5": 0.031,
+      "top25": 0.0615,
+      "conditional_mrr25": 0.19996876972163857
+    },
+    "known": {
+      "molecules": 1187,
+      "candidate_recall": 0.987363100252738,
+      "mrr25": 0.7717059644967176,
+      "top1": 0.7219882055602359,
+      "top5": 0.8096040438079192,
+      "top25": 0.8820556023588879,
+      "conditional_mrr25": 0.7815827473187744
+    }
+  },
+  {
+    "architecture": "wide_enhanced",
+    "seed": 44,
+    "training_molecules": 60000,
+    "training_spectra": 214804,
+    "parameters": 10665728,
+    "best_mrr25": 0.024118634982690568,
+    "best_epoch": 14,
+    "epochs_completed": 19,
+    "seconds": 69.90523821400711,
+    "gpu_peak_mib": 242.23046875,
+    "stop_reason": "early_stopping",
+    "checkpoint": "artifacts/scale_20260929/runs/wide_enhanced_60000_seed44/model.pt",
+    "unknown": {
+      "molecules": 2000,
+      "candidate_recall": 0.084,
+      "mrr25": 0.01689540130815252,
+      "top1": 0.0075,
+      "top5": 0.029,
+      "top25": 0.0605,
+      "conditional_mrr25": 0.20113572985895858
+    },
+    "known": {
+      "molecules": 1187,
+      "candidate_recall": 0.987363100252738,
+      "mrr25": 0.7715805315658929,
+      "top1": 0.7219882055602359,
+      "top5": 0.8087615838247684,
+      "top25": 0.8820556023588879,
+      "conditional_mrr25": 0.7814557090176748
+    }
+  }
+]

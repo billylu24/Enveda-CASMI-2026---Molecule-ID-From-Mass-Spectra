@@ -1,0 +1,28 @@
+{
+  "molecules": 250,
+  "candidate_recall": 1.0,
+  "mrr25": 0.15067135477958873,
+  "top1": 0.068,
+  "top5": 0.216,
+  "top25": 0.512,
+  "conditional_mrr25": 0.15067135477958873,
+  "baseline": {
+    "molecules": 250,
+    "candidate_recall": 1.0,
+    "mrr25": 0.9099812409812409,
+    "top1": 0.86,
+    "top5": 0.964,
+    "top25": 0.992,
+    "conditional_mrr25": 0.9099812409812409
+  },
+  "vs_baseline": {
+    "difference": -0.7593098862016523,
+    "ci95": [
+      -0.8027738614606069,
+      -0.7184599486917862
+    ]
+  },
+  "protocol": "NP-source queries; exclude that entire source from reference; neural training excludes all diagnostic molecules; candidate structures from observed reference spectra and COCONUT only.",
+  "acceptance_tolerance": 0.005,
+  "accepted": false
+}

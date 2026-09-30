@@ -1,0 +1,40 @@
+{
+  "fresh_molecules": 2000,
+  "prior_overlap": {
+    "artifacts/experiment/train.parquet": 0,
+    "artifacts/experiment/dev.parquet": 0,
+    "artifacts/experiment/holdout.parquet": 0,
+    "artifacts/experiment/fresh_holdout.parquet": 0,
+    "artifacts/experiment/diagnostic.parquet": 0,
+    "artifacts/experiment/final_train.parquet": 0,
+    "artifacts/ablation_20260928/fresh.parquet": 0,
+    "artifacts/scale_20260929/fresh.parquet": 0,
+    "artifacts/scale_20260929/train60k.parquet": 0,
+    "artifacts/router_20260929/fresh.parquet": 0,
+    "artifacts/direct_rank_20260929/fresh.parquet": 0
+  },
+  "frozen_selection_matches": true,
+  "tests_passed": 30,
+  "external_manifest": {
+    "doi": "10.5281/zenodo.22953038",
+    "license": "cc-by-4.0",
+    "source_sha256": "6a258459e1ccf29a5d08e82fcf5240a2fc8afbabe5ba9c678e39aa0801dd89cd",
+    "derived_sha256": "fce315874053a8ed29eba782d7b3f58a4b9cef6dcc0f073a412ade174c16382d",
+    "input_rows": 469602,
+    "structures": 469579,
+    "invalid": 13,
+    "identity_mismatch": 10,
+    "mass_disagreement": 0,
+    "filtering": "structure validity and public source identity/mass consistency only; no query labels used"
+  },
+  "deployment_parity": {
+    "low_confidence_groups": 25,
+    "complete_rank_match": 25,
+    "precision": "CPU float32 per query; recomputed production functions"
+  },
+  "statistical_gate_passed": false,
+  "experimental_submission_basis": "Both independent MRR point estimates improved; user explicitly authorized submission on local improvement; uncertainty is disclosed and original acceptance remains false.",
+  "external_directory_package_verified": true,
+  "visible_molecules": 400,
+  "visible_csv_sha256": "96a128d4a3a55da5572e205d17a551b07bab3ad2e0006def92fee0b65fc52f01"
+}

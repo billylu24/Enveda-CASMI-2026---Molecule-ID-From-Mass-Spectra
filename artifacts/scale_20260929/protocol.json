@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "architectures": [
+    "metadata_control",
+    "wide_metadata",
+    "wide_enhanced",
+    "peak_transformer",
+    "hybrid_transformer"
+  ],
+  "small_molecules": 20000,
+  "large_molecules": 60000,
+  "epochs": 30,
+  "patience": 5,
+  "min_epochs": 8,
+  "lr": 0.0003,
+  "seed": 42,
+  "loss": "unweighted BCE",
+  "optimizer": "AdamW 1e-4 weight decay; linear 2 epoch warmup then cosine",
+  "representation": "existing train-fitted metadata, 1Da histograms, 64 continuous peak tokens; unchanged candidate pool",
+  "routing": {
+    "kind": "free_top1",
+    "base": "coconut15",
+    "threshold": 0.5,
+    "weight": 0.75
+  },
+  "screening": "all architectures on identical 20k training molecules; best two non-control by raw dev MRR plus control train on nested 60k",
+  "selection": "maximum routed unknown dev MRR subject to known >= old routed MLP - .001; require improvement over old MLP; single model or top-two probability mean",
+  "holdout": "new 2000 molecule cohort excluding every earlier query cohort; one frozen selection and old MLP controls; no tuning",
+  "acceptance": "routed unknown improvement CI95 lower > 0; known point difference >= -.001",
+  "max_run_seconds": 2700,
+  "gpu_memory_limit_fraction": 0.6
+}

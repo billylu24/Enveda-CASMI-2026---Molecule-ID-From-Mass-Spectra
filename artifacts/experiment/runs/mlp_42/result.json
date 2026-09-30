@@ -1,0 +1,13 @@
+{
+  "architecture": "mlp",
+  "seed": 42,
+  "best_epoch": 20,
+  "best_mrr25": 0.014892461763065312,
+  "seconds": 109.24925047799479,
+  "parameters": 1298176,
+  "spectra": 71503,
+  "peak_rss_mib": 7064.47265625,
+  "stop_reason": "epoch_limit",
+  "final_refit": false,
+  "checkpoint": "artifacts/experiment/runs/mlp_42/model.pt"
+}

@@ -1,0 +1,13 @@
+{
+  "architecture": "enhanced",
+  "seed": 42,
+  "best_epoch": 16,
+  "best_mrr25": 0.016265874781822922,
+  "seconds": 121.68705829099781,
+  "parameters": 1990912,
+  "spectra": 71503,
+  "peak_rss_mib": 7064.47265625,
+  "stop_reason": "early_stopping",
+  "final_refit": false,
+  "checkpoint": "artifacts/experiment/runs/enhanced_42/model.pt"
+}

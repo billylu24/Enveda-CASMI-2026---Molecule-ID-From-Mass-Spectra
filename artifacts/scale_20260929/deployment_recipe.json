@@ -1,0 +1,17 @@
+{
+  "status": "passed_independent_cpu_float32_acceptance",
+  "encoder_family": "scale",
+  "config": {
+    "name": "wide_enhanced_60k_historical_free_top1",
+    "kind": "free_top1",
+    "base": "coconut15",
+    "threshold": 0.5,
+    "weight": 0.75
+  },
+  "checkpoint": "artifacts/scale_20260929/runs/wide_enhanced_60000/model.pt",
+  "checkpoint_sha256": "0bce6b953f084c1f841b607df99ec46703d7b92a487c8f0812be3db176b3c564",
+  "refit": false,
+  "kaggle_submitted": false,
+  "selection": "selection.json",
+  "holdout_report": "fresh_report.json"
+}
