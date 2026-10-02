@@ -1,0 +1,97 @@
+{
+  "round": "0039_generated_frequency_pilot",
+  "direction": "generation_pilot",
+  "status": "diagnostic_complete",
+  "report": {
+    "unknown": {
+      "baseline": {
+        "molecules": 200,
+        "candidate_recall": 0.13,
+        "mrr25": 0.030413345641286817,
+        "top1": 0.015,
+        "top5": 0.055,
+        "top25": 0.095,
+        "conditional_mrr25": 0.23394881262528322
+      },
+      "frequency_0.25": {
+        "molecules": 200,
+        "candidate_recall": 0.13,
+        "mrr25": 0.030413345641286817,
+        "top1": 0.015,
+        "top5": 0.055,
+        "top25": 0.095,
+        "conditional_mrr25": 0.23394881262528322
+      },
+      "frequency_0.5": {
+        "molecules": 200,
+        "candidate_recall": 0.13,
+        "mrr25": 0.030413345641286817,
+        "top1": 0.015,
+        "top5": 0.055,
+        "top25": 0.095,
+        "conditional_mrr25": 0.23394881262528322
+      },
+      "frequency_1": {
+        "molecules": 200,
+        "candidate_recall": 0.13,
+        "mrr25": 0.03066334564128682,
+        "top1": 0.015,
+        "top5": 0.055,
+        "top25": 0.095,
+        "conditional_mrr25": 0.23587188954836014
+      }
+    },
+    "known": {
+      "baseline": {
+        "molecules": 131,
+        "candidate_recall": 1.0,
+        "mrr25": 0.606284491589835,
+        "top1": 0.5648854961832062,
+        "top5": 0.6335877862595419,
+        "top25": 0.7557251908396947,
+        "conditional_mrr25": 0.606284491589835
+      },
+      "frequency_0.25": {
+        "molecules": 131,
+        "candidate_recall": 1.0,
+        "mrr25": 0.606284491589835,
+        "top1": 0.5648854961832062,
+        "top5": 0.6335877862595419,
+        "top25": 0.7557251908396947,
+        "conditional_mrr25": 0.606284491589835
+      },
+      "frequency_0.5": {
+        "molecules": 131,
+        "candidate_recall": 1.0,
+        "mrr25": 0.606284491589835,
+        "top1": 0.5648854961832062,
+        "top5": 0.6335877862595419,
+        "top25": 0.7557251908396947,
+        "conditional_mrr25": 0.606284491589835
+      },
+      "frequency_1": {
+        "molecules": 131,
+        "candidate_recall": 1.0,
+        "mrr25": 0.606284491589835,
+        "top1": 0.5648854961832062,
+        "top5": 0.6335877862595419,
+        "top25": 0.7557251908396947,
+        "conditional_mrr25": 0.606284491589835
+      }
+    },
+    "diagnostic_only": true,
+    "diagnostics": {
+      "molecules": 200,
+      "baseline_candidate_and_statistics_matches": 200,
+      "queries_with_duplicate_structural_samples": 21,
+      "mass_matching_trajectories": 490,
+      "unique_mass_matching_structures": 311,
+      "cohort": "repeated_development",
+      "independent_acceptance": false
+    }
+  },
+  "protocol_sha256": "cfbed415990b3dbf2484a9a94f0c828351e97e1abf8ec5a0abd03abe6e328f66",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
