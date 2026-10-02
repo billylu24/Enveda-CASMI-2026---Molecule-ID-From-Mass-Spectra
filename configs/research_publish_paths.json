@@ -91,7 +91,12 @@
     "casmi_ml/generation_view_experiment.py",
     "casmi_ml/adaptive_generation.py",
     "casmi_ml/generation_condition_training.py",
-    "casmi_ml/generator_model_experiment.py"
+    "casmi_ml/generator_model_experiment.py",
+    "kaggle_release_decoder_0024/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_decoder_0024/notebook/kernel-metadata.json",
+    "kaggle_release_decoder_0024/verification.json",
+    "kaggle_release_decoder_0024/status.json",
+    "kaggle_release_decoder_0024/kaggle_verification.json"
   ],
   "aggregate_directories": [
     "results/research_loop",

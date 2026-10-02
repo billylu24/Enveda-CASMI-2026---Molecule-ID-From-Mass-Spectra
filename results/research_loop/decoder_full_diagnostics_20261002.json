@@ -1,0 +1,23 @@
+{
+  "round": "decoder_full_diagnostics_20261002",
+  "molecules": 2000,
+  "diagnostics": {
+    "baseline": {
+      "exact_hits": 63,
+      "valid": 227213,
+      "mass_matching": 3239,
+      "queries_with_candidates": 862
+    },
+    "single_finetune": {
+      "exact_hits": 86,
+      "valid": 234124,
+      "mass_matching": 5104,
+      "queries_with_candidates": 999
+    }
+  },
+  "baseline_unknown_mrr25": 0.03174733982263007,
+  "selected_unknown_mrr25": 0.03336529716499531,
+  "known_mrr_decline": 7.34699196353e-05,
+  "independent_acceptance": false,
+  "scope": "Repeated development structure ranking; new decoder inference replay still required"
+}
