@@ -47,7 +47,8 @@ def score_cache_key(query, first, candidates):
 
 
 @torch.inference_mode()
-def run(output, incumbent, proposal_limit=100):
+def run(output, incumbent, proposal_limit=100, critic_checkpoint=CRITIC):
+    critic_checkpoint = Path(critic_checkpoint)
     if proposal_limit not in (100, 500):
         raise ValueError("Proposal limit must be100 or500")
     output, incumbent = Path(output), Path(incumbent)
@@ -70,7 +71,7 @@ def run(output, incumbent, proposal_limit=100):
             "variants": VARIANTS,
             "proposal_limit": proposal_limit,
             "rule": f"Freeze0062;confidence<.5;preselect first{proposal_limit} novel ChEMBL proposals by native fingerprint;critic ranks proposals and top proposal must exceed actual current first by margin; insert at most3 after prefix",
-            "critic_sha256": digest(CRITIC),
+            "critic_sha256": digest(critic_checkpoint),
             "native_proposals_sha256": digest(
                 Path(
                     "artifacts/research_loop/rounds/0071_chembl_candidate_slots/proposals.json"
@@ -126,7 +127,7 @@ def run(output, incumbent, proposal_limit=100):
     generated_lookup = {
         r["key"]: {c["key"]: c["smiles"] for c in r["candidates"]} for r in generated
     }
-    weights = torch.load(CRITIC, map_location="cpu", weights_only=True)
+    weights = torch.load(critic_checkpoint, map_location="cpu", weights_only=True)
     assert (
         weights["encoder_sha256"] == digest(ENCODER)
         and weights["architecture"] == "fingerprint"
@@ -357,8 +358,13 @@ def main():
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--incumbent", type=Path, required=True)
     p.add_argument("--proposal-limit", type=int, choices=(100, 500), default=100)
+    p.add_argument("--critic-checkpoint", type=Path, default=CRITIC)
     a = p.parse_args()
-    print(json.dumps(run(a.output, a.incumbent, a.proposal_limit), indent=2))
+    print(
+        json.dumps(
+            run(a.output, a.incumbent, a.proposal_limit, a.critic_checkpoint), indent=2
+        )
+    )
 
 
 if __name__ == "__main__":

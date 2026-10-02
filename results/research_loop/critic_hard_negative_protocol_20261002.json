@@ -1,0 +1,21 @@
+{
+  "status": "protocol_registered",
+  "source_sha256": "86d9600582b42d40bb99b9eed57bf239be053dd9eebbeaded5fcce1ce8f65e6c",
+  "starting_critic_sha256": "efbf32e5e9b174173757f0a8b602c0e7f19e01a537a3a6d32c80fd0c96076675",
+  "training_molecules": 60000,
+  "epochs": 3,
+  "learning_rate": 1e-05,
+  "arms": [
+    "random_mass_negative",
+    "frozen_critic_hard_mass_negative"
+  ],
+  "gpu_stage": "representation",
+  "stage_seconds": 86400,
+  "training_labels_only": true,
+  "same_positive_and_permutation_rng": true,
+  "development_used_only_for_key_isolation_in_training": true,
+  "adversarial_training": false,
+  "fixed_last_epoch_checkpoint": true,
+  "evaluation": "Same frozen0062 plus500 ChEMBL proposal ranking; repeated2000/1340 development; unchanged gate",
+  "performance_claimed": false
+}
