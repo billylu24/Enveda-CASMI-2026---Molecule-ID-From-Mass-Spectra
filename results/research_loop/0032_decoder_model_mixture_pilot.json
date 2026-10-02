@@ -1,0 +1,43 @@
+{
+  "round": "0032_decoder_model_mixture_pilot",
+  "direction": "generation_pilot",
+  "status": "diagnostic_complete",
+  "report": {
+    "molecules": 200,
+    "baseline": {
+      "samples": 25600,
+      "terminated": 25599,
+      "valid": 23553,
+      "mass_matching": 490,
+      "unique_mass_matching": 311,
+      "queries_with_candidates": 100,
+      "exact_structure_hits": 9
+    },
+    "split_control": {
+      "samples": 25600,
+      "terminated": 25600,
+      "valid": 23628,
+      "mass_matching": 459,
+      "unique_mass_matching": 302,
+      "queries_with_candidates": 96,
+      "exact_structure_hits": 6
+    },
+    "model_mixture": {
+      "samples": 25600,
+      "terminated": 25600,
+      "valid": 23322,
+      "mass_matching": 395,
+      "unique_mass_matching": 276,
+      "queries_with_candidates": 97,
+      "exact_structure_hits": 5
+    },
+    "seconds": 114.10393516499607,
+    "diagnostic_only": true,
+    "independent_acceptance": false,
+    "sampling_budget": "128 trajectories per arm; shared first64; paired second64 random stream; 192 total computational trajectories per query"
+  },
+  "protocol_sha256": "2c13f4fd3eef64201c46d0a09d01dd5b048c972431746b0ef2bcf7355f352865",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
