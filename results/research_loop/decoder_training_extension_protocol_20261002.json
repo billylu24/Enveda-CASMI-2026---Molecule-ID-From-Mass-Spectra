@@ -1,0 +1,37 @@
+{
+  "round": "decoder_training_extension_protocol_20261002",
+  "comparison": {
+    "incumbent": "three fixed full epochs of single-spectrum decoder adaptation",
+    "extension": "six fixed full epochs starting from original generator",
+    "learning_rate": 3e-05,
+    "seed": 42,
+    "same_train_molecules": true,
+    "frozen_encoder": true,
+    "frozen_formula": true,
+    "development_nll_checkpoint_selection": false,
+    "pilot_molecules": 200,
+    "samples_per_query": 128,
+    "full_evaluation_required_before_submission": 2000
+  },
+  "orthogonal_experiment": {
+    "round": "0028_generated_fragment_pilot",
+    "pilot_molecules": 200,
+    "candidate_scope": "Novel insertable generated candidates, fixed reference routing and prefix3/slots5",
+    "fragment_weights": [
+      0,
+      0.25,
+      0.5,
+      1
+    ],
+    "label_free_scoring": true,
+    "fragment_seconds": 600,
+    "gpu_training": false,
+    "frozen_generation_cache": "selected three-epoch decoder 2000 development molecules"
+  },
+  "validation": {
+    "unittest_passed": 105,
+    "ruff_passed": true
+  },
+  "cohort": "repeated_development",
+  "independent_acceptance": false
+}
