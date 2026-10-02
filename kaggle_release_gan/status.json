@@ -1,5 +1,5 @@
 {
-  "status": "validated_offline_notebook_ready_for_formal_kaggle_run",
+  "status": "formal_kaggle_gpu_run_in_progress",
   "checked_at": "2026-10-02",
   "competition": "enveda-CASMI26-molecule-id-mass-spectra",
   "notebook": "https://www.kaggle.com/code/xiaoyuzhoux120/casmi-2026-chemical-priors-hybrid",
@@ -17,5 +17,11 @@
     "passed": 106,
     "skipped": 1,
     "subtests_passed": 10
-  }
+  },
+  "observed_at_utc": "2026-10-02T16:32:08Z",
+  "notebook_version": 2,
+  "notebook_script_version_id": 354698716,
+  "frozen_source_commit": "a45c65e9f16501c554dfd4a12679003d630cb0ff",
+  "accelerator_observed": "GPU T4 x2",
+  "cuda_available_observed": true
 }

@@ -52,7 +52,27 @@ with 27 new mass candidates and 19 new output candidates in the audit totals.
 These previously observed examples are **not independent validation**, and
 the results were not used to tune the weight. The public-score tie and protected
 visible outputs do not establish independent chemical effectiveness or improved
-generalization. Independent chemical ablation and GAN training remain outstanding.
+generalization. Independent chemical ablation remains outstanding. A new paired
+GAN experiment is running; its results are recorded separately below.
+
+### Conditional fingerprint GAN experiment
+
+The real conditional generator/discriminator implementation and matched supervised
+control were frozen at commit `a45c65e9f16501c554dfd4a12679003d630cb0ff`. Formal
+Kaggle notebook version 2 (`scriptVersionId` 354698716), named **Conditional GAN
+Shared Graph Edits v2**, is running on GPU T4 x2 with internet disabled; the runtime
+confirmed CUDA availability. No new competition score is recorded until the saved
+run completes and its prediction is submitted successfully.
+
+Both neural arms share the candidate pool and bounded formula-preserving graph
+edits. The GAN generates fingerprints, not molecular graphs; the graph edits are
+locally novel candidates rather than established globally new molecules. See
+[the release](../kaggle_release_gan/README.md), [frozen protocol](../kaggle_release_gan/protocol.json),
+[live status](../kaggle_release_gan/status.json), [Chinese analysis](OVERNIGHT_RESULTS_20261002.md)
+and [result interpretation](GAN_RESULT_INTERPRETATION_20261002.md). Engineering
+verification passed 106 tests, one skip and ten subtests; a real synthetic cold
+start exercised training, checkpoint reload and complete inference. These checks
+are not chemical generalization results.
 
 ## Repository contents
 
@@ -62,9 +82,10 @@ optional low-confidence reranking, evidence audits, and regression tests.
 See [the chemical-prior guide](CHEMICAL_PRIORS_20261001.md) and
 [the architecture and GAN analysis](GENERATIVE_MODELS_20261001.md).
 The additions remain experimental: the submitted chemical-prior experiment ties
-0.176, while independent chemical ablation and GAN training remain outstanding.
-Local verification passed 72 tests,
-with 1 data-dependent test skipped and 10 subtests passed.
+0.176, while its independent chemical ablation remains outstanding. The October 2
+update adds the paired conditional fingerprint GAN and shared graph candidates,
+official identity split/deduplication and detailed failure audits. Local verification
+passed 106 tests, with one data-dependent test skipped and ten subtests passed.
 
 Downloaded ChEBI/LIPID MAPS data and derived catalogs remain excluded. The
 MS-FINDER tables are also excluded because their data-specific license has
