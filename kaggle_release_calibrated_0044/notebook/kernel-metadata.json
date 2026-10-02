@@ -1,6 +1,6 @@
 {
-  "id": "giaok246/casmi26-research-0044-generated-position-update",
-  "title": "CASMI26 Research 0044 generated position update",
+  "id": "giaok246/casmi26-research-0044-generated-po-859b254c",
+  "title": "CASMI26 Research 0044 generated po 859b254c",
   "code_file": "casmi_chemistry.ipynb",
   "language": "python",
   "kernel_type": "notebook",
@@ -12,7 +12,7 @@
     "enveda-CASMI26-molecule-id-mass-spectra"
   ],
   "dataset_sources": [
-    "giaok246/casmi26-research-0044-generated-position-update-bundle",
+    "giaok246/casmi26-research-0044-generated-po-859b254c-bundle",
     "aidensong123/casmi26-coconut-202609"
   ],
   "kernel_sources": [],

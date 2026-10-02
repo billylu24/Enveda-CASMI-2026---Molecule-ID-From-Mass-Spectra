@@ -123,7 +123,10 @@
     "kaggle_release_calibrated_0044/notebook/kernel-metadata.json",
     "kaggle_release_calibrated_0044/verification.json",
     "kaggle_release_calibrated_0044/status.json",
-    "kaggle_release_calibrated_0044/kaggle_verification.json"
+    "kaggle_release_calibrated_0044/kaggle_verification.json",
+    "casmi_ml/generated_second_reference.py",
+    "tests/test_generated_second_reference.py",
+    "tests/test_publication_slug.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

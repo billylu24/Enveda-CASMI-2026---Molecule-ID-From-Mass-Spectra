@@ -1,0 +1,11 @@
+{
+  "round": "calibrated_publication_metadata_fix_20261002",
+  "local_api_rejection": "Dataset slug exceeds50 chars; rejected before API upload/network creation",
+  "dataset_id": "giaok246/casmi26-research-0044-generated-po-859b254c-bundle",
+  "kernel_id": "giaok246/casmi26-research-0044-generated-po-859b254c",
+  "new_identity": "ac0791185924a1178710f5f563e3690039253bbd7e72acd0c9343dbc6abd2ac8",
+  "locally_verified_identity": "77b1d2f971314b8b57d36951589c979c03463e5b883fbf06f5691599fe406268",
+  "identity_alias": "Only dataset/kernel names and title amended; bundle, notebook executable code, model and data unchanged",
+  "existing_full_inference_verification_reused": true,
+  "independent_acceptance": false
+}

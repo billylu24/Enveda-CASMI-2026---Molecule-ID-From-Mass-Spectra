@@ -1,6 +1,7 @@
 """Development-gated packaging, explicitly distinct from independent acceptance."""
 
 import argparse
+import hashlib
 import json
 import shutil
 import tempfile
@@ -12,6 +13,15 @@ from casmi_ml.data import write_json
 from casmi_ml.metfrag import digest
 from casmi_ml.research_loop import release_identity
 from casmi_ml.research_release import copy_inference_source
+
+
+def publication_slug(identifier):
+    slug = identifier.lower().replace("_", "-")
+    # Dataset prefix17 + suffix7 leaves26 characters under Kaggle's50 limit.
+    if len(slug) > 26:
+        suffix = hashlib.sha256(slug.encode()).hexdigest()[:8]
+        slug = slug[:17].rstrip("-") + "-" + suffix
+    return slug
 
 
 def package(identifier, decision, output):
@@ -407,13 +417,13 @@ def _package(identifier, decision, output):
     ) as z:
         for name in [*sums, "SHA256SUMS.json"]:
             z.write(bundle / name, name)
-    slug = identifier.lower().replace("_", "-")
+    slug = publication_slug(identifier)
     dataset_id = f"giaok246/casmi26-research-{slug}-bundle"
     kernel_id = f"giaok246/casmi26-research-{slug}"
     dm = json.loads((output / "dataset/dataset-metadata.json").read_text())
     dm.update(
         id=dataset_id,
-        title=f"CASMI Research {identifier} Assets",
+        title=f"CASMI Research {slug} Assets",
         description="Private development-gated experimental deployment. Added mass hypotheses have no independent acceptance.",
     )
     write_json(output / "dataset/dataset-metadata.json", dm)
