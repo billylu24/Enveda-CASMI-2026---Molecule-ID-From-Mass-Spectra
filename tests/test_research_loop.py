@@ -457,3 +457,39 @@ class PublicationPreparationTests(unittest.TestCase):
             self.assertEqual(
                 [call.args[0] for call in release.call_args_list], ["first", "second"]
             )
+
+
+class SubmissionSnapshotTests(unittest.TestCase):
+    def test_new_score_refreshes_public_receipt_and_requests_github_sync(self):
+        from casmi_ml.data import write_json
+
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            c = LoopTests().controller(root)
+            release = root / "release"
+            write_json(release / "status.json", {"independent_acceptance": False})
+            decision = root / "decision.json"
+            write_json(decision, {"winner": None})
+            c.register_round("round", "mass", [], root / "report.json")
+            c.mark_round(
+                "round",
+                identity="sha",
+                release=str(release),
+                decision=str(decision),
+                git_synced=True,
+                git_commit="old",
+            )
+            c.reserve_submission("sha", 1, "message")
+            c.finish_submission("sha", 123)
+            c.update_submission("sha", "COMPLETE", 0.173)
+            self.assertFalse(c.read()["rounds"][0]["git_synced"])
+            self.assertIsNone(c.read()["rounds"][0]["git_commit"])
+            self.assertEqual(
+                json.loads((release / "status.json").read_text())["public_score"], 0.173
+            )
+            self.assertEqual(
+                json.loads(decision.read_text())["public_submission"]["id"], 123
+            )
+            c.mark_round("round", git_synced=True)
+            c.update_submission("sha", "COMPLETE", 0.173)
+            self.assertTrue(c.read()["rounds"][0]["git_synced"])

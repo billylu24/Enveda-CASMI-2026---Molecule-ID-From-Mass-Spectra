@@ -1,0 +1,6 @@
+{
+  "round": "submission_receipts_20261002",
+  "tests_passed": 94,
+  "scope": "Submission and score receipts refresh public status and trigger curated GitHub synchronization",
+  "independent_acceptance": false
+}

@@ -373,7 +373,43 @@ class Controller:
             )
         )
 
+    def publication_snapshot(self, identity):
+        state = self.read()
+        entry = state["submissions"][identity]
+        for row in state["rounds"]:
+            if row.get("identity") != identity:
+                continue
+            snapshot = {
+                key: entry.get(key)
+                for key in ["id", "status", "score", "version", "error"]
+            }
+            if row.get("release"):
+                path = Path(row["release"]) / "status.json"
+                if path.exists():
+                    receipt = json.loads(path.read_text())
+                    receipt.update(
+                        status="submitted",
+                        submitted=True,
+                        uploaded=True,
+                        submission_id=entry["id"],
+                        submission_status=entry["status"],
+                        public_score=entry.get("score"),
+                    )
+                    write_json(path, receipt)
+            if row.get("decision"):
+                path = Path(row["decision"])
+                decision = json.loads(path.read_text())
+                decision["public_submission"] = snapshot
+                write_json(path, decision)
+            self.mark_round(row["id"], git_synced=False, git_commit=None)
+
     def update_submission(self, identity, status, score=None, error=None):
+        previous = self.read()["submissions"][identity]
+        changed = any(
+            previous.get(key) != value
+            for key, value in [("status", status), ("score", score), ("error", error)]
+        )
+
         def update(s):
             entry = s["submissions"][identity]
             entry.update(status=status, score=score, error=error, checked_at=now())
@@ -384,6 +420,8 @@ class Controller:
                     s["public_best"] = {"score": score, "submission_id": entry["id"]}
 
         self.change(update)
+        if changed:
+            self.publication_snapshot(identity)
 
     def refresh_kaggle(self):
         from kaggle.api.kaggle_api_extended import KaggleApi
@@ -419,6 +457,36 @@ class Controller:
                     float(matching.public_score) if matching.public_score else None,
                     matching.error_description,
                 )
+        import pandas as pd
+
+        fields = [
+            "ref",
+            "fileName",
+            "date",
+            "description",
+            "status",
+            "publicScore",
+            "privateScore",
+        ]
+        pd.DataFrame(
+            [
+                dict(
+                    zip(
+                        fields,
+                        [
+                            row.ref,
+                            row.file_name,
+                            str(row.date),
+                            row.description,
+                            str(row.status),
+                            row.public_score,
+                            row.private_score,
+                        ],
+                    )
+                )
+                for row in rows
+            ]
+        ).to_csv("results/kaggle_submissions.csv", index=False)
         return rows
 
     def import_bootstrap(self):
@@ -724,6 +792,7 @@ class Controller:
         )
         self.finish_submission(identity, response.ref)
         self.mark_round(identifier, identity=identity, status="submitted")
+        self.publication_snapshot(identity)
         return self.read()["submissions"][identity]
 
     def status(self):
