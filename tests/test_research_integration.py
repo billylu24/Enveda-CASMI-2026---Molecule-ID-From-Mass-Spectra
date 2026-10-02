@@ -919,3 +919,28 @@ class GeneratedLikelihoodRatioTests(unittest.TestCase):
         # Forbidden-token logits cannot change legal sequence likelihood.
         logits[:, :, [0, 1, 3]] = -100
         self.assertTrue(torch.equal(score, log_likelihood(logits, target)))
+
+
+class ChEMBLCatalogImportTests(unittest.TestCase):
+    def test_structure_normalization_preserves_identity_and_rejects_invalid_sources(
+        self,
+    ):
+        from rdkit import Chem
+
+        from casmi_ml.chembl_catalog import normalize
+
+        molecule = Chem.MolFromSmiles("C[C@H](O)C(=O)O")
+        row = {
+            "chembl_id": "example",
+            "canonical_smiles": "C[C@H](O)C(=O)O",
+            "standard_inchi_key": Chem.MolToInchiKey(molecule),
+        }
+        record, reason = normalize(row)
+        self.assertEqual(reason, "retained")
+        self.assertNotIn("@", record["normalized_smiles"])
+        self.assertEqual(record["inchikey14"], row["standard_inchi_key"][:14])
+        for smiles in ["CC.O", "[NH4+]", "[13CH4]", "*CC"]:
+            row["canonical_smiles"] = smiles
+            self.assertIsNone(normalize(row)[0])
+        row["canonical_smiles"] = "CCO"
+        self.assertEqual(normalize(row)[1], "identity_disagreement")

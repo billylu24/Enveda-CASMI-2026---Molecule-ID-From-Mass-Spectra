@@ -1,0 +1,21 @@
+{
+  "valid": true,
+  "molecules": 400,
+  "seconds": 740.6263248589999,
+  "parent_peak_rss_mib": 2906.65234375,
+  "local_full_top25_matches": 400,
+  "generated_first_promotions": 0,
+  "low_confidence_queries": 0,
+  "expanded_branch_queries": 0,
+  "generation_status_counts": {
+    "generated_and_merged": 279,
+    "no_valid_mass_matching_generation": 121
+  },
+  "python_runtime": "3.13",
+  "first_gate": {
+    "confidence": 0.2,
+    "margin": 0.05
+  },
+  "independent_acceptance": false,
+  "scope": "Kaggle visible400 format,resources and complete rankings; promotion behavior covered by actual75-query replay with22 promotions; no accuracy labels"
+}
