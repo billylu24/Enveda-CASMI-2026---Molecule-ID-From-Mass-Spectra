@@ -219,7 +219,12 @@
     "kaggle_release_expanded_0047_runtime313/notebook/kernel-metadata.json",
     "kaggle_release_expanded_0047_runtime313/verification.json",
     "kaggle_release_expanded_0047_runtime313/status.json",
-    "kaggle_release_expanded_0047_runtime313/kaggle_verification.json"
+    "kaggle_release_expanded_0047_runtime313/kaggle_verification.json",
+    "kaggle_release_expanded_0047_runtime313/runtime_migration.json",
+    "kaggle_release_second_0045_runtime313/runtime_migration.json",
+    "kaggle_release_calibrated_0044_runtime313/runtime_migration.json",
+    "kaggle_release_decoder_0024_runtime313/runtime_migration.json",
+    "tests/test_kernel_capacity.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

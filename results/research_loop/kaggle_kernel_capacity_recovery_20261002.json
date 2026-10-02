@@ -1,0 +1,11 @@
+{
+  "status": "implemented",
+  "observed_error": "Maximum batch GPU session count of 2 reached.",
+  "response_ref": "",
+  "response_version": null,
+  "accepted_notebook": false,
+  "behavior": "Keep eligible release, record capacity wait, retry after running kernels complete; do not reserve competition submission",
+  "ambiguous_capacity_response_with_ref_or_version": "Raises for reconciliation; never assumed rejected",
+  "controller_sha256": "e858bafc5bc04c6eecef606ae9ad9694d12b8d6483c0cfa30b6f81d6e9e15ec3",
+  "in_progress_research_preserved": true
+}

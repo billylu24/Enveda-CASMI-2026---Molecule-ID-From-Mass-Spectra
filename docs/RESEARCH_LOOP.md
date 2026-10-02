@@ -255,3 +255,9 @@ MetFrag适用性汇总：完整开发5439张谱中3292张满足当前单体质�
 
 
 第101轮实际相对碎裂独立门控小试验：固定第98/99轮包含真实首位的88组单体分数，仍要求新首位fragment严格更高且分数有区分度，只取消外部提案critic绝对margin门控，critic仍参与候选排序。动机是训练critic对新ChEMBL前3召回较低，真实同组碎裂比较可能独立提供条件支持；不是取消所有化学保护。固定200、prefix2/3/5/10、slots3，无新增评分/训练，只有小队列未知正向和已知保护才扩大。第100轮运行源码快照与SHA保存，已加载代码未改变。
+
+
+第101轮仅相对fragment门控fixed200 unknown收益略低于第99轮、known不变，不扩展。第102轮宽筛选+首位化学比较pilot：保持原critic、relative fragment+critic双门槛、精确单体，native前500→critic前100，并把真实当前首位加入同组MetFrag；其余prefix2/3/5/10和slots3不变。此前宽筛选alone没收益，需用更强相对化学证据验证，不直接全队列调阈值。1200秒总碎裂预算，缓存身份绑定实际候选，真实观测和真值用途分离。全部已准备版本完成本地双ABI完整400排名相同，不改变各轮开发门槛或已评分历史。
+
+
+Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第45新Notebook启动明确拒绝（ref空/version null）。控制器现将这种显式拒绝记capacity_wait，保留eligible与已上传数据集，不预留比赛submission，后续等待当前第24/44完成再重试；若拒绝响应却带ref/version则视为不确定，不能当作未接受重复提交。重启控制器加载修复，独立第100轮研究子进程与预算继续运行未终止。新增回归覆盖无比赛POST和不确定响应。
