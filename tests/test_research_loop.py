@@ -693,3 +693,28 @@ class GithubRecoveryTests(unittest.TestCase):
                 self.assertRaises(subprocess.CalledProcessError),
             ):
                 c.sync_github("round", [])
+
+
+class AuxiliaryOwnershipTests(unittest.TestCase):
+    def test_confirmed_primary_owner_prevents_auxiliary_duplicate_and_status_change(
+        self,
+    ):
+        with tempfile.TemporaryDirectory() as d:
+            c = LoopTests().controller(Path(d))
+            argv = ["sleep", "60"]
+            c.register_round(
+                "round", "catalog_diagnostic", argv, Path(d) / "report.json"
+            )
+            child = subprocess.Popen(argv, start_new_session=True)
+            try:
+                c.mark_round("round", status="running")
+                c.change(
+                    lambda s: s.update(active_job={"pid": child.pid, "argv": argv})
+                )
+                with patch.object(c, "job") as job:
+                    self.assertEqual(c.run_auxiliary("round"), "orphan_job_running")
+                    job.assert_not_called()
+                self.assertEqual(c.read()["rounds"][0]["status"], "running")
+            finally:
+                child.terminate()
+                child.wait(timeout=3)

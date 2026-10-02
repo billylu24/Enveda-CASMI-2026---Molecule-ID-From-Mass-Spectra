@@ -317,7 +317,24 @@ class Controller:
         return "complete"
 
     def run_auxiliary(self, identifier):
-        r = next(r for r in self.read()["rounds"] if r["id"] == identifier)
+        state = self.read()
+        r = next(r for r in state["rounds"] if r["id"] == identifier)
+        entries = [state.get("active_job"), *state.get("auxiliary_jobs", {}).values()]
+        for entry in entries:
+            if not entry or entry["argv"] != r["argv"]:
+                continue
+            try:
+                actual = [
+                    x.decode()
+                    for x in Path(f"/proc/{entry['pid']}/cmdline")
+                    .read_bytes()
+                    .split(b"\0")
+                    if x
+                ]
+            except FileNotFoundError:
+                continue
+            if actual == r["argv"]:
+                return "orphan_job_running"
         path = Path(r["report"])
         if path.exists():
             self.mark_round(identifier, status="evaluated")

@@ -1,0 +1,7 @@
+{
+  "status": "implemented",
+  "behavior": "auxiliary launch checks confirmed matching primary/auxiliary PID command before launch, leaves running round status intact",
+  "cause": "duplicate scheduling attempt was rejected by job budget lock before second scoring job, but wrote failed status over confirmed primary",
+  "tests": 152,
+  "independent_acceptance": false
+}

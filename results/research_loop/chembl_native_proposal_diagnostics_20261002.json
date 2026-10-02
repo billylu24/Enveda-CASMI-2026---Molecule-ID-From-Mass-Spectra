@@ -1,0 +1,16 @@
+{
+  "molecules": 2000,
+  "cohort": "repeated_development",
+  "new_truths_scored": {
+    "new_truths_available_in_scored_scope": 38,
+    "native_top3": 3,
+    "native_top10": 5,
+    "native_top25": 9,
+    "native_top100": 16,
+    "native_top500": 33
+  },
+  "truth_used_only_in_metrics": true,
+  "new_catalogue_structures_used_for_scoring": true,
+  "scope": "native proposal diagnostics; individual labels do not select scoring jobs",
+  "independent_acceptance": false
+}
