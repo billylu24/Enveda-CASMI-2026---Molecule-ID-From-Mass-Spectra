@@ -1,0 +1,37 @@
+{
+  "round": "generated_frequency_full_protocol_20261002",
+  "pilot": {
+    "molecules": 200,
+    "baseline_unknown_mrr25": 0.030413345641286817,
+    "frequency_unknown_mrr25": 0.03066334564128682,
+    "known_mrr25_unchanged": true,
+    "paired_candidate_and_statistics_matches": 200,
+    "queries_with_duplicates": 21
+  },
+  "full_evaluation": {
+    "round": "0040_generated_frequency_full",
+    "molecules": 2000,
+    "baseline": "current development best0024 model",
+    "weights": [
+      0,
+      0.25,
+      0.5,
+      1
+    ],
+    "fixed_samples_per_query": 128,
+    "sampling_statistics_exact_match_required": true,
+    "retrieval_prefix": 3,
+    "slots": 5,
+    "full_csv_paired_keys_required": true,
+    "absolute_gain_required": 0.0005,
+    "relative_gain_required": 0.02,
+    "known_mrr_decline_limit": 0.001,
+    "known_top1_decline_limit": 0.005
+  },
+  "validation": {
+    "tests_passed": 119,
+    "ruff_passed": true
+  },
+  "scope": "repeated_development_experimental; no independent acceptance",
+  "competition_submit_after": "2026-10-03T00:00:00Z"
+}

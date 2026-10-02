@@ -54,6 +54,11 @@ def run(output, limit=200):
             "generator_checkpoint": str(CHECKPOINT),
             "generator_sha256": digest(CHECKPOINT),
             "baseline_generated_sha256": digest(BASELINE),
+            "generated_path": str(
+                ROOT
+                / "generation"
+                / f"researchdev_samples128_limit{limit or 'all'}_stable_v2_{digest(CHECKPOINT)[:12]}_frequency_v1.json"
+            ),
             "variants": variants,
             "samples_per_query": 128,
             "temperature": 0.8,
