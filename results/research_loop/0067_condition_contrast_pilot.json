@@ -1,0 +1,33 @@
+{
+  "round": "0067_condition_contrast_pilot",
+  "direction": "generation_pilot",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "molecules": 200,
+    "baseline": {
+      "samples": 25600,
+      "terminated": 25599,
+      "valid": 23553,
+      "mass_matching": 490,
+      "unique_mass_matching": 311,
+      "queries_with_candidates": 100,
+      "exact_structure_hits": 9
+    },
+    "selected": {
+      "samples": 25600,
+      "terminated": 25599,
+      "valid": 23639,
+      "mass_matching": 481,
+      "unique_mass_matching": 311,
+      "queries_with_candidates": 107,
+      "exact_structure_hits": 8
+    },
+    "independent_acceptance": false,
+    "evaluation": "Fixed200 current-best checkpoint control; no submission gate"
+  },
+  "protocol_sha256": "ff9d63bf4534c90882b0d0dc9688244ba94edb30a3fe2055c1f8f75994918edb",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
