@@ -714,7 +714,12 @@ class Controller:
     def complete_round(self, identifier):
         r = next(r for r in self.read()["rounds"] if r["id"] == identifier)
         if r["status"] == "eligible" and self.config["automatic_submission"]:
-            if r["direction"] in ["mass", "generation_slots", "coverage", "reference_guard"]:
+            if r["direction"] in [
+                "mass",
+                "generation_slots",
+                "coverage",
+                "reference_guard",
+            ]:
                 outcome = self.release_round(identifier)
                 if outcome in ["notebook_running", "waiting_for_previous_submission"]:
                     return "publication_waiting"
@@ -738,6 +743,32 @@ class Controller:
         if r.get("release"):
             release = Path(r["release"])
         decision = json.loads(Path(r["decision"]).read_text())
+        if r["direction"] == "reference_guard":
+            directory = Path(r["report"]).parent
+            replay = directory / "replay.json"
+            if not replay.exists():
+                gpu = (self.root / "gpu.lock").open("a")
+                try:
+                    try:
+                        fcntl.flock(gpu, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                    except BlockingIOError:
+                        return "notebook_running"
+                    result = self.job(
+                        [
+                            ".venv-gpu/bin/python",
+                            "-m",
+                            "casmi_ml.reference_replay",
+                            "--directory",
+                            str(directory),
+                        ],
+                        directory / "replay.log",
+                        1800,
+                        auxiliary_key="replay-" + identifier,
+                    )
+                    if result != "complete":
+                        return result
+                finally:
+                    gpu.close()
         if r["direction"] == "coverage":
             replay = Path(r["report"]).parent / "replay.json"
             if not replay.exists():
@@ -872,8 +903,16 @@ class Controller:
             None,
         )
         if pending is None:
-            if waiting:
+            if waiting or self.read()["pending_submission"] is not None:
                 return "publication_waiting"
+            for entry in self.read().get("auxiliary_jobs", {}).values():
+                proc = Path(f"/proc/{entry['pid']}/cmdline")
+                try:
+                    actual = [v.decode() for v in proc.read_bytes().split(b"\0") if v]
+                except FileNotFoundError:
+                    continue
+                if actual == entry["argv"]:
+                    return "auxiliary_running"
             self.change(lambda s: s.update(status="research_needed"))
             return "research_needed"
         rid = pending["id"]
@@ -936,7 +975,11 @@ class Controller:
                 raise RuntimeError("A research runner is active") from error
             while True:
                 result = self.step()
-                if result in ["publication_waiting", "orphan_job_running"]:
+                if result in [
+                    "publication_waiting",
+                    "orphan_job_running",
+                    "auxiliary_running",
+                ]:
                     time.sleep(min(45, self.config["poll_seconds"]))
                 if once or result in [
                     "stopped",

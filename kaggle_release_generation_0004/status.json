@@ -1,5 +1,5 @@
 {
-  "status": "submitted",
+  "status": "scored",
   "identity": "8fc1e6159423e49964b395f55bee7617dd01560a1245994fed2c5bad49edc293",
   "development_eligible": true,
   "independent_acceptance": false,
@@ -7,8 +7,9 @@
   "submitted": true,
   "tests_passed": 81,
   "submission_id": 56771252,
-  "submission_status": "PENDING",
+  "submission_status": "COMPLETE",
   "kernel": "giaok246/casmi26-research-0004-generation-shared",
   "kernel_version": 1,
-  "kernel_status": "COMPLETE"
+  "kernel_status": "COMPLETE",
+  "public_score": 0.173
 }
