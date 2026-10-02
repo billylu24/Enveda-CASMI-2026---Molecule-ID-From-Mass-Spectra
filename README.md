@@ -4,7 +4,38 @@ This is a mass-filtered spectral-library retrieval baseline for the [Enveda CASM
 
 ## Current results snapshot
 
-Best public MRR@25: **0.176** (historical hybrid). The latest PubChemLite experiment scored **0.171**. See [the consolidated results and repository contents](docs/GITHUB_SNAPSHOT.md) for all submissions, validation caveats, and which assets must be regenerated.
+Best public MRR@25: **0.176**. The chemical-prior historical-hybrid experiment was submitted successfully from notebook version 1 on 2026-10-02 and scored **0.176**, tying the historical hybrid. The preceding PubChemLite experiment scored **0.171**. See [the consolidated results and repository contents](docs/GITHUB_SNAPSHOT.md) for all submissions, validation caveats, and which assets must be regenerated.
+
+## Chemical priors and generative-model analysis (2026-10-02)
+
+Chemical-prior matching and ChEBI/LIPID MAPS/PubChem offline catalog import are
+available as an experimental extension with a submitted public score of 0.176.
+Independent chemical validation remains outstanding. See
+[the chemistry integration guide](docs/CHEMICAL_PRIORS_20261001.md) for source
+provenance, conservative motif rules, inference switches, and the required
+four-way validation before deployment.
+
+The [generative-model analysis](docs/GENERATIVE_MODELS_20261001.md) reviews
+the spectrum-to-structure architecture and proposes controlled adversarial
+negative-sampling and conditional generation experiments. GAN training has
+not been performed. The submitted chemical-prior experiment ties the previous
+best public score; this does not establish independent chemical effectiveness.
+
+The offline, checkpoint-free historical-hybrid extension completed the formal
+Kaggle CPU run with internet disabled in **6m 57s** and its competition submission
+status is **Succeeded**. It is documented in
+[the Kaggle chemical release](kaggle_release_chemistry/README.md), with
+ChEBI/LMSD candidates, a 0.5 confidence guard and a fixed 0.1 chemical weight.
+[Its status file](kaggle_release_chemistry/status.json) records the run and
+competition submission, and [the validation summary](kaggle_release_chemistry/validation_summary.json)
+records the measured checks.
+
+All 400 visible test molecules took the protected branch and their rankings
+were unchanged. In the 32-key masked-reference behavior check, 23 were protected,
+9 had low confidence, and no chemical rules matched. Original-catalog MRR@25
+was 0.138849; adding the public catalog gave 0.136245, with or without the rules.
+These previously observed examples are **not independent validation**. The
+local regression suite passed 72 tests, with 1 skipped and 10 subtests passed.
 
 ## Local setup
 
