@@ -2,7 +2,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from casmi_ml.chembl_fragment_pilot import main
+from casmi_ml.chembl_fragment_pilot import CRITIC, main
 
 
 class ChemblFragmentCLITests(unittest.TestCase):
@@ -30,5 +30,5 @@ class ChemblFragmentCLITests(unittest.TestCase):
         ):
             main()
         run.assert_called_once_with(
-            Path("out"), Path("best"), 200, 10, True, 500, 25, False
+            Path("out"), Path("best"), 200, 10, True, 500, 25, False, CRITIC
         )

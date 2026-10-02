@@ -70,7 +70,9 @@ def run(
     proposal_limit=100,
     fragment_limit=100,
     evidence_only=False,
+    critic_checkpoint=CRITIC,
 ):
+    critic_checkpoint = Path(critic_checkpoint)
     if proposal_limit not in (100, 500) or not 1 <= fragment_limit <= proposal_limit:
         raise ValueError("Invalid proposal or fragment shortlist limit")
     critic_path = Path(
@@ -133,7 +135,9 @@ def run(
             "evidence_gate": "Positive proposed first fragment score and distinct finite fragment scores required; missing/all tied scores never enable insertion"
             if evidence_only
             else None,
-            "proposal_critic_cache_sha256": digest(critic_path),
+            "proposal_critic_cache_sha256": digest(critic_path)
+            if critic_checkpoint == CRITIC
+            else None,
             "fragment_adapter": "exact_monomer" if monomer else "proton_only",
             "fragment_adapter_sha256": digest(
                 "casmi_ml/metfrag_monomer.py" if monomer else "casmi_ml/metfrag.py"
@@ -141,7 +145,7 @@ def run(
             "fragment_seconds": 1200,
             "java_sha256": digest(JAVA),
             "jar_sha256": digest("external/metfrag/MetFragCommandLine-2.6.11.jar"),
-            "critic_sha256": digest(CRITIC),
+            "critic_sha256": digest(critic_checkpoint),
             "native_proposals_sha256": digest(
                 Path(
                     "artifacts/research_loop/rounds/0071_chembl_candidate_slots/proposals.json"
@@ -197,7 +201,7 @@ def run(
     generated_lookup = {
         r["key"]: {c["key"]: c["smiles"] for c in r["candidates"]} for r in generated
     }
-    weights = torch.load(CRITIC, map_location="cpu", weights_only=True)
+    weights = torch.load(critic_checkpoint, map_location="cpu", weights_only=True)
     assert (
         weights["encoder_sha256"] == digest(ENCODER)
         and weights["architecture"] == "fingerprint"
@@ -205,7 +209,13 @@ def run(
     critic = DirectRanker("fingerprint").eval()
     critic.load_state_dict(weights["state_dict"])
     cache_path = output / "critic_scores.json"
-    pair_scores = json.loads(critic_path.read_text())
+    pair_scores = (
+        json.loads(cache_path.read_text())
+        if cache_path.exists()
+        else json.loads(critic_path.read_text())
+        if critic_checkpoint == CRITIC
+        else {}
+    )
     allowed_keys = set(sorted(groups)[:limit])
     adapter = MetFrag
     if monomer:
@@ -504,6 +514,7 @@ def main():
     p.add_argument("--proposal-limit", type=int, choices=(100, 500), default=100)
     p.add_argument("--fragment-limit", type=int, default=100)
     p.add_argument("--evidence-only", action="store_true")
+    p.add_argument("--critic-checkpoint", type=Path, default=CRITIC)
     a = p.parse_args()
     print(
         json.dumps(
@@ -516,6 +527,7 @@ def main():
                 a.proposal_limit,
                 a.fragment_limit,
                 a.evidence_only,
+                a.critic_checkpoint,
             ),
             indent=2,
         )
