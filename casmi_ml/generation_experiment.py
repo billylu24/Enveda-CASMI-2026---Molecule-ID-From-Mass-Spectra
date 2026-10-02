@@ -442,8 +442,11 @@ def generate(
     oracle_formula=False,
     stable_sampling=False,
     deadline=None,
+    temperature=0.8,
 ):
     root = Path(root)
+    if not math.isfinite(temperature) or temperature <= 0:
+        raise ValueError("Positive finite generation temperature required")
     if limit is not None and limit < 1:
         raise ValueError("Generation limit must be positive")
     if split == "researchholdout" and not (root / "joint_selection.json").exists():
@@ -468,17 +471,20 @@ def generate(
         if checkpoint.resolve() == (root / "generation/smiles_42/model.pt").resolve()
         else "_" + digest(checkpoint)[:12]
     )
+    temperature_suffix = (
+        "" if temperature == 0.8 else "_temperature" + repr(temperature)
+    )
     out = (
         root
         / "generation"
-        / f"{split}_samples{samples}_limit{limit or 'all'}{'_oracle' if oracle_formula else ''}{'_stable_v2' if stable_sampling else ''}{checkpoint_suffix}.json"
+        / f"{split}_samples{samples}_limit{limit or 'all'}{'_oracle' if oracle_formula else ''}{'_stable_v2' if stable_sampling else ''}{checkpoint_suffix}{temperature_suffix}.json"
     )
     spec = {
         "checkpoint_sha256": digest(checkpoint),
         "split_sha256": digest(root / f"{split}.parquet"),
         "samples": samples,
         "limit": limit,
-        "temperature": 0.8,
+        "temperature": temperature,
         "formula_oracle": oracle_formula,
         "fragmenter_sha256": fragmenter.sha256 if fragmenter else None,
     }
@@ -531,7 +537,11 @@ def generate(
                 formula_condition = formula.soft(z)
             condition = torch.cat([z, formula_condition], 1)
             sequences, logp, finished = decoder.generate(
-                condition, samples, generator=generator, deadline=deadline
+                condition,
+                samples,
+                temperature=temperature,
+                generator=generator,
+                deadline=deadline,
             )
         masses = [
             m for r in group.to_dict("records") if (m := neutral_mass(r)) is not None

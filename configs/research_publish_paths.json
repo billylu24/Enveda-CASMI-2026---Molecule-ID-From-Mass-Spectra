@@ -100,7 +100,9 @@
     "casmi_ml/generated_fragment_experiment.py",
     "tests/test_generated_fragments.py",
     "casmi_ml/generated_calibration.py",
-    "tests/test_generated_calibration.py"
+    "tests/test_generated_calibration.py",
+    "casmi_ml/generation_temperature_experiment.py",
+    "tests/test_generation_temperature.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
