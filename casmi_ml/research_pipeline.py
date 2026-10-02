@@ -51,6 +51,7 @@ def predict(recipe_path, data_dir, coconut, output):
         critic_checkpoint=critic_path,
         critic_weight=critic["weight"] if critic else 0.0,
         adaptive_prefix=generation.get("adaptive_prefix"),
+        expanded_prefix=generation.get("expanded_prefix"),
     )
     report = json.loads(Path(str(output) + ".report.json").read_text())
     report.update(

@@ -55,6 +55,7 @@ def _package(identifier, decision, output):
         "generated_frequency",
         "generated_position_update",
         "generated_second_reference",
+        "generated_expanded_route",
         "protected_generation",
     ]:
         raise ValueError(
@@ -170,6 +171,7 @@ def _package(identifier, decision, output):
         "generated_frequency",
         "generated_position_update",
         "generated_second_reference",
+        "generated_expanded_route",
     ]:
         from casmi_ml.coverage_experiment import EXTERNAL
         from casmi_ml.research_protocol import ROOT
@@ -180,6 +182,7 @@ def _package(identifier, decision, output):
         if report["direction"] in [
             "generated_position_update",
             "generated_second_reference",
+            "generated_expanded_route",
         ]:
             deployment = json.loads(
                 (Path(report["round_directory"]) / "deployment.json").read_text()
@@ -198,6 +201,7 @@ def _package(identifier, decision, output):
             "generated_frequency",
             "generated_position_update",
             "generated_second_reference",
+            "generated_expanded_route",
         ]
         if protocol.get("open_protected", False) != open_protected:
             raise ValueError("Reference generation protocol mismatch")
@@ -211,6 +215,7 @@ def _package(identifier, decision, output):
             "generated_frequency",
             "generated_position_update",
             "generated_second_reference",
+            "generated_expanded_route",
         ]:
             if report["direction"] == "generated_frequency" and (
                 winner["variant"] not in protocol["variants"]
@@ -251,11 +256,13 @@ def _package(identifier, decision, output):
             "generated_frequency",
             "generated_position_update",
             "generated_second_reference",
+            "generated_expanded_route",
         ] and (replay.get("prefix") != prefix or replay.get("slots") != slots):
             raise ValueError("Generation position replay configuration mismatch")
         if report["direction"] in [
             "generated_position_update",
             "generated_second_reference",
+            "generated_expanded_route",
         ]:
             calibrated = protocol["calibrated"]
             expected_critic_weight = 0.5 if calibrated else 0.0
@@ -286,6 +293,7 @@ def _package(identifier, decision, output):
             "generated_frequency",
             "generated_position_update",
             "generated_second_reference",
+            "generated_expanded_route",
         ]:
             generated = Path(protocol["generated_path"])
         if report["direction"] == "generated_frequency" and (
@@ -297,6 +305,7 @@ def _package(identifier, decision, output):
             "generated_frequency",
             "generated_position_update",
             "generated_second_reference",
+            "generated_expanded_route",
         ]:
             if replay.get("generator_sha256") != digest(checkpoint) or replay.get(
                 "samples_sha256"
@@ -350,7 +359,11 @@ def _package(identifier, decision, output):
             ]
         if (
             report["direction"]
-            in ["generated_position_update", "generated_second_reference"]
+            in [
+                "generated_position_update",
+                "generated_second_reference",
+                "generated_expanded_route",
+            ]
             and protocol["calibrated"]
         ):
             critic_path = Path(protocol["critic_checkpoint"])
@@ -370,6 +383,15 @@ def _package(identifier, decision, output):
                 if replay.get("adaptive_prefix") != protocol["adaptive_prefix"]:
                     raise ValueError("Second reference replay prefix rule mismatch")
                 recipe["generation"]["adaptive_prefix"] = protocol["adaptive_prefix"]
+            if report["direction"] == "generated_expanded_route":
+                expanded_prefix = protocol.get("expanded_prefix")
+                if (
+                    expanded_prefix not in (2, 3, 5, 10)
+                    or replay.get("expanded_prefix") != expanded_prefix
+                    or replay.get("expanded_branch", 0) < 25
+                ):
+                    raise ValueError("Expanded generation branch replay required")
+                recipe["generation"]["expanded_prefix"] = expanded_prefix
             recipe["generation"]["critic"] = {
                 "checkpoint": "generated_critic.pt",
                 "sha256": digest(critic_path),
@@ -460,6 +482,7 @@ def _package(identifier, decision, output):
             "generated_frequency",
             "generated_position_update",
             "generated_second_reference",
+            "generated_expanded_route",
             "protected_generation",
         ],
         id=kernel_id,
@@ -477,6 +500,7 @@ def _package(identifier, decision, output):
         "generated_frequency",
         "generated_position_update",
         "generated_second_reference",
+        "generated_expanded_route",
         "protected_generation",
     ]:
         nb["cells"][1]["source"] = nb["cells"][1]["source"].replace(

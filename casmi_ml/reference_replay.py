@@ -105,7 +105,9 @@ def run(directory, limit=25):
             row["variants"]["baseline"]["ranking"], observed, confidence[key]
         )
         route = "high" if confidence[key] >= 0.5 else "low" if branch else "expanded"
-        if len(by_branch[route]) < limit and (not branch or generated[key]):
+        if len(by_branch[route]) < limit and (
+            (not branch and deployment.get("expanded_prefix") is None) or generated[key]
+        ):
             by_branch[route].append(row)
     chosen = by_branch["high"] + by_branch["low"] + by_branch["expanded"]
     lookup = candidate_lookup(ROOT, "researchdev", "unknown")
@@ -160,9 +162,11 @@ def run(directory, limit=25):
             and rank[1] not in observed
             else prefix
         )
+        if not allowed and deployment.get("expanded_prefix") is not None:
+            effective_prefix = deployment["expanded_prefix"]
         expected[key] = (
             insert_generated(rank, generated[key], effective_prefix, slots)
-            if allowed
+            if allowed or deployment.get("expanded_prefix") is not None
             else rank
         )[:25]
     write_json(output / "full.json", full)
@@ -184,6 +188,7 @@ def run(directory, limit=25):
         critic_checkpoint=deployment.get("critic_checkpoint"),
         critic_weight=0.5 if deployment.get("calibrated") else 0.0,
         adaptive_prefix=deployment.get("adaptive_prefix"),
+        expanded_prefix=deployment.get("expanded_prefix"),
     )
     actual = pd.read_csv(output / "submission.csv").set_index("molecule_id")
     matches = sum(
@@ -209,10 +214,13 @@ def run(directory, limit=25):
         "critic_weight": 0.5 if deployment.get("calibrated") else 0.0,
         "critic_sha256": deployment.get("critic_sha256"),
         "adaptive_prefix": deployment.get("adaptive_prefix"),
+        "expanded_prefix": deployment.get("expanded_prefix"),
         "adaptive_queries_with_prefix1": sum(
             r["generation_allowed"] and not r["second_candidate_has_reference"]
             for r in routing
-        ) if deployment.get("adaptive_prefix") else 0,
+        )
+        if deployment.get("adaptive_prefix")
+        else 0,
         "generator_sha256": digest(checkpoint),
         "samples_sha256": digest(generated_path),
         "scope": "Actual unlabeled generation handoff for both routing branches; expansion CPU/MetFrag replay separately verified",

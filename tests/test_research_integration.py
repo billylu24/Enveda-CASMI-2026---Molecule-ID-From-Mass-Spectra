@@ -262,12 +262,15 @@ class ProtectedGenerationRoutingTests(unittest.TestCase):
         from casmi_ml.metfrag import digest
 
         base = ["C", "CC", "CCC", "CCCC", "CCCCC", "CCCCCC"]
-        for allowed, timeout, frequency_weight, adaptive in [
-            (True, False, 0.0, None),
-            (True, False, 1.0, None),
-            (False, False, 1.0, None),
-            (True, True, 1.0, None),
-            (True, False, 1.0, "second_unreferenced"),
+        for allowed, timeout, frequency_weight, adaptive, expanded in [
+            (True, False, 0.0, None, None),
+            (True, False, 1.0, None, None),
+            (False, False, 1.0, None, None),
+            (True, True, 1.0, None, None),
+            (True, False, 1.0, "second_unreferenced", None),
+            (False, False, 1.0, "second_unreferenced", 2),
+            (False, True, 1.0, "second_unreferenced", 2),
+            (True, False, 1.0, "second_unreferenced", 2),
         ]:
             with (
                 self.subTest(
@@ -369,22 +372,23 @@ class ProtectedGenerationRoutingTests(unittest.TestCase):
                         open_protected=True,
                         frequency_weight=frequency_weight,
                         adaptive_prefix=adaptive,
+                        expanded_prefix=expanded,
                     )
                 ranking = result.smiles.iloc[0].split(";")
-                self.assertEqual(
-                    ranking[: 1 if adaptive else 5], base[: 1 if adaptive else 5]
+                active = allowed or expanded is not None
+                protected_prefix = (
+                    expanded if expanded and not allowed else 1 if adaptive else 5
                 )
+                self.assertEqual(ranking[:protected_prefix], base[:protected_prefix])
                 self.assertEqual(
                     ranking,
-                    (
-                        base[:1] + ["O"] + base[1:]
-                        if adaptive
-                        else base[:5] + ["O" if frequency_weight else "N", base[5]]
-                    )
-                    if allowed and not timeout
+                    base[:protected_prefix]
+                    + ["O" if frequency_weight else "N"]
+                    + base[protected_prefix:]
+                    if active and not timeout
                     else base,
                 )
-                self.assertEqual(decoder.generate.call_count, int(allowed))
+                self.assertEqual(decoder.generate.call_count, int(active))
                 audit = pd.read_csv(str(root / "out.csv") + ".generation.csv")
                 if timeout:
                     self.assertEqual(audit.status.iloc[0], "budget_retrieval_fallback")
@@ -695,6 +699,41 @@ class DecoderCheckpointPackagingTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     package("wrongadaptive", adaptive_decision, root / "wrongadaptive")
                 self.assertFalse((root / "wrongadaptive").exists())
+                calibrated_replay.update(
+                    adaptive_prefix="second_unreferenced",
+                    expanded_prefix=2,
+                    expanded_branch=25,
+                )
+                write_json(round_dir / "replay.json", calibrated_replay)
+                adaptive_deployment.update(
+                    variant="expanded_prefix2", expanded_prefix=2
+                )
+                write_json(round_dir / "deployment.json", adaptive_deployment)
+                expanded_decision = root / "expanded_decision.json"
+                write_json(
+                    expanded_decision,
+                    {
+                        "direction": "generated_expanded_route",
+                        "round_directory": str(round_dir),
+                        "winner": {
+                            "variant": "expanded_prefix2",
+                            "gate": {"eligible": True},
+                        },
+                    },
+                )
+                expanded_output = root / "expanded_release"
+                package("expanded", expanded_decision, expanded_output)
+                self.assertEqual(
+                    json.loads(
+                        (expanded_output / "bundle/deployment_recipe.json").read_text()
+                    )["generation"]["expanded_prefix"],
+                    2,
+                )
+                calibrated_replay["expanded_prefix"] = None
+                write_json(round_dir / "replay.json", calibrated_replay)
+                with self.assertRaises(ValueError):
+                    package("wrongexpanded", expanded_decision, root / "wrongexpanded")
+                self.assertFalse((root / "wrongexpanded").exists())
                 write_json(round_dir / "protocol.json", protocol)
                 replay["generator_sha256"] = "wrong checkpoint"
                 write_json(round_dir / "replay.json", replay)
