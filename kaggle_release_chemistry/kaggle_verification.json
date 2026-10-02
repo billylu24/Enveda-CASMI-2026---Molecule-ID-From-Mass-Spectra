@@ -1,0 +1,35 @@
+{
+  "molecules": 400,
+  "format_valid": true,
+  "local_top1_string_matches": 400,
+  "local_full_string_matches": 92,
+  "local_full_2d_order_matches": 263,
+  "platform_report": {
+    "molecules": 400,
+    "protected_molecules": 400,
+    "neural_molecules": 0,
+    "config": {
+      "name": "wide_enhanced_60k_historical_free_top1",
+      "kind": "free_top1",
+      "base": "coconut15",
+      "threshold": 0.5,
+      "weight": 0.75
+    },
+    "checkpoint_sha256": "0bce6b953f084c1f841b607df99ec46703d7b92a487c8f0812be3db176b3c564",
+    "router": null,
+    "direct_ranker": null,
+    "candidate_expansion": null,
+    "chemistry": {
+      "rules_version": 1,
+      "weight": 0.5,
+      "component": "fragment",
+      "jar": "metfrag.jar",
+      "jar_sha256": "8c55322fbc706c76df109dd886257262029695837bb1fb2211d4b88d945d8cfb",
+      "fragment_seconds": 1200
+    },
+    "fragment_budget_fallback_molecules": 0,
+    "seconds": 164.810146653,
+    "peak_rss_mib": 2926.8046875,
+    "note": "Visible-output consistency is not evidence of leaderboard improvement."
+  }
+}

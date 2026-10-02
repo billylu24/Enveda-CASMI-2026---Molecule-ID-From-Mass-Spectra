@@ -1,0 +1,83 @@
+{
+  "molecules": 100,
+  "known": {
+    "merged": {
+      "molecules": 62,
+      "candidate_recall": 0.8064516129032258,
+      "mrr25": 0.562384792626728,
+      "top1": 0.5161290322580645,
+      "top5": 0.5967741935483871,
+      "top25": 0.6451612903225806,
+      "conditional_mrr25": 0.6973571428571429
+    },
+    "baseline": {
+      "molecules": 62,
+      "candidate_recall": 0.8064516129032258,
+      "mrr25": 0.562384792626728,
+      "top1": 0.5161290322580645,
+      "top5": 0.5967741935483871,
+      "top25": 0.6451612903225806,
+      "conditional_mrr25": 0.6973571428571429
+    },
+    "paired": {
+      "difference": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "pure": {
+    "molecules": 100,
+    "candidate_recall": 0.03,
+    "mrr25": 0.025,
+    "top1": 0.02,
+    "top5": 0.03,
+    "top25": 0.03,
+    "conditional_mrr25": 0.8333333333333334
+  },
+  "merged": {
+    "molecules": 100,
+    "candidate_recall": 0.11,
+    "mrr25": 0.011186868686868688,
+    "top1": 0.0,
+    "top5": 0.02,
+    "top25": 0.05,
+    "conditional_mrr25": 0.10169880624426077
+  },
+  "baseline": {
+    "molecules": 100,
+    "candidate_recall": 0.08,
+    "mrr25": 0.011186868686868688,
+    "top1": 0.0,
+    "top5": 0.02,
+    "top25": 0.05,
+    "conditional_mrr25": 0.1398358585858586
+  },
+  "merged_paired": {
+    "difference": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ]
+  },
+  "formula_top5": 0.08,
+  "new_exact_truths_outside_retrieval_pool": 3,
+  "mean_best_top25_tanimoto": 0.1796985579609557,
+  "mean_top1_tanimoto": 0.16263195168401928,
+  "generated_structure_novel_fraction": 0.9806451612903225,
+  "statistics": {
+    "samples": 12800,
+    "terminated": 12800,
+    "valid": 11513,
+    "mass_matching": 238,
+    "unique_mass_matching": 155
+  },
+  "valid_rate": 0.899453125,
+  "mass_match_rate": 0.01859375,
+  "unique_rate_among_mass_matches": 0.6512605042016807,
+  "labels_used_only_in_metrics": true,
+  "oracle_formula_used": false,
+  "independent_acceptance": false,
+  "note": "Bounded pilot subset, not full 4000-molecule performance acceptance."
+}

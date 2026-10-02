@@ -1,0 +1,39 @@
+{
+  "root": "artifacts/chemistry_20261001",
+  "seed": 42,
+  "cohorts": {"development": 2000, "holdout": 4000},
+  "chemistry": {
+    "ppm": 10,
+    "absolute_da": 0.002,
+    "weights": [0, 0.25, 0.5],
+    "shortlist": 100,
+    "metfrag_version": "2.6.11",
+    "metfrag_timeout_seconds": 60,
+    "metfrag_maximum_tree_depth": 2,
+    "jar": "external/metfrag/MetFragCommandLine-2.6.11.jar"
+  },
+  "representation": {
+    "methods": ["supervised", "masked", "dino"],
+    "width": 256,
+    "layers": 4,
+    "max_peaks": 128,
+    "pretrain_epochs": 20,
+    "finetune_epochs": 30,
+    "early_stopping": "pure neural development MRR, patience 5, minimum 8 epochs",
+    "teacher_temperature": 0.04,
+    "student_temperature": 0.1
+  },
+  "generation": {
+    "width": 256,
+    "layers": 6,
+    "maximum_tokens": 256,
+    "samples": 128,
+    "first_development_pilot": 100,
+    "formula_condition": "predicted soft counts",
+    "formula_hypotheses": 5
+  },
+  "stage_budget_seconds": 86400,
+  "repeat_seeds": [43, 44],
+  "automatic_kaggle_submission": false,
+  "note": "Descriptive snapshot; executable frozen configurations live in each experiment root. CLI changes require a new root."
+}

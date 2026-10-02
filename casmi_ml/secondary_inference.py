@@ -42,6 +42,12 @@ def low_confidence_rank(historical, current, neural, weight):
 def load_deployment_checkpoint(path, family='fingerprint'):
     if family == 'fingerprint':
         return load_checkpoint(path)
+    if family == 'research_peak':
+        from casmi_ml.research_models import PeakEncoder
+        checkpoint = torch.load(path, map_location='cpu', weights_only=True)
+        model = PeakEncoder(checkpoint['metadata_dim'])
+        model.load_state_dict(checkpoint['state_dict'])
+        return model.eval(), checkpoint
     if family != 'scale':
         raise ValueError(f'Unsupported encoder family {family}')
     from casmi_ml.scale_models import ScaleModel
@@ -56,8 +62,13 @@ def predict(recipe_path, data_dir, coconut_path, output):
     configure(threads=4)
     recipe_path = Path(recipe_path)
     recipe = json.loads(recipe_path.read_text())
-    if sum(name in recipe for name in ['router', 'direct_ranker', 'candidate_expansion']) > 1:
+    if sum(name in recipe for name in ['router', 'direct_ranker', 'candidate_expansion', 'chemistry']) > 1:
         raise ValueError('Combining experimental extensions has not been validated')
+    mass_variant = recipe.get('mass_hypothesis', 'legacy')
+    if mass_variant not in ['legacy', 'charge_aware_median', 'charge_aware_union']:
+        raise ValueError('Unsupported mass hypothesis')
+    if mass_variant != 'legacy' and any(name in recipe for name in ['router', 'direct_ranker', 'candidate_expansion']):
+        raise ValueError('Mass hypotheses with other extensions require separate validation')
     config = recipe['config']
     if config['kind'] != 'free_top1' or config['base'] != 'coconut15':
         raise ValueError('This deployment implements the frozen historical/free-top1 recipe only')
@@ -102,6 +113,27 @@ def predict(recipe_path, data_dir, coconut_path, output):
         if router_spec['high'] != 'H' or router_spec['low'] != 'F':
             raise ValueError('Deployment supports calibrated H/F routing only')
         router = joblib.load(router_path)
+    chemistry = fragmenter = fragment_deadline = None
+    if 'chemistry' in recipe:
+        from casmi_ml.chemistry import VERSION
+        chemistry = recipe['chemistry']
+        if 'fragment_seconds' in chemistry:
+            seconds = float(chemistry['fragment_seconds'])
+            if not np.isfinite(seconds) or seconds <= 0:
+                raise ValueError('Positive finite fragmentation budget required')
+            fragment_deadline = started + seconds
+        if chemistry['rules_version'] != VERSION or not 0 <= chemistry['weight'] <= 1:
+            raise ValueError('Unsupported chemical evidence recipe')
+        if chemistry['component'] not in ['diagnostic', 'loss', 'combined', 'fragment', 'combined_fragment']:
+            raise ValueError('Unsupported chemical scoring component')
+        if chemistry['component'] in ['fragment', 'combined_fragment']:
+            from casmi_ml.metfrag import MetFrag
+            jar_path = Path(chemistry['jar'])
+            if not jar_path.is_absolute():
+                jar_path = recipe_path.parent / jar_path
+            fragmenter = MetFrag(jar_path, str(output) + '.metfrag_cache')
+            if fragmenter.sha256 != chemistry['jar_sha256']:
+                raise ValueError('Fragmenter checksum mismatch')
     train_path = locate(Path(data_dir) / 'train.parquet', 'train.parquet')
     test_path = locate(Path(data_dir) / 'test.parquet', 'test.parquet')
     coconut_path = locate(coconut_path, 'coconut_structures.parquet')
@@ -129,6 +161,7 @@ def predict(recipe_path, data_dir, coconut_path, output):
         confidence = library[0][2] if library else 0.
         protected = router is None and confidence >= config['threshold']
         reliability = None
+        fragment_budget_fallback = False
         if protected:
             output_pairs = historical
         else:
@@ -141,11 +174,39 @@ def predict(recipe_path, data_dir, coconut_path, output):
                     from casmi_ml.candidate_catalog import expanded_pool
                     expanded = CandidateIndex(expanded_pool(candidates.catalog, external))
                 reference = MemoryReference(records, matrix)
+                if mass_variant != 'legacy':
+                    from casmi_ml.mass_candidates import mass_centers
+                    centers = set(neutral.tolist())
+                    for _, query in test.groupby('molecule_id', sort=False):
+                        centers.update(mass_centers(query, 'charge_aware_union'))
+                    extra_records, _ = load_candidates(train_path, np.array(sorted(centers)))
+                    extra_matrix = make_matrix([r[3] for r in extra_records])
+                    reference = MemoryReference([r[:3] for r in extra_records], extra_matrix)
+                    del extra_records, extra_matrix
+
                 structures_catalog = expanded.catalog if expanded is not None else candidates.catalog
                 lookup = dict(zip(structures_catalog.inchikey14, structures_catalog.normalized_smiles))
             pool, fps = candidates.fps(candidates.query(center))
             current = baseline_rank(group, pool, fps, reference, center)
-            probability = group_probability(model, group, checkpoint['preprocessing'])
+            if mass_variant != 'legacy':
+                from casmi_ml.mass_candidates import (
+                    candidate_window,
+                    hypothesis_baseline,
+                )
+                pool, fps = candidate_window(candidates, group, mass_variant)
+                current = hypothesis_baseline(group, pool, fps, reference, mass_variant)
+            if recipe.get('encoder_family') == 'research_peak':
+                from casmi_ml.data import metadata
+                from casmi_ml.research_models import peak_tokens
+                with torch.inference_mode():
+                    values = [peak_tokens(r) for r in group.to_dict('records')]
+                    batch = {k: torch.from_numpy(np.stack([v[i] for v in values]))
+                             for i, k in enumerate(['peaks', 'mask', 'protected'])}
+                    batch['meta'] = torch.from_numpy(np.stack([metadata(r, checkpoint['preprocessing'])
+                                                               for r in group.to_dict('records')]))
+                    probability = model(batch).sigmoid().numpy().mean(0)
+            else:
+                probability = group_probability(model, group, checkpoint['preprocessing'])
             if not np.isfinite(probability).all():
                 raise ValueError(f'Nonfinite neural output for {molecule_id}')
             neural = neural_rank(probability, pool.inchikey14.tolist(), fps)
@@ -171,6 +232,21 @@ def predict(recipe_path, data_dir, coconut_path, output):
                 protected = reliability >= router_spec['threshold']
             # Preserve the original structure representation for historical entries.
             structures = {**lookup, **dict(historical)}
+            if chemistry is not None and not protected:
+                from casmi_ml.chemistry import extract_evidence, rerank
+                evidence = [extract_evidence(r) for r in group.to_dict('records')]
+                component = chemistry['component']
+                fragments = {}
+                if fragmenter is not None:
+                    from casmi_ml.metfrag import score_group
+                    fragments, fragment_budget_fallback = score_group(
+                        fragmenter, group.to_dict('records'),
+                        {k: structures[k] for k in ranking[:100]}, fragment_deadline)
+                if component == 'combined_fragment':
+                    ranking = rerank(ranking, structures, evidence, chemistry['weight'])
+                ranking = rerank(ranking, structures, evidence, chemistry['weight'],
+                                 component='combined' if component in ['fragment', 'combined_fragment'] else component,
+                                 fragment_scores=fragments if fragmenter is not None else None)
             output_pairs = [(k, structures[k]) for k in ranking]
             if protected:
                 output_pairs = historical
@@ -190,7 +266,8 @@ def predict(recipe_path, data_dir, coconut_path, output):
         rows.append({'molecule_id': molecule_id, 'smiles': ';'.join(smiles)})
         audit.append({'molecule_id': molecule_id, 'confidence': confidence,
                       'protected': protected, 'candidates': len(smiles),
-                      'router_reliability': reliability})
+                      'router_reliability': reliability,
+                      'fragment_budget_fallback': fragment_budget_fallback})
         if len(rows) % 100 == 0:
             print(f'predicted {len(rows)}/{test.molecule_id.nunique()}', flush=True)
     submission = pd.DataFrame(rows)
@@ -204,6 +281,9 @@ def predict(recipe_path, data_dir, coconut_path, output):
         'router': recipe.get('router'),
         'direct_ranker': recipe.get('direct_ranker'),
         'candidate_expansion': recipe.get('candidate_expansion'),
+        'chemistry': recipe.get('chemistry'),
+        'mass_hypothesis': mass_variant,
+        'fragment_budget_fallback_molecules': sum(r['fragment_budget_fallback'] for r in audit),
         'seconds': time.monotonic()-started,
         'peak_rss_mib': resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024,
         'note': 'Visible-output consistency is not evidence of leaderboard improvement.',

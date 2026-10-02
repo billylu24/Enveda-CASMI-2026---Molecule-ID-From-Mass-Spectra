@@ -1,0 +1,21 @@
+{
+  "unknown": {
+    "counts": {
+      "candidate_present": 169,
+      "absent_from_database": 1810,
+      "mass_filter_miss": 21
+    },
+    "oracle_mrr_upper_bound": 0.0845,
+    "no_supported_mass_queries": 0
+  },
+  "known": {
+    "counts": {
+      "candidate_present": 1134,
+      "absent_from_database": 586,
+      "mass_filter_miss": 280
+    },
+    "oracle_mrr_upper_bound": 0.567,
+    "no_supported_mass_queries": 0
+  },
+  "scope": "Descriptive proxy; original production mass conversion remains unchanged. No ranking uses these labels."
+}

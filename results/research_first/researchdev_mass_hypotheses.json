@@ -1,0 +1,24 @@
+{
+  "molecules": 2000,
+  "in_database": 190,
+  "variants": {
+    "legacy": {
+      "hits": 168,
+      "recall": 0.084,
+      "median_candidates": 157.5
+    },
+    "charge_aware_median": {
+      "hits": 177,
+      "recall": 0.0885,
+      "median_candidates": 250.0
+    },
+    "charge_aware_union": {
+      "hits": 183,
+      "recall": 0.0915,
+      "median_candidates": 254.0
+    }
+  },
+  "coverage_only": true,
+  "ranking_unchanged": true,
+  "no_labels_used_to_generate_hypotheses": true
+}

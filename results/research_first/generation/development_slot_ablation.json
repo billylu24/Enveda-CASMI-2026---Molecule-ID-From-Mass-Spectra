@@ -1,0 +1,430 @@
+{
+  "scope": "Development-only exploratory cache ablation, 100 molecules; no acceptance or deployment changes",
+  "frozen_submission_changed": false,
+  "holdout_used": false,
+  "results": [
+    {
+      "retrieval_prefix": 5,
+      "max_generated_slots": 1,
+      "reports": {
+        "unknown": {
+          "baseline": {
+            "molecules": 100,
+            "candidate_recall": 0.09,
+            "mrr25": 0.004573934837092732,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.05,
+            "conditional_mrr25": 0.05082149818991924
+          },
+          "new": {
+            "molecules": 100,
+            "candidate_recall": 0.11,
+            "mrr25": 0.006240601503759397,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.06,
+            "conditional_mrr25": 0.05673274094326725
+          }
+        },
+        "known": {
+          "baseline": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          },
+          "new": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          }
+        }
+      },
+      "new_exact_outside_pool_top25": 1
+    },
+    {
+      "retrieval_prefix": 5,
+      "max_generated_slots": 3,
+      "reports": {
+        "unknown": {
+          "baseline": {
+            "molecules": 100,
+            "candidate_recall": 0.09,
+            "mrr25": 0.004573934837092732,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.05,
+            "conditional_mrr25": 0.05082149818991924
+          },
+          "new": {
+            "molecules": 100,
+            "candidate_recall": 0.11,
+            "mrr25": 0.006240601503759397,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.06,
+            "conditional_mrr25": 0.05673274094326725
+          }
+        },
+        "known": {
+          "baseline": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          },
+          "new": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          }
+        }
+      },
+      "new_exact_outside_pool_top25": 1
+    },
+    {
+      "retrieval_prefix": 5,
+      "max_generated_slots": 5,
+      "reports": {
+        "unknown": {
+          "baseline": {
+            "molecules": 100,
+            "candidate_recall": 0.09,
+            "mrr25": 0.004573934837092732,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.05,
+            "conditional_mrr25": 0.05082149818991924
+          },
+          "new": {
+            "molecules": 100,
+            "candidate_recall": 0.11,
+            "mrr25": 0.006240601503759397,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.06,
+            "conditional_mrr25": 0.05673274094326725
+          }
+        },
+        "known": {
+          "baseline": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          },
+          "new": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          }
+        }
+      },
+      "new_exact_outside_pool_top25": 1
+    },
+    {
+      "retrieval_prefix": 10,
+      "max_generated_slots": 1,
+      "reports": {
+        "unknown": {
+          "baseline": {
+            "molecules": 100,
+            "candidate_recall": 0.09,
+            "mrr25": 0.004573934837092732,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.05,
+            "conditional_mrr25": 0.05082149818991924
+          },
+          "new": {
+            "molecules": 100,
+            "candidate_recall": 0.11,
+            "mrr25": 0.005483025746183641,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.06,
+            "conditional_mrr25": 0.04984568860166946
+          }
+        },
+        "known": {
+          "baseline": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          },
+          "new": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          }
+        }
+      },
+      "new_exact_outside_pool_top25": 1
+    },
+    {
+      "retrieval_prefix": 10,
+      "max_generated_slots": 3,
+      "reports": {
+        "unknown": {
+          "baseline": {
+            "molecules": 100,
+            "candidate_recall": 0.09,
+            "mrr25": 0.004573934837092732,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.05,
+            "conditional_mrr25": 0.05082149818991924
+          },
+          "new": {
+            "molecules": 100,
+            "candidate_recall": 0.11,
+            "mrr25": 0.005483025746183641,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.06,
+            "conditional_mrr25": 0.04984568860166946
+          }
+        },
+        "known": {
+          "baseline": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          },
+          "new": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          }
+        }
+      },
+      "new_exact_outside_pool_top25": 1
+    },
+    {
+      "retrieval_prefix": 10,
+      "max_generated_slots": 5,
+      "reports": {
+        "unknown": {
+          "baseline": {
+            "molecules": 100,
+            "candidate_recall": 0.09,
+            "mrr25": 0.004573934837092732,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.05,
+            "conditional_mrr25": 0.05082149818991924
+          },
+          "new": {
+            "molecules": 100,
+            "candidate_recall": 0.11,
+            "mrr25": 0.005483025746183641,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.06,
+            "conditional_mrr25": 0.04984568860166946
+          }
+        },
+        "known": {
+          "baseline": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          },
+          "new": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          }
+        }
+      },
+      "new_exact_outside_pool_top25": 1
+    },
+    {
+      "retrieval_prefix": 20,
+      "max_generated_slots": 1,
+      "reports": {
+        "unknown": {
+          "baseline": {
+            "molecules": 100,
+            "candidate_recall": 0.09,
+            "mrr25": 0.004573934837092732,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.05,
+            "conditional_mrr25": 0.05082149818991924
+          },
+          "new": {
+            "molecules": 100,
+            "candidate_recall": 0.11,
+            "mrr25": 0.005343165606323501,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.06,
+            "conditional_mrr25": 0.0485742327847591
+          }
+        },
+        "known": {
+          "baseline": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          },
+          "new": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          }
+        }
+      },
+      "new_exact_outside_pool_top25": 1
+    },
+    {
+      "retrieval_prefix": 20,
+      "max_generated_slots": 3,
+      "reports": {
+        "unknown": {
+          "baseline": {
+            "molecules": 100,
+            "candidate_recall": 0.09,
+            "mrr25": 0.004573934837092732,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.05,
+            "conditional_mrr25": 0.05082149818991924
+          },
+          "new": {
+            "molecules": 100,
+            "candidate_recall": 0.11,
+            "mrr25": 0.005343165606323501,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.06,
+            "conditional_mrr25": 0.0485742327847591
+          }
+        },
+        "known": {
+          "baseline": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          },
+          "new": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          }
+        }
+      },
+      "new_exact_outside_pool_top25": 1
+    },
+    {
+      "retrieval_prefix": 20,
+      "max_generated_slots": 5,
+      "reports": {
+        "unknown": {
+          "baseline": {
+            "molecules": 100,
+            "candidate_recall": 0.09,
+            "mrr25": 0.004573934837092732,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.05,
+            "conditional_mrr25": 0.05082149818991924
+          },
+          "new": {
+            "molecules": 100,
+            "candidate_recall": 0.11,
+            "mrr25": 0.005343165606323501,
+            "top1": 0.0,
+            "top5": 0.01,
+            "top25": 0.06,
+            "conditional_mrr25": 0.0485742327847591
+          }
+        },
+        "known": {
+          "baseline": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          },
+          "new": {
+            "molecules": 66,
+            "candidate_recall": 0.7575757575757576,
+            "mrr25": 0.5508844956213377,
+            "top1": 0.5151515151515151,
+            "top5": 0.5909090909090909,
+            "top25": 0.6515151515151515,
+            "conditional_mrr25": 0.7271675342201658
+          }
+        }
+      },
+      "new_exact_outside_pool_top25": 1
+    }
+  ]
+}

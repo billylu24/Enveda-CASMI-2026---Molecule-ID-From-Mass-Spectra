@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "root": "artifacts/research_loop",
+  "source": "artifacts/chemistry_20261001",
+  "competition": "enveda-CASMI26-molecule-id-mass-spectra",
+  "github_remote": "origin",
+  "github_branch": "main",
+  "development": {"minimum_molecules": 2000, "minimum_absolute_gain": 0.0005, "minimum_relative_gain": 0.02, "known_mrr_tolerance": 0.001, "known_top1_tolerance": 0.005, "folds": 5},
+  "gpu_stage_seconds": {"representation": 86400, "generation": 86400},
+  "inference_seconds": 1800,
+  "inference_rss_mib": 8192,
+  "fragment_seconds": 1200,
+  "poll_seconds": 45,
+  "bootstrap_submission": 56769471,
+  "directions": ["mass", "coverage", "generation_slots", "formula", "representation", "conditional_gan"],
+  "sync_failed_rounds": true,
+  "automatic_submission": true,
+  "automatic_github_sync": true
+}

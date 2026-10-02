@@ -1,0 +1,30 @@
+{
+  "status": "scored",
+  "uploaded": true,
+  "submitted": true,
+  "local_holdout_accepted": true,
+  "fragment_seconds": 1200,
+  "dataset": "giaok246/casmi-2026-metfrag-chemistry-bundle",
+  "dataset_version": 2,
+  "kernel": "giaok246/casmi-2026-metfrag-chemistry-inference",
+  "kernel_version": 4,
+  "kernel_status": "COMPLETE",
+  "tests_passed": 62,
+  "previous_kernel_errors": {
+    "v1": "Kaggle automatically unzipped the bundle; now supports directory and archive layouts",
+    "v2": "Kaggle also unpacked nested runtime tar.gz; uploaded as unchanged opaque binary",
+    "v3": "Kaggle image has no RDKit package; fixed missing-package path to install bundled wheel offline"
+  },
+  "visible_verified": true,
+  "visible_molecules": 400,
+  "visible_seconds": 39.76072995000868,
+  "visible_peak_rss_mib": 5731.6328125,
+  "kernel_url": "https://www.kaggle.com/code/giaok246/casmi-2026-metfrag-chemistry-inference",
+  "competition": "enveda-CASMI26-molecule-id-mass-spectra",
+  "submission_response": "{\"message\": \"\", \"ref\": 56769471}",
+  "submission_id": 56769471,
+  "submission_status": "COMPLETE",
+  "platform_visible_previous_full_matches": 400,
+  "public_score": 0.173,
+  "submission_error": ""
+}

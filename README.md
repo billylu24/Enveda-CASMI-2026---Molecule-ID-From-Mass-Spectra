@@ -130,3 +130,25 @@ Added an independently sourced, validated PubChemLite catalog (469,579 structure
 The offline package matched local output byte-for-byte, 25 real low-confidence rankings matched the deployment functions exactly, and 30 tests passed. [Report](docs/CANDIDATE_EXPANSION_20260929.md); [Kaggle notebook](https://www.kaggle.com/code/giaok246/casmi-2026-pubchemlite-expansion-inference); live release status: `kaggle_release_expansion/status.json`.
 
 PubChemLite experimental submission **56690108** was submitted from notebook v1; public score **0.171**, below the 60K model (0.173) and historical hybrid (0.176). All 400 platform-visible rankings match the previous Kaggle output.
+
+### Chemical evidence and generation research (2026-10-01)
+
+Added precise diagnostic-ion and neutral-loss-combination evidence, offline
+MetFrag reranking, matched fresh cohorts, three controlled peak-encoder training
+methods (supervised/masked/DINO), and spectrum-conditioned SMILES generation with
+predicted formula conditions. Each stage has frozen configuration, reproducible
+checksums, and a shared bounded training ledger. Independent acceptance remains
+required before local release preparation; no upload or competition submission is
+automated. See [the research guide](docs/RESEARCH_20261001.md) for commands,
+assumptions, GAN feasibility, and the distinction between generation pilots and
+full performance acceptance.
+
+The accepted MetFrag chemistry model has an offline Kaggle package builder:
+`.venv/bin/python -m casmi_ml.chemistry_release`. The notebook bundles Java 21
+and the validated RDKit wheel, verifies checksums, and falls back to retrieval
+when the fragmentation time budget expires. Submission 56769471 uses notebook
+v4; current status is recorded in `kaggle_release_chemistry/status.json`.
+See [the next-round improvement plan](docs/NEXT_IMPROVEMENTS_20261002.md) for
+candidate coverage, mass-hypothesis, and generation-ranking priorities.
+
+持续研究循环：参见 [运行与停止说明](docs/RESEARCH_LOOP.md)、[冻结配置](configs/research_loop.json) 和 [汇总研究结果](results/research_loop)。最新 MetFrag Kaggle 提交 56769471 得分 0.173，历史公共最佳 0.176 保留。质量并集开发 MRR 0.021366 → 0.024371（2,000 分子），开发实验发布正在推进；未声称独立验收。

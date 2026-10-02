@@ -1,0 +1,82 @@
+{
+  "molecules": 100,
+  "known": {
+    "merged": {
+      "molecules": 66,
+      "candidate_recall": 0.7575757575757576,
+      "mrr25": 0.5508844956213377,
+      "top1": 0.5151515151515151,
+      "top5": 0.5909090909090909,
+      "top25": 0.6515151515151515,
+      "conditional_mrr25": 0.7271675342201658
+    },
+    "baseline": {
+      "molecules": 66,
+      "candidate_recall": 0.7575757575757576,
+      "mrr25": 0.5508844956213377,
+      "top1": 0.5151515151515151,
+      "top5": 0.5909090909090909,
+      "top25": 0.6515151515151515,
+      "conditional_mrr25": 0.7271675342201658
+    },
+    "paired": {
+      "difference": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "pure": {
+    "molecules": 100,
+    "candidate_recall": 0.03,
+    "mrr25": 0.0175,
+    "top1": 0.01,
+    "top5": 0.03,
+    "top25": 0.03,
+    "conditional_mrr25": 0.5833333333333334
+  },
+  "merged": {
+    "molecules": 100,
+    "candidate_recall": 0.11,
+    "mrr25": 0.005343165606323501,
+    "top1": 0.0,
+    "top5": 0.01,
+    "top25": 0.06,
+    "conditional_mrr25": 0.0485742327847591
+  },
+  "baseline": {
+    "molecules": 100,
+    "candidate_recall": 0.09,
+    "mrr25": 0.004573934837092732,
+    "top1": 0.0,
+    "top5": 0.01,
+    "top25": 0.05,
+    "conditional_mrr25": 0.05082149818991924
+  },
+  "merged_paired": {
+    "difference": 0.0007692307692307692,
+    "ci95": [
+      0.0,
+      0.002307692307692308
+    ]
+  },
+  "formula_top5": 0.04,
+  "new_exact_truths_outside_retrieval_pool": 2,
+  "mean_best_top25_tanimoto": 0.13310628808867173,
+  "mean_top1_tanimoto": 0.12159724009859656,
+  "generated_structure_novel_fraction": 0.9882352941176471,
+  "statistics": {
+    "samples": 12800,
+    "terminated": 12800,
+    "valid": 11526,
+    "mass_matching": 95,
+    "unique_mass_matching": 85
+  },
+  "valid_rate": 0.90046875,
+  "mass_match_rate": 0.007421875,
+  "unique_rate_among_mass_matches": 0.8947368421052632,
+  "labels_used_only_in_metrics": true,
+  "oracle_formula_used": false,
+  "independent_acceptance": false
+}

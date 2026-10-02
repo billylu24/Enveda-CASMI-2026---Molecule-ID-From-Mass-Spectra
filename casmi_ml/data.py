@@ -1,6 +1,7 @@
 """Molecule-disjoint data preparation and shared spectrum representations."""
 import hashlib
 import json
+import tempfile
 from collections import defaultdict
 from pathlib import Path
 
@@ -39,9 +40,16 @@ def fingerprint(smiles):
 def write_json(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    temp = path.with_suffix(path.suffix + '.tmp')
-    temp.write_text(json.dumps(value, indent=2, ensure_ascii=False, allow_nan=False) + '\n')
-    temp.replace(path)
+    payload = json.dumps(value, indent=2, ensure_ascii=False, allow_nan=False) + '\n'
+    with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', dir=path.parent,
+                                     prefix=path.name + '.', suffix='.tmp', delete=False) as stream:
+        temp = Path(stream.name)
+        try:
+            stream.write(payload)
+            stream.close()
+            temp.replace(path)
+        finally:
+            temp.unlink(missing_ok=True)
 
 
 def prepare(train_path, root, train_limit=20000, eval_limit=2000, per_molecule=4):

@@ -64,11 +64,13 @@ def spectrum_signature(mzs, intensities):
     return hashlib.sha256(np.asarray(mzs, dtype=np.float64).tobytes() +
                           np.asarray(intensities, dtype=np.float64).tobytes()).digest()
 
-def build_reference(train_path, catalog, queries, destination, final=False, excluded_source=None, exclude_queries=False):
+def build_reference(train_path, catalog, queries, destination, final=False, excluded_source=None, exclude_queries=False, target_centers=None):
     destination = Path(destination)
     destination.mkdir(parents=True, exist_ok=True)
     allowed = set(catalog.inchikey14 if final else catalog.loc[catalog.split == 'train', 'inchikey14'])
-    centers = np.asarray(sorted({m for _, g in queries.groupby('inchikey14') if (m := center_mass(g)) is not None}))
+    centers = np.asarray(sorted(set(target_centers) if target_centers is not None else
+                                {m for _, g in queries.groupby('inchikey14') if (m := center_mass(g)) is not None}), dtype=np.float64)
+    centers = centers[np.isfinite(centers) & (centers > 0)]
     if not len(centers):
         raise ValueError('No supported precursor masses')
     mass_by_key = dict(zip(catalog.inchikey14, catalog.mass))

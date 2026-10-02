@@ -1,0 +1,11 @@
+{
+  "status": "notebook_running",
+  "identity": "e8bd4ccbf2f03a0c1b58da8a474ef5ee6b64966bb0dc5d417c97d856ed7d74fb",
+  "development_eligible": true,
+  "independent_acceptance": false,
+  "uploaded": true,
+  "submitted": false,
+  "kernel": "giaok246/casmi-research-0001-mass-v2",
+  "kernel_version": 2,
+  "tests_passed": 78
+}
