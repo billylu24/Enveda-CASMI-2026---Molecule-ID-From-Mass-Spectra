@@ -1,0 +1,22 @@
+{
+  "old_release": "kaggle_release_combo_0013",
+  "new_release": "kaggle_release_combo_0013_runtime313",
+  "models_unchanged": {
+    "model.pt": "0bce6b953f084c1f841b607df99ec46703d7b92a487c8f0812be3db176b3c564",
+    "generation.pt": "b7e5551ed77c62302be8014251cf0c2df1409edaaf4870a5e58654ac7ec62eb4"
+  },
+  "recipe_unchanged": true,
+  "local_verification": {
+    "valid": true,
+    "identity": "d7ff96ab39bfe45ac9dbace8458182372478666607b4edd7f601a0fdcce0af2d",
+    "seconds": 155.07052745300462,
+    "peak_rss_mib": 6032.98828125,
+    "molecules": 400,
+    "independent_acceptance": false,
+    "previous_local_full_top25_matches": 400,
+    "frozen_models_match": true,
+    "recipe_unchanged": true
+  },
+  "platform_verification_pending": true,
+  "independent_acceptance": false
+}
