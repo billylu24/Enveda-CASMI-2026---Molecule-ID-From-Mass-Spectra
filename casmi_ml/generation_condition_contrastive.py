@@ -180,9 +180,9 @@ def train(output, epochs=3, seconds=3600, contrast_weight=0.1):
             complete = batches == (len(usable) + 63) // 64
             entry = {
                 "epoch": epoch,
-                "positive_token_ce": sums[0] / max(batches, 1),
-                "contrast_loss": sums[1] / max(batches, 1),
-                "training_nll_gap": sums[2] / max(batches, 1),
+                "positive_token_ce": float(sums[0] / max(batches, 1)),
+                "contrast_loss": float(sums[1] / max(batches, 1)),
+                "training_nll_gap": float(sums[2] / max(batches, 1)),
                 "batches": batches,
                 "training_molecules": len(usable),
                 "complete": complete,

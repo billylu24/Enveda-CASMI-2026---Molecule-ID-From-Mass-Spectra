@@ -1,0 +1,15 @@
+{
+  "complete": true,
+  "round": "0065_decoder_condition_contrast",
+  "initial_sha256": "98194888a4376d0773e45dfb955f5611ea9a1c4e1c90daae5e19321004d8fc73",
+  "checkpoint_sha256": "c3e8c268c68b4645c8f3136a11c1b4e6a6464a900aa8712b0cf2da822129856c",
+  "original_serialization_sha256": "f8fdad699e11ec185e95179fc72bcaa49a53c2b414a4e93ba90f680017a7663a",
+  "repair": "numpy scalar report metadata to Python primitives; all trained tensors unchanged",
+  "weights_only_load": true,
+  "formula_identical": true,
+  "config_identical": true,
+  "vocabulary_identical": true,
+  "decoder_tensors_changed": 116,
+  "independent_acceptance": false,
+  "performance_checked": false
+}
