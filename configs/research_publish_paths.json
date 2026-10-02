@@ -151,7 +151,9 @@
     "tests/test_generation_training_controls.py",
     "casmi_ml/generation_contrastive_pilot.py",
     "tests/test_generation_contrastive.py",
-    "casmi_ml/generated_prior_ablation.py"
+    "casmi_ml/generated_prior_ablation.py",
+    "casmi_ml/generated_spectrum_critic.py",
+    "tests/test_generated_spectrum_critic.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
