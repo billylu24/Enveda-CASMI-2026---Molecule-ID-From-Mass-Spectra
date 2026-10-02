@@ -1,0 +1,5 @@
+{
+  "status": "verified",
+  "tests": 81,
+  "change": "Serialize GitHub sync and reject previously submitted identity aliases; keep publication monitoring active during existing child experiment."
+}

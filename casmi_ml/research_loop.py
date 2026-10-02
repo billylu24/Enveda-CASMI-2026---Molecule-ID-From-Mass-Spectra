@@ -276,6 +276,8 @@ class Controller:
         def update(s):
             if self.stopped():
                 raise RuntimeError("Stop requested")
+            if identity in s.get("submission_aliases", {}):
+                raise RuntimeError("This content identity aliases an existing submission")
             if s["pending_submission"] is not None:
                 raise RuntimeError("One submission is already pending")
             if identity in s["submissions"]:
@@ -485,6 +487,11 @@ class Controller:
         return result
 
     def sync_github(self, identifier, paths):
+        with (self.root / "github_sync.lock").open("a") as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            return self._sync_github(identifier, paths)
+
+    def _sync_github(self, identifier, paths):
         """Explicit curated paths only; push retries cannot duplicate a completed commit."""
         r = next(r for r in self.read()["rounds"] if r["id"] == identifier)
         if r["git_synced"]:
