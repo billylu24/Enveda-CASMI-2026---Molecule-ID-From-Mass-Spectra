@@ -947,9 +947,12 @@ class Controller:
                     self.sync_github(identifier, self.public_paths())
                 return "deployment_needed"
         r = next(row for row in self.read()["rounds"] if row["id"] == identifier)
-        if self.config["automatic_github_sync"] and not r["git_synced"]:
-            if self.sync_github(identifier, self.public_paths()) is False:
-                return "github_waiting"
+        if (
+            self.config["automatic_github_sync"]
+            and not r["git_synced"]
+            and self.sync_github(identifier, self.public_paths()) is False
+        ):
+            return "github_waiting"
         return "round_complete"
 
     def release_round(self, identifier):

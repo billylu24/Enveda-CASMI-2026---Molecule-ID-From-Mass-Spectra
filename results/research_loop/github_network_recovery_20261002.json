@@ -1,0 +1,7 @@
+{
+  "status": "implemented",
+  "behavior": "Transient git connect/DNS/timeouts retain commit and git_synced false, retry without duplicate commit; non-network permissions or conflicts still raise",
+  "tests": 151,
+  "research_continues": true,
+  "independent_acceptance": false
+}
