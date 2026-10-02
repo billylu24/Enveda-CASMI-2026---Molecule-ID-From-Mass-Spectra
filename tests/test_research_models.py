@@ -325,6 +325,7 @@ class ConditionAveragingTests(unittest.TestCase):
 class ViewMetadataTieTests(unittest.TestCase):
     def test_identical_peak_ties_use_observable_metadata_not_row_order(self):
         import pandas as pd
+
         from casmi_ml.generation_views import informative_spectrum
 
         group = pd.DataFrame(

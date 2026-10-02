@@ -1,0 +1,25 @@
+{
+  "round": "position_local_verification_20261002",
+  "tests_passed": 99,
+  "local_verification": {
+    "valid": true,
+    "identity": "79658bc99b5816fd39196c859daaeb94d6a29ef6c3e16eb070e8315c544d3894",
+    "seconds": 152.99813966400689,
+    "peak_rss_mib": 6052.05078125,
+    "molecules": 400,
+    "independent_acceptance": false
+  },
+  "replay": {
+    "valid": true,
+    "molecules": 75,
+    "complete_top25_matches": 75,
+    "generation_branch": 50,
+    "high_confidence_branch": 25,
+    "expanded_branch": 25,
+    "open_protected": true,
+    "prefix": 3,
+    "slots": 5,
+    "scope": "Actual unlabeled generation handoff for both routing branches; expansion CPU/MetFrag replay separately verified"
+  },
+  "independent_acceptance": false
+}

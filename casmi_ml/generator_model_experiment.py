@@ -25,6 +25,7 @@ def run(output, checkpoint, limit=None):
         output / "protocol.json",
         {
             "version": 1,
+            "source_sha256": digest(Path(__file__)),
             "source_directory": str(source),
             "source_report_sha256": digest(source / "report.json"),
             "baseline_generated_sha256": digest(baseline_path),

@@ -42,6 +42,7 @@ def train(output, averaging, epochs=3, seconds=3600):
     checkpoint = ROOT / "generation/smiles_42/model.pt"
     spec = {
         "version": 1,
+        "source_sha256": digest(Path(__file__)),
         "averaging": averaging,
         "epochs": epochs,
         "seconds": seconds,
@@ -127,6 +128,11 @@ def train(output, averaging, epochs=3, seconds=3600):
                 k: v.cpu().clone() for k, v in decoder.state_dict().items()
             }
             saved["decoder_finetuning"] = spec
+            saved["initial_report"] = saved.pop("report", None)
+            saved["report"] = {
+                "scope": "Fixed final epoch decoder fine-tuning; original likelihood report is preserved separately",
+                "history": history,
+            }
             torch.save(saved, output / "model.pt")
         result = {
             "history": history,

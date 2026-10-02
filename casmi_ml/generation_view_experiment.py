@@ -83,6 +83,10 @@ def run(output, limit=200):
         output / "protocol.json",
         {
             "version": 1,
+            "source_sha256": digest(Path(__file__)),
+            "view_selection_sha256": digest(
+                Path(__file__).with_name("generation_views.py")
+            ),
             "sampler": "views_mean64_effective_peak_single64_v1",
             "checkpoint_sha256": digest(checkpoint),
             "encoder_sha256": digest(ENCODER),
