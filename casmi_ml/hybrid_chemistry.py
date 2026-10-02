@@ -80,7 +80,10 @@ def prepare_analog_pool(coconut, catalog):
     old_keys = set(old.inchikey.str[:14])
     extra = extra.loc[~extra.inchikey14.isin(old_keys)]
     new_keys = set(extra.inchikey14)
-    extra = extra.rename(columns={"inchikey14": "inchikey", "normalized_smiles": "canonical_smiles", "mass": "exact_mass"})
+    # Public catalogs also retain source/provenance columns such as exact_mass.
+    # Project the canonical fields before renaming to avoid duplicate labels.
+    extra = extra[["inchikey14", "normalized_smiles", "mass"]].rename(
+        columns={"inchikey14": "inchikey", "normalized_smiles": "canonical_smiles", "mass": "exact_mass"})
     unified = pd.concat([old, extra[COCONUT_COLUMNS]], ignore_index=True)
     return unified, new_keys, {
         "input_structures": len(catalog), "charged_or_unknown_excluded": excluded_charge,
@@ -243,7 +246,11 @@ def diagnostic_queries(train_path, count=32):
     if not selected:
         raise ValueError("No enveda-np-examples diagnostic spectra available")
     pending, rows = set(selected), []
-    for batch in parquet.iter_batches(batch_size=8192):
+    query_columns = ["inchikey14", "normalized_smiles", "ingest_lib", "precursor_mz",
+                     "adduct", "ionization_mode", "ms2_mzs", "ms2_normalized_intensities"]
+    if "spectrum_id" in parquet.schema_arrow.names:
+        query_columns.append("spectrum_id")
+    for batch in parquet.iter_batches(batch_size=8192, columns=query_columns):
         frame = batch.to_pandas()
         subset = frame.loc[frame.ingest_lib.eq("enveda-np-examples") & frame.inchikey14.isin(pending)]
         for row in subset.drop_duplicates("inchikey14").to_dict("records"):

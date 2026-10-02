@@ -89,6 +89,19 @@ def test_public_catalog_cannot_replace_old_graph_mass_and_excludes_charge():
     assert report["charged_or_unknown_excluded"] == 1
 
 
+def test_public_catalog_projects_fields_before_aliases_are_renamed():
+    mass, _, coconut, catalog, _ = fixture()
+    # Full public catalogs preserve fields whose names overlap the analog schema.
+    catalog = catalog.assign(inchikey="source-full-key", canonical_smiles="C",
+                             exact_mass=1., provenance_json='{"source": "example"}')
+    combined, new_keys, report = prepare_analog_pool(coconut, catalog)
+    assert combined.columns.tolist() == ["inchikey", "canonical_smiles", "exact_mass"]
+    assert combined.iloc[0].to_dict() == coconut.iloc[0].to_dict()
+    assert combined.iloc[1].to_dict() == {
+        "inchikey": key(SULFATE), "canonical_smiles": SULFATE, "exact_mass": mass}
+    assert new_keys == {key(SULFATE)} and report["appended_structures"] == 1
+
+
 def write_train(path, mass, rows):
     result = []
     for smiles, peaks, source in rows:
@@ -145,6 +158,37 @@ def test_real_source_behavior_mask_excludes_keys_across_sources_and_four_control
     assert len(report["groups"]) == 4
     assert report["groups"]["A_original_no_rules"]["mrr25"] == 0
     assert report["groups"]["D_expanded_rules"]["mrr25"] == 1
+
+
+def test_diagnostic_scan_reads_only_query_fields_and_preserves_selection(tmp_path, monkeypatch):
+    mass, _, _, _, _ = fixture()
+    path = tmp_path / "train.parquet"
+    write_train(path, mass, [(SULFATE, [70.], "enveda-np-examples"),
+                            (SULFATE, [90.], "enveda-np-examples"),
+                            (ORIGINAL, [80.], "other")])
+    full = pd.read_parquet(path).assign(spectrum_id=["first", "repeat", "other"],
+                                      spectrum_embedding=[[0.] * 16] * 3)
+    full.to_parquet(path)
+    from casmi_ml import hybrid_chemistry
+    original_parquet_file = hybrid_chemistry.pq.ParquetFile
+    scans = []
+
+    class TrackedParquetFile:
+        def __init__(self, source):
+            self.parquet = original_parquet_file(source)
+            self.schema_arrow = self.parquet.schema_arrow
+
+        def iter_batches(self, **kwargs):
+            scans.append(kwargs.get("columns"))
+            return self.parquet.iter_batches(**kwargs)
+
+    monkeypatch.setattr(hybrid_chemistry.pq, "ParquetFile", TrackedParquetFile)
+    queries, selected = diagnostic_queries(path)
+    assert selected == [key(SULFATE)]
+    assert queries.spectrum_id.tolist() == ["first"]
+    assert queries.iloc[0].ms2_mzs.tolist() == [70.]
+    assert all(columns is not None and "spectrum_embedding" not in columns for columns in scans)
+    assert "spectrum_embedding" not in queries.columns
 
 
 def test_rejects_invalid_weight_and_empty_reference():

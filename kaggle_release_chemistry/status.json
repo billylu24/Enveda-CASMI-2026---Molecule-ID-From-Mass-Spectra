@@ -1,5 +1,5 @@
 {
-  "status": "inputs_uploaded_not_yet_submitted",
+  "status": "fixed_notebook_ready_to_run",
   "checked_at": "2026-10-02",
   "competition": "enveda-CASMI26-molecule-id-mass-spectra",
   "notebook": "https://www.kaggle.com/code/xiaoyuzhoux120/casmi-2026-chemical-priors-hybrid",
@@ -12,8 +12,16 @@
   "gan_trained": false,
   "score": null,
   "tests": {
-    "passed": 70,
+    "passed": 72,
     "skipped": 1,
     "subtests_passed": 10
+  },
+  "draft_error": "Duplicate analog column names when converting complete public catalog",
+  "competition_submitted": false,
+  "embedded_source_sha256": "27cdd79e735f5ce2e0c9b43eacaad507b6757ac8f1a6dfb9c292704bc8c0d7e9",
+  "real_catalog_smoke": {
+    "input_structures": 162175,
+    "charged_excluded": 3759,
+    "passed": true
   }
 }
