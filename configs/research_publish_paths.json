@@ -118,7 +118,12 @@
     "tests/test_generated_critic.py",
     "casmi_ml/generated_score_combination.py",
     "tests/test_generated_score_combination.py",
-    "casmi_ml/generated_position_update.py"
+    "casmi_ml/generated_position_update.py",
+    "kaggle_release_calibrated_0044/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_calibrated_0044/notebook/kernel-metadata.json",
+    "kaggle_release_calibrated_0044/verification.json",
+    "kaggle_release_calibrated_0044/status.json",
+    "kaggle_release_calibrated_0044/kaggle_verification.json"
   ],
   "aggregate_directories": [
     "results/research_loop",

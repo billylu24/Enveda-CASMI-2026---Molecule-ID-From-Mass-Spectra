@@ -24,6 +24,10 @@ def predict(recipe_path, data_dir, coconut, output):
     generation_path = recipe_path.parent / generation["checkpoint"]
     if digest(generation_path) != generation["sha256"]:
         raise ValueError("Generation weights changed")
+    critic = generation.get("critic")
+    critic_path = recipe_path.parent / critic["checkpoint"] if critic else None
+    if critic and digest(critic_path) != critic["sha256"]:
+        raise ValueError("Generated critic checkpoint changed")
     started = time.monotonic()
     baseline = output.with_name("retrieval.csv")
     full = output.with_name("retrieval_full.json")
@@ -43,6 +47,9 @@ def predict(recipe_path, data_dir, coconut, output):
         full_rankings=full,
         open_protected=generation.get("open_protected", False),
         frequency_weight=generation.get("frequency_weight", 0.0),
+        token_length_exponent=generation.get("token_length_exponent", 0.0),
+        critic_checkpoint=critic_path,
+        critic_weight=critic["weight"] if critic else 0.0,
     )
     report = json.loads(Path(str(output) + ".report.json").read_text())
     report.update(

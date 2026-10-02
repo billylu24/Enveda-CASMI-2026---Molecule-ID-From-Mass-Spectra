@@ -21,6 +21,16 @@ def run(directory, limit=25):
     output = directory / "replay"
     output.mkdir(parents=True, exist_ok=True)
     protocol = json.loads((directory / "protocol.json").read_text())
+    deployment_path = directory / "deployment.json"
+    deployment = (
+        json.loads(deployment_path.read_text()) if deployment_path.exists() else {}
+    )
+    if deployment:
+        from casmi_ml.metfrag import digest
+
+        if digest(directory / "protocol.json") != deployment["protocol_sha256"]:
+            raise ValueError("Selected development protocol changed")
+        protocol = {**protocol, **deployment}
     prefix, slots = 5, 5
     frequency_weight = 0.0
     if protocol.get("candidate_statistics"):
@@ -57,10 +67,26 @@ def run(directory, limit=25):
     generated_path = (
         ROOT / "generation" / f"researchdev_samples128_limitall_stable_v2{suffix}.json"
     )
-    if protocol.get("candidate_statistics"):
+    if protocol.get("candidate_statistics") or deployment:
         generated_path = Path(protocol["generated_path"])
     generate = json.loads(generated_path.read_text())
-    if frequency_weight:
+    if deployment and deployment.get("calibrated"):
+        from casmi_ml.generated_score_combination import combined_order
+        from casmi_ml.metfrag import digest
+
+        scores_path = Path(deployment["critic_scores_path"])
+        if digest(scores_path) != deployment["critic_scores_sha256"]:
+            raise ValueError("Frozen critic development scores changed")
+        scores = json.loads(scores_path.read_text())
+        generated = {
+            r["key"]: combined_order(
+                r["candidates"],
+                scores.get(r["key"], {}).get("fingerprint", {}),
+                (1, 0, 0.5),
+            )
+            for r in generate
+        }
+    elif frequency_weight:
         from casmi_ml.generation_frequency_ranking import ranked_candidates
 
         generated = {
@@ -95,7 +121,18 @@ def run(directory, limit=25):
     keys = [r["key"] for r in chosen]
     frame = frame[frame.inchikey14.isin(keys)].copy()
     frame["molecule_id"] = frame.inchikey14
-    frame = frame.drop(columns=["inchikey14", "normalized_smiles", "molecular_formula"])
+    frame = frame.drop(
+        columns=[
+            c
+            for c in [
+                "inchikey14",
+                "normalized_smiles",
+                "molecular_formula",
+                "fingerprint",
+            ]
+            if c in frame
+        ]
+    )
     frame.to_parquet(output / "test.parquet")
     full, base, routing, expected = [], [], [], {}
     for row in chosen:
@@ -132,6 +169,9 @@ def run(directory, limit=25):
         full_rankings=output / "full.json",
         open_protected=open_protected,
         frequency_weight=frequency_weight,
+        token_length_exponent=1.0 if deployment.get("calibrated") else 0.0,
+        critic_checkpoint=deployment.get("critic_checkpoint"),
+        critic_weight=0.5 if deployment.get("calibrated") else 0.0,
     )
     actual = pd.read_csv(output / "submission.csv").set_index("molecule_id")
     matches = sum(
@@ -153,6 +193,9 @@ def run(directory, limit=25):
         "prefix": prefix,
         "slots": slots,
         "frequency_weight": frequency_weight,
+        "token_length_exponent": 1.0 if deployment.get("calibrated") else 0.0,
+        "critic_weight": 0.5 if deployment.get("calibrated") else 0.0,
+        "critic_sha256": deployment.get("critic_sha256"),
         "generator_sha256": digest(checkpoint),
         "samples_sha256": digest(generated_path),
         "scope": "Actual unlabeled generation handoff for both routing branches; expansion CPU/MetFrag replay separately verified",

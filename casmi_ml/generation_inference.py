@@ -37,9 +37,16 @@ def predict(
     full_rankings=None,
     open_protected=False,
     frequency_weight=0.0,
+    token_length_exponent=0.0,
+    critic_checkpoint=None,
+    critic_weight=0.0,
 ):
     if not 0 <= frequency_weight <= 1:
         raise ValueError("Frequency fusion weight must be between zero and one")
+    if not 0 <= token_length_exponent <= 1 or not 0 <= critic_weight <= 1:
+        raise ValueError("Invalid generated calibration weights")
+    if critic_weight and critic_checkpoint is None:
+        raise ValueError("Critic weights require a frozen critic checkpoint")
     encoder_path = Path(encoder_path or ENCODER)
     if not 1 <= samples <= 128 or seconds <= 0:
         raise ValueError("Invalid generation resource limits")
@@ -58,6 +65,22 @@ def predict(
     decoder, formula, vocabulary = load_model(checkpoint, device)
     encoder, encoder_checkpoint = load_deployment_checkpoint(encoder_path, "scale")
     encoder.to(device)
+    critic, critic_encoder = None, None
+    if critic_weight:
+        from casmi_ml.direct_models import DirectRanker
+
+        critic_saved = torch.load(
+            critic_checkpoint, map_location="cpu", weights_only=True
+        )
+        if (
+            critic_saved["encoder_sha256"] != digest(encoder_path)
+            or critic_saved["architecture"] != "fingerprint"
+        ):
+            raise ValueError("Generated critic encoder or architecture mismatch")
+        critic = DirectRanker("fingerprint").eval()
+        critic.load_state_dict(critic_saved["state_dict"])
+        critic_encoder, _ = load_deployment_checkpoint(encoder_path, "scale")
+        critic_encoder.eval()
     test = pd.read_parquet(test_path)
     base = pd.read_csv(baseline_csv)
     validate_submission(test, base)
@@ -142,10 +165,47 @@ def predict(
                 mass,
                 hypotheses,
                 evidence,
-                track_frequency=frequency_weight > 0,
+                track_frequency=frequency_weight > 0 or token_length_exponent > 0,
             )
             if candidates:
-                if frequency_weight:
+                if token_length_exponent or critic_weight:
+                    from casmi_ml.generated_score_combination import combined_order
+
+                    scores = {}
+                    if critic_weight and len(candidates) > 1:
+                        from casmi_ml.data import fingerprint
+                        from casmi_ml.direct_models import score_group
+
+                        pool = pd.DataFrame(
+                            {"normalized_smiles": [c["smiles"] for c in candidates]}
+                        )
+                        fps = np.stack(
+                            [fingerprint(c["smiles"]) for c in candidates]
+                        ).astype(np.float32)
+                        values = score_group(
+                            critic,
+                            critic_encoder,
+                            group,
+                            encoder_checkpoint["preprocessing"],
+                            pool,
+                            fps,
+                        )
+                        if not np.isfinite(values).all():
+                            raise ValueError("Nonfinite generated critic scores")
+                        scores = {
+                            c["key"]: float(value)
+                            for c, value in zip(candidates, values)
+                        }
+                    by_key = {c["key"]: c for c in candidates}
+                    candidates = [
+                        by_key[k]
+                        for k in combined_order(
+                            candidates,
+                            scores,
+                            (token_length_exponent, frequency_weight, critic_weight),
+                        )
+                    ]
+                elif frequency_weight:
                     from casmi_ml.generation_frequency_ranking import ranked_candidates
 
                     by_key = {c["key"]: c for c in candidates}
@@ -199,6 +259,11 @@ def predict(
             "prefix": prefix,
             "slots": slots,
             "frequency_weight": frequency_weight,
+            "token_length_exponent": token_length_exponent,
+            "critic_weight": critic_weight,
+            "critic_checkpoint_sha256": digest(critic_checkpoint)
+            if critic_weight
+            else None,
         },
     )
     return submission
@@ -219,6 +284,9 @@ def main():
     p.add_argument("--full-rankings", type=Path)
     p.add_argument("--open-protected", action="store_true")
     p.add_argument("--frequency-weight", type=float, default=0.0)
+    p.add_argument("--token-length-exponent", type=float, default=0.0)
+    p.add_argument("--critic-checkpoint", type=Path)
+    p.add_argument("--critic-weight", type=float, default=0.0)
     a = p.parse_args()
     if (a.prefix is None) != (a.slots is None):
         p.error("--prefix and --slots must be provided together")
@@ -236,6 +304,9 @@ def main():
         a.full_rankings,
         a.open_protected,
         a.frequency_weight,
+        a.token_length_exponent,
+        a.critic_checkpoint,
+        a.critic_weight,
     )
 
 

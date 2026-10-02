@@ -577,6 +577,77 @@ class DecoderCheckpointPackagingTests(unittest.TestCase):
                         "wrongfrequency", frequency_decision, root / "wrongfrequency"
                     )
                 self.assertFalse((root / "wrongfrequency").exists())
+                critic_path = root / "critic.pt"
+                torch.save(
+                    {
+                        "encoder_sha256": digest(encoder),
+                        "architecture": "fingerprint",
+                        "state_dict": {},
+                    },
+                    critic_path,
+                )
+                write_json(
+                    round_dir / "deployment.json",
+                    {
+                        "protocol_sha256": digest(round_dir / "protocol.json"),
+                        "variant": "calibrated_prefix2_slots5",
+                        "prefix": 2,
+                        "slots": 5,
+                        "calibrated": True,
+                        "generator_checkpoint": str(chosen),
+                        "generator_sha256": digest(chosen),
+                        "generated_path": str(frequency_samples),
+                        "critic_checkpoint": str(critic_path),
+                        "critic_sha256": digest(critic_path),
+                        "limit": None,
+                    },
+                )
+                calibrated_replay = {
+                    **replay,
+                    "prefix": 2,
+                    "token_length_exponent": 1.0,
+                    "critic_weight": 0.5,
+                    "critic_sha256": digest(critic_path),
+                    "samples_sha256": digest(frequency_samples),
+                }
+                write_json(round_dir / "replay.json", calibrated_replay)
+                calibrated_decision = root / "calibrated_decision.json"
+                write_json(
+                    calibrated_decision,
+                    {
+                        "direction": "generated_position_update",
+                        "round_directory": str(round_dir),
+                        "winner": {
+                            "variant": "calibrated_prefix2_slots5",
+                            "gate": {"eligible": True},
+                        },
+                    },
+                )
+                calibrated_output = root / "calibrated_release"
+                package("calibrated", calibrated_decision, calibrated_output)
+                calibrated_recipe = json.loads(
+                    (calibrated_output / "bundle/deployment_recipe.json").read_text()
+                )
+                self.assertEqual(
+                    calibrated_recipe["generation"]["token_length_exponent"], 1.0
+                )
+                self.assertEqual(calibrated_recipe["generation"]["prefix"], 2)
+                self.assertEqual(
+                    calibrated_recipe["generation"]["critic"]["weight"], 0.5
+                )
+                self.assertEqual(
+                    digest(calibrated_output / "bundle/generated_critic.pt"),
+                    digest(critic_path),
+                )
+                calibrated_replay["critic_weight"] = 0.25
+                write_json(round_dir / "replay.json", calibrated_replay)
+                with self.assertRaises(ValueError):
+                    package(
+                        "wrongcalibration",
+                        calibrated_decision,
+                        root / "wrongcalibration",
+                    )
+                self.assertFalse((root / "wrongcalibration").exists())
                 write_json(round_dir / "protocol.json", protocol)
                 replay["generator_sha256"] = "wrong checkpoint"
                 write_json(round_dir / "replay.json", replay)

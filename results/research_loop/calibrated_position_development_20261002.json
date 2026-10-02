@@ -1,0 +1,84 @@
+{
+  "round": "calibrated_position_development_20261002",
+  "accepted_round": "0044_generated_position_update",
+  "selected_variant": "calibrated_prefix2_slots5",
+  "previous_best": {
+    "unknown": {
+      "molecules": 2000,
+      "candidate_recall": 0.138,
+      "mrr25": 0.03336529716499531,
+      "top1": 0.012,
+      "top5": 0.069,
+      "top25": 0.1085,
+      "conditional_mrr25": 0.24177751568837183
+    },
+    "known": {
+      "molecules": 1340,
+      "candidate_recall": 1.0,
+      "mrr25": 0.6060165065973884,
+      "top1": 0.5664179104477612,
+      "top5": 0.6328358208955224,
+      "top25": 0.7417910447761195,
+      "conditional_mrr25": 0.6060165065973884
+    }
+  },
+  "selected": {
+    "unknown": {
+      "molecules": 2000,
+      "candidate_recall": 0.138,
+      "mrr25": 0.03575517811737626,
+      "top1": 0.012,
+      "top5": 0.0735,
+      "top25": 0.11,
+      "conditional_mrr25": 0.2590954936041758
+    },
+    "known": {
+      "molecules": 1340,
+      "candidate_recall": 1.0,
+      "mrr25": 0.6058041753962513,
+      "top1": 0.5664179104477612,
+      "top5": 0.6335820895522388,
+      "top25": 0.741044776119403,
+      "conditional_mrr25": 0.6058041753962513
+    }
+  },
+  "development_gate": {
+    "eligible": true,
+    "absolute_gain": 0.002389880952380949,
+    "relative_gain": 0.07162774365721088,
+    "reasons": [],
+    "evidence": "development_experimental; not independent acceptance"
+  },
+  "ablation": {
+    "prefix2_slots5_unknown_mrr25": 0.03523255906975722,
+    "calibrated_prefix2_slots5_unknown_mrr25": 0.03575517811737626,
+    "calibration_additional_absolute_gain": 0.0005226190476190426,
+    "description": "Position change dominates improvement; selected observed-length and fingerprint calibration adds smaller gain. Both evaluated on repeated fixed development cohort"
+  },
+  "actual_unlabeled_replay": {
+    "valid": true,
+    "molecules": 75,
+    "complete_top25_matches": 75,
+    "generation_branch": 50,
+    "high_confidence_branch": 25,
+    "expanded_branch": 25,
+    "open_protected": true,
+    "prefix": 2,
+    "slots": 5,
+    "frequency_weight": 0.0,
+    "token_length_exponent": 1.0,
+    "critic_weight": 0.5,
+    "critic_sha256": "efbf32e5e9b174173757f0a8b602c0e7f19e01a537a3a6d32c80fd0c96076675",
+    "generator_sha256": "98194888a4376d0773e45dfb955f5611ea9a1c4e1c90daae5e19321004d8fc73",
+    "samples_sha256": "4314b622d6d59c6c303526bcdcaf7f204c2314d0d6ab5dd8ff0ff37895e24490",
+    "scope": "Actual unlabeled generation handoff for both routing branches; expansion CPU/MetFrag replay separately verified"
+  },
+  "full400_verification": "running",
+  "validation": {
+    "tests_passed": 122,
+    "ruff_passed": true
+  },
+  "holdout_used": false,
+  "independent_acceptance": false,
+  "competition_submit_after": "2026-10-03T00:00:00Z"
+}

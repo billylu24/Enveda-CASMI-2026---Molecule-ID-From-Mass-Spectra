@@ -43,6 +43,7 @@ def _package(identifier, decision, output):
         "generation_position",
         "generation_model",
         "generated_frequency",
+        "generated_position_update",
         "protected_generation",
     ]:
         raise ValueError(
@@ -156,6 +157,7 @@ def _package(identifier, decision, output):
         "generation_position",
         "generation_model",
         "generated_frequency",
+        "generated_position_update",
     ]:
         from casmi_ml.coverage_experiment import EXTERNAL
         from casmi_ml.research_protocol import ROOT
@@ -163,11 +165,23 @@ def _package(identifier, decision, output):
         protocol = json.loads(
             (Path(report["round_directory"]) / "protocol.json").read_text()
         )
+        if report["direction"] == "generated_position_update":
+            deployment = json.loads(
+                (Path(report["round_directory"]) / "deployment.json").read_text()
+            )
+            if (
+                deployment["protocol_sha256"]
+                != digest(Path(report["round_directory"]) / "protocol.json")
+                or deployment["variant"] != winner["variant"]
+            ):
+                raise ValueError("Selected generation position deployment changed")
+            protocol = {**protocol, **deployment}
         open_protected = report["direction"] in [
             "reference_generation",
             "generation_position",
             "generation_model",
             "generated_frequency",
+            "generated_position_update",
         ]
         if protocol.get("open_protected", False) != open_protected:
             raise ValueError("Reference generation protocol mismatch")
@@ -176,7 +190,11 @@ def _package(identifier, decision, output):
             raise ValueError("Reference guard source ranks changed")
         prefix, slots = 5, 5
         checkpoint = ROOT / "generation/smiles_42/model.pt"
-        if report["direction"] in ["generation_model", "generated_frequency"]:
+        if report["direction"] in [
+            "generation_model",
+            "generated_frequency",
+            "generated_position_update",
+        ]:
             if report["direction"] == "generated_frequency" and (
                 winner["variant"] not in protocol["variants"]
                 or not 0 < protocol["variants"][winner["variant"]] <= 1
@@ -214,8 +232,21 @@ def _package(identifier, decision, output):
             "generation_position",
             "generation_model",
             "generated_frequency",
+            "generated_position_update",
         ] and (replay.get("prefix") != prefix or replay.get("slots") != slots):
             raise ValueError("Generation position replay configuration mismatch")
+        if report["direction"] == "generated_position_update":
+            calibrated = protocol["calibrated"]
+            expected_critic_weight = 0.5 if calibrated else 0.0
+            expected_token_exponent = 1.0 if calibrated else 0.0
+            if (
+                replay.get("token_length_exponent") != expected_token_exponent
+                or replay.get("critic_weight") != expected_critic_weight
+                or replay.get("critic_sha256") != protocol.get("critic_sha256")
+            ):
+                raise ValueError(
+                    "Generated calibration replay does not match deployment"
+                )
         source_protocol = json.loads((source / "protocol.json").read_text())
         if digest(EXTERNAL) != source_protocol["external"]["derived_sha256"]:
             raise ValueError("Reference guard external catalog changed")
@@ -230,14 +261,17 @@ def _package(identifier, decision, output):
             / "generation"
             / f"researchdev_samples128_limitall_stable_v2{suffix}.json"
         )
-        if report["direction"] == "generated_frequency":
+        if report["direction"] in ["generated_frequency", "generated_position_update"]:
             generated = Path(protocol["generated_path"])
-            if (
-                replay.get("frequency_weight")
-                != protocol["variants"][winner["variant"]]
-            ):
-                raise ValueError("Frequency replay weight differs from selected rule")
-        if report["direction"] in ["generation_model", "generated_frequency"]:
+        if report["direction"] == "generated_frequency" and (
+            replay.get("frequency_weight") != protocol["variants"][winner["variant"]]
+        ):
+            raise ValueError("Frequency replay weight differs from selected rule")
+        if report["direction"] in [
+            "generation_model",
+            "generated_frequency",
+            "generated_position_update",
+        ]:
             if replay.get("generator_sha256") != digest(checkpoint) or replay.get(
                 "samples_sha256"
             ) != digest(generated):
@@ -288,6 +322,28 @@ def _package(identifier, decision, output):
             recipe["generation"]["frequency_weight"] = protocol["variants"][
                 winner["variant"]
             ]
+        if (
+            report["direction"] == "generated_position_update"
+            and protocol["calibrated"]
+        ):
+            critic_path = Path(protocol["critic_checkpoint"])
+            if digest(critic_path) != protocol["critic_sha256"]:
+                raise ValueError("Generated critic weights changed")
+            critic_saved = torch.load(
+                critic_path, map_location="cpu", weights_only=True
+            )
+            if (
+                critic_saved["encoder_sha256"] != digest(ENCODER)
+                or critic_saved["architecture"] != "fingerprint"
+            ):
+                raise ValueError("Generated critic conditioner changed")
+            shutil.copy2(critic_path, bundle / "generated_critic.pt")
+            recipe["generation"]["token_length_exponent"] = 1.0
+            recipe["generation"]["critic"] = {
+                "checkpoint": "generated_critic.pt",
+                "sha256": digest(critic_path),
+                "weight": 0.5,
+            }
     if report["direction"] == "protected_generation":
         from casmi_ml.research_protocol import ROOT
 
@@ -371,6 +427,7 @@ def _package(identifier, decision, output):
             "generation_position",
             "generation_model",
             "generated_frequency",
+            "generated_position_update",
             "protected_generation",
         ],
         id=kernel_id,
@@ -386,6 +443,7 @@ def _package(identifier, decision, output):
         "generation_position",
         "generation_model",
         "generated_frequency",
+        "generated_position_update",
         "protected_generation",
     ]:
         nb["cells"][1]["source"] = nb["cells"][1]["source"].replace(
