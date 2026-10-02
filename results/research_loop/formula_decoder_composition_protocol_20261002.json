@@ -1,0 +1,32 @@
+{
+  "round": "formula_decoder_composition_protocol_20261002",
+  "decoder_interpolation_pilot": {
+    "molecules": 200,
+    "exact_hits": 9,
+    "current_best_exact_hits": 9,
+    "queries_with_candidates": 90,
+    "current_best_queries_with_candidates": 100,
+    "decision": "Do_not_expand_without_structural_improvement"
+  },
+  "composition": {
+    "decoder_source": "0020_decoder_single_control",
+    "formula_source": "0006_formula_mass",
+    "new_training": false,
+    "decoder_all_tensors_unchanged": true,
+    "same_conditioner_and_vocabulary_required": true,
+    "pilot_round": "0038_formula_decoder_composition_pilot",
+    "pilot_molecules": 200,
+    "samples_per_query": 128,
+    "temperature": 0.8,
+    "spectrum_seeds": "Original stable spectrum hash",
+    "next_gate": "Require structural improvement against0024 followed by full2000 identical-key paired development gate"
+  },
+  "validation": {
+    "tests_passed": 117,
+    "ruff_passed": true
+  },
+  "cohort": "repeated_development",
+  "independent_acceptance": false,
+  "competition_submit_after": "2026-10-03T00:00:00Z",
+  "continuous_goal": "active"
+}
