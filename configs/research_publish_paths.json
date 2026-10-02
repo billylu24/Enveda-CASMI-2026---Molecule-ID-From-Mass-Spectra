@@ -158,7 +158,8 @@
     "tests/test_generated_native_scores.py",
     "casmi_ml/generation_informative_pilot.py",
     "casmi_ml/generated_first_critic.py",
-    "tests/test_generated_first_critic.py"
+    "tests/test_generated_first_critic.py",
+    "casmi_ml/generated_first_gate.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
