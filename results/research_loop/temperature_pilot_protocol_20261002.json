@@ -1,0 +1,21 @@
+{
+  "round": "temperature_pilot_protocol_20261002",
+  "baseline_round": "0024_single_decoder_full",
+  "baseline_temperature": 0.8,
+  "trial_temperatures": [
+    0.9,
+    0.7
+  ],
+  "molecules_per_arm": 200,
+  "samples_per_molecule": 128,
+  "conditioner_and_decoder_frozen": true,
+  "spectrum_seeds_shared": true,
+  "holdout_used": false,
+  "validation": {
+    "tests_passed": 109,
+    "ruff_passed": true
+  },
+  "cohort": "repeated_development",
+  "independent_acceptance": false,
+  "submission_requires": "Full paired2000 evaluation against then-current best; fixed development gate and matching unlabeled replay"
+}
