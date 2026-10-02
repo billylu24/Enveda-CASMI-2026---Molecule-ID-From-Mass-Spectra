@@ -121,6 +121,9 @@ def run(
             "insertion_prefix": prefix,
             "proposal_limit": proposal_limit,
             "fragment_limit": fragment_limit,
+            "initial_fragment_cache_sha256": digest(output / "fragment_scores.json")
+            if (output / "fragment_scores.json").exists()
+            else None,
             "evidence_only": evidence_only,
             "evidence_gate": "Positive proposed first fragment score and distinct finite fragment scores required; missing/all tied scores never enable insertion"
             if evidence_only
