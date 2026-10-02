@@ -1,14 +1,14 @@
 {
-  "status": "formal_kaggle_gpu_run_in_progress",
+  "status": "formal_training_completed_acceptance_in_progress",
   "checked_at": "2026-10-02",
   "competition": "enveda-CASMI26-molecule-id-mass-spectra",
   "notebook": "https://www.kaggle.com/code/xiaoyuzhoux120/casmi-2026-chemical-priors-hybrid",
   "public_score": null,
   "competition_submitted": false,
-  "gan_trained_on_competition_data": false,
+  "gan_trained_on_competition_data": true,
   "generated_new_molecular_graphs": null,
   "historical_best_public_score": 0.176,
-  "note": "Implementation, real conditional adversarial training, formal notebook completion, competition submission and score are tracked separately.",
+  "note": "Both arms performed real training. Lowest eligible logged development BCE is not a substitute for verifying selected checkpoints and final acceptance reports. No new competition score yet.",
   "embedded_source_sha256": "ee7ccca6b373156e81522dea9598ccf4aeae1fe4eae1c4f827bc4383b4a2f93d",
   "engineering_smoke": "actual synthetic prepare/train/checkpoint/reload/evaluate/inference completed; not generalization evidence",
   "accelerator_requested": "GPU T4 x2",
@@ -18,7 +18,7 @@
     "skipped": 1,
     "subtests_passed": 10
   },
-  "observed_at_utc": "2026-10-02T16:32:08Z",
+  "observed_at_utc": "2026-10-02T17:34:51Z",
   "notebook_version": 2,
   "notebook_script_version_id": 354698716,
   "frozen_source_commit": "a45c65e9f16501c554dfd4a12679003d630cb0ff",
@@ -30,6 +30,36 @@
     "interval_minutes": 15,
     "until": "formal experiment reviewed, competition Succeeded with score, and GitHub reports updated"
   },
-  "latest_logged_stage": "official canonicalization 240000 of 275810 structures at run elapsed 3000.2 seconds",
-  "proof": "kaggle_run_in_progress.jpg"
+  "latest_logged_stage": "reference scan after both 12-epoch training arms",
+  "proof": "kaggle_run_in_progress.jpg",
+  "observed_training": {
+    "baseline": {
+      "logged_epochs": 12,
+      "g_steps_total": 5424,
+      "d_steps_total": 0,
+      "lowest_eligible_logged_dev_bce_epoch": 6,
+      "lowest_eligible_logged_dev_bce": 0.18969754946347,
+      "d_steps_at_that_epoch": 0,
+      "final_dev_bce": 0.1937098318144381,
+      "final_train_probe_bce": 0.1634572893764206
+    },
+    "cgan": {
+      "logged_epochs": 12,
+      "g_steps_total": 5424,
+      "d_steps_total": 4520,
+      "lowest_eligible_logged_dev_bce_epoch": 6,
+      "lowest_eligible_logged_dev_bce": 0.20368735072773983,
+      "d_steps_at_that_epoch": 1808,
+      "final_dev_bce": 0.21235960763854944,
+      "final_train_probe_bce": 0.1826565576313847
+    }
+  },
+  "independent_acceptance_complete": false,
+  "formal_notebook_completed": false,
+  "training_diagnostic_notes": [
+    "Both arms logged 12 complete epochs and 5424 generator updates; GAN logged 4520 discriminator updates.",
+    "Warm-up epoch 1 and 2 metrics match exactly across arms.",
+    "Lowest eligible logged development weighted BCE is epoch 6 in both arms; checkpoint and ranking verification remain pending.",
+    "Discriminator real accuracy at threshold 0.5 is not calibrated to its unequal real/fake/mismatch loss weighting; real accuracy zero alone does not establish an engineering failure."
+  ]
 }
