@@ -117,7 +117,8 @@
     "casmi_ml/generated_critic.py",
     "tests/test_generated_critic.py",
     "casmi_ml/generated_score_combination.py",
-    "tests/test_generated_score_combination.py"
+    "tests/test_generated_score_combination.py",
+    "casmi_ml/generated_position_update.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
