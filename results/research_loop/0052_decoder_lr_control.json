@@ -1,0 +1,43 @@
+{
+  "round": "0052_decoder_lr_control",
+  "direction": "generation_finetune",
+  "status": "diagnostic_complete",
+  "report": {
+    "history": [
+      {
+        "epoch": 1,
+        "token_loss": 0.3122518102624523,
+        "batches": 938,
+        "training_molecules": 59970,
+        "complete": true,
+        "seconds": 22.089724688004935
+      },
+      {
+        "epoch": 2,
+        "token_loss": 0.3035729833122001,
+        "batches": 938,
+        "training_molecules": 59974,
+        "complete": true,
+        "seconds": 43.23980691700126
+      },
+      {
+        "epoch": 3,
+        "token_loss": 0.2988287614924567,
+        "batches": 938,
+        "training_molecules": 59972,
+        "complete": true,
+        "seconds": 64.53351207400556
+      }
+    ],
+    "seconds": 64.5571629370097,
+    "complete": true,
+    "checkpoint_sha256": "d14a1a78bed5242fc10c36948cc91711c92a5a581d47cabbc5e52f7883227f30",
+    "diagnostic_only": true,
+    "independent_acceptance": false,
+    "performance_acceptance": "Requires fixed-budget development sampling and full paired 2000-molecule structural rankings"
+  },
+  "protocol_sha256": "af69fe6bd2834236a9159105f068fb0abd43c45a9c2aa028f235c40a327d9401",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

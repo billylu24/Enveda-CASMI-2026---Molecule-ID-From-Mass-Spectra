@@ -146,7 +146,9 @@
     "casmi_ml/chebi_catalog.py",
     "tests/test_chebi_catalog.py",
     "casmi_ml/generated_expanded_first.py",
-    "tests/test_generated_expanded_first.py"
+    "tests/test_generated_expanded_first.py",
+    "casmi_ml/generation_checkpoint_pilot.py",
+    "tests/test_generation_training_controls.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

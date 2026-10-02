@@ -36,13 +36,23 @@ def condition_values(values, group_indices, averaging):
     return result
 
 
-def train(output, averaging, epochs=3, seconds=3600, targets="canonical"):
+def train(
+    output,
+    averaging,
+    epochs=3,
+    seconds=3600,
+    targets="canonical",
+    learning_rate=3e-5,
+    initial_checkpoint=None,
+):
+    if not np.isfinite(learning_rate) or not 0 < learning_rate <= 0.001:
+        raise ValueError("Finite learning rate in(0,.001] required")
     if targets not in ["canonical", "randomized"]:
         raise ValueError("Unknown target augmentation")
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     configure(42, threads=4)
-    checkpoint = ROOT / "generation/smiles_42/model.pt"
+    checkpoint = Path(initial_checkpoint or ROOT / "generation/smiles_42/model.pt")
     spec = {
         "version": 1,
         "source_sha256": digest(Path(__file__)),
@@ -51,7 +61,7 @@ def train(output, averaging, epochs=3, seconds=3600, targets="canonical"):
         "seconds": seconds,
         "initial_checkpoint_sha256": digest(checkpoint),
         "train_sha256": digest(TRAIN),
-        "lr": 3e-5,
+        "lr": learning_rate,
         "seed": 42,
         "formula_frozen": True,
         "encoder_frozen": True,
@@ -85,7 +95,9 @@ def train(output, averaging, epochs=3, seconds=3600, targets="canonical"):
         groups = list(frame.groupby("inchikey14", sort=True).indices.values())
         values = np.load(conditions(ROOT, "train60k") / "condition.npy", mmap_mode="r")
         values = condition_values(values, groups, averaging)
-        optimizer = torch.optim.AdamW(decoder.parameters(), lr=3e-5, weight_decay=1e-4)
+        optimizer = torch.optim.AdamW(
+            decoder.parameters(), lr=learning_rate, weight_decay=1e-4
+        )
         rng = np.random.default_rng(42)
         history = []
         for epoch in range(1, epochs + 1):
@@ -183,12 +195,23 @@ def main():
     )
     p.add_argument("--epochs", type=int, default=3)
     p.add_argument("--seconds", type=float, default=3600)
+    p.add_argument("--learning-rate", type=float, default=3e-5)
+    p.add_argument("--initial-checkpoint", type=Path)
     a = p.parse_args()
     if a.epochs < 1 or not 0 < a.seconds <= 86400:
         p.error("Positive epochs and at most24h required")
     print(
         json.dumps(
-            train(a.output, a.averaging, a.epochs, a.seconds, a.targets), indent=2
+            train(
+                a.output,
+                a.averaging,
+                a.epochs,
+                a.seconds,
+                a.targets,
+                a.learning_rate,
+                a.initial_checkpoint,
+            ),
+            indent=2,
         )
     )
 
