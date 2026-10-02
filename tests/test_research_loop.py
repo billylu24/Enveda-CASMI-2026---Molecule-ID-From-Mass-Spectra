@@ -428,3 +428,15 @@ class ReferenceEvidenceTests(unittest.TestCase):
         self.assertFalse(protects_reference(["external", "known"], {"known"}, 0.0))
         self.assertTrue(protects_reference(["external"], set(), 0.9))
         self.assertFalse(protects_reference([], {"known"}, 0.0))
+
+
+class JobBudgetScopeTests(unittest.TestCase):
+    def test_replay_and_experiment_can_freeze_different_deadlines(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            c = LoopTests().controller(root)
+            self.assertEqual(c.job(["true"], root / "execution.log", 10), "complete")
+            self.assertEqual(c.job(["true"], root / "replay.log", 5), "complete")
+            ledger = json.loads((root / "training_budget.json").read_text())
+            self.assertEqual(ledger["wall_job:execution.log"]["limit_seconds"], 10)
+            self.assertEqual(ledger["wall_job:replay.log"]["limit_seconds"], 5)

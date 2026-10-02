@@ -67,7 +67,17 @@
     "kaggle_release_reference_0011/notebook/kernel-metadata.json",
     "kaggle_release_reference_0011/verification.json",
     "kaggle_release_reference_0011/status.json",
-    "casmi_ml/protected_generation.py"
+    "casmi_ml/protected_generation.py",
+    "kaggle_release_reference_0011/kaggle_verification.json",
+    "kaggle_release_protected_0012/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_protected_0012/notebook/kernel-metadata.json",
+    "kaggle_release_protected_0012/verification.json",
+    "kaggle_release_protected_0012/status.json",
+    "kaggle_release_combo_0013/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_combo_0013/notebook/kernel-metadata.json",
+    "kaggle_release_combo_0013/verification.json",
+    "kaggle_release_combo_0013/status.json",
+    "kaggle_release_combo_0013/kaggle_verification.json"
   ],
   "aggregate_directories": [
     "results/research_loop",

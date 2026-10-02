@@ -19,7 +19,7 @@ def protects_reference(ranking, observed, confidence, topn=1, threshold=0.0):
     )
 
 
-def run(source, output):
+def run(source, output, open_protected=False):
     source, output = Path(source), Path(output)
     output.mkdir(parents=True, exist_ok=True)
     generated_path = ROOT / "generation/researchdev_samples128_limitall_stable_v2.json"
@@ -32,6 +32,8 @@ def run(source, output):
         for n in [1, 3, 5]
         for threshold in [0.0, 0.05, 0.1, 0.2]
     }
+    if open_protected:
+        modes = {"reference_1_0": (1, 0.0)}
     freeze(
         output / "protocol.json",
         {
@@ -41,6 +43,7 @@ def run(source, output):
             "generated_sha256": digest(generated_path),
             "modes": modes,
             "incumbent": "union+fragment+slots5/5",
+            "open_protected": open_protected,
             "rule": "If any original first N candidate has retained reference spectra and confidence >= threshold, use incumbent; otherwise expanded chemical ranking",
             "holdout_used": False,
             "truth_used_only_in_metrics": True,
@@ -74,7 +77,7 @@ def run(source, output):
                 base = row["variants"]["baseline"]
                 incumbent = (
                     base["ranking"]
-                    if confidence[key] >= 0.5
+                    if confidence[key] >= 0.5 and not open_protected
                     else insert_generated(base["ranking"], generated[key], 5, 5)
                 )
                 use_original = (
@@ -105,8 +108,9 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--source", required=True, type=Path)
     p.add_argument("--output", required=True, type=Path)
+    p.add_argument("--open-protected", action="store_true")
     a = p.parse_args()
-    print(json.dumps(run(a.source, a.output), indent=2))
+    print(json.dumps(run(a.source, a.output, a.open_protected), indent=2))
 
 
 if __name__ == "__main__":

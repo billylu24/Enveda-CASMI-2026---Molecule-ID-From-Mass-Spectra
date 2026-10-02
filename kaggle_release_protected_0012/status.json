@@ -1,0 +1,11 @@
+{
+  "status": "eligible",
+  "identity": "fe7bf851024422054e3a9edabeb8aeb88e50ae9bf2156bbad56bafefb214aa96",
+  "development_eligible": true,
+  "independent_acceptance": false,
+  "uploaded": true,
+  "submitted": false,
+  "dataset_uploaded": true,
+  "kernel": "giaok246/casmi26-research-0012-protected-generation",
+  "kernel_version": 1
+}

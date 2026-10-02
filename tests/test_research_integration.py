@@ -248,3 +248,140 @@ class ReleaseGateTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "changed after acceptance"):
                 prepare_release(root)
             self.assertFalse((root / "release").exists())
+
+
+class ProtectedGenerationRoutingTests(unittest.TestCase):
+    def test_open_protected_preserves_prefix_honors_branch_and_timeout(self):
+        from unittest.mock import MagicMock, patch
+
+        import pandas as pd
+        import torch
+        from rdkit import Chem
+
+        from casmi_ml.generation_inference import predict
+        from casmi_ml.metfrag import digest
+
+        base = ["C", "CC", "CCC", "CCCC", "CCCCC", "CCCCCC"]
+        for allowed, timeout in [(True, False), (False, False), (True, True)]:
+            with (
+                self.subTest(allowed=allowed, timeout=timeout),
+                tempfile.TemporaryDirectory() as d,
+            ):
+                root = Path(d)
+                encoder = root / "encoder.pt"
+                encoder.write_bytes(b"encoder")
+                (root / "model.pt").write_bytes(b"generator")
+                pd.DataFrame(
+                    [
+                        {
+                            "molecule_id": "query",
+                            "ms2_mzs": [],
+                            "ms2_normalized_intensities": [],
+                        }
+                    ]
+                ).to_parquet(root / "test.parquet")
+                pd.DataFrame(
+                    [{"molecule_id": "query", "smiles": ";".join(base)}]
+                ).to_csv(root / "base.csv", index=False)
+                pd.DataFrame(
+                    [
+                        {
+                            "molecule_id": "query",
+                            "protected": True,
+                            "generation_allowed": allowed,
+                        }
+                    ]
+                ).to_csv(root / "route.csv", index=False)
+                (root / "full.json").write_text(
+                    json.dumps([{"molecule_id": "query", "smiles": base}])
+                )
+                decoder, formula = MagicMock(), MagicMock()
+                formula.soft.return_value = torch.zeros(1, 1)
+                decoder.generate.return_value = (
+                    torch.zeros(1, 1),
+                    torch.zeros(1),
+                    torch.ones(1),
+                )
+                if timeout:
+                    decoder.generate.side_effect = TimeoutError("deadline")
+                with (
+                    patch(
+                        "torch.load",
+                        return_value={"config": {"encoder_sha256": digest(encoder)}},
+                    ),
+                    patch(
+                        "casmi_ml.generation_inference.load_model",
+                        return_value=(decoder, formula, None),
+                    ),
+                    patch(
+                        "casmi_ml.generation_inference.load_deployment_checkpoint",
+                        return_value=(torch.nn.Identity(), {"preprocessing": {}}),
+                    ),
+                    patch(
+                        "casmi_ml.generation_sampling.condition_for_group",
+                        return_value=torch.zeros(1, 1),
+                    ),
+                    patch(
+                        "casmi_ml.generation_sampling.sampling_seed", return_value=42
+                    ),
+                    patch(
+                        "casmi_ml.generation_inference.validate_generated",
+                        return_value=(
+                            [
+                                {
+                                    "key": Chem.MolToInchiKey(Chem.MolFromSmiles("N"))[
+                                        :14
+                                    ],
+                                    "smiles": "N",
+                                }
+                            ],
+                            {},
+                        ),
+                    ),
+                ):
+                    result = predict(
+                        root / "model.pt",
+                        root / "test.parquet",
+                        root / "base.csv",
+                        root / "out.csv",
+                        routing_csv=root / "route.csv",
+                        encoder_path=encoder,
+                        prefix=5,
+                        slots=1,
+                        full_rankings=root / "full.json",
+                        open_protected=True,
+                    )
+                ranking = result.smiles.iloc[0].split(";")
+                self.assertEqual(ranking[:5], base[:5])
+                self.assertEqual(
+                    ranking,
+                    base[:5] + ["N", base[5]] if allowed and not timeout else base,
+                )
+                self.assertEqual(decoder.generate.call_count, int(allowed))
+                audit = pd.read_csv(str(root / "out.csv") + ".generation.csv")
+                if timeout:
+                    self.assertEqual(audit.status.iloc[0], "budget_retrieval_fallback")
+
+    def test_replay_cli_forwards_open_protected(self):
+        from unittest.mock import patch
+
+        from casmi_ml.generation_replay import main
+
+        with (
+            patch(
+                "sys.argv",
+                [
+                    "generation_replay",
+                    "--generated",
+                    "samples.json",
+                    "--incumbent",
+                    "mass",
+                    "--output",
+                    "replay",
+                    "--open-protected",
+                ],
+            ),
+            patch("casmi_ml.generation_replay.run", return_value={}) as run,
+        ):
+            main()
+        self.assertTrue(run.call_args.args[7])

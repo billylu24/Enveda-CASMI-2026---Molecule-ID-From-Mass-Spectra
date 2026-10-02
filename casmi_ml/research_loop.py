@@ -246,9 +246,17 @@ class Controller:
         if seconds is not None:
             from casmi_ml.research_budget import StageBudget
 
+            # Each purpose freezes its own allowance: an experiment, replay and
+            # verification can share a directory but have different deadlines.
+            stage = "wall_job:" + log.name
+            ledger_path = log.parent / "training_budget.json"
+            if ledger_path.exists():
+                legacy = json.loads(ledger_path.read_text()).get("wall_job", {})
+                if str(log) in legacy.get("runs", {}):
+                    stage = "wall_job"
             budget = StageBudget(
                 log.parent,
-                "wall_job",
+                stage,
                 str(log),
                 seconds,
                 limit=seconds,
@@ -719,6 +727,8 @@ class Controller:
                 "generation_slots",
                 "coverage",
                 "reference_guard",
+                "reference_generation",
+                "protected_generation",
             ]:
                 outcome = self.release_round(identifier)
                 if outcome in ["notebook_running", "waiting_for_previous_submission"]:
@@ -743,7 +753,7 @@ class Controller:
         if r.get("release"):
             release = Path(r["release"])
         decision = json.loads(Path(r["decision"]).read_text())
-        if r["direction"] == "reference_guard":
+        if r["direction"] in ["reference_guard", "reference_generation"]:
             directory = Path(r["report"]).parent
             replay = directory / "replay.json"
             if not replay.exists():
@@ -786,7 +796,7 @@ class Controller:
                 )
                 if result != "complete":
                     return result
-        if r["direction"] == "generation_slots":
+        if r["direction"] in ["generation_slots", "protected_generation"]:
             directory = Path(r["report"]).parent
             replay = directory / "replay/verification.json"
             protocol = json.loads((directory / "protocol.json").read_text())
@@ -824,7 +834,14 @@ class Controller:
                             "--generated",
                             str(samples),
                             "--incumbent",
-                            decision["incumbent_directory"],
+                            str(
+                                protocol.get(
+                                    "mass_directory",
+                                    "artifacts/research_loop/rounds/0001_mass_v2",
+                                )
+                            )
+                            if r["direction"] == "protected_generation"
+                            else decision["incumbent_directory"],
                             "--output",
                             str(replay.parent),
                             "--prefix",
@@ -833,6 +850,11 @@ class Controller:
                             slots,
                             "--checkpoint",
                             str(checkpoint),
+                            *(
+                                ["--open-protected"]
+                                if r["direction"] == "protected_generation"
+                                else []
+                            ),
                         ],
                         directory / "replay.log",
                         1800,
@@ -845,19 +867,44 @@ class Controller:
         if not release.exists():
             package(identifier, r["decision"], release)
         if not (release / "verification.json").exists():
-            result = self.job(
-                [
-                    ".venv/bin/python",
-                    "-m",
-                    "casmi_ml.experimental_release",
-                    "--verify",
-                    "--output",
-                    str(release),
-                ],
-                release / "verification.log",
-                self.config["inference_seconds"],
-                auxiliary_key="verification-" + identifier,
-            )
+            gpu = None
+            if r["direction"] in [
+                "generation_slots",
+                "reference_guard",
+                "reference_generation",
+                "protected_generation",
+            ]:
+                gpu = (self.root / "gpu.lock").open("a")
+                try:
+                    fcntl.flock(gpu, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                except BlockingIOError:
+                    gpu.close()
+                    return "notebook_running"
+            try:
+                result = self.job(
+                    [
+                        ".venv-gpu/bin/python"
+                        if r["direction"]
+                        in [
+                            "generation_slots",
+                            "reference_guard",
+                            "reference_generation",
+                            "protected_generation",
+                        ]
+                        else ".venv/bin/python",
+                        "-m",
+                        "casmi_ml.experimental_release",
+                        "--verify",
+                        "--output",
+                        str(release),
+                    ],
+                    release / "verification.log",
+                    self.config["inference_seconds"],
+                    auxiliary_key="verification-" + identifier,
+                )
+            finally:
+                if gpu is not None:
+                    gpu.close()
             if result != "complete":
                 return result
         self.mark_round(identifier, release=str(release))

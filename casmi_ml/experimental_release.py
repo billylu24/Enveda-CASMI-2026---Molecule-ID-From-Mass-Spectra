@@ -39,6 +39,8 @@ def _package(identifier, decision, output):
         "generation_slots",
         "coverage",
         "reference_guard",
+        "reference_generation",
+        "protected_generation",
     ]:
         raise ValueError(
             "This packaging path supports tested mass and generation-slot experiments"
@@ -145,13 +147,16 @@ def _package(identifier, decision, output):
         )
         if not replay["valid"] or replay["molecules"] < 25:
             raise ValueError("Real expanded chemical ranking replay required")
-    if report["direction"] == "reference_guard":
+    if report["direction"] in ["reference_guard", "reference_generation"]:
         from casmi_ml.coverage_experiment import EXTERNAL
         from casmi_ml.research_protocol import ROOT
 
         protocol = json.loads(
             (Path(report["round_directory"]) / "protocol.json").read_text()
         )
+        open_protected = report["direction"] == "reference_generation"
+        if protocol.get("open_protected", False) != open_protected:
+            raise ValueError("Reference generation protocol mismatch")
         source = Path(protocol["source_directory"])
         if digest(source / "report.json") != protocol["source_report_sha256"]:
             raise ValueError("Reference guard source ranks changed")
@@ -164,6 +169,11 @@ def _package(identifier, decision, output):
         )
         if not replay["valid"] or replay["molecules"] < 25:
             raise ValueError("Reference guard branch replay required")
+        if open_protected and (
+            not replay.get("open_protected")
+            or replay.get("high_confidence_branch", 0) < 25
+        ):
+            raise ValueError("High-confidence reference generation replay required")
         source_protocol = json.loads((source / "protocol.json").read_text())
         if digest(EXTERNAL) != source_protocol["external"]["derived_sha256"]:
             raise ValueError("Reference guard external catalog changed")
@@ -198,10 +208,30 @@ def _package(identifier, decision, output):
             "slots": 5,
             "samples": 128,
             "total_seconds": 1800,
+            "open_protected": open_protected,
         }
     if report["direction"] == "protected_generation":
         from casmi_ml.research_protocol import ROOT
 
+        protocol = json.loads(
+            (Path(report["round_directory"]) / "protocol.json").read_text()
+        )
+        generated = ROOT / "generation/researchdev_samples128_limitall_stable_v2.json"
+        mass = Path(
+            protocol.get(
+                "mass_directory", "artifacts/research_loop/rounds/0001_mass_v2"
+            )
+        )
+        if digest(mass / "report.json") != protocol["mass_report_sha256"]:
+            raise ValueError("Protected generation retrieval changed")
+        if digest(generated) != protocol["generation_sha256"]:
+            raise ValueError("Protected generation samples changed")
+        generated_config = json.loads(generated.with_suffix(".config.json").read_text())
+        if (
+            digest(ROOT / "generation/smiles_42/model.pt")
+            != generated_config["checkpoint_sha256"]
+        ):
+            raise ValueError("Protected generation checkpoint changed")
         _, prefix, slots = winner["variant"].split("_")
         replay = json.loads(
             (Path(report["round_directory"]) / "replay/verification.json").read_text()
@@ -256,7 +286,12 @@ def _package(identifier, decision, output):
     km = json.loads((output / "notebook/kernel-metadata.json").read_text())
     km.update(
         enable_gpu=report["direction"]
-        in ["generation_slots", "reference_guard", "protected_generation"],
+        in [
+            "generation_slots",
+            "reference_guard",
+            "reference_generation",
+            "protected_generation",
+        ],
         id=kernel_id,
         title=f"CASMI26 Research {slug.replace(chr(45), chr(32))}",
         dataset_sources=[dataset_id, "aidensong123/casmi26-coconut-202609"],
@@ -266,6 +301,7 @@ def _package(identifier, decision, output):
     if report["direction"] in [
         "generation_slots",
         "reference_guard",
+        "reference_generation",
         "protected_generation",
     ]:
         nb["cells"][1]["source"] = nb["cells"][1]["source"].replace(

@@ -1,0 +1,20 @@
+{
+  "round": "protected_publication_20261002",
+  "scope": "Controller and deployment verification; no independent acceptance",
+  "tests_passed": 88,
+  "development_best_unknown_mrr25": 0.030294562044852296,
+  "public_best": 0.176,
+  "local_full400": {
+    "seconds": 151.52178581299086,
+    "parent_peak_rss_mib": 5932.94921875,
+    "prefix5_preserved": 400,
+    "generation_attempted": 400,
+    "rankings_changed": 248
+  },
+  "changes": [
+    "Protected generation replay preflight and CLI forwarding",
+    "Generation branch prohibition and timeout fallback tests",
+    "Separate frozen wall budgets by job purpose; preserve legacy accounting",
+    "GPU lock during full local release verification"
+  ]
+}

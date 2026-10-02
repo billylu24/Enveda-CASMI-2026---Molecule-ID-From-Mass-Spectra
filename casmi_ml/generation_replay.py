@@ -135,7 +135,14 @@ def main():
     a = p.parse_args()
     print(
         run(
-            a.generated, a.incumbent, a.output, a.limit, a.prefix, a.slots, a.checkpoint
+            a.generated,
+            a.incumbent,
+            a.output,
+            a.limit,
+            a.prefix,
+            a.slots,
+            a.checkpoint,
+            a.open_protected,
         )
     )
 

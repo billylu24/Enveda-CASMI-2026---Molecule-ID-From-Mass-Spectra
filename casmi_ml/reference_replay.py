@@ -37,17 +37,19 @@ def run(directory, limit=25):
         (ROOT / "generation/researchdev_samples128_limitall_stable_v2.json").read_text()
     )
     generated = {r["key"]: [c["key"] for c in r["candidates"]] for r in generate}
-    by_branch = {True: [], False: []}
+    open_protected = protocol.get("open_protected", False)
+    by_branch = {"high": [], "low": [], "expanded": []}
     for row in rows:
         key = row["key"]
-        if confidence[key] >= 0.5:
+        if confidence[key] >= 0.5 and not open_protected:
             continue
         branch = protects_reference(
             row["variants"]["baseline"]["ranking"], observed, confidence[key]
         )
-        if len(by_branch[branch]) < limit and (not branch or generated[key]):
-            by_branch[branch].append(row)
-    chosen = by_branch[True] + by_branch[False]
+        route = "high" if confidence[key] >= 0.5 else "low" if branch else "expanded"
+        if len(by_branch[route]) < limit and (not branch or generated[key]):
+            by_branch[route].append(row)
+    chosen = by_branch["high"] + by_branch["low"] + by_branch["expanded"]
     lookup = candidate_lookup(ROOT, "researchdev", "unknown")
     external = pd.read_parquet(EXTERNAL)
     lookup.update(
@@ -74,7 +76,11 @@ def run(directory, limit=25):
         full.append({"molecule_id": key, "smiles": smiles})
         base.append({"molecule_id": key, "smiles": ";".join(smiles[:25])})
         routing.append(
-            {"molecule_id": key, "protected": False, "generation_allowed": allowed}
+            {
+                "molecule_id": key,
+                "protected": confidence[key] >= 0.5,
+                "generation_allowed": allowed,
+            }
         )
         expected[key] = (
             insert_generated(rank, generated[key], 5, 5) if allowed else rank
@@ -92,6 +98,7 @@ def run(directory, limit=25):
         prefix=5,
         slots=5,
         full_rankings=output / "full.json",
+        open_protected=open_protected,
     )
     actual = pd.read_csv(output / "submission.csv").set_index("molecule_id")
     matches = sum(
@@ -106,8 +113,10 @@ def run(directory, limit=25):
         "valid": matches == len(chosen),
         "molecules": len(chosen),
         "complete_top25_matches": matches,
-        "generation_branch": len(by_branch[True]),
-        "expanded_branch": len(by_branch[False]),
+        "generation_branch": len(by_branch["high"]) + len(by_branch["low"]),
+        "high_confidence_branch": len(by_branch["high"]),
+        "expanded_branch": len(by_branch["expanded"]),
+        "open_protected": open_protected,
         "scope": "Actual unlabeled generation handoff for both routing branches; expansion CPU/MetFrag replay separately verified",
     }
     write_json(directory / "replay.json", result)

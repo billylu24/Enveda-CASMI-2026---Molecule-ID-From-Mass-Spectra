@@ -1642,5 +1642,18 @@
     }
   },
   "independent_acceptance": false,
-  "evaluation": "Repeated fixed molecule development cohort; no new holdout opened"
+  "evaluation": "Repeated fixed molecule development cohort; no new holdout opened",
+  "kaggle": {
+    "submission_id": 56771973,
+    "status": "PENDING",
+    "kernel_version": 1
+  },
+  "inference_replay": {
+    "valid": true,
+    "molecules": 50,
+    "complete_top25_matches": 50,
+    "generation_branch": 25,
+    "expanded_branch": 25,
+    "scope": "Actual unlabeled generation handoff for both routing branches; expansion CPU/MetFrag replay separately verified"
+  }
 }
