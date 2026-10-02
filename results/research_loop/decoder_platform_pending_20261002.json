@@ -1,0 +1,14 @@
+{
+  "round": "decoder_platform_pending_20261002",
+  "kernel": {
+    "kernel": "giaok246/casmi26-research-0024-single-decoder-full",
+    "version": 1
+  },
+  "dataset_uploaded": true,
+  "submitted": false,
+  "status": "notebook_running",
+  "retry_after_utc": "2026-10-03T00:00:00Z",
+  "independent_acceptance": false,
+  "development_unknown_mrr25": 0.03336529716499531,
+  "public_best": 0.176
+}

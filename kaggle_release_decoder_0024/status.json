@@ -1,12 +1,12 @@
 {
-  "status": "platform_verification_pending",
+  "status": "notebook_running",
   "identity": "733854c7dcb8e034d4d5167cd9e80aa5cc6330aafe606be68fa0d5880029ce08",
   "development_eligible": true,
   "independent_acceptance": false,
   "uploaded": true,
   "submitted": false,
   "dataset_uploaded": true,
-  "kernel": null,
-  "kernel_version": null,
+  "kernel": "giaok246/casmi26-research-0024-single-decoder-full",
+  "kernel_version": 1,
   "retry_at": "2026-10-03T00:00:00Z"
 }
