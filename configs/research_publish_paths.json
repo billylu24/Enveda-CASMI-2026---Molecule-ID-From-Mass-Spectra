@@ -168,7 +168,8 @@
     "casmi_ml/generated_partial_promotion.py",
     "casmi_ml/runtime_wheels.py",
     "casmi_ml/generation_condition_contrastive.py",
-    "casmi_ml/generated_likelihood_ratio.py"
+    "casmi_ml/generated_likelihood_ratio.py",
+    "casmi_ml/chembl_catalog.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
