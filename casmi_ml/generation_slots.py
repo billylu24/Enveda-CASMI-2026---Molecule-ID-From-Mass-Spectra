@@ -19,7 +19,7 @@ def insert_generated(base, generated, prefix, slots):
     return base[:prefix] + novel + base[prefix:]
 
 
-def run(output, incumbent, variant, source=ROOT):
+def run(output, incumbent, variant, source=ROOT, stable_sampling=False):
     output, incumbent, source = Path(output), Path(incumbent), Path(source)
     output.mkdir(parents=True, exist_ok=True)
     freeze(
@@ -30,17 +30,19 @@ def run(output, incumbent, variant, source=ROOT):
             "development_sha256": digest(source / "researchdev.parquet"),
             "incumbent_report_sha256": digest(incumbent / "report.json"),
             "incumbent_variant": variant,
+            "incumbent_directory": str(incumbent),
             "samples": 128,
             "prefixes": [5, 10, 20],
             "slots": [1, 3, 5],
             "holdout_used": False,
+            "stable_sampling": "shared_group_forward_v2" if stable_sampling else False,
         },
     )
     gpu = Path("artifacts/research_loop/gpu.lock")
     gpu.parent.mkdir(parents=True, exist_ok=True)
     with gpu.open("a") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        generated = generate(source, samples=128)
+        generated = generate(source, samples=128, stable_sampling=stable_sampling)
     by_key = {r["key"]: [c["key"] for c in r["candidates"]] for r in generated}
     if len(by_key) < 2000:
         raise ValueError("Full 2000-molecule generation required")
@@ -86,8 +88,14 @@ def main():
     p.add_argument("--output", required=True, type=Path)
     p.add_argument("--incumbent", required=True, type=Path)
     p.add_argument("--variant", required=True)
+    p.add_argument("--stable-sampling", action="store_true")
     a = p.parse_args()
-    print(json.dumps(run(a.output, a.incumbent, a.variant), indent=2))
+    print(
+        json.dumps(
+            run(a.output, a.incumbent, a.variant, stable_sampling=a.stable_sampling),
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":

@@ -353,8 +353,21 @@ class Controller:
         import pandas as pd
 
         r = next(r for r in self.read()["rounds"] if r["id"] == identifier)
+        if r.get("decision") and Path(r["decision"]).exists():
+            return json.loads(Path(r["decision"]).read_text())
         directory = Path(r["report"]).parent
         report = json.loads(Path(r["report"]).read_text())
+        cohort_path = Path(self.config["source"])
+        usage = None
+        if (cohort_path / "cohorts.json").exists():
+            from casmi_ml.research_cohorts import record_usage
+
+            usage = record_usage(
+                self.root / "cohort_registry.json",
+                cohort_path,
+                "researchdev",
+                identifier,
+            )
         variants = list(report["unknown"])
         baseline_name = "legacy" if "legacy" in variants else "baseline"
         best = self.read()["development_best"]
@@ -402,7 +415,12 @@ class Controller:
         )
         result = {
             "round": identifier,
+            "round_directory": str(directory),
+            "incumbent_directory": r["argv"][r["argv"].index("--incumbent") + 1]
+            if "--incumbent" in r["argv"]
+            else None,
             "direction": r["direction"],
+            "cohort_usage": usage,
             "baseline": baseline,
             "choices": choices,
             "winner": winner,
@@ -489,7 +507,11 @@ class Controller:
         verification = json.loads((release / "verification.json").read_text())
         r = next(r for r in self.read()["rounds"] if r["id"] == identifier)
         decision = json.loads(Path(r["decision"]).read_text())
-        if not decision["winner"] or not verification.get("valid"):
+        if (
+            not decision["winner"]
+            or not decision["winner"]["gate"]["eligible"]
+            or not verification.get("valid")
+        ):
             raise ValueError(
                 "Development gate and full inference verification required"
             )
@@ -530,6 +552,12 @@ class Controller:
             if api.dataset_status(dataset_id) != "ready":
                 return {"status": "notebook_running"}
             response = api.kernels_push(str(release / "notebook"), timeout="1800")
+            if (
+                response.error
+                or response.invalid_dataset_sources
+                or response.invalid_competition_sources
+            ):
+                raise ValueError(f"Kaggle rejected notebook inputs: {response}")
             remote = {
                 "kernel": kernel_ref(response.ref or metadata["id"]),
                 "version": int(response.version_number),
@@ -572,7 +600,7 @@ class Controller:
     def complete_round(self, identifier):
         r = next(r for r in self.read()["rounds"] if r["id"] == identifier)
         if r["status"] == "eligible" and self.config["automatic_submission"]:
-            if r["direction"] == "mass":
+            if r["direction"] in ["mass", "generation_slots"]:
                 outcome = self.release_round(identifier)
                 if outcome in ["notebook_running", "waiting_for_previous_submission"]:
                     return "publication_waiting"
@@ -581,6 +609,8 @@ class Controller:
             else:
                 # Each extension needs its own matching inference path before remote publication.
                 self.mark_round(identifier, status="deployment_needed")
+                if self.config["automatic_github_sync"]:
+                    self.sync_github(identifier, self.public_paths())
                 return "deployment_needed"
         if self.config["automatic_github_sync"] and not r["git_synced"]:
             self.sync_github(identifier, self.public_paths())
@@ -628,7 +658,7 @@ class Controller:
                 for r in state["rounds"]
                 if r["status"]
                 in ["eligible", "rejected", "submitted", "failed", "release_failed"]
-                and not r["git_synced"]
+                and (not r["git_synced"] or r["status"] == "eligible")
             ),
             None,
         )
@@ -708,10 +738,13 @@ class Controller:
                 raise RuntimeError("A research runner is active") from error
             while True:
                 result = self.step()
+                if result == "publication_waiting":
+                    time.sleep(min(45, self.config["poll_seconds"]))
                 if once or result in [
                     "stopped",
                     "research_needed",
                     "orphan_job_running",
+                    "deployment_needed",
                 ]:
                     return result
 

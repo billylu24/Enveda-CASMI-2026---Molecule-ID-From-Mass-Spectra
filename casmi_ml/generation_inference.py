@@ -1,7 +1,7 @@
 """Unlabeled spectrum-conditioned generation merged into a frozen retrieval CSV."""
 
 import argparse
-import hashlib
+import json
 import resource
 import time
 from pathlib import Path
@@ -12,7 +12,7 @@ import torch
 from rdkit import Chem
 
 from casmi_ml.chemistry import extract_evidence, neutral_mass
-from casmi_ml.data import features, write_json
+from casmi_ml.data import write_json
 from casmi_ml.generation_experiment import load_model, validate_generated
 from casmi_ml.inference import validate_submission
 from casmi_ml.metfrag import digest
@@ -31,22 +31,42 @@ def predict(
     routing_csv=None,
     samples=128,
     seconds=1800,
+    encoder_path=None,
+    prefix=None,
+    slots=None,
+    full_rankings=None,
 ):
+    encoder_path = Path(encoder_path or ENCODER)
     if not 1 <= samples <= 128 or seconds <= 0:
         raise ValueError("Invalid generation resource limits")
+    if prefix is not None and (
+        slots is None or prefix < 1 or slots < 1 or full_rankings is None
+    ):
+        raise ValueError(
+            "Explicit slots require positive values and full retrieval rankings"
+        )
     configure(threads=4)
     started = time.monotonic()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     saved = torch.load(checkpoint, map_location="cpu", weights_only=True)
-    if saved["config"]["encoder_sha256"] != digest(ENCODER):
+    if saved["config"]["encoder_sha256"] != digest(encoder_path):
         raise ValueError("Generation conditioner checksum mismatch")
     decoder, formula, vocabulary = load_model(checkpoint, device)
-    encoder, encoder_checkpoint = load_deployment_checkpoint(ENCODER, "scale")
+    encoder, encoder_checkpoint = load_deployment_checkpoint(encoder_path, "scale")
     encoder.to(device)
     test = pd.read_parquet(test_path)
     base = pd.read_csv(baseline_csv)
     validate_submission(test, base)
     base = base.set_index("molecule_id")
+    full = None
+    if full_rankings is not None:
+        raw = json.loads(Path(full_rankings).read_text())
+        full = {r["molecule_id"]: r["smiles"] for r in raw}
+        if len(full) != len(raw) or set(full) != set(test.molecule_id):
+            raise ValueError("Full retrieval ranking IDs differ")
+        for molecule_id, values in full.items():
+            if values[:25] != base.loc[molecule_id, "smiles"].split(";"):
+                raise ValueError("Full rankings do not match retrieval submission")
     routing = pd.read_csv(routing_csv or str(baseline_csv) + ".routing.csv")
     if routing.molecule_id.duplicated().any() or set(routing.molecule_id) != set(
         test.molecule_id
@@ -57,47 +77,29 @@ def predict(
         raise ValueError("Routing protection must contain booleans")
     rows, audit = [], []
     for molecule_id, group in test.groupby("molecule_id", sort=False):
-        smiles = base.loc[molecule_id, "smiles"].split(";")
+        smiles = (
+            full[molecule_id]
+            if full is not None
+            else base.loc[molecule_id, "smiles"].split(";")
+        )[:]
+        original_top25 = smiles[:25]
         status = "protected"
         stats = {}
         if not protected[molecule_id] and time.monotonic() - started < seconds:
-            values = [
-                features(r, encoder_checkpoint["preprocessing"])
-                for r in group.to_dict("records")
-            ]
-            batch = {
-                k: torch.from_numpy(np.stack([v[i] for v in values])).to(device)
-                for i, k in enumerate(["hist", "loss", "meta", "peaks", "mask"])
-            }
-            z = encoder.encoder(
-                torch.cat([batch["hist"], batch["meta"], batch["loss"]], -1)
+            from casmi_ml.generation_sampling import condition_for_group
+
+            condition = condition_for_group(
+                encoder,
+                encoder_checkpoint["preprocessing"],
+                group,
+                device,
+                saved["config"].get("neutral_mass_condition", False),
             )
-            condition = torch.cat([z, batch["meta"]], -1).mean(0, keepdim=True)
-            if saved["config"].get("neutral_mass_condition", False):
-                per_spectrum_masses = [
-                    neutral_mass(r) for r in group.to_dict("records")
-                ]
-                mass_features = np.array(
-                    [
-                        [m / 1250 if m is not None else 0.0, float(m is None)]
-                        for m in per_spectrum_masses
-                    ],
-                    dtype=np.float32,
-                )
-                condition = torch.cat(
-                    [
-                        condition,
-                        torch.from_numpy(mass_features.mean(0, keepdims=True)).to(
-                            device
-                        ),
-                    ],
-                    dim=1,
-                )
             hypotheses = formula.hypotheses(condition)
             # Seed each molecule independently of group processing/fallback order.
-            seed = int.from_bytes(
-                hashlib.sha256(str(molecule_id).encode()).digest()[:8], "big"
-            ) % (2**63 - 1)
+            from casmi_ml.generation_sampling import sampling_seed
+
+            seed = sampling_seed(group)
             generator = torch.Generator(device=device).manual_seed(seed)
             sequence, logp, finished = decoder.generate(
                 torch.cat([condition, formula.soft(condition)], 1),
@@ -133,13 +135,19 @@ def predict(
                         if c["key"] not in lookup
                     }
                 )
-                rank = rrf([original, generated], [0.75, 0.25])
+                if prefix is None:
+                    rank = rrf([original, generated], [0.75, 0.25])
+                else:
+                    from casmi_ml.generation_slots import insert_generated
+
+                    rank = insert_generated(original, generated, prefix, slots)
                 smiles = [lookup[k] for k in rank[:25]]
                 status = "generated_and_merged"
             else:
                 status = "no_valid_mass_matching_generation"
         elif not protected[molecule_id]:
             status = "budget_retrieval_fallback"
+        smiles = smiles[:25] if status == "generated_and_merged" else original_top25
         rows.append({"molecule_id": molecule_id, "smiles": ";".join(smiles)})
         audit.append({"molecule_id": molecule_id, "status": status, **stats})
     submission = pd.DataFrame(rows)
@@ -156,6 +164,9 @@ def predict(
             "peak_rss_mib": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024,
             "formula_oracle_used": False,
             "kaggle_submitted": False,
+            "sampling": "label_independent_spectrum_hash_v1",
+            "prefix": prefix,
+            "slots": slots,
         },
     )
     return submission
@@ -170,8 +181,26 @@ def main():
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--samples", type=int, default=128)
     p.add_argument("--seconds", type=float, default=1800)
+    p.add_argument("--encoder", type=Path, default=ENCODER)
+    p.add_argument("--prefix", type=int)
+    p.add_argument("--slots", type=int)
+    p.add_argument("--full-rankings", type=Path)
     a = p.parse_args()
-    predict(a.checkpoint, a.test, a.baseline, a.output, a.routing, a.samples, a.seconds)
+    if (a.prefix is None) != (a.slots is None):
+        p.error("--prefix and --slots must be provided together")
+    predict(
+        a.checkpoint,
+        a.test,
+        a.baseline,
+        a.output,
+        a.routing,
+        a.samples,
+        a.seconds,
+        a.encoder,
+        a.prefix,
+        a.slots,
+        a.full_rankings,
+    )
 
 
 if __name__ == "__main__":

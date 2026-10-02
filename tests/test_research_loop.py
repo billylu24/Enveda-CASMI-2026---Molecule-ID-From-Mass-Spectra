@@ -288,7 +288,15 @@ class ReleaseEvidenceTests(unittest.TestCase):
                 {"valid": True, "identity": identity, "seconds": 1, "peak_rss_mib": 1},
             )
             decision = root / "decision.json"
-            write_json(decision, {"winner": {"variant": "charge_aware_union"}})
+            write_json(
+                decision,
+                {
+                    "winner": {
+                        "variant": "charge_aware_union",
+                        "gate": {"eligible": True},
+                    }
+                },
+            )
             c.register_round("round", "mass", [], root / "report.json")
             c.mark_round("round", decision=str(decision))
             c.reserve_submission(identity, 1, "once")
@@ -300,3 +308,51 @@ class ReleaseEvidenceTests(unittest.TestCase):
                 result = c.publish_prepared("round", release)
             self.assertEqual(result["id"], 123)
             api.assert_not_called()
+
+
+class CohortAndSamplingTests(unittest.TestCase):
+    def test_sampling_ignores_label_and_processing_order(self):
+        from casmi_ml.generation_sampling import sampling_seed
+
+        frame = pd.DataFrame(
+            {
+                "adduct": ["[M+H]+", "[M+Na]+"],
+                "precursor_mz": [101.0, 123.0],
+                "ms2_mzs": [[42.0], [43.0]],
+                "ms2_normalized_intensities": [[1.0], [1.0]],
+                "inchikey14": ["secret", "secret"],
+                "molecule_id": ["id", "id"],
+            }
+        )
+        seed = sampling_seed(frame)
+        frame["inchikey14"] = "other_truth"
+        frame["molecule_id"] = "different_id"
+        self.assertEqual(seed, sampling_seed(frame.iloc[::-1]))
+        frame.loc[0, "precursor_mz"] += 0.01
+        self.assertNotEqual(seed, sampling_seed(frame))
+
+    def test_cohort_registry_marks_repeated_use(self):
+        from casmi_ml.data import write_json
+        from casmi_ml.metfrag import digest
+        from casmi_ml.research_cohorts import record_usage
+
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "researchdev.parquet").write_bytes(b"frozen parquet stand-in")
+            write_json(
+                root / "cohorts.json",
+                {
+                    "researchdev": {
+                        "keys": ["a", "b"],
+                        "molecules": 2,
+                        "sha256": digest(root / "researchdev.parquet"),
+                    }
+                },
+            )
+            one = record_usage(root / "registry.json", root, "researchdev", "first")
+            two = record_usage(root / "registry.json", root, "researchdev", "second")
+            self.assertEqual(one["fresh_molecules"], 2)
+            self.assertEqual(two["previously_used_molecules"], 2)
+            self.assertEqual(
+                two, record_usage(root / "registry.json", root, "researchdev", "second")
+            )

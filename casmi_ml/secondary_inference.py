@@ -57,7 +57,7 @@ def load_deployment_checkpoint(path, family='fingerprint'):
     return model.eval(), checkpoint
 
 
-def predict(recipe_path, data_dir, coconut_path, output):
+def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
     started = time.monotonic()
     configure(threads=4)
     recipe_path = Path(recipe_path)
@@ -153,7 +153,7 @@ def predict(recipe_path, data_dir, coconut_path, output):
     coco_order = np.argsort(coconut.exact_mass.to_numpy())
     coco_masses = coconut.exact_mass.to_numpy()[coco_order]
     model = checkpoint = candidates = reference = lookup = expanded = None
-    cache, rows, audit = {}, [], []
+    cache, rows, audit, full_rows = {}, [], [], []
     for molecule_id, group in test.groupby('molecule_id', sort=False):
         center, library = library_rank(group, records, matrix, masses, order)
         analog = coconut_rank(center, library, coconut, coco_masses, coco_order, cache)
@@ -259,10 +259,13 @@ def predict(recipe_path, data_dir, coconut_path, output):
             if key not in seen:
                 smiles.append(smi)
                 seen.add(key)
-            if len(smiles) == 25:
+            if full_rankings is None and len(smiles) == 25:
                 break
         if not smiles:
             raise ValueError(f'No valid predictions for {molecule_id}')
+        if full_rankings is not None:
+            full_rows.append({'molecule_id': molecule_id, 'smiles': smiles})
+        smiles = smiles[:25]
         rows.append({'molecule_id': molecule_id, 'smiles': ';'.join(smiles)})
         audit.append({'molecule_id': molecule_id, 'confidence': confidence,
                       'protected': protected, 'candidates': len(smiles),
@@ -270,6 +273,8 @@ def predict(recipe_path, data_dir, coconut_path, output):
                       'fragment_budget_fallback': fragment_budget_fallback})
         if len(rows) % 100 == 0:
             print(f'predicted {len(rows)}/{test.molecule_id.nunique()}', flush=True)
+    if full_rankings is not None:
+        write_json(full_rankings, full_rows)
     submission = pd.DataFrame(rows)
     validate_submission(test, submission)
     submission.to_csv(output, index=False)
@@ -297,5 +302,6 @@ if __name__ == '__main__':
     parser.add_argument('--data-dir', default='data')
     parser.add_argument('--coconut', default='external/coconut_structures.parquet')
     parser.add_argument('--output', default='submission_secondary.csv')
+    parser.add_argument("--full-rankings", type=Path)
     args = parser.parse_args()
-    predict(args.recipe, args.data_dir, args.coconut, args.output)
+    predict(args.recipe, args.data_dir, args.coconut, args.output, args.full_rankings)

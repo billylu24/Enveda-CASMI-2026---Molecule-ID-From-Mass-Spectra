@@ -44,7 +44,12 @@
     "kaggle_release_mass_0001/notebook/casmi_chemistry.ipynb",
     "kaggle_release_mass_0001/notebook/kernel-metadata.json",
     "kaggle_release_mass_0001/status.json",
-    "kaggle_release_mass_0001/verification.json"
+    "kaggle_release_mass_0001/verification.json",
+    ".gitignore",
+    "casmi_ml/research_cohorts.py",
+    "casmi_ml/generation_sampling.py",
+    "casmi_ml/research_pipeline.py",
+    "casmi_ml/generation_replay.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

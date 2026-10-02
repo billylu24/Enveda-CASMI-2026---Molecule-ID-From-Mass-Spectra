@@ -42,6 +42,15 @@ def prior_queries(artifacts=Path("artifacts"), exclude=ROOT):
             if "inchikey14" in pq.ParquetFile(path).schema_arrow.names:
                 keys.update(pd.read_parquet(path, columns=["inchikey14"]).inchikey14)
                 paths.append(str(path))
+    # Nested research roots must not disappear from the exclusion audit.
+    for manifest in sorted(Path(artifacts).rglob("cohorts.json")):
+        if manifest.parent.resolve() == Path(exclude).resolve():
+            continue
+        value = json.loads(manifest.read_text())
+        for part in value.values():
+            if isinstance(part, dict) and "keys" in part:
+                keys.update(part["keys"])
+        paths.append(str(manifest))
     return keys, paths
 
 

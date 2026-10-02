@@ -1,0 +1,7 @@
+{
+  "round": "0003_generation_stable",
+  "status": "superseded_sampling",
+  "error": "Child exited -15: ['.venv-gpu/bin/python', '-u', '-m', 'casmi_ml.generation_slots', '--output', 'artifacts/research_loop/rounds/0003_generation_stable', '--incumbent', 'artifacts/research_loop/rounds/0001_mass_v2', '--variant', 'charge_aware_union', '--stable-sampling']; see artifacts/research_loop/rounds/0003_generation_stable/execution.log",
+  "publication_eligible": false,
+  "reason": "Partial pilot intentionally superseded by shared condition function; no full-cohort score."
+}

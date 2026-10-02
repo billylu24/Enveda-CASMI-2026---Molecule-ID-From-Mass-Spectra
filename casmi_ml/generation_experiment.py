@@ -440,6 +440,7 @@ def generate(
     samples=128,
     fragmenter=None,
     oracle_formula=False,
+    stable_sampling=False,
 ):
     root = Path(root)
     if limit is not None and limit < 1:
@@ -455,13 +456,16 @@ def generate(
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     decoder, formula, vocabulary = load_model(checkpoint, device)
     frame = pd.read_parquet(root / f"{split}.parquet")
+    if stable_sampling:
+        encoder, encoder_checkpoint = load_deployment_checkpoint(ENCODER, "scale")
+        encoder.to(device)
     values = np.load(conditions(root, split) / "condition.npy", mmap_mode="r")
     groups = list(frame.groupby("inchikey14", sort=True).indices.items())
     groups = groups if limit is None else groups[:limit]
     out = (
         root
         / "generation"
-        / f"{split}_samples{samples}_limit{limit or 'all'}{'_oracle' if oracle_formula else ''}.json"
+        / f"{split}_samples{samples}_limit{limit or 'all'}{'_oracle' if oracle_formula else ''}{'_stable_v2' if stable_sampling else ''}.json"
     )
     spec = {
         "checkpoint_sha256": digest(checkpoint),
@@ -472,6 +476,8 @@ def generate(
         "formula_oracle": oracle_formula,
         "fragmenter_sha256": fragmenter.sha256 if fragmenter else None,
     }
+    if stable_sampling:
+        spec["sampling"] = "spectrum_hash_v1_and_shared_group_forward_v2"
     freeze(out.with_suffix(".config.json"), spec)
     if out.exists():
         return json.loads(out.read_text())
@@ -486,7 +492,18 @@ def generate(
         if count <= len(output):
             continue
         group = frame.iloc[ids]
-        z = torch.from_numpy(values[ids].mean(0, keepdims=True)).to(device)
+        if stable_sampling:
+            from casmi_ml.generation_sampling import sampling_seed
+
+            generator = torch.Generator(device=device).manual_seed(sampling_seed(group))
+        if stable_sampling:
+            from casmi_ml.generation_sampling import condition_for_group
+
+            z = condition_for_group(
+                encoder, encoder_checkpoint["preprocessing"], group, device
+            )
+        else:
+            z = torch.from_numpy(values[ids].mean(0, keepdims=True)).to(device)
         hypotheses = formula.hypotheses(z, k=5)
         with torch.no_grad():
             if oracle_formula:
@@ -552,7 +569,10 @@ def generate(
             }
         )
         if count % 10 == 0:
-            write_json(partial, {"rows": output, "rng_state": generator.get_state().cpu().tolist()})
+            write_json(
+                partial,
+                {"rows": output, "rng_state": generator.get_state().cpu().tolist()},
+            )
             print("generated", count, "seconds", time.monotonic() - start, flush=True)
     write_json(out, output)
     return output

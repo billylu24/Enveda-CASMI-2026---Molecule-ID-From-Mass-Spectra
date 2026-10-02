@@ -31,3 +31,6 @@ kaggle_release*/kaggle_output*/
 *.log
 submission*.csv
 kaggle_release*/packaged_submission*
+
+kaggle_release*/local_output/
+kaggle_release*/dataset_files.csv

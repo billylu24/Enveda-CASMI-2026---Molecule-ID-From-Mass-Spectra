@@ -475,5 +475,20 @@
     }
   },
   "independent_acceptance": false,
-  "evaluation": "Repeated fixed molecule development cohort; no new holdout opened"
+  "evaluation": "Repeated fixed molecule development cohort; no new holdout opened",
+  "cohort_usage": {
+    "round": "0001_mass_v2",
+    "split": "researchdev",
+    "sha256": "f297677effa13eefc2404eebe375c76d2f114a088eb0ad2aad4d404b198035c7",
+    "molecules": 2000,
+    "previously_used_molecules": 2000,
+    "fresh_molecules": 0,
+    "label": "repeated_development"
+  },
+  "kaggle": {
+    "submission_id": 56770705,
+    "kernel": "giaok246/casmi-research-0001-mass-v2",
+    "version": 2,
+    "status": "PENDING"
+  }
 }

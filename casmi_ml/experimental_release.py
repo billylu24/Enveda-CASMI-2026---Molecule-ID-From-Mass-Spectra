@@ -19,8 +19,10 @@ def package(identifier, decision, output):
     winner = report["winner"]
     if not winner or not winner["gate"]["eligible"]:
         raise ValueError("Development gate required")
-    if report["direction"] != "mass":
-        raise ValueError("This packaging path supports the tested mass experiment only")
+    if report["direction"] not in ["mass", "generation_slots"]:
+        raise ValueError(
+            "This packaging path supports tested mass and generation-slot experiments"
+        )
     if output.exists():
         raise ValueError("Use a fresh release directory; never overwrite scored assets")
     # Independently accepted chemistry is the base; the added mass rule is experimental.
@@ -34,6 +36,39 @@ def package(identifier, decision, output):
         independent_acceptance=False,
         development_decision="development_decision.json",
     )
+    if report["direction"] == "generation_slots":
+        from casmi_ml.research_protocol import ENCODER, ROOT
+
+        protocol = json.loads(
+            (Path(report["round_directory"]) / "protocol.json").read_text()
+        )
+        if protocol.get("stable_sampling") != "shared_group_forward_v2":
+            raise ValueError(
+                "Shared deployable sampler development evaluation required"
+            )
+        base = json.loads(
+            (Path(protocol.get("incumbent_directory", report.get("incumbent_directory"))) / "protocol.json").read_text()
+        )
+        if base.get("metfrag_weight") != 0.5 or base.get("neural_weight") != 0.75:
+            raise ValueError("Unexpected generation incumbent")
+        _, prefix, slots = winner["variant"].split("_")
+        recipe["mass_hypothesis"] = protocol["incumbent_variant"]
+        checkpoint = ROOT / "generation/smiles_42/model.pt"
+        import torch
+
+        saved = torch.load(checkpoint, map_location="cpu", weights_only=True)
+        if saved["config"]["encoder_sha256"] != digest(ENCODER):
+            raise ValueError("Generation conditioning encoder changed")
+        shutil.copy2(checkpoint, bundle / "generation.pt")
+        recipe["generation"] = {
+            "checkpoint": "generation.pt",
+            "sha256": digest(checkpoint),
+            "sampling": "spectrum_hash_v1_and_shared_group_forward_v2",
+            "prefix": int(prefix),
+            "slots": int(slots),
+            "samples": 128,
+            "total_seconds": 1800,
+        }
     write_json(bundle / "deployment_recipe.json", recipe)
     shutil.copy2(decision, bundle / "development_decision.json")
     sums = {
@@ -62,12 +97,17 @@ def package(identifier, decision, output):
     write_json(output / "dataset/dataset-metadata.json", dm)
     km = json.loads((output / "notebook/kernel-metadata.json").read_text())
     km.update(
+        enable_gpu=report["direction"] == "generation_slots",
         id=kernel_id,
         title=f"CASMI Research {identifier}",
         dataset_sources=[dataset_id, "aidensong123/casmi26-coconut-202609"],
     )
     write_json(output / "notebook/kernel-metadata.json", km)
     nb = json.loads((output / "notebook/casmi_chemistry.ipynb").read_text())
+    if report["direction"] == "generation_slots":
+        nb["cells"][1]["source"] = nb["cells"][1]["source"].replace(
+            "casmi_ml.secondary_inference", "casmi_ml.research_pipeline"
+        )
     nb["cells"][0]["source"] = (
         f"# CASMI Research {identifier}\nDevelopment-gated experimental mass hypotheses; repeated development validation, no independent acceptance for this extension.\n"
     )
@@ -132,7 +172,7 @@ def verify_local(release):
         [
             sys.executable,
             "-m",
-            "casmi_ml.secondary_inference",
+            "casmi_ml.research_pipeline",
             "--recipe",
             str(bundle / "deployment_recipe.json"),
             "--data-dir",
