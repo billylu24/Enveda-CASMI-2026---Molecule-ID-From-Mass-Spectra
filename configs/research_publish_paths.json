@@ -197,7 +197,14 @@
     "kaggle_release_position_0017_runtime313/notebook/kernel-metadata.json",
     "kaggle_release_position_0017_runtime313/verification.json",
     "kaggle_release_position_0017_runtime313/status.json",
-    "kaggle_release_position_0017_runtime313/kaggle_verification.json"
+    "kaggle_release_position_0017_runtime313/kaggle_verification.json",
+    "casmi_ml/runtime_migration.py",
+    "tests/test_runtime_migration.py",
+    "kaggle_release_decoder_0024_runtime313/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_decoder_0024_runtime313/notebook/kernel-metadata.json",
+    "kaggle_release_decoder_0024_runtime313/verification.json",
+    "kaggle_release_decoder_0024_runtime313/status.json",
+    "kaggle_release_decoder_0024_runtime313/kaggle_verification.json"
   ],
   "aggregate_directories": [
     "results/research_loop",

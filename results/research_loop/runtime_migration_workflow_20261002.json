@@ -1,0 +1,13 @@
+{
+  "module_sha256": "07be54eb293adbff98b817e963025504bd09119e3ce56634e190ee9e94798749",
+  "controller_sha256": "b51cbb957d2c4c30b44eacf1b6ced30cd485ae14eed17fb1de2785f3e70df00f",
+  "fresh_package": true,
+  "frozen_model_and_recipe_equality_required": true,
+  "all_local_full_rankings_equality_required": true,
+  "accepted_or_ambiguous_submission_cannot_migrate": true,
+  "atomic_release_and_rejection_record_switch": true,
+  "explicit_bound_platform_gate_before_competition_post": true,
+  "competition_quota_preserved": true,
+  "old_uploaded_assets_preserved": true,
+  "purpose": "Repair observed Python3.13/RDKit cp312 incompatibility; no accuracy improvement claimed"
+}

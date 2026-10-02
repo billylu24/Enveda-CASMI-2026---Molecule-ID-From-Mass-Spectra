@@ -1,0 +1,14 @@
+{
+  "valid": true,
+  "identity": "c1526ab3072f4242217f87b624250651c2f981cd9ed4eec3b72850dbaf4281a5",
+  "molecules": 400,
+  "local_full_top25_matches": 400,
+  "seconds": 573.068769279,
+  "parent_peak_rss_mib": 2786.2890625,
+  "remote_release": {
+    "kernel": "giaok246/casmi26-research-0012-protected-runtime313",
+    "version": 1
+  },
+  "independent_acceptance": false,
+  "scope": "Visible full rankings and resources; original development and replay gates retained; no new accuracy evidence"
+}
