@@ -23,5 +23,13 @@
   "notebook_script_version_id": 354698716,
   "frozen_source_commit": "a45c65e9f16501c554dfd4a12679003d630cb0ff",
   "accelerator_observed": "GPU T4 x2",
-  "cuda_available_observed": true
+  "cuda_available_observed": true,
+  "follow_up": {
+    "kind": "current_thread_heartbeat",
+    "automation_id": "casmi26-gan",
+    "interval_minutes": 15,
+    "until": "formal experiment reviewed, competition Succeeded with score, and GitHub reports updated"
+  },
+  "latest_logged_stage": "official canonicalization 240000 of 275810 structures at run elapsed 3000.2 seconds",
+  "proof": "kaggle_run_in_progress.jpg"
 }
