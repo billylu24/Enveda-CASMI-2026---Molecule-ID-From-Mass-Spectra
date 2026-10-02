@@ -1,0 +1,66 @@
+{
+  "results": {
+    "[M+H]+": {
+      "status": "complete",
+      "scored_candidates": 2,
+      "nonzero_candidates": 2
+    },
+    "[M-H]-": {
+      "status": "complete",
+      "scored_candidates": 2,
+      "nonzero_candidates": 2
+    },
+    "[M+Na]+": {
+      "status": "complete",
+      "scored_candidates": 2,
+      "nonzero_candidates": 2
+    },
+    "[M+K]+": {
+      "status": "complete",
+      "scored_candidates": 2,
+      "nonzero_candidates": 2
+    },
+    "[M+NH4]+": {
+      "status": "complete",
+      "scored_candidates": 2,
+      "nonzero_candidates": 2
+    },
+    "[M+Cl]-": {
+      "status": "complete",
+      "scored_candidates": 2,
+      "nonzero_candidates": 2
+    },
+    "[M+CH2O2-H]-": {
+      "status": "complete",
+      "scored_candidates": 2,
+      "nonzero_candidates": 2
+    },
+    "[M+C2H4O2-H]-": {
+      "status": "complete",
+      "scored_candidates": 2,
+      "nonzero_candidates": 2
+    },
+    "[M+CH3OH+H]+": {
+      "status": "complete",
+      "scored_candidates": 2,
+      "nonzero_candidates": 2
+    }
+  },
+  "seconds": 12.90509407297941,
+  "jar_sha256": "8c55322fbc706c76df109dd886257262029695837bb1fb2211d4b88d945d8cfb",
+  "adapter_sha256": "eb7429797615ec958879a8f95ee298ae1ea29ccd66e7658ec800adc4d86e9498",
+  "purpose": "synthetic offline engine compatibility; not performance or chemistry validation",
+  "query_support": {
+    "unknown_low_confidence": {
+      "queries": 746,
+      "original_proton_support": 242,
+      "exact_monomer_support": 296
+    },
+    "known_low_confidence": {
+      "queries": 281,
+      "original_proton_support": 9,
+      "exact_monomer_support": 16
+    }
+  },
+  "diagnostic_only": true
+}

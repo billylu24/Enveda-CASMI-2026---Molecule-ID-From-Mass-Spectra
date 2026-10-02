@@ -172,7 +172,9 @@
     "casmi_ml/chembl_catalog.py",
     "casmi_ml/chembl_candidate_slots.py",
     "casmi_ml/chembl_critic_slots.py",
-    "casmi_ml/chembl_fragment_pilot.py"
+    "casmi_ml/chembl_fragment_pilot.py",
+    "casmi_ml/metfrag_monomer.py",
+    "tests/test_metfrag_monomer.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

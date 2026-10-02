@@ -1,4 +1,4 @@
-"""Critic margin gates native top100 ChEMBL proposals, with0062 ranks frozen."""
+"""Critic margin gates bounded native ChEMBL proposals, with0062 ranks frozen."""
 
 import argparse
 import hashlib
@@ -37,6 +37,7 @@ VARIANTS = {
     "margin0_prefix2": (0.0, 2, 3),
     "margin005_prefix2": (0.05, 2, 3),
     "margin005_prefix5": (0.05, 5, 3),
+    "margin005_prefix10": (0.05, 10, 3),
 }
 
 
@@ -46,7 +47,9 @@ def score_cache_key(query, first, candidates):
 
 
 @torch.inference_mode()
-def run(output, incumbent):
+def run(output, incumbent, proposal_limit=100):
+    if proposal_limit not in (100, 500):
+        raise ValueError("Proposal limit must be100 or500")
     output, incumbent = Path(output), Path(incumbent)
     output.mkdir(parents=True, exist_ok=True)
     pair_path = Path(
@@ -65,7 +68,8 @@ def run(output, incumbent):
             "promotion_scores_sha256": digest(pair_path),
             "incumbent_report_sha256": digest(incumbent / "report.json"),
             "variants": VARIANTS,
-            "rule": "Freeze0062;confidence<.5;preselect first100 novel ChEMBL proposals by native fingerprint;critic ranks proposals and top proposal must exceed actual current first by margin; insert at most3 after prefix",
+            "proposal_limit": proposal_limit,
+            "rule": f"Freeze0062;confidence<.5;preselect first{proposal_limit} novel ChEMBL proposals by native fingerprint;critic ranks proposals and top proposal must exceed actual current first by margin; insert at most3 after prefix",
             "critic_sha256": digest(CRITIC),
             "native_proposals_sha256": digest(
                 Path(
@@ -140,7 +144,7 @@ def run(output, incumbent):
         lock_path=output / "score.lock",
     )
     started = time.monotonic()
-    report, diagnostics = {}, {}
+    report, diagnostics, coverage = {}, {}, {}
     try:
         for mode in ("unknown", "known"):
             rows = json.loads((SOURCE / f"{mode}_records.json").read_text())
@@ -162,6 +166,13 @@ def run(output, incumbent):
                 raise ValueError("Retrieval keys differ")
             if mode == "known":
                 lookup.update(candidate_lookup(ROOT, "researchdev", "known"))
+            coverage[mode] = {
+                "queries": 0,
+                "native_contains_truth": 0,
+                "critic_top3": 0,
+                "critic_top10": 0,
+                "critic_top25": 0,
+            }
             ranks = {name: {} for name in VARIANTS}
             pools = {name: {} for name in VARIANTS}
             diagnostics[mode] = {
@@ -207,7 +218,7 @@ def run(output, incumbent):
                     current_set = set(current)
                     candidates_external = [
                         k for k in proposals[key] if k not in current_set
-                    ][:100]
+                    ][:proposal_limit]
                     cache_key = score_cache_key(key, current[0], candidates_external)
                     if candidates_external and cache_key not in pair_scores:
                         if not budget.checkpoint():
@@ -263,6 +274,15 @@ def run(output, incumbent):
                         candidates_external = sorted(
                             candidates_external,
                             key=lambda k: (-pair_scores[cache_key][k], k),
+                        )
+                if candidates_external:
+                    coverage[mode]["queries"] += 1
+                    coverage[mode]["native_contains_truth"] += (
+                        key in candidates_external
+                    )
+                    for cutoff in (3, 10, 25):
+                        coverage[mode][f"critic_top{cutoff}"] += (
+                            key in candidates_external[:cutoff]
                         )
                 for name, spec in VARIANTS.items():
                     external = []
@@ -321,6 +341,8 @@ def run(output, incumbent):
             "parent_peak_rss_mib": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
             / 1024,
             "proposal_queries_scored": len(pair_scores),
+            "proposal_limit": proposal_limit,
+            "proposal_coverage": coverage,
             "variants": diagnostics,
             "independent_acceptance": False,
         }
@@ -334,8 +356,9 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--incumbent", type=Path, required=True)
+    p.add_argument("--proposal-limit", type=int, choices=(100, 500), default=100)
     a = p.parse_args()
-    print(json.dumps(run(a.output, a.incumbent), indent=2))
+    print(json.dumps(run(a.output, a.incumbent, a.proposal_limit), indent=2))
 
 
 if __name__ == "__main__":

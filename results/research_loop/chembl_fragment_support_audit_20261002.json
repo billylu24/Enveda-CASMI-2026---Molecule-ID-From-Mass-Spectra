@@ -1,0 +1,61 @@
+{
+  "cohort": "repeated_development",
+  "molecules": 2000,
+  "truth_used_only_in_aggregate_diagnostics": true,
+  "individual_labels_select_scoring_jobs": false,
+  "independent_acceptance": false,
+  "adapter_sha256": "251564d1495ea6baa1647f3bb6bef8b1e031a125dcd473ab27a87dbeae9aec6b",
+  "adapter_rule": "Only [M+H]+/[M-H]- with high_resolution and nonempty products; support is eligibility, not successful MetFrag evidence",
+  "spectra_support": {
+    "supported_nonempty": 3292,
+    "unsupported_adduct": 1989,
+    "empty_product_peaks": 7,
+    "unsupported_or_unknown_resolution": 151
+  },
+  "modes": {
+    "unknown": {
+      "low_confidence_queries": 746,
+      "queries_with_supported_nonempty_spectrum": 242,
+      "queries_without_supported_nonempty_spectrum": 504,
+      "supported_spectra_count_distribution": {
+        "0": 504,
+        "1": 98,
+        "2": 74,
+        "3": 34,
+        "4": 30,
+        "5": 3,
+        "6": 3
+      },
+      "native_top100_truths": {
+        "available": 65,
+        "with_supported_spectrum": 44
+      },
+      "native_top500_truths": {
+        "available": 90,
+        "with_supported_spectrum": 55
+      }
+    },
+    "known": {
+      "low_confidence_queries": 281,
+      "queries_with_supported_nonempty_spectrum": 9,
+      "queries_without_supported_nonempty_spectrum": 272,
+      "supported_spectra_count_distribution": {
+        "0": 272,
+        "1": 2,
+        "2": 3,
+        "3": 1,
+        "4": 2,
+        "5": 1
+      },
+      "native_top100_truths": {
+        "available": 8,
+        "with_supported_spectrum": 3
+      },
+      "native_top500_truths": {
+        "available": 16,
+        "with_supported_spectrum": 4
+      }
+    }
+  },
+  "proposal_scope": "Native lists before frozen0062 duplicate exclusion; descriptive only; not publication performance"
+}
