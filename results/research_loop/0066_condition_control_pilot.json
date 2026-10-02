@@ -1,0 +1,33 @@
+{
+  "round": "0066_condition_control_pilot",
+  "direction": "generation_pilot",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "molecules": 200,
+    "baseline": {
+      "samples": 25600,
+      "terminated": 25599,
+      "valid": 23553,
+      "mass_matching": 490,
+      "unique_mass_matching": 311,
+      "queries_with_candidates": 100,
+      "exact_structure_hits": 9
+    },
+    "selected": {
+      "samples": 25600,
+      "terminated": 25598,
+      "valid": 23654,
+      "mass_matching": 483,
+      "unique_mass_matching": 310,
+      "queries_with_candidates": 106,
+      "exact_structure_hits": 8
+    },
+    "independent_acceptance": false,
+    "evaluation": "Fixed200 current-best checkpoint control; no submission gate"
+  },
+  "protocol_sha256": "d835cbfffa0c2b2bbe793b604a65e87eb09a0486c73ffab6b689b020b62251ca",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

@@ -11,5 +11,20 @@
   "vocabulary_identical": true,
   "decoder_tensors_changed": 116,
   "independent_acceptance": false,
-  "performance_checked": false
+  "performance_checked": true,
+  "matched_control": {
+    "round": "0068_decoder_condition_control",
+    "checkpoint_sha256": "1eafc070b8d2227fb82ebb9270317794d13bd7f304c9ce5dc2d78fd6b0279250",
+    "formula_identical": true,
+    "decoder_tensors_changed": 116,
+    "config_identical": true,
+    "vocabulary_identical": true,
+    "weights_only_load": true
+  },
+  "pilot_hits": {
+    "current_decoder": 9,
+    "extra_training_control": 8,
+    "condition_contrast": 8
+  },
+  "decision": "neither arm improves structural pilot; do not expand"
 }
