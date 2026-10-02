@@ -14,7 +14,7 @@ from casmi_ml.generation_slots import insert_generated
 from casmi_ml.research_protocol import ENCODER, ROOT
 
 
-def run(generated, incumbent, output, limit=25, prefix=5, slots=3):
+def run(generated, incumbent, output, limit=25, prefix=5, slots=3, checkpoint=None):
     generated, incumbent, output = Path(generated), Path(incumbent), Path(output)
     output.mkdir(parents=True, exist_ok=True)
     confidence = {
@@ -65,7 +65,7 @@ def run(generated, incumbent, output, limit=25, prefix=5, slots=3):
         [{"molecule_id": k, "smiles": [lookup[x] for x in retrieval[k]]} for k in keys],
     )
     predict(
-        ROOT / "generation/smiles_42/model.pt",
+        checkpoint or ROOT / "generation/smiles_42/model.pt",
         output / "test.parquet",
         output / "base.csv",
         output / "submission.csv",
@@ -93,7 +93,8 @@ def run(generated, incumbent, output, limit=25, prefix=5, slots=3):
         matches += predicted == expected[:25]
     result = {
         "molecules": len(keys),
-        "prefix": prefix, "slots": slots,
+        "prefix": prefix,
+        "slots": slots,
         "full_top25_matches": matches,
         "valid": matches == len(keys),
         "scope": "Implementation replay of development queries, no new statistical evidence",
@@ -110,8 +111,13 @@ def main():
     p.add_argument("--limit", type=int, default=25)
     p.add_argument("--prefix", type=int, default=5)
     p.add_argument("--slots", type=int, default=3)
+    p.add_argument("--checkpoint", type=Path)
     a = p.parse_args()
-    print(run(a.generated, a.incumbent, a.output, a.limit, a.prefix, a.slots))
+    print(
+        run(
+            a.generated, a.incumbent, a.output, a.limit, a.prefix, a.slots, a.checkpoint
+        )
+    )
 
 
 if __name__ == "__main__":

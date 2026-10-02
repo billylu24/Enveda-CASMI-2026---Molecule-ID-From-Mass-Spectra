@@ -356,3 +356,32 @@ class CohortAndSamplingTests(unittest.TestCase):
             self.assertEqual(
                 two, record_usage(root / "registry.json", root, "researchdev", "second")
             )
+
+
+class AuxiliaryJobTests(unittest.TestCase):
+    def test_auxiliary_job_preserves_existing_cpu_job_and_stop_terminates_it(self):
+        import threading
+        import time
+
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            c = LoopTests().controller(root)
+            primary = {"pid": 987654321, "argv": ["primary"], "started_at": "test"}
+            c.change(lambda s: s.update(active_job=primary))
+            result = []
+            worker = threading.Thread(
+                target=lambda: result.append(
+                    c.job(["sleep", "20"], root / "log", 20, auxiliary_key="gpu")
+                )
+            )
+            worker.start()
+            deadline = time.monotonic() + 3
+            while not c.read().get("auxiliary_jobs") and time.monotonic() < deadline:
+                time.sleep(0.01)
+            self.assertEqual(c.read()["active_job"], primary)
+            c.stop()
+            worker.join(timeout=3)
+            self.assertFalse(worker.is_alive())
+            self.assertEqual(result, ["stopped"])
+            self.assertFalse(c.read()["auxiliary_jobs"])
+            self.assertEqual(c.read()["active_job"], primary)

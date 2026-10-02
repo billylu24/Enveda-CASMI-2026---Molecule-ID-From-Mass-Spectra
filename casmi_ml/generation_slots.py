@@ -19,13 +19,21 @@ def insert_generated(base, generated, prefix, slots):
     return base[:prefix] + novel + base[prefix:]
 
 
-def run(output, incumbent, variant, source=ROOT, stable_sampling=False):
+def run(
+    output, incumbent, variant, source=ROOT, stable_sampling=False, checkpoint=None
+):
     output, incumbent, source = Path(output), Path(incumbent), Path(source)
     output.mkdir(parents=True, exist_ok=True)
     freeze(
         output / "protocol.json",
         {
             "version": 1,
+            "generator_sha256": digest(
+                checkpoint or source / "generation/smiles_42/model.pt"
+            ),
+            "generator_checkpoint": str(
+                checkpoint or source / "generation/smiles_42/model.pt"
+            ),
             "source": str(source),
             "development_sha256": digest(source / "researchdev.parquet"),
             "incumbent_report_sha256": digest(incumbent / "report.json"),
@@ -42,7 +50,9 @@ def run(output, incumbent, variant, source=ROOT, stable_sampling=False):
     gpu.parent.mkdir(parents=True, exist_ok=True)
     with gpu.open("a") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        generated = generate(source, samples=128, stable_sampling=stable_sampling)
+        generated = generate(
+            source, checkpoint=checkpoint, samples=128, stable_sampling=stable_sampling
+        )
     by_key = {r["key"]: [c["key"] for c in r["candidates"]] for r in generated}
     if len(by_key) < 2000:
         raise ValueError("Full 2000-molecule generation required")
@@ -89,10 +99,17 @@ def main():
     p.add_argument("--incumbent", required=True, type=Path)
     p.add_argument("--variant", required=True)
     p.add_argument("--stable-sampling", action="store_true")
+    p.add_argument("--checkpoint", type=Path)
     a = p.parse_args()
     print(
         json.dumps(
-            run(a.output, a.incumbent, a.variant, stable_sampling=a.stable_sampling),
+            run(
+                a.output,
+                a.incumbent,
+                a.variant,
+                stable_sampling=a.stable_sampling,
+                checkpoint=a.checkpoint,
+            ),
             indent=2,
         )
     )

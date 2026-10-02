@@ -77,9 +77,15 @@ def package(identifier, decision, output):
             raise ValueError("Unexpected generation incumbent")
         _, prefix, slots = winner["variant"].split("_")
         if replay.get("prefix") != int(prefix) or replay.get("slots") != int(slots):
-            raise ValueError("Replay configuration differs from selected generator slots")
+            raise ValueError(
+                "Replay configuration differs from selected generator slots"
+            )
         recipe["mass_hypothesis"] = protocol["incumbent_variant"]
-        checkpoint = ROOT / "generation/smiles_42/model.pt"
+        checkpoint = Path(
+            protocol.get("generator_checkpoint", ROOT / "generation/smiles_42/model.pt")
+        )
+        if protocol.get("generator_sha256", digest(checkpoint)) != digest(checkpoint):
+            raise ValueError("Selected generator checksum changed")
         import torch
 
         saved = torch.load(checkpoint, map_location="cpu", weights_only=True)

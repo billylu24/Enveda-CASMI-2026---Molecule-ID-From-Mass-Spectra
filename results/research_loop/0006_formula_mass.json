@@ -1,0 +1,31 @@
+{
+  "baseline": {
+    "molecules": 2000,
+    "formula_top1": 0.0175,
+    "all_element_counts_in_top5": 0.435,
+    "element_accuracy": 0.7656428571428572,
+    "mean_count_nll": 0.7618847917829241,
+    "mean_argmax_mass_error_da": 27.08879931640625,
+    "selection_scope": "Formula diagnostic; cannot establish structure ranking gain"
+  },
+  "selected": {
+    "epoch": 6,
+    "loss": 0.430274670910027,
+    "development": {
+      "molecules": 2000,
+      "formula_top1": 0.0205,
+      "all_element_counts_in_top5": 0.44,
+      "element_accuracy": 0.7639642857142858,
+      "mean_count_nll": 0.7623887590680803,
+      "mean_argmax_mass_error_da": 25.031666748046874,
+      "selection_scope": "Formula diagnostic; cannot establish structure ranking gain"
+    },
+    "seconds": 4.644108653010335
+  },
+  "epochs": 12,
+  "seconds": 7.5406621430011,
+  "device": "cuda",
+  "decoder_frozen": true,
+  "independent_acceptance": false,
+  "next_gate": "Full 2000-molecule structure ranking required before release"
+}

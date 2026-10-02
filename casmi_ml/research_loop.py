@@ -196,6 +196,23 @@ class Controller:
     def stop(self):
         self.stop_path.write_text(now() + "\n")
         self.change(lambda s: s.update(status="stop_requested"))
+        state = self.read()
+        entries = list(state.get("auxiliary_jobs", {}).values())
+        entries += [
+            {"pid": r["external_pid"], "argv": r["argv"]}
+            for r in state["rounds"]
+            if r.get("external_pid") and r["status"] == "external_running"
+        ]
+        for entry in entries:
+            proc = Path(f"/proc/{entry['pid']}/cmdline")
+            try:
+                actual = [x.decode() for x in proc.read_bytes().split(b"\0") if x]
+                if actual == entry["argv"]:
+                    os.killpg(entry["pid"], signal.SIGTERM)
+            except ProcessLookupError:
+                pass
+            except FileNotFoundError:
+                pass
 
     def resume(self):
         self.stop_path.unlink(missing_ok=True)
@@ -220,7 +237,7 @@ class Controller:
 
         self.change(update)
 
-    def job(self, argv, log, seconds=None):
+    def job(self, argv, log, seconds=None, auxiliary_key=None):
         if self.stopped():
             return "stopped"
         log = Path(log)
@@ -243,18 +260,25 @@ class Controller:
             child = subprocess.Popen(
                 argv, stdout=stream, stderr=subprocess.STDOUT, start_new_session=True
             )
-            self.change(
-                lambda s: s.update(
-                    active_job={"pid": child.pid, "argv": argv, "started_at": now()},
-                    status="running",
-                )
-            )
+            entry = {"pid": child.pid, "argv": argv, "started_at": now()}
+
+            def record(s):
+                if auxiliary_key is None:
+                    s["active_job"] = entry
+                else:
+                    s.setdefault("auxiliary_jobs", {})[auxiliary_key] = entry
+                s["status"] = "running"
+
+            self.change(record)
             try:
                 while child.poll() is None:
                     if self.stopped() or (
                         seconds is not None and time.monotonic() - start >= seconds
                     ):
-                        os.killpg(child.pid, signal.SIGTERM)
+                        try:
+                            os.killpg(child.pid, signal.SIGTERM)
+                        except ProcessLookupError:
+                            pass
                         try:
                             child.wait(timeout=10)
                         except subprocess.TimeoutExpired:
@@ -262,6 +286,8 @@ class Controller:
                             child.wait()
                         return "stopped" if self.stopped() else "budget_exhausted"
                     time.sleep(0.2)
+                if self.stopped():
+                    return "stopped"
                 if child.returncode:
                     raise RuntimeError(
                         f"Child exited {child.returncode}: {argv}; see {log}"
@@ -269,15 +295,53 @@ class Controller:
             finally:
                 if budget is not None:
                     budget.close()
-                self.change(lambda s: s.update(active_job=None))
+                if auxiliary_key is None:
+                    self.change(lambda s: s.update(active_job=None))
+                else:
+                    self.change(
+                        lambda s: s.setdefault("auxiliary_jobs", {}).pop(
+                            auxiliary_key, None
+                        )
+                    )
         return "complete"
+
+    def run_auxiliary(self, identifier):
+        r = next(r for r in self.read()["rounds"] if r["id"] == identifier)
+        path = Path(r["report"])
+        if path.exists():
+            self.mark_round(identifier, status="evaluated")
+            return "evaluated"
+        self.mark_round(identifier, status="external_running")
+        try:
+            result = self.job(
+                r["argv"],
+                path.parent / "execution.log",
+                self.config["gpu_stage_seconds"]["generation"],
+                auxiliary_key=identifier,
+            )
+            if result == "complete" and not path.exists():
+                raise ValueError("Auxiliary experiment exited without report")
+            self.mark_round(
+                identifier,
+                status="evaluated" if result == "complete" else "retry",
+                completed_at=now(),
+            )
+            return result
+        except Exception as error:
+            status = "retry" if self.stopped() else "failed"
+            self.mark_round(
+                identifier, status=status, error=str(error), completed_at=now()
+            )
+            raise
 
     def reserve_submission(self, identity, version, message):
         def update(s):
             if self.stopped():
                 raise RuntimeError("Stop requested")
             if identity in s.get("submission_aliases", {}):
-                raise RuntimeError("This content identity aliases an existing submission")
+                raise RuntimeError(
+                    "This content identity aliases an existing submission"
+                )
             if s["pending_submission"] is not None:
                 raise RuntimeError("One submission is already pending")
             if identity in s["submissions"]:
@@ -809,12 +873,19 @@ class Controller:
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("command", choices=["run", "status", "stop", "resume"])
+    p.add_argument(
+        "command", choices=["run", "status", "stop", "resume", "run-auxiliary"]
+    )
     p.add_argument("--config", type=Path, default=CONFIG)
     p.add_argument("--once", action="store_true")
+    p.add_argument("--round")
     a = p.parse_args()
     c = Controller(a.config)
-    if a.command == "stop":
+    if a.command == "run-auxiliary":
+        if not a.round:
+            p.error("--round required")
+        print(c.run_auxiliary(a.round))
+    elif a.command == "stop":
         c.stop()
         print(
             "Stop requested; child process group will be terminated and state retained"

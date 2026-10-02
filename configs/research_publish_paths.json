@@ -56,7 +56,8 @@
     "kaggle_release_generation_0004/notebook/kernel-metadata.json",
     "kaggle_release_generation_0004/verification.json",
     "kaggle_release_generation_0004/status.json",
-    "kaggle_release_generation_0004/kaggle_verification.json"
+    "kaggle_release_generation_0004/kaggle_verification.json",
+    "casmi_ml/formula_experiment.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

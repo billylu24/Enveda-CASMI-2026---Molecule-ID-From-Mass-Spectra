@@ -462,10 +462,15 @@ def generate(
     values = np.load(conditions(root, split) / "condition.npy", mmap_mode="r")
     groups = list(frame.groupby("inchikey14", sort=True).indices.items())
     groups = groups if limit is None else groups[:limit]
+    checkpoint_suffix = (
+        ""
+        if checkpoint.resolve() == (root / "generation/smiles_42/model.pt").resolve()
+        else "_" + digest(checkpoint)[:12]
+    )
     out = (
         root
         / "generation"
-        / f"{split}_samples{samples}_limit{limit or 'all'}{'_oracle' if oracle_formula else ''}{'_stable_v2' if stable_sampling else ''}.json"
+        / f"{split}_samples{samples}_limit{limit or 'all'}{'_oracle' if oracle_formula else ''}{'_stable_v2' if stable_sampling else ''}{checkpoint_suffix}.json"
     )
     spec = {
         "checkpoint_sha256": digest(checkpoint),
