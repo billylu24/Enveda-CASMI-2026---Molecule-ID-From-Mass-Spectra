@@ -133,7 +133,8 @@
     "kaggle_release_second_0045/status.json",
     "kaggle_release_second_0045/kaggle_verification.json",
     "casmi_ml/generated_chemical_evidence.py",
-    "tests/test_generated_chemical_evidence.py"
+    "tests/test_generated_chemical_evidence.py",
+    "casmi_ml/generated_expanded_route.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
