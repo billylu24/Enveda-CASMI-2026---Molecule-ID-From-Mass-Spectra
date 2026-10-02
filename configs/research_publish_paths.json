@@ -96,7 +96,9 @@
     "kaggle_release_decoder_0024/notebook/kernel-metadata.json",
     "kaggle_release_decoder_0024/verification.json",
     "kaggle_release_decoder_0024/status.json",
-    "kaggle_release_decoder_0024/kaggle_verification.json"
+    "kaggle_release_decoder_0024/kaggle_verification.json",
+    "casmi_ml/generated_fragment_experiment.py",
+    "tests/test_generated_fragments.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

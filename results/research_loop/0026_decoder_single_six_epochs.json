@@ -1,0 +1,67 @@
+{
+  "round": "0026_decoder_single_six_epochs",
+  "direction": "generation_finetune",
+  "status": "diagnostic_complete",
+  "report": {
+    "history": [
+      {
+        "epoch": 1,
+        "token_loss": 0.3092587098701676,
+        "batches": 938,
+        "training_molecules": 59970,
+        "complete": true,
+        "seconds": 21.770736321006552
+      },
+      {
+        "epoch": 2,
+        "token_loss": 0.2994135544974921,
+        "batches": 938,
+        "training_molecules": 59974,
+        "complete": true,
+        "seconds": 41.76400988000387
+      },
+      {
+        "epoch": 3,
+        "token_loss": 0.2948152787967531,
+        "batches": 938,
+        "training_molecules": 59972,
+        "complete": true,
+        "seconds": 61.75110749799933
+      },
+      {
+        "epoch": 4,
+        "token_loss": 0.29138257897802505,
+        "batches": 938,
+        "training_molecules": 59971,
+        "complete": true,
+        "seconds": 81.77123502700124
+      },
+      {
+        "epoch": 5,
+        "token_loss": 0.2886356005727101,
+        "batches": 938,
+        "training_molecules": 59973,
+        "complete": true,
+        "seconds": 102.25932846200885
+      },
+      {
+        "epoch": 6,
+        "token_loss": 0.28615961498670234,
+        "batches": 938,
+        "training_molecules": 59971,
+        "complete": true,
+        "seconds": 122.68867445900105
+      }
+    ],
+    "seconds": 122.7107889129984,
+    "complete": true,
+    "checkpoint_sha256": "45396e66961eab1d162b86661b611eca6b4fd6161a44400dfd2b3a64a3187912",
+    "diagnostic_only": true,
+    "independent_acceptance": false,
+    "performance_acceptance": "Requires fixed-budget development sampling and full paired 2000-molecule structural rankings"
+  },
+  "protocol_sha256": "20fb2389a7e95ba449aa9f2044ff2db2dee1d40d3462cd06bf530e5581f02b43",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
