@@ -714,7 +714,7 @@ class Controller:
     def complete_round(self, identifier):
         r = next(r for r in self.read()["rounds"] if r["id"] == identifier)
         if r["status"] == "eligible" and self.config["automatic_submission"]:
-            if r["direction"] in ["mass", "generation_slots"]:
+            if r["direction"] in ["mass", "generation_slots", "coverage"]:
                 outcome = self.release_round(identifier)
                 if outcome in ["notebook_running", "waiting_for_previous_submission"]:
                     return "publication_waiting"
@@ -737,6 +737,80 @@ class Controller:
         release = self.root / "releases" / identifier
         if r.get("release"):
             release = Path(r["release"])
+        decision = json.loads(Path(r["decision"]).read_text())
+        if r["direction"] == "coverage":
+            replay = Path(r["report"]).parent / "replay.json"
+            if not replay.exists():
+                result = self.job(
+                    [
+                        ".venv/bin/python",
+                        "-m",
+                        "casmi_ml.coverage_replay",
+                        "--directory",
+                        str(Path(r["report"]).parent),
+                    ],
+                    replay.with_suffix(".log"),
+                    1800,
+                    auxiliary_key="replay-" + identifier,
+                )
+                if result != "complete":
+                    return result
+        if r["direction"] == "generation_slots":
+            directory = Path(r["report"]).parent
+            replay = directory / "replay/verification.json"
+            protocol = json.loads((directory / "protocol.json").read_text())
+            _, prefix, slots = decision["winner"]["variant"].split("_")
+            if not replay.exists():
+                from casmi_ml.research_protocol import ROOT
+
+                checkpoint = Path(
+                    protocol.get(
+                        "generator_checkpoint", ROOT / "generation/smiles_42/model.pt"
+                    )
+                )
+                suffix = (
+                    ""
+                    if checkpoint.resolve()
+                    == (ROOT / "generation/smiles_42/model.pt").resolve()
+                    else "_" + digest(checkpoint)[:12]
+                )
+                samples = (
+                    ROOT
+                    / "generation"
+                    / f"researchdev_samples128_limitall_stable_v2{suffix}.json"
+                )
+                gpu = (self.root / "gpu.lock").open("a")
+                try:
+                    try:
+                        fcntl.flock(gpu, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                    except BlockingIOError:
+                        return "notebook_running"
+                    result = self.job(
+                        [
+                            ".venv-gpu/bin/python",
+                            "-m",
+                            "casmi_ml.generation_replay",
+                            "--generated",
+                            str(samples),
+                            "--incumbent",
+                            decision["incumbent_directory"],
+                            "--output",
+                            str(replay.parent),
+                            "--prefix",
+                            prefix,
+                            "--slots",
+                            slots,
+                            "--checkpoint",
+                            str(checkpoint),
+                        ],
+                        directory / "replay.log",
+                        1800,
+                        auxiliary_key="replay-" + identifier,
+                    )
+                    if result != "complete":
+                        return result
+                finally:
+                    gpu.close()
         if not release.exists():
             package(identifier, r["decision"], release)
         if not (release / "verification.json").exists():
@@ -751,6 +825,7 @@ class Controller:
                 ],
                 release / "verification.log",
                 self.config["inference_seconds"],
+                auxiliary_key="verification-" + identifier,
             )
             if result != "complete":
                 return result

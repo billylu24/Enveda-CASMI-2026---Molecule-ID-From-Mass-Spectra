@@ -78,8 +78,16 @@ def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
     if hashlib.sha256(checkpoint_path.read_bytes()).hexdigest() != recipe['checkpoint_sha256']:
         raise ValueError('Checkpoint checksum mismatch')
     external = None
-    if 'candidate_expansion' in recipe:
-        expansion_spec = recipe['candidate_expansion']
+    chemical_expansion = recipe.get('chemistry_expansion')
+    if chemical_expansion is not None:
+        if mass_variant != 'charge_aware_union' or recipe.get('chemistry', {}).get('component') != 'fragment' or recipe['chemistry']['weight'] != .5 or config['weight'] != .75:
+            raise ValueError('Chemical expansion supports the controlled union/fragment recipe only')
+        if any(name in recipe for name in ['candidate_expansion', 'router', 'direct_ranker', 'generation']):
+            raise ValueError('Chemical expansion combination requires separate validation')
+        if not 0 <= chemical_expansion['weight'] <= 1:
+            raise ValueError('Invalid chemical expansion fusion weight')
+    if 'candidate_expansion' in recipe or chemical_expansion is not None:
+        expansion_spec = chemical_expansion or recipe['candidate_expansion']
         external_path = Path(expansion_spec['path'])
         if not external_path.is_absolute() and (recipe_path.parent / external_path).exists():
             external_path = recipe_path.parent / external_path
@@ -217,7 +225,7 @@ def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
                 direct_ranking = [keys[j] for j in sorted(range(len(keys)), key=lambda j: (-scores[j], keys[j]))]
                 neural = rrf([neural, direct_ranking], [1-direct_spec['weight'], direct_spec['weight']])
             ranking = low_confidence_rank([k for k, _ in historical], current, neural, config['weight'])
-            if expanded is not None:
+            if expanded is not None and chemical_expansion is None:
                 new_pool, new_fps = expanded.fps(expanded.query(center))
                 new_current = baseline_rank(group, new_pool, new_fps, reference, center)
                 new_neural = neural_rank(probability, new_pool.inchikey14.tolist(), new_fps)
@@ -247,6 +255,16 @@ def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
                 ranking = rerank(ranking, structures, evidence, chemistry['weight'],
                                  component='combined' if component in ['fragment', 'combined_fragment'] else component,
                                  fragment_scores=fragments if fragmenter is not None else None)
+            if chemical_expansion is not None and not protected:
+                from casmi_ml.coverage_inference import (
+                    expanded_chemical_rank,
+                    merge_expanded,
+                )
+                expanded_rank, _, fallback = expanded_chemical_rank(
+                    group, [k for k, _ in historical], probability, expanded, reference,
+                    structures, fragmenter, fragment_deadline)
+                ranking = merge_expanded(ranking, expanded_rank, chemical_expansion['weight'], fallback)
+                fragment_budget_fallback |= fallback
             output_pairs = [(k, structures[k]) for k in ranking]
             if protected:
                 output_pairs = historical
@@ -286,6 +304,7 @@ def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
         'router': recipe.get('router'),
         'direct_ranker': recipe.get('direct_ranker'),
         'candidate_expansion': recipe.get('candidate_expansion'),
+        'chemistry_expansion': chemical_expansion,
         'chemistry': recipe.get('chemistry'),
         'mass_hypothesis': mass_variant,
         'fragment_budget_fallback_molecules': sum(r['fragment_budget_fallback'] for r in audit),

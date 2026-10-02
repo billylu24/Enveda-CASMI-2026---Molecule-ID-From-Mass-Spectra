@@ -1,0 +1,14 @@
+{
+  "status": "verified",
+  "tests": 84,
+  "replay": {
+    "molecules": 25,
+    "complete_ranking_matches": 25
+  },
+  "changes": [
+    "Separate chemical reranking before expansion fusion",
+    "Budget fallback preserves original ranking",
+    "Atomic release packaging",
+    "Independent auxiliary job supervision"
+  ]
+}

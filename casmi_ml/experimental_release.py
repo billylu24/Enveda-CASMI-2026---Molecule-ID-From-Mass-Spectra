@@ -3,6 +3,7 @@
 import argparse
 import json
 import shutil
+import tempfile
 import zipfile
 from pathlib import Path
 
@@ -14,12 +15,26 @@ from casmi_ml.research_release import copy_inference_source
 
 
 def package(identifier, decision, output):
+    output = Path(output)
+    if output.exists():
+        raise ValueError("Use a fresh release directory; never overwrite scored assets")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(
+        prefix=output.name + ".preparing-", dir=output.parent
+    ) as temporary:
+        staged = Path(temporary) / "release"
+        _package(identifier, decision, staged)
+        staged.rename(output)
+    return output
+
+
+def _package(identifier, decision, output):
     decision, output = Path(decision), Path(output)
     report = json.loads(decision.read_text())
     winner = report["winner"]
     if not winner or not winner["gate"]["eligible"]:
         raise ValueError("Development gate required")
-    if report["direction"] not in ["mass", "generation_slots"]:
+    if report["direction"] not in ["mass", "generation_slots", "coverage"]:
         raise ValueError(
             "This packaging path supports tested mass and generation-slot experiments"
         )
@@ -101,6 +116,30 @@ def package(identifier, decision, output):
             "samples": 128,
             "total_seconds": 1800,
         }
+    if report["direction"] == "coverage":
+        protocol = json.loads(
+            (Path(report["round_directory"]) / "protocol.json").read_text()
+        )
+        from casmi_ml.coverage_experiment import EXTERNAL
+
+        if digest(EXTERNAL) != protocol["external"]["derived_sha256"]:
+            raise ValueError("Selected expansion catalog changed")
+        recipe["mass_hypothesis"] = "charge_aware_union"
+        shutil.copy2(EXTERNAL, bundle / "external_catalog.parquet")
+        attribution = bundle / "catalog_attribution"
+        attribution.mkdir(exist_ok=True)
+        for name in ["ATTRIBUTION.md", "manifest.json", "zenodo_record.json"]:
+            shutil.copy2(EXTERNAL.parent / name, attribution / name)
+        recipe["chemistry_expansion"] = {
+            "path": "external_catalog.parquet",
+            "sha256": digest(EXTERNAL),
+            "weight": float(winner["variant"].split("_")[1]),
+        }
+        replay = json.loads(
+            (Path(report["round_directory"]) / "replay.json").read_text()
+        )
+        if not replay["valid"] or replay["molecules"] < 25:
+            raise ValueError("Real expanded chemical ranking replay required")
     write_json(bundle / "deployment_recipe.json", recipe)
     shutil.copy2(decision, bundle / "development_decision.json")
     sums = {

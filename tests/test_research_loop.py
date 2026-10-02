@@ -385,3 +385,36 @@ class AuxiliaryJobTests(unittest.TestCase):
             self.assertEqual(result, ["stopped"])
             self.assertFalse(c.read()["auxiliary_jobs"])
             self.assertEqual(c.read()["active_job"], primary)
+
+
+class CoverageFusionTests(unittest.TestCase):
+    def test_fragment_budget_exhaustion_preserves_original_ranking(self):
+        from casmi_ml.coverage_inference import merge_expanded
+
+        self.assertEqual(
+            merge_expanded(["a", "b"], ["b", "c"], 1.0, fallback=True), ["a", "b"]
+        )
+        self.assertEqual(merge_expanded(["a", "b"], ["b", "c"], 1.0)[0], "b")
+        with self.assertRaises(ValueError):
+            merge_expanded(["a"], ["b"], 1.1)
+
+
+class AtomicReleaseTests(unittest.TestCase):
+    def test_failed_packaging_does_not_leave_partial_release(self):
+        from casmi_ml.experimental_release import package
+
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+
+            def fail(identifier, decision, staged):
+                staged.mkdir()
+                (staged / "model.pt").write_bytes(b"incomplete")
+                raise ValueError("Replay failed")
+
+            with (
+                patch("casmi_ml.experimental_release._package", side_effect=fail),
+                self.assertRaises(ValueError),
+            ):
+                package("round", root / "decision.json", root / "release")
+            self.assertFalse((root / "release").exists())
+            self.assertEqual(list(root.iterdir()), [])
