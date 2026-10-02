@@ -1,0 +1,44 @@
+{
+  "round": "0070_chembl37_coverage",
+  "direction": "catalog_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "independent_acceptance": false,
+    "molecules": 2000,
+    "manifest": {
+      "source": "https://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/releases/chembl_37/",
+      "release": 37,
+      "release_date": "2026-05-01",
+      "source_sha256": "ea6181ce8dc7af41974e35b92e1febb0c9dcbe2c62f7ccc4a5d983ac19f696e7",
+      "license_sha256": "f0c22ca33207ad8a85129a71f1454fcf8f2f71c99e68da5da01538210fa3ffba",
+      "attribution_sha256": "41eb0cf5eb2ceec5954db84f6c73969c7d928799fe39a7771140cdb0afc4a0df",
+      "derived_sha256": "3cfa1f39ee99bab83861609fb36ead49fa138b191955c0428504f88bd55178da",
+      "input_rows": 2897819,
+      "structures": 2616801,
+      "filters": {
+        "retained": 2749363,
+        "mixture_or_nonorganic": 120863,
+        "charged_generic_or_isotopic": 27573,
+        "invalid": 15,
+        "identity_disagreement": 5
+      },
+      "selection": "All valid neutral organic connected nonisotopic specific public structures; no query/truth selection",
+      "normalization": "remove stereochemistry only; preserve connectivity; validate declared InChI connectivity key; no salt splitting or tautomer changes",
+      "license": "CC-BY-SA3.0, retain original license and attribution with derived data"
+    },
+    "existing_catalog_structures": 1064724,
+    "combined_catalog_structures": 3546326,
+    "new_public_structures": 2481602,
+    "database_truth_coverage_before": 260,
+    "database_truth_coverage_after": 365,
+    "mass_window_truth_coverage_before": 253,
+    "mass_window_truth_coverage_after": 358,
+    "scope": "Repeated2000 coverage diagnosis only; no combined ranking or accuracy claim",
+    "seconds": 159.3272491520038
+  },
+  "protocol_sha256": "811e934aebb6e0437615876d9102b4fbbb9faea1a9cdab487b4e125652509bfd",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

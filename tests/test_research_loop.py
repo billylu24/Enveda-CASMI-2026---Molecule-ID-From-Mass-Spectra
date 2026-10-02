@@ -659,3 +659,37 @@ class OrphanStopTests(unittest.TestCase):
                 if child.poll() is None:
                     child.kill()
                     child.wait()
+
+
+class GithubRecoveryTests(unittest.TestCase):
+    def test_transient_push_failure_retains_commit_and_retry_state(self):
+        with tempfile.TemporaryDirectory() as d:
+            c = LoopTests().controller(Path(d))
+            c.register_round("round", "publication", [], "unused.json")
+            c.mark_round("round", status="recorded", git_commit="existing_commit")
+            error = subprocess.CalledProcessError(
+                128,
+                ["git", "push"],
+                output="fatal: Failed to connect to github.com port443",
+            )
+            with patch.object(c, "_sync_github", side_effect=error):
+                self.assertFalse(c.sync_github("round", []))
+            row = c.read()["rounds"][0]
+            self.assertEqual(row["git_commit"], "existing_commit")
+            self.assertFalse(row["git_synced"])
+            self.assertIn("Failed to connect", row["github_sync_error"])
+            with patch.object(c, "sync_github", return_value=False):
+                self.assertEqual(c.complete_round("round"), "github_waiting")
+
+    def test_non_network_git_rejection_still_requires_resolution(self):
+        with tempfile.TemporaryDirectory() as d:
+            c = LoopTests().controller(Path(d))
+            c.register_round("round", "publication", [], "unused.json")
+            error = subprocess.CalledProcessError(
+                128, ["git", "push"], output="remote: permission denied"
+            )
+            with (
+                patch.object(c, "_sync_github", side_effect=error),
+                self.assertRaises(subprocess.CalledProcessError),
+            ):
+                c.sync_github("round", [])

@@ -676,7 +676,29 @@ class Controller:
     def sync_github(self, identifier, paths):
         with (self.root / "github_sync.lock").open("a") as lock:
             fcntl.flock(lock, fcntl.LOCK_EX)
-            return self._sync_github(identifier, paths)
+            try:
+                return self._sync_github(identifier, paths)
+            except subprocess.CalledProcessError as error:
+                output = str(error.output or "")
+                transient = [
+                    "Could not resolve host",
+                    "Failed to connect",
+                    "Could not connect to server",
+                    "Connection timed out",
+                    "Connection reset",
+                    "SSL connection timeout",
+                    "requested URL returned error: 502",
+                    "requested URL returned error: 503",
+                    "requested URL returned error: 504",
+                ]
+                if not any(message.lower() in output.lower() for message in transient):
+                    raise
+                self.mark_round(
+                    identifier,
+                    github_sync_error=output[-2000:],
+                    github_sync_checked_at=now(),
+                )
+                return False
 
     def _sync_github(self, identifier, paths):
         """Explicit curated paths only; push retries cannot duplicate a completed commit."""
@@ -686,7 +708,9 @@ class Controller:
         remote, branch = self.config["github_remote"], self.config["github_branch"]
 
         def git(*args):
-            return subprocess.check_output(["git", *args], text=True).strip()
+            return subprocess.check_output(
+                ["git", *args], text=True, stderr=subprocess.STDOUT
+            ).strip()
 
         if git("branch", "--show-current") != branch:
             raise ValueError("Research sync must run on configured branch")
@@ -711,7 +735,7 @@ class Controller:
             self.mark_round(identifier, git_commit=git("rev-parse", "HEAD"))
         git("push", remote, f"HEAD:{branch}")
         commit = git("rev-parse", "HEAD")
-        self.mark_round(identifier, git_synced=True)
+        self.mark_round(identifier, git_synced=True, github_sync_error=None)
         self.change(
             lambda s: s["github_commits"].append(
                 {"round": identifier, "commit": commit}
@@ -924,7 +948,8 @@ class Controller:
                 return "deployment_needed"
         r = next(row for row in self.read()["rounds"] if row["id"] == identifier)
         if self.config["automatic_github_sync"] and not r["git_synced"]:
-            self.sync_github(identifier, self.public_paths())
+            if self.sync_github(identifier, self.public_paths()) is False:
+                return "github_waiting"
         return "round_complete"
 
     def release_round(self, identifier):
@@ -1301,6 +1326,7 @@ class Controller:
                 result = self.step()
                 if result in [
                     "publication_waiting",
+                    "github_waiting",
                     "orphan_job_running",
                     "auxiliary_running",
                 ]:
