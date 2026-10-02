@@ -1655,5 +1655,12 @@
     "generation_branch": 25,
     "expanded_branch": 25,
     "scope": "Actual unlabeled generation handoff for both routing branches; expansion CPU/MetFrag replay separately verified"
+  },
+  "public_submission": {
+    "id": 56771973,
+    "status": "COMPLETE",
+    "score": 0.173,
+    "version": 1,
+    "error": ""
   }
 }
