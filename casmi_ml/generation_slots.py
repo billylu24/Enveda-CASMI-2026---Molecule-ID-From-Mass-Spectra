@@ -13,8 +13,8 @@ from casmi_ml.research_protocol import ROOT, freeze
 
 
 def insert_generated(base, generated, prefix, slots):
-    if prefix < 1 or slots < 1:
-        raise ValueError("Positive insertion prefix and slots required")
+    if prefix < 0 or slots < 1:
+        raise ValueError("Nonnegative insertion prefix and positive slots required")
     novel = [key for key in dict.fromkeys(generated) if key not in set(base)][:slots]
     return base[:prefix] + novel + base[prefix:]
 

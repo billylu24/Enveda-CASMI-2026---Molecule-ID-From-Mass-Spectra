@@ -144,7 +144,9 @@
     "casmi_ml/learned_chemical_critic.py",
     "tests/test_learned_chemical_critic.py",
     "casmi_ml/chebi_catalog.py",
-    "tests/test_chebi_catalog.py"
+    "tests/test_chebi_catalog.py",
+    "casmi_ml/generated_expanded_first.py",
+    "tests/test_generated_expanded_first.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
