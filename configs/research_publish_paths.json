@@ -126,7 +126,14 @@
     "kaggle_release_calibrated_0044/kaggle_verification.json",
     "casmi_ml/generated_second_reference.py",
     "tests/test_generated_second_reference.py",
-    "tests/test_publication_slug.py"
+    "tests/test_publication_slug.py",
+    "kaggle_release_second_0045/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_second_0045/notebook/kernel-metadata.json",
+    "kaggle_release_second_0045/verification.json",
+    "kaggle_release_second_0045/status.json",
+    "kaggle_release_second_0045/kaggle_verification.json",
+    "casmi_ml/generated_chemical_evidence.py",
+    "tests/test_generated_chemical_evidence.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

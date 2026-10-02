@@ -149,10 +149,21 @@ def run(directory, limit=25):
                 "molecule_id": key,
                 "protected": confidence[key] >= 0.5,
                 "generation_allowed": allowed,
+                "second_candidate_has_reference": len(rank) >= 2
+                and rank[1] in observed,
             }
         )
+        effective_prefix = (
+            1
+            if deployment.get("adaptive_prefix") == "second_unreferenced"
+            and len(rank) >= 2
+            and rank[1] not in observed
+            else prefix
+        )
         expected[key] = (
-            insert_generated(rank, generated[key], prefix, slots) if allowed else rank
+            insert_generated(rank, generated[key], effective_prefix, slots)
+            if allowed
+            else rank
         )[:25]
     write_json(output / "full.json", full)
     pd.DataFrame(base).to_csv(output / "base.csv", index=False)
@@ -172,6 +183,7 @@ def run(directory, limit=25):
         token_length_exponent=1.0 if deployment.get("calibrated") else 0.0,
         critic_checkpoint=deployment.get("critic_checkpoint"),
         critic_weight=0.5 if deployment.get("calibrated") else 0.0,
+        adaptive_prefix=deployment.get("adaptive_prefix"),
     )
     actual = pd.read_csv(output / "submission.csv").set_index("molecule_id")
     matches = sum(
@@ -196,6 +208,11 @@ def run(directory, limit=25):
         "token_length_exponent": 1.0 if deployment.get("calibrated") else 0.0,
         "critic_weight": 0.5 if deployment.get("calibrated") else 0.0,
         "critic_sha256": deployment.get("critic_sha256"),
+        "adaptive_prefix": deployment.get("adaptive_prefix"),
+        "adaptive_queries_with_prefix1": sum(
+            r["generation_allowed"] and not r["second_candidate_has_reference"]
+            for r in routing
+        ) if deployment.get("adaptive_prefix") else 0,
         "generator_sha256": digest(checkpoint),
         "samples_sha256": digest(generated_path),
         "scope": "Actual unlabeled generation handoff for both routing branches; expansion CPU/MetFrag replay separately verified",

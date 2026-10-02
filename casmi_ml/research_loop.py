@@ -750,6 +750,10 @@ class Controller:
         ):
             raise ValueError("Verification belongs to different release contents")
         previous_identity = state.get("submission_aliases", {}).get(identity, identity)
+        # Metadata-only amendments use the original verified canonical identity
+        # for reservation as well as lookup, so their first submission is allowed
+        # once while duplicates of already accepted contents remain impossible.
+        identity = previous_identity
         previous = state["submissions"].get(previous_identity)
         if previous is not None and previous["status"] != "quota_wait":
             return previous
@@ -869,6 +873,7 @@ class Controller:
                 "generation_model",
                 "generated_frequency",
                 "generated_position_update",
+                "generated_second_reference",
                 "protected_generation",
             ]:
                 outcome = self.release_round(identifier)
@@ -914,6 +919,7 @@ class Controller:
             "generation_model",
             "generated_frequency",
             "generated_position_update",
+            "generated_second_reference",
         ]:
             directory = Path(r["report"]).parent
             replay = directory / "replay.json"
@@ -1037,6 +1043,7 @@ class Controller:
                 "generation_model",
                 "generated_frequency",
                 "generated_position_update",
+                "generated_second_reference",
                 "protected_generation",
             ]:
                 gpu = (self.root / "gpu.lock").open("a")
@@ -1058,6 +1065,7 @@ class Controller:
                             "generation_model",
                             "generated_frequency",
                             "generated_position_update",
+                            "generated_second_reference",
                             "protected_generation",
                         ]
                         else ".venv/bin/python",
@@ -1180,6 +1188,7 @@ class Controller:
             "generation_model",
             "generated_frequency",
             "generated_position_update",
+            "generated_second_reference",
         ]:
             # The child owns the GPU budget/lock. Probe availability before
             # launching it so a queued GPU job remains queued during another
@@ -1210,6 +1219,7 @@ class Controller:
             "generation_model",
             "generated_frequency",
             "generated_position_update",
+            "generated_second_reference",
         ]:
             seconds = self.config["gpu_stage_seconds"]["generation"]
         try:

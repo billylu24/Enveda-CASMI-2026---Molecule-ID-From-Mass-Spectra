@@ -309,6 +309,60 @@ class ReleaseEvidenceTests(unittest.TestCase):
             self.assertEqual(result["id"], 123)
             api.assert_not_called()
 
+    def test_metadata_alias_first_submission_uses_canonical_identity_once(self):
+        from unittest.mock import MagicMock
+
+        from casmi_ml.data import write_json
+        from casmi_ml.metfrag import digest
+        from casmi_ml.research_loop import release_identity
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            c = LoopTests().controller(root)
+            release = root / "release"
+            (release / "bundle").mkdir(parents=True)
+            code = release / "bundle/code.py"
+            code.write_bytes(b"frozen code")
+            sums = {"code.py": digest(code)}
+            write_json(release / "bundle/SHA256SUMS.json", sums)
+            write_json(
+                release / "notebook/kernel-metadata.json", {"id": "owner/new-slug"}
+            )
+            write_json(release / "notebook/code.ipynb", {"cells": []})
+            write_json(
+                release / "dataset/dataset-metadata.json", {"id": "owner/new-data"}
+            )
+            alias = release_identity(release, sums, "selected")
+            canonical = "verified-before-metadata-amendment"
+            write_json(
+                release / "verification.json",
+                {"valid": True, "identity": canonical, "seconds": 1, "peak_rss_mib": 1},
+            )
+            decision = root / "decision.json"
+            write_json(
+                decision,
+                {"winner": {"variant": "selected", "gate": {"eligible": True}}},
+            )
+            c.register_round("round", "mass", [], root / "report.json")
+            c.mark_round(
+                "round",
+                decision=str(decision),
+                remote_release={"kernel": "owner/new-slug", "version": 1},
+            )
+            c.change(lambda state: state.update(submission_aliases={alias: canonical}))
+            api = MagicMock()
+            api.kernels_status.return_value = {"status": "COMPLETE"}
+            api.competition_submit_code.return_value.ref = 123
+            with patch("kaggle.api.kaggle_api_extended.KaggleApi", return_value=api):
+                first = c.publish_prepared("round", release)
+                second = c.publish_prepared("round", release)
+            self.assertEqual(first["id"], 123)
+            self.assertEqual(second["id"], 123)
+            api.competition_submit_code.assert_called_once()
+            self.assertIn(canonical, c.read()["submissions"])
+            self.assertNotIn(alias, c.read()["submissions"])
+            self.assertEqual(c.read()["pending_submission"], canonical)
+
 
 class CohortAndSamplingTests(unittest.TestCase):
     def test_sampling_ignores_label_and_processing_order(self):

@@ -54,6 +54,7 @@ def _package(identifier, decision, output):
         "generation_model",
         "generated_frequency",
         "generated_position_update",
+        "generated_second_reference",
         "protected_generation",
     ]:
         raise ValueError(
@@ -168,6 +169,7 @@ def _package(identifier, decision, output):
         "generation_model",
         "generated_frequency",
         "generated_position_update",
+        "generated_second_reference",
     ]:
         from casmi_ml.coverage_experiment import EXTERNAL
         from casmi_ml.research_protocol import ROOT
@@ -175,7 +177,10 @@ def _package(identifier, decision, output):
         protocol = json.loads(
             (Path(report["round_directory"]) / "protocol.json").read_text()
         )
-        if report["direction"] == "generated_position_update":
+        if report["direction"] in [
+            "generated_position_update",
+            "generated_second_reference",
+        ]:
             deployment = json.loads(
                 (Path(report["round_directory"]) / "deployment.json").read_text()
             )
@@ -192,6 +197,7 @@ def _package(identifier, decision, output):
             "generation_model",
             "generated_frequency",
             "generated_position_update",
+            "generated_second_reference",
         ]
         if protocol.get("open_protected", False) != open_protected:
             raise ValueError("Reference generation protocol mismatch")
@@ -204,6 +210,7 @@ def _package(identifier, decision, output):
             "generation_model",
             "generated_frequency",
             "generated_position_update",
+            "generated_second_reference",
         ]:
             if report["direction"] == "generated_frequency" and (
                 winner["variant"] not in protocol["variants"]
@@ -243,9 +250,13 @@ def _package(identifier, decision, output):
             "generation_model",
             "generated_frequency",
             "generated_position_update",
+            "generated_second_reference",
         ] and (replay.get("prefix") != prefix or replay.get("slots") != slots):
             raise ValueError("Generation position replay configuration mismatch")
-        if report["direction"] == "generated_position_update":
+        if report["direction"] in [
+            "generated_position_update",
+            "generated_second_reference",
+        ]:
             calibrated = protocol["calibrated"]
             expected_critic_weight = 0.5 if calibrated else 0.0
             expected_token_exponent = 1.0 if calibrated else 0.0
@@ -271,7 +282,11 @@ def _package(identifier, decision, output):
             / "generation"
             / f"researchdev_samples128_limitall_stable_v2{suffix}.json"
         )
-        if report["direction"] in ["generated_frequency", "generated_position_update"]:
+        if report["direction"] in [
+            "generated_frequency",
+            "generated_position_update",
+            "generated_second_reference",
+        ]:
             generated = Path(protocol["generated_path"])
         if report["direction"] == "generated_frequency" and (
             replay.get("frequency_weight") != protocol["variants"][winner["variant"]]
@@ -281,6 +296,7 @@ def _package(identifier, decision, output):
             "generation_model",
             "generated_frequency",
             "generated_position_update",
+            "generated_second_reference",
         ]:
             if replay.get("generator_sha256") != digest(checkpoint) or replay.get(
                 "samples_sha256"
@@ -333,7 +349,8 @@ def _package(identifier, decision, output):
                 winner["variant"]
             ]
         if (
-            report["direction"] == "generated_position_update"
+            report["direction"]
+            in ["generated_position_update", "generated_second_reference"]
             and protocol["calibrated"]
         ):
             critic_path = Path(protocol["critic_checkpoint"])
@@ -349,6 +366,10 @@ def _package(identifier, decision, output):
                 raise ValueError("Generated critic conditioner changed")
             shutil.copy2(critic_path, bundle / "generated_critic.pt")
             recipe["generation"]["token_length_exponent"] = 1.0
+            if protocol.get("adaptive_prefix"):
+                if replay.get("adaptive_prefix") != protocol["adaptive_prefix"]:
+                    raise ValueError("Second reference replay prefix rule mismatch")
+                recipe["generation"]["adaptive_prefix"] = protocol["adaptive_prefix"]
             recipe["generation"]["critic"] = {
                 "checkpoint": "generated_critic.pt",
                 "sha256": digest(critic_path),
@@ -438,6 +459,7 @@ def _package(identifier, decision, output):
             "generation_model",
             "generated_frequency",
             "generated_position_update",
+            "generated_second_reference",
             "protected_generation",
         ],
         id=kernel_id,
@@ -454,6 +476,7 @@ def _package(identifier, decision, output):
         "generation_model",
         "generated_frequency",
         "generated_position_update",
+        "generated_second_reference",
         "protected_generation",
     ]:
         nb["cells"][1]["source"] = nb["cells"][1]["source"].replace(

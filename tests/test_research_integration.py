@@ -262,11 +262,12 @@ class ProtectedGenerationRoutingTests(unittest.TestCase):
         from casmi_ml.metfrag import digest
 
         base = ["C", "CC", "CCC", "CCCC", "CCCCC", "CCCCCC"]
-        for allowed, timeout, frequency_weight in [
-            (True, False, 0.0),
-            (True, False, 1.0),
-            (False, False, 1.0),
-            (True, True, 1.0),
+        for allowed, timeout, frequency_weight, adaptive in [
+            (True, False, 0.0, None),
+            (True, False, 1.0, None),
+            (False, False, 1.0, None),
+            (True, True, 1.0, None),
+            (True, False, 1.0, "second_unreferenced"),
         ]:
             with (
                 self.subTest(
@@ -296,6 +297,7 @@ class ProtectedGenerationRoutingTests(unittest.TestCase):
                             "molecule_id": "query",
                             "protected": True,
                             "generation_allowed": allowed,
+                            "second_candidate_has_reference": False,
                         }
                     ]
                 ).to_csv(root / "route.csv", index=False)
@@ -361,17 +363,24 @@ class ProtectedGenerationRoutingTests(unittest.TestCase):
                         root / "out.csv",
                         routing_csv=root / "route.csv",
                         encoder_path=encoder,
-                        prefix=5,
+                        prefix=2 if adaptive else 5,
                         slots=1,
                         full_rankings=root / "full.json",
                         open_protected=True,
                         frequency_weight=frequency_weight,
+                        adaptive_prefix=adaptive,
                     )
                 ranking = result.smiles.iloc[0].split(";")
-                self.assertEqual(ranking[:5], base[:5])
+                self.assertEqual(
+                    ranking[: 1 if adaptive else 5], base[: 1 if adaptive else 5]
+                )
                 self.assertEqual(
                     ranking,
-                    base[:5] + ["O" if frequency_weight else "N", base[5]]
+                    (
+                        base[:1] + ["O"] + base[1:]
+                        if adaptive
+                        else base[:5] + ["O" if frequency_weight else "N", base[5]]
+                    )
                     if allowed and not timeout
                     else base,
                 )
@@ -648,6 +657,44 @@ class DecoderCheckpointPackagingTests(unittest.TestCase):
                         root / "wrongcalibration",
                     )
                 self.assertFalse((root / "wrongcalibration").exists())
+                # Adaptive insertion must be bound to the actual replay rule.
+                calibrated_replay["critic_weight"] = 0.5
+                calibrated_replay["adaptive_prefix"] = "second_unreferenced"
+                write_json(round_dir / "replay.json", calibrated_replay)
+                adaptive_deployment = json.loads(
+                    (round_dir / "deployment.json").read_text()
+                )
+                adaptive_deployment.update(
+                    variant="second_unreferenced", adaptive_prefix="second_unreferenced"
+                )
+                write_json(round_dir / "deployment.json", adaptive_deployment)
+                adaptive_decision = root / "adaptive_decision.json"
+                write_json(
+                    adaptive_decision,
+                    {
+                        "direction": "generated_second_reference",
+                        "round_directory": str(round_dir),
+                        "winner": {
+                            "variant": "second_unreferenced",
+                            "gate": {"eligible": True},
+                        },
+                    },
+                )
+                adaptive_output = root / "adaptive_release"
+                package("adaptive", adaptive_decision, adaptive_output)
+                adaptive_recipe = json.loads(
+                    (adaptive_output / "bundle/deployment_recipe.json").read_text()
+                )
+                self.assertEqual(
+                    adaptive_recipe["generation"]["adaptive_prefix"],
+                    "second_unreferenced",
+                )
+                self.assertEqual(adaptive_recipe["generation"]["prefix"], 2)
+                calibrated_replay["adaptive_prefix"] = None
+                write_json(round_dir / "replay.json", calibrated_replay)
+                with self.assertRaises(ValueError):
+                    package("wrongadaptive", adaptive_decision, root / "wrongadaptive")
+                self.assertFalse((root / "wrongadaptive").exists())
                 write_json(round_dir / "protocol.json", protocol)
                 replay["generator_sha256"] = "wrong checkpoint"
                 write_json(round_dir / "replay.json", replay)

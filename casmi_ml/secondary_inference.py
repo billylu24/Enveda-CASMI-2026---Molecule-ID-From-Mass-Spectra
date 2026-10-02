@@ -165,6 +165,15 @@ def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
     order = np.argsort(masses)
     coco_order = np.argsort(coconut.exact_mass.to_numpy())
     coco_masses = coconut.exact_mass.to_numpy()[coco_order]
+    adaptive_observed = None
+    if recipe.get('generation', {}).get('adaptive_prefix') == 'second_unreferenced':
+        from casmi_ml.mass_candidates import mass_centers
+        all_centers = set(neutral.tolist())
+        for _, query in test.groupby('molecule_id', sort=False):
+            all_centers.update(mass_centers(query, 'charge_aware_union'))
+        adaptive_records, _ = load_candidates(train_path, np.array(sorted(all_centers)))
+        adaptive_observed = {r[1] for r in adaptive_records}
+        del adaptive_records
     model = checkpoint = candidates = reference = lookup = expanded = None
     cache, rows, audit, full_rows = {}, [], [], []
     for molecule_id, group in test.groupby('molecule_id', sort=False):
@@ -295,13 +304,17 @@ def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
             raise ValueError(f'No valid predictions for {molecule_id}')
         if full_rankings is not None:
             full_rows.append({'molecule_id': molecule_id, 'smiles': smiles})
+        second_has_reference = None
+        if recipe.get('generation', {}).get('adaptive_prefix') == 'second_unreferenced':
+            second_has_reference = len(smiles) >= 2 and Chem.MolToInchiKey(Chem.MolFromSmiles(smiles[1]))[:14] in adaptive_observed
         smiles = smiles[:25]
         rows.append({'molecule_id': molecule_id, 'smiles': ';'.join(smiles)})
         audit.append({'molecule_id': molecule_id, 'confidence': confidence,
                       'protected': protected, 'candidates': len(smiles),
                       'router_reliability': reliability,
                       'fragment_budget_fallback': fragment_budget_fallback,
-                      'generation_allowed': generation_allowed})
+                      'generation_allowed': generation_allowed,
+                      'second_candidate_has_reference': second_has_reference})
         if len(rows) % 100 == 0:
             print(f'predicted {len(rows)}/{test.molecule_id.nunique()}', flush=True)
     if full_rankings is not None:

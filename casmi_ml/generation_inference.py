@@ -40,6 +40,7 @@ def predict(
     token_length_exponent=0.0,
     critic_checkpoint=None,
     critic_weight=0.0,
+    adaptive_prefix=None,
 ):
     if not 0 <= frequency_weight <= 1:
         raise ValueError("Frequency fusion weight must be between zero and one")
@@ -109,6 +110,17 @@ def predict(
         if any(not isinstance(v, (bool, np.bool_)) for v in allowed.values()):
             raise ValueError("Generation gates must be booleans")
         protected = {key: protected[key] or not allowed[key] for key in protected}
+    second_reference = None
+    if adaptive_prefix is not None:
+        if adaptive_prefix != "second_unreferenced" or prefix != 2:
+            raise ValueError("Unsupported adaptive generated prefix")
+        if "second_candidate_has_reference" not in routing:
+            raise ValueError("Actual second candidate reference membership required")
+        second_reference = routing.set_index(
+            "molecule_id"
+        ).second_candidate_has_reference.to_dict()
+        if any(not isinstance(v, (bool, np.bool_)) for v in second_reference.values()):
+            raise ValueError("Second candidate reference flags must be boolean")
     rows, audit = [], []
     for molecule_id, group in test.groupby("molecule_id", sort=False):
         smiles = (
@@ -230,7 +242,16 @@ def predict(
                 else:
                     from casmi_ml.generation_slots import insert_generated
 
-                    rank = insert_generated(original, generated, prefix, slots)
+                    effective_prefix = (
+                        1
+                        if second_reference is not None
+                        and not second_reference[molecule_id]
+                        and len(original) >= 2
+                        else prefix
+                    )
+                    rank = insert_generated(
+                        original, generated, effective_prefix, slots
+                    )
                 smiles = [lookup[k] for k in rank[:25]]
                 status = "generated_and_merged"
             else:
@@ -261,6 +282,7 @@ def predict(
             "frequency_weight": frequency_weight,
             "token_length_exponent": token_length_exponent,
             "critic_weight": critic_weight,
+            "adaptive_prefix": adaptive_prefix,
             "critic_checkpoint_sha256": digest(critic_checkpoint)
             if critic_weight
             else None,
@@ -287,6 +309,7 @@ def main():
     p.add_argument("--token-length-exponent", type=float, default=0.0)
     p.add_argument("--critic-checkpoint", type=Path)
     p.add_argument("--critic-weight", type=float, default=0.0)
+    p.add_argument("--adaptive-prefix", choices=["second_unreferenced"])
     a = p.parse_args()
     if (a.prefix is None) != (a.slots is None):
         p.error("--prefix and --slots must be provided together")
@@ -307,6 +330,7 @@ def main():
         a.token_length_exponent,
         a.critic_checkpoint,
         a.critic_weight,
+        a.adaptive_prefix,
     )
 
 
