@@ -14,7 +14,16 @@ from casmi_ml.generation_slots import insert_generated
 from casmi_ml.research_protocol import ENCODER, ROOT
 
 
-def run(generated, incumbent, output, limit=25, prefix=5, slots=3, checkpoint=None):
+def run(
+    generated,
+    incumbent,
+    output,
+    limit=25,
+    prefix=5,
+    slots=3,
+    checkpoint=None,
+    open_protected=False,
+):
     generated, incumbent, output = Path(generated), Path(incumbent), Path(output)
     output.mkdir(parents=True, exist_ok=True)
     confidence = {
@@ -23,7 +32,14 @@ def run(generated, incumbent, output, limit=25, prefix=5, slots=3, checkpoint=No
     }
     all_samples = json.loads(generated.read_text())
     samples = [
-        r for r in all_samples if r["candidates"] and confidence[r["key"]] < 0.5
+        r
+        for r in all_samples
+        if r["candidates"]
+        and (
+            confidence[r["key"]] >= 0.5
+            if open_protected
+            else confidence[r["key"]] < 0.5
+        )
     ][:limit]
     if len(samples) < limit:
         used = {r["key"] for r in samples}
@@ -74,6 +90,7 @@ def run(generated, incumbent, output, limit=25, prefix=5, slots=3, checkpoint=No
         prefix=prefix,
         slots=slots,
         full_rankings=output / "full.json",
+        open_protected=open_protected,
     )
     actual = pd.read_csv(output / "submission.csv").set_index("molecule_id")
     matches = 0
@@ -81,7 +98,7 @@ def run(generated, incumbent, output, limit=25, prefix=5, slots=3, checkpoint=No
         k = row["key"]
         expected = (
             retrieval[k]
-            if confidence[k] >= 0.5
+            if confidence[k] >= 0.5 and not open_protected
             else insert_generated(
                 retrieval[k], [c["key"] for c in row["candidates"]], prefix, slots
             )
@@ -93,6 +110,8 @@ def run(generated, incumbent, output, limit=25, prefix=5, slots=3, checkpoint=No
         matches += predicted == expected[:25]
     result = {
         "molecules": len(keys),
+        "open_protected": open_protected,
+        "protected_queries": sum(confidence[k] >= 0.5 for k in keys),
         "prefix": prefix,
         "slots": slots,
         "full_top25_matches": matches,
@@ -112,6 +131,7 @@ def main():
     p.add_argument("--prefix", type=int, default=5)
     p.add_argument("--slots", type=int, default=3)
     p.add_argument("--checkpoint", type=Path)
+    p.add_argument("--open-protected", action="store_true")
     a = p.parse_args()
     print(
         run(

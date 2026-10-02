@@ -35,6 +35,7 @@ def predict(
     prefix=None,
     slots=None,
     full_rankings=None,
+    open_protected=False,
 ):
     encoder_path = Path(encoder_path or ENCODER)
     if not 1 <= samples <= 128 or seconds <= 0:
@@ -75,6 +76,8 @@ def predict(
     protected = routing.set_index("molecule_id").protected.to_dict()
     if any(not isinstance(v, (bool, np.bool_)) for v in protected.values()):
         raise ValueError("Routing protection must contain booleans")
+    if open_protected:
+        protected = {key: False for key in protected}
     if "generation_allowed" in routing:
         allowed = routing.set_index("molecule_id").generation_allowed.to_dict()
         if any(not isinstance(v, (bool, np.bool_)) for v in allowed.values()):
@@ -180,6 +183,7 @@ def predict(
             "formula_oracle_used": False,
             "kaggle_submitted": False,
             "sampling": "label_independent_spectrum_hash_v1",
+            "open_protected": open_protected,
             "prefix": prefix,
             "slots": slots,
         },
@@ -200,6 +204,7 @@ def main():
     p.add_argument("--prefix", type=int)
     p.add_argument("--slots", type=int)
     p.add_argument("--full-rankings", type=Path)
+    p.add_argument("--open-protected", action="store_true")
     a = p.parse_args()
     if (a.prefix is None) != (a.slots is None):
         p.error("--prefix and --slots must be provided together")
@@ -215,6 +220,7 @@ def main():
         a.prefix,
         a.slots,
         a.full_rankings,
+        a.open_protected,
     )
 
 

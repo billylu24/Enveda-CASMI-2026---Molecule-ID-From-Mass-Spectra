@@ -164,6 +164,18 @@ def _package(identifier, decision, output):
         )
         if not replay["valid"] or replay["molecules"] < 25:
             raise ValueError("Reference guard branch replay required")
+        source_protocol = json.loads((source / "protocol.json").read_text())
+        if digest(EXTERNAL) != source_protocol["external"]["derived_sha256"]:
+            raise ValueError("Reference guard external catalog changed")
+        generated = ROOT / "generation/researchdev_samples128_limitall_stable_v2.json"
+        if digest(generated) != protocol["generated_sha256"]:
+            raise ValueError("Reference guard generator candidates changed")
+        generated_config = json.loads(generated.with_suffix(".config.json").read_text())
+        if (
+            digest(ROOT / "generation/smiles_42/model.pt")
+            != generated_config["checkpoint_sha256"]
+        ):
+            raise ValueError("Reference guard generation model changed")
         recipe["mass_hypothesis"] = "charge_aware_union"
         recipe["reference_guard"] = {"topn": 1, "threshold": 0.0}
         shutil.copy2(EXTERNAL, bundle / "external_catalog.parquet")
@@ -172,6 +184,10 @@ def _package(identifier, decision, output):
             "sha256": digest(EXTERNAL),
             "weight": 1.0,
         }
+        attribution = bundle / "catalog_attribution"
+        attribution.mkdir(exist_ok=True)
+        for name in ["ATTRIBUTION.md", "manifest.json", "zenodo_record.json"]:
+            shutil.copy2(EXTERNAL.parent / name, attribution / name)
         checkpoint = ROOT / "generation/smiles_42/model.pt"
         shutil.copy2(checkpoint, bundle / "generation.pt")
         recipe["generation"] = {
@@ -182,6 +198,34 @@ def _package(identifier, decision, output):
             "slots": 5,
             "samples": 128,
             "total_seconds": 1800,
+        }
+    if report["direction"] == "protected_generation":
+        from casmi_ml.research_protocol import ROOT
+
+        _, prefix, slots = winner["variant"].split("_")
+        replay = json.loads(
+            (Path(report["round_directory"]) / "replay/verification.json").read_text()
+        )
+        if (
+            not replay["valid"]
+            or not replay.get("open_protected")
+            or replay["protected_queries"] < 25
+        ):
+            raise ValueError("Actual high-confidence generation replay required")
+        if replay["prefix"] != int(prefix) or replay["slots"] != int(slots):
+            raise ValueError("Protected generation replay configuration mismatch")
+        checkpoint = ROOT / "generation/smiles_42/model.pt"
+        recipe["mass_hypothesis"] = "charge_aware_union"
+        shutil.copy2(checkpoint, bundle / "generation.pt")
+        recipe["generation"] = {
+            "checkpoint": "generation.pt",
+            "sha256": digest(checkpoint),
+            "sampling": "spectrum_hash_v1_and_shared_group_forward_v2",
+            "prefix": int(prefix),
+            "slots": int(slots),
+            "samples": 128,
+            "total_seconds": 1800,
+            "open_protected": True,
         }
     write_json(bundle / "deployment_recipe.json", recipe)
     shutil.copy2(decision, bundle / "development_decision.json")
@@ -211,14 +255,19 @@ def _package(identifier, decision, output):
     write_json(output / "dataset/dataset-metadata.json", dm)
     km = json.loads((output / "notebook/kernel-metadata.json").read_text())
     km.update(
-        enable_gpu=report["direction"] in ["generation_slots", "reference_guard"],
+        enable_gpu=report["direction"]
+        in ["generation_slots", "reference_guard", "protected_generation"],
         id=kernel_id,
         title=f"CASMI26 Research {slug.replace(chr(45), chr(32))}",
         dataset_sources=[dataset_id, "aidensong123/casmi26-coconut-202609"],
     )
     write_json(output / "notebook/kernel-metadata.json", km)
     nb = json.loads((output / "notebook/casmi_chemistry.ipynb").read_text())
-    if report["direction"] in ["generation_slots", "reference_guard"]:
+    if report["direction"] in [
+        "generation_slots",
+        "reference_guard",
+        "protected_generation",
+    ]:
         nb["cells"][1]["source"] = nb["cells"][1]["source"].replace(
             "casmi_ml.secondary_inference", "casmi_ml.research_pipeline"
         )

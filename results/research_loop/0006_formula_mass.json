@@ -27,5 +27,7 @@
   "device": "cuda",
   "decoder_frozen": true,
   "independent_acceptance": false,
-  "next_gate": "Full 2000-molecule structure ranking required before release"
+  "next_gate": "Full 2000-molecule structure ranking required before release",
+  "decoder_weight_equality_verified": true,
+  "changed_formula_tensors": 4
 }

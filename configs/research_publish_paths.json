@@ -62,7 +62,12 @@
     "casmi_ml/coverage_replay.py",
     "casmi_ml/coverage_guard.py",
     "casmi_ml/reference_guard.py",
-    "casmi_ml/reference_replay.py"
+    "casmi_ml/reference_replay.py",
+    "kaggle_release_reference_0011/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_reference_0011/notebook/kernel-metadata.json",
+    "kaggle_release_reference_0011/verification.json",
+    "kaggle_release_reference_0011/status.json",
+    "casmi_ml/protected_generation.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
