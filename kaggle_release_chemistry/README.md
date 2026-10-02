@@ -12,6 +12,38 @@ The notebook is
 `status.json` records the verified run and submission state; preparing or running
 a notebook alone does not mean that a competition submission has been made.
 
+## Verified result — 2026-10-02
+
+Notebook version 1 (`scriptVersionId=354585479`) completed CPU/offline execution
+in 6m 57s. The competition accepted and reran this version on its hidden test
+set. Its submission status is **Succeeded**, with displayed public MRR@25
+**0.176**, matching the displayed historical best. No improvement is established.
+See [the verified status](status.json) and
+[the downloaded-output aggregate summary](validation_summary.json).
+
+The catalog adds 77,572 structures beyond the COCONUT pool, after excluding
+3,759 charged entries. All 400 visible example molecules used the protected
+historical branch, so neither expansion nor chemistry changed those outputs.
+
+| Fixed 32-example behavior control | MRR@25 | Recall@25 | Changed queries |
+|---|---:|---:|---:|
+| A: original pool, no rules | 0.138849 | 0.6875 | 0 |
+| B: expanded pool, no rules | 0.136245 | 0.6875 | 7 |
+| C: original pool, rules | 0.138849 | 0.6875 | 0 |
+| D: expanded pool, rules | 0.136245 | 0.6875 | 7 |
+
+Of these examples, 23 remained protected and only nine were eligible for the
+new path. No rule matched the eligible queries. Candidate expansion slightly
+reduced this diagnostic MRR; the small, previously observed sample does not
+establish generalization. The rule mechanism still needs real-spectrum
+coverage checks and an independent, molecule-disjoint ablation before any
+benefit can be claimed. These results did not change the fixed weight.
+
+The initial interactive attempt exposed a duplicate-column conversion error
+in the full public catalog. The projection fix passed the actual 162,175-row
+catalog check; the committed notebook then completed successfully. Final local
+verification: 72 tests passed, one data-dependent test skipped, ten subtests.
+
 ## Rebuild and run
 
 `build_notebook.py` embeds the current source files in a deterministic archive.

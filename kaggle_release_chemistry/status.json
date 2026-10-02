@@ -1,5 +1,5 @@
 {
-  "status": "fixed_notebook_ready_to_run",
+  "status": "competition_submission_succeeded",
   "checked_at": "2026-10-02",
   "competition": "enveda-CASMI26-molecule-id-mass-spectra",
   "notebook": "https://www.kaggle.com/code/xiaoyuzhoux120/casmi-2026-chemical-priors-hybrid",
@@ -10,18 +10,40 @@
   "high_confidence_guard": 0.5,
   "chemical_weight": 0.1,
   "gan_trained": false,
-  "score": null,
+  "score": 0.176,
   "tests": {
     "passed": 72,
     "skipped": 1,
     "subtests_passed": 10
   },
-  "draft_error": "Duplicate analog column names when converting complete public catalog",
-  "competition_submitted": false,
+  "competition_submitted": true,
   "embedded_source_sha256": "27cdd79e735f5ce2e0c9b43eacaad507b6757ac8f1a6dfb9c292704bc8c0d7e9",
   "real_catalog_smoke": {
     "input_structures": 162175,
     "charged_excluded": 3759,
     "passed": true
-  }
+  },
+  "notebook_version": 1,
+  "version_name": "Hybrid ChEBI LMSD Chemical Priors v1",
+  "notebook_source_commit": "06e12ee720b19af2ebb562811d074d1caa91b0ec",
+  "internet_enabled": false,
+  "public_score": 0.176,
+  "score_display_precision": 3,
+  "score_checked_at": "2026-10-02T07:51:37Z",
+  "script_version_id": 354585479,
+  "submission_file": "submission.csv",
+  "notebook_run_status": "complete",
+  "notebook_runtime_seconds_displayed": 417,
+  "submission_status_observed": "Succeeded",
+  "submission_record_url": "https://www.kaggle.com/competitions/enveda-CASMI26-molecule-id-mass-spectra/submissions",
+  "best_historical_public_score": 0.176,
+  "improved_over_historical_best": false,
+  "screenshot": "kaggle_submission_success.jpg",
+  "notes": [
+    "The interface did not expose a competition submission ID; script_version_id identifies the notebook version.",
+    "32 behavior examples are previously observed and are not independent validation.",
+    "No chemical rule triggered in the eligible behavior queries; this run does not establish chemical-prior benefit.",
+    "The initial interactive run failed on duplicate catalog columns; the fixed committed version completed successfully."
+  ],
+  "initial_draft_error": "Duplicate analog column names when converting complete public catalog"
 }
