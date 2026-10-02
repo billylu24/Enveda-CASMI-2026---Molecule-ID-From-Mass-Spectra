@@ -900,3 +900,22 @@ class OfflineRuntimeWheelTests(unittest.TestCase):
                     compatible_rdkit_wheel(
                         d, version, [Tag(abi, abi, "manylinux_2_28_x86_64")]
                     )
+
+
+class GeneratedLikelihoodRatioTests(unittest.TestCase):
+    def test_score_masks_forbidden_tokens_and_padding(self):
+        import math
+
+        import torch
+
+        from casmi_ml.generated_likelihood_ratio import log_likelihood
+
+        logits = torch.zeros(2, 3, 5)
+        logits[:, :, [0, 1, 3]] = 100
+        target = torch.tensor([[4, 2, 0], [4, 2, 4]])
+        score = log_likelihood(logits, target)
+        self.assertTrue(torch.isfinite(score).all())
+        self.assertTrue(torch.allclose(score, torch.full((2,), -math.log(2))))
+        # Forbidden-token logits cannot change legal sequence likelihood.
+        logits[:, :, [0, 1, 3]] = -100
+        self.assertTrue(torch.equal(score, log_likelihood(logits, target)))
