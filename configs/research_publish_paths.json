@@ -113,7 +113,9 @@
     "tests/test_generator_composition.py",
     "casmi_ml/generated_frequency.py",
     "tests/test_generated_frequency.py",
-    "casmi_ml/generation_frequency_ranking.py"
+    "casmi_ml/generation_frequency_ranking.py",
+    "casmi_ml/generated_critic.py",
+    "tests/test_generated_critic.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
