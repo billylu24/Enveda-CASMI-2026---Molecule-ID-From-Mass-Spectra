@@ -1,0 +1,23 @@
+{
+  "round": "decoder_overlap_diagnostics_20261002",
+  "exact_hits": {
+    "original": 63,
+    "single3": 86,
+    "mean3": 81
+  },
+  "overlaps": {
+    "original_single3": {
+      "intersection": 55,
+      "union": 94
+    },
+    "single3_mean3": {
+      "intersection": 72,
+      "union": 95
+    }
+  },
+  "interpretation": "Retrospective oracle structure coverage only; combining128+128 would double trajectories and does not establish a fixed128 sampling improvement",
+  "truth_used_only_in_metrics": true,
+  "molecules": 2000,
+  "cohort": "repeated_development",
+  "independent_acceptance": false
+}
