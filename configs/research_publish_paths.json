@@ -179,7 +179,9 @@
     "casmi_ml/critic_hard_negative_training.py",
     "tests/test_critic_hard_negatives.py",
     "tests/test_informative_fragments.py",
-    "tests/test_critic_training_cli.py"
+    "tests/test_critic_training_cli.py",
+    "casmi_ml/metfrag_dimer.py",
+    "tests/test_metfrag_dimer.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

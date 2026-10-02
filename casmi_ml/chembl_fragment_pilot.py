@@ -71,7 +71,17 @@ def run(
     fragment_limit=100,
     evidence_only=False,
     critic_checkpoint=CRITIC,
+    dimer=False,
 ):
+    if dimer and not monomer:
+        raise ValueError("Dimer experiment includes monomer adapter")
+    adapter_name = (
+        "observed_dimer_monomer_products"
+        if dimer
+        else "exact_monomer"
+        if monomer
+        else "proton_only"
+    )
     critic_checkpoint = Path(critic_checkpoint)
     if proposal_limit not in (100, 500) or not 1 <= fragment_limit <= proposal_limit:
         raise ValueError("Invalid proposal or fragment shortlist limit")
@@ -138,9 +148,13 @@ def run(
             "proposal_critic_cache_sha256": digest(critic_path)
             if critic_checkpoint == CRITIC
             else None,
-            "fragment_adapter": "exact_monomer" if monomer else "proton_only",
+            "fragment_adapter": adapter_name,
             "fragment_adapter_sha256": digest(
-                "casmi_ml/metfrag_monomer.py" if monomer else "casmi_ml/metfrag.py"
+                "casmi_ml/metfrag_dimer.py"
+                if dimer
+                else "casmi_ml/metfrag_monomer.py"
+                if monomer
+                else "casmi_ml/metfrag.py"
             ),
             "fragment_seconds": 1200,
             "java_sha256": digest(JAVA),
@@ -222,6 +236,10 @@ def run(
         from casmi_ml.metfrag_monomer import MonomerMetFrag
 
         adapter = MonomerMetFrag
+    if dimer:
+        from casmi_ml.metfrag_dimer import DimerMetFrag
+
+        adapter = DimerMetFrag
     fragmenter = adapter(
         "external/metfrag/MetFragCommandLine-2.6.11.jar",
         ROOT / "chembl_metfrag_cache",
@@ -478,7 +496,7 @@ def run(
             "fragment_groups_with_scores": sum(
                 bool(r["scores"]) for r in fragment_scores.values()
             ),
-            "fragment_adapter": "exact_monomer" if monomer else "proton_only",
+            "fragment_adapter": adapter_name,
             "fragment_budget_fallbacks": sum(
                 r["budget_fallback"] for r in fragment_scores.values()
             ),
@@ -515,6 +533,7 @@ def main():
     p.add_argument("--fragment-limit", type=int, default=100)
     p.add_argument("--evidence-only", action="store_true")
     p.add_argument("--critic-checkpoint", type=Path, default=CRITIC)
+    p.add_argument("--dimer", action="store_true")
     a = p.parse_args()
     print(
         json.dumps(
@@ -528,6 +547,7 @@ def main():
                 a.fragment_limit,
                 a.evidence_only,
                 a.critic_checkpoint,
+                a.dimer,
             ),
             indent=2,
         )

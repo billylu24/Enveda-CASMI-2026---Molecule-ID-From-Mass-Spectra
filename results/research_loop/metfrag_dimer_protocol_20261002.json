@@ -1,0 +1,46 @@
+{
+  "results": {
+    "[2M+H]+": {
+      "status": "complete",
+      "scored_candidates": 2,
+      "product_peaks_used": 4
+    },
+    "[2M-H]-": {
+      "status": "complete",
+      "scored_candidates": 2,
+      "product_peaks_used": 4
+    },
+    "[2M+Na]+": {
+      "status": "complete",
+      "scored_candidates": 2,
+      "product_peaks_used": 4
+    },
+    "[2M+CH2O2-H]-": {
+      "status": "complete",
+      "scored_candidates": 2,
+      "product_peaks_used": 4
+    }
+  },
+  "adapter_sha256": "6e19b6d1e5f8b763cedfc218136783aef970b2b09def4c66b4946db8747ebd2b",
+  "purpose": "synthetic engine and transformation compatibility only; no performance claim",
+  "status": "protocol_registered",
+  "observed_marker_gate": {
+    "relative_intensity_minimum": 0.05,
+    "ppm": 10,
+    "absolute_da": 0.002,
+    "charge": 1,
+    "molecule_count": 2,
+    "product_peak_filter": "strictly below theoretical charged monomer minus .01 Da"
+  },
+  "development_spectra_audit": {
+    "high_resolution_supported_dimer_spectra": 1489,
+    "marker_present": 1380,
+    "marker_and_lower_products": 1346
+  },
+  "queries_with_dimer_support": {
+    "low_confidence_unknown": 389,
+    "low_confidence_known": 254
+  },
+  "labels_used_to_select_scoring_jobs": false,
+  "independent_acceptance": false
+}
