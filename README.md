@@ -6,6 +6,19 @@ This is a mass-filtered spectral-library retrieval baseline for the [Enveda CASM
 
 Best public MRR@25: **0.176** (historical hybrid). The latest PubChemLite experiment scored **0.171**. See [the consolidated results and repository contents](docs/GITHUB_SNAPSHOT.md) for all submissions, validation caveats, and which assets must be regenerated.
 
+## Chemical priors and generative-model analysis (2026-10-01)
+
+Chemical-prior matching and ChEBI/LIPID MAPS/PubChem offline catalog import are
+available as an unvalidated experimental extension. See
+[the chemistry integration guide](docs/CHEMICAL_PRIORS_20261001.md) for source
+provenance, conservative motif rules, inference switches, and the required
+four-way validation before deployment.
+
+The [generative-model analysis](docs/GENERATIVE_MODELS_20261001.md) reviews
+the spectrum-to-structure architecture and proposes controlled adversarial
+negative-sampling and conditional generation experiments. GAN training and
+new leaderboard validation have not been performed.
+
 ## Local setup
 
 ```bash

@@ -1,4 +1,4 @@
-# Results snapshot — 2026-09-29
+# Results snapshot — 2026-10-01
 
 ## Kaggle public results
 
@@ -17,6 +17,23 @@ Scores were checked using the Kaggle CLI on 2026-09-29. These are public leaderb
 The 10.7M-parameter residual model passed its independent local acceptance gate. The direct graph ranker failed independent validation. The calibrated router was withheld because of transfer risk; the robust router failed development protection gates. PubChemLite improved independent local point estimates, but its confidence interval crossed zero and its statistical acceptance flag remains false. Its public score did not improve on the preceding release. Historical hybrid remains the best public result.
 
 ## Repository contents
+
+The October 1 update adds offline public-catalog import, strict MS-FINDER
+dictionary adaptation, five literature-supported chemical-prior rules,
+optional low-confidence reranking, evidence audits, and regression tests.
+See [the chemical-prior guide](CHEMICAL_PRIORS_20261001.md) and
+[the architecture and GAN analysis](GENERATIVE_MODELS_20261001.md).
+The additions remain experimental: no new GAN training, independent chemical
+ablation, or Kaggle score is reported. Local verification passed 60 tests,
+with 1 data-dependent test skipped and 10 subtests passed.
+
+Downloaded ChEBI/LIPID MAPS data and derived catalogs remain excluded. The
+MS-FINDER tables are also excluded because their data-specific license has
+not been verified. Only the adapters and project-authored rules are published.
+
+Expanded catalogs carrying a `formal_charge` column exclude nonzero or missing
+charges from the neutral-mass inference path, independently of the chemistry
+switch. Existing catalogs without that column retain their previous behavior.
 
 Source, tests, configs, experiment guides, compact aggregate reports, training histories, deployment recipes, and Kaggle notebook sources are included. Selected reports retain their original `artifacts/` paths so documentation references remain useful. `results/published_files.json` lists the curated result assets and their SHA-256 hashes. `results/kaggle_submissions.csv` records the score check.
 

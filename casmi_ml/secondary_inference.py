@@ -56,6 +56,20 @@ def predict(recipe_path, data_dir, coconut_path, output):
     configure(threads=4)
     recipe_path = Path(recipe_path)
     recipe = json.loads(recipe_path.read_text())
+    chemistry = recipe.get('chemical_priors')
+    rules = None
+    if chemistry is not None:
+        from casmi_ml.chemical_priors import dictionary_sha256, load_rules
+        dictionary_path = Path(chemistry['path'])
+        if not dictionary_path.is_absolute():
+            dictionary_path = recipe_path.parent / dictionary_path
+        if dictionary_sha256(dictionary_path) != chemistry['sha256']:
+            raise ValueError('Chemical dictionary checksum mismatch')
+        if not 0 <= float(chemistry['weight']) <= 1:
+            raise ValueError('Chemical fusion weight must be between zero and one')
+        if 'router' in recipe or 'direct_ranker' in recipe:
+            raise ValueError('Chemical priors with learned router/direct ranker require separate validation')
+        rules = load_rules(dictionary_path)
     if sum(name in recipe for name in ['router', 'direct_ranker', 'candidate_expansion']) > 1:
         raise ValueError('Combining experimental extensions has not been validated')
     config = recipe['config']
@@ -67,6 +81,7 @@ def predict(recipe_path, data_dir, coconut_path, output):
     if hashlib.sha256(checkpoint_path.read_bytes()).hexdigest() != recipe['checkpoint_sha256']:
         raise ValueError('Checkpoint checksum mismatch')
     external = None
+    external_charged_excluded = 0
     if 'candidate_expansion' in recipe:
         expansion_spec = recipe['candidate_expansion']
         external_path = Path(expansion_spec['path'])
@@ -75,6 +90,13 @@ def predict(recipe_path, data_dir, coconut_path, output):
         if hashlib.sha256(external_path.read_bytes()).hexdigest() != expansion_spec['sha256']:
             raise ValueError('External candidate checksum mismatch')
         external = pd.read_parquet(external_path)
+        if 'formal_charge' in external.columns:
+            # Precursor conversion here assumes a neutral M plus a declared adduct.
+            # Preserve charged originals in source catalogs, but do not mis-index
+            # their ionic mass as the neutral molecule mass in this experiment.
+            neutral_entries = external.formal_charge.eq(0)
+            external_charged_excluded = int((~neutral_entries).sum())
+            external = external.loc[neutral_entries].copy()
     direct = None
     if 'direct_ranker' in recipe:
         from casmi_ml.direct_models import DirectRanker
@@ -121,7 +143,7 @@ def predict(recipe_path, data_dir, coconut_path, output):
     coco_order = np.argsort(coconut.exact_mass.to_numpy())
     coco_masses = coconut.exact_mass.to_numpy()[coco_order]
     model = checkpoint = candidates = reference = lookup = expanded = None
-    cache, rows, audit = {}, [], []
+    cache, rows, audit, chemistry_audit = {}, [], [], []
     for molecule_id, group in test.groupby('molecule_id', sort=False):
         center, library = library_rank(group, records, matrix, masses, order)
         analog = coconut_rank(center, library, coconut, coco_masses, coco_order, cache)
@@ -129,6 +151,7 @@ def predict(recipe_path, data_dir, coconut_path, output):
         confidence = library[0][2] if library else 0.
         protected = router is None and confidence >= config['threshold']
         reliability = None
+        chemical_evidence = []
         if protected:
             output_pairs = historical
         else:
@@ -169,6 +192,24 @@ def predict(recipe_path, data_dir, coconut_path, output):
                                            [k for k, _ in historical], current, confidence, margin, center)
                 reliability = float(router.predict_proba([features])[0, 1])
                 protected = reliability >= router_spec['threshold']
+            if chemistry is not None:
+                from casmi_ml.chemical_priors import candidate_scores, extract_evidence, rerank
+                chemical_evidence = extract_evidence(
+                    group, rules, ppm=chemistry.get('ppm', 10.),
+                    absolute_tolerance=chemistry.get('absolute_tolerance', .002),
+                    intensity_floor=chemistry.get('intensity_floor', .01),
+                )
+                output_structures = {**lookup, **dict(historical)}
+                chemicals = {key: output_structures[key] for key in ranking}
+                scores, supported = candidate_scores(chemicals, chemical_evidence, rules)
+                original_ranking = ranking
+                ranking = rerank(ranking, scores, float(chemistry['weight']))
+                chemistry_audit.append({
+                    'molecule_id': molecule_id, 'evidence': chemical_evidence,
+                    'changed': ranking != original_ranking,
+                    'top25': [{'key': key, 'score': scores.get(key, 0.),
+                               'supported_rules': supported.get(key, [])} for key in ranking[:25]],
+                })
             # Preserve the original structure representation for historical entries.
             structures = {**lookup, **dict(historical)}
             output_pairs = [(k, structures[k]) for k in ranking]
@@ -190,13 +231,16 @@ def predict(recipe_path, data_dir, coconut_path, output):
         rows.append({'molecule_id': molecule_id, 'smiles': ';'.join(smiles)})
         audit.append({'molecule_id': molecule_id, 'confidence': confidence,
                       'protected': protected, 'candidates': len(smiles),
-                      'router_reliability': reliability})
+                      'router_reliability': reliability,
+                      'chemical_rules_matched': len(chemical_evidence)})
         if len(rows) % 100 == 0:
             print(f'predicted {len(rows)}/{test.molecule_id.nunique()}', flush=True)
     submission = pd.DataFrame(rows)
     validate_submission(test, submission)
     submission.to_csv(output, index=False)
     pd.DataFrame(audit).to_csv(str(output) + '.routing.csv', index=False)
+    if chemistry is not None:
+        write_json(str(output) + '.chemistry.json', chemistry_audit)
     write_json(str(output) + '.report.json', {
         'molecules': len(rows), 'protected_molecules': sum(r['protected'] for r in audit),
         'neural_molecules': sum(not r['protected'] for r in audit), 'config': config,
@@ -204,6 +248,8 @@ def predict(recipe_path, data_dir, coconut_path, output):
         'router': recipe.get('router'),
         'direct_ranker': recipe.get('direct_ranker'),
         'candidate_expansion': recipe.get('candidate_expansion'),
+        'external_charged_entries_excluded': external_charged_excluded,
+        'chemical_priors': chemistry,
         'seconds': time.monotonic()-started,
         'peak_rss_mib': resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024,
         'note': 'Visible-output consistency is not evidence of leaderboard improvement.',

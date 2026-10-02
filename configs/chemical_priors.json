@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "status": "experimental_unvalidated",
+  "description": "Project-authored soft motif associations from cited primary studies. Not an official CASMI dictionary. No absence penalties. Masses are singly charged ion m/z or neutral loss monoisotopic masses.",
+  "rules": [
+    {
+      "id": "phosphocholine_184_positive",
+      "kind": "diagnostic_ion",
+      "mass": 184.0733209,
+      "formula": "C5H15NO4P+",
+      "modes": ["positive"],
+      "adducts": ["[M+H]+"],
+      "smarts": ["[P](=[O])([O])([O])[O][CH2][CH2][N+]([CH3])([CH3])[CH3]"],
+      "weight": 1.0,
+      "references": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC2879063/"],
+      "caveat": "Supports a phosphocholine motif, not a unique lipid class or structure. Does not distinguish PC from sphingomyelin. Sodium/potassium adducts are not included."
+    },
+    {
+      "id": "phosphoethanolamine_loss_141",
+      "kind": "neutral_loss",
+      "mass": 141.0190946,
+      "formula": "C2H8NO4P",
+      "modes": ["positive"],
+      "adducts": ["[M+H]+", "[M+Na]+"],
+      "smarts": ["[P](=[O])([O])([O])[O][CH2][CH2][N;H2;X3;+0]", "[P](=[O])([O])([O])[O][CH2][CH2][N+;H3;X4]"],
+      "weight": 0.8,
+      "references": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC2879063/"],
+      "caveat": "Positive evidence for a phosphoethanolamine headgroup; charge state and collision energy affect formation. Absence does not exclude this motif."
+    },
+    {
+      "id": "o_hexoside_loss_162",
+      "kind": "neutral_loss",
+      "mass": 162.0528234,
+      "formula": "C6H10O5",
+      "modes": ["positive", "negative"],
+      "adducts": ["[M+H]+", "[M-H]-"],
+      "smarts": ["[O;R]1[C;R]([O;X2][#6])[C;R]([O])[C;R]([O])[C;R]([O])[C;R]1[CH2][O]"],
+      "weight": 0.6,
+      "references": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC6273025/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC7024317/"],
+      "caveat": "Supports a cleavable cyclic O-hexoside motif. Sugar identity and stereochemistry cannot be assigned. The conservative pattern omits furanoses and C-glycosides; missing loss never excludes them."
+    },
+    {
+      "id": "o_glucuronide_loss_176",
+      "kind": "neutral_loss",
+      "mass": 176.0320880,
+      "formula": "C6H8O6",
+      "modes": ["positive", "negative"],
+      "adducts": ["[M+H]+", "[M-H]-"],
+      "smarts": ["[O;R]1[C;R]([O;X2][#6])[C;R]([O])[C;R]([O])[C;R]([O])[C;R]1[C](=[O])[O]"],
+      "weight": 0.7,
+      "references": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC8888480/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC2698943/"],
+      "caveat": "Supports an O-glucuronide-like motif without stereochemical specificity. Other conjugation types and rearrangements are not exhaustively modelled."
+    },
+    {
+      "id": "sulfate_ester_loss_80",
+      "kind": "neutral_loss",
+      "mass": 79.9568150,
+      "formula": "SO3",
+      "modes": ["positive", "negative"],
+      "adducts": ["[M+H]+", "[M-H]-"],
+      "smarts": ["[#6][O][S](=[O])(=[O])[O]"],
+      "weight": 0.7,
+      "references": ["https://pmc.ncbi.nlm.nih.gov/articles/PMC10096951/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC9323855/"],
+      "caveat": "Supports a sulfate ester motif; SO3 loss alone is not a unique assignment. Does not cover every sulfur-containing conjugate."
+    }
+  ]
+}
