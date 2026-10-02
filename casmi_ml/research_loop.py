@@ -456,6 +456,23 @@ class Controller:
             return json.loads(Path(r["decision"]).read_text())
         directory = Path(r["report"]).parent
         report = json.loads(Path(r["report"]).read_text())
+        if report.get("diagnostic_only"):
+            result = {
+                "round": identifier,
+                "direction": r["direction"],
+                "status": "diagnostic_complete",
+                "report": report,
+                "protocol_sha256": digest(directory / "protocol.json"),
+                "winner": None,
+                "independent_acceptance": False,
+                "evaluation": "Development pilot diagnostics; no submission eligibility",
+            }
+            public = Path("results/research_loop") / f"{identifier}.json"
+            write_json(public, result)
+            self.mark_round(
+                identifier, status="diagnostic_complete", decision=str(public)
+            )
+            return result
         cohort_path = Path(self.config["source"])
         usage = None
         if (cohort_path / "cohorts.json").exists():
@@ -924,7 +941,14 @@ class Controller:
                 r
                 for r in state["rounds"]
                 if r["status"]
-                in ["eligible", "rejected", "submitted", "failed", "release_failed"]
+                in [
+                    "eligible",
+                    "rejected",
+                    "submitted",
+                    "failed",
+                    "release_failed",
+                    "diagnostic_complete",
+                ]
                 and (not r["git_synced"] or r["status"] == "eligible")
             ),
             None,

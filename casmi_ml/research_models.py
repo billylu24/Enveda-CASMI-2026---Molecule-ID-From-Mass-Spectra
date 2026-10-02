@@ -252,10 +252,36 @@ class SmilesDecoder(nn.Module):
 
     @torch.inference_mode()
     def generate(
-        self, condition, samples=128, temperature=0.8, generator=None, deadline=None
+        self,
+        condition,
+        samples=128,
+        temperature=0.8,
+        generator=None,
+        deadline=None,
+        token_masses=None,
+        neutral_mass=None,
     ):
         if samples < 1 or temperature <= 0:
             raise ValueError("Positive samples and temperature required")
+        if (token_masses is None) != (neutral_mass is None):
+            raise ValueError("Atom masses and neutral mass must be supplied together")
+        mass_weights = None
+        if token_masses is not None:
+            if not math.isfinite(neutral_mass) or neutral_mass <= 0:
+                raise ValueError("Positive finite neutral mass required")
+            mass_weights = torch.as_tensor(
+                token_masses, device=condition.device, dtype=torch.float32
+            )
+            if (
+                mass_weights.ndim != 1
+                or len(mass_weights) != self.head.out_features
+                or not torch.isfinite(mass_weights).all()
+                or (mass_weights < 0).any()
+                or mass_weights[2] != 0
+            ):
+                raise ValueError("Invalid atom mass vocabulary")
+            used_mass = torch.zeros(samples, device=condition.device)
+            ceiling = neutral_mass + max(neutral_mass * 35e-6, 0.006)
         self.eval()
         condition = condition.expand(samples, -1)
         tokens = torch.ones((samples, 1), dtype=torch.long, device=condition.device)
@@ -268,6 +294,10 @@ class SmilesDecoder(nn.Module):
                 )
             logits = self(tokens, condition)[:, -1] / temperature
             logits[:, [0, 1, 3]] = float("-inf")
+            if mass_weights is not None:
+                logits.masked_fill_(
+                    used_mass[:, None] + mass_weights[None] > ceiling, float("-inf")
+                )
             probs = logits.softmax(-1)
             nxt = torch.multinomial(probs, 1, generator=generator).squeeze(1)
             logp += torch.where(
@@ -276,6 +306,8 @@ class SmilesDecoder(nn.Module):
                 probs.gather(1, nxt[:, None]).squeeze(1).clamp_min(1e-12).log(),
             )
             nxt = torch.where(finished, 2, nxt)
+            if mass_weights is not None:
+                used_mass += mass_weights[nxt]
             tokens = torch.cat([tokens, nxt[:, None]], 1)
             finished |= nxt == 2
             if finished.all():

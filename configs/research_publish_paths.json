@@ -78,7 +78,9 @@
     "kaggle_release_combo_0013/verification.json",
     "kaggle_release_combo_0013/status.json",
     "kaggle_release_combo_0013/kaggle_verification.json",
-    "casmi_ml/generated_ranking.py"
+    "casmi_ml/generated_ranking.py",
+    "casmi_ml/generation_constraints.py",
+    "casmi_ml/constrained_generation.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

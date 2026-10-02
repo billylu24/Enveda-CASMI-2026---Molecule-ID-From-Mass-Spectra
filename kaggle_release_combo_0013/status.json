@@ -1,8 +1,11 @@
 {
-  "status": "prepared",
+  "status": "eligible",
   "identity": "c7d86f855915b976dd0689de1b4c1f123cca8eea1b3485487dad80512ed6c271",
   "development_eligible": true,
   "independent_acceptance": false,
-  "uploaded": false,
-  "submitted": false
+  "uploaded": true,
+  "submitted": false,
+  "dataset_uploaded": true,
+  "kernel": "giaok246/casmi26-research-0013-reference-generation",
+  "kernel_version": 1
 }

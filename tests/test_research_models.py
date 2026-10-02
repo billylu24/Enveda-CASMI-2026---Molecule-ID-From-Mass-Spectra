@@ -166,3 +166,61 @@ class GenerationDeadlineTests(unittest.TestCase):
             decoder.generate(
                 torch.zeros(1, 4), samples=2, deadline=time.monotonic() - 1
             )
+
+
+class AtomMassConstraintTests(unittest.TestCase):
+    def test_token_lower_bound_handles_isotopes_aromatic_and_brackets(self):
+        from rdkit import Chem
+
+        from casmi_ml.generation_constraints import token_atom_masses
+        from casmi_ml.research_models import SmilesVocabulary
+
+        vocabulary = SmilesVocabulary(["C", "c", "[nH]", "[81Br]", "Cl", "(", "1"])
+        masses = dict(zip(vocabulary.tokens, token_atom_masses(vocabulary)))
+        table = Chem.GetPeriodicTable()
+        self.assertEqual(masses["C"], masses["c"])
+        self.assertEqual(masses["[nH]"], table.GetMostCommonIsotopeMass(7))
+        self.assertEqual(masses["[81Br]"], table.GetMassForIsotope(35, 81))
+        for token in ["<eos>", "(", "1"]:
+            self.assertEqual(masses[token], 0)
+
+    def test_sampler_masks_oversized_atoms_and_preserves_unconstrained_path(self):
+        from unittest.mock import patch
+
+        import torch
+
+        from casmi_ml.generation_constraints import token_atom_masses
+        from casmi_ml.research_models import SmilesDecoder, SmilesVocabulary
+
+        vocabulary = SmilesVocabulary(["C", "Br"])
+        decoder = SmilesDecoder(len(vocabulary.tokens), 4, width=32, layers=1, limit=3)
+
+        def logits(tokens, condition):
+            values = torch.full(
+                (len(tokens), tokens.shape[1], len(vocabulary.tokens)), -100.0
+            )
+            values[:, :, vocabulary.ids["Br"]] = 30.0
+            values[:, :, vocabulary.ids["C"]] = 20.0
+            values[:, :, 2] = 0.0
+            return values
+
+        with patch.object(decoder, "forward", side_effect=logits):
+            raw = decoder.generate(
+                torch.zeros(1, 4),
+                samples=1,
+                generator=torch.Generator().manual_seed(42),
+            )
+            constrained = decoder.generate(
+                torch.zeros(1, 4),
+                samples=1,
+                generator=torch.Generator().manual_seed(42),
+                token_masses=token_atom_masses(vocabulary),
+                neutral_mass=16.04,
+            )
+        self.assertEqual(raw[0][0, 1].item(), vocabulary.ids["Br"])
+        self.assertEqual(constrained[0].tolist(), [[1, vocabulary.ids["C"], 2]])
+        self.assertTrue(constrained[2][0])
+        with self.assertRaises(ValueError):
+            decoder.generate(
+                torch.zeros(1, 4), token_masses=token_atom_masses(vocabulary)
+            )
