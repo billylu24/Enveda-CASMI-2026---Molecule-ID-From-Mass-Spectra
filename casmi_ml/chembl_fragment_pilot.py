@@ -43,6 +43,17 @@ VARIANTS = {
 JAVA = "external/metfrag/java21/jdk-21.0.12.1+1-jre/bin/java"
 
 
+def informative_fragments(proposed, fragments):
+    values = np.asarray([fragments.get(k, 0.0) for k in proposed], dtype=float)
+    return bool(
+        len(values) > 1
+        and np.isfinite(values).all()
+        and values.max() > 0
+        and np.ptp(values) > 0
+        and values[0] > 0
+    )
+
+
 def score_cache_key(query, first, candidates):
     payload = json.dumps([query, first, candidates], separators=(",", ":"))
     return hashlib.sha256(payload.encode()).hexdigest()
@@ -57,6 +68,7 @@ def run(
     monomer=False,
     proposal_limit=100,
     fragment_limit=100,
+    evidence_only=False,
 ):
     if proposal_limit not in (100, 500) or not 1 <= fragment_limit <= proposal_limit:
         raise ValueError("Invalid proposal or fragment shortlist limit")
@@ -71,10 +83,19 @@ def run(
         name: None if spec is None else (spec[0], prefix, *spec[2:])
         for name, spec in VARIANTS.items()
     }
+    if evidence_only:
+        variants = {
+            "baseline": None,
+            "fragment05": (0.05, 2, 3, 0.5),
+            "fragment05_prefix5": (0.05, 5, 3, 0.5),
+            "fragment05_prefix10": (0.05, 10, 3, 0.5),
+        }
     if limit == 2000:
         variants = {
             name: spec for name, spec in variants.items() if name != "fragment1"
         }
+    if limit == 2000 and evidence_only:
+        variants = {"baseline": None, "fragment05_prefix5": (0.05, 5, 3, 0.5)}
     if not 1 <= limit <= 2000:
         raise ValueError("Pilot limit must be in[1,2000]")
     output, incumbent = Path(output), Path(incumbent)
@@ -100,6 +121,10 @@ def run(
             "insertion_prefix": prefix,
             "proposal_limit": proposal_limit,
             "fragment_limit": fragment_limit,
+            "evidence_only": evidence_only,
+            "evidence_gate": "Positive proposed first fragment score and distinct finite fragment scores required; missing/all tied scores never enable insertion"
+            if evidence_only
+            else None,
             "proposal_critic_cache_sha256": digest(critic_path),
             "fragment_adapter": "exact_monomer" if monomer else "proton_only",
             "fragment_adapter_sha256": digest(
@@ -376,6 +401,10 @@ def run(
                         spec
                         and proposed
                         and not (spec[3] and fallback)
+                        and (
+                            not evidence_only
+                            or informative_fragments(proposed, fragments)
+                        )
                         and pair_scores[cache_key][proposed[0]]
                         > pair_scores[cache_key][current[0]] + spec[0]
                     ):
@@ -444,6 +473,10 @@ def run(
             "proposal_queries_scored": len(pair_scores),
             "proposal_limit": proposal_limit,
             "fragment_limit": fragment_limit,
+            "evidence_only": evidence_only,
+            "evidence_gate": "Positive proposed first fragment score and distinct finite fragment scores required; missing/all tied scores never enable insertion"
+            if evidence_only
+            else None,
             "variants": diagnostics,
             "independent_acceptance": False,
         }
@@ -462,6 +495,7 @@ def main():
     p.add_argument("--monomer", action="store_true")
     p.add_argument("--proposal-limit", type=int, choices=(100, 500), default=100)
     p.add_argument("--fragment-limit", type=int, default=100)
+    p.add_argument("--evidence-only", action="store_true")
     a = p.parse_args()
     print(
         json.dumps(
@@ -473,6 +507,7 @@ def main():
                 a.monomer,
                 a.proposal_limit,
                 a.fragment_limit,
+                a.evidence_only,
             ),
             indent=2,
         )
