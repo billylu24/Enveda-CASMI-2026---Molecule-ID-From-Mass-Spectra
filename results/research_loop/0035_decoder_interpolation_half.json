@@ -1,0 +1,19 @@
+{
+  "round": "0035_decoder_interpolation_half",
+  "direction": "decoder_interpolation",
+  "status": "diagnostic_complete",
+  "report": {
+    "alpha": 0.5,
+    "checkpoint_sha256": "e1b6f244acad6d3464264a5f9b8b2cb0daf38710f820b4ae8079892b8606310b",
+    "formula_all_tensors_unchanged": true,
+    "vocabulary_unchanged": true,
+    "gpu_training_seconds": 0,
+    "diagnostic_only": true,
+    "independent_acceptance": false,
+    "performance_acceptance": "Requires paired sampling and structural evaluation against current best"
+  },
+  "protocol_sha256": "79b3923fe14927c5b32c4f21b00731e07b873816acb93c7b32973a885b10ca66",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
