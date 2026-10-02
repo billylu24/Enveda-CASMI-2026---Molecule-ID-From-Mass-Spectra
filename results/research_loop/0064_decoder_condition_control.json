@@ -1,0 +1,5 @@
+{
+  "round": "0064_decoder_condition_control",
+  "status": "failed",
+  "error": "Child exited 1: ['.venv-gpu/bin/python', '-u', '-m', 'casmi_ml.generation_condition_contrastive', '--output', 'artifacts/research_loop/rounds/0064_decoder_condition_control', '--epochs', '3', '--seconds', '3600', '--contrast-weight', '0']; see artifacts/research_loop/rounds/0064_decoder_condition_control/execution.log"
+}

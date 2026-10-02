@@ -27,7 +27,7 @@ def prepare(root=ROOT, output=Path("kaggle_release_chemistry")):
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(original / name, target)
     # Execution budget guard only; accepted rules and weights remain unchanged.
-    for name in ["metfrag.py", "secondary_inference.py"]:
+    for name in ["metfrag.py", "secondary_inference.py", "runtime_wheels.py"]:
         shutil.copy2(Path("casmi_ml") / name, bundle / "casmi_ml" / name)
     recipe = json.loads((bundle / "deployment_recipe.json").read_text())
     recipe["chemistry"]["fragment_seconds"] = 1200
@@ -36,8 +36,18 @@ def prepare(root=ROOT, output=Path("kaggle_release_chemistry")):
     wheels.mkdir(exist_ok=True)
     for wheel in Path("kaggle_release_scale/bundle/wheels").glob("rdkit*.whl"):
         shutil.copy2(wheel, wheels / wheel.name)
-    if len(list(wheels.glob("rdkit*.whl"))) != 1:
-        raise ValueError("Exactly one validated RDKit wheel required")
+    for wheel in Path("external/runtime_wheels").glob("rdkit*.whl"):
+        shutil.copy2(wheel, wheels / wheel.name)
+    runtime_versions = json.loads(
+        Path("kaggle_release_scale/bundle/runtime_versions.json").read_text()
+    )
+    from packaging.utils import parse_wheel_filename
+
+    names = list(wheels.glob("rdkit*.whl"))
+    if not names or any(
+        str(parse_wheel_filename(p.name)[1]) != runtime_versions["rdkit"] for p in names
+    ):
+        raise ValueError("Pinned-version RDKit wheels required")
     shutil.copy2("kaggle_release_scale/bundle/runtime_versions.json", bundle)
     java = Path("external/metfrag/java21")
     runtime = json.loads((java / "manifest.json").read_text())
@@ -95,9 +105,10 @@ try:
 except importlib.metadata.PackageNotFoundError:
     installed_rdkit = None
 if installed_rdkit != required['rdkit']:
-    wheels = list((bundle / 'wheels').glob('rdkit*.whl'))
-    assert len(wheels) == 1
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--no-index', '--no-deps', str(wheels[0])])
+    sys.path.insert(0, str(bundle))
+    from casmi_ml.runtime_wheels import compatible_rdkit_wheel
+    wheel = compatible_rdkit_wheel(bundle / 'wheels', required['rdkit'])
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--no-index', '--no-deps', str(wheel)])
 java_root = bundle / 'java'
 java_root.mkdir(exist_ok=True)
 with tarfile.open(bundle / 'java-runtime.bin') as archive:

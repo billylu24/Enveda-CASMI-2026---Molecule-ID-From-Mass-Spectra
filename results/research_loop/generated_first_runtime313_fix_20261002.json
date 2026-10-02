@@ -1,0 +1,13 @@
+{
+  "round": "0062_generated_first_gate",
+  "status": "platform_startup_failed",
+  "kernel": {
+    "kernel": "giaok246/casmi26-research-0062-generated-first-gate",
+    "version": 1
+  },
+  "python_runtime": "3.13",
+  "reason": "Pinned rdkit2026.3.6 cp312 wheel incompatible with platform cp313",
+  "submission_accepted": false,
+  "fix": "same RDKit version with cp312/cp313 offline wheels; compatible tag selection; fresh dataset/notebook identities",
+  "independent_acceptance": false
+}

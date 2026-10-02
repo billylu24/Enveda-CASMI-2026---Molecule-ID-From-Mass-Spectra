@@ -842,3 +842,61 @@ class PartialPromotionTests(unittest.TestCase):
         for front in [0, 6]:
             with self.assertRaises(ValueError):
                 partial_promotion(base, generated, 2, front)
+
+
+class ConditionContrastTrainingTests(unittest.TestCase):
+    def test_training_mass_negatives_are_distinct_and_deterministic(self):
+        import numpy as np
+
+        from casmi_ml.generation_condition_contrastive import nearest_mass_negatives
+
+        masses = [100.0, 100.0, 100.0, 102.0]
+        keys = ["c", "a", "b", "d"]
+        indexes = nearest_mass_negatives(masses, keys)
+        self.assertEqual(indexes.tolist(), [2, 2, 1, 0])
+        self.assertTrue(np.all(indexes != np.arange(4)))
+        for invalid in [[100.0], [100.0, float("nan")]]:
+            with self.assertRaises(ValueError):
+                nearest_mass_negatives(invalid, ["a", "b"][: len(invalid)])
+
+    def test_sequence_nll_ignores_padding_and_reaches_logits(self):
+        import torch
+
+        from casmi_ml.generation_condition_contrastive import sequence_nll
+
+        logits = torch.zeros(2, 3, 4, requires_grad=True)
+        target = torch.tensor([[1, 2, 0], [1, 0, 0]])
+        value = sequence_nll(logits, target)
+        self.assertTrue(
+            torch.allclose(value, torch.full((2,), torch.log(torch.tensor(4.0))))
+        )
+        value.sum().backward()
+        self.assertTrue(
+            torch.equal(
+                logits.grad[target == 0], torch.zeros_like(logits.grad[target == 0])
+            )
+        )
+        self.assertGreater(float(logits.grad.abs().sum()), 0)
+
+
+class OfflineRuntimeWheelTests(unittest.TestCase):
+    def test_python_abi_and_version_select_exactly_one_wheel(self):
+        from packaging.tags import Tag
+
+        from casmi_ml.runtime_wheels import compatible_rdkit_wheel
+
+        with tempfile.TemporaryDirectory() as d:
+            for abi in ["cp312", "cp313"]:
+                (
+                    Path(d) / f"rdkit-2026.3.6-{abi}-{abi}-manylinux_2_28_x86_64.whl"
+                ).touch()
+            for abi in ["cp312", "cp313"]:
+                wheel = compatible_rdkit_wheel(
+                    d, "2026.3.6", [Tag(abi, abi, "manylinux_2_28_x86_64")]
+                )
+                self.assertIn(abi, wheel.name)
+            for version, abi in [("2026.3.5", "cp313"), ("2026.3.6", "cp314")]:
+                with self.assertRaises(ValueError):
+                    compatible_rdkit_wheel(
+                        d, version, [Tag(abi, abi, "manylinux_2_28_x86_64")]
+                    )
