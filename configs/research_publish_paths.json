@@ -181,7 +181,13 @@
     "tests/test_informative_fragments.py",
     "tests/test_critic_training_cli.py",
     "casmi_ml/metfrag_dimer.py",
-    "tests/test_metfrag_dimer.py"
+    "tests/test_metfrag_dimer.py",
+    "tests/test_platform_gate.py",
+    "kaggle_release_protected_0012_runtime313/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_protected_0012_runtime313/notebook/kernel-metadata.json",
+    "kaggle_release_protected_0012_runtime313/verification.json",
+    "kaggle_release_protected_0012_runtime313/status.json",
+    "kaggle_release_protected_0012_runtime313/kaggle_verification.json"
   ],
   "aggregate_directories": [
     "results/research_loop",

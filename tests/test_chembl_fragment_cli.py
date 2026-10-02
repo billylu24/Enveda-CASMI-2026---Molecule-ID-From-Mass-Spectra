@@ -41,4 +41,5 @@ class ChemblFragmentCLITests(unittest.TestCase):
             CRITIC,
             False,
             False,
+            False,
         )

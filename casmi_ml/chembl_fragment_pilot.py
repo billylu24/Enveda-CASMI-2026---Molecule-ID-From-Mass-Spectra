@@ -82,7 +82,10 @@ def run(
     critic_checkpoint=CRITIC,
     dimer=False,
     candidate_gate=False,
+    compare_first=False,
 ):
+    if compare_first and not evidence_only:
+        raise ValueError("Fragment first comparison requires informative evidence")
     if candidate_gate and not evidence_only:
         raise ValueError("Candidate gate requires informative fragment evidence")
     if dimer and not monomer:
@@ -155,6 +158,7 @@ def run(
             "initial_fragment_cache_sha256": digest(seed_path),
             "evidence_only": evidence_only,
             "candidate_gate": candidate_gate,
+            "compare_current_first_fragment": compare_first,
             "evidence_gate": "Positive proposed first fragment score and distinct finite fragment scores required; missing/all tied scores never enable insertion"
             if evidence_only
             else None,
@@ -397,9 +401,16 @@ def run(
                             candidates_external,
                             key=lambda k: (-pair_scores[cache_key][k], k),
                         )[:fragment_limit]
+                fragment_key = cache_key
+                if compare_first and candidates_external:
+                    fragment_key = score_cache_key(
+                        "include_current_first_v1:" + key,
+                        current[0],
+                        candidates_external,
+                    )
                 fragments, fallback = {}, False
                 if candidates_external:
-                    if cache_key not in fragment_scores:
+                    if fragment_key not in fragment_scores:
                         query = frame.iloc[groups[key]].drop(
                             columns=[
                                 c
@@ -412,13 +423,23 @@ def run(
                                 if c in frame
                             ]
                         )
+                        fragment_candidates = {
+                            k: external_lookup[k] for k in candidates_external
+                        }
+                        if compare_first:
+                            first_smiles = generated_lookup[key].get(
+                                current[0], lookup.get(current[0])
+                            )
+                            if first_smiles is None:
+                                raise ValueError("Current first representation missing")
+                            fragment_candidates[current[0]] = first_smiles
                         fragments, fallback = fragment_score_group(
                             fragmenter,
                             query.to_dict("records"),
-                            {k: external_lookup[k] for k in candidates_external},
+                            fragment_candidates,
                             deadline=budget.started + 1200,
                         )
-                        fragment_scores[cache_key] = {
+                        fragment_scores[fragment_key] = {
                             "scores": fragments,
                             "budget_fallback": fallback,
                         }
@@ -430,8 +451,8 @@ def run(
                             time.monotonic() - started,
                             flush=True,
                         )
-                    fragments = fragment_scores[cache_key]["scores"]
-                    fallback = fragment_scores[cache_key]["budget_fallback"]
+                    fragments = fragment_scores[fragment_key]["scores"]
+                    fallback = fragment_scores[fragment_key]["budget_fallback"]
                 for name, spec in variants.items():
                     proposed = (
                         rerank(
@@ -450,6 +471,11 @@ def run(
                         spec
                         and proposed
                         and not (spec[3] and fallback)
+                        and (
+                            not compare_first
+                            or fragments.get(proposed[0], 0.0)
+                            > fragments.get(current[0], 0.0)
+                        )
                         and (
                             not evidence_only
                             or informative_fragments(proposed, fragments)
@@ -534,6 +560,7 @@ def run(
             "fragment_limit": fragment_limit,
             "evidence_only": evidence_only,
             "candidate_gate": candidate_gate,
+            "compare_current_first_fragment": compare_first,
             "evidence_gate": "Positive proposed first fragment score and distinct finite fragment scores required; missing/all tied scores never enable insertion"
             if evidence_only
             else None,
@@ -559,6 +586,7 @@ def main():
     p.add_argument("--critic-checkpoint", type=Path, default=CRITIC)
     p.add_argument("--dimer", action="store_true")
     p.add_argument("--candidate-gate", action="store_true")
+    p.add_argument("--compare-first", action="store_true")
     a = p.parse_args()
     print(
         json.dumps(
@@ -574,6 +602,7 @@ def main():
                 a.critic_checkpoint,
                 a.dimer,
                 a.candidate_gate,
+                a.compare_first,
             ),
             indent=2,
         )

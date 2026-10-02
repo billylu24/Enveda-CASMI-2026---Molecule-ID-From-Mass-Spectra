@@ -1,0 +1,24 @@
+{
+  "old_release": "kaggle_release_protected_0012",
+  "new_release": "kaggle_release_protected_0012_runtime313",
+  "old_submission_accepted": false,
+  "models_unchanged": {
+    "model.pt": "0bce6b953f084c1f841b607df99ec46703d7b92a487c8f0812be3db176b3c564",
+    "generation.pt": "b7e5551ed77c62302be8014251cf0c2df1409edaaf4870a5e58654ac7ec62eb4"
+  },
+  "recipe_unchanged": true,
+  "local_verification": {
+    "valid": true,
+    "identity": "c1526ab3072f4242217f87b624250651c2f981cd9ed4eec3b72850dbaf4281a5",
+    "seconds": 156.7552039680013,
+    "peak_rss_mib": 5937.08984375,
+    "molecules": 400,
+    "independent_acceptance": false,
+    "previous_local_full_top25_matches": 400,
+    "frozen_models_match": true,
+    "recipe_unchanged": true
+  },
+  "platform_verification_pending": true,
+  "competition_submit_after": "2026-10-03T00:00:00Z",
+  "independent_acceptance": false
+}

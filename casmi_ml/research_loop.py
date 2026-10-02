@@ -876,6 +876,22 @@ class Controller:
             raise RuntimeError("Kaggle notebook failed; inspect before retrying")
         if status != "COMPLETE":
             return {"status": "notebook_running"}
+        if r.get("requires_platform_verification"):
+            platform_path = release / "kaggle_verification.json"
+            if not platform_path.exists():
+                return {"status": "notebook_running"}
+            platform = json.loads(platform_path.read_text())
+            if (
+                not platform.get("valid")
+                or platform.get("identity") != verification["identity"]
+                or platform.get("molecules") != verification.get("molecules")
+                or platform.get("local_full_top25_matches") != platform.get("molecules")
+                or platform.get("seconds", float("inf"))
+                > self.config["inference_seconds"]
+                or platform.get("parent_peak_rss_mib", float("inf"))
+                > self.config["inference_rss_mib"]
+            ):
+                raise ValueError("Explicit platform behavior verification failed")
         state = self.read()
         if state.get("submit_after") and now() < state["submit_after"]:
             return {"status": "waiting_for_allowance"}

@@ -1,0 +1,11 @@
+{
+  "valid": true,
+  "identity": "c1526ab3072f4242217f87b624250651c2f981cd9ed4eec3b72850dbaf4281a5",
+  "seconds": 156.7552039680013,
+  "peak_rss_mib": 5937.08984375,
+  "molecules": 400,
+  "independent_acceptance": false,
+  "previous_local_full_top25_matches": 400,
+  "frozen_models_match": true,
+  "recipe_unchanged": true
+}
