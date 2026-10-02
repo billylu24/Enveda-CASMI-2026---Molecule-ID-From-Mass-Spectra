@@ -12,6 +12,7 @@ from torch.nn import functional as F
 from torch.utils.data import DataLoader
 
 from casmi_ml.data import write_json
+from casmi_ml.generation_augmentation import enumerated_target
 from casmi_ml.generation_experiment import (
     GenerationDataset,
     collate,
@@ -35,7 +36,9 @@ def condition_values(values, group_indices, averaging):
     return result
 
 
-def train(output, averaging, epochs=3, seconds=3600):
+def train(output, averaging, epochs=3, seconds=3600, targets="canonical"):
+    if targets not in ["canonical", "randomized"]:
+        raise ValueError("Unknown target augmentation")
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     configure(42, threads=4)
@@ -56,6 +59,14 @@ def train(output, averaging, epochs=3, seconds=3600):
         "training_scope": "Same frozen 60000 train molecules; one target/gradient per molecule per epoch",
         "holdout_used": False,
     }
+    if targets == "randomized":
+        spec["target_augmentation"] = {
+            "method": "one deterministic randomized SMILES per molecule per epoch",
+            "source_sha256": digest(
+                Path(__file__).with_name("generation_augmentation.py")
+            ),
+            "fallback": "original sequence if frozen vocabulary or length rejects augmentation",
+        }
     freeze(output / "protocol.json", spec)
     if (output / "report.json").exists():
         return json.loads((output / "report.json").read_text())
@@ -82,6 +93,16 @@ def train(output, averaging, epochs=3, seconds=3600):
                 break
             indices = [int(rng.choice(ids)) for ids in groups]
             dataset = GenerationDataset(frame, values, vocabulary, indices)
+            augmentation = {"changed": 0, "vocabulary_or_length_fallback": 0}
+            if targets == "randomized":
+                for index in dataset.indexes:
+                    row = frame.iloc[index]
+                    sequence, stats = enumerated_target(
+                        row.normalized_smiles, row.inchikey14, epoch, vocabulary
+                    )
+                    dataset.sequences[index] = sequence
+                    for name in augmentation:
+                        augmentation[name] += int(stats[name])
             decoder.train()
             total_loss, batches = 0.0, 0
             for condition, tokens, _ in DataLoader(
@@ -118,6 +139,8 @@ def train(output, averaging, epochs=3, seconds=3600):
                 "complete": complete,
                 "seconds": time.monotonic() - started,
             }
+            if targets == "randomized":
+                entry["augmentation"] = augmentation
             history.append(entry)
             write_json(output / "history.json", history)
             print(entry, flush=True)
@@ -155,12 +178,19 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--output", required=True, type=Path)
     p.add_argument("--averaging", choices=["single", "mean"], required=True)
+    p.add_argument(
+        "--targets", choices=["canonical", "randomized"], default="canonical"
+    )
     p.add_argument("--epochs", type=int, default=3)
     p.add_argument("--seconds", type=float, default=3600)
     a = p.parse_args()
     if a.epochs < 1 or not 0 < a.seconds <= 86400:
         p.error("Positive epochs and at most24h required")
-    print(json.dumps(train(a.output, a.averaging, a.epochs, a.seconds), indent=2))
+    print(
+        json.dumps(
+            train(a.output, a.averaging, a.epochs, a.seconds, a.targets), indent=2
+        )
+    )
 
 
 if __name__ == "__main__":

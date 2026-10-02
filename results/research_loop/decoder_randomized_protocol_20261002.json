@@ -1,0 +1,41 @@
+{
+  "round": "decoder_randomized_protocol_20261002",
+  "preceding_model_mixture": {
+    "molecules": 200,
+    "selected128_exact_hits": 9,
+    "selected64_selected64_control_exact_hits": 6,
+    "selected64_original64_mixture_exact_hits": 5,
+    "decision": "No complementarity improvement; do_not_expand"
+  },
+  "training": {
+    "round": "0033_decoder_randomized_training",
+    "starting_checkpoint": "original_generator",
+    "averaging": "single",
+    "epochs": 3,
+    "learning_rate": 3e-05,
+    "molecules": "Same original60000 training cohort",
+    "targets": "One graph-preserving SMILES enumeration per selected training molecule per epoch",
+    "randomness": "Explicit atom permutation keyed by seed42, training molecule key, epoch; no RDKit global RNG",
+    "fallback": "Original encodable sequence for frozen vocabulary or token-length rejection",
+    "formula_frozen": true,
+    "encoder_frozen": true,
+    "fixed_final_epoch": true,
+    "development_nll_selection": false
+  },
+  "pilot": {
+    "round": "0034_decoder_randomized_pilot",
+    "molecules": 200,
+    "samples_per_query": 128,
+    "temperature": 0.8,
+    "sampling": "same spectrum hash seeds and stable shared per-group forward",
+    "decision_requires": "Structural improvement over current selected decoder before full2000 paired evaluation"
+  },
+  "tests": {
+    "same_epoch_determinism": true,
+    "chemical_identity_preservation": true,
+    "vocabulary_fallback": true
+  },
+  "holdout_used": false,
+  "cohort": "repeated_development",
+  "independent_acceptance": false
+}

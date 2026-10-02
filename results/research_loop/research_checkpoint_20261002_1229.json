@@ -1,0 +1,32 @@
+{
+  "round": "research_checkpoint_20261002_1229",
+  "development_best": {
+    "round": "0024_single_decoder_full",
+    "unknown_mrr25": 0.03336529716499531,
+    "known_mrr25": 0.6060165065973884
+  },
+  "public_best": {
+    "score": 0.176,
+    "submission_id": 56535378
+  },
+  "platform_verification": {
+    "full_rankings_match": 400,
+    "prefix3_preserved": 400,
+    "seconds": 576.831952205,
+    "parent_peak_rss_mib": 3507.76953125
+  },
+  "submission_queue": [
+    "0012_protected_generation",
+    "0013_reference_generation",
+    "0017_generation_position",
+    "0024_single_decoder_full"
+  ],
+  "competition_submission_after": "2026-10-03T00:00:00Z",
+  "validation": {
+    "tests_passed": 113,
+    "ruff_passed": true
+  },
+  "active_research": "randomized SMILES three-epoch decoder adaptation and200-molecule structural pilot",
+  "independent_acceptance": false,
+  "continuous_goal": "active_until_user_stops"
+}
