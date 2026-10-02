@@ -1,0 +1,64 @@
+{
+  "round": "0092_critic_hard_six",
+  "direction": "representation",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "training_molecules": 60000,
+    "training_development_overlap": 0,
+    "hard_negatives": true,
+    "history": [
+      {
+        "epoch": 1,
+        "mean_loss": 0.5104259373282573,
+        "pairs": 900000,
+        "pairs_inside_mass_window": 720198,
+        "seconds": 8.50054921201081
+      },
+      {
+        "epoch": 2,
+        "mean_loss": 0.44632444109743846,
+        "pairs": 900000,
+        "pairs_inside_mass_window": 720198,
+        "seconds": 10.624610283004586
+      },
+      {
+        "epoch": 3,
+        "mean_loss": 0.5262361920591611,
+        "pairs": 900000,
+        "pairs_inside_mass_window": 720198,
+        "seconds": 12.693282241991255
+      },
+      {
+        "epoch": 4,
+        "mean_loss": 0.5147018679169449,
+        "pairs": 900000,
+        "pairs_inside_mass_window": 720198,
+        "seconds": 14.80836191700655
+      },
+      {
+        "epoch": 5,
+        "mean_loss": 0.507459672211584,
+        "pairs": 900000,
+        "pairs_inside_mass_window": 720198,
+        "seconds": 16.971628047991544
+      },
+      {
+        "epoch": 6,
+        "mean_loss": 0.49541867211429297,
+        "pairs": 900000,
+        "pairs_inside_mass_window": 720198,
+        "seconds": 19.0799763519899
+      }
+    ],
+    "seconds": 19.080352574994322,
+    "independent_acceptance": false,
+    "performance_evaluation_pending": true,
+    "gpu_peak_mib": 100.2060546875,
+    "checkpoint_sha256": "2793b396116627f09c537c546285e22d3fc2f0e142bf6a0cc8b9ea7559681e19"
+  },
+  "protocol_sha256": "c51c3d41fead0dedbc89f39244abb23d23a2ffdc6df8533cc52e75d9204c88d5",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
