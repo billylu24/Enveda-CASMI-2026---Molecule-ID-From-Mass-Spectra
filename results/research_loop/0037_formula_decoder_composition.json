@@ -1,0 +1,18 @@
+{
+  "round": "0037_formula_decoder_composition",
+  "direction": "generator_composition",
+  "status": "diagnostic_complete",
+  "report": {
+    "checkpoint_sha256": "4c8a028cca2117939c32567d83fc779e168c4a83d2316c711eb25f7f7dd338e2",
+    "decoder_all_tensors_unchanged": true,
+    "formula_changed_tensors": 4,
+    "gpu_training_seconds": 0,
+    "diagnostic_only": true,
+    "independent_acceptance": false,
+    "performance_acceptance": "Compare structural pilot against current selected decoder, then full2000 paired gate"
+  },
+  "protocol_sha256": "9f7c13ba13b2a9e30437b30103302567d428be539449fbf0f687fe1879f2dc2e",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
