@@ -1,0 +1,34 @@
+{
+  "round": "0031_decoder_temperature07_pilot",
+  "direction": "generation_pilot",
+  "status": "diagnostic_complete",
+  "report": {
+    "molecules": 200,
+    "baseline": {
+      "samples": 25600,
+      "terminated": 25599,
+      "valid": 23553,
+      "mass_matching": 490,
+      "unique_mass_matching": 311,
+      "queries_with_candidates": 100,
+      "exact_structure_hits": 9
+    },
+    "selected": {
+      "samples": 25600,
+      "terminated": 25600,
+      "valid": 23806,
+      "mass_matching": 510,
+      "unique_mass_matching": 296,
+      "queries_with_candidates": 100,
+      "exact_structure_hits": 8
+    },
+    "diagnostic_only": true,
+    "temperature": 0.7,
+    "independent_acceptance": false,
+    "evaluation": "Fixed development pilot; exact structure hits, not a submission gate"
+  },
+  "protocol_sha256": "0e38d49f14f163dc68b8fc0a09453999d9e7172cd6349f348d15f637e690724d",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
