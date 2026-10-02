@@ -11,14 +11,15 @@ from casmi_ml.data import write_json
 
 
 class StageBudget:
-    def __init__(self, root, stage, run, requested, limit=86400):
+    def __init__(self, root, stage, run, requested, limit=86400, lock_path=None):
         if not all(math.isfinite(v) and v > 0 for v in [requested, limit]):
             raise ValueError("Positive finite stage budget required")
         self.path = Path(root) / "training_budget.json"
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.stage, self.run, self.limit = stage, str(run), limit
         gpu_path = Path(
-            os.environ.get("CASMI_GPU_LOCK", "artifacts/research_loop/gpu.lock")
+            lock_path
+            or os.environ.get("CASMI_GPU_LOCK", "artifacts/research_loop/gpu.lock")
         )
         gpu_path.parent.mkdir(parents=True, exist_ok=True)
         self.lock = gpu_path.open("a")

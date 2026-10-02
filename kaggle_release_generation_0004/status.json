@@ -1,0 +1,9 @@
+{
+  "status": "platform_verification_pending",
+  "identity": "8fc1e6159423e49964b395f55bee7617dd01560a1245994fed2c5bad49edc293",
+  "development_eligible": true,
+  "independent_acceptance": false,
+  "uploaded": true,
+  "submitted": false,
+  "tests_passed": 81
+}

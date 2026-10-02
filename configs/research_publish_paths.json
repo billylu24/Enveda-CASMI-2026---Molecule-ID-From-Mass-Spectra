@@ -49,7 +49,13 @@
     "casmi_ml/research_cohorts.py",
     "casmi_ml/generation_sampling.py",
     "casmi_ml/research_pipeline.py",
-    "casmi_ml/generation_replay.py"
+    "casmi_ml/generation_replay.py",
+    "casmi_ml/coverage_experiment.py",
+    "kaggle_release_mass_0001/kaggle_verification.json",
+    "kaggle_release_generation_0004/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_generation_0004/notebook/kernel-metadata.json",
+    "kaggle_release_generation_0004/verification.json",
+    "kaggle_release_generation_0004/status.json"
   ],
   "aggregate_directories": [
     "results/research_loop",

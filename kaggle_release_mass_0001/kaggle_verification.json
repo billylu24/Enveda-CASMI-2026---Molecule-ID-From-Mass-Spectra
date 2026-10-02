@@ -1,0 +1,11 @@
+{
+  "valid": true,
+  "molecules": 400,
+  "seconds": 141.77238577000003,
+  "peak_parent_rss_mib": 2573.40625,
+  "protected_molecules": 400,
+  "submission_id": 56770705,
+  "kernel_version": 2,
+  "mass_hypothesis": "charge_aware_union",
+  "scope": "Visible inference integration only; all queries protected, cannot establish hidden low-confidence performance"
+}

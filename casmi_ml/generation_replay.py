@@ -17,7 +17,18 @@ from casmi_ml.research_protocol import ENCODER, ROOT
 def run(generated, incumbent, output, limit=25, prefix=5, slots=3):
     generated, incumbent, output = Path(generated), Path(incumbent), Path(output)
     output.mkdir(parents=True, exist_ok=True)
-    samples = json.loads(generated.read_text())[:limit]
+    confidence = {
+        r["key"]: r["confidence"]
+        for r in json.loads((ROOT / "researchdev_unknown_chemical.json").read_text())
+    }
+    all_samples = json.loads(generated.read_text())
+    samples = [
+        r for r in all_samples if r["candidates"] and confidence[r["key"]] < 0.5
+    ][:limit]
+    if len(samples) < limit:
+        used = {r["key"] for r in samples}
+        samples.extend(r for r in all_samples if r["key"] not in used)
+        samples = samples[:limit]
     keys = [r["key"] for r in samples]
     frame = pd.read_parquet(ROOT / "researchdev.parquet")
     frame = frame[frame.inchikey14.isin(keys)].copy()
@@ -82,6 +93,7 @@ def run(generated, incumbent, output, limit=25, prefix=5, slots=3):
         matches += predicted == expected[:25]
     result = {
         "molecules": len(keys),
+        "prefix": prefix, "slots": slots,
         "full_top25_matches": matches,
         "valid": matches == len(keys),
         "scope": "Implementation replay of development queries, no new statistical evidence",
@@ -96,8 +108,10 @@ def main():
     p.add_argument("--incumbent", type=Path, required=True)
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--limit", type=int, default=25)
+    p.add_argument("--prefix", type=int, default=5)
+    p.add_argument("--slots", type=int, default=3)
     a = p.parse_args()
-    print(run(a.generated, a.incumbent, a.output, a.limit))
+    print(run(a.generated, a.incumbent, a.output, a.limit, a.prefix, a.slots))
 
 
 if __name__ == "__main__":

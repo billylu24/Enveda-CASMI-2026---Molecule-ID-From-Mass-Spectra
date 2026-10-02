@@ -1,4 +1,5 @@
 ref,fileName,date,description,status,publicScore,privateScore
+56770705,submission.csv,2026-10-02 09:21:43.113000,Research 0001_mass_v2 dev-experimental e8bd4ccbf2f03a0c,SubmissionStatus.PENDING,,
 56769471,submission.csv,2026-10-02 08:14:33.133000,"Frozen 60K fingerprint encoder plus MetFrag 2.6.11 reranking, weight 0.5. Independent CPU unknown MRR 0.017406 to 0.020568 on 4000 molecules; known guard passed. Offline Java21/RDKit pinned, historical confidence guard 0.5, 1200-second fragmentation fallback. No DINO or generation blend.",SubmissionStatus.COMPLETE,0.173,
 56768677,submission.csv,2026-10-02 07:32:25.447000,"Experimental historical hybrid + ChEBI/LMSD candidates and five soft diagnostic-ion/neutral-loss rules; guard 0.5, fixed chemistry weight 0.1, RDKit 2026.03.3. 32 masked-reference behavior checks are not independent validation; GAN not trained.",SubmissionStatus.COMPLETE,0.176,
 56690108,submission.csv,2026-09-29 23:38:42.633000,"Experimental PubChemLite expansion: independent local MRR point estimates improved, CI crosses zero; frozen 60K encoder and historical guard",SubmissionStatus.COMPLETE,0.171,

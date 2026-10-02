@@ -3,6 +3,7 @@
 import copy
 import math
 import re
+import time
 
 import numpy as np
 import torch
@@ -250,7 +251,9 @@ class SmilesDecoder(nn.Module):
         return self.head(x)
 
     @torch.inference_mode()
-    def generate(self, condition, samples=128, temperature=0.8, generator=None):
+    def generate(
+        self, condition, samples=128, temperature=0.8, generator=None, deadline=None
+    ):
         if samples < 1 or temperature <= 0:
             raise ValueError("Positive samples and temperature required")
         self.eval()
@@ -259,6 +262,10 @@ class SmilesDecoder(nn.Module):
         finished = torch.zeros(samples, dtype=torch.bool, device=condition.device)
         logp = torch.zeros(samples, device=condition.device)
         for _ in range(self.limit - 1):
+            if deadline is not None and time.monotonic() >= deadline:
+                raise TimeoutError(
+                    "Generation deadline reached; discard incomplete query"
+                )
             logits = self(tokens, condition)[:, -1] / temperature
             logits[:, [0, 1, 3]] = float("-inf")
             probs = logits.softmax(-1)

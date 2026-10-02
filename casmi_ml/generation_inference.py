@@ -101,11 +101,21 @@ def predict(
 
             seed = sampling_seed(group)
             generator = torch.Generator(device=device).manual_seed(seed)
-            sequence, logp, finished = decoder.generate(
-                torch.cat([condition, formula.soft(condition)], 1),
-                samples,
-                generator=generator,
-            )
+            try:
+                sequence, logp, finished = decoder.generate(
+                    torch.cat([condition, formula.soft(condition)], 1),
+                    samples,
+                    generator=generator,
+                    deadline=started + seconds,
+                )
+            except TimeoutError:
+                rows.append(
+                    {"molecule_id": molecule_id, "smiles": ";".join(original_top25)}
+                )
+                audit.append(
+                    {"molecule_id": molecule_id, "status": "budget_retrieval_fallback"}
+                )
+                continue
             masses = [
                 m
                 for r in group.to_dict("records")

@@ -141,6 +141,16 @@ def content_identity(files, config):
     ).hexdigest()
 
 
+def release_identity(release, sums, variant):
+    release = Path(release)
+    files = [release / "bundle" / name for name in sums]
+    notebook = release / "notebook"
+    if notebook.exists():
+        files.extend(notebook.glob("*.ipynb"))
+        files.extend(notebook.glob("kernel-metadata.json"))
+    return content_identity(files, {"variant": variant})
+
+
 class Controller:
     def __init__(self, config=CONFIG):
         self.config_path = Path(config)
@@ -215,6 +225,19 @@ class Controller:
             return "stopped"
         log = Path(log)
         log.parent.mkdir(parents=True, exist_ok=True)
+        budget = None
+        if seconds is not None:
+            from casmi_ml.research_budget import StageBudget
+
+            budget = StageBudget(
+                log.parent,
+                "wall_job",
+                str(log),
+                seconds,
+                limit=seconds,
+                lock_path=log.parent / "job.lock",
+            )
+            seconds = budget.allowance
         start = time.monotonic()
         with log.open("a") as stream:
             child = subprocess.Popen(
@@ -244,6 +267,8 @@ class Controller:
                         f"Child exited {child.returncode}: {argv}; see {log}"
                     )
             finally:
+                if budget is not None:
+                    budget.close()
                 self.change(lambda s: s.update(active_job=None))
         return "complete"
 
@@ -521,17 +546,18 @@ class Controller:
         ):
             raise ValueError("Inference resource gate failed")
         sums = json.loads((release / "bundle/SHA256SUMS.json").read_text())
-        files = [release / "bundle" / name for name in sums]
         if any(digest(release / "bundle" / name) != sha for name, sha in sums.items()):
             raise ValueError("Release content changed after verification")
-        identity = content_identity(files, {"variant": decision["winner"]["variant"]})
-        if identity != verification["identity"]:
-            raise ValueError("Verification belongs to different release contents")
+        identity = release_identity(release, sums, decision["winner"]["variant"])
         state = self.read()
-        if identity in state["submissions"]:
-            return state["submissions"][identity]
-        if state["pending_submission"] is not None:
-            return {"status": "waiting_for_previous_submission"}
+        if (
+            state.get("submission_aliases", {}).get(identity, identity)
+            != verification["identity"]
+        ):
+            raise ValueError("Verification belongs to different release contents")
+        previous_identity = state.get("submission_aliases", {}).get(identity, identity)
+        if previous_identity in state["submissions"]:
+            return state["submissions"][previous_identity]
         metadata = json.loads((release / "notebook/kernel-metadata.json").read_text())
         api = KaggleApi()
         api.authenticate()
@@ -542,14 +568,29 @@ class Controller:
                 (release / "dataset/dataset-metadata.json").read_text()
             )["id"]
             if not r.get("dataset_uploaded"):
-                api.dataset_create_new(
+                response = api.dataset_create_new(
                     str(release / "dataset"),
                     public=False,
                     convert_to_csv=False,
                     quiet=True,
                 )
-                self.mark_round(identifier, dataset_uploaded=True)
-            if api.dataset_status(dataset_id) != "ready":
+                if response.error or str(response.status).lower() == "error":
+                    raise ValueError(f"Kaggle rejected dataset: {response}")
+                self.mark_round(
+                    identifier, dataset_uploaded=True, dataset_response=str(response)
+                )
+            try:
+                ready = api.dataset_status(dataset_id) == "ready"
+            except Exception as error:
+                from requests import HTTPError
+
+                if isinstance(error, HTTPError) and error.response.status_code in [
+                    403,
+                    404,
+                ]:
+                    return {"status": "notebook_running"}
+                raise
+            if not ready:
                 return {"status": "notebook_running"}
             response = api.kernels_push(str(release / "notebook"), timeout="1800")
             if (
@@ -574,6 +615,8 @@ class Controller:
             raise RuntimeError("Kaggle notebook failed; inspect before retrying")
         if status != "COMPLETE":
             return {"status": "notebook_running"}
+        if self.read()["pending_submission"] is not None:
+            return {"status": "waiting_for_previous_submission"}
         message = f"Research {identifier} dev-experimental {identity[:16]}"
         self.reserve_submission(identity, remote["version"], message)
         response = api.competition_submit_code(
@@ -662,8 +705,18 @@ class Controller:
             ),
             None,
         )
+        waiting = False
         if finished:
-            return self.complete_round(finished["id"])
+            outcome = self.complete_round(finished["id"])
+            if outcome != "publication_waiting":
+                return outcome
+            waiting = True
+        evaluated = next(
+            (r for r in state["rounds"] if r["status"] == "evaluated"), None
+        )
+        if evaluated:
+            self.evaluate_round(evaluated["id"])
+            return "decided"
         pending = next(
             (
                 r
@@ -673,12 +726,8 @@ class Controller:
             None,
         )
         if pending is None:
-            evaluated = next(
-                (r for r in state["rounds"] if r["status"] == "evaluated"), None
-            )
-            if evaluated:
-                self.evaluate_round(evaluated["id"])
-                return "decided"
+            if waiting:
+                return "publication_waiting"
             self.change(lambda s: s.update(status="research_needed"))
             return "research_needed"
         rid = pending["id"]

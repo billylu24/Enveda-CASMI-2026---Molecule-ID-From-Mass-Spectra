@@ -151,3 +151,18 @@ class ResearchModelTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class GenerationDeadlineTests(unittest.TestCase):
+    def test_deadline_interrupts_before_decoding_partial_candidates(self):
+        import time
+
+        import torch
+
+        from casmi_ml.research_models import SmilesDecoder
+
+        decoder = SmilesDecoder(8, 4, width=16, layers=1)
+        with self.assertRaises(TimeoutError):
+            decoder.generate(
+                torch.zeros(1, 4), samples=2, deadline=time.monotonic() - 1
+            )

@@ -9,7 +9,7 @@ from pathlib import Path
 from casmi_ml.chemistry_release import prepare
 from casmi_ml.data import write_json
 from casmi_ml.metfrag import digest
-from casmi_ml.research_loop import content_identity
+from casmi_ml.research_loop import release_identity
 from casmi_ml.research_release import copy_inference_source
 
 
@@ -47,11 +47,37 @@ def package(identifier, decision, output):
                 "Shared deployable sampler development evaluation required"
             )
         base = json.loads(
-            (Path(protocol.get("incumbent_directory", report.get("incumbent_directory"))) / "protocol.json").read_text()
+            (
+                Path(
+                    protocol.get(
+                        "incumbent_directory", report.get("incumbent_directory")
+                    )
+                )
+                / "protocol.json"
+            ).read_text()
         )
+        if (
+            digest(
+                Path(
+                    protocol.get(
+                        "incumbent_directory", report.get("incumbent_directory")
+                    )
+                )
+                / "report.json"
+            )
+            != protocol["incumbent_report_sha256"]
+        ):
+            raise ValueError("Generation incumbent report changed")
+        replay = json.loads(
+            (Path(report["round_directory"]) / "replay/verification.json").read_text()
+        )
+        if not replay["valid"] or replay["molecules"] < 25:
+            raise ValueError("Real low-confidence generation inference replay required")
         if base.get("metfrag_weight") != 0.5 or base.get("neural_weight") != 0.75:
             raise ValueError("Unexpected generation incumbent")
         _, prefix, slots = winner["variant"].split("_")
+        if replay.get("prefix") != int(prefix) or replay.get("slots") != int(slots):
+            raise ValueError("Replay configuration differs from selected generator slots")
         recipe["mass_hypothesis"] = protocol["incumbent_variant"]
         checkpoint = ROOT / "generation/smiles_42/model.pt"
         import torch
@@ -99,7 +125,7 @@ def package(identifier, decision, output):
     km.update(
         enable_gpu=report["direction"] == "generation_slots",
         id=kernel_id,
-        title=f"CASMI Research {identifier}",
+        title=f"CASMI26 Research {slug.replace(chr(45), chr(32))}",
         dataset_sources=[dataset_id, "aidensong123/casmi26-coconut-202609"],
     )
     write_json(output / "notebook/kernel-metadata.json", km)
@@ -112,9 +138,7 @@ def package(identifier, decision, output):
         f"# CASMI Research {identifier}\nDevelopment-gated experimental mass hypotheses; repeated development validation, no independent acceptance for this extension.\n"
     )
     write_json(output / "notebook/casmi_chemistry.ipynb", nb)
-    identity = content_identity(
-        [bundle / n for n in sums], {"variant": winner["variant"]}
-    )
+    identity = release_identity(output, sums, winner["variant"])
     write_json(
         output / "status.json",
         {
