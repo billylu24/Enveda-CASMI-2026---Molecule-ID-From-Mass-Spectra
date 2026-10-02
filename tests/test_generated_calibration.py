@@ -62,6 +62,34 @@ class GeneratedCalibrationTests(unittest.TestCase):
                 "sampled_tokens",
             )
 
+    def test_weak_prior_weights_can_be_disabled_without_losing_length_order(self):
+        candidates = [
+            {
+                "key": "A",
+                "smiles": "CC",
+                "log_probability": -2,
+                "best_sequence_tokens": 2,
+                "chemical_score": 0,
+                "formula_support": 0,
+            },
+            {
+                "key": "B",
+                "smiles": "CO",
+                "log_probability": -4,
+                "best_sequence_tokens": 2,
+                "chemical_score": 0,
+                "formula_support": 1,
+            },
+        ]
+        self.assertEqual(
+            calibrated_order(candidates, 1, "sampled_tokens", 0, 1), ["B", "A"]
+        )
+        self.assertEqual(
+            calibrated_order(candidates, 1, "sampled_tokens", 0, 0), ["A", "B"]
+        )
+        with self.assertRaises(ValueError):
+            calibrated_order(candidates, 1, "sampled_tokens", 0, float("nan"))
+
 
 if __name__ == "__main__":
     unittest.main()
