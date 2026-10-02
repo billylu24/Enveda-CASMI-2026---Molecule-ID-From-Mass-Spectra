@@ -9,6 +9,7 @@ import os
 import signal
 import subprocess
 import time
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from casmi_ml.data import write_json
@@ -352,8 +353,11 @@ class Controller:
                 )
             if s["pending_submission"] is not None:
                 raise RuntimeError("One submission is already pending")
-            if identity in s["submissions"]:
+            previous = s["submissions"].get(identity)
+            if previous is not None and previous["status"] != "quota_wait":
                 raise RuntimeError("This content was already submitted or reserved")
+            if s.get("submit_after") and now() < s["submit_after"]:
+                raise RuntimeError("Daily Kaggle allowance has not reset")
             s["submissions"][identity] = {
                 "identity": identity,
                 "version": version,
@@ -361,6 +365,7 @@ class Controller:
                 "status": "intent",
                 "created_at": now(),
                 "id": None,
+                "rejections": previous.get("rejections", []) if previous else [],
             }
             s["pending_submission"] = identity
 
@@ -388,12 +393,15 @@ class Controller:
                 if path.exists():
                     receipt = json.loads(path.read_text())
                     receipt.update(
-                        status="submitted",
-                        submitted=True,
+                        status="submitted"
+                        if entry["id"] is not None
+                        else entry["status"],
+                        submitted=entry["id"] is not None,
                         uploaded=True,
                         submission_id=entry["id"],
                         submission_status=entry["status"],
                         public_score=entry.get("score"),
+                        retry_at=entry.get("retry_at"),
                     )
                     write_json(path, receipt)
             if row.get("decision"):
@@ -402,6 +410,26 @@ class Controller:
                 decision["public_submission"] = snapshot
                 write_json(path, decision)
             self.mark_round(row["id"], git_synced=False, git_commit=None)
+
+    def defer_submission(self, identity, error):
+        retry_at = (
+            (datetime.now(timezone.utc) + timedelta(days=1))
+            .replace(hour=0, minute=0, second=0, microsecond=0)
+            .strftime("%Y-%m-%dT%H:%M:%SZ")
+        )
+
+        def update(state):
+            entry = state["submissions"][identity]
+            if entry["id"] is not None:
+                raise ValueError("Cannot defer an accepted submission")
+            entry.setdefault("rejections", []).append({"at": now(), "reason": error})
+            entry.update(status="quota_wait", error=error, retry_at=retry_at)
+            if state["pending_submission"] == identity:
+                state["pending_submission"] = None
+            state["submit_after"] = retry_at
+
+        self.change(update)
+        self.publication_snapshot(identity)
 
     def update_submission(self, identity, status, score=None, error=None):
         previous = self.read()["submissions"][identity]
@@ -720,8 +748,9 @@ class Controller:
         ):
             raise ValueError("Verification belongs to different release contents")
         previous_identity = state.get("submission_aliases", {}).get(identity, identity)
-        if previous_identity in state["submissions"]:
-            return state["submissions"][previous_identity]
+        previous = state["submissions"].get(previous_identity)
+        if previous is not None and previous["status"] != "quota_wait":
+            return previous
         metadata = json.loads((release / "notebook/kernel-metadata.json").read_text())
         api = KaggleApi()
         api.authenticate()
@@ -779,17 +808,37 @@ class Controller:
             raise RuntimeError("Kaggle notebook failed; inspect before retrying")
         if status != "COMPLETE":
             return {"status": "notebook_running"}
-        if self.read()["pending_submission"] is not None:
+        state = self.read()
+        if state.get("submit_after") and now() < state["submit_after"]:
+            return {"status": "waiting_for_allowance"}
+        if state["pending_submission"] is not None:
             return {"status": "waiting_for_previous_submission"}
         message = f"Research {identifier} dev-experimental {identity[:16]}"
         self.reserve_submission(identity, remote["version"], message)
-        response = api.competition_submit_code(
-            "submission.csv",
-            message,
-            competition=self.config["competition"],
-            kernel=remote["kernel"],
-            kernel_version=remote["version"],
-        )
+        try:
+            response = api.competition_submit_code(
+                "submission.csv",
+                message,
+                competition=self.config["competition"],
+                kernel=remote["kernel"],
+                kernel_version=remote["version"],
+            )
+        except Exception as error:
+            from requests import HTTPError
+
+            if (
+                isinstance(error, HTTPError)
+                and error.response.status_code == 400
+                and "daily Submission allowance" in error.response.text
+            ):
+                self.mark_round(identifier, identity=identity)
+                self.defer_submission(
+                    identity,
+                    "Kaggle daily submission allowance exhausted; rejected before acceptance",
+                )
+                return {"status": "waiting_for_allowance"}
+            # Uncertain errors retain intent for reconciliation, never resubmit.
+            raise
         self.finish_submission(identity, response.ref)
         self.mark_round(identifier, identity=identity, status="submitted")
         self.publication_snapshot(identity)
@@ -818,7 +867,19 @@ class Controller:
                 "protected_generation",
             ]:
                 outcome = self.release_round(identifier)
-                if outcome in ["notebook_running", "waiting_for_previous_submission"]:
+                if outcome in [
+                    "notebook_running",
+                    "waiting_for_previous_submission",
+                    "waiting_for_allowance",
+                ]:
+                    updated = next(
+                        row for row in self.read()["rounds"] if row["id"] == identifier
+                    )
+                    if (
+                        self.config["automatic_github_sync"]
+                        and not updated["git_synced"]
+                    ):
+                        self.sync_github(identifier, self.public_paths())
                     return "publication_waiting"
                 if outcome in ["stopped", "budget_exhausted"]:
                     return outcome
@@ -828,6 +889,7 @@ class Controller:
                 if self.config["automatic_github_sync"]:
                     self.sync_github(identifier, self.public_paths())
                 return "deployment_needed"
+        r = next(row for row in self.read()["rounds"] if row["id"] == identifier)
         if self.config["automatic_github_sync"] and not r["git_synced"]:
             self.sync_github(identifier, self.public_paths())
         return "round_complete"

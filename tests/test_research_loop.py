@@ -493,3 +493,25 @@ class SubmissionSnapshotTests(unittest.TestCase):
             c.mark_round("round", git_synced=True)
             c.update_submission("sha", "COMPLETE", 0.173)
             self.assertTrue(c.read()["rounds"][0]["git_synced"])
+
+
+class SubmissionAllowanceTests(unittest.TestCase):
+    def test_confirmed_quota_rejection_is_not_accepted_or_retried_before_reset(self):
+        with tempfile.TemporaryDirectory() as d:
+            c = LoopTests().controller(Path(d))
+            c.reserve_submission("sha", 1, "message")
+            c.defer_submission("sha", "daily submission allowance exhausted")
+            state = c.read()
+            self.assertIsNone(state["pending_submission"])
+            self.assertIsNone(state["submissions"]["sha"]["id"])
+            self.assertEqual(state["submissions"]["sha"]["status"], "quota_wait")
+            with self.assertRaises(RuntimeError):
+                c.reserve_submission("sha", 1, "message")
+            with patch(
+                "casmi_ml.research_loop.now", return_value="2099-01-01T00:00:00Z"
+            ):
+                c.reserve_submission("sha", 1, "message")
+            self.assertEqual(len(c.read()["submissions"]["sha"]["rejections"]), 1)
+            c.finish_submission("sha", 123)
+            with self.assertRaises(ValueError):
+                c.defer_submission("sha", "not allowed after acceptance")
