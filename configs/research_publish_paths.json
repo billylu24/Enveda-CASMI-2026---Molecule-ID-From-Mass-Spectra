@@ -174,7 +174,8 @@
     "casmi_ml/chembl_critic_slots.py",
     "casmi_ml/chembl_fragment_pilot.py",
     "casmi_ml/metfrag_monomer.py",
-    "tests/test_metfrag_monomer.py"
+    "tests/test_metfrag_monomer.py",
+    "tests/test_chembl_fragment_cli.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
