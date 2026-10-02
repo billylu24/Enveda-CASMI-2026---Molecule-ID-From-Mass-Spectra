@@ -49,7 +49,7 @@ def score_cache_key(query, first, candidates):
 
 
 @torch.inference_mode()
-def run(output, incumbent, limit=200, prefix=5):
+def run(output, incumbent, limit=200, prefix=5, monomer=False):
     if prefix not in (5, 10):
         raise ValueError("Pilot insertion prefix must be5 or10")
     variants = {
@@ -83,6 +83,10 @@ def run(output, incumbent, limit=200, prefix=5):
             "rule": "Freeze0062;confidence<.5;native first100 novel ChEMBL proposals;critic rank then MetFrag tie-aware rerank; actual first proposal critic must exceed current first by.05;insert3 after frozen prefix",
             "limit": limit,
             "insertion_prefix": prefix,
+            "fragment_adapter": "exact_monomer" if monomer else "proton_only",
+            "fragment_adapter_sha256": digest(
+                "casmi_ml/metfrag_monomer.py" if monomer else "casmi_ml/metfrag.py"
+            ),
             "fragment_seconds": 1200,
             "java_sha256": digest(JAVA),
             "jar_sha256": digest("external/metfrag/MetFragCommandLine-2.6.11.jar"),
@@ -156,7 +160,12 @@ def run(output, incumbent, limit=200, prefix=5):
         ).read_text()
     )
     allowed_keys = set(sorted(groups)[:limit])
-    fragmenter = MetFrag(
+    adapter = MetFrag
+    if monomer:
+        from casmi_ml.metfrag_monomer import MonomerMetFrag
+
+        adapter = MonomerMetFrag
+    fragmenter = adapter(
         "external/metfrag/MetFragCommandLine-2.6.11.jar",
         ROOT / "chembl_metfrag_cache",
         java=JAVA,
@@ -405,6 +414,10 @@ def run(output, incumbent, limit=200, prefix=5):
         report["diagnostics"] = {
             "molecules": len(allowed_keys),
             "fragment_groups": len(fragment_scores),
+            "fragment_groups_with_scores": sum(
+                bool(r["scores"]) for r in fragment_scores.values()
+            ),
+            "fragment_adapter": "exact_monomer" if monomer else "proton_only",
             "fragment_budget_fallbacks": sum(
                 r["budget_fallback"] for r in fragment_scores.values()
             ),
@@ -430,8 +443,11 @@ def main():
     p.add_argument("--incumbent", type=Path, required=True)
     p.add_argument("--limit", type=int, default=200)
     p.add_argument("--prefix", type=int, default=5)
+    p.add_argument("--monomer", action="store_true")
     a = p.parse_args()
-    print(json.dumps(run(a.output, a.incumbent, a.limit, a.prefix), indent=2))
+    print(
+        json.dumps(run(a.output, a.incumbent, a.limit, a.prefix, a.monomer), indent=2)
+    )
 
 
 if __name__ == "__main__":
