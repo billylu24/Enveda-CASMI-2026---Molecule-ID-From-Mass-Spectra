@@ -33,7 +33,8 @@ def code_archive():
 
 
 def cell(kind, source):
-    result = {"cell_type": kind, "metadata": {}, "source": source.splitlines(keepends=True)}
+    result = {"cell_type": kind, "id": hashlib.sha256(source.encode()).hexdigest()[:12],
+              "metadata": {}, "source": source.splitlines(keepends=True)}
     if kind == "code":
         result.update(execution_count=None, outputs=[])
     return result

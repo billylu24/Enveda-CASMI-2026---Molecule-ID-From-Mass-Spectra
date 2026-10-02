@@ -19,6 +19,12 @@ the spectrum-to-structure architecture and proposes controlled adversarial
 negative-sampling and conditional generation experiments. GAN training and
 new leaderboard validation have not been performed.
 
+An offline, checkpoint-free historical-hybrid extension is now prepared in
+[the Kaggle chemical release](kaggle_release_chemistry/README.md), with
+ChEBI/LMSD candidates, a 0.5 confidence guard and a fixed 0.1 chemical weight.
+[Its status file](kaggle_release_chemistry/status.json) distinguishes uploaded
+inputs, notebook execution and actual competition submission.
+
 ## Local setup
 
 ```bash
