@@ -1,0 +1,17 @@
+{
+  "status": "pilot_queued",
+  "molecules": 200,
+  "source": "full publicChEMBL37",
+  "control": "same critic-gated100 proposals, prefix5 slots3",
+  "variants": [
+    "critic_control",
+    "fragment_weight.5",
+    "fragment_weight1"
+  ],
+  "seconds": 1200,
+  "budget_fallback": "discard partial query scores; do not insert fragment candidates when deadline fallback",
+  "new_training": false,
+  "new_sampling": false,
+  "scope": "repeated pilot, no submission eligibility",
+  "independent_acceptance": false
+}

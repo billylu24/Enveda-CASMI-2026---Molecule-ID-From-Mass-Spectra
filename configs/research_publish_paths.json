@@ -171,7 +171,8 @@
     "casmi_ml/generated_likelihood_ratio.py",
     "casmi_ml/chembl_catalog.py",
     "casmi_ml/chembl_candidate_slots.py",
-    "casmi_ml/chembl_critic_slots.py"
+    "casmi_ml/chembl_critic_slots.py",
+    "casmi_ml/chembl_fragment_pilot.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
