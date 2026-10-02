@@ -1144,6 +1144,20 @@ class Controller:
         if Path(pending["report"]).exists():
             mark(status="evaluated", completed_at=now())
             return "evaluated"
+        if pending["direction"] in [
+            "generation_slots",
+            "generation_pilot",
+            "representation",
+            "generation_finetune",
+        ]:
+            # The child owns the GPU budget/lock. Probe availability before
+            # launching it so a queued GPU job remains queued during another
+            # stage instead of failing merely because the GPU is busy.
+            with (self.root / "gpu.lock").open("a") as gpu:
+                try:
+                    fcntl.flock(gpu, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                except BlockingIOError:
+                    return "auxiliary_running"
         mark(status="running")
         active = state.get("active_job")
         if active:
@@ -1158,7 +1172,11 @@ class Controller:
             else:
                 return "orphan_job_running"
         seconds = self.config["gpu_stage_seconds"].get(pending["direction"])
-        if pending["direction"] == "generation_slots":
+        if pending["direction"] in [
+            "generation_slots",
+            "generation_pilot",
+            "generation_finetune",
+        ]:
             seconds = self.config["gpu_stage_seconds"]["generation"]
         try:
             result = self.job(

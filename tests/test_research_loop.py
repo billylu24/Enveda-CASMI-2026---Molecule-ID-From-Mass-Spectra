@@ -515,3 +515,20 @@ class SubmissionAllowanceTests(unittest.TestCase):
             c.finish_submission("sha", 123)
             with self.assertRaises(ValueError):
                 c.defer_submission("sha", "not allowed after acceptance")
+
+
+class QueuedGPUJobTests(unittest.TestCase):
+    def test_busy_gpu_does_not_launch_or_fail_queued_pilot(self):
+        import fcntl
+
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            c = LoopTests().controller(root)
+            c.register_round(
+                "pilot", "generation_pilot", ["false"], root / "report.json"
+            )
+            with (c.root / "gpu.lock").open("a") as gpu, patch.object(c, "job") as job:
+                fcntl.flock(gpu, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                self.assertEqual(c.step(), "auxiliary_running")
+                job.assert_not_called()
+            self.assertEqual(c.read()["rounds"][0]["status"], "queued")

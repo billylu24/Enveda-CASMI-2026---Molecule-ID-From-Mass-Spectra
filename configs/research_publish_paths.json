@@ -86,7 +86,10 @@
     "kaggle_release_position_0017/notebook/kernel-metadata.json",
     "kaggle_release_position_0017/verification.json",
     "kaggle_release_position_0017/status.json",
-    "kaggle_release_position_0017/kaggle_verification.json"
+    "kaggle_release_position_0017/kaggle_verification.json",
+    "casmi_ml/generation_views.py",
+    "casmi_ml/generation_view_experiment.py",
+    "casmi_ml/adaptive_generation.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

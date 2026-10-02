@@ -270,3 +270,41 @@ class MassCompletionTests(unittest.TestCase):
             )
         self.assertEqual(result[0].tolist(), [[1, vocabulary.ids["C"], 2]])
         self.assertTrue(result[2][0])
+
+
+class GenerationViewTests(unittest.TestCase):
+    def test_spectrum_selection_ignores_labels_and_row_order(self):
+        import pandas as pd
+
+        from casmi_ml.generation_views import generation_views, informative_spectrum
+
+        group = pd.DataFrame(
+            [
+                {
+                    "adduct": "[M+H]+",
+                    "precursor_mz": 100.0,
+                    "ms2_mzs": [40.0, 41.0],
+                    "ms2_normalized_intensities": [1.0, 1.0],
+                    "inchikey14": "truth",
+                    "normalized_smiles": "CC",
+                },
+                {
+                    "adduct": "[M+H]+",
+                    "precursor_mz": 100.0,
+                    "ms2_mzs": [40.0, 42.0],
+                    "ms2_normalized_intensities": [1.0, 0.01],
+                    "inchikey14": "truth",
+                    "normalized_smiles": "CC",
+                },
+            ]
+        )
+        selected = informative_spectrum(group).ms2_mzs.iloc[0]
+        altered = group.iloc[::-1].copy()
+        altered["inchikey14"] = "other"
+        altered["normalized_smiles"] = "CO"
+        self.assertEqual(selected, informative_spectrum(altered).ms2_mzs.iloc[0])
+        views = generation_views(group, 128)
+        self.assertEqual([count for _, count in views], [64, 64])
+        self.assertEqual(len(views[0][0]), 2)
+        self.assertEqual(len(views[1][0]), 1)
+        self.assertEqual(sum(count for _, count in generation_views(group, 127)), 127)
