@@ -1,0 +1,65 @@
+{
+  "observed_at": "2026-10-02T08:43:52.168Z",
+  "source": "https://www.kaggle.com/competitions/enveda-CASMI26-molecule-id-mass-spectra/leaderboard",
+  "team": "Spectral_Forge",
+  "our_rank": 1454,
+  "total_ranked_teams_displayed": 2105,
+  "our_score": 0.176,
+  "top10": [
+    {
+      "rank": 1,
+      "team": "pikachu",
+      "score": 0.471
+    },
+    {
+      "rank": 2,
+      "team": "Randy",
+      "score": 0.435
+    },
+    {
+      "rank": 3,
+      "team": "Ozymandias31415",
+      "score": 0.425
+    },
+    {
+      "rank": 4,
+      "team": "chopper",
+      "score": 0.425
+    },
+    {
+      "rank": 5,
+      "team": "asdf",
+      "score": 0.424
+    },
+    {
+      "rank": 6,
+      "team": "Shehab Alshehabi",
+      "score": 0.423
+    },
+    {
+      "rank": 7,
+      "team": "HMC_Stevelee",
+      "score": 0.423
+    },
+    {
+      "rank": 8,
+      "team": "Faraz92",
+      "score": 0.423
+    },
+    {
+      "rank": 9,
+      "team": "Satoshi Nguyen",
+      "score": 0.421
+    },
+    {
+      "rank": 10,
+      "team": "ACoder",
+      "score": 0.417
+    }
+  ],
+  "top10_mean": 0.42869999999999997,
+  "overall_mean": null,
+  "overall_mean_note": "Raw Data button did not produce a readable file; no overall average inferred.",
+  "public_test_fraction_approx": 0.33,
+  "top10_source_note": "Transcribed from initial actual DOM leaderboard snapshot in this task; three-decimal displayed scores."
+}

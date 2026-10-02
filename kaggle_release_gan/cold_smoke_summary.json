@@ -1,0 +1,12 @@
+{
+  "status": "synthetic_engineering_cold_pipeline_passed_not_validation",
+  "actual_conditional_gan_updates": 10,
+  "actual_generator_updates": 12,
+  "selected_gan_epoch": 12,
+  "submission_rows": 1,
+  "unknown_molecules": 5,
+  "known_molecules": 0,
+  "prepared_cache_removed": true,
+  "checkpoint_files_present": true,
+  "note": "Programmatically generated alcohol structures and synthetic peaks; public pool contains test targets. This checks real training/loading/output only and cannot establish chemical accuracy/generalization."
+}

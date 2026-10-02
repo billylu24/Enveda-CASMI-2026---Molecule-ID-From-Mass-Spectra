@@ -1,0 +1,58 @@
+{
+  "version": 2,
+  "frozen_before_training": true,
+  "seed": 20261002,
+  "max_training_molecules": 60000,
+  "development_molecules": 1000,
+  "acceptance_molecules": 1000,
+  "max_spectra_per_identity": 2,
+  "identity": "RDKit 2026.03.3 default TautomerEnumerator.Canonicalize then InChIKey14",
+  "exclude_from_neural_fitting": [
+    "all enveda-np-examples identities",
+    "identifiable visible test identities"
+  ],
+  "epoch_selection": "development supervised BCE, independent of acceptance",
+  "seconds_per_training_arm": 1800,
+  "generator_output": "2048-bit Morgan fingerprint probabilities",
+  "molecular_graph_decoder": false,
+  "generated_new_molecular_graphs": "measured at runtime",
+  "candidate_mass_window_ppm": 35,
+  "candidate_mass_floor_da": 0.006,
+  "confidence_guard": 0.75,
+  "neural_rrf_weight": 0.35,
+  "chemical_weight": 0.1,
+  "low_confidence_preserve_first_historical_hit": true,
+  "arms": [
+    "historical",
+    "expanded_chemistry",
+    "baseline_raw",
+    "cgan_raw",
+    "baseline_routed",
+    "cgan_routed"
+  ],
+  "scaffold_strata": [
+    "acyclic",
+    "seen_scaffold",
+    "unseen_scaffold"
+  ],
+  "acceptance_policy": "Report one frozen evaluation and paired molecule bootstrap CIs; submit requested experimental cgan arm without using acceptance to tune.",
+  "historical_cohort_overlap_reconstructed": false,
+  "public_leaderboard_usage": "One experimental submission compared with historical best; never used as training labels or a substitute for acceptance.",
+  "graph_generation": {
+    "kind": "deterministic two single-bond endpoint swaps",
+    "anchors": 2,
+    "attempts_per_anchor": 256,
+    "max_new_graphs_per_query": 32,
+    "constraints": [
+      "same atom inventory",
+      "same atom degrees and bond orders",
+      "RDKit sanitization",
+      "unchanged exact molecular formula",
+      "unchanged exact mass",
+      "official identity novel to mass-compatible supplied pool"
+    ],
+    "activation": "confidence < 0.75",
+    "shared_by_neural_arms": true,
+    "truth_used": false
+  }
+}
