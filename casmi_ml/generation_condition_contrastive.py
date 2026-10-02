@@ -8,10 +8,10 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import torch
-from torch.nn import functional as F
-
 from rdkit import Chem
 from rdkit.Chem import Descriptors
+from torch.nn import functional as F
+
 from casmi_ml.data import write_json
 from casmi_ml.generation_experiment import (
     GenerationDataset,

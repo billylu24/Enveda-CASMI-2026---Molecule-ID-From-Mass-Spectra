@@ -1,0 +1,17 @@
+{
+  "valid": true,
+  "rdkit": "2026.3.6",
+  "python_versions": [
+    "3.12",
+    "3.13"
+  ],
+  "structures": 100,
+  "identical": [
+    "inchikey",
+    "exact_mass",
+    "morgan_radius2_2048_fingerprint"
+  ],
+  "cp313_wheel_sha256": "3d0a2011c2a46f312010c8d8ec89b8210795663285545b2ac0909d1b9551fe41",
+  "scope": "offline ABI compatibility; full Kaggle inference still required",
+  "independent_acceptance": false
+}
