@@ -77,7 +77,8 @@
     "kaggle_release_combo_0013/notebook/kernel-metadata.json",
     "kaggle_release_combo_0013/verification.json",
     "kaggle_release_combo_0013/status.json",
-    "kaggle_release_combo_0013/kaggle_verification.json"
+    "kaggle_release_combo_0013/kaggle_verification.json",
+    "casmi_ml/generated_ranking.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
