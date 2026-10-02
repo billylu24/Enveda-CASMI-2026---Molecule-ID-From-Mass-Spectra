@@ -1276,5 +1276,11 @@
     "full_top25_matches": 25,
     "valid": true,
     "scope": "Implementation replay of development queries, no new statistical evidence"
+  },
+  "kaggle": {
+    "submission_id": 56771252,
+    "status": "PENDING",
+    "kernel": "giaok246/casmi26-research-0004-generation-shared",
+    "kernel_version": 1
   }
 }

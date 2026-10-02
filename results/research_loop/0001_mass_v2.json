@@ -489,6 +489,7 @@
     "submission_id": 56770705,
     "kernel": "giaok246/casmi-research-0001-mass-v2",
     "version": 2,
-    "status": "PENDING"
+    "status": "COMPLETE",
+    "public_score": 0.173
   }
 }

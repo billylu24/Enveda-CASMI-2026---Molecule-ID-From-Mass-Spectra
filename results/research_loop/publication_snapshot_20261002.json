@@ -1,0 +1,24 @@
+{
+  "status": "recorded",
+  "submitted_versions": [
+    {
+      "id": 56769471,
+      "public_score": 0.173,
+      "status": "COMPLETE"
+    },
+    {
+      "id": 56770705,
+      "public_score": 0.173,
+      "status": "COMPLETE"
+    },
+    {
+      "id": 56771252,
+      "status": "PENDING"
+    }
+  ],
+  "public_best": {
+    "score": 0.176,
+    "submission_id": 56535378
+  },
+  "validation_tests": 81
+}

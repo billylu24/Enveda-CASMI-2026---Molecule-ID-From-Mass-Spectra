@@ -1,0 +1,9 @@
+{
+  "valid": true,
+  "molecules": 400,
+  "seconds": 205.33783970399998,
+  "peak_parent_rss_mib": 3216.82421875,
+  "submission_id": 56771252,
+  "kernel_version": 1,
+  "scope": "Visible inference only; all 400 queries protected, cannot establish hidden low-confidence generation performance"
+}

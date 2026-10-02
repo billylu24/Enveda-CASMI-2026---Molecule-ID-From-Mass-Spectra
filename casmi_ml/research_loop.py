@@ -739,6 +739,9 @@ class Controller:
                 )
             )
 
+        if Path(pending["report"]).exists():
+            mark(status="evaluated", completed_at=now())
+            return "evaluated"
         mark(status="running")
         active = state.get("active_job")
         if active:
@@ -787,12 +790,11 @@ class Controller:
                 raise RuntimeError("A research runner is active") from error
             while True:
                 result = self.step()
-                if result == "publication_waiting":
+                if result in ["publication_waiting", "orphan_job_running"]:
                     time.sleep(min(45, self.config["poll_seconds"]))
                 if once or result in [
                     "stopped",
                     "research_needed",
-                    "orphan_job_running",
                     "deployment_needed",
                 ]:
                     return result

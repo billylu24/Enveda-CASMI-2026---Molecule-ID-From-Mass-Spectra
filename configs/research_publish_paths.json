@@ -55,7 +55,8 @@
     "kaggle_release_generation_0004/notebook/casmi_chemistry.ipynb",
     "kaggle_release_generation_0004/notebook/kernel-metadata.json",
     "kaggle_release_generation_0004/verification.json",
-    "kaggle_release_generation_0004/status.json"
+    "kaggle_release_generation_0004/status.json",
+    "kaggle_release_generation_0004/kaggle_verification.json"
   ],
   "aggregate_directories": [
     "results/research_loop",

@@ -1,5 +1,5 @@
 {
-  "status": "submitted",
+  "status": "scored",
   "identity": "e8bd4ccbf2f03a0c1b58da8a474ef5ee6b64966bb0dc5d417c97d856ed7d74fb",
   "development_eligible": true,
   "independent_acceptance": false,
@@ -9,6 +9,7 @@
   "kernel_version": 2,
   "tests_passed": 78,
   "submission_id": 56770705,
-  "submission_status": "PENDING",
-  "kernel_status": "COMPLETE"
+  "submission_status": "COMPLETE",
+  "kernel_status": "COMPLETE",
+  "public_score": 0.173
 }
