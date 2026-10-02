@@ -714,7 +714,7 @@ class Controller:
     def complete_round(self, identifier):
         r = next(r for r in self.read()["rounds"] if r["id"] == identifier)
         if r["status"] == "eligible" and self.config["automatic_submission"]:
-            if r["direction"] in ["mass", "generation_slots", "coverage"]:
+            if r["direction"] in ["mass", "generation_slots", "coverage", "reference_guard"]:
                 outcome = self.release_round(identifier)
                 if outcome in ["notebook_running", "waiting_for_previous_submission"]:
                     return "publication_waiting"

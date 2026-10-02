@@ -59,7 +59,10 @@
     "kaggle_release_generation_0004/kaggle_verification.json",
     "casmi_ml/formula_experiment.py",
     "casmi_ml/coverage_inference.py",
-    "casmi_ml/coverage_replay.py"
+    "casmi_ml/coverage_replay.py",
+    "casmi_ml/coverage_guard.py",
+    "casmi_ml/reference_guard.py",
+    "casmi_ml/reference_replay.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

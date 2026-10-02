@@ -79,11 +79,16 @@ def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
         raise ValueError('Checkpoint checksum mismatch')
     external = None
     chemical_expansion = recipe.get('chemistry_expansion')
+    reference_guard = recipe.get('reference_guard')
+    if reference_guard is not None and (reference_guard != {'topn': 1, 'threshold': 0.0} or chemical_expansion is None):
+        raise ValueError('Reference guard supports the tested top1 reference-evidence rule only')
     if chemical_expansion is not None:
         if mass_variant != 'charge_aware_union' or recipe.get('chemistry', {}).get('component') != 'fragment' or recipe['chemistry']['weight'] != .5 or config['weight'] != .75:
             raise ValueError('Chemical expansion supports the controlled union/fragment recipe only')
-        if any(name in recipe for name in ['candidate_expansion', 'router', 'direct_ranker', 'generation']):
+        if any(name in recipe for name in ['candidate_expansion', 'router', 'direct_ranker']):
             raise ValueError('Chemical expansion combination requires separate validation')
+        if 'generation' in recipe and reference_guard is None:
+            raise ValueError('Expanded generation requires separately tested reference gating')
         if not 0 <= chemical_expansion['weight'] <= 1:
             raise ValueError('Invalid chemical expansion fusion weight')
     if 'candidate_expansion' in recipe or chemical_expansion is not None:
@@ -170,6 +175,7 @@ def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
         protected = router is None and confidence >= config['threshold']
         reliability = None
         fragment_budget_fallback = False
+        generation_allowed = True
         if protected:
             output_pairs = historical
         else:
@@ -255,7 +261,11 @@ def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
                 ranking = rerank(ranking, structures, evidence, chemistry['weight'],
                                  component='combined' if component in ['fragment', 'combined_fragment'] else component,
                                  fragment_scores=fragments if fragmenter is not None else None)
-            if chemical_expansion is not None and not protected:
+            if reference_guard is not None and not protected:
+                from casmi_ml.reference_guard import protects_reference
+                generation_allowed = protects_reference(ranking, set(reference.rows.inchikey14), confidence,
+                                                       reference_guard['topn'], reference_guard['threshold'])
+            if chemical_expansion is not None and not protected and (reference_guard is None or not generation_allowed):
                 from casmi_ml.coverage_inference import (
                     expanded_chemical_rank,
                     merge_expanded,
@@ -265,6 +275,8 @@ def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
                     structures, fragmenter, fragment_deadline)
                 ranking = merge_expanded(ranking, expanded_rank, chemical_expansion['weight'], fallback)
                 fragment_budget_fallback |= fallback
+                if fallback and reference_guard is not None:
+                    generation_allowed = True
             output_pairs = [(k, structures[k]) for k in ranking]
             if protected:
                 output_pairs = historical
@@ -288,7 +300,8 @@ def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
         audit.append({'molecule_id': molecule_id, 'confidence': confidence,
                       'protected': protected, 'candidates': len(smiles),
                       'router_reliability': reliability,
-                      'fragment_budget_fallback': fragment_budget_fallback})
+                      'fragment_budget_fallback': fragment_budget_fallback,
+                      'generation_allowed': generation_allowed})
         if len(rows) % 100 == 0:
             print(f'predicted {len(rows)}/{test.molecule_id.nunique()}', flush=True)
     if full_rankings is not None:
@@ -305,6 +318,7 @@ def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
         'direct_ranker': recipe.get('direct_ranker'),
         'candidate_expansion': recipe.get('candidate_expansion'),
         'chemistry_expansion': chemical_expansion,
+        'reference_guard': reference_guard,
         'chemistry': recipe.get('chemistry'),
         'mass_hypothesis': mass_variant,
         'fragment_budget_fallback_molecules': sum(r['fragment_budget_fallback'] for r in audit),

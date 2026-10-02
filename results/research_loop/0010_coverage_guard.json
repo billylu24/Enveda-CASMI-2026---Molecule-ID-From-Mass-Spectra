@@ -1,0 +1,2921 @@
+{
+  "round": "0010_coverage_guard",
+  "round_directory": "artifacts/research_loop/rounds/0010_coverage_guard",
+  "incumbent_directory": null,
+  "direction": "coverage_guard",
+  "cohort_usage": {
+    "round": "0010_coverage_guard",
+    "split": "researchdev",
+    "sha256": "f297677effa13eefc2404eebe375c76d2f114a088eb0ad2aad4d404b198035c7",
+    "molecules": 2000,
+    "previously_used_molecules": 2000,
+    "fresh_molecules": 0,
+    "label": "repeated_development"
+  },
+  "baseline": {
+    "unknown": {
+      "molecules": 2000,
+      "candidate_recall": 0.12,
+      "mrr25": 0.02605419832919059,
+      "top1": 0.013,
+      "top5": 0.0425,
+      "top25": 0.0745,
+      "conditional_mrr25": 0.2171183194099216
+    },
+    "known": {
+      "molecules": 1340,
+      "candidate_recall": 1.0,
+      "mrr25": 0.607248690959205,
+      "top1": 0.5664179104477612,
+      "top5": 0.6380597014925373,
+      "top25": 0.7425373134328358,
+      "conditional_mrr25": 0.607248690959205
+    }
+  },
+  "choices": [
+    {
+      "variant": "baseline",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.092,
+          "mrr25": 0.0243714355073293,
+          "top1": 0.012,
+          "top5": 0.0415,
+          "top25": 0.0695,
+          "conditional_mrr25": 0.264906907688362
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6074692587086415,
+          "top1": 0.5664179104477612,
+          "top5": 0.6380597014925373,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6074692587086415
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0016827628218612882,
+        "relative_gain": -0.06458701206614964,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.02347759063317258,
+              "difference": -0.0002692849975230863
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.02852437125613722,
+              "difference": -0.0029610829103214886
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.026507962699620725,
+              "difference": -0.000279876854184159
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.02243667274107754,
+              "difference": -0.0012331396183096566
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.02091699506257846,
+              "difference": -0.0038442460317460307
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5960116476622377,
+              "difference": 0.00027148612557865233
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6342425026996563,
+              "difference": 5.0140393100681934e-05
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6326436381228461,
+              "difference": 0.00021040310608655866
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5903111223641326,
+              "difference": 0.0005380667786682821
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.579283517857691,
+              "difference": 0.0
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.05_0.25",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.094,
+          "mrr25": 0.024658935507329303,
+          "top1": 0.012,
+          "top5": 0.0425,
+          "top25": 0.071,
+          "conditional_mrr25": 0.2623291011418011
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6073305058450261,
+          "top1": 0.5664179104477612,
+          "top5": 0.6373134328358209,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6073305058450261
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0013952628218612852,
+        "relative_gain": -0.05355232213374462,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.02347759063317258,
+              "difference": -0.0002692849975230863
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.02915888902263468,
+              "difference": -0.002326565143824027
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.026507962699620725,
+              "difference": -0.000279876854184159
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.02243667274107754,
+              "difference": -0.0012331396183096566
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.021763349229245128,
+              "difference": -0.0029978918650793644
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959721063415576,
+              "difference": 0.00023194480489854163
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6338743289560314,
+              "difference": -0.0003180333505243256
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6323503944569092,
+              "difference": -8.284055985025688e-05
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5903322365156816,
+              "difference": 0.0005591809302172162
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5792961757650857,
+              "difference": 1.265790739474935e-05
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.05_0.5",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.094,
+          "mrr25": 0.02442084026923406,
+          "top1": 0.0115,
+          "top5": 0.0425,
+          "top25": 0.071,
+          "conditional_mrr25": 0.2597961730769581
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6064601706271272,
+          "top1": 0.5656716417910448,
+          "top5": 0.6358208955223881,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6064601706271272
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0016333580599565273,
+        "relative_gain": -0.06269078170509458,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.02347759063317258,
+              "difference": -0.0002692849975230863
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.02921931928611063,
+              "difference": -0.0022661348803480782
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.026507962699620725,
+              "difference": -0.000279876854184159
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.021199048978701302,
+              "difference": -0.0024707633806858942
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.021763349229245128,
+              "difference": -0.0029978918650793644
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959590228163325,
+              "difference": 0.00021886127967350497
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6332849697719879,
+              "difference": -0.0009073925345678203
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6310236636337756,
+              "difference": -0.0014095713829839574
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5901507834840601,
+              "difference": 0.0003777278985957772
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5767812303929976,
+              "difference": -0.0025022874646934796
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.05_1",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.094,
+          "mrr25": 0.02452124611338991,
+          "top1": 0.012,
+          "top5": 0.042,
+          "top25": 0.0715,
+          "conditional_mrr25": 0.2608643203552118
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6036690290663587,
+          "top1": 0.5649253731343283,
+          "top5": 0.6298507462686567,
+          "top25": 0.7335820895522388,
+          "conditional_mrr25": 0.6036690290663587
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.00153295221580068,
+        "relative_gain": -0.05883705176540365,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate",
+          "known_mrr_protection_failed"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.021577353103481366,
+              "difference": -0.0021695225272142975
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.030971293341384175,
+              "difference": -0.0005141608250745303
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.026507962699620725,
+              "difference": -0.000279876854184159
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.019943298403643797,
+              "difference": -0.0037265139557434005
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.02389318553876894,
+              "difference": -0.0008680555555555554
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5945965275324431,
+              "difference": -0.0011436340042159593
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6292970388595507,
+              "difference": -0.004895323447004997
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6269518487392732,
+              "difference": -0.005481386277486239
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5884931521391992,
+              "difference": -0.0012799034462651507
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5738889630506023,
+              "difference": -0.0053945548070887
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.1_0.25",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0945,
+          "mrr25": 0.024650006935900734,
+          "top1": 0.012,
+          "top5": 0.0425,
+          "top25": 0.071,
+          "conditional_mrr25": 0.2608466342423358
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6073305058450261,
+          "top1": 0.5664179104477612,
+          "top5": 0.6373134328358209,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6073305058450261
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0014041913932898546,
+        "relative_gain": -0.053895014367670156,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.02343517461688483,
+              "difference": -0.0003117010138108364
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.02915888902263468,
+              "difference": -0.002326565143824027
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.026507962699620725,
+              "difference": -0.000279876854184159
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.02243667274107754,
+              "difference": -0.0012331396183096566
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.021763349229245128,
+              "difference": -0.0029978918650793644
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959721063415576,
+              "difference": 0.00023194480489854163
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6338743289560314,
+              "difference": -0.0003180333505243256
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6323503944569092,
+              "difference": -8.284055985025688e-05
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5903322365156816,
+              "difference": 0.0005591809302172162
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5792961757650857,
+              "difference": 1.265790739474935e-05
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.1_0.5",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0945,
+          "mrr25": 0.02440496725336105,
+          "top1": 0.0115,
+          "top5": 0.0425,
+          "top25": 0.071,
+          "conditional_mrr25": 0.2582536217286883
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6064601706271272,
+          "top1": 0.5656716417910448,
+          "top5": 0.6358208955223881,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6064601706271272
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.001649231075829538,
+        "relative_gain": -0.06330001234318437,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.02340218438199436,
+              "difference": -0.0003446912487013088
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.02921931928611063,
+              "difference": -0.0022661348803480782
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.026507962699620725,
+              "difference": -0.000279876854184159
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.021199048978701302,
+              "difference": -0.0024707633806858942
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.021763349229245128,
+              "difference": -0.0029978918650793644
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959590228163325,
+              "difference": 0.00021886127967350497
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6332849697719879,
+              "difference": -0.0009073925345678203
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6310236636337756,
+              "difference": -0.0014095713829839574
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5901507834840601,
+              "difference": 0.0003777278985957772
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5767812303929976,
+              "difference": -0.0025022874646934796
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.1_1",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0945,
+          "mrr25": 0.024976133331435023,
+          "top1": 0.0125,
+          "top5": 0.0425,
+          "top25": 0.072,
+          "conditional_mrr25": 0.26429770721095264
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6036690290663587,
+          "top1": 0.5649253731343283,
+          "top5": 0.6298507462686567,
+          "top25": 0.7335820895522388,
+          "conditional_mrr25": 0.6036690290663587
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0010780649977555658,
+        "relative_gain": -0.041377784268561583,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate",
+          "known_mrr_protection_failed"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.021363040600132735,
+              "difference": -0.0023838350305629306
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.03350936440737402,
+              "difference": 0.0020239102409153175
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.026507962699620725,
+              "difference": -0.000279876854184159
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.019943298403643797,
+              "difference": -0.0037265139557434005
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.02389318553876894,
+              "difference": -0.0008680555555555554
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5945965275324431,
+              "difference": -0.0011436340042159593
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6292970388595507,
+              "difference": -0.004895323447004997
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6269518487392732,
+              "difference": -0.005481386277486239
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5884931521391992,
+              "difference": -0.0012799034462651507
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5738889630506023,
+              "difference": -0.0053945548070887
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.15_0.25",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0955,
+          "mrr25": 0.024721435507329304,
+          "top1": 0.012,
+          "top5": 0.0425,
+          "top25": 0.0715,
+          "conditional_mrr25": 0.2588631990296262
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6073305058450261,
+          "top1": 0.5664179104477612,
+          "top5": 0.6373134328358209,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6073305058450261
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0013327628218612851,
+        "relative_gain": -0.05115347649626529,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.02343517461688483,
+              "difference": -0.0003117010138108364
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.02915888902263468,
+              "difference": -0.002326565143824027
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.026507962699620725,
+              "difference": -0.000279876854184159
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.02243667274107754,
+              "difference": -0.0012331396183096566
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.022135373038768936,
+              "difference": -0.002625868055555555
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959721063415576,
+              "difference": 0.00023194480489854163
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6338743289560314,
+              "difference": -0.0003180333505243256
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6323503944569092,
+              "difference": -8.284055985025688e-05
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5903322365156816,
+              "difference": 0.0005591809302172162
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5792961757650857,
+              "difference": 1.265790739474935e-05
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.15_0.5",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0955,
+          "mrr25": 0.02447639582478962,
+          "top1": 0.0115,
+          "top5": 0.0425,
+          "top25": 0.0715,
+          "conditional_mrr25": 0.25629733847947245
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6064601706271272,
+          "top1": 0.5656716417910448,
+          "top5": 0.6358208955223881,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6064601706271272
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0015778025044009686,
+        "relative_gain": -0.060558474471779505,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.02340218438199436,
+              "difference": -0.0003446912487013088
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.02921931928611063,
+              "difference": -0.0022661348803480782
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.026507962699620725,
+              "difference": -0.000279876854184159
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.021199048978701302,
+              "difference": -0.0024707633806858942
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.022135373038768936,
+              "difference": -0.002625868055555555
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959590228163325,
+              "difference": 0.00021886127967350497
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6332849697719879,
+              "difference": -0.0009073925345678203
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6310236636337756,
+              "difference": -0.0014095713829839574
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5901507834840601,
+              "difference": 0.0003777278985957772
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5767812303929976,
+              "difference": -0.0025022874646934796
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.15_1",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0955,
+          "mrr25": 0.02507613333143502,
+          "top1": 0.0125,
+          "top5": 0.043,
+          "top25": 0.0725,
+          "conditional_mrr25": 0.2625773123710473
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6036690290663587,
+          "top1": 0.5649253731343283,
+          "top5": 0.6298507462686567,
+          "top25": 0.7335820895522388,
+          "conditional_mrr25": 0.6036690290663587
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0009780649977555698,
+        "relative_gain": -0.037539631248594815,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate",
+          "known_mrr_protection_failed"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.021363040600132735,
+              "difference": -0.0023838350305629306
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.03350936440737402,
+              "difference": 0.0020239102409153175
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.026507962699620725,
+              "difference": -0.000279876854184159
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.019943298403643797,
+              "difference": -0.0037265139557434005
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.02441401887210227,
+              "difference": -0.0003472222222222221
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5945965275324431,
+              "difference": -0.0011436340042159593
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6292970388595507,
+              "difference": -0.004895323447004997
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6269518487392732,
+              "difference": -0.005481386277486239
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5884931521391992,
+              "difference": -0.0012799034462651507
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5738889630506023,
+              "difference": -0.0053945548070887
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.2_0.25",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0955,
+          "mrr25": 0.024721435507329304,
+          "top1": 0.012,
+          "top5": 0.0425,
+          "top25": 0.0715,
+          "conditional_mrr25": 0.2588631990296262
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6073305058450261,
+          "top1": 0.5664179104477612,
+          "top5": 0.6373134328358209,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6073305058450261
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0013327628218612851,
+        "relative_gain": -0.05115347649626529,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.02343517461688483,
+              "difference": -0.0003117010138108364
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.02915888902263468,
+              "difference": -0.002326565143824027
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.026507962699620725,
+              "difference": -0.000279876854184159
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.02243667274107754,
+              "difference": -0.0012331396183096566
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.022135373038768936,
+              "difference": -0.002625868055555555
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959721063415576,
+              "difference": 0.00023194480489854163
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6338743289560314,
+              "difference": -0.0003180333505243256
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6323503944569092,
+              "difference": -8.284055985025688e-05
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5903322365156816,
+              "difference": 0.0005591809302172162
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5792961757650857,
+              "difference": 1.265790739474935e-05
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.2_0.5",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0955,
+          "mrr25": 0.024488300586694378,
+          "top1": 0.0115,
+          "top5": 0.0425,
+          "top25": 0.0715,
+          "conditional_mrr25": 0.2564219956721924
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6064601706271272,
+          "top1": 0.5656716417910448,
+          "top5": 0.6358208955223881,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6064601706271272
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0015658977424962105,
+        "relative_gain": -0.06010155149321216,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.023458739070378026,
+              "difference": -0.00028813656031764177
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.02921931928611063,
+              "difference": -0.0022661348803480782
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.026507962699620725,
+              "difference": -0.000279876854184159
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.021199048978701302,
+              "difference": -0.0024707633806858942
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.022135373038768936,
+              "difference": -0.002625868055555555
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959590228163325,
+              "difference": 0.00021886127967350497
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6332849697719879,
+              "difference": -0.0009073925345678203
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6310236636337756,
+              "difference": -0.0014095713829839574
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5901507834840601,
+              "difference": 0.0003777278985957772
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5767812303929976,
+              "difference": -0.0025022874646934796
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.2_1",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0955,
+          "mrr25": 0.025242799998101688,
+          "top1": 0.013,
+          "top5": 0.043,
+          "top25": 0.0725,
+          "conditional_mrr25": 0.26432251306912763
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6036690290663587,
+          "top1": 0.5649253731343283,
+          "top5": 0.6298507462686567,
+          "top25": 0.7335820895522388,
+          "conditional_mrr25": 0.6036690290663587
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0008113983310889007,
+        "relative_gain": -0.03114270954864985,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate",
+          "known_mrr_protection_failed"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.021363040600132735,
+              "difference": -0.0023838350305629306
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.03350936440737402,
+              "difference": 0.0020239102409153175
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.026088147418344487,
+              "difference": -0.0006996921354603975
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.021180922166020036,
+              "difference": -0.0024888901933671627
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.02441401887210227,
+              "difference": -0.0003472222222222221
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5945965275324431,
+              "difference": -0.0011436340042159593
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6292970388595507,
+              "difference": -0.004895323447004997
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6269518487392732,
+              "difference": -0.005481386277486239
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5884931521391992,
+              "difference": -0.0012799034462651507
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5738889630506023,
+              "difference": -0.0053945548070887
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.25_0.25",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0985,
+          "mrr25": 0.025019252967646764,
+          "top1": 0.012,
+          "top5": 0.0425,
+          "top25": 0.073,
+          "conditional_mrr25": 0.25400256819945954
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6073305058450261,
+          "top1": 0.5664179104477612,
+          "top5": 0.6373134328358209,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6073305058450261
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.001034945361543825,
+        "relative_gain": -0.03972278664910191,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.023798067200680027,
+              "difference": 5.119156998436012e-05
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.029920310342431634,
+              "difference": -0.0015651438240270724
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.02686780436928607,
+              "difference": 7.996481548118813e-05
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.02243667274107754,
+              "difference": -0.0012331396183096566
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.022135373038768936,
+              "difference": -0.002625868055555555
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959721063415576,
+              "difference": 0.00023194480489854163
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6338743289560314,
+              "difference": -0.0003180333505243256
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6323503944569092,
+              "difference": -8.284055985025688e-05
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5903322365156816,
+              "difference": 0.0005591809302172162
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5792961757650857,
+              "difference": 1.265790739474935e-05
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.25_0.5",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0985,
+          "mrr25": 0.025056951380345176,
+          "top1": 0.012,
+          "top5": 0.0425,
+          "top25": 0.0735,
+          "conditional_mrr25": 0.25438529320147385
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6064601706271272,
+          "top1": 0.5656716417910448,
+          "top5": 0.6358208955223881,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6064601706271272
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0009972469488454122,
+        "relative_gain": -0.03827586388363818,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.02382163165417322,
+              "difference": 7.475602347755469e-05
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.031249776138902507,
+              "difference": -0.00023567802755619988
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.02697275818960513,
+              "difference": 0.00018491863580024758
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.021199048978701302,
+              "difference": -0.0024707633806858942
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.022135373038768936,
+              "difference": -0.002625868055555555
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959590228163325,
+              "difference": 0.00021886127967350497
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6332849697719879,
+              "difference": -0.0009073925345678203
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6310236636337756,
+              "difference": -0.0014095713829839574
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5901507834840601,
+              "difference": 0.0003777278985957772
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5767812303929976,
+              "difference": -0.0025022874646934796
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.25_1",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0985,
+          "mrr25": 0.02643446666476835,
+          "top1": 0.013,
+          "top5": 0.0455,
+          "top25": 0.075,
+          "conditional_mrr25": 0.2683702199468868
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6036068400116322,
+          "top1": 0.5649253731343283,
+          "top5": 0.6298507462686567,
+          "top25": 0.7335820895522388,
+          "conditional_mrr25": 0.6036068400116322
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": 0.00038026833557776307,
+        "relative_gain": 0.014595280605955864,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate",
+          "known_mrr_protection_failed"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.02502099784478832,
+              "difference": 0.0012741222140926517
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.033001750194176054,
+              "difference": 0.001516296027717348
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.02871619107913374,
+              "difference": 0.001928351525328855
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.021180922166020036,
+              "difference": -0.0024888901933671627
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.02441401887210227,
+              "difference": -0.0003472222222222221
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5942999676273422,
+              "difference": -0.0014401939093167894
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6292970388595507,
+              "difference": -0.004895323447004997
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6269518487392732,
+              "difference": -0.005481386277486239
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5884931521391992,
+              "difference": -0.0012799034462651507
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5738889630506023,
+              "difference": -0.0053945548070887
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.3_0.25",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1005,
+          "mrr25": 0.02502200022039401,
+          "top1": 0.012,
+          "top5": 0.0425,
+          "top25": 0.073,
+          "conditional_mrr25": 0.2489751265710847
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6073305058450261,
+          "top1": 0.5664179104477612,
+          "top5": 0.6373134328358209,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6073305058450261
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0010321981087965774,
+        "relative_gain": -0.039617342884817296,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.023798067200680027,
+              "difference": 5.119156998436012e-05
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.029920310342431634,
+              "difference": -0.0015651438240270724
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.02688164443350397,
+              "difference": 9.380487969908613e-05
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.02243667274107754,
+              "difference": -0.0012331396183096566
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.022135373038768936,
+              "difference": -0.002625868055555555
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959721063415576,
+              "difference": 0.00023194480489854163
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6338743289560314,
+              "difference": -0.0003180333505243256
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6323503944569092,
+              "difference": -8.284055985025688e-05
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5903322365156816,
+              "difference": 0.0005591809302172162
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5792961757650857,
+              "difference": 1.265790739474935e-05
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.3_0.5",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1005,
+          "mrr25": 0.02506669164008543,
+          "top1": 0.012,
+          "top5": 0.0425,
+          "top25": 0.0735,
+          "conditional_mrr25": 0.24941981731428295
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6064601706271272,
+          "top1": 0.5656716417910448,
+          "top5": 0.6358208955223881,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6064601706271272
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0009875066891051575,
+        "relative_gain": -0.03790201781026497,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.02382163165417322,
+              "difference": 7.475602347755469e-05
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.031249776138902507,
+              "difference": -0.00023567802755619988
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.02702182750819586,
+              "difference": 0.0002339879543909768
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.021199048978701302,
+              "difference": -0.0024707633806858942
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.022135373038768936,
+              "difference": -0.002625868055555555
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959590228163325,
+              "difference": 0.00021886127967350497
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6332849697719879,
+              "difference": -0.0009073925345678203
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6310236636337756,
+              "difference": -0.0014095713829839574
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5901507834840601,
+              "difference": 0.0003777278985957772
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5767812303929976,
+              "difference": -0.0025022874646934796
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.3_1",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1005,
+          "mrr25": 0.026452540257841946,
+          "top1": 0.0125,
+          "top5": 0.046,
+          "top25": 0.0765,
+          "conditional_mrr25": 0.26320935579942234
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6036068400116322,
+          "top1": 0.5649253731343283,
+          "top5": 0.6298507462686567,
+          "top25": 0.7335820895522388,
+          "conditional_mrr25": 0.6036068400116322
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": 0.0003983419286513572,
+        "relative_gain": 0.015288972764326548,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate",
+          "known_mrr_protection_failed"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.023833349388731308,
+              "difference": 8.647375803564437e-05
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.03325555730077504,
+              "difference": 0.0017701031343163327
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.02981479860091506,
+              "difference": 0.003026959047110181
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.021180922166020036,
+              "difference": -0.0024888901933671627
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.02441401887210227,
+              "difference": -0.0003472222222222221
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5942999676273422,
+              "difference": -0.0014401939093167894
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6292970388595507,
+              "difference": -0.004895323447004997
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6269518487392732,
+              "difference": -0.005481386277486239
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5884931521391992,
+              "difference": -0.0012799034462651507
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5738889630506023,
+              "difference": -0.0053945548070887
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.35_0.25",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.101,
+          "mrr25": 0.02510533355372735,
+          "top1": 0.012,
+          "top5": 0.0425,
+          "top25": 0.073,
+          "conditional_mrr25": 0.24856765894779553
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6073305058450261,
+          "top1": 0.5664179104477612,
+          "top5": 0.6373134328358209,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6073305058450261
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0009488647754632394,
+        "relative_gain": -0.03641888203484468,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.023798067200680027,
+              "difference": 5.119156998436012e-05
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.029920310342431634,
+              "difference": -0.0015651438240270724
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.02688164443350397,
+              "difference": 9.380487969908613e-05
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.022849213995202955,
+              "difference": -0.0008205983641842439
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.022135373038768936,
+              "difference": -0.002625868055555555
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959721063415576,
+              "difference": 0.00023194480489854163
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6338743289560314,
+              "difference": -0.0003180333505243256
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6323503944569092,
+              "difference": -8.284055985025688e-05
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5903322365156816,
+              "difference": 0.0005591809302172162
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5792961757650857,
+              "difference": 1.265790739474935e-05
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.35_0.5",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.101,
+          "mrr25": 0.025400024973418766,
+          "top1": 0.0125,
+          "top5": 0.0425,
+          "top25": 0.0735,
+          "conditional_mrr25": 0.2514853957764234
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6064601706271272,
+          "top1": 0.5656716417910448,
+          "top5": 0.6358208955223881,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6064601706271272
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0006541733557718227,
+        "relative_gain": -0.025108174410375172,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.02382163165417322,
+              "difference": 7.475602347755469e-05
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.031249776138902507,
+              "difference": -0.00023567802755619988
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.02702182750819586,
+              "difference": 0.0002339879543909768
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.022849213995202955,
+              "difference": -0.000820598364184244
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.022135373038768936,
+              "difference": -0.002625868055555555
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959590228163325,
+              "difference": 0.00021886127967350497
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6332849697719879,
+              "difference": -0.0009073925345678203
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6310236636337756,
+              "difference": -0.0014095713829839574
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5901507834840601,
+              "difference": 0.0003777278985957772
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5767812303929976,
+              "difference": -0.0025022874646934796
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.35_1",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.101,
+          "mrr25": 0.026539661469963158,
+          "top1": 0.0125,
+          "top5": 0.046,
+          "top25": 0.077,
+          "conditional_mrr25": 0.26276892544517977
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6029284139600719,
+          "top1": 0.564179104477612,
+          "top5": 0.6291044776119403,
+          "top25": 0.7335820895522388,
+          "conditional_mrr25": 0.6029284139600719
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": 0.00048546314077256916,
+        "relative_gain": 0.018632818198388634,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate",
+          "known_mrr_protection_failed"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.023635407979388474,
+              "difference": -0.00011146765130719025
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.03325555730077504,
+              "difference": 0.0017701031343163327
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.02981479860091506,
+              "difference": 0.003026959047110181
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.021593463420145446,
+              "difference": -0.00207634893924175
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.024650761296344692,
+              "difference": -0.00011047979797979782
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5942999676273422,
+              "difference": -0.0014401939093167894
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6292970388595507,
+              "difference": -0.004895323447004997
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6269518487392732,
+              "difference": -0.005481386277486239
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5884931521391992,
+              "difference": -0.0012799034462651507
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5699535045696893,
+              "difference": -0.009330013288001723
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.4_0.25",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.104,
+          "mrr25": 0.02510533355372735,
+          "top1": 0.012,
+          "top5": 0.0425,
+          "top25": 0.073,
+          "conditional_mrr25": 0.24139743801660912
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6073370905684677,
+          "top1": 0.5664179104477612,
+          "top5": 0.6373134328358209,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6073370905684677
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.0009488647754632394,
+        "relative_gain": -0.03641888203484468,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.023798067200680027,
+              "difference": 5.119156998436012e-05
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.029920310342431634,
+              "difference": -0.0015651438240270724
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.02688164443350397,
+              "difference": 9.380487969908613e-05
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.022849213995202955,
+              "difference": -0.0008205983641842439
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.022135373038768936,
+              "difference": -0.002625868055555555
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959721063415576,
+              "difference": 0.00023194480489854163
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6338743289560314,
+              "difference": -0.0003180333505243256
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6323821337713401,
+              "difference": -5.1101245419448616e-05
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5903322365156816,
+              "difference": 0.0005591809302172162
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5792961757650857,
+              "difference": 1.265790739474935e-05
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.4_0.5",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.104,
+          "mrr25": 0.02542957042796422,
+          "top1": 0.0125,
+          "top5": 0.0425,
+          "top25": 0.0735,
+          "conditional_mrr25": 0.24451510026888676
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6064802624755773,
+          "top1": 0.5656716417910448,
+          "top5": 0.6358208955223881,
+          "top25": 0.744776119402985,
+          "conditional_mrr25": 0.6064802624755773
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": -0.000624627901226367,
+        "relative_gain": -0.023974174654475808,
+        "reasons": [
+          "absolute_gain_below_gate",
+          "relative_gain_below_gate"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.02382163165417322,
+              "difference": 7.475602347755469e-05
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.031249776138902507,
+              "difference": -0.00023567802755619988
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.02702182750819586,
+              "difference": 0.0002339879543909768
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.0229954786216656,
+              "difference": -0.0006743337377215975
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.022135373038768936,
+              "difference": -0.002625868055555555
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5959590228163325,
+              "difference": 0.00021886127967350497
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6332849697719879,
+              "difference": -0.0009073925345678203
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6311205092342184,
+              "difference": -0.0013127257825412348
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5901507834840601,
+              "difference": 0.0003777278985957772
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5767812303929976,
+              "difference": -0.0025022874646934796
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    },
+    {
+      "variant": "guard_0.4_1",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.104,
+          "mrr25": 0.027529412238518278,
+          "top1": 0.013,
+          "top5": 0.0475,
+          "top25": 0.0785,
+          "conditional_mrr25": 0.26470588690882957
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 1.0,
+          "mrr25": 0.6029408517710172,
+          "top1": 0.564179104477612,
+          "top5": 0.6291044776119403,
+          "top25": 0.7335820895522388,
+          "conditional_mrr25": 0.6029408517710172
+        }
+      },
+      "gate": {
+        "eligible": false,
+        "absolute_gain": 0.001475213909327689,
+        "relative_gain": 0.056620967211832796,
+        "reasons": [
+          "known_mrr_protection_failed"
+        ],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "folds": {
+        "unknown": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 421,
+              "baseline_mrr25": 0.023746875630695666,
+              "mrr25": 0.024031290798074145,
+              "difference": 0.0002844151673784787
+            },
+            {
+              "fold": 1,
+              "molecules": 394,
+              "baseline_mrr25": 0.03148545416645871,
+              "mrr25": 0.03325555730077504,
+              "difference": 0.0017701031343163327
+            },
+            {
+              "fold": 2,
+              "molecules": 397,
+              "baseline_mrr25": 0.02678783955380488,
+              "mrr25": 0.029849783207688083,
+              "difference": 0.0030619436538832003
+            },
+            {
+              "fold": 3,
+              "molecules": 404,
+              "baseline_mrr25": 0.0236698123593872,
+              "mrr25": 0.026046300008152074,
+              "difference": 0.002376487648764877
+            },
+            {
+              "fold": 4,
+              "molecules": 384,
+              "baseline_mrr25": 0.024761241094324492,
+              "mrr25": 0.024650761296344692,
+              "difference": -0.00011047979797979782
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        },
+        "known": {
+          "folds": [
+            {
+              "fold": 0,
+              "molecules": 281,
+              "baseline_mrr25": 0.5957401615366591,
+              "mrr25": 0.5942999676273422,
+              "difference": -0.0014401939093167894
+            },
+            {
+              "fold": 1,
+              "molecules": 277,
+              "baseline_mrr25": 0.6341923623065557,
+              "mrr25": 0.6292970388595507,
+              "difference": -0.004895323447004997
+            },
+            {
+              "fold": 2,
+              "molecules": 278,
+              "baseline_mrr25": 0.6324332350167595,
+              "mrr25": 0.6270118007776426,
+              "difference": -0.005421434239116935
+            },
+            {
+              "fold": 3,
+              "molecules": 273,
+              "baseline_mrr25": 0.5897730555854643,
+              "mrr25": 0.5884931521391992,
+              "difference": -0.0012799034462651507
+            },
+            {
+              "fold": 4,
+              "molecules": 231,
+              "baseline_mrr25": 0.579283517857691,
+              "mrr25": 0.5699535045696893,
+              "difference": -0.009330013288001723
+            }
+          ],
+          "label": "Fixed molecule folds, aggregate development diagnostics; repeated use is not fresh independent validation"
+        }
+      }
+    }
+  ],
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Repeated fixed molecule development cohort; no new holdout opened"
+}

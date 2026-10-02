@@ -34,7 +34,12 @@ def _package(identifier, decision, output):
     winner = report["winner"]
     if not winner or not winner["gate"]["eligible"]:
         raise ValueError("Development gate required")
-    if report["direction"] not in ["mass", "generation_slots", "coverage"]:
+    if report["direction"] not in [
+        "mass",
+        "generation_slots",
+        "coverage",
+        "reference_guard",
+    ]:
         raise ValueError(
             "This packaging path supports tested mass and generation-slot experiments"
         )
@@ -140,6 +145,44 @@ def _package(identifier, decision, output):
         )
         if not replay["valid"] or replay["molecules"] < 25:
             raise ValueError("Real expanded chemical ranking replay required")
+    if report["direction"] == "reference_guard":
+        from casmi_ml.coverage_experiment import EXTERNAL
+        from casmi_ml.research_protocol import ROOT
+
+        protocol = json.loads(
+            (Path(report["round_directory"]) / "protocol.json").read_text()
+        )
+        source = Path(protocol["source_directory"])
+        if digest(source / "report.json") != protocol["source_report_sha256"]:
+            raise ValueError("Reference guard source ranks changed")
+        if winner["variant"] != "reference_1_0":
+            raise ValueError(
+                "Reference guard packaging supports the selected top1 rule"
+            )
+        replay = json.loads(
+            (Path(report["round_directory"]) / "replay.json").read_text()
+        )
+        if not replay["valid"] or replay["molecules"] < 25:
+            raise ValueError("Reference guard branch replay required")
+        recipe["mass_hypothesis"] = "charge_aware_union"
+        recipe["reference_guard"] = {"topn": 1, "threshold": 0.0}
+        shutil.copy2(EXTERNAL, bundle / "external_catalog.parquet")
+        recipe["chemistry_expansion"] = {
+            "path": "external_catalog.parquet",
+            "sha256": digest(EXTERNAL),
+            "weight": 1.0,
+        }
+        checkpoint = ROOT / "generation/smiles_42/model.pt"
+        shutil.copy2(checkpoint, bundle / "generation.pt")
+        recipe["generation"] = {
+            "checkpoint": "generation.pt",
+            "sha256": digest(checkpoint),
+            "sampling": "spectrum_hash_v1_and_shared_group_forward_v2",
+            "prefix": 5,
+            "slots": 5,
+            "samples": 128,
+            "total_seconds": 1800,
+        }
     write_json(bundle / "deployment_recipe.json", recipe)
     shutil.copy2(decision, bundle / "development_decision.json")
     sums = {
@@ -168,14 +211,14 @@ def _package(identifier, decision, output):
     write_json(output / "dataset/dataset-metadata.json", dm)
     km = json.loads((output / "notebook/kernel-metadata.json").read_text())
     km.update(
-        enable_gpu=report["direction"] == "generation_slots",
+        enable_gpu=report["direction"] in ["generation_slots", "reference_guard"],
         id=kernel_id,
         title=f"CASMI26 Research {slug.replace(chr(45), chr(32))}",
         dataset_sources=[dataset_id, "aidensong123/casmi26-coconut-202609"],
     )
     write_json(output / "notebook/kernel-metadata.json", km)
     nb = json.loads((output / "notebook/casmi_chemistry.ipynb").read_text())
-    if report["direction"] == "generation_slots":
+    if report["direction"] in ["generation_slots", "reference_guard"]:
         nb["cells"][1]["source"] = nb["cells"][1]["source"].replace(
             "casmi_ml.secondary_inference", "casmi_ml.research_pipeline"
         )

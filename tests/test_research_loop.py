@@ -418,3 +418,13 @@ class AtomicReleaseTests(unittest.TestCase):
                 package("round", root / "decision.json", root / "release")
             self.assertFalse((root / "release").exists())
             self.assertEqual(list(root.iterdir()), [])
+
+
+class ReferenceEvidenceTests(unittest.TestCase):
+    def test_guard_depends_on_reference_presence_without_truth(self):
+        from casmi_ml.reference_guard import protects_reference
+
+        self.assertTrue(protects_reference(["known", "external"], {"known"}, 0.0))
+        self.assertFalse(protects_reference(["external", "known"], {"known"}, 0.0))
+        self.assertTrue(protects_reference(["external"], set(), 0.9))
+        self.assertFalse(protects_reference([], {"known"}, 0.0))

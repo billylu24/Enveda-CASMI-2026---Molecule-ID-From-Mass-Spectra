@@ -75,6 +75,11 @@ def predict(
     protected = routing.set_index("molecule_id").protected.to_dict()
     if any(not isinstance(v, (bool, np.bool_)) for v in protected.values()):
         raise ValueError("Routing protection must contain booleans")
+    if "generation_allowed" in routing:
+        allowed = routing.set_index("molecule_id").generation_allowed.to_dict()
+        if any(not isinstance(v, (bool, np.bool_)) for v in allowed.values()):
+            raise ValueError("Generation gates must be booleans")
+        protected = {key: protected[key] or not allowed[key] for key in protected}
     rows, audit = [], []
     for molecule_id, group in test.groupby("molecule_id", sort=False):
         smiles = (
