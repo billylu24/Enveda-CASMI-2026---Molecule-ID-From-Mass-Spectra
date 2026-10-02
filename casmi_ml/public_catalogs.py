@@ -302,6 +302,8 @@ def merge_catalogs(base: pd.DataFrame, extensions: list[pd.DataFrame]) -> pd.Dat
     in provenance. Tautomer canonicalization is deliberately not applied here;
     use the competition's exact normalization separately for submission scoring.
     Every existing base column/value is retained except the added provenance.
+    If the union contains formal_charge, missing legacy charges are computed
+    from each retained SMILES graph. No structure or mass is changed.
     """
     columns = list(base.columns)
     if "inchikey14" not in columns:
@@ -318,6 +320,14 @@ def merge_catalogs(base: pd.DataFrame, extensions: list[pd.DataFrame]) -> pd.Dat
             key = _clean(row.get("inchikey14"))
             if key is None:
                 raise ValueError("catalog contains an empty structure key")
+            if "formal_charge" in columns:
+                charge = row.get("formal_charge")
+                if charge is None or pd.isna(charge) or _clean(charge) is None:
+                    smiles = _clean(row.get("normalized_smiles"))
+                    mol = Chem.MolFromSmiles(smiles) if smiles else None
+                    if mol is None or not mol.GetNumAtoms():
+                        raise ValueError(f"cannot determine missing formal_charge for {key}: invalid retained normalized_smiles")
+                    row["formal_charge"] = Chem.GetFormalCharge(mol)
             provenance = _provenance(row)
             if key in positions:
                 existing = rows[positions[key]]

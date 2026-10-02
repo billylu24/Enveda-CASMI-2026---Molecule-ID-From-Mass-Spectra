@@ -1,0 +1,18 @@
+{
+  "id": "xiaoyuzhoux120/casmi-2026-chemical-priors-hybrid",
+  "title": "CASMI 2026 Chemical Priors Hybrid",
+  "code_file": "chemical_priors_hybrid.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "dataset_sources": [
+    "aidensong123/casmi26-coconut-202609",
+    "xiaoyuzhoux120/casmi-2026-chebi-lmsd-chemistry-inputs"
+  ],
+  "competition_sources": [
+    "enveda-CASMI26-molecule-id-mass-spectra"
+  ],
+  "kernel_sources": []
+}

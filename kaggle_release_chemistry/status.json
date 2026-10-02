@@ -1,0 +1,19 @@
+{
+  "status": "inputs_uploaded_not_yet_submitted",
+  "checked_at": "2026-10-02",
+  "competition": "enveda-CASMI26-molecule-id-mass-spectra",
+  "notebook": "https://www.kaggle.com/code/xiaoyuzhoux120/casmi-2026-chemical-priors-hybrid",
+  "dataset": "https://www.kaggle.com/datasets/xiaoyuzhoux120/casmi-2026-chebi-lmsd-chemistry-inputs",
+  "dataset_visibility": "private",
+  "input_archive_sha256": "56ac4d4a139dc9355162e41a7d8c8c6a0d0c37ee42b850f51098e3cd58d430fb",
+  "foundation": "historical hybrid.py + COCONUT",
+  "high_confidence_guard": 0.5,
+  "chemical_weight": 0.1,
+  "gan_trained": false,
+  "score": null,
+  "tests": {
+    "passed": 70,
+    "skipped": 1,
+    "subtests_passed": 10
+  }
+}

@@ -201,6 +201,37 @@ class PublicCatalogTests(unittest.TestCase):
         self.assertEqual(merged.iloc[0].source_id, "only-charged")
         self.assertEqual(merged.iloc[0].formal_charge, -1)
 
+    def test_legacy_pubchemlite_charge_is_recovered_without_changing_graph_mass_or_priority(self):
+        ethanol, acetate = "OCC", "CC(=O)[O-]"
+        legacy = pd.DataFrame([
+            {"inchikey14": Chem.MolToInchiKey(Chem.MolFromSmiles(smiles))[:14],
+             "normalized_smiles": smiles, "mass": mass, "origin": "pubchemlite"}
+            for smiles, mass in [(ethanol, 46.0419), (acetate, 59.0138)]
+        ])
+        public, _ = import_catalog(self.csv([self.row("CCO", "ethanol-overlap"), self.row("CC(=O)O", "neutral-acid-overlap"), self.row("CCN", "new")]), self.spec())
+        merged = merge_catalogs(legacy, [public])
+        self.assertEqual(merged.formal_charge.tolist(), [0, -1, 0])
+        self.assertEqual(merged.iloc[:2].normalized_smiles.tolist(), [ethanol, acetate])
+        self.assertEqual(merged.iloc[:2].mass.tolist(), [46.0419, 59.0138])
+        self.assertEqual(merged.iloc[:2].origin.tolist(), ["pubchemlite", "pubchemlite"])
+        self.assertEqual(len(merged[merged.formal_charge.eq(0)]), 2)
+        self.assertEqual(len(json.loads(merged.iloc[1].provenance_json)), 2)
+        self.assertNotIn("formal_charge", legacy.columns)
+
+    def test_legacy_null_charge_is_computed_from_retained_smiles(self):
+        public, _ = import_catalog(self.csv([self.row("CCO")]), self.spec())
+        legacy = public.copy()
+        legacy["formal_charge"] = float("nan")
+        merged = merge_catalogs(legacy, [public])
+        self.assertEqual(merged.iloc[0].formal_charge, 0)
+        self.assertFalse(merged.formal_charge.isna().any())
+
+    def test_missing_legacy_charge_with_invalid_smiles_fails_clearly(self):
+        legacy = pd.DataFrame([{"inchikey14": "invalid-source-key", "normalized_smiles": "not-a-smiles", "mass": 46.0, "origin": "pubchemlite"}])
+        public, _ = import_catalog(self.csv([self.row()]), self.spec())
+        with self.assertRaisesRegex(ValueError, "missing formal_charge.*invalid-source-key.*invalid retained"):
+            merge_catalogs(legacy, [public])
+
     def test_tautomers_keep_original_graphs_and_no_source_license_is_inferred(self):
         path = self.csv([self.row("O=C1C=CC=CN1", "keto"), self.row("Oc1ccccn1", "enol")])
         frame, manifest = import_catalog(path, self.spec())
