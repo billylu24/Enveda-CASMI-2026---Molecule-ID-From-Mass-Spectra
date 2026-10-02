@@ -22,6 +22,17 @@ from casmi_ml.secondary_inference import load_deployment_checkpoint
 from casmi_ml.training import configure
 
 
+def validated_confidence(values):
+    # Cosine scores can overshoot unit bounds by float32 rounding error.
+    tolerance = 1e-6
+    if any(
+        not np.isfinite(v) or not -tolerance <= v <= 1 + tolerance
+        for v in values.values()
+    ):
+        raise ValueError("Finite retrieval confidence between 0 and 1 required")
+    return {key: float(np.clip(value, 0, 1)) for key, value in values.items()}
+
+
 @torch.inference_mode()
 def predict(
     checkpoint,
@@ -42,6 +53,7 @@ def predict(
     critic_weight=0.0,
     adaptive_prefix=None,
     expanded_prefix=None,
+    first_gate=None,
 ):
     if not 0 <= frequency_weight <= 1:
         raise ValueError("Frequency fusion weight must be between zero and one")
@@ -51,6 +63,16 @@ def predict(
         raise ValueError("Critic weights require a frozen critic checkpoint")
     if expanded_prefix is not None and expanded_prefix not in (2, 3, 5, 10):
         raise ValueError("Unsupported expanded generation prefix")
+    if first_gate is not None and (
+        set(first_gate) != {"confidence", "margin"}
+        or not np.isfinite(list(first_gate.values())).all()
+        or not 0 < first_gate["confidence"] <= 0.5
+        or not 0 <= first_gate["margin"] <= 1
+        or not critic_weight
+    ):
+        raise ValueError(
+            "First-generation gate requires finite thresholds and frozen critic"
+        )
     encoder_path = Path(encoder_path or ENCODER)
     if not 1 <= samples <= 128 or seconds <= 0:
         raise ValueError("Invalid generation resource limits")
@@ -117,6 +139,13 @@ def predict(
             raise ValueError("Generation gates must be booleans")
         if expanded_prefix is None:
             protected = {key: protected[key] or not allowed[key] for key in protected}
+    confidence = None
+    if first_gate is not None:
+        if "confidence" not in routing:
+            raise ValueError("Actual retrieval confidence required for promotion gate")
+        confidence = validated_confidence(
+            routing.set_index("molecule_id").confidence.to_dict()
+        )
     second_reference = None
     if adaptive_prefix is not None:
         if adaptive_prefix != "second_unreferenced" or prefix != 2:
@@ -258,6 +287,41 @@ def predict(
                     )
                     if expanded_prefix is not None and not allowed[molecule_id]:
                         effective_prefix = expanded_prefix
+                    if (
+                        first_gate is not None
+                        and confidence[molecule_id] < first_gate["confidence"]
+                    ):
+                        from casmi_ml.generated_first_critic import promotion_prefix
+
+                        novel = [c for c in candidates if c["key"] not in set(original)]
+                        if original and novel:
+                            from casmi_ml.data import fingerprint
+                            from casmi_ml.direct_models import score_group
+
+                            pair = [lookup[original[0]], novel[0]["smiles"]]
+                            values = score_group(
+                                critic,
+                                critic_encoder,
+                                group,
+                                encoder_checkpoint["preprocessing"],
+                                pd.DataFrame({"normalized_smiles": pair}),
+                                np.stack([fingerprint(s) for s in pair]).astype(
+                                    np.float32
+                                ),
+                            )
+                            if not np.isfinite(values).all():
+                                raise ValueError("Nonfinite promotion critic scores")
+                            effective_prefix = promotion_prefix(
+                                original,
+                                generated,
+                                {
+                                    original[0]: float(values[0]),
+                                    novel[0]["key"]: float(values[1]),
+                                },
+                                effective_prefix,
+                                first_gate["margin"],
+                            )
+                        stats["generated_first_promotion"] = effective_prefix == 0
                     rank = insert_generated(
                         original, generated, effective_prefix, slots
                     )
@@ -293,6 +357,7 @@ def predict(
             "critic_weight": critic_weight,
             "adaptive_prefix": adaptive_prefix,
             "expanded_prefix": expanded_prefix,
+            "first_gate": first_gate,
             "critic_checkpoint_sha256": digest(critic_checkpoint)
             if critic_weight
             else None,

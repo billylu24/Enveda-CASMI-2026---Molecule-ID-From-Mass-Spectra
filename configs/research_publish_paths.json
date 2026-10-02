@@ -159,7 +159,13 @@
     "casmi_ml/generation_informative_pilot.py",
     "casmi_ml/generated_first_critic.py",
     "tests/test_generated_first_critic.py",
-    "casmi_ml/generated_first_gate.py"
+    "casmi_ml/generated_first_gate.py",
+    "kaggle_release_gate_0062_fixed/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_gate_0062_fixed/notebook/kernel-metadata.json",
+    "kaggle_release_gate_0062_fixed/verification.json",
+    "kaggle_release_gate_0062_fixed/status.json",
+    "kaggle_release_gate_0062_fixed/kaggle_verification.json",
+    "casmi_ml/generated_partial_promotion.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

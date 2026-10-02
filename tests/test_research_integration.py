@@ -251,9 +251,21 @@ class ReleaseGateTests(unittest.TestCase):
 
 
 class ProtectedGenerationRoutingTests(unittest.TestCase):
+    def test_confidence_accepts_rounding_only(self):
+        from casmi_ml.generation_inference import validated_confidence
+
+        self.assertEqual(
+            validated_confidence({"high": 1.0000002, "low": -0.0000002, "mid": 0.1}),
+            {"high": 1.0, "low": 0.0, "mid": 0.1},
+        )
+        for invalid in [float("nan"), float("inf"), -0.01, 1.01]:
+            with self.subTest(invalid=invalid), self.assertRaises(ValueError):
+                validated_confidence({"query": invalid})
+
     def test_open_protected_preserves_prefix_honors_branch_and_timeout(self):
         from unittest.mock import MagicMock, patch
 
+        import numpy as np
         import pandas as pd
         import torch
         from rdkit import Chem
@@ -262,15 +274,20 @@ class ProtectedGenerationRoutingTests(unittest.TestCase):
         from casmi_ml.metfrag import digest
 
         base = ["C", "CC", "CCC", "CCCC", "CCCCC", "CCCCCC"]
-        for allowed, timeout, frequency_weight, adaptive, expanded in [
-            (True, False, 0.0, None, None),
-            (True, False, 1.0, None, None),
-            (False, False, 1.0, None, None),
-            (True, True, 1.0, None, None),
-            (True, False, 1.0, "second_unreferenced", None),
-            (False, False, 1.0, "second_unreferenced", 2),
-            (False, True, 1.0, "second_unreferenced", 2),
-            (True, False, 1.0, "second_unreferenced", 2),
+        for allowed, timeout, frequency_weight, adaptive, expanded, gate_confidence in [
+            (True, False, 0.0, None, None, None),
+            (True, False, 1.0, None, None, None),
+            (False, False, 1.0, None, None, None),
+            (True, True, 1.0, None, None, None),
+            (True, False, 1.0, "second_unreferenced", None, None),
+            (False, False, 1.0, "second_unreferenced", 2, None),
+            (False, True, 1.0, "second_unreferenced", 2, None),
+            (True, False, 1.0, "second_unreferenced", 2, None),
+            (True, False, 1.0, "second_unreferenced", 2, 0.1),
+            (True, False, 1.0, "second_unreferenced", 2, 0.7),
+            (True, False, 1.0, "second_unreferenced", 2, 1.0000002),
+            (False, False, 1.0, "second_unreferenced", 2, 0.1),
+            (True, True, 1.0, "second_unreferenced", 2, 0.1),
         ]:
             with (
                 self.subTest(
@@ -282,6 +299,7 @@ class ProtectedGenerationRoutingTests(unittest.TestCase):
                 encoder = root / "encoder.pt"
                 encoder.write_bytes(b"encoder")
                 (root / "model.pt").write_bytes(b"generator")
+                (root / "critic.pt").write_bytes(b"critic")
                 pd.DataFrame(
                     [
                         {
@@ -301,6 +319,9 @@ class ProtectedGenerationRoutingTests(unittest.TestCase):
                             "protected": True,
                             "generation_allowed": allowed,
                             "second_candidate_has_reference": False,
+                            "confidence": gate_confidence
+                            if gate_confidence is not None
+                            else 0.7,
                         }
                     ]
                 ).to_csv(root / "route.csv", index=False)
@@ -319,7 +340,12 @@ class ProtectedGenerationRoutingTests(unittest.TestCase):
                 with (
                     patch(
                         "torch.load",
-                        return_value={"config": {"encoder_sha256": digest(encoder)}},
+                        return_value={
+                            "config": {"encoder_sha256": digest(encoder)},
+                            "encoder_sha256": digest(encoder),
+                            "architecture": "fingerprint",
+                            "state_dict": {},
+                        },
                     ),
                     patch(
                         "casmi_ml.generation_inference.load_model",
@@ -335,6 +361,11 @@ class ProtectedGenerationRoutingTests(unittest.TestCase):
                     ),
                     patch(
                         "casmi_ml.generation_sampling.sampling_seed", return_value=42
+                    ),
+                    patch("casmi_ml.direct_models.DirectRanker"),
+                    patch(
+                        "casmi_ml.direct_models.score_group",
+                        return_value=np.array([0.0, 0.4]),
                     ),
                     patch(
                         "casmi_ml.generation_inference.validate_generated",
@@ -373,12 +404,26 @@ class ProtectedGenerationRoutingTests(unittest.TestCase):
                         frequency_weight=frequency_weight,
                         adaptive_prefix=adaptive,
                         expanded_prefix=expanded,
+                        first_gate={"confidence": 0.2, "margin": 0.05}
+                        if gate_confidence is not None
+                        else None,
+                        critic_checkpoint=root / "critic.pt"
+                        if gate_confidence is not None
+                        else None,
+                        critic_weight=0.5 if gate_confidence is not None else 0,
                     )
                 ranking = result.smiles.iloc[0].split(";")
                 active = allowed or expanded is not None
                 protected_prefix = (
                     expanded if expanded and not allowed else 1 if adaptive else 5
                 )
+                if (
+                    gate_confidence is not None
+                    and gate_confidence < 0.2
+                    and active
+                    and not timeout
+                ):
+                    protected_prefix = 0
                 self.assertEqual(ranking[:protected_prefix], base[:protected_prefix])
                 self.assertEqual(
                     ranking,
@@ -734,9 +779,66 @@ class DecoderCheckpointPackagingTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     package("wrongexpanded", expanded_decision, root / "wrongexpanded")
                 self.assertFalse((root / "wrongexpanded").exists())
+                calibrated_replay.update(
+                    expanded_prefix=2,
+                    first_gate={"confidence": 0.2, "margin": 0.05},
+                    generated_first_promotions=1,
+                )
+                write_json(round_dir / "replay.json", calibrated_replay)
+                adaptive_deployment.update(
+                    variant="confidence0.2_margin0.05",
+                    first_gate={"confidence": 0.2, "margin": 0.05},
+                )
+                write_json(round_dir / "deployment.json", adaptive_deployment)
+                gated_decision = root / "gated_decision.json"
+                write_json(
+                    gated_decision,
+                    {
+                        "direction": "generated_first_gate",
+                        "round_directory": str(round_dir),
+                        "winner": {
+                            "variant": "confidence0.2_margin0.05",
+                            "gate": {"eligible": True},
+                        },
+                    },
+                )
+                gated_output = root / "gated_release"
+                package("gated", gated_decision, gated_output)
+                self.assertEqual(
+                    json.loads(
+                        (gated_output / "bundle/deployment_recipe.json").read_text()
+                    )["generation"]["first_gate"],
+                    {"confidence": 0.2, "margin": 0.05},
+                )
+                calibrated_replay["generated_first_promotions"] = 0
+                write_json(round_dir / "replay.json", calibrated_replay)
+                with self.assertRaises(ValueError):
+                    package("wronggate", gated_decision, root / "wronggate")
+                self.assertFalse((root / "wronggate").exists())
                 write_json(round_dir / "protocol.json", protocol)
                 replay["generator_sha256"] = "wrong checkpoint"
                 write_json(round_dir / "replay.json", replay)
                 with self.assertRaises(ValueError):
                     package("wrong", decision, root / "invalid_release")
                 self.assertFalse((root / "invalid_release").exists())
+
+
+class PartialPromotionTests(unittest.TestCase):
+    def test_front_slots_preserve_retrieval_and_remaining_generated_order(self):
+        from casmi_ml.generated_partial_promotion import partial_promotion
+        from casmi_ml.generation_slots import insert_generated
+
+        base = ["a", "b", "c", "d"]
+        generated = ["a", "x", "x", "y", "z"]
+        self.assertEqual(
+            partial_promotion(base, generated, 2, 1),
+            ["x", "a", "b", "y", "z", "c", "d"],
+        )
+        self.assertEqual(
+            partial_promotion(base, generated, 2, 5),
+            insert_generated(base, generated, 0, 5),
+        )
+        self.assertEqual(partial_promotion(base, ["a", "b"], 2, 1), base)
+        for front in [0, 6]:
+            with self.assertRaises(ValueError):
+                partial_promotion(base, generated, 2, front)

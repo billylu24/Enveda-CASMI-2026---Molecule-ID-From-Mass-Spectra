@@ -136,6 +136,13 @@ def run(directory, limit=25):
         ]
     )
     frame.to_parquet(output / "test.parquet")
+    first_gate = deployment.get("first_gate")
+    promotion_scores = {}
+    if first_gate is not None:
+        path = Path(deployment["promotion_scores_path"])
+        if digest(path) != deployment["promotion_scores_sha256"]:
+            raise ValueError("Frozen promotion scores changed")
+        promotion_scores = json.loads(path.read_text())
     full, base, routing, expected = [], [], [], {}
     for row in chosen:
         key = row["key"]
@@ -150,6 +157,7 @@ def run(directory, limit=25):
             {
                 "molecule_id": key,
                 "protected": confidence[key] >= 0.5,
+                "confidence": confidence[key],
                 "generation_allowed": allowed,
                 "second_candidate_has_reference": len(rank) >= 2
                 and rank[1] in observed,
@@ -164,6 +172,19 @@ def run(directory, limit=25):
         )
         if not allowed and deployment.get("expanded_prefix") is not None:
             effective_prefix = deployment["expanded_prefix"]
+        if first_gate is not None and confidence[key] < first_gate["confidence"]:
+            from casmi_ml.generated_first_critic import promotion_prefix
+
+            novel = [k for k in generated[key] if k not in set(rank)]
+            if rank and novel:
+                pair = key + ":" + rank[0] + ":" + novel[0]
+                effective_prefix = promotion_prefix(
+                    rank,
+                    generated[key],
+                    promotion_scores[pair],
+                    effective_prefix,
+                    first_gate["margin"],
+                )
         expected[key] = (
             insert_generated(rank, generated[key], effective_prefix, slots)
             if allowed or deployment.get("expanded_prefix") is not None
@@ -189,6 +210,7 @@ def run(directory, limit=25):
         critic_weight=0.5 if deployment.get("calibrated") else 0.0,
         adaptive_prefix=deployment.get("adaptive_prefix"),
         expanded_prefix=deployment.get("expanded_prefix"),
+        first_gate=first_gate,
     )
     actual = pd.read_csv(output / "submission.csv").set_index("molecule_id")
     matches = sum(
@@ -215,6 +237,13 @@ def run(directory, limit=25):
         "critic_sha256": deployment.get("critic_sha256"),
         "adaptive_prefix": deployment.get("adaptive_prefix"),
         "expanded_prefix": deployment.get("expanded_prefix"),
+        "first_gate": first_gate,
+        "generated_first_promotions": int(
+            pd.read_csv(str(output / "submission.csv") + ".generation.csv")
+            .get("generated_first_promotion", pd.Series(dtype=bool))
+            .fillna(False)
+            .sum()
+        ),
         "adaptive_queries_with_prefix1": sum(
             r["generation_allowed"] and not r["second_candidate_has_reference"]
             for r in routing

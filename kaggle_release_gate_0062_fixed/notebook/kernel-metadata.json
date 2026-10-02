@@ -1,0 +1,20 @@
+{
+  "id": "giaok246/casmi26-research-0062-generated-first-gate",
+  "title": "CASMI26 Research 0062 generated first gate",
+  "code_file": "casmi_chemistry.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "competition_sources": [
+    "enveda-CASMI26-molecule-id-mass-spectra"
+  ],
+  "dataset_sources": [
+    "giaok246/casmi26-research-0062-generated-first-gate-bundle",
+    "aidensong123/casmi26-coconut-202609"
+  ],
+  "kernel_sources": [],
+  "model_sources": []
+}

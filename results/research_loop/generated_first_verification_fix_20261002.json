@@ -1,0 +1,13 @@
+{
+  "round": "0062_generated_first_gate",
+  "stage": "first_full400_attempt",
+  "status": "failed_before_upload",
+  "reason": "float32 cosine rounding overshoot rejected by exact unit-range validation",
+  "maximum_confidence": 1.0000001966953278,
+  "affected_visible_molecules": 130,
+  "fix": "accept only1e-6 rounding tolerance, clip to unit bounds; reject nonfinite or larger violations",
+  "new_release": "kaggle_release_gate_0062_fixed",
+  "development_selection_changed": false,
+  "tests": 143,
+  "independent_acceptance": false
+}
