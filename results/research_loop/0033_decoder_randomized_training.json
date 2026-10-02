@@ -1,0 +1,55 @@
+{
+  "round": "0033_decoder_randomized_training",
+  "direction": "generation_finetune",
+  "status": "diagnostic_complete",
+  "report": {
+    "history": [
+      {
+        "epoch": 1,
+        "token_loss": 0.7271440548302014,
+        "batches": 938,
+        "training_molecules": 59970,
+        "complete": true,
+        "seconds": 38.042708156994195,
+        "augmentation": {
+          "changed": 59632,
+          "vocabulary_or_length_fallback": 6
+        }
+      },
+      {
+        "epoch": 2,
+        "token_loss": 0.646067683376483,
+        "batches": 938,
+        "training_molecules": 59974,
+        "complete": true,
+        "seconds": 74.2093634740013,
+        "augmentation": {
+          "changed": 59627,
+          "vocabulary_or_length_fallback": 3
+        }
+      },
+      {
+        "epoch": 3,
+        "token_loss": 0.6237673579629804,
+        "batches": 938,
+        "training_molecules": 59972,
+        "complete": true,
+        "seconds": 110.6111607060011,
+        "augmentation": {
+          "changed": 59635,
+          "vocabulary_or_length_fallback": 6
+        }
+      }
+    ],
+    "seconds": 110.63370023599418,
+    "complete": true,
+    "checkpoint_sha256": "ba07b54ab1b3e2d3d7d2fd542b9beefab2e8c986959c94028c6e93d9ae1d3af2",
+    "diagnostic_only": true,
+    "independent_acceptance": false,
+    "performance_acceptance": "Requires fixed-budget development sampling and full paired 2000-molecule structural rankings"
+  },
+  "protocol_sha256": "bcad295e56fbd13c1dc735e1bca12ff9b7e87d4ec059eff5859532dc276c636e",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
