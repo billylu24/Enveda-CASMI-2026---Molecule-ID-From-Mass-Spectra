@@ -1,0 +1,26 @@
+{
+  "round": "decoder_interpolation_protocol_20261002",
+  "randomized_target_pilot": {
+    "molecules": 200,
+    "exact_hits": 0,
+    "original_decoder_exact_hits": 8,
+    "current_selected_decoder_exact_hits": 9,
+    "decision": "Do_not_expand; structural performance degraded"
+  },
+  "interpolation": {
+    "alpha": 0.5,
+    "original_decoder_weight": 0.5,
+    "selected_three_epoch_decoder_weight": 0.5,
+    "formula_unchanged": true,
+    "conditioner_unchanged": true,
+    "vocabulary_unchanged": true,
+    "new_gpu_training": false,
+    "pilot_molecules": 200,
+    "samples_per_molecule": 128,
+    "spectrum_seed_protocol": "Same original spectrum hash and shared forward",
+    "selection": "One predeclared midpoint; no coefficient sweep",
+    "decision_requires": "Improvement over selected three-epoch decoder followed by full2000 paired development gate"
+  },
+  "independent_acceptance": false,
+  "cohort": "repeated_development"
+}

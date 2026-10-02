@@ -106,7 +106,9 @@
     "casmi_ml/generation_model_mixture.py",
     "tests/test_generation_model_mixture.py",
     "casmi_ml/generation_augmentation.py",
-    "tests/test_generation_augmentation.py"
+    "tests/test_generation_augmentation.py",
+    "casmi_ml/decoder_interpolation.py",
+    "tests/test_decoder_interpolation.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
