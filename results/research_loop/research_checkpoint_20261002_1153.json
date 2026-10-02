@@ -1,0 +1,17 @@
+{
+  "round": "research_checkpoint_20261002_1153",
+  "scope": "Frozen decoder controls and platform verification checkpoint",
+  "tests_passed": 102,
+  "completed_rounds_synced": [
+    "0016_mass_completion_pilot",
+    "0018_adaptive_generation",
+    "0019_generation_views_pilot",
+    "0020_decoder_single_control",
+    "0021_decoder_mean_condition",
+    "0022_single_decoder_pilot",
+    "0023_mean_decoder_pilot"
+  ],
+  "public_best": 0.176,
+  "submission_retry_after_utc": "2026-10-03T00:00:00Z",
+  "independent_acceptance": false
+}
