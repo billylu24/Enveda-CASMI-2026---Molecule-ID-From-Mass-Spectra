@@ -153,7 +153,9 @@
     "tests/test_generation_contrastive.py",
     "casmi_ml/generated_prior_ablation.py",
     "casmi_ml/generated_spectrum_critic.py",
-    "tests/test_generated_spectrum_critic.py"
+    "tests/test_generated_spectrum_critic.py",
+    "casmi_ml/generated_native_scores.py",
+    "tests/test_generated_native_scores.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
