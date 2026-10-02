@@ -142,7 +142,9 @@
     "kaggle_release_expanded_0047/kaggle_verification.json",
     "casmi_ml/generated_slot_capacity.py",
     "casmi_ml/learned_chemical_critic.py",
-    "tests/test_learned_chemical_critic.py"
+    "tests/test_learned_chemical_critic.py",
+    "casmi_ml/chebi_catalog.py",
+    "tests/test_chebi_catalog.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

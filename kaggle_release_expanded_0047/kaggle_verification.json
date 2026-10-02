@@ -1,0 +1,15 @@
+{
+  "valid": true,
+  "molecules": 400,
+  "seconds": 770.3943302529999,
+  "parent_peak_rss_mib": 3526.546875,
+  "local_full_top25_matches": 400,
+  "selected_prefix_preserved": 400,
+  "expanded_branch_queries": 0,
+  "generation_status_counts": {
+    "generated_and_merged": 279,
+    "no_valid_mass_matching_generation": 121
+  },
+  "independent_acceptance": false,
+  "scope": "Kaggle visible400 format, resources and behavior; expanded generation behavior covered by actual75-query replay, no accuracy labels"
+}
