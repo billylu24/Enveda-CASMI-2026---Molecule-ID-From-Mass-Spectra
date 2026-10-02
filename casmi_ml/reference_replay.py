@@ -26,6 +26,11 @@ def run(directory, limit=25):
         decision = json.loads((directory / "decision.json").read_text())
         _, prefix, slots = decision["winner"]["variant"].split("_")
         prefix, slots = int(prefix), int(slots)
+    checkpoint = Path(
+        protocol.get("generator_checkpoint", ROOT / "generation/smiles_42/model.pt")
+    )
+    if "generator_checkpoint" in protocol:
+        prefix, slots = protocol["prefix"], protocol["slots"]
     source = Path(protocol["source_directory"])
     rows = json.loads((source / "unknown_records.json").read_text())
     confidence = {
@@ -38,9 +43,17 @@ def run(directory, limit=25):
             columns=["inchikey14"],
         ).inchikey14
     )
-    generate = json.loads(
-        (ROOT / "generation/researchdev_samples128_limitall_stable_v2.json").read_text()
+    from casmi_ml.metfrag import digest
+
+    suffix = (
+        ""
+        if checkpoint.resolve() == (ROOT / "generation/smiles_42/model.pt").resolve()
+        else "_" + digest(checkpoint)[:12]
     )
+    generated_path = (
+        ROOT / "generation" / f"researchdev_samples128_limitall_stable_v2{suffix}.json"
+    )
+    generate = json.loads(generated_path.read_text())
     generated = {r["key"]: [c["key"] for c in r["candidates"]] for r in generate}
     open_protected = protocol.get("open_protected", False)
     by_branch = {"high": [], "low": [], "expanded": []}
@@ -94,7 +107,7 @@ def run(directory, limit=25):
     pd.DataFrame(base).to_csv(output / "base.csv", index=False)
     pd.DataFrame(routing).to_csv(output / "routing.csv", index=False)
     predict(
-        ROOT / "generation/smiles_42/model.pt",
+        checkpoint,
         output / "test.parquet",
         output / "base.csv",
         output / "submission.csv",
@@ -124,6 +137,8 @@ def run(directory, limit=25):
         "open_protected": open_protected,
         "prefix": prefix,
         "slots": slots,
+        "generator_sha256": digest(checkpoint),
+        "samples_sha256": digest(generated_path),
         "scope": "Actual unlabeled generation handoff for both routing branches; expansion CPU/MetFrag replay separately verified",
     }
     write_json(directory / "replay.json", result)

@@ -41,6 +41,7 @@ def _package(identifier, decision, output):
         "reference_guard",
         "reference_generation",
         "generation_position",
+        "generation_model",
         "protected_generation",
     ]:
         raise ValueError(
@@ -152,6 +153,7 @@ def _package(identifier, decision, output):
         "reference_guard",
         "reference_generation",
         "generation_position",
+        "generation_model",
     ]:
         from casmi_ml.coverage_experiment import EXTERNAL
         from casmi_ml.research_protocol import ROOT
@@ -162,6 +164,7 @@ def _package(identifier, decision, output):
         open_protected = report["direction"] in [
             "reference_generation",
             "generation_position",
+            "generation_model",
         ]
         if protocol.get("open_protected", False) != open_protected:
             raise ValueError("Reference generation protocol mismatch")
@@ -169,7 +172,15 @@ def _package(identifier, decision, output):
         if digest(source / "report.json") != protocol["source_report_sha256"]:
             raise ValueError("Reference guard source ranks changed")
         prefix, slots = 5, 5
-        if report["direction"] == "generation_position":
+        checkpoint = ROOT / "generation/smiles_42/model.pt"
+        if report["direction"] == "generation_model":
+            if winner["variant"] != "model" or protocol.get("limit") is not None:
+                raise ValueError("Full generator checkpoint ranking required")
+            prefix, slots = protocol["prefix"], protocol["slots"]
+            checkpoint = Path(protocol["generator_checkpoint"])
+            if digest(checkpoint) != protocol["generator_sha256"]:
+                raise ValueError("Selected decoder checkpoint changed")
+        elif report["direction"] == "generation_position":
             if not protocol.get("slot_ablation"):
                 raise ValueError("Generation position ablation protocol required")
             _, prefix, slots = winner["variant"].split("_")
@@ -188,21 +199,42 @@ def _package(identifier, decision, output):
             or replay.get("high_confidence_branch", 0) < 25
         ):
             raise ValueError("High-confidence reference generation replay required")
-        if report["direction"] == "generation_position" and (
+        if report["direction"] in ["generation_position", "generation_model"] and (
             replay.get("prefix") != prefix or replay.get("slots") != slots
         ):
             raise ValueError("Generation position replay configuration mismatch")
         source_protocol = json.loads((source / "protocol.json").read_text())
         if digest(EXTERNAL) != source_protocol["external"]["derived_sha256"]:
             raise ValueError("Reference guard external catalog changed")
-        generated = ROOT / "generation/researchdev_samples128_limitall_stable_v2.json"
-        if digest(generated) != protocol["generated_sha256"]:
+        suffix = (
+            ""
+            if checkpoint.resolve()
+            == (ROOT / "generation/smiles_42/model.pt").resolve()
+            else "_" + digest(checkpoint)[:12]
+        )
+        generated = (
+            ROOT
+            / "generation"
+            / f"researchdev_samples128_limitall_stable_v2{suffix}.json"
+        )
+        if report["direction"] == "generation_model":
+            if replay.get("generator_sha256") != digest(checkpoint) or replay.get(
+                "samples_sha256"
+            ) != digest(generated):
+                raise ValueError("Decoder checkpoint replay evidence changed")
+            if len(json.loads(generated.read_text())) != 2000:
+                raise ValueError("Full decoder development samples required")
+            import torch
+
+            from casmi_ml.research_protocol import ENCODER
+
+            saved = torch.load(checkpoint, map_location="cpu", weights_only=True)
+            if saved["config"]["encoder_sha256"] != digest(ENCODER):
+                raise ValueError("Decoder conditioning encoder changed")
+        elif digest(generated) != protocol["generated_sha256"]:
             raise ValueError("Reference guard generator candidates changed")
         generated_config = json.loads(generated.with_suffix(".config.json").read_text())
-        if (
-            digest(ROOT / "generation/smiles_42/model.pt")
-            != generated_config["checkpoint_sha256"]
-        ):
+        if digest(checkpoint) != generated_config["checkpoint_sha256"]:
             raise ValueError("Reference guard generation model changed")
         recipe["mass_hypothesis"] = "charge_aware_union"
         recipe["reference_guard"] = {"topn": 1, "threshold": 0.0}
@@ -216,7 +248,6 @@ def _package(identifier, decision, output):
         attribution.mkdir(exist_ok=True)
         for name in ["ATTRIBUTION.md", "manifest.json", "zenodo_record.json"]:
             shutil.copy2(EXTERNAL.parent / name, attribution / name)
-        checkpoint = ROOT / "generation/smiles_42/model.pt"
         shutil.copy2(checkpoint, bundle / "generation.pt")
         recipe["generation"] = {
             "checkpoint": "generation.pt",
@@ -309,6 +340,7 @@ def _package(identifier, decision, output):
             "reference_guard",
             "reference_generation",
             "generation_position",
+            "generation_model",
             "protected_generation",
         ],
         id=kernel_id,
@@ -322,6 +354,7 @@ def _package(identifier, decision, output):
         "reference_guard",
         "reference_generation",
         "generation_position",
+        "generation_model",
         "protected_generation",
     ]:
         nb["cells"][1]["source"] = nb["cells"][1]["source"].replace(

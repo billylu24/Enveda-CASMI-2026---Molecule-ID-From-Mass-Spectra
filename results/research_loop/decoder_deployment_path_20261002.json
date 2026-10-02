@@ -1,0 +1,16 @@
+{
+  "round": "decoder_deployment_path_20261002",
+  "tests_passed": 101,
+  "scope": "Matched decoder-checkpoint packaging, immutable replay binding and nonstarving completed-round GitHub synchronization",
+  "independent_acceptance": false,
+  "sampler_pilot": {
+    "baseline_hits": 8,
+    "single_finetune_hits": 9,
+    "mean_finetune_hits": 8,
+    "molecules": 200
+  },
+  "full_structure_experiments": [
+    "0024_single_decoder_full",
+    "0025_mean_decoder_full"
+  ]
+}

@@ -864,6 +864,7 @@ class Controller:
                 "reference_guard",
                 "reference_generation",
                 "generation_position",
+                "generation_model",
                 "protected_generation",
             ]:
                 outcome = self.release_round(identifier)
@@ -906,6 +907,7 @@ class Controller:
             "reference_guard",
             "reference_generation",
             "generation_position",
+            "generation_model",
         ]:
             directory = Path(r["report"]).parent
             replay = directory / "replay.json"
@@ -1026,6 +1028,7 @@ class Controller:
                 "reference_guard",
                 "reference_generation",
                 "generation_position",
+                "generation_model",
                 "protected_generation",
             ]:
                 gpu = (self.root / "gpu.lock").open("a")
@@ -1044,6 +1047,7 @@ class Controller:
                             "reference_guard",
                             "reference_generation",
                             "generation_position",
+                            "generation_model",
                             "protected_generation",
                         ]
                         else ".venv/bin/python",

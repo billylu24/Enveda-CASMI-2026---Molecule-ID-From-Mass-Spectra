@@ -385,3 +385,128 @@ class ProtectedGenerationRoutingTests(unittest.TestCase):
         ):
             main()
         self.assertTrue(run.call_args.args[7])
+
+
+class DecoderCheckpointPackagingTests(unittest.TestCase):
+    def test_selected_decoder_is_packaged_and_wrong_replay_checkpoint_is_rejected(self):
+        from unittest.mock import patch
+
+        import torch
+
+        from casmi_ml.data import write_json
+        from casmi_ml.experimental_release import package
+        from casmi_ml.metfrag import digest
+
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            source, round_dir = root / "source", root / "round"
+            generator_root = root / "research"
+            (generator_root / "generation").mkdir(parents=True)
+            source.mkdir()
+            encoder = root / "encoder.pt"
+            encoder.write_bytes(b"frozen encoder")
+            chosen = root / "chosen.pt"
+            torch.save(
+                {
+                    "config": {"encoder_sha256": digest(encoder)},
+                    "decoder": {"changed": torch.tensor([1.0])},
+                },
+                chosen,
+            )
+            external = root / "external/catalog.parquet"
+            external.parent.mkdir()
+            external.write_bytes(b"external catalog")
+            for name in ["ATTRIBUTION.md", "manifest.json", "zenodo_record.json"]:
+                (external.parent / name).write_text("{}")
+            write_json(source / "report.json", {})
+            write_json(
+                source / "protocol.json",
+                {"external": {"derived_sha256": digest(external)}},
+            )
+            samples = (
+                generator_root
+                / "generation"
+                / (
+                    "researchdev_samples128_limitall_stable_v2_"
+                    + digest(chosen)[:12]
+                    + ".json"
+                )
+            )
+            write_json(
+                samples, [{"key": str(i), "candidates": []} for i in range(2000)]
+            )
+            write_json(
+                samples.with_suffix(".config.json"),
+                {"checkpoint_sha256": digest(chosen)},
+            )
+            write_json(
+                round_dir / "protocol.json",
+                {
+                    "open_protected": True,
+                    "source_directory": str(source),
+                    "source_report_sha256": digest(source / "report.json"),
+                    "generator_checkpoint": str(chosen),
+                    "generator_sha256": digest(chosen),
+                    "limit": None,
+                    "prefix": 3,
+                    "slots": 5,
+                },
+            )
+            replay = {
+                "valid": True,
+                "molecules": 75,
+                "open_protected": True,
+                "high_confidence_branch": 25,
+                "prefix": 3,
+                "slots": 5,
+                "generator_sha256": digest(chosen),
+                "samples_sha256": digest(samples),
+            }
+            write_json(round_dir / "replay.json", replay)
+            decision = root / "decision.json"
+            write_json(
+                decision,
+                {
+                    "direction": "generation_model",
+                    "round_directory": str(round_dir),
+                    "winner": {"variant": "model", "gate": {"eligible": True}},
+                },
+            )
+
+            def prepare(output):
+                output = Path(output)
+                write_json(output / "bundle/deployment_recipe.json", {})
+                write_json(output / "dataset/dataset-metadata.json", {})
+                write_json(output / "notebook/kernel-metadata.json", {})
+                write_json(
+                    output / "notebook/casmi_chemistry.ipynb",
+                    {
+                        "cells": [
+                            {"source": "title"},
+                            {"source": "casmi_ml.secondary_inference"},
+                        ]
+                    },
+                )
+
+            with (
+                patch("casmi_ml.experimental_release.prepare", side_effect=prepare),
+                patch("casmi_ml.experimental_release.copy_inference_source"),
+                patch("casmi_ml.research_protocol.ROOT", generator_root),
+                patch("casmi_ml.research_protocol.ENCODER", encoder),
+                patch("casmi_ml.coverage_experiment.EXTERNAL", external),
+            ):
+                output = root / "release"
+                package("decoder", decision, output)
+                recipe = json.loads(
+                    (output / "bundle/deployment_recipe.json").read_text()
+                )
+                self.assertEqual(recipe["generation"]["sha256"], digest(chosen))
+                self.assertEqual(
+                    digest(output / "bundle/generation.pt"), digest(chosen)
+                )
+                self.assertEqual(recipe["generation"]["prefix"], 3)
+                replay["generator_sha256"] = "wrong checkpoint"
+                write_json(round_dir / "replay.json", replay)
+                with self.assertRaises(ValueError):
+                    package("wrong", decision, root / "invalid_release")
+                self.assertFalse((root / "invalid_release").exists())
