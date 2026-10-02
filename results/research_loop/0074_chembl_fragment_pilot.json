@@ -1,0 +1,5 @@
+{
+  "round": "0074_chembl_fragment_pilot",
+  "status": "failed",
+  "error": "Child exited -15: ['.venv/bin/python', '-u', '-m', 'casmi_ml.chembl_fragment_pilot', '--output', 'artifacts/research_loop/rounds/0074_chembl_fragment_pilot', '--incumbent', 'artifacts/research_loop/rounds/0062_generated_first_gate', '--limit', '200']; see artifacts/research_loop/rounds/0074_chembl_fragment_pilot/execution.log"
+}
