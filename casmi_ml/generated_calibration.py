@@ -17,7 +17,15 @@ from casmi_ml.research_protocol import ROOT, freeze
 SOURCE = Path("artifacts/research_loop/rounds/0005_coverage")
 
 
-def calibrated_order(candidates, alpha, length_measure="canonical_smiles"):
+def calibrated_order(
+    candidates,
+    alpha,
+    length_measure="canonical_smiles",
+    chemical_weight=0.25,
+    formula_weight=0.25,
+):
+    if not 0 <= chemical_weight <= 1 or not 0 <= formula_weight <= 1:
+        raise ValueError("Chemical and formula weights must be between0 and1")
     if length_measure not in ["canonical_smiles", "sampled_tokens"]:
         raise ValueError("Unknown sequence length measure")
     if not 0 <= alpha <= 1:
@@ -42,12 +50,15 @@ def calibrated_order(candidates, alpha, length_measure="canonical_smiles"):
             k,
         ),
     )
-    for field in ["chemical_score", "formula_support"]:
+    for field, weight in [
+        ("chemical_score", chemical_weight),
+        ("formula_support", formula_weight),
+    ]:
         order = rerank(
             order,
             {},
             [],
-            0.25,
+            weight,
             top_n=max(1, len(order)),
             fragment_scores={k: c[field] for k, c in lookup.items()},
         )

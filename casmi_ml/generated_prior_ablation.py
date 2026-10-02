@@ -1,4 +1,4 @@
-"""Predeclared combination of measured length, frequency and frozen critic scores."""
+"""Protect a reference-supported second retrieval candidate before moving generated slots."""
 
 import argparse
 import json
@@ -6,91 +6,72 @@ from pathlib import Path
 
 import pandas as pd
 
-from casmi_ml.chemistry import rerank
 from casmi_ml.data import write_json
-from casmi_ml.generated_calibration import calibrated_order
-from casmi_ml.generation_frequency_ranking import ranked_candidates
+from casmi_ml.generated_score_combination import (
+    GENERATED,
+    SCORES,
+    SOURCE,
+    combined_order,
+)
+from casmi_ml.generated_second_reference import select_prefix
 from casmi_ml.generation_slots import insert_generated
 from casmi_ml.metfrag import digest
 from casmi_ml.ranking import metrics
 from casmi_ml.reference_guard import protects_reference
 from casmi_ml.research_protocol import ROOT, freeze
 
-SOURCE = Path("artifacts/research_loop/rounds/0005_coverage")
-GENERATED = (
-    ROOT
-    / "generation/researchdev_samples128_limitall_stable_v2_98194888a437_frequency_v1.json"
-)
-SCORES = Path("artifacts/research_loop/rounds/0042_generated_critic/scores.json")
-VARIANTS = {
-    "baseline": (0.0, 0.0, 0.0),
-    "tokens_frequency": (1.0, 1.0, 0.0),
-    "tokens_critic": (1.0, 0.0, 0.5),
-    "frequency_critic": (0.0, 1.0, 0.5),
-    "tokens_frequency_critic": (1.0, 0.5, 0.5),
-    "tokens_frequency1_critic": (1.0, 1.0, 0.5),
-}
 
-
-def combined_order(candidates, scores, spec, chemical_weight=0.25, formula_weight=0.25):
-    alpha, frequency_weight, critic_weight = spec
-    ordered = calibrated_order(
-        candidates, alpha, "sampled_tokens", chemical_weight, formula_weight
-    )
-    lookup = {c["key"]: c for c in candidates}
-    if frequency_weight:
-        ordered = ranked_candidates([lookup[k] for k in ordered], frequency_weight)
-    return rerank(
-        ordered,
-        {},
-        [],
-        critic_weight,
-        top_n=max(1, len(ordered)),
-        fragment_scores=scores,
-    )
-
-
-def run(output):
-    output = Path(output)
+def run(output, incumbent):
+    output, incumbent = Path(output), Path(incumbent)
     output.mkdir(parents=True, exist_ok=True)
+    variants = {
+        "baseline": (0.25, 0.25),
+        "no_formula": (0.25, 0),
+        "no_chemistry": (0, 0.25),
+        "no_weak_priors": (0, 0),
+    }
     freeze(
         output / "protocol.json",
         {
             "version": 1,
+            "incumbent_report_sha256": digest(incumbent / "report.json"),
             "source_sha256": digest(Path(__file__)),
             "generated_sha256": digest(GENERATED),
-            "critic_scores_sha256": digest(SCORES),
+            "scores_sha256": digest(SCORES),
             "source_directory": str(SOURCE),
             "source_report_sha256": digest(SOURCE / "report.json"),
-            "variants": VARIANTS,
-            "composition_order": "Measured token length then frequency then fingerprint critic",
-            "critic": "Frozen training-only fingerprint critic from0042; graph excluded by prior negative evidence",
-            "reference_guard": {"topn": 1, "threshold": 0.0},
+            "variants": variants,
+            "calibration": {
+                "token_length_exponent": 1,
+                "fingerprint_critic_weight": 0.5,
+            },
+            "reference_guard": {"topn": 1, "threshold": 0},
             "open_protected": True,
-            "prefix": 3,
             "slots": 5,
+            "rule": "Freeze0047 routing/slots/critic; remove formula or chemistry support ranking priors separately and together",
             "holdout_used": False,
             "truth_used_only_in_metrics": True,
-            "independent_acceptance": False,
             "cohort": "repeated_development",
-            "new_gpu_training": False,
         },
     )
     generated = json.loads(GENERATED.read_text())
     by_key = {r["key"]: r["candidates"] for r in generated}
     if len(generated) != 2000 or len(by_key) != 2000:
-        raise ValueError("Full2000 generated cache required")
+        raise ValueError("Full2000 required")
     scores = json.loads(SCORES.read_text())
-    ordered = {
-        name: {
+    orderings = {
+        variant: {
             key: combined_order(
-                candidates, scores.get(key, {}).get("fingerprint", {}), spec
+                candidates,
+                scores.get(key, {}).get("fingerprint", {}),
+                (1, 0, 0.5),
+                *weights,
             )
             for key, candidates in by_key.items()
         }
-        for name, spec in VARIANTS.items()
+        for variant, weights in variants.items()
     }
-    report = {}
+    report, diagnostics = {}, {}
     for mode in ["unknown", "known"]:
         rows = json.loads((SOURCE / f"{mode}_records.json").read_text())
         if {r["key"] for r in rows} != set(by_key):
@@ -109,24 +90,41 @@ def run(output):
                 columns=["inchikey14"],
             ).inchikey14
         )
-        report[mode] = {}
-        for name in VARIANTS:
-            ranks, pools = {}, {}
+        report[mode], diagnostics[mode] = {}, {}
+        for variant in variants:
+            ordered = orderings[variant]
+            slots = 5
+            ranks, pools, moved = {}, {}, 0
             for row in rows:
                 if mode == "known" and not row["known"]:
                     continue
                 key, base = row["key"], row["variants"]["baseline"]
                 allowed = protects_reference(base["ranking"], observed, confidence[key])
                 selected = base if allowed else row["variants"]["expansion_1"]
+                prefix = select_prefix(
+                    base["ranking"], observed, confidence[key], "second_unreferenced"
+                )
+                if not allowed:
+                    prefix = 2
+                insert = True
+                moved += int(
+                    insert
+                    and prefix == 1
+                    and any(k not in set(selected["ranking"]) for k in ordered[key])
+                )
                 ranks[key] = (
-                    insert_generated(selected["ranking"], ordered[name][key], 3, 5)
-                    if allowed
+                    insert_generated(selected["ranking"], ordered[key], prefix, slots)
+                    if insert
                     else selected["ranking"]
                 )
-                pools[key] = selected["pool"] + (ordered[name][key] if allowed else [])
+                pools[key] = selected["pool"] + (ordered[key] if insert else [])
             result, per = metrics(ranks, pools)
-            report[mode][name] = result
-            per.to_csv(output / f"{mode}_{name}.csv", index=False)
+            report[mode][variant] = result
+            diagnostics[mode][variant] = {
+                "queries_with_earlier_novel_generation": moved
+            }
+            per.to_csv(output / f"{mode}_{variant}.csv", index=False)
+    write_json(output / "diagnostics.json", diagnostics)
     write_json(output / "report.json", report)
     return report
 
@@ -134,8 +132,9 @@ def run(output):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--incumbent", type=Path, required=True)
     args = parser.parse_args()
-    print(json.dumps(run(args.output), indent=2))
+    print(json.dumps(run(args.output, args.incumbent), indent=2))
 
 
 if __name__ == "__main__":

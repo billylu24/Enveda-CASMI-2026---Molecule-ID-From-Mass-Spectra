@@ -150,7 +150,8 @@
     "casmi_ml/generation_checkpoint_pilot.py",
     "tests/test_generation_training_controls.py",
     "casmi_ml/generation_contrastive_pilot.py",
-    "tests/test_generation_contrastive.py"
+    "tests/test_generation_contrastive.py",
+    "casmi_ml/generated_prior_ablation.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
