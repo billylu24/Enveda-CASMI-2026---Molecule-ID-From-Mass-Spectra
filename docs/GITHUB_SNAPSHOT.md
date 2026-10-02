@@ -72,7 +72,9 @@ locally novel candidates rather than established globally new molecules. See
 and [result interpretation](GAN_RESULT_INTERPRETATION_20261002.md). Engineering
 verification passed 106 tests, one skip and ten subtests; a real synthetic cold
 start exercised training, checkpoint reload and complete inference. These checks
-are not chemical generalization results.
+are not chemical generalization results. Both 12-epoch training arms have now
+completed; independent ranking acceptance is ongoing. The [runtime audit](RUNTIME_REVIEW_20261002.md)
+documents repeated CPU structure work and constraints for a later inference-only release.
 
 ## Repository contents
 

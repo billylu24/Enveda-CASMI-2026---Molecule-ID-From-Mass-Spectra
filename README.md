@@ -19,7 +19,8 @@ The [generative-model analysis](docs/GENERATIVE_MODELS_20261001.md) reviews
 the spectrum-to-structure architecture. A real conditional fingerprint GAN,
 a matched supervised generator control, canonical identity deduplication and
 shared formula-preserving graph candidates are now implemented. Formal offline
-GPU training is running as notebook version 2; its completion, submission and
+GPU training has completed both 12-epoch arms in notebook version 2; independent
+ranking acceptance is still running. Its completion, submission and
 score are tracked separately in [the GAN release](kaggle_release_gan/README.md).
 The previous chemical-prior score of 0.176 does not establish GAN effectiveness.
 
@@ -29,6 +30,11 @@ candidate coverage, overfitting and limited extrapolation. The [GAN interpretati
 checklist](docs/GAN_RESULT_INTERPRETATION_20261002.md) fixes how to interpret the
 matched comparison and its uncertainty. The full engineering suite passed
 106 tests, with one data-dependent skip and ten subtests passed.
+
+The [runtime review](docs/RUNTIME_REVIEW_20261002.md) identifies repeated structure
+canonicalization, serial graph edits and the cost of rerunning research evaluations
+inside the competition notebook. It records future engineering changes and their
+correctness constraints; the active experiment remains frozen.
 
 The offline, checkpoint-free historical-hybrid extension completed the formal
 Kaggle CPU run with internet disabled in **6m 57s** and its competition submission

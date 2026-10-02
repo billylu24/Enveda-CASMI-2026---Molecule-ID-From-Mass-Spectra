@@ -18,7 +18,7 @@
     "skipped": 1,
     "subtests_passed": 10
   },
-  "observed_at_utc": "2026-10-02T17:34:51Z",
+  "observed_at_utc": "2026-10-02T20:21:02Z",
   "notebook_version": 2,
   "notebook_script_version_id": 354698716,
   "frozen_source_commit": "a45c65e9f16501c554dfd4a12679003d630cb0ff",
@@ -30,7 +30,7 @@
     "interval_minutes": 15,
     "until": "formal experiment reviewed, competition Succeeded with score, and GitHub reports updated"
   },
-  "latest_logged_stage": "reference scan after both 12-epoch training arms",
+  "latest_logged_stage": "unknown-reference independent acceptance ranking, after development ranking",
   "proof": "kaggle_run_in_progress.jpg",
   "observed_training": {
     "baseline": {
@@ -61,5 +61,19 @@
     "Warm-up epoch 1 and 2 metrics match exactly across arms.",
     "Lowest eligible logged development weighted BCE is epoch 6 in both arms; checkpoint and ranking verification remain pending.",
     "Discriminator real accuracy at threshold 0.5 is not calibrated to its unequal real/fake/mismatch loss weighting; real accuracy zero alone does not establish an engineering failure."
-  ]
+  ],
+  "observed_ranking_progress": {
+    "development": {
+      "total": 991,
+      "last_logged_completed": 900,
+      "next_stage_started": true
+    },
+    "unknown_acceptance": {
+      "total": 994,
+      "last_logged_completed": 400,
+      "last_log_elapsed_seconds": 13767.1
+    },
+    "runtime_elapsed_seconds_at_observation": 14049.6
+  },
+  "runtime_review": "../docs/RUNTIME_REVIEW_20261002.md"
 }
