@@ -554,3 +554,22 @@ class ResearchSyncWhilePublicationWaitsTests(unittest.TestCase):
             self.assertEqual(
                 [call.args[0] for call in complete.call_args_list], ["release", "pilot"]
             )
+
+
+class OrphanStopTests(unittest.TestCase):
+    def test_stop_terminates_confirmed_primary_child_after_monitor_restart(self):
+        with tempfile.TemporaryDirectory() as d:
+            c = LoopTests().controller(Path(d))
+            child = subprocess.Popen(["sleep", "60"], start_new_session=True)
+            try:
+                c.change(
+                    lambda state: state.update(
+                        active_job={"pid": child.pid, "argv": ["sleep", "60"]}
+                    )
+                )
+                c.stop()
+                self.assertLess(child.wait(timeout=3), 0)
+            finally:
+                if child.poll() is None:
+                    child.kill()
+                    child.wait()

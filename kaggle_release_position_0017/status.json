@@ -1,8 +1,12 @@
 {
-  "status": "prepared",
+  "status": "waiting_for_allowance",
   "identity": "79658bc99b5816fd39196c859daaeb94d6a29ef6c3e16eb070e8315c544d3894",
   "development_eligible": true,
   "independent_acceptance": false,
-  "uploaded": false,
-  "submitted": false
+  "uploaded": true,
+  "submitted": false,
+  "dataset_uploaded": true,
+  "kernel": "giaok246/casmi26-research-0017-generation-position",
+  "kernel_version": 1,
+  "retry_at": "2026-10-03T00:00:00Z"
 }

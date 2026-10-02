@@ -199,6 +199,8 @@ class Controller:
         self.change(lambda s: s.update(status="stop_requested"))
         state = self.read()
         entries = list(state.get("auxiliary_jobs", {}).values())
+        if state.get("active_job"):
+            entries.append(state["active_job"])
         entries += [
             {"pid": r["external_pid"], "argv": r["argv"]}
             for r in state["rounds"]
