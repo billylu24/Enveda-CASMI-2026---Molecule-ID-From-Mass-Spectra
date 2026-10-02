@@ -1,8 +1,12 @@
 {
-  "status": "prepared",
+  "status": "platform_verification_pending",
   "identity": "733854c7dcb8e034d4d5167cd9e80aa5cc6330aafe606be68fa0d5880029ce08",
   "development_eligible": true,
   "independent_acceptance": false,
-  "uploaded": false,
-  "submitted": false
+  "uploaded": true,
+  "submitted": false,
+  "dataset_uploaded": true,
+  "kernel": null,
+  "kernel_version": null,
+  "retry_at": "2026-10-03T00:00:00Z"
 }

@@ -1,0 +1,31 @@
+{
+  "round": "decoder_local_verification_20261002",
+  "local_verification": {
+    "valid": true,
+    "identity": "733854c7dcb8e034d4d5167cd9e80aa5cc6330aafe606be68fa0d5880029ce08",
+    "seconds": 151.80699990599533,
+    "peak_rss_mib": 6060.953125,
+    "molecules": 400,
+    "independent_acceptance": false
+  },
+  "replay": {
+    "valid": true,
+    "molecules": 75,
+    "complete_top25_matches": 75,
+    "generation_branch": 50,
+    "high_confidence_branch": 25,
+    "expanded_branch": 25,
+    "open_protected": true,
+    "prefix": 3,
+    "slots": 5,
+    "generator_sha256": "98194888a4376d0773e45dfb955f5611ea9a1c4e1c90daae5e19321004d8fc73",
+    "samples_sha256": "59dc6d0eefb9bfcf6a4a2298a4ed3d35612eb036caa7f1f9c031d519320d06ba",
+    "scope": "Actual unlabeled generation handoff for both routing branches; expansion CPU/MetFrag replay separately verified"
+  },
+  "prefix3_preserved": 400,
+  "generation_status_counts": {
+    "generated_and_merged": 279,
+    "no_valid_mass_matching_generation": 121
+  },
+  "independent_acceptance": false
+}
