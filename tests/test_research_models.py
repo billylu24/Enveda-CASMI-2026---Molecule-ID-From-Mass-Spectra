@@ -224,3 +224,49 @@ class AtomMassConstraintTests(unittest.TestCase):
             decoder.generate(
                 torch.zeros(1, 4), token_masses=token_atom_masses(vocabulary)
             )
+
+
+class MassCompletionTests(unittest.TestCase):
+    def test_eos_requires_connected_structure_at_observed_mass(self):
+        from rdkit import Chem
+        from rdkit.Chem import Descriptors
+
+        from casmi_ml.generation_constraints import mass_eos_validator
+        from casmi_ml.research_models import SmilesVocabulary
+
+        vocabulary = SmilesVocabulary.fit(["CCO", "CC", "C.C", "C("])
+        valid = mass_eos_validator(
+            vocabulary, Descriptors.ExactMolWt(Chem.MolFromSmiles("CCO"))
+        )
+        self.assertTrue(valid(vocabulary.encode("CCO")))
+        self.assertFalse(valid(vocabulary.encode("CC")))
+        self.assertFalse(valid(vocabulary.encode("C.C")))
+        self.assertFalse(valid(vocabulary.encode("C(")))
+
+    def test_rejected_completion_continues_with_same_bounded_trajectory(self):
+        from unittest.mock import patch
+
+        import torch
+
+        from casmi_ml.research_models import SmilesDecoder, SmilesVocabulary
+
+        vocabulary = SmilesVocabulary(["C"])
+        decoder = SmilesDecoder(len(vocabulary.tokens), 4, width=32, layers=1, limit=3)
+
+        def logits(tokens, condition):
+            values = torch.full(
+                (len(tokens), tokens.shape[1], len(vocabulary.tokens)), -100.0
+            )
+            values[:, :, 2] = 30.0
+            values[:, :, vocabulary.ids["C"]] = 0.0
+            return values
+
+        with patch.object(decoder, "forward", side_effect=logits):
+            result = decoder.generate(
+                torch.zeros(1, 4),
+                samples=1,
+                generator=torch.Generator().manual_seed(42),
+                eos_validator=lambda tokens: len(tokens) >= 2,
+            )
+        self.assertEqual(result[0].tolist(), [[1, vocabulary.ids["C"], 2]])
+        self.assertTrue(result[2][0])

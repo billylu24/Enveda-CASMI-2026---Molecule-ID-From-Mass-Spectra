@@ -40,6 +40,7 @@ def _package(identifier, decision, output):
         "coverage",
         "reference_guard",
         "reference_generation",
+        "generation_position",
         "protected_generation",
     ]:
         raise ValueError(
@@ -147,20 +148,33 @@ def _package(identifier, decision, output):
         )
         if not replay["valid"] or replay["molecules"] < 25:
             raise ValueError("Real expanded chemical ranking replay required")
-    if report["direction"] in ["reference_guard", "reference_generation"]:
+    if report["direction"] in [
+        "reference_guard",
+        "reference_generation",
+        "generation_position",
+    ]:
         from casmi_ml.coverage_experiment import EXTERNAL
         from casmi_ml.research_protocol import ROOT
 
         protocol = json.loads(
             (Path(report["round_directory"]) / "protocol.json").read_text()
         )
-        open_protected = report["direction"] == "reference_generation"
+        open_protected = report["direction"] in [
+            "reference_generation",
+            "generation_position",
+        ]
         if protocol.get("open_protected", False) != open_protected:
             raise ValueError("Reference generation protocol mismatch")
         source = Path(protocol["source_directory"])
         if digest(source / "report.json") != protocol["source_report_sha256"]:
             raise ValueError("Reference guard source ranks changed")
-        if winner["variant"] != "reference_1_0":
+        prefix, slots = 5, 5
+        if report["direction"] == "generation_position":
+            if not protocol.get("slot_ablation"):
+                raise ValueError("Generation position ablation protocol required")
+            _, prefix, slots = winner["variant"].split("_")
+            prefix, slots = int(prefix), int(slots)
+        elif winner["variant"] != "reference_1_0":
             raise ValueError(
                 "Reference guard packaging supports the selected top1 rule"
             )
@@ -174,6 +188,10 @@ def _package(identifier, decision, output):
             or replay.get("high_confidence_branch", 0) < 25
         ):
             raise ValueError("High-confidence reference generation replay required")
+        if report["direction"] == "generation_position" and (
+            replay.get("prefix") != prefix or replay.get("slots") != slots
+        ):
+            raise ValueError("Generation position replay configuration mismatch")
         source_protocol = json.loads((source / "protocol.json").read_text())
         if digest(EXTERNAL) != source_protocol["external"]["derived_sha256"]:
             raise ValueError("Reference guard external catalog changed")
@@ -204,8 +222,8 @@ def _package(identifier, decision, output):
             "checkpoint": "generation.pt",
             "sha256": digest(checkpoint),
             "sampling": "spectrum_hash_v1_and_shared_group_forward_v2",
-            "prefix": 5,
-            "slots": 5,
+            "prefix": prefix,
+            "slots": slots,
             "samples": 128,
             "total_seconds": 1800,
             "open_protected": open_protected,
@@ -290,6 +308,7 @@ def _package(identifier, decision, output):
             "generation_slots",
             "reference_guard",
             "reference_generation",
+            "generation_position",
             "protected_generation",
         ],
         id=kernel_id,
@@ -302,6 +321,7 @@ def _package(identifier, decision, output):
         "generation_slots",
         "reference_guard",
         "reference_generation",
+        "generation_position",
         "protected_generation",
     ]:
         nb["cells"][1]["source"] = nb["cells"][1]["source"].replace(

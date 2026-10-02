@@ -745,6 +745,7 @@ class Controller:
                 "coverage",
                 "reference_guard",
                 "reference_generation",
+                "generation_position",
                 "protected_generation",
             ]:
                 outcome = self.release_round(identifier)
@@ -770,7 +771,11 @@ class Controller:
         if r.get("release"):
             release = Path(r["release"])
         decision = json.loads(Path(r["decision"]).read_text())
-        if r["direction"] in ["reference_guard", "reference_generation"]:
+        if r["direction"] in [
+            "reference_guard",
+            "reference_generation",
+            "generation_position",
+        ]:
             directory = Path(r["report"]).parent
             replay = directory / "replay.json"
             if not replay.exists():
@@ -889,6 +894,7 @@ class Controller:
                 "generation_slots",
                 "reference_guard",
                 "reference_generation",
+                "generation_position",
                 "protected_generation",
             ]:
                 gpu = (self.root / "gpu.lock").open("a")
@@ -906,6 +912,7 @@ class Controller:
                             "generation_slots",
                             "reference_guard",
                             "reference_generation",
+                            "generation_position",
                             "protected_generation",
                         ]
                         else ".venv/bin/python",

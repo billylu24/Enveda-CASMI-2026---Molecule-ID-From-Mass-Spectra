@@ -21,6 +21,11 @@ def run(directory, limit=25):
     output = directory / "replay"
     output.mkdir(parents=True, exist_ok=True)
     protocol = json.loads((directory / "protocol.json").read_text())
+    prefix, slots = 5, 5
+    if protocol.get("slot_ablation"):
+        decision = json.loads((directory / "decision.json").read_text())
+        _, prefix, slots = decision["winner"]["variant"].split("_")
+        prefix, slots = int(prefix), int(slots)
     source = Path(protocol["source_directory"])
     rows = json.loads((source / "unknown_records.json").read_text())
     confidence = {
@@ -83,7 +88,7 @@ def run(directory, limit=25):
             }
         )
         expected[key] = (
-            insert_generated(rank, generated[key], 5, 5) if allowed else rank
+            insert_generated(rank, generated[key], prefix, slots) if allowed else rank
         )[:25]
     write_json(output / "full.json", full)
     pd.DataFrame(base).to_csv(output / "base.csv", index=False)
@@ -95,8 +100,8 @@ def run(directory, limit=25):
         output / "submission.csv",
         routing_csv=output / "routing.csv",
         encoder_path=ENCODER,
-        prefix=5,
-        slots=5,
+        prefix=prefix,
+        slots=slots,
         full_rankings=output / "full.json",
         open_protected=open_protected,
     )
@@ -117,6 +122,8 @@ def run(directory, limit=25):
         "high_confidence_branch": len(by_branch["high"]),
         "expanded_branch": len(by_branch["expanded"]),
         "open_protected": open_protected,
+        "prefix": prefix,
+        "slots": slots,
         "scope": "Actual unlabeled generation handoff for both routing branches; expansion CPU/MetFrag replay separately verified",
     }
     write_json(directory / "replay.json", result)

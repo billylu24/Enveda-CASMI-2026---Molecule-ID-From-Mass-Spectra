@@ -260,6 +260,7 @@ class SmilesDecoder(nn.Module):
         deadline=None,
         token_masses=None,
         neutral_mass=None,
+        eos_validator=None,
     ):
         if samples < 1 or temperature <= 0:
             raise ValueError("Positive samples and temperature required")
@@ -300,6 +301,23 @@ class SmilesDecoder(nn.Module):
                 )
             probs = logits.softmax(-1)
             nxt = torch.multinomial(probs, 1, generator=generator).squeeze(1)
+            if eos_validator is not None:
+                proposed = torch.where((nxt == 2) & ~finished)[0]
+                rejected = [
+                    int(i)
+                    for i in proposed.cpu().tolist()
+                    if not eos_validator(tokens[i].cpu().tolist())
+                ]
+                if rejected:
+                    logits[rejected, 2] = float("-inf")
+                    replacement_probabilities = logits[rejected].softmax(-1)
+                    finite = torch.isfinite(replacement_probabilities).all(1)
+                    if not finite.all():
+                        raise ValueError("No valid continuation after rejected EOS")
+                    probs[rejected] = replacement_probabilities
+                    nxt[rejected] = torch.multinomial(
+                        replacement_probabilities, 1, generator=generator
+                    ).squeeze(1)
             logp += torch.where(
                 finished,
                 0.0,

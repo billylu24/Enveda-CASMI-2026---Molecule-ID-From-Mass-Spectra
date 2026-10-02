@@ -19,7 +19,7 @@ def protects_reference(ranking, observed, confidence, topn=1, threshold=0.0):
     )
 
 
-def run(source, output, open_protected=False):
+def run(source, output, open_protected=False, slot_ablation=False):
     source, output = Path(source), Path(output)
     output.mkdir(parents=True, exist_ok=True)
     generated_path = ROOT / "generation/researchdev_samples128_limitall_stable_v2.json"
@@ -34,6 +34,13 @@ def run(source, output, open_protected=False):
     }
     if open_protected:
         modes = {"reference_1_0": (1, 0.0)}
+    if slot_ablation:
+        if not open_protected:
+            raise ValueError("Slot ablation requires open protected generation")
+        modes = {
+            f"slots_{prefix}_{slots}": (1, 0.0)
+            for prefix, slots in [(1, 3), (1, 5), (3, 3), (3, 5), (5, 8), (5, 10)]
+        }
     freeze(
         output / "protocol.json",
         {
@@ -44,6 +51,7 @@ def run(source, output, open_protected=False):
             "modes": modes,
             "incumbent": "union+fragment+slots5/5",
             "open_protected": open_protected,
+            "slot_ablation": slot_ablation,
             "rule": "If any original first N candidate has retained reference spectra and confidence >= threshold, use incumbent; otherwise expanded chemical ranking",
             "holdout_used": False,
             "truth_used_only_in_metrics": True,
@@ -69,6 +77,9 @@ def run(source, output, open_protected=False):
         variants = {"baseline": None, **modes}
         report[mode] = {}
         for name, spec in variants.items():
+            prefix, slots = (
+                map(int, name.split("_")[1:]) if name.startswith("slots_") else (5, 5)
+            )
             rankings, pools = {}, {}
             for row in rows:
                 if mode == "known" and not row["known"]:
@@ -78,13 +89,15 @@ def run(source, output, open_protected=False):
                 incumbent = (
                     base["ranking"]
                     if confidence[key] >= 0.5 and not open_protected
-                    else insert_generated(base["ranking"], generated[key], 5, 5)
+                    else insert_generated(
+                        base["ranking"], generated[key], prefix, slots
+                    )
                 )
                 use_original = (
-                    spec is None
+                    (spec is None and not slot_ablation)
                     or confidence[key] >= 0.5
                     or protects_reference(
-                        base["ranking"], observed, confidence[key], spec[0], spec[1]
+                        base["ranking"], observed, confidence[key], *(spec or (1, 0.0))
                     )
                 )
                 rankings[key] = (
@@ -109,8 +122,11 @@ def main():
     p.add_argument("--source", required=True, type=Path)
     p.add_argument("--output", required=True, type=Path)
     p.add_argument("--open-protected", action="store_true")
+    p.add_argument("--slot-ablation", action="store_true")
     a = p.parse_args()
-    print(json.dumps(run(a.source, a.output, a.open_protected), indent=2))
+    print(
+        json.dumps(run(a.source, a.output, a.open_protected, a.slot_ablation), indent=2)
+    )
 
 
 if __name__ == "__main__":

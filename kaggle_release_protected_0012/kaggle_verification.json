@@ -1,0 +1,14 @@
+{
+  "valid": true,
+  "molecules": 400,
+  "seconds": 582.1789855139998,
+  "parent_peak_rss_mib": 3446.88671875,
+  "local_full_top25_matches": 400,
+  "prefix5_preserved": 400,
+  "generation_status_counts": {
+    "generated_and_merged": 250,
+    "no_valid_mass_matching_generation": 150
+  },
+  "independent_acceptance": false,
+  "scope": "Kaggle visible400 resource/format and behavior verification; no accuracy labels"
+}

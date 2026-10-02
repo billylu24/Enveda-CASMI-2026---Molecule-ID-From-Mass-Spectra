@@ -11,7 +11,7 @@ import torch
 
 from casmi_ml.chemistry import extract_evidence, neutral_mass
 from casmi_ml.data import write_json
-from casmi_ml.generation_constraints import token_atom_masses
+from casmi_ml.generation_constraints import mass_eos_validator, token_atom_masses
 from casmi_ml.generation_experiment import load_model, validate_generated
 from casmi_ml.generation_sampling import condition_for_group, sampling_seed
 from casmi_ml.metfrag import digest
@@ -21,7 +21,7 @@ from casmi_ml.secondary_inference import load_deployment_checkpoint
 from casmi_ml.training import configure
 
 
-def run(output, limit=200):
+def run(output, limit=200, exact_eos=False):
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     checkpoint = ROOT / "generation/smiles_42/model.pt"
@@ -31,6 +31,7 @@ def run(output, limit=200):
         {
             "version": 1,
             "constraint": "conservative_atom_mass_ceiling_v1",
+            "exact_eos": exact_eos,
             "checkpoint_sha256": digest(checkpoint),
             "baseline_sha256": digest(baseline_path),
             "encoder_sha256": digest(ENCODER),
@@ -93,6 +94,9 @@ def run(output, limit=200):
                     deadline=with_budget.started + with_budget.allowance,
                     token_masses=masses if mass is not None else None,
                     neutral_mass=mass,
+                    eos_validator=mass_eos_validator(vocabulary, mass)
+                    if exact_eos and mass is not None
+                    else None,
                 )
             candidates, stats = validate_generated(
                 sequences.cpu().tolist(),
@@ -150,10 +154,11 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--limit", type=int, default=200)
+    p.add_argument("--exact-eos", action="store_true")
     a = p.parse_args()
     if a.limit < 1:
         p.error("--limit must be positive")
-    print(json.dumps(run(a.output, a.limit), indent=2))
+    print(json.dumps(run(a.output, a.limit, a.exact_eos), indent=2))
 
 
 if __name__ == "__main__":

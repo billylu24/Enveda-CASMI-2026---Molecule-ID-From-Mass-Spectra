@@ -53,3 +53,19 @@ def token_atom_masses(vocabulary):
             )
         result.append(mass)
     return result
+
+
+def mass_eos_validator(vocabulary, mass):
+    """Allow completion only for a connected RDKit structure at observed mass."""
+    from rdkit.Chem import Descriptors
+
+    def valid(tokens):
+        molecule = Chem.MolFromSmiles(vocabulary.decode(tokens))
+        return bool(
+            molecule
+            and molecule.GetNumAtoms()
+            and len(Chem.GetMolFrags(molecule)) == 1
+            and abs(Descriptors.ExactMolWt(molecule) - mass) <= max(mass * 35e-6, 0.006)
+        )
+
+    return valid
