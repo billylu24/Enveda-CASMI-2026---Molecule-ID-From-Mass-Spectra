@@ -1,0 +1,43 @@
+{
+  "round": "0050_chebi_coverage",
+  "direction": "catalog_audit",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "independent_acceptance": false,
+    "molecules": 2000,
+    "manifest": {
+      "source": "https://www.ebi.ac.uk/chebi",
+      "release": 255,
+      "source_sha256": "3de49c65a05af4c10614021405bae7d49354d25c6c27f090baa674bab2aa8f3b",
+      "license_sha256": "fe7b4ce83b8381cc5b216bbb4af73c570688d1b819c73bbaed8ca401f4677cd6",
+      "readme_sha256": "badbee2c1a97f172cd33dabefccdc52dbfdd815cbd68e9b808f5a17d10e44e73",
+      "derived_sha256": "396f52a7b3da5a6cc2b944c0044f8ce1bef798b7b51124b0dc556d7ae099cb13",
+      "input_rows": 201470,
+      "structures": 54116,
+      "filters": {
+        "charged_generic_or_isotopic": 14932,
+        "retained": 81389,
+        "invalid": 6175,
+        "mixture_or_nonorganic": 4344,
+        "not_reviewed_default": 94402,
+        "identity_disagreement": 228
+      },
+      "selection": "All reviewed default organic neutral nonisotopic specific structures; no query/truth selection",
+      "normalization": "Remove stereochemistry only; preserve connectivity and intrinsic charge; no salt splitting or tautomer changes",
+      "license": "CC-BY4.0 according to supplied LICENSE; retain original README which also mentions ShareAlike"
+    },
+    "existing_catalog_structures": 1064724,
+    "combined_catalog_structures": 1085927,
+    "new_public_structures": 21203,
+    "database_truth_coverage_before": 260,
+    "database_truth_coverage_after": 266,
+    "mass_window_truth_coverage_before": 253,
+    "mass_window_truth_coverage_after": 258,
+    "scope": "Repeated2000 development coverage diagnosis only; ranking required before submission"
+  },
+  "protocol_sha256": "f7846869500f6b515dbc76aed4d401d003cd929b08a2740355a30bc584382f87",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

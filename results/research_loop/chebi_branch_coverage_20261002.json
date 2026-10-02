@@ -1,0 +1,9 @@
+{
+  "diagnostic_only": true,
+  "molecules": 2000,
+  "new_mass_window_covered": 5,
+  "new_coverage_on_current_expanded_branch": 1,
+  "new_coverage_on_current_reference_branch": 4,
+  "independent_acceptance": false,
+  "scope": "Coverage diagnostic; no query-dependent catalog selection or ranking"
+}
