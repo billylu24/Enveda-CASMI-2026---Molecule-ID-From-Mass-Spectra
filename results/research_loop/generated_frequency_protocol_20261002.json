@@ -1,0 +1,33 @@
+{
+  "round": "generated_frequency_protocol_20261002",
+  "hypothesis": "Aggregate identical two-dimensional structures from repeated trajectories rather than retaining only their best sequence score",
+  "measurement": "Count every finished valid mass-matching sampled trajectory by14-character structural key",
+  "sampler": {
+    "checkpoint": "selected three-epoch decoder",
+    "samples_per_query": 128,
+    "temperature": 0.8,
+    "spectrum_seeds": "Same spectrum-hash seeds and shared group forward",
+    "pilot_molecules": 200
+  },
+  "ranking": {
+    "frequency_weights": [
+      0,
+      0.25,
+      0.5,
+      1
+    ],
+    "tie_aware": true,
+    "retrieval_prefix": 3,
+    "generated_slots": 5,
+    "reference_routing_frozen": true
+  },
+  "control_invariants": [
+    "Exact candidate dictionaries match frozen incumbent after removing new measurement fields",
+    "Per-query sampling statistics match frozen incumbent",
+    "Sum of structure frequencies equals count of mass-matching trajectories"
+  ],
+  "truth_used_only_in_metrics": true,
+  "holdout_used": false,
+  "independent_acceptance": false,
+  "decision": "Pilot cannot establish submission eligibility; full2000 paired gate required"
+}

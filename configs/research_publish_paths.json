@@ -110,7 +110,9 @@
     "casmi_ml/decoder_interpolation.py",
     "tests/test_decoder_interpolation.py",
     "casmi_ml/generator_composition.py",
-    "tests/test_generator_composition.py"
+    "tests/test_generator_composition.py",
+    "casmi_ml/generated_frequency.py",
+    "tests/test_generated_frequency.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

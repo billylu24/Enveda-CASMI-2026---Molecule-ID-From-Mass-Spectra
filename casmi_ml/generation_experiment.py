@@ -359,9 +359,17 @@ def load_model(path, device):
 
 
 def validate_generated(
-    sequences, logp, finished, vocabulary, mass, hypotheses, evidences
+    sequences,
+    logp,
+    finished,
+    vocabulary,
+    mass,
+    hypotheses,
+    evidences,
+    track_frequency=False,
 ):
     candidates = {}
+    counts = {}
     valid = 0
     terminated = 0
     mass_matching = 0
@@ -390,6 +398,7 @@ def validate_generated(
             default=0.0,
         )
         chemistry = score_candidate(evidences, smiles)["score"]
+        counts[key] = counts.get(key, 0) + 1
         candidate = {
             "key": key,
             "smiles": smiles,
@@ -399,11 +408,18 @@ def validate_generated(
             "formula_support": formula_support,
             "chemical_score": chemistry,
         }
+        if track_frequency:
+            candidate["best_sequence_tokens"] = (
+                sequence.index(2) if 2 in sequence else len(sequence) - 1
+            )
         if (
             key not in candidates
             or candidate["log_probability"] > candidates[key]["log_probability"]
         ):
             candidates[key] = candidate
+    if track_frequency:
+        for key, candidate in candidates.items():
+            candidate["sample_count"] = counts[key]
     base = sorted(candidates, key=lambda k: (-candidates[k]["log_probability"], k))
     # Fixed evidence rank fusion, no truth-based filtering.
     if base:
@@ -443,6 +459,7 @@ def generate(
     stable_sampling=False,
     deadline=None,
     temperature=0.8,
+    track_frequency=False,
 ):
     root = Path(root)
     if not math.isfinite(temperature) or temperature <= 0:
@@ -474,10 +491,11 @@ def generate(
     temperature_suffix = (
         "" if temperature == 0.8 else "_temperature" + repr(temperature)
     )
+    statistics_suffix = "_frequency_v1" if track_frequency else ""
     out = (
         root
         / "generation"
-        / f"{split}_samples{samples}_limit{limit or 'all'}{'_oracle' if oracle_formula else ''}{'_stable_v2' if stable_sampling else ''}{checkpoint_suffix}{temperature_suffix}.json"
+        / f"{split}_samples{samples}_limit{limit or 'all'}{'_oracle' if oracle_formula else ''}{'_stable_v2' if stable_sampling else ''}{checkpoint_suffix}{temperature_suffix}{statistics_suffix}.json"
     )
     spec = {
         "checkpoint_sha256": digest(checkpoint),
@@ -488,6 +506,10 @@ def generate(
         "formula_oracle": oracle_formula,
         "fragmenter_sha256": fragmenter.sha256 if fragmenter else None,
     }
+    if track_frequency:
+        spec["candidate_statistics"] = (
+            "sample_frequency_and_best_sequence_token_count_v1"
+        )
     if stable_sampling:
         spec["sampling"] = "spectrum_hash_v1_and_shared_group_forward_v2"
     freeze(out.with_suffix(".config.json"), spec)
@@ -556,6 +578,7 @@ def generate(
             mass,
             hypotheses,
             evidence,
+            track_frequency=track_frequency,
         )
         fragment_status = []
         if fragmenter is not None and candidates:

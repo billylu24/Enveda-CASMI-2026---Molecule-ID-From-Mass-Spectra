@@ -54,17 +54,20 @@ class GenerationTemperatureTests(unittest.TestCase):
             ):
                 for temperature in [0.8, 0.7, 0.9, 0.8]:
                     generate(root, samples=1, temperature=temperature)
+                generate(root, samples=1, track_frequency=True)
+                generate(root, samples=1, track_frequency=True)
                 self.assertEqual(
                     [c.kwargs["temperature"] for c in decoder.generate.call_args_list],
-                    [0.8, 0.7, 0.9],
+                    [0.8, 0.7, 0.9, 0.8],
                 )
             caches = sorted(
                 p.name
                 for p in (root / "generation").glob("*.json")
                 if ".config." not in p.name
             )
-            self.assertEqual(len(caches), 3)
+            self.assertEqual(len(caches), 4)
             self.assertIn("researchdev_samples1_limitall.json", caches)
+            self.assertIn("researchdev_samples1_limitall_frequency_v1.json", caches)
             self.assertTrue(any("temperature0.7" in p for p in caches))
             self.assertTrue(any("temperature0.9" in p for p in caches))
 
