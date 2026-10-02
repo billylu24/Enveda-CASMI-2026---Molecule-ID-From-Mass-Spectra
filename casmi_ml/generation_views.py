@@ -24,6 +24,9 @@ def informative_spectrum(group):
         signature = json.dumps(
             {
                 "adduct": str(row.get("adduct")),
+                "ionization_mode": str(row.get("ionization_mode")),
+                "instrument_type": str(row.get("instrument_type")),
+                "collision_energy_ev": str(row.get("collision_energy_ev")),
                 "precursor_mz": float(row.get("precursor_mz", 0)),
                 "spectrum": spectrum_signature(mz, intensity).hex(),
             },

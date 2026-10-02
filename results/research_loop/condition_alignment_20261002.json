@@ -1,0 +1,16 @@
+{
+  "round": "condition_alignment_20261002",
+  "scope": "Frozen experiments to compare multi-spectrum condition alignment with matched trajectory and fine-tuning controls",
+  "tests_passed": 99,
+  "development_cohort": {
+    "molecules": 2000,
+    "multi_spectrum_molecules": 1608,
+    "mean_spectra": 2.7195
+  },
+  "queued": [
+    "0019_generation_views_pilot",
+    "0020_decoder_single_control",
+    "0021_decoder_mean_condition"
+  ],
+  "independent_acceptance": false
+}

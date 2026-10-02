@@ -320,3 +320,25 @@ class ConditionAveragingTests(unittest.TestCase):
         np.testing.assert_allclose(mean, [[2.0, 4.0], [2.0, 4.0], [8.0, 9.0]])
         self.assertIs(condition_values(values, groups, "single"), values)
         np.testing.assert_allclose(values[0], [1.0, 3.0])
+
+
+class ViewMetadataTieTests(unittest.TestCase):
+    def test_identical_peak_ties_use_observable_metadata_not_row_order(self):
+        import pandas as pd
+        from casmi_ml.generation_views import informative_spectrum
+
+        group = pd.DataFrame(
+            [
+                {
+                    "adduct": "[M+H]+",
+                    "precursor_mz": 100.0,
+                    "ms2_mzs": [40.0, 41.0],
+                    "ms2_normalized_intensities": [1.0, 1.0],
+                    "collision_energy_ev": energy,
+                }
+                for energy in [40.0, 20.0]
+            ]
+        )
+        a = informative_spectrum(group).collision_energy_ev.iloc[0]
+        b = informative_spectrum(group.iloc[::-1]).collision_energy_ev.iloc[0]
+        self.assertEqual(a, b)

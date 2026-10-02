@@ -89,7 +89,9 @@
     "kaggle_release_position_0017/kaggle_verification.json",
     "casmi_ml/generation_views.py",
     "casmi_ml/generation_view_experiment.py",
-    "casmi_ml/adaptive_generation.py"
+    "casmi_ml/adaptive_generation.py",
+    "casmi_ml/generation_condition_training.py",
+    "casmi_ml/generator_model_experiment.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
