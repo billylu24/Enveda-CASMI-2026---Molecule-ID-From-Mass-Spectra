@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import resource
+import shutil
 import time
 from pathlib import Path
 
@@ -100,6 +101,12 @@ def run(
         raise ValueError("Pilot limit must be in[1,2000]")
     output, incumbent = Path(output), Path(incumbent)
     output.mkdir(parents=True, exist_ok=True)
+    seed_path = output / "initial_fragment_scores.json"
+    if not seed_path.exists():
+        if (output / "fragment_scores.json").exists():
+            shutil.copyfile(output / "fragment_scores.json", seed_path)
+        else:
+            write_json(seed_path, {})
     pair_path = Path(
         "artifacts/research_loop/rounds/0061_generated_first_critic/scores.json"
     )
@@ -121,9 +128,7 @@ def run(
             "insertion_prefix": prefix,
             "proposal_limit": proposal_limit,
             "fragment_limit": fragment_limit,
-            "initial_fragment_cache_sha256": digest(output / "fragment_scores.json")
-            if (output / "fragment_scores.json").exists()
-            else None,
+            "initial_fragment_cache_sha256": digest(seed_path),
             "evidence_only": evidence_only,
             "evidence_gate": "Positive proposed first fragment score and distinct finite fragment scores required; missing/all tied scores never enable insertion"
             if evidence_only
