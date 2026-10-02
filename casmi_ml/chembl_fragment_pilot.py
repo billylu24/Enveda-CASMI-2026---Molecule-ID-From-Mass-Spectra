@@ -56,6 +56,10 @@ def run(output, incumbent, limit=200, prefix=5):
         name: None if spec is None else (spec[0], prefix, *spec[2:])
         for name, spec in VARIANTS.items()
     }
+    if limit == 2000:
+        variants = {
+            name: spec for name, spec in variants.items() if name != "fragment1"
+        }
     if not 1 <= limit <= 2000:
         raise ValueError("Pilot limit must be in[1,2000]")
     output, incumbent = Path(output), Path(incumbent)
@@ -397,14 +401,16 @@ def run(output, incumbent, limit=200, prefix=5):
                 per.to_csv(output / f"{mode}_{name}.csv", index=False)
         write_json(cache_path, pair_scores)
         write_json(output / "diagnostics.json", diagnostics)
-        report["diagnostic_only"] = True
+        report["diagnostic_only"] = limit < 2000
         report["diagnostics"] = {
             "molecules": len(allowed_keys),
             "fragment_groups": len(fragment_scores),
             "fragment_budget_fallbacks": sum(
                 r["budget_fallback"] for r in fragment_scores.values()
             ),
-            "scope": "fixed200 structural pilot; no publication eligibility",
+            "scope": "repeated2000 combined ranking"
+            if limit == 2000
+            else "fixed200 structural pilot; no publication eligibility",
             "seconds": time.monotonic() - started,
             "parent_peak_rss_mib": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
             / 1024,

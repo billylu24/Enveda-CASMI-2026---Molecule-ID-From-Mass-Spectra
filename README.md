@@ -151,4 +151,4 @@ v4; current status is recorded in `kaggle_release_chemistry/status.json`.
 See [the next-round improvement plan](docs/NEXT_IMPROVEMENTS_20261002.md) for
 candidate coverage, mass-hypothesis, and generation-ranking priorities.
 
-持续研究循环：参见 [运行与停止说明](docs/RESEARCH_LOOP.md)、[冻结配置](configs/research_loop.json) 和 [汇总研究结果](results/research_loop)。最新已评分提交 56771973 为 0.173，历史公共最佳 0.176 保留。最新重复开发队列（2,000 未知、1,340 已知分子）的未知 MRR@25 为 0.031747，已知保护通过；没有新增独立验收。第 12、13 轮已通过 Kaggle 完整推理核验，第 17 轮正在重放；每日提交额度已用完，后续版本排队到 UTC 2026-10-03 00:00 后提交。
+持续研究循环：参见 [运行与停止说明](docs/RESEARCH_LOOP.md)、[冻结配置](configs/research_loop.json) 和 [汇总研究结果](results/research_loop)。最新已评分提交 56771973 为 0.173，历史公共最佳 0.176 保留。当前重复开发最佳第62轮：2,000未知MRR@25为0.039211，1,340已知MRR0.604984、Top1为0.565672；相对第47轮未知提升3.41%，通过冻结开发门槛，没有新增独立验收。75项真实三分支重放全部一致，22项实际前置生成；新Python3.13离线包Kaggle400完整排名与本地相同，740.6秒/父进程峰值2906.7MiB。达标版本按顺序等待UTC2026-10-03 00:00比赛额度，平台运行成功不代表新比赛评分。ChEMBL37全量覆盖审计增105个质量窗口真值，但原指纹/critic提案插入均未提升；保护前10名的碎裂200小试验有正向信号，正在按固定门槛扩展完整开发评价。

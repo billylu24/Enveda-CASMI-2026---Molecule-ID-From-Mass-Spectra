@@ -1,0 +1,11 @@
+{
+  "diagnostic_only": true,
+  "molecules": 2000,
+  "eligible_novel_truths_in_native_first100": 20,
+  "fixed_prefix": 10,
+  "optimistic_unknown_gain_upper_bound": 0.0009090909090909091,
+  "required_gain_against0062": 0.0007842217546837484,
+  "can_reach_gate_even_if_all_scoped_new_truths_rank_first": true,
+  "assumptions": "all scoped novel truths rank11, no loss from shifting any existing correct ranks; fixed proposals/mass/confidence, no candidate changes; truth used only for bound diagnosis",
+  "independent_acceptance": false
+}
