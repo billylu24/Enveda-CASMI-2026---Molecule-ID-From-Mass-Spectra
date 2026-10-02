@@ -464,7 +464,18 @@ def main():
     p.add_argument("--fragment-limit", type=int, default=100)
     a = p.parse_args()
     print(
-        json.dumps(run(a.output, a.incumbent, a.limit, a.prefix, a.monomer), indent=2)
+        json.dumps(
+            run(
+                a.output,
+                a.incumbent,
+                a.limit,
+                a.prefix,
+                a.monomer,
+                a.proposal_limit,
+                a.fragment_limit,
+            ),
+            indent=2,
+        )
     )
 
 
