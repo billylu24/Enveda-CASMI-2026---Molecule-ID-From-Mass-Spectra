@@ -1,0 +1,25 @@
+{
+  "round": "decoder_randomized_verification_20261002",
+  "formula_all_tensors_unchanged": true,
+  "decoder_changed_tensors": 116,
+  "vocabulary_unchanged": true,
+  "complete_fixed_epochs": 3,
+  "augmentation": [
+    {
+      "changed": 59632,
+      "vocabulary_or_length_fallback": 6
+    },
+    {
+      "changed": 59627,
+      "vocabulary_or_length_fallback": 3
+    },
+    {
+      "changed": 59635,
+      "vocabulary_or_length_fallback": 6
+    }
+  ],
+  "training_seconds": 110.63370023599418,
+  "checkpoint_sha256": "ba07b54ab1b3e2d3d7d2fd542b9beefab2e8c986959c94028c6e93d9ae1d3af2",
+  "independent_acceptance": false,
+  "performance_acceptance": "Awaiting200-molecule structural pilot; full2000 paired gate required for publication"
+}
