@@ -1,7 +1,6 @@
 """Fixed sampling and routing comparison of a decoder checkpoint against incumbent."""
 
 import argparse
-import fcntl
 import json
 from pathlib import Path
 
@@ -13,6 +12,7 @@ from casmi_ml.generation_slots import insert_generated
 from casmi_ml.metfrag import digest
 from casmi_ml.ranking import metrics
 from casmi_ml.reference_guard import protects_reference
+from casmi_ml.research_budget import StageBudget
 from casmi_ml.research_protocol import ROOT, freeze
 
 
@@ -42,11 +42,18 @@ def run(output, checkpoint, limit=None):
             "truth_used_only_in_metrics": True,
         },
     )
-    with Path("artifacts/research_loop/gpu.lock").open("a") as gpu:
-        fcntl.flock(gpu, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    budget = StageBudget(output, "generation", "checkpoint_sampling", 86400)
+    try:
         generated = generate(
-            ROOT, checkpoint=checkpoint, samples=128, stable_sampling=True, limit=limit
+            ROOT,
+            checkpoint=checkpoint,
+            samples=128,
+            stable_sampling=True,
+            limit=limit,
+            deadline=budget.started + budget.allowance,
         )
+    finally:
+        budget.close()
     if limit is None and len(generated) != 2000:
         raise ValueError("Full structural cohort must contain 2000 molecules")
     by_key = {r["key"]: [c["key"] for c in r["candidates"]] for r in generated}

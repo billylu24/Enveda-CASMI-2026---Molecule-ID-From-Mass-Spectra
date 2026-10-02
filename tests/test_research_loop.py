@@ -532,3 +532,25 @@ class QueuedGPUJobTests(unittest.TestCase):
                 self.assertEqual(c.step(), "auxiliary_running")
                 job.assert_not_called()
             self.assertEqual(c.read()["rounds"][0]["status"], "queued")
+
+
+class ResearchSyncWhilePublicationWaitsTests(unittest.TestCase):
+    def test_publication_wait_does_not_starve_completed_diagnostic_sync(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            c = LoopTests().controller(root)
+            c.register_round("release", "mass", [], root / "release/report.json")
+            c.mark_round("release", status="eligible", git_synced=True)
+            c.register_round(
+                "pilot", "generation_pilot", [], root / "pilot/report.json"
+            )
+            c.mark_round("pilot", status="diagnostic_complete")
+            with patch.object(
+                c,
+                "complete_round",
+                side_effect=["publication_waiting", "round_complete"],
+            ) as complete:
+                self.assertEqual(c.step(), "round_complete")
+            self.assertEqual(
+                [call.args[0] for call in complete.call_args_list], ["release", "pilot"]
+            )

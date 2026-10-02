@@ -1,0 +1,44 @@
+{
+  "round": "0019_generation_views_pilot",
+  "direction": "generation_pilot",
+  "status": "diagnostic_complete",
+  "report": {
+    "molecules": 200,
+    "baseline": {
+      "samples": 25600,
+      "terminated": 25600,
+      "valid": 22921,
+      "mass_matching": 319,
+      "unique_mass_matching": 231,
+      "queries_with_candidates": 92,
+      "exact_structure_hits": 8
+    },
+    "split_control": {
+      "samples": 25600,
+      "terminated": 25600,
+      "valid": 23001,
+      "mass_matching": 287,
+      "unique_mass_matching": 213,
+      "queries_with_candidates": 89,
+      "exact_structure_hits": 5
+    },
+    "view_mixture": {
+      "samples": 25600,
+      "terminated": 25600,
+      "valid": 22876,
+      "mass_matching": 299,
+      "unique_mass_matching": 222,
+      "queries_with_candidates": 86,
+      "exact_structure_hits": 7
+    },
+    "seconds": 158.4326098110032,
+    "diagnostic_only": true,
+    "independent_acceptance": false,
+    "truth_used_only_in_metrics": true,
+    "sampling_budget": "128 trajectories total per query in both arms; different frozen RNG streams"
+  },
+  "protocol_sha256": "aee93c877fc65978a3b996f7af1675fa3343bae7a12c21569d0951dd82d0c6e4",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

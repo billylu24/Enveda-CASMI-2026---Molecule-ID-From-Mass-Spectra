@@ -1,0 +1,20 @@
+{
+  "round": "decoder_control_verification_20261002",
+  "train_dev_molecule_overlap": 0,
+  "tests_passed": 100,
+  "weights": {
+    "0020_decoder_single_control": {
+      "formula_all_tensors_unchanged": true,
+      "decoder_changed_tensors": 116,
+      "training_sha_matches": true,
+      "selected_complete_epochs": 3
+    },
+    "0021_decoder_mean_condition": {
+      "formula_all_tensors_unchanged": true,
+      "decoder_changed_tensors": 116,
+      "training_sha_matches": true,
+      "selected_complete_epochs": 3
+    }
+  },
+  "independent_acceptance": false
+}

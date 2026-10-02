@@ -1086,6 +1086,7 @@ class Controller:
                     "failed",
                     "release_failed",
                     "diagnostic_complete",
+                    "recorded",
                 ]
                 and (not r["git_synced"] or r["status"] == "eligible")
             ),
@@ -1100,7 +1101,20 @@ class Controller:
             # Preparing later eligible releases can overlap a platform scoring
             # wait. publish_prepared still enforces one pending submission.
             for later in state["rounds"]:
-                if later["id"] == finished["id"] or later["status"] != "eligible":
+                if later["id"] == finished["id"]:
+                    continue
+                if later["status"] != "eligible" and (
+                    later["git_synced"]
+                    or later["status"]
+                    not in [
+                        "rejected",
+                        "submitted",
+                        "failed",
+                        "release_failed",
+                        "diagnostic_complete",
+                        "recorded",
+                    ]
+                ):
                     continue
                 outcome = self.complete_round(later["id"])
                 if outcome != "publication_waiting":
@@ -1149,6 +1163,7 @@ class Controller:
             "generation_pilot",
             "representation",
             "generation_finetune",
+            "generation_model",
         ]:
             # The child owns the GPU budget/lock. Probe availability before
             # launching it so a queued GPU job remains queued during another
@@ -1176,6 +1191,7 @@ class Controller:
             "generation_slots",
             "generation_pilot",
             "generation_finetune",
+            "generation_model",
         ]:
             seconds = self.config["gpu_stage_seconds"]["generation"]
         try:

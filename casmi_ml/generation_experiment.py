@@ -441,6 +441,7 @@ def generate(
     fragmenter=None,
     oracle_formula=False,
     stable_sampling=False,
+    deadline=None,
 ):
     root = Path(root)
     if limit is not None and limit < 1:
@@ -530,7 +531,7 @@ def generate(
                 formula_condition = formula.soft(z)
             condition = torch.cat([z, formula_condition], 1)
             sequences, logp, finished = decoder.generate(
-                condition, samples, generator=generator
+                condition, samples, generator=generator, deadline=deadline
             )
         masses = [
             m for r in group.to_dict("records") if (m := neutral_mass(r)) is not None
