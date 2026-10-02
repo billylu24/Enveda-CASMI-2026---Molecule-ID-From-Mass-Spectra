@@ -105,8 +105,8 @@ def run(
         if proposal_limit == 500
         else "artifacts/research_loop/rounds/0073_chembl_critic_slots/critic_scores.json"
     )
-    if prefix not in (5, 10):
-        raise ValueError("Pilot insertion prefix must be5 or10")
+    if prefix not in (3, 5, 10):
+        raise ValueError("Insertion prefix must be3,5 or10")
     variants = {
         name: None if spec is None else (spec[0], prefix, *spec[2:])
         for name, spec in VARIANTS.items()
@@ -115,6 +115,7 @@ def run(
         variants = {
             "baseline": None,
             "fragment05": (0.05, 2, 3, 0.5),
+            "fragment05_prefix3": (0.05, 3, 3, 0.5),
             "fragment05_prefix5": (0.05, 5, 3, 0.5),
             "fragment05_prefix10": (0.05, 10, 3, 0.5),
         }
@@ -123,7 +124,10 @@ def run(
             name: spec for name, spec in variants.items() if name != "fragment1"
         }
     if limit == 2000 and evidence_only:
-        variants = {"baseline": None, "fragment05_prefix5": (0.05, 5, 3, 0.5)}
+        variants = {
+            "baseline": None,
+            f"fragment05_prefix{prefix}": (0.05, prefix, 3, 0.5),
+        }
     if not 1 <= limit <= 2000:
         raise ValueError("Pilot limit must be in[1,2000]")
     output, incumbent = Path(output), Path(incumbent)
