@@ -98,7 +98,9 @@
     "kaggle_release_decoder_0024/status.json",
     "kaggle_release_decoder_0024/kaggle_verification.json",
     "casmi_ml/generated_fragment_experiment.py",
-    "tests/test_generated_fragments.py"
+    "tests/test_generated_fragments.py",
+    "casmi_ml/generated_calibration.py",
+    "tests/test_generated_calibration.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
