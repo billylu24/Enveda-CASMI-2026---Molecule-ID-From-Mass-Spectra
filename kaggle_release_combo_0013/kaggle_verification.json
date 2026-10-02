@@ -1,0 +1,9 @@
+{
+  "valid": true,
+  "molecules": 400,
+  "seconds": 575.7342226189999,
+  "parent_peak_rss_mib": 3352.77734375,
+  "local_full_top25_matches": 400,
+  "independent_acceptance": false,
+  "scope": "Kaggle visible400 resource and behavior verification, no accuracy labels"
+}

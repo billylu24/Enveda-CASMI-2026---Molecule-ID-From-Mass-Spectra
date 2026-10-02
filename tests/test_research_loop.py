@@ -440,3 +440,20 @@ class JobBudgetScopeTests(unittest.TestCase):
             ledger = json.loads((root / "training_budget.json").read_text())
             self.assertEqual(ledger["wall_job:execution.log"]["limit_seconds"], 10)
             self.assertEqual(ledger["wall_job:replay.log"]["limit_seconds"], 5)
+
+
+class PublicationPreparationTests(unittest.TestCase):
+    def test_later_release_prepares_while_first_waits_for_score(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            c = LoopTests().controller(root)
+            for rid in ["first", "second"]:
+                c.register_round(rid, "mass", [], root / rid / "report.json")
+                c.mark_round(rid, status="eligible", git_synced=True)
+            with patch.object(
+                c, "complete_round", return_value="publication_waiting"
+            ) as release:
+                self.assertEqual(c.step(), "publication_waiting")
+            self.assertEqual(
+                [call.args[0] for call in release.call_args_list], ["first", "second"]
+            )

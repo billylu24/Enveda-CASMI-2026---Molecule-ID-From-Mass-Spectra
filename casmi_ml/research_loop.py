@@ -966,6 +966,14 @@ class Controller:
             if outcome != "publication_waiting":
                 return outcome
             waiting = True
+            # Preparing later eligible releases can overlap a platform scoring
+            # wait. publish_prepared still enforces one pending submission.
+            for later in state["rounds"]:
+                if later["id"] == finished["id"] or later["status"] != "eligible":
+                    continue
+                outcome = self.complete_round(later["id"])
+                if outcome != "publication_waiting":
+                    return outcome
         evaluated = next(
             (r for r in state["rounds"] if r["status"] == "evaluated"), None
         )
