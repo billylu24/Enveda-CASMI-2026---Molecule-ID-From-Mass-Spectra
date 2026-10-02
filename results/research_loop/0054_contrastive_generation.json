@@ -1,0 +1,34 @@
+{
+  "round": "0054_contrastive_generation",
+  "direction": "generation_pilot",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "molecules": 200,
+    "baseline": {
+      "samples": 25600,
+      "terminated": 25599,
+      "valid": 23553,
+      "mass_matching": 490,
+      "unique_mass_matching": 311,
+      "queries_with_candidates": 100,
+      "exact_structure_hits": 9
+    },
+    "selected": {
+      "samples": 25600,
+      "terminated": 25599,
+      "valid": 23553,
+      "mass_matching": 490,
+      "unique_mass_matching": 311,
+      "queries_with_candidates": 100,
+      "exact_structure_hits": 9
+    },
+    "contrast_weight": 0.0,
+    "independent_acceptance": false,
+    "scope": "Fixed200 diagnostic; not trained classifier-free guidance, no submission eligibility"
+  },
+  "protocol_sha256": "8919749d29e61c68f1fe76982069a8c22988df6aa5a295fe4dc140df0ca2926b",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
