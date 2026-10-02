@@ -42,10 +42,12 @@
     "training_development_key_overlap": 0,
     "negatives_within_mass_window": 57360,
     "median_negative_mass_gap": 0.0,
-    "checkpoint_sha256": "492110204eefcd9d8fbc78a6fe04e2c0aafab92dfe822734e424edae6302aa08",
+    "checkpoint_sha256": "1eafc070b8d2227fb82ebb9270317794d13bd7f304c9ce5dc2d78fd6b0279250",
     "independent_acceptance": false,
     "adversarial_training": false,
-    "performance_acceptance": "fixed200 structure pilot against current decoder; full2000 ranking required before publication"
+    "performance_acceptance": "fixed200 structure pilot against current decoder; full2000 ranking required before publication",
+    "original_serialization_sha256": "492110204eefcd9d8fbc78a6fe04e2c0aafab92dfe822734e424edae6302aa08",
+    "serialization_repair": "numpy scalar report metadata converted to Python primitives; all trained tensors identical"
   },
   "protocol_sha256": "500beaa16aa84a7f68841f2648d72d348fba81cd6af513d1fcdcc1498eaa2f4c",
   "winner": null,
