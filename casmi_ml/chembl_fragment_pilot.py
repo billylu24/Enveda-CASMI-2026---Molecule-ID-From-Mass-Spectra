@@ -55,6 +55,15 @@ def informative_fragments(proposed, fragments):
     )
 
 
+def supported_proposals(proposed, critic_scores, current_first, fragments, margin):
+    return [
+        k
+        for k in proposed
+        if fragments.get(k, 0.0) > 0
+        and critic_scores[k] > critic_scores[current_first] + margin
+    ]
+
+
 def score_cache_key(query, first, candidates):
     payload = json.dumps([query, first, candidates], separators=(",", ":"))
     return hashlib.sha256(payload.encode()).hexdigest()
@@ -72,7 +81,10 @@ def run(
     evidence_only=False,
     critic_checkpoint=CRITIC,
     dimer=False,
+    candidate_gate=False,
 ):
+    if candidate_gate and not evidence_only:
+        raise ValueError("Candidate gate requires informative fragment evidence")
     if dimer and not monomer:
         raise ValueError("Dimer experiment includes monomer adapter")
     adapter_name = (
@@ -142,6 +154,7 @@ def run(
             "fragment_limit": fragment_limit,
             "initial_fragment_cache_sha256": digest(seed_path),
             "evidence_only": evidence_only,
+            "candidate_gate": candidate_gate,
             "evidence_gate": "Positive proposed first fragment score and distinct finite fragment scores required; missing/all tied scores never enable insertion"
             if evidence_only
             else None,
@@ -444,7 +457,17 @@ def run(
                         and pair_scores[cache_key][proposed[0]]
                         > pair_scores[cache_key][current[0]] + spec[0]
                     ):
-                        external = proposed
+                        external = (
+                            supported_proposals(
+                                proposed,
+                                pair_scores[cache_key],
+                                current[0],
+                                fragments,
+                                spec[0],
+                            )
+                            if candidate_gate
+                            else proposed
+                        )
                     novel_external = (
                         [k for k in external if k not in set(current)][: spec[2]]
                         if spec
@@ -510,6 +533,7 @@ def run(
             "proposal_limit": proposal_limit,
             "fragment_limit": fragment_limit,
             "evidence_only": evidence_only,
+            "candidate_gate": candidate_gate,
             "evidence_gate": "Positive proposed first fragment score and distinct finite fragment scores required; missing/all tied scores never enable insertion"
             if evidence_only
             else None,
@@ -534,6 +558,7 @@ def main():
     p.add_argument("--evidence-only", action="store_true")
     p.add_argument("--critic-checkpoint", type=Path, default=CRITIC)
     p.add_argument("--dimer", action="store_true")
+    p.add_argument("--candidate-gate", action="store_true")
     a = p.parse_args()
     print(
         json.dumps(
@@ -548,6 +573,7 @@ def main():
                 a.evidence_only,
                 a.critic_checkpoint,
                 a.dimer,
+                a.candidate_gate,
             ),
             indent=2,
         )

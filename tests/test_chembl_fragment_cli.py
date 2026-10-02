@@ -30,5 +30,15 @@ class ChemblFragmentCLITests(unittest.TestCase):
         ):
             main()
         run.assert_called_once_with(
-            Path("out"), Path("best"), 200, 10, True, 500, 25, False, CRITIC, False
+            Path("out"),
+            Path("best"),
+            200,
+            10,
+            True,
+            500,
+            25,
+            False,
+            CRITIC,
+            False,
+            False,
         )
