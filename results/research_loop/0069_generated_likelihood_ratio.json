@@ -1,0 +1,64 @@
+{
+  "round": "0069_generated_likelihood_ratio",
+  "direction": "generation_pilot",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "molecules": 2000,
+    "generated_only": {
+      "baseline": {
+        "molecules": 2000,
+        "candidate_recall": 0.043,
+        "mrr25": 0.03078867798867799,
+        "top1": 0.0245,
+        "top5": 0.04,
+        "top25": 0.043,
+        "conditional_mrr25": 0.7160157671785579
+      },
+      "canonical": {
+        "molecules": 2000,
+        "candidate_recall": 0.043,
+        "mrr25": 0.030401989676989677,
+        "top1": 0.024,
+        "top5": 0.0395,
+        "top25": 0.043,
+        "conditional_mrr25": 0.707023015743946
+      },
+      "ratio025": {
+        "molecules": 2000,
+        "candidate_recall": 0.043,
+        "mrr25": 0.030743867243867243,
+        "top1": 0.0245,
+        "top5": 0.0395,
+        "top25": 0.043,
+        "conditional_mrr25": 0.7149736568341221
+      },
+      "ratio05": {
+        "molecules": 2000,
+        "candidate_recall": 0.043,
+        "mrr25": 0.028960317460317457,
+        "top1": 0.0215,
+        "top5": 0.039,
+        "top25": 0.043,
+        "conditional_mrr25": 0.6734957548911038
+      },
+      "ratio1": {
+        "molecules": 2000,
+        "candidate_recall": 0.043,
+        "mrr25": 0.02842005772005772,
+        "top1": 0.021,
+        "top5": 0.0385,
+        "top25": 0.043,
+        "conditional_mrr25": 0.6609315748850633
+      }
+    },
+    "queries_scored": 597,
+    "canonical_fallbacks": 0,
+    "independent_acceptance": false,
+    "scope": "Fixed generated pool only; combined retrieval and known protection not evaluated"
+  },
+  "protocol_sha256": "1112f86bab91fa09270e5ba86de443f0f58d9f41192bac9377f60acb5768fba0",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
