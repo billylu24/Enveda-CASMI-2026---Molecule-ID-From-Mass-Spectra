@@ -49,7 +49,13 @@ def score_cache_key(query, first, candidates):
 
 
 @torch.inference_mode()
-def run(output, incumbent, limit=200):
+def run(output, incumbent, limit=200, prefix=5):
+    if prefix not in (5, 10):
+        raise ValueError("Pilot insertion prefix must be5 or10")
+    variants = {
+        name: None if spec is None else (spec[0], prefix, *spec[2:])
+        for name, spec in VARIANTS.items()
+    }
     if not 1 <= limit <= 2000:
         raise ValueError("Pilot limit must be in[1,2000]")
     output, incumbent = Path(output), Path(incumbent)
@@ -69,9 +75,10 @@ def run(output, incumbent, limit=200):
             "critic_scores_sha256": digest(SCORES),
             "promotion_scores_sha256": digest(pair_path),
             "incumbent_report_sha256": digest(incumbent / "report.json"),
-            "variants": VARIANTS,
-            "rule": "Freeze0062;confidence<.5;native first100 novel ChEMBL proposals;critic rank then MetFrag tie-aware rerank; actual first proposal critic must exceed current first by.05;insert3 after prefix5",
+            "variants": variants,
+            "rule": "Freeze0062;confidence<.5;native first100 novel ChEMBL proposals;critic rank then MetFrag tie-aware rerank; actual first proposal critic must exceed current first by.05;insert3 after frozen prefix",
             "limit": limit,
+            "insertion_prefix": prefix,
             "fragment_seconds": 1200,
             "java_sha256": digest(JAVA),
             "jar_sha256": digest("external/metfrag/MetFragCommandLine-2.6.11.jar"),
@@ -185,14 +192,14 @@ def run(output, incumbent, limit=200):
                 raise ValueError("Retrieval keys differ")
             if mode == "known":
                 lookup.update(candidate_lookup(ROOT, "researchdev", "known"))
-            ranks = {name: {} for name in VARIANTS}
-            pools = {name: {} for name in VARIANTS}
+            ranks = {name: {} for name in variants}
+            pools = {name: {} for name in variants}
             diagnostics[mode] = {
                 name: {
                     "queries_with_inserted_candidates": 0,
                     "novel_inserted_truths": 0,
                 }
-                for name in VARIANTS
+                for name in variants
             }
             for i, row in enumerate(rows, 1):
                 if row["key"] not in allowed_keys or (
@@ -324,7 +331,7 @@ def run(output, incumbent, limit=200):
                         )
                     fragments = fragment_scores[cache_key]["scores"]
                     fallback = fragment_scores[cache_key]["budget_fallback"]
-                for name, spec in VARIANTS.items():
+                for name, spec in variants.items():
                     proposed = (
                         rerank(
                             candidates_external,
@@ -364,7 +371,7 @@ def run(output, incumbent, limit=200):
                         key in novel_external
                     )
             report[mode] = {}
-            for name in VARIANTS:
+            for name in variants:
                 result, per = metrics(ranks[name], pools[name])
                 if name == "baseline":
                     expected = (
@@ -416,8 +423,9 @@ def main():
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--incumbent", type=Path, required=True)
     p.add_argument("--limit", type=int, default=200)
+    p.add_argument("--prefix", type=int, default=5)
     a = p.parse_args()
-    print(json.dumps(run(a.output, a.incumbent, a.limit), indent=2))
+    print(json.dumps(run(a.output, a.incumbent, a.limit, a.prefix), indent=2))
 
 
 if __name__ == "__main__":
