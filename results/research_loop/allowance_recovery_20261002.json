@@ -1,0 +1,14 @@
+{
+  "round": "allowance_recovery_20261002",
+  "tests_passed": 95,
+  "scope": "Confirmed daily allowance rejection recovery; no ambiguous intent resubmission",
+  "last_scored_submission": {
+    "id": 56771973,
+    "public_score": 0.173
+  },
+  "confirmed_rejected_round": "0012_protected_generation",
+  "retry_after_utc": "2026-10-03T00:00:00Z",
+  "submission_accepted": false,
+  "independent_acceptance": false,
+  "public_best": 0.176
+}

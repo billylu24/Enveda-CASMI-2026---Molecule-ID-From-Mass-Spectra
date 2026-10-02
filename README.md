@@ -151,4 +151,4 @@ v4; current status is recorded in `kaggle_release_chemistry/status.json`.
 See [the next-round improvement plan](docs/NEXT_IMPROVEMENTS_20261002.md) for
 candidate coverage, mass-hypothesis, and generation-ranking priorities.
 
-持续研究循环：参见 [运行与停止说明](docs/RESEARCH_LOOP.md)、[冻结配置](configs/research_loop.json) 和 [汇总研究结果](results/research_loop)。最新 MetFrag Kaggle 提交 56769471 得分 0.173，历史公共最佳 0.176 保留。质量并集开发 MRR 0.021366 → 0.024371（2,000 分子），开发实验发布正在推进；未声称独立验收。
+持续研究循环：参见 [运行与停止说明](docs/RESEARCH_LOOP.md)、[冻结配置](configs/research_loop.json) 和 [汇总研究结果](results/research_loop)。最新已评分提交 56771973 为 0.173，历史公共最佳 0.176 保留。最新重复开发队列（2,000 未知、1,340 已知分子）的未知 MRR@25 为 0.031747，已知保护通过；没有新增独立验收。第 12、13 轮已通过 Kaggle 完整推理核验，第 17 轮正在重放；每日提交额度已用完，后续版本排队到 UTC 2026-10-03 00:00 后提交。
