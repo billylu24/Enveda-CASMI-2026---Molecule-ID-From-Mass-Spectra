@@ -1,0 +1,34 @@
+{
+  "round": "0016_mass_completion_pilot",
+  "direction": "generation_pilot",
+  "status": "diagnostic_complete",
+  "report": {
+    "molecules": 200,
+    "baseline": {
+      "samples": 25600,
+      "terminated": 25600,
+      "valid": 22921,
+      "mass_matching": 319,
+      "unique_mass_matching": 231,
+      "queries_with_candidates": 92,
+      "exact_structure_hits": 8
+    },
+    "constrained": {
+      "samples": 25600,
+      "terminated": 509,
+      "valid": 509,
+      "mass_matching": 509,
+      "unique_mass_matching": 372,
+      "queries_with_candidates": 122,
+      "exact_structure_hits": 6
+    },
+    "seconds": 1588.2361482270062,
+    "independent_acceptance": false,
+    "diagnostic_only": true,
+    "truth_used_only_in_metrics": true
+  },
+  "protocol_sha256": "e29d02fb8b40e59e50dec8fc7337b927fb490db103db79c2a9bd4f3ed3851442",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

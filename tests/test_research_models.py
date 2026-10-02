@@ -308,3 +308,15 @@ class GenerationViewTests(unittest.TestCase):
         self.assertEqual(len(views[0][0]), 2)
         self.assertEqual(len(views[1][0]), 1)
         self.assertEqual(sum(count for _, count in generation_views(group, 127)), 127)
+
+
+class ConditionAveragingTests(unittest.TestCase):
+    def test_average_changes_only_within_molecule_and_single_control_is_original(self):
+        from casmi_ml.generation_condition_training import condition_values
+
+        values = np.array([[1.0, 3.0], [3.0, 5.0], [8.0, 9.0]], dtype=np.float32)
+        groups = [np.array([0, 1]), np.array([2])]
+        mean = condition_values(values, groups, "mean")
+        np.testing.assert_allclose(mean, [[2.0, 4.0], [2.0, 4.0], [8.0, 9.0]])
+        self.assertIs(condition_values(values, groups, "single"), values)
+        np.testing.assert_allclose(values[0], [1.0, 3.0])
