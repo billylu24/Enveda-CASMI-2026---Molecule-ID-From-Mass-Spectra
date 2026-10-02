@@ -42,6 +42,7 @@ def _package(identifier, decision, output):
         "reference_generation",
         "generation_position",
         "generation_model",
+        "generated_frequency",
         "protected_generation",
     ]:
         raise ValueError(
@@ -154,6 +155,7 @@ def _package(identifier, decision, output):
         "reference_generation",
         "generation_position",
         "generation_model",
+        "generated_frequency",
     ]:
         from casmi_ml.coverage_experiment import EXTERNAL
         from casmi_ml.research_protocol import ROOT
@@ -165,6 +167,7 @@ def _package(identifier, decision, output):
             "reference_generation",
             "generation_position",
             "generation_model",
+            "generated_frequency",
         ]
         if protocol.get("open_protected", False) != open_protected:
             raise ValueError("Reference generation protocol mismatch")
@@ -173,8 +176,16 @@ def _package(identifier, decision, output):
             raise ValueError("Reference guard source ranks changed")
         prefix, slots = 5, 5
         checkpoint = ROOT / "generation/smiles_42/model.pt"
-        if report["direction"] == "generation_model":
-            if winner["variant"] != "model" or protocol.get("limit") is not None:
+        if report["direction"] in ["generation_model", "generated_frequency"]:
+            if report["direction"] == "generated_frequency" and (
+                winner["variant"] not in protocol["variants"]
+                or not 0 < protocol["variants"][winner["variant"]] <= 1
+            ):
+                raise ValueError("Selected frequency weight required")
+            if (
+                report["direction"] == "generation_model"
+                and winner["variant"] != "model"
+            ) or protocol.get("limit") is not None:
                 raise ValueError("Full generator checkpoint ranking required")
             prefix, slots = protocol["prefix"], protocol["slots"]
             checkpoint = Path(protocol["generator_checkpoint"])
@@ -199,9 +210,11 @@ def _package(identifier, decision, output):
             or replay.get("high_confidence_branch", 0) < 25
         ):
             raise ValueError("High-confidence reference generation replay required")
-        if report["direction"] in ["generation_position", "generation_model"] and (
-            replay.get("prefix") != prefix or replay.get("slots") != slots
-        ):
+        if report["direction"] in [
+            "generation_position",
+            "generation_model",
+            "generated_frequency",
+        ] and (replay.get("prefix") != prefix or replay.get("slots") != slots):
             raise ValueError("Generation position replay configuration mismatch")
         source_protocol = json.loads((source / "protocol.json").read_text())
         if digest(EXTERNAL) != source_protocol["external"]["derived_sha256"]:
@@ -217,7 +230,14 @@ def _package(identifier, decision, output):
             / "generation"
             / f"researchdev_samples128_limitall_stable_v2{suffix}.json"
         )
-        if report["direction"] == "generation_model":
+        if report["direction"] == "generated_frequency":
+            generated = Path(protocol["generated_path"])
+            if (
+                replay.get("frequency_weight")
+                != protocol["variants"][winner["variant"]]
+            ):
+                raise ValueError("Frequency replay weight differs from selected rule")
+        if report["direction"] in ["generation_model", "generated_frequency"]:
             if replay.get("generator_sha256") != digest(checkpoint) or replay.get(
                 "samples_sha256"
             ) != digest(generated):
@@ -259,6 +279,15 @@ def _package(identifier, decision, output):
             "total_seconds": 1800,
             "open_protected": open_protected,
         }
+        if report["direction"] == "generated_frequency":
+            if (
+                generated_config.get("candidate_statistics")
+                != "sample_frequency_and_best_sequence_token_count_v1"
+            ):
+                raise ValueError("Measured candidate frequency cache required")
+            recipe["generation"]["frequency_weight"] = protocol["variants"][
+                winner["variant"]
+            ]
     if report["direction"] == "protected_generation":
         from casmi_ml.research_protocol import ROOT
 
@@ -341,6 +370,7 @@ def _package(identifier, decision, output):
             "reference_generation",
             "generation_position",
             "generation_model",
+            "generated_frequency",
             "protected_generation",
         ],
         id=kernel_id,
@@ -355,6 +385,7 @@ def _package(identifier, decision, output):
         "reference_generation",
         "generation_position",
         "generation_model",
+        "generated_frequency",
         "protected_generation",
     ]:
         nb["cells"][1]["source"] = nb["cells"][1]["source"].replace(

@@ -42,6 +42,7 @@ def predict(recipe_path, data_dir, coconut, output):
         slots=generation["slots"],
         full_rankings=full,
         open_protected=generation.get("open_protected", False),
+        frequency_weight=generation.get("frequency_weight", 0.0),
     )
     report = json.loads(Path(str(output) + ".report.json").read_text())
     report.update(

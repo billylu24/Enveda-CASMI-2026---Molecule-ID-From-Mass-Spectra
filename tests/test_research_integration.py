@@ -262,9 +262,16 @@ class ProtectedGenerationRoutingTests(unittest.TestCase):
         from casmi_ml.metfrag import digest
 
         base = ["C", "CC", "CCC", "CCCC", "CCCCC", "CCCCCC"]
-        for allowed, timeout in [(True, False), (False, False), (True, True)]:
+        for allowed, timeout, frequency_weight in [
+            (True, False, 0.0),
+            (True, False, 1.0),
+            (False, False, 1.0),
+            (True, True, 1.0),
+        ]:
             with (
-                self.subTest(allowed=allowed, timeout=timeout),
+                self.subTest(
+                    allowed=allowed, timeout=timeout, frequency_weight=frequency_weight
+                ),
                 tempfile.TemporaryDirectory() as d,
             ):
                 root = Path(d)
@@ -333,7 +340,15 @@ class ProtectedGenerationRoutingTests(unittest.TestCase):
                                         :14
                                     ],
                                     "smiles": "N",
-                                }
+                                    "sample_count": 1,
+                                },
+                                {
+                                    "key": Chem.MolToInchiKey(Chem.MolFromSmiles("O"))[
+                                        :14
+                                    ],
+                                    "smiles": "O",
+                                    "sample_count": 5,
+                                },
                             ],
                             {},
                         ),
@@ -350,12 +365,15 @@ class ProtectedGenerationRoutingTests(unittest.TestCase):
                         slots=1,
                         full_rankings=root / "full.json",
                         open_protected=True,
+                        frequency_weight=frequency_weight,
                     )
                 ranking = result.smiles.iloc[0].split(";")
                 self.assertEqual(ranking[:5], base[:5])
                 self.assertEqual(
                     ranking,
-                    base[:5] + ["N", base[5]] if allowed and not timeout else base,
+                    base[:5] + ["O" if frequency_weight else "N", base[5]]
+                    if allowed and not timeout
+                    else base,
                 )
                 self.assertEqual(decoder.generate.call_count, int(allowed))
                 audit = pd.read_csv(str(root / "out.csv") + ".generation.csv")
@@ -505,6 +523,61 @@ class DecoderCheckpointPackagingTests(unittest.TestCase):
                     digest(output / "bundle/generation.pt"), digest(chosen)
                 )
                 self.assertEqual(recipe["generation"]["prefix"], 3)
+                # A frequency release must bind both its measured cache and
+                # selected fusion weight to actual unlabeled replay evidence.
+                frequency_samples = samples.with_name("frequency_samples.json")
+                write_json(frequency_samples, json.loads(samples.read_text()))
+                write_json(
+                    frequency_samples.with_suffix(".config.json"),
+                    {
+                        "checkpoint_sha256": digest(chosen),
+                        "candidate_statistics": "sample_frequency_and_best_sequence_token_count_v1",
+                    },
+                )
+                protocol = json.loads((round_dir / "protocol.json").read_text())
+                frequency_protocol = {
+                    **protocol,
+                    "generated_path": str(frequency_samples),
+                    "variants": {"frequency_1": 1.0},
+                }
+                write_json(round_dir / "protocol.json", frequency_protocol)
+                frequency_replay = {
+                    **replay,
+                    "frequency_weight": 1.0,
+                    "samples_sha256": digest(frequency_samples),
+                }
+                write_json(round_dir / "replay.json", frequency_replay)
+                frequency_decision = root / "frequency_decision.json"
+                write_json(
+                    frequency_decision,
+                    {
+                        "direction": "generated_frequency",
+                        "round_directory": str(round_dir),
+                        "winner": {
+                            "variant": "frequency_1",
+                            "gate": {"eligible": True},
+                        },
+                    },
+                )
+                frequency_output = root / "frequency_release"
+                package("frequency", frequency_decision, frequency_output)
+                frequency_recipe = json.loads(
+                    (frequency_output / "bundle/deployment_recipe.json").read_text()
+                )
+                self.assertEqual(
+                    frequency_recipe["generation"]["frequency_weight"], 1.0
+                )
+                self.assertEqual(
+                    digest(frequency_output / "bundle/generation.pt"), digest(chosen)
+                )
+                frequency_replay["frequency_weight"] = 0.5
+                write_json(round_dir / "replay.json", frequency_replay)
+                with self.assertRaises(ValueError):
+                    package(
+                        "wrongfrequency", frequency_decision, root / "wrongfrequency"
+                    )
+                self.assertFalse((root / "wrongfrequency").exists())
+                write_json(round_dir / "protocol.json", protocol)
                 replay["generator_sha256"] = "wrong checkpoint"
                 write_json(round_dir / "replay.json", replay)
                 with self.assertRaises(ValueError):

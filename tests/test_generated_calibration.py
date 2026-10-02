@@ -31,6 +31,37 @@ class GeneratedCalibrationTests(unittest.TestCase):
         self.assertEqual(calibrated_order(candidates, 0), ["B", "A"])
         self.assertEqual(calibrated_order([], 1), [])
 
+    def test_measured_sequence_length_is_distinct_from_canonical_characters(self):
+        candidates = [
+            {
+                "key": "A",
+                "smiles": "CC",
+                "log_probability": -3,
+                "best_sequence_tokens": 9,
+                "chemical_score": 0,
+                "formula_support": 0,
+            },
+            {
+                "key": "B",
+                "smiles": "CCCC",
+                "log_probability": -4,
+                "best_sequence_tokens": 4,
+                "chemical_score": 0,
+                "formula_support": 0,
+            },
+        ]
+        self.assertEqual(calibrated_order(candidates, 1), ["B", "A"])
+        self.assertEqual(calibrated_order(candidates, 1, "sampled_tokens"), ["A", "B"])
+        with self.assertRaises(ValueError):
+            calibrated_order(
+                [
+                    {k: v for k, v in c.items() if k != "best_sequence_tokens"}
+                    for c in candidates
+                ],
+                1,
+                "sampled_tokens",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

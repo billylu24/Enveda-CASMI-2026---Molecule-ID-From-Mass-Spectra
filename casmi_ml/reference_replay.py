@@ -22,6 +22,10 @@ def run(directory, limit=25):
     output.mkdir(parents=True, exist_ok=True)
     protocol = json.loads((directory / "protocol.json").read_text())
     prefix, slots = 5, 5
+    frequency_weight = 0.0
+    if protocol.get("candidate_statistics"):
+        decision = json.loads((directory / "decision.json").read_text())
+        frequency_weight = protocol["variants"][decision["winner"]["variant"]]
     if protocol.get("slot_ablation"):
         decision = json.loads((directory / "decision.json").read_text())
         _, prefix, slots = decision["winner"]["variant"].split("_")
@@ -53,8 +57,18 @@ def run(directory, limit=25):
     generated_path = (
         ROOT / "generation" / f"researchdev_samples128_limitall_stable_v2{suffix}.json"
     )
+    if protocol.get("candidate_statistics"):
+        generated_path = Path(protocol["generated_path"])
     generate = json.loads(generated_path.read_text())
-    generated = {r["key"]: [c["key"] for c in r["candidates"]] for r in generate}
+    if frequency_weight:
+        from casmi_ml.generation_frequency_ranking import ranked_candidates
+
+        generated = {
+            r["key"]: ranked_candidates(r["candidates"], frequency_weight)
+            for r in generate
+        }
+    else:
+        generated = {r["key"]: [c["key"] for c in r["candidates"]] for r in generate}
     open_protected = protocol.get("open_protected", False)
     by_branch = {"high": [], "low": [], "expanded": []}
     for row in rows:
@@ -117,6 +131,7 @@ def run(directory, limit=25):
         slots=slots,
         full_rankings=output / "full.json",
         open_protected=open_protected,
+        frequency_weight=frequency_weight,
     )
     actual = pd.read_csv(output / "submission.csv").set_index("molecule_id")
     matches = sum(
@@ -137,6 +152,7 @@ def run(directory, limit=25):
         "open_protected": open_protected,
         "prefix": prefix,
         "slots": slots,
+        "frequency_weight": frequency_weight,
         "generator_sha256": digest(checkpoint),
         "samples_sha256": digest(generated_path),
         "scope": "Actual unlabeled generation handoff for both routing branches; expansion CPU/MetFrag replay separately verified",

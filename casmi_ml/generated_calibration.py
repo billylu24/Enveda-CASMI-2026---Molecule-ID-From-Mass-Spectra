@@ -17,18 +17,28 @@ from casmi_ml.research_protocol import ROOT, freeze
 SOURCE = Path("artifacts/research_loop/rounds/0005_coverage")
 
 
-def calibrated_order(candidates, alpha):
+def calibrated_order(candidates, alpha, length_measure="canonical_smiles"):
+    if length_measure not in ["canonical_smiles", "sampled_tokens"]:
+        raise ValueError("Unknown sequence length measure")
     if not 0 <= alpha <= 1:
         raise ValueError("Length exponent must be between zero and one")
     if alpha == 0:
         return [c["key"] for c in candidates]
     lookup = {c["key"]: c for c in candidates}
-    # Canonical SMILES length is a proxy, not the sampled token count. Record
-    # that limitation explicitly rather than treating this as sequence likelihood.
+    if length_measure == "sampled_tokens" and any(
+        c.get("best_sequence_tokens", 0) < 1 for c in candidates
+    ):
+        raise ValueError("Measured best-sequence token count required")
     order = sorted(
         lookup,
         key=lambda k: (
-            -lookup[k]["log_probability"] / max(1, len(lookup[k]["smiles"])) ** alpha,
+            -lookup[k]["log_probability"]
+            / (
+                lookup[k]["best_sequence_tokens"]
+                if length_measure == "sampled_tokens"
+                else max(1, len(lookup[k]["smiles"]))
+            )
+            ** alpha,
             k,
         ),
     )
@@ -44,14 +54,15 @@ def calibrated_order(candidates, alpha):
     return order
 
 
-def run(output, generated_path):
+def run(output, generated_path, length_measure="canonical_smiles"):
     output, generated_path = Path(output), Path(generated_path)
     output.mkdir(parents=True, exist_ok=True)
     generated = json.loads(generated_path.read_text())
     by_key = {r["key"]: r["candidates"] for r in generated}
     if len(generated) != 2000 or len(by_key) != 2000:
         raise ValueError("Full 2000-molecule generated cache required")
-    variants = {"baseline": 0.0, "length_0.5": 0.5, "length_1": 1.0}
+    prefix = "tokens" if length_measure == "sampled_tokens" else "length"
+    variants = {"baseline": 0.0, f"{prefix}_0.5": 0.5, f"{prefix}_1": 1.0}
     freeze(
         output / "protocol.json",
         {
@@ -62,7 +73,11 @@ def run(output, generated_path):
             "generated_path": str(generated_path),
             "generated_sha256": digest(generated_path),
             "variants": variants,
-            "length_measure": "canonical SMILES character count proxy; sampled token lengths unavailable",
+            "length_measure": (
+                "Measured token count of highest-probability sampled sequence, includingEOS excludingBOS"
+                if length_measure == "sampled_tokens"
+                else "canonical SMILES character count proxy; sampled token lengths unavailable"
+            ),
             "chemical_weight": 0.25,
             "formula_weight": 0.25,
             "reference_guard": {"topn": 1, "threshold": 0.0},
@@ -76,7 +91,7 @@ def run(output, generated_path):
     )
     ordered = {
         name: {
-            key: calibrated_order(candidates, alpha)
+            key: calibrated_order(candidates, alpha, length_measure)
             for key, candidates in by_key.items()
         }
         for name, alpha in variants.items()
@@ -126,8 +141,13 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--generated", type=Path, required=True)
+    parser.add_argument(
+        "--length-measure",
+        choices=["canonical_smiles", "sampled_tokens"],
+        default="canonical_smiles",
+    )
     args = parser.parse_args()
-    print(json.dumps(run(args.output, args.generated), indent=2))
+    print(json.dumps(run(args.output, args.generated, args.length_measure), indent=2))
 
 
 if __name__ == "__main__":

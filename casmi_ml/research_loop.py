@@ -867,6 +867,7 @@ class Controller:
                 "reference_generation",
                 "generation_position",
                 "generation_model",
+                "generated_frequency",
                 "protected_generation",
             ]:
                 outcome = self.release_round(identifier)
@@ -910,6 +911,7 @@ class Controller:
             "reference_generation",
             "generation_position",
             "generation_model",
+            "generated_frequency",
         ]:
             directory = Path(r["report"]).parent
             replay = directory / "replay.json"
@@ -1031,6 +1033,7 @@ class Controller:
                 "reference_generation",
                 "generation_position",
                 "generation_model",
+                "generated_frequency",
                 "protected_generation",
             ]:
                 gpu = (self.root / "gpu.lock").open("a")
@@ -1050,6 +1053,7 @@ class Controller:
                             "reference_generation",
                             "generation_position",
                             "generation_model",
+                            "generated_frequency",
                             "protected_generation",
                         ]
                         else ".venv/bin/python",
@@ -1170,6 +1174,7 @@ class Controller:
             "representation",
             "generation_finetune",
             "generation_model",
+            "generated_frequency",
         ]:
             # The child owns the GPU budget/lock. Probe availability before
             # launching it so a queued GPU job remains queued during another
@@ -1198,6 +1203,7 @@ class Controller:
             "generation_pilot",
             "generation_finetune",
             "generation_model",
+            "generated_frequency",
         ]:
             seconds = self.config["gpu_stage_seconds"]["generation"]
         try:

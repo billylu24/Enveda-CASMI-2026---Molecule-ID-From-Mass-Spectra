@@ -6,9 +6,9 @@ from pathlib import Path
 
 import pandas as pd
 
-from casmi_ml.chemistry import rerank
 from casmi_ml.data import write_json
 from casmi_ml.generation_experiment import generate
+from casmi_ml.generation_frequency_ranking import ranked_candidates
 from casmi_ml.generation_slots import insert_generated
 from casmi_ml.generation_temperature_experiment import BASELINE, CHECKPOINT
 from casmi_ml.metfrag import digest
@@ -18,20 +18,6 @@ from casmi_ml.research_budget import StageBudget
 from casmi_ml.research_protocol import ROOT, freeze
 
 SOURCE = Path("artifacts/research_loop/rounds/0005_coverage")
-
-
-def ranked_candidates(candidates, weight):
-    original = [c["key"] for c in candidates]
-    if any(c.get("sample_count", 0) < 1 for c in candidates):
-        raise ValueError("Require measured sampling frequency, not inferred counts")
-    return rerank(
-        original,
-        {},
-        [],
-        weight,
-        top_n=max(1, len(original)),
-        fragment_scores={c["key"]: c["sample_count"] for c in candidates},
-    )
 
 
 def run(output, limit=200):
@@ -49,6 +35,9 @@ def run(output, limit=200):
             "version": 1,
             "source_sha256": digest(Path(__file__)),
             "sampling_source_sha256": digest(Path(generate.__code__.co_filename)),
+            "ranking_source_sha256": digest(
+                Path(__file__).with_name("generation_frequency_ranking.py")
+            ),
             "source_directory": str(SOURCE),
             "source_report_sha256": digest(SOURCE / "report.json"),
             "generator_checkpoint": str(CHECKPOINT),

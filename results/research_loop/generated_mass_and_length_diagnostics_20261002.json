@@ -1,0 +1,29 @@
+{
+  "round": "generated_mass_and_length_diagnostics_20261002",
+  "neutral_mass_retrospective_diagnostic": {
+    "molecules": 2000,
+    "median_mass_matches_labeled_structure": 1979,
+    "any_spectrum_mass_matches_labeled_structure": 1990,
+    "median_fails_any_passes": 11,
+    "all_observed_masses_fail": 10,
+    "multiple_mass_groups": 25,
+    "no_valid_mass_groups": 0,
+    "truth_used_only_for_retrospective_diagnostic": true,
+    "decision": "Small additional ceiling; do not prioritize union-mass resampling yet"
+  },
+  "length_experiment": {
+    "round": "0041_generated_token_length",
+    "molecules": 2000,
+    "length_measure": "Recorded best sampled sequence token count inclEOS/exclBOS; not canonical character proxy",
+    "exponents": [
+      0.5,
+      1
+    ],
+    "same_generated_cache": "0040 frequency measurement cache; unchanged trajectories and structure candidates",
+    "reference_routing_and_slots_frozen": true,
+    "decision": "Full same-key paired development gate against current best"
+  },
+  "holdout_used": false,
+  "cohort": "repeated_development",
+  "independent_acceptance": false
+}

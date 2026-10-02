@@ -1,0 +1,22 @@
+{
+  "round": "frequency_deployment_support_20261002",
+  "implementation": {
+    "shared_ranking": true,
+    "default_sampling_and_candidate_output_unchanged": true,
+    "measured_frequency_cache_isolated": true,
+    "unlabeled_inference_frequency_weight": true,
+    "pipeline_forwards_weight": true,
+    "reference_replay_binds_weight_and_samples": true,
+    "release_supports_generated_frequency": true,
+    "controller_supports_gpu_budget_and_release": true,
+    "wrong_weight_replay_rejected": true
+  },
+  "validation": {
+    "tests_passed": 120,
+    "ruff_passed": true
+  },
+  "full_round_source_commit": "e508dedd26bcbb69fea9b5fab4fafa5aa5ed4aa9",
+  "full_round_source_snapshot": "Archived exact sampler experiment source; updated runner uses it for any necessary recovery, not duplicate active work",
+  "independent_acceptance": false,
+  "publication_requires": "Full paired development gate, actual75-branch replay,400-row complete inference and Kaggle output verification"
+}

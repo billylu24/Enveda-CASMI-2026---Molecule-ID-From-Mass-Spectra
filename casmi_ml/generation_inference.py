@@ -36,7 +36,10 @@ def predict(
     slots=None,
     full_rankings=None,
     open_protected=False,
+    frequency_weight=0.0,
 ):
+    if not 0 <= frequency_weight <= 1:
+        raise ValueError("Frequency fusion weight must be between zero and one")
     encoder_path = Path(encoder_path or ENCODER)
     if not 1 <= samples <= 128 or seconds <= 0:
         raise ValueError("Invalid generation resource limits")
@@ -139,8 +142,17 @@ def predict(
                 mass,
                 hypotheses,
                 evidence,
+                track_frequency=frequency_weight > 0,
             )
             if candidates:
+                if frequency_weight:
+                    from casmi_ml.generation_frequency_ranking import ranked_candidates
+
+                    by_key = {c["key"]: c for c in candidates}
+                    candidates = [
+                        by_key[k]
+                        for k in ranked_candidates(candidates, frequency_weight)
+                    ]
                 lookup = {
                     Chem.MolToInchiKey(Chem.MolFromSmiles(s))[:14]: s for s in smiles
                 }
@@ -186,6 +198,7 @@ def predict(
             "open_protected": open_protected,
             "prefix": prefix,
             "slots": slots,
+            "frequency_weight": frequency_weight,
         },
     )
     return submission
@@ -205,6 +218,7 @@ def main():
     p.add_argument("--slots", type=int)
     p.add_argument("--full-rankings", type=Path)
     p.add_argument("--open-protected", action="store_true")
+    p.add_argument("--frequency-weight", type=float, default=0.0)
     a = p.parse_args()
     if (a.prefix is None) != (a.slots is None):
         p.error("--prefix and --slots must be provided together")
@@ -221,6 +235,7 @@ def main():
         a.slots,
         a.full_rankings,
         a.open_protected,
+        a.frequency_weight,
     )
 
 
