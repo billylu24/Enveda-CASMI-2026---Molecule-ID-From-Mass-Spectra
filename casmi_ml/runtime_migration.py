@@ -166,6 +166,29 @@ def verify_platform(identifier, output_dir):
         raise ValueError("Platform full rankings differ from verified local result")
     report = json.loads((output_dir / "submission.csv.report.json").read_text())
     local = json.loads((release / "verification.json").read_text())
+    local_report = json.loads(
+        (release / "local_output/submission.csv.report.json").read_text()
+    )
+    binding_fields = [
+        "checkpoint_sha256",
+        "baseline_sha256",
+        "critic_checkpoint_sha256",
+        "prefix",
+        "slots",
+        "open_protected",
+        "frequency_weight",
+        "token_length_exponent",
+        "critic_weight",
+        "adaptive_prefix",
+        "expanded_prefix",
+        "first_gate",
+        "sampling",
+        "formula_oracle_used",
+    ]
+    if any(report.get(k) != local_report.get(k) for k in binding_fields):
+        raise ValueError(
+            "Platform checkpoint or inference rule differs from local package"
+        )
     if (
         report["seconds"] > c.config["inference_seconds"]
         or report["peak_rss_mib"] > c.config["inference_rss_mib"]
@@ -180,6 +203,7 @@ def verify_platform(identifier, output_dir):
         "parent_peak_rss_mib": report["peak_rss_mib"],
         "remote_release": r["remote_release"],
         "independent_acceptance": False,
+        "inference_binding_fields": binding_fields,
         "scope": "Visible full rankings and resources; original development and replay gates retained; no new accuracy evidence",
     }
     write_json(release / "kaggle_verification.json", result)

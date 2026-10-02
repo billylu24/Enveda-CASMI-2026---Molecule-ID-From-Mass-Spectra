@@ -1,0 +1,30 @@
+{
+  "round": "0045_generated_second_reference",
+  "amendment": {
+    "old_release": "kaggle_release_second_0045",
+    "new_release": "kaggle_release_second_0045_runtime313",
+    "new_identity": "d465e55c24efbb6592be18c2892c8fc85aa1de0888cd1fec923383f001d9f34b",
+    "old_identity": "b9d57ad2363b7ca01a21266969fe2321809db398ada8a3b1e43c5c2e291d6743",
+    "changed_at": "2026-10-02T23:46:35Z",
+    "reason": "Dual ABI offline RDKit; frozen models and recipe unchanged; full local rankings identical",
+    "aggregate": "results/research_loop/0045_generated_second_reference_runtime313.json"
+  },
+  "frozen_models": {
+    "model.pt": "0bce6b953f084c1f841b607df99ec46703d7b92a487c8f0812be3db176b3c564",
+    "generated_critic.pt": "efbf32e5e9b174173757f0a8b602c0e7f19e01a537a3a6d32c80fd0c96076675",
+    "generation.pt": "98194888a4376d0773e45dfb955f5611ea9a1c4e1c90daae5e19321004d8fc73"
+  },
+  "local_verification": {
+    "valid": true,
+    "identity": "d465e55c24efbb6592be18c2892c8fc85aa1de0888cd1fec923383f001d9f34b",
+    "seconds": 188.53898231699714,
+    "peak_rss_mib": 6056.84765625,
+    "molecules": 400,
+    "independent_acceptance": false,
+    "previous_local_full_top25_matches": 400,
+    "frozen_models_match": true,
+    "recipe_unchanged": true
+  },
+  "platform_verification_pending": true,
+  "independent_acceptance": false
+}

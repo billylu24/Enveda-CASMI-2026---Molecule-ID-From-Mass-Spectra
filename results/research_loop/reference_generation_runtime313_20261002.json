@@ -31,6 +31,22 @@
       "version": 1
     },
     "independent_acceptance": false,
+    "inference_binding_fields": [
+      "checkpoint_sha256",
+      "baseline_sha256",
+      "critic_checkpoint_sha256",
+      "prefix",
+      "slots",
+      "open_protected",
+      "frequency_weight",
+      "token_length_exponent",
+      "critic_weight",
+      "adaptive_prefix",
+      "expanded_prefix",
+      "first_gate",
+      "sampling",
+      "formula_oracle_used"
+    ],
     "scope": "Visible full rankings and resources; original development and replay gates retained; no new accuracy evidence"
   }
 }

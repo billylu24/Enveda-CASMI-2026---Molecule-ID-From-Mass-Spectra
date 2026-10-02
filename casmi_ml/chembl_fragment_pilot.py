@@ -83,7 +83,14 @@ def run(
     dimer=False,
     candidate_gate=False,
     compare_first=False,
+    fragment_gate_only=False,
 ):
+    if fragment_gate_only and (
+        not compare_first or not evidence_only or candidate_gate
+    ):
+        raise ValueError(
+            "Fragment-only gate requires first comparison, informative evidence and no candidate critic gate"
+        )
     if compare_first and not evidence_only:
         raise ValueError("Fragment first comparison requires informative evidence")
     if candidate_gate and not evidence_only:
@@ -163,6 +170,7 @@ def run(
             "evidence_only": evidence_only,
             "candidate_gate": candidate_gate,
             "compare_current_first_fragment": compare_first,
+            "fragment_gate_only": fragment_gate_only,
             "evidence_gate": "Positive proposed first fragment score and distinct finite fragment scores required; missing/all tied scores never enable insertion"
             if evidence_only
             else None,
@@ -484,8 +492,11 @@ def run(
                             not evidence_only
                             or informative_fragments(proposed, fragments)
                         )
-                        and pair_scores[cache_key][proposed[0]]
-                        > pair_scores[cache_key][current[0]] + spec[0]
+                        and (
+                            fragment_gate_only
+                            or pair_scores[cache_key][proposed[0]]
+                            > pair_scores[cache_key][current[0]] + spec[0]
+                        )
                     ):
                         external = (
                             supported_proposals(
@@ -565,6 +576,7 @@ def run(
             "evidence_only": evidence_only,
             "candidate_gate": candidate_gate,
             "compare_current_first_fragment": compare_first,
+            "fragment_gate_only": fragment_gate_only,
             "evidence_gate": "Positive proposed first fragment score and distinct finite fragment scores required; missing/all tied scores never enable insertion"
             if evidence_only
             else None,
@@ -591,6 +603,7 @@ def main():
     p.add_argument("--dimer", action="store_true")
     p.add_argument("--candidate-gate", action="store_true")
     p.add_argument("--compare-first", action="store_true")
+    p.add_argument("--fragment-gate-only", action="store_true")
     a = p.parse_args()
     print(
         json.dumps(
@@ -607,6 +620,7 @@ def main():
                 a.dimer,
                 a.candidate_gate,
                 a.compare_first,
+                a.fragment_gate_only,
             ),
             indent=2,
         )

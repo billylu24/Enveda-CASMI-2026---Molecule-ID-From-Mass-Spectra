@@ -1,12 +1,12 @@
 {
   "valid": true,
-  "identity": "c1526ab3072f4242217f87b624250651c2f981cd9ed4eec3b72850dbaf4281a5",
+  "identity": "e4b8eae36a7b3fc8e8a255251a467f7531a2e263a0d3805d5cd091d3d64dbe45",
   "molecules": 400,
   "local_full_top25_matches": 400,
-  "seconds": 573.068769279,
-  "parent_peak_rss_mib": 2786.2890625,
+  "seconds": 583.5449811230001,
+  "parent_peak_rss_mib": 2912.359375,
   "remote_release": {
-    "kernel": "giaok246/casmi26-research-0012-protected-runtime313",
+    "kernel": "giaok246/casmi26-research-0017-position-runtime313",
     "version": 1
   },
   "independent_acceptance": false,

@@ -8,7 +8,7 @@ import pandas as pd
 
 from casmi_ml.data import write_json
 from casmi_ml.research_loop import Controller
-from casmi_ml.runtime_migration import activate_round
+from casmi_ml.runtime_migration import activate_round, verify_platform
 
 
 class RuntimeMigrationTests(unittest.TestCase):
@@ -73,3 +73,33 @@ class RuntimeMigrationTests(unittest.TestCase):
             ):
                 activate_round("round", new)
             self.assertEqual(controller.read()["rounds"][0]["release"], str(old))
+
+
+class PlatformRuntimeBindingTests(unittest.TestCase):
+    def test_identical_visible_ranks_cannot_hide_different_checkpoint(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            controller, _, release = RuntimeMigrationTests().setup_case(root)
+            platform = root / "platform"
+            platform.mkdir()
+            frame = pd.read_csv(release / "local_output/submission.csv")
+            frame.to_csv(platform / "submission.csv", index=False)
+            write_json(
+                release / "local_output/submission.csv.report.json",
+                {"checkpoint_sha256": "expected"},
+            )
+            write_json(
+                platform / "submission.csv.report.json",
+                {"checkpoint_sha256": "wrong", "seconds": 1, "peak_rss_mib": 1},
+            )
+            controller.mark_round(
+                "round",
+                release=str(release),
+                remote_release={"kernel": "owner/new", "version": 1},
+            )
+            with (
+                patch("casmi_ml.runtime_migration.Controller", return_value=controller),
+                self.assertRaises(ValueError),
+            ):
+                verify_platform("round", platform)
+            self.assertFalse((release / "kaggle_verification.json").exists())
