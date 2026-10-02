@@ -1,0 +1,31 @@
+{
+  "round": "0034_decoder_randomized_pilot",
+  "direction": "generation_model",
+  "status": "diagnostic_complete",
+  "report": {
+    "molecules": 200,
+    "baseline": {
+      "samples": 25600,
+      "valid": 22921,
+      "mass_matching": 319,
+      "unique_mass_matching": 231,
+      "queries_with_candidates": 92,
+      "exact_structure_hits": 8
+    },
+    "selected": {
+      "samples": 25600,
+      "valid": 19802,
+      "mass_matching": 237,
+      "unique_mass_matching": 229,
+      "queries_with_candidates": 98,
+      "exact_structure_hits": 0
+    },
+    "diagnostic_only": true,
+    "independent_acceptance": false,
+    "sampling": "128 frozen trajectories per query; same spectrum seeds and conditions"
+  },
+  "protocol_sha256": "f23b5fb0f260f0c92fc1df3b9341dfe49f666f5ad7fd2994f368b225fde7755c",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
