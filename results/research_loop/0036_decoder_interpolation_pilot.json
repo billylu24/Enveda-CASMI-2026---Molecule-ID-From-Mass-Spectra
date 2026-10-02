@@ -1,0 +1,31 @@
+{
+  "round": "0036_decoder_interpolation_pilot",
+  "direction": "generation_model",
+  "status": "diagnostic_complete",
+  "report": {
+    "molecules": 200,
+    "baseline": {
+      "samples": 25600,
+      "valid": 22921,
+      "mass_matching": 319,
+      "unique_mass_matching": 231,
+      "queries_with_candidates": 92,
+      "exact_structure_hits": 8
+    },
+    "selected": {
+      "samples": 25600,
+      "valid": 23396,
+      "mass_matching": 395,
+      "unique_mass_matching": 271,
+      "queries_with_candidates": 90,
+      "exact_structure_hits": 9
+    },
+    "diagnostic_only": true,
+    "independent_acceptance": false,
+    "sampling": "128 frozen trajectories per query; same spectrum seeds and conditions"
+  },
+  "protocol_sha256": "dba1b6ce7e14003bdbc8b48cc4c9560e9da1e3169eadca509a9189e7f5114304",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
