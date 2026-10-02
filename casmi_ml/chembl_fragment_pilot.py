@@ -49,7 +49,22 @@ def score_cache_key(query, first, candidates):
 
 
 @torch.inference_mode()
-def run(output, incumbent, limit=200, prefix=5, monomer=False):
+def run(
+    output,
+    incumbent,
+    limit=200,
+    prefix=5,
+    monomer=False,
+    proposal_limit=100,
+    fragment_limit=100,
+):
+    if proposal_limit not in (100, 500) or not 1 <= fragment_limit <= proposal_limit:
+        raise ValueError("Invalid proposal or fragment shortlist limit")
+    critic_path = Path(
+        "artifacts/research_loop/rounds/0078_chembl_critic_wide/critic_scores.json"
+        if proposal_limit == 500
+        else "artifacts/research_loop/rounds/0073_chembl_critic_slots/critic_scores.json"
+    )
     if prefix not in (5, 10):
         raise ValueError("Pilot insertion prefix must be5 or10")
     variants = {
@@ -80,9 +95,12 @@ def run(output, incumbent, limit=200, prefix=5, monomer=False):
             "promotion_scores_sha256": digest(pair_path),
             "incumbent_report_sha256": digest(incumbent / "report.json"),
             "variants": variants,
-            "rule": "Freeze0062;confidence<.5;native first100 novel ChEMBL proposals;critic rank then MetFrag tie-aware rerank; actual first proposal critic must exceed current first by.05;insert3 after frozen prefix",
+            "rule": f"Freeze0062;confidence<.5;native first{proposal_limit} novel ChEMBL proposals;critic shortlist first{fragment_limit}, then MetFrag tie-aware rerank; actual first proposal critic must exceed current first by.05;insert3 after frozen prefix",
             "limit": limit,
             "insertion_prefix": prefix,
+            "proposal_limit": proposal_limit,
+            "fragment_limit": fragment_limit,
+            "proposal_critic_cache_sha256": digest(critic_path),
             "fragment_adapter": "exact_monomer" if monomer else "proton_only",
             "fragment_adapter_sha256": digest(
                 "casmi_ml/metfrag_monomer.py" if monomer else "casmi_ml/metfrag.py"
@@ -154,11 +172,7 @@ def run(output, incumbent, limit=200, prefix=5, monomer=False):
     critic = DirectRanker("fingerprint").eval()
     critic.load_state_dict(weights["state_dict"])
     cache_path = output / "critic_scores.json"
-    pair_scores = json.loads(
-        Path(
-            "artifacts/research_loop/rounds/0073_chembl_critic_slots/critic_scores.json"
-        ).read_text()
-    )
+    pair_scores = json.loads(critic_path.read_text())
     allowed_keys = set(sorted(groups)[:limit])
     adapter = MetFrag
     if monomer:
@@ -252,7 +266,7 @@ def run(output, incumbent, limit=200, prefix=5, monomer=False):
                     current_set = set(current)
                     candidates_external = [
                         k for k in proposals[key] if k not in current_set
-                    ][:100]
+                    ][:proposal_limit]
                     cache_key = score_cache_key(key, current[0], candidates_external)
                     if candidates_external and cache_key not in pair_scores:
                         if not budget.checkpoint():
@@ -308,7 +322,7 @@ def run(output, incumbent, limit=200, prefix=5, monomer=False):
                         candidates_external = sorted(
                             candidates_external,
                             key=lambda k: (-pair_scores[cache_key][k], k),
-                        )
+                        )[:fragment_limit]
                 fragments, fallback = {}, False
                 if candidates_external:
                     if cache_key not in fragment_scores:
@@ -428,6 +442,8 @@ def run(output, incumbent, limit=200, prefix=5, monomer=False):
             "parent_peak_rss_mib": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
             / 1024,
             "proposal_queries_scored": len(pair_scores),
+            "proposal_limit": proposal_limit,
+            "fragment_limit": fragment_limit,
             "variants": diagnostics,
             "independent_acceptance": False,
         }
@@ -444,6 +460,8 @@ def main():
     p.add_argument("--limit", type=int, default=200)
     p.add_argument("--prefix", type=int, default=5)
     p.add_argument("--monomer", action="store_true")
+    p.add_argument("--proposal-limit", type=int, choices=(100, 500), default=100)
+    p.add_argument("--fragment-limit", type=int, default=100)
     a = p.parse_args()
     print(
         json.dumps(run(a.output, a.incumbent, a.limit, a.prefix, a.monomer), indent=2)
