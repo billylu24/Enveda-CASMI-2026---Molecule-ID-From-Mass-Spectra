@@ -33,7 +33,9 @@ def choose_hard(available, scores, keys, count=15):
     )
 
 
-def run(output, hard=False):
+def run(output, hard=False, epochs=3):
+    if epochs not in (3, 6):
+        raise ValueError("Matched critic training requires3 or6 fixed epochs")
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     latent_path = DIRECT / "encoder_train60k.npz"
@@ -48,7 +50,7 @@ def run(output, hard=False):
             "latent_cache_sha256": digest(latent_path),
             "training_data_sha256": digest(DIRECT / "training.joblib"),
             "hard_negatives": hard,
-            "epochs": 3,
+            "epochs": epochs,
             "learning_rate": 1e-5,
             "batch_size": 128,
             "seed": 42,
@@ -56,7 +58,7 @@ def run(output, hard=False):
             "negative_pool": "Original training-only nearest mass128; pool width max16/in-window count",
             "mining": "Frozen initial critic on mean normalized training-spectrum embeddings; deterministic key ties",
             "matched_rng": "Both arms consume identical random negative draws and positive/permutation RNG; hard arm replaces only negatives",
-            "checkpoint_selection": "Fixed third epoch, no development-based early stopping",
+            "checkpoint_selection": f"Fixed epoch{epochs}, no development-based early stopping",
             "encoder_frozen": True,
             "development_labels_used_in_training": False,
             "holdout_used": False,
@@ -157,7 +159,7 @@ def run(output, hard=False):
         optimizer = torch.optim.AdamW(model.parameters(), lr=1e-5, weight_decay=1e-4)
         rng = np.random.default_rng(42)
         history = []
-        for epoch in range(1, 4):
+        for epoch in range(1, epochs + 1):
             model.train()
             losses, pairs_inside, pairs_total = [], 0, 0
             for ids in np.array_split(
@@ -244,8 +246,9 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--hard", action="store_true")
+    p.add_argument("--epochs", type=int, choices=(3, 6), default=3)
     a = p.parse_args()
-    print(json.dumps(run(a.output, a.hard), indent=2))
+    print(json.dumps(run(a.output, a.hard, a.epochs), indent=2))
 
 
 if __name__ == "__main__":

@@ -213,3 +213,6 @@ MetFrag适用性汇总：完整开发5439张谱中3292张满足当前单体质�
 
 
 第89轮单因素hard critic+碎裂证据门控小试验：保持第87轮相同200、native100、单体MetFrag候选和缓存、margin0.05、slots3、仅有区分度真实碎裂时插入；只替换外部ChEMBL提案critic为第84轮难负例checkpoint，第62轮生成排序与前置比较critic不变。新候选critic缓存不复用旧权重分数，协议绑定新checkpoint SHA；MetFrag缓存独立于critic权重，按相同谱和结构可复用。未知正向/已知保护后才决定完整；不把单独critic的小收益当成已合格方案。
+
+
+第89轮fixed200 hard critic+真实碎裂门控：prefix5 unknown0.037997→0.038711（增0.000714）、known下降0.000520，保护通过；prefix2已知下降0.001793仍失败。第90轮只预选prefix5/fragment0.5，完整2000/1340对第62轮检验；复制第82轮完整碎裂缓存并保留初始SHA快照，新critic分数重新计算。开发最佳未变，仍需完整门槛。
