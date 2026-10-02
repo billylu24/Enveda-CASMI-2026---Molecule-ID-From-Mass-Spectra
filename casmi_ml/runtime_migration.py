@@ -73,7 +73,10 @@ def activate_round(identifier, output, old_release=None):
     )
     write_json(output / "verification.json", v)
     old_identity = json.loads((old / "status.json").read_text())["identity"]
-    previous = state["submissions"].get(old_identity)
+    canonical_old_identity = state.get("submission_aliases", {}).get(
+        old_identity, old_identity
+    )
+    previous = state["submissions"].get(canonical_old_identity)
     if previous and (
         previous.get("id") is not None
         or previous["status"] not in ("quota_wait", "superseded_runtime")
@@ -94,7 +97,10 @@ def activate_round(identifier, output, old_release=None):
         entry = next(row for row in state["rounds"] if row["id"] == identifier)
         if entry["release"] != str(old) or entry["status"] != "eligible":
             raise ValueError("Release changed while checking migration")
-        previous = state["submissions"].get(old_identity)
+        current_canonical = state.get("submission_aliases", {}).get(
+            old_identity, old_identity
+        )
+        previous = state["submissions"].get(current_canonical)
         if previous and (
             previous.get("id") is not None
             or previous["status"] not in ("quota_wait", "superseded_runtime")

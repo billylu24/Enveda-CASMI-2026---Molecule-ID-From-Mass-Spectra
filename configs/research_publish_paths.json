@@ -204,7 +204,12 @@
     "kaggle_release_decoder_0024_runtime313/notebook/kernel-metadata.json",
     "kaggle_release_decoder_0024_runtime313/verification.json",
     "kaggle_release_decoder_0024_runtime313/status.json",
-    "kaggle_release_decoder_0024_runtime313/kaggle_verification.json"
+    "kaggle_release_decoder_0024_runtime313/kaggle_verification.json",
+    "kaggle_release_calibrated_0044_runtime313/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_calibrated_0044_runtime313/notebook/kernel-metadata.json",
+    "kaggle_release_calibrated_0044_runtime313/verification.json",
+    "kaggle_release_calibrated_0044_runtime313/status.json",
+    "kaggle_release_calibrated_0044_runtime313/kaggle_verification.json"
   ],
   "aggregate_directories": [
     "results/research_loop",
