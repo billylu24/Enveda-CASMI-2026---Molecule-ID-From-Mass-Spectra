@@ -79,6 +79,27 @@ class LoopTests(unittest.TestCase):
             c.update_submission("sha2", "COMPLETE", 0.18)
             self.assertEqual(c.read()["public_best"]["submission_id"], 124)
 
+    def test_read_only_status_failure_keeps_intent_and_advances_local_research(self):
+        from requests import ConnectionError
+
+        from casmi_ml.data import write_json
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            c = self.controller(root)
+            c.reserve_submission("uncertain", 1, "once")
+            report = root / "local/report.json"
+            write_json(report, {"diagnostic_only": True})
+            c.register_round("local", "generation_pilot", [], report)
+            with patch.object(
+                c, "refresh_kaggle", side_effect=ConnectionError("DNS unavailable")
+            ):
+                self.assertEqual(c.step(), "evaluated")
+            self.assertEqual(c.read()["pending_submission"], "uncertain")
+            self.assertEqual(c.read()["submissions"]["uncertain"]["status"], "intent")
+            self.assertEqual(c.read()["rounds"][0]["status"], "evaluated")
+            self.assertIn("DNS unavailable", c.read()["remote_refresh_error"])
+
     def test_stop_blocks_new_jobs_and_wall_deadline_terminates_child(self):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)
@@ -354,6 +375,17 @@ class ReleaseEvidenceTests(unittest.TestCase):
             api.kernels_status.return_value = {"status": "COMPLETE"}
             api.competition_submit_code.return_value.ref = 123
             with patch("kaggle.api.kaggle_api_extended.KaggleApi", return_value=api):
+                from requests import ConnectionError
+
+                api.kernels_status.side_effect = ConnectionError(
+                    "temporary DNS failure"
+                )
+                delayed = c.publish_prepared("round", release)
+                self.assertEqual(delayed["status"], "notebook_running")
+                self.assertIsNone(c.read()["pending_submission"])
+                self.assertEqual(c.read()["submissions"], {})
+                api.competition_submit_code.assert_not_called()
+                api.kernels_status.side_effect = None
                 first = c.publish_prepared("round", release)
                 second = c.publish_prepared("round", release)
             self.assertEqual(first["id"], 123)

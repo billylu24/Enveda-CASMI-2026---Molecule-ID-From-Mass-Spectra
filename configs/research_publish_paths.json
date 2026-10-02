@@ -148,7 +148,9 @@
     "casmi_ml/generated_expanded_first.py",
     "tests/test_generated_expanded_first.py",
     "casmi_ml/generation_checkpoint_pilot.py",
-    "tests/test_generation_training_controls.py"
+    "tests/test_generation_training_controls.py",
+    "casmi_ml/generation_contrastive_pilot.py",
+    "tests/test_generation_contrastive.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

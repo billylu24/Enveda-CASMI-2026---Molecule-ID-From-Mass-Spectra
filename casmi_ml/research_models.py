@@ -261,9 +261,21 @@ class SmilesDecoder(nn.Module):
         token_masses=None,
         neutral_mass=None,
         eos_validator=None,
+        contrast_weight=0.0,
+        prior_condition=None,
     ):
         if samples < 1 or temperature <= 0:
             raise ValueError("Positive samples and temperature required")
+        if not math.isfinite(contrast_weight) or not 0 <= contrast_weight <= 2:
+            raise ValueError("Contrast weight must be finite and between0 and2")
+        if contrast_weight and (
+            prior_condition is None
+            or prior_condition.shape != condition.shape
+            or not torch.isfinite(prior_condition).all()
+        ):
+            raise ValueError(
+                "Contrast decoding requires a matched finite prior condition"
+            )
         if (token_masses is None) != (neutral_mass is None):
             raise ValueError("Atom masses and neutral mass must be supplied together")
         mass_weights = None
@@ -285,6 +297,8 @@ class SmilesDecoder(nn.Module):
             ceiling = neutral_mass + max(neutral_mass * 35e-6, 0.006)
         self.eval()
         condition = condition.expand(samples, -1)
+        if contrast_weight:
+            prior_condition = prior_condition.expand(samples, -1)
         tokens = torch.ones((samples, 1), dtype=torch.long, device=condition.device)
         finished = torch.zeros(samples, dtype=torch.bool, device=condition.device)
         logp = torch.zeros(samples, device=condition.device)
@@ -293,7 +307,11 @@ class SmilesDecoder(nn.Module):
                 raise TimeoutError(
                     "Generation deadline reached; discard incomplete query"
                 )
-            logits = self(tokens, condition)[:, -1] / temperature
+            logits = self(tokens, condition)[:, -1]
+            if contrast_weight:
+                prior_logits = self(tokens, prior_condition)[:, -1]
+                logits = (1 + contrast_weight) * logits - contrast_weight * prior_logits
+            logits = logits / temperature
             logits[:, [0, 1, 3]] = float("-inf")
             if mass_weights is not None:
                 logits.masked_fill_(

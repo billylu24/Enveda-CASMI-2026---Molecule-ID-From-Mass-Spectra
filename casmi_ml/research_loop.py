@@ -781,8 +781,15 @@ class Controller:
             try:
                 ready = api.dataset_status(dataset_id) == "ready"
             except Exception as error:
-                from requests import HTTPError
+                from requests import ConnectionError, HTTPError, Timeout
 
+                if isinstance(error, (ConnectionError, Timeout)):
+                    self.mark_round(
+                        identifier,
+                        remote_status_error=str(error),
+                        remote_status_checked_at=now(),
+                    )
+                    return {"status": "notebook_running"}
                 if isinstance(error, HTTPError) and error.response.status_code in [
                     403,
                     404,
@@ -803,7 +810,21 @@ class Controller:
                 "version": int(response.version_number),
             }
             self.mark_round(identifier, remote_release=remote)
-        status = api.kernels_status(remote["kernel"])
+        try:
+            status = api.kernels_status(remote["kernel"])
+        except Exception as error:
+            from requests import ConnectionError, Timeout
+
+            if not isinstance(error, (ConnectionError, Timeout)):
+                raise
+            # This call is read-only. Keep the remote version and continue local
+            # research; never retry an uncertain competition POST here.
+            self.mark_round(
+                identifier,
+                remote_status_error=str(error),
+                remote_status_checked_at=now(),
+            )
+            return {"status": "notebook_running"}
         status = (
             str(status["status"] if isinstance(status, dict) else status.status)
             .split(".")[-1]
@@ -1098,7 +1119,19 @@ class Controller:
             return "stopped"
         state = self.read()
         if state["pending_submission"] is not None:
-            self.refresh_kaggle()
+            try:
+                self.refresh_kaggle()
+            except Exception as error:
+                from requests import ConnectionError, Timeout
+
+                if not isinstance(error, (ConnectionError, Timeout)):
+                    raise
+                message = str(error)
+                self.change(
+                    lambda s: s.update(
+                        remote_refresh_error=message, remote_refresh_checked_at=now()
+                    )
+                )
             state = self.read()
         finished = next(
             (
