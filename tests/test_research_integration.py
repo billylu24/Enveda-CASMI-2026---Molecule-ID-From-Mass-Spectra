@@ -944,3 +944,18 @@ class ChEMBLCatalogImportTests(unittest.TestCase):
             self.assertIsNone(normalize(row)[0])
         row["canonical_smiles"] = "CCO"
         self.assertEqual(normalize(row)[1], "identity_disagreement")
+
+
+class CatalogCriticCacheTests(unittest.TestCase):
+    def test_cache_binds_complete_scored_candidate_list(self):
+        from casmi_ml.chembl_critic_slots import score_cache_key
+
+        value = score_cache_key("query", "first", ["a", "b"])
+        self.assertEqual(value, score_cache_key("query", "first", ["a", "b"]))
+        for query, first, candidates in [
+            ("other", "first", ["a", "b"]),
+            ("query", "other", ["a", "b"]),
+            ("query", "first", ["a", "c"]),
+            ("query", "first", ["b", "a"]),
+        ]:
+            self.assertNotEqual(value, score_cache_key(query, first, candidates))
