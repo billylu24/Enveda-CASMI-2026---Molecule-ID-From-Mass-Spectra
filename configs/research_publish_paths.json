@@ -102,7 +102,9 @@
     "casmi_ml/generated_calibration.py",
     "tests/test_generated_calibration.py",
     "casmi_ml/generation_temperature_experiment.py",
-    "tests/test_generation_temperature.py"
+    "tests/test_generation_temperature.py",
+    "casmi_ml/generation_model_mixture.py",
+    "tests/test_generation_model_mixture.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

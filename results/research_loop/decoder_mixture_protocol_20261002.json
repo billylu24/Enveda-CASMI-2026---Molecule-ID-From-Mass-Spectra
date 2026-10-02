@@ -1,0 +1,39 @@
+{
+  "round": "decoder_mixture_protocol_20261002",
+  "pilot": {
+    "round": "0032_decoder_model_mixture_pilot",
+    "molecules": 200,
+    "selected_decoder": "three-epoch_single",
+    "second_decoder": "original",
+    "samples_per_arm": 128,
+    "first64_shared": true,
+    "second64_seed_paired": true,
+    "control": "selected64+selected64",
+    "mixture": "selected64+original64",
+    "actual_compute_trajectories_per_query": 192,
+    "formula_predictor_identical_required": true,
+    "vocabulary_identical_required": true
+  },
+  "temperatures": {
+    "0.9": {
+      "exact_hits": 9,
+      "baseline_exact_hits": 9,
+      "decision": "no_structural_improvement; do_not_expand"
+    },
+    "0.7": {
+      "exact_hits": 8,
+      "baseline_exact_hits": 9,
+      "decision": "lower_exact_hits; do_not_expand"
+    }
+  },
+  "training_target_audit": {
+    "frozen_training_molecules": 60000,
+    "molecules_with_stereo_tokens": 0,
+    "decision": "Do not run redundant stereochemistry-removal training; original normalized targets already omit stereo"
+  },
+  "validation": {
+    "mixture_seed_and_trajectory_tests_passed": 2
+  },
+  "cohort": "repeated_development",
+  "independent_acceptance": false
+}
