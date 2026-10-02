@@ -1,0 +1,97 @@
+{
+  "arms": {
+    "0083_critic_random_control": {
+      "report": {
+        "diagnostic_only": true,
+        "training_molecules": 60000,
+        "training_development_overlap": 0,
+        "hard_negatives": false,
+        "history": [
+          {
+            "epoch": 1,
+            "mean_loss": 0.329231613130966,
+            "pairs": 900000,
+            "pairs_inside_mass_window": 719488,
+            "seconds": 9.98540844200761
+          },
+          {
+            "epoch": 2,
+            "mean_loss": 0.26853512530959744,
+            "pairs": 900000,
+            "pairs_inside_mass_window": 719452,
+            "seconds": 12.275918689003447
+          },
+          {
+            "epoch": 3,
+            "mean_loss": 0.35611039161809216,
+            "pairs": 900000,
+            "pairs_inside_mass_window": 719411,
+            "seconds": 14.537204705993645
+          }
+        ],
+        "seconds": 14.537575428985292,
+        "independent_acceptance": false,
+        "performance_evaluation_pending": true,
+        "gpu_peak_mib": 100.2060546875,
+        "checkpoint_sha256": "db5542ab1f3854886672f137d81944a0f7cc630b32671ba41faa3fd4d43bc120"
+      },
+      "source_sha256": "86d9600582b42d40bb99b9eed57bf239be053dd9eebbeaded5fcce1ce8f65e6c",
+      "hard_negative_table_sha256": "3873f40a2f6db3fd23cf744658b9301daabe6be0b2d8014de083a2e5423eabcd",
+      "changed_parameter_tensors": 11,
+      "parameter_tensor_count": 11,
+      "weights_only_load": true,
+      "finite_tensors": true,
+      "encoder_binding_unchanged": true,
+      "mined_table_no_self_negatives": true
+    },
+    "0084_critic_hard_negatives": {
+      "report": {
+        "diagnostic_only": true,
+        "training_molecules": 60000,
+        "training_development_overlap": 0,
+        "hard_negatives": true,
+        "history": [
+          {
+            "epoch": 1,
+            "mean_loss": 0.5104259373282573,
+            "pairs": 900000,
+            "pairs_inside_mass_window": 720198,
+            "seconds": 9.186737847019685
+          },
+          {
+            "epoch": 2,
+            "mean_loss": 0.44632444109743846,
+            "pairs": 900000,
+            "pairs_inside_mass_window": 720198,
+            "seconds": 11.381161142024212
+          },
+          {
+            "epoch": 3,
+            "mean_loss": 0.5262361920591611,
+            "pairs": 900000,
+            "pairs_inside_mass_window": 720198,
+            "seconds": 13.510380742023699
+          }
+        ],
+        "seconds": 13.510749771026894,
+        "independent_acceptance": false,
+        "performance_evaluation_pending": true,
+        "gpu_peak_mib": 100.2060546875,
+        "checkpoint_sha256": "771d8912bf460c944508be2e75c80e1d8623668677d7fc7e1abc71c6342dc3b1"
+      },
+      "source_sha256": "86d9600582b42d40bb99b9eed57bf239be053dd9eebbeaded5fcce1ce8f65e6c",
+      "hard_negative_table_sha256": "3873f40a2f6db3fd23cf744658b9301daabe6be0b2d8014de083a2e5423eabcd",
+      "changed_parameter_tensors": 11,
+      "parameter_tensor_count": 11,
+      "weights_only_load": true,
+      "finite_tensors": true,
+      "encoder_binding_unchanged": true,
+      "mined_table_no_self_negatives": true
+    }
+  },
+  "same_mining_table": true,
+  "same_frozen_source": true,
+  "development_training_overlap": 0,
+  "independent_acceptance": false,
+  "performance_pending": true
+}
