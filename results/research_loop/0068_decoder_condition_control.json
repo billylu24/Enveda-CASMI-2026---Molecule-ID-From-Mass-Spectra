@@ -1,0 +1,54 @@
+{
+  "round": "0068_decoder_condition_control",
+  "direction": "generation_finetune",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "complete": true,
+    "history": [
+      {
+        "epoch": 1,
+        "positive_token_ce": 0.28874505838669184,
+        "contrast_loss": 0.020578309807227427,
+        "training_nll_gap": 0.6182053643248991,
+        "batches": 938,
+        "training_molecules": 59970,
+        "complete": true,
+        "seconds": 41.611105455987854
+      },
+      {
+        "epoch": 2,
+        "positive_token_ce": 0.2880207799009677,
+        "contrast_loss": 0.020488664587296403,
+        "training_nll_gap": 0.6193808280010976,
+        "batches": 938,
+        "training_molecules": 59973,
+        "complete": true,
+        "seconds": 76.44051032298012
+      },
+      {
+        "epoch": 3,
+        "positive_token_ce": 0.2870916734372121,
+        "contrast_loss": 0.02050259207456764,
+        "training_nll_gap": 0.6201359819311069,
+        "batches": 938,
+        "training_molecules": 59973,
+        "complete": true,
+        "seconds": 111.1264991859789
+      }
+    ],
+    "seconds": 111.14802561298711,
+    "training_molecules": 60000,
+    "training_development_key_overlap": 0,
+    "negatives_within_mass_window": 57360,
+    "median_negative_mass_gap": 0.0,
+    "checkpoint_sha256": "492110204eefcd9d8fbc78a6fe04e2c0aafab92dfe822734e424edae6302aa08",
+    "independent_acceptance": false,
+    "adversarial_training": false,
+    "performance_acceptance": "fixed200 structure pilot against current decoder; full2000 ranking required before publication"
+  },
+  "protocol_sha256": "500beaa16aa84a7f68841f2648d72d348fba81cd6af513d1fcdcc1498eaa2f4c",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
