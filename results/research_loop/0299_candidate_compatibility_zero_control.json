@@ -1,0 +1,114 @@
+{
+  "round": "0299_candidate_compatibility_zero_control",
+  "direction": "implementation_control",
+  "status": "diagnostic_complete",
+  "report": {
+    "unknown": {
+      "candidate_compatibility": {
+        "molecules": 2000,
+        "candidate_recall": 0.1985,
+        "mrr25": 0.04397830092390447,
+        "top1": 0.016,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.22155315326904013
+      }
+    },
+    "known": {
+      "candidate_compatibility": {
+        "molecules": 1340,
+        "candidate_recall": 0.8850746268656716,
+        "mrr25": 0.6037921161569266,
+        "top1": 0.564179104477612,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6821934533307603
+      }
+    },
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "development_budget_fallbacks": 0,
+    "incremental_new_failure_contexts": 0,
+    "incremental_inherited_failure_contexts": 0,
+    "control_passed": true,
+    "required_comparators": {
+      "historical181": {
+        "directory": "artifacts/research_loop/rounds/0181_high_strong_slot_full",
+        "variant": "strong_slot_prefix",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1785,
+            "mrr25": 0.042545811746415294,
+            "top1": 0.014,
+            "top5": 0.0825,
+            "top25": 0.13,
+            "conditional_mrr25": 0.23835188653453943
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 1.0,
+            "mrr25": 0.6046255906927774,
+            "top1": 0.5656716417910448,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.6046255906927774
+          }
+        }
+      },
+      "completed_original": {
+        "directory": "artifacts/research_loop/rounds/0206_full181_audited_exact_control",
+        "variant": "diagnostic_residual",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.04272830092390447,
+            "top1": 0.014,
+            "top5": 0.0825,
+            "top25": 0.13,
+            "conditional_mrr25": 0.21525592404989657
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6046005738683694,
+            "top1": 0.5656716417910448,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.683106887844532
+          }
+        }
+      },
+      "verified_low_leader": {
+        "directory": "artifacts/research_loop/rounds/0237_low_leader_full_unlabeled_replay",
+        "variant": "supported_leader_replay",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.04397830092390447,
+            "top1": 0.016,
+            "top5": 0.0825,
+            "top25": 0.13,
+            "conditional_mrr25": 0.22155315326904013
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6037921161569266,
+            "top1": 0.564179104477612,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.6821934533307603
+          }
+        }
+      }
+    }
+  },
+  "protocol_sha256": "b91999791d5b9b10a764d90755008e6ccbf23a98d816b94357e72d63068c1ac8",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

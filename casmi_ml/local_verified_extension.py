@@ -78,6 +78,16 @@ def run(test, baseline, full, routing, reference, output):
                     new=candidate_constructor,
                 )
             )
+        from casmi_ml.candidate_compatibility_activation import resolve_score
+
+        compatibility_score = resolve_score(config, proof)
+        if compatibility_score is not None:
+            stack.enter_context(
+                patch(
+                    "casmi_ml.chembl_routed_inference.score_group",
+                    new=compatibility_score,
+                )
+            )
         query_spec = config.get("query_residual")
         if query_spec:
             from casmi_ml.diagnostic_query_ranker import (

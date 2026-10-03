@@ -445,7 +445,9 @@
     "casmi_ml/candidate_compatibility_followup.py",
     "tests/test_candidate_diagnostic_compatibility.py",
     "tests/test_candidate_compatibility_training.py",
-    "tests/test_candidate_compatibility_binding.py"
+    "tests/test_candidate_compatibility_binding.py",
+    "casmi_ml/candidate_compatibility_activation.py",
+    "tests/test_candidate_compatibility_activation.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
