@@ -236,7 +236,9 @@
     "casmi_ml/chembl_fingerprint_prior.py",
     "tests/test_fingerprint_prior.py",
     "casmi_ml/merged_fragments.py",
-    "tests/test_merged_fragments.py"
+    "tests/test_merged_fragments.py",
+    "casmi_ml/encoder_pair_finetuning.py",
+    "tests/test_encoder_pair_finetuning.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

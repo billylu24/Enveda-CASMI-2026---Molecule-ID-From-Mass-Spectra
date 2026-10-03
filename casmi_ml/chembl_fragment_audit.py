@@ -39,7 +39,6 @@ def run(directory, output):
         or not protocol["compare_current_first_fragment"]
         or protocol["candidate_gate"]
         or protocol.get("fingerprint_prior_ranking", False)
-        or protocol.get("fragment_aggregation") == "merged_peak_union"
         or protocol.get("chemical_prior", False)
         or protocol.get("fragment_gate_only", False)
     ):
@@ -157,6 +156,10 @@ def run(directory, output):
                         if protocol.get("fragment_aggregation") == "mean_normalized":
                             fk = score_cache_key(
                                 "mean_normalized_v1:" + key, current[0], shortlist
+                            )
+                        if protocol.get("fragment_aggregation") == "merged_peak_union":
+                            fk = score_cache_key(
+                                "merged_peak_union_v1:" + key, current[0], shortlist
                             )
                         if protocol.get("fragment_depth", 2) != 2:
                             fk = score_cache_key(

@@ -1,0 +1,44 @@
+{
+  "round": "0124_encoder_bce_control",
+  "direction": "representation",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "contrastive": false,
+    "train_molecules": 60000,
+    "train_spectra": 214804,
+    "train_development_overlap": 0,
+    "epochs": 3,
+    "critic_state_dict_unchanged": true,
+    "seconds": 14.752577208011644,
+    "gpu_peak_mib": 291.5009765625,
+    "encoder_sha256": "4880eadd708e4227f0991a0950028640faadf200ad27c5992634fd2c5b89c2d8",
+    "critic_sha256": "36addc54be10d6a5e1a58ff7a3a3bf4aff4da8164f580e092fa9a93e404b6c3d",
+    "history": [
+      {
+        "epoch": 1,
+        "fingerprint_bce": 0.04685490997011728,
+        "frozen_critic_pair_ce": 0.6977774460178449,
+        "seconds": 8.85501977900276
+      },
+      {
+        "epoch": 2,
+        "fingerprint_bce": 0.04636468929744987,
+        "frozen_critic_pair_ce": 0.6902637816568428,
+        "seconds": 11.74948048600345
+      },
+      {
+        "epoch": 3,
+        "fingerprint_bce": 0.04609016034362921,
+        "frozen_critic_pair_ce": 0.6762786036742522,
+        "seconds": 14.640953540016199
+      }
+    ],
+    "independent_acceptance": false,
+    "next_gate": "Complete external and combined scoring against0062 required; training loss cannot qualify release"
+  },
+  "protocol_sha256": "0c315db45479aa4e26d84aff42fe7ca3d2dd0ea03d69f6fa869708e91fa5c93d",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
