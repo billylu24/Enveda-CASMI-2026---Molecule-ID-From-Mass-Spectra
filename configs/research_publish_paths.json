@@ -264,7 +264,8 @@
     "casmi_ml/chembl_high_fragment_replay.py",
     "tests/test_chembl_high_release_gate.py",
     "casmi_ml/dimer_input_view.py",
-    "tests/test_dimer_input_view.py"
+    "tests/test_dimer_input_view.py",
+    "tests/test_proposal_encoder_binding.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

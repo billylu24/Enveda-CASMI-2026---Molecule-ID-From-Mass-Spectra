@@ -34,7 +34,11 @@ def ordered_proposals(keys, values):
 
 
 @torch.inference_mode()
-def run(output, all_queries=False):
+def run(output, all_queries=False, encoder=ENCODER):
+    encoder = Path(encoder)
+    alternate_encoder = encoder.resolve() != Path(ENCODER).resolve()
+    if alternate_encoder and not all_queries:
+        raise ValueError("Alternate encoder requires complete all-query mass windows")
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     freeze(
@@ -43,7 +47,9 @@ def run(output, all_queries=False):
             "version": 1,
             "source_sha256": digest(Path(__file__)),
             "prior_source_sha256": digest("casmi_ml/chembl_fingerprint_prior.py"),
-            "encoder_sha256": digest(ENCODER),
+            "encoder_sha256": digest(encoder),
+            "encoder_path": str(encoder),
+            "alternate_encoder": alternate_encoder,
             "training_sha256": digest(TRAIN),
             "development_sha256": digest(ROOT / "researchdev.parquet"),
             "catalog_sha256": digest(DERIVED),
@@ -59,7 +65,7 @@ def run(output, all_queries=False):
             "query_selection": "All development query keys"
             if all_queries
             else "Original native proposals confidence<.5; outcomes never select query keys",
-            "native_reconstruction": "Compute fingerprint matrix in original stable mass/key window order to preserve BLAS numerical arithmetic; require exact stored native rank",
+            "native_reconstruction": "Original encoder requires exact stored native rank; alternate encoder preserves exact frozen0147 all-query mass pool, with new scores in stable mass/key window order",
             "new_training": False,
             "new_sampling": False,
             "truth_used_only_in_metrics": True,
@@ -71,6 +77,15 @@ def run(output, all_queries=False):
     )
     configure(42, threads=4)
     native = json.loads(PROPOSALS.read_text())
+    frozen_all_native = (
+        json.loads(
+            Path(
+                "artifacts/research_loop/rounds/0147_chembl_all_query_proposals/native_proposals.json"
+            ).read_text()
+        )
+        if alternate_encoder
+        else None
+    )
     training = pd.read_parquet(TRAIN, columns=["inchikey14", "fingerprint"])
     frame = pd.read_parquet(ROOT / "researchdev.parquet")
     if set(training.inchikey14) & set(frame.inchikey14):
@@ -89,7 +104,7 @@ def run(output, all_queries=False):
     mass_lookup = wanted_catalog.mass.to_dict()
     del wanted_catalog
     del catalog
-    model, saved = load_deployment_checkpoint(ENCODER, "scale")
+    model, saved = load_deployment_checkpoint(encoder, "scale")
     model.eval()
     proposals = {name: {} for name in ("native", "corrected_fusion", "corrected_only")}
     score_count, scored_queries = 0, 0
@@ -137,11 +152,17 @@ def run(output, all_queries=False):
                     continue
                 probability = group_probability(model, query, saved["preprocessing"])
                 actual_native = neural_rank(probability, scoring_order, fps)
-                if key in native and actual_native != base:
+                if alternate_encoder and set(scoring_order) != set(
+                    frozen_all_native[key]
+                ):
+                    raise ValueError(
+                        "Alternate encoder changed frozen observable mass pool"
+                    )
+                if not alternate_encoder and key in native and actual_native != base:
                     raise ValueError(
                         "Native full mass-window ranking reconstruction differs"
                     )
-                if key not in native:
+                if alternate_encoder or key not in native:
                     base = actual_native
                 values = corrected_scores(probability, fps, prior)
                 if not np.isfinite(values).all():
@@ -202,8 +223,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--all-queries", action="store_true")
+    parser.add_argument("--encoder", type=Path, default=ENCODER)
     args = parser.parse_args()
-    print(json.dumps(run(args.output, args.all_queries), indent=2))
+    print(json.dumps(run(args.output, args.all_queries, args.encoder), indent=2))
 
 
 if __name__ == "__main__":

@@ -54,6 +54,19 @@ def score_cache_key(query, first, candidates, model_binding=None):
     return hashlib.sha256(payload.encode()).hexdigest()
 
 
+def validate_proposal_source(
+    protocol, catalog_sha, base_encoder_sha, scoring_encoder_sha
+):
+    encoder = protocol.get("encoder_sha256")
+    if protocol.get("catalog_sha256") != catalog_sha or not (
+        encoder == base_encoder_sha
+        or (
+            encoder == scoring_encoder_sha and protocol.get("alternate_encoder") is True
+        )
+    ):
+        raise ValueError("Proposal source catalog/scoring encoder differs")
+
+
 def validate_proposal_membership(proposals, original):
     if set(proposals) != set(original) or any(
         len(values) != len(set(values)) or set(values) != set(original[key])
@@ -170,10 +183,9 @@ def run(
     encoder, saved = load_deployment_checkpoint(proposal_encoder, "scale")
     encoder.eval()
     proposal_protocol = json.loads((proposal_path.parent / "protocol.json").read_text())
-    if proposal_protocol["catalog_sha256"] != digest(DERIVED) or proposal_protocol[
-        "encoder_sha256"
-    ] != digest(ENCODER):
-        raise ValueError("Proposal source catalog/base encoder differs")
+    validate_proposal_source(
+        proposal_protocol, digest(DERIVED), digest(ENCODER), encoder_sha
+    )
     proposals = json.loads(proposal_path.read_text())
     if proposal_path != PROPOSALS:
         if proposal_protocol.get("development_sha256") != digest(
