@@ -345,3 +345,10 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第122 merged_peak_union hash200：unknown/known指标与max控制第120全部相同，prefix3增0.002083、known不变，缓存组63、非空13、0预算回退；实际引擎输入154→139，其中complete32谱→17组（不支持加合物122张保持独立），26.3秒/2828MiB为本轮增量，不能当冷资源。第123完整2000/1340效率/准确性控制预注册：prefix3与merged union/native100/critic+.05/fragment.5/3slots/actual current first comparison/skip-impossible全部固定，复用122同内容完整63组，其余merged actual Java继续；总fragment1200秒/单次60秒/1GiB heap不变。small ranking相同但支持谱引擎输入约减半，检验完整预算内更高覆盖或跨CE互补是否有实际ranking收益；结果不合格不发布，不额外按full调整merge容差。
+
+
+第123完整峰并集评测完成：unknown MRR0.039756（+0.000545/+1.390%），known MRR与Top1不变，0整组预算回退、7新增真值、491.9秒/2868MiB为增量运行；未达到相对2%门槛，不提交。1252本轮输入谱合并为1056引擎输入，unsupported829仍占大多数。独立重建完整排序核对1e-12通过：20个native库外真值、15组有可能critic门控、9个获正向片段与首位比较支持、最终插入7，覆盖/适用谱比预算更限制收益。冷Java执行仍未验证，不把缓存效率视为部署资源。
+
+第124/125编码器候选匹配受控微调预注册及执行：原60K/214804谱、原scale encoder初始化、critic完全冻结；control仅fingerprint BCE，实验BCE+0.1训练内15近质量hard-negative listwise CE。固定3epoch/lr1e-5/batch128/seed42，相同分子抽样、dropout RNG、hard table、两项前向与遍历顺序，每分子每epoch一张谱，无开发label/checkpoint选择；训练特征preprocessing、row_id与缓存/原encoder逐项一致，hard mining protocol/训练/critic SHA匹配，所有负例distinct且在原近质量池、train/dev交集0。两臂GPU顺序约14.8/14.6秒、291.5MiB；最终权重finite，critic state_dict逐tensor保持原权重，仅绑定新encoder。固定第3epoch：control BCE0.046090/CE0.676279，实验BCE0.046688/CE0.604951。训练CE降低不是提交证据。
+
+第126/127完整候选匹配对照已登记：固定原ChEMBL100 native proposals、原0062全部检索/生成排序、新encoder仅用于external与实际first critic；两组均同original frozen critic权重、独立encoder绑定与cache key含两模型SHA，不能给旧decoder换条件空间。完整2000/1340对0062评价、预选margin005_prefix5（沿用原critic-only规则），其余既有prefix报告诊断；若合格仍需部署资源/平台验证。这是受监督候选匹配，不是GAN。新增binding/负例保护及相关回归7项通过。
