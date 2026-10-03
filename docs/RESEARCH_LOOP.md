@@ -316,3 +316,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第113完整sequence query+fragment排序：unknown0.039516（增0.000305/+0.777%）、known0.604974（降0.000009）、Top1不变，门槛失败；1206.2秒/3138MiB、625缓存组191非空、78budget回退、75unknown/4known查询插入、新真值5。第116同规则预算完成诊断：仅复制547个完整组、剔除78个budget回退，允许同1200秒新轮预算继续完成；sequence file/ratio0/critic+.05/fragment.5/actual first comparison/prefix3/3slots/skip-impossible不变。不会把缓存追加耗时视为新冷运行，也不能把多轮缓存拼成一次1200秒保证；若排序eligible仍需独立真实推理/冷总资源验证。增加逐谱execution status数据以识别未匹配与Java失败，公开仅汇总。
+
+
+第114同谱DINO匹配控制完成：20固定pretrain+30固定finetune，931.1秒/GPU峰1764MiB，train/dev交集0，eligible cross-energy rows160679。旧池routed unknown0.018332（旧baseline0.018412）、known0.589783；raw unknown0.018623。未坍塌，effective rank83.71；固定final30，不按开发选择。父进程训练RSS10949MiB不满足部署8GiB，但此含训练与开发fingerprint缓存，不能当推理RSS；若115有效仍需独立冷推理资源评价。control模型SHA4519bb811993983542b4b9811e540cf8c360bd526157436523b8bb40350a14bc；GPU退出后才启动115跨CE配对，单卡序列无重叠。
