@@ -1,0 +1,5 @@
+{
+  "status": "implementation_failed_before_training",
+  "reason": "Inner stage lock conflicted with controller wall-job lock; repaired by separate representation lock. No model training or accuracy evidence.",
+  "independent_acceptance": false
+}

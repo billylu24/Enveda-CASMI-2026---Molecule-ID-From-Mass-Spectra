@@ -1,0 +1,64 @@
+{
+  "diagnostic_only": true,
+  "repeated_development": true,
+  "independent_acceptance": false,
+  "scope": "Paired existing development ranks, used to identify remaining error directions; no threshold selection or new score evidence",
+  "modes": {
+    "unknown": {
+      "molecules": 2000,
+      "gained": 25,
+      "lost": 4,
+      "unchanged": 1971,
+      "total_reciprocal_rank_gain": 2.6370418470418473,
+      "total_reciprocal_rank_loss": -0.7666666666666666,
+      "rank_change_by_confidence": {
+        "low": {
+          "molecules": 746,
+          "gained": 0,
+          "lost": 0,
+          "mean_rr_difference": 0.0
+        },
+        "moderate_high": {
+          "molecules": 721,
+          "gained": 16,
+          "lost": 2,
+          "mean_rr_difference": 0.0026164558203393153
+        },
+        "strong_high": {
+          "molecules": 533,
+          "gained": 9,
+          "lost": 2,
+          "mean_rr_difference": -3.0186615552468967e-05
+        }
+      }
+    },
+    "known": {
+      "molecules": 1340,
+      "gained": 11,
+      "lost": 1,
+      "unchanged": 1328,
+      "total_reciprocal_rank_gain": 0.10281302244217841,
+      "total_reciprocal_rank_loss": -0.1666666666666666,
+      "rank_change_by_confidence": {
+        "low": {
+          "molecules": 281,
+          "gained": 0,
+          "lost": 0,
+          "mean_rr_difference": 0.0
+        },
+        "moderate_high": {
+          "molecules": 249,
+          "gained": 6,
+          "lost": 0,
+          "mean_rr_difference": 0.00029196068160108435
+        },
+        "strong_high": {
+          "molecules": 810,
+          "gained": 5,
+          "lost": 1,
+          "mean_rr_difference": -0.0001685825357322941
+        }
+      }
+    }
+  }
+}

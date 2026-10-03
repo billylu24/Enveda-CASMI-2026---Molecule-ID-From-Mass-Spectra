@@ -1,0 +1,35 @@
+{
+  "local_only": true,
+  "updated_at": "2026-10-03T06:35:07Z",
+  "kaggle_uploads": false,
+  "competition_submissions": false,
+  "github_pushes": false,
+  "development_best": {
+    "round": "0181_high_strong_slot_full",
+    "variant": "strong_slot_prefix",
+    "directory": "artifacts/research_loop/rounds/0181_high_strong_slot_full",
+    "metrics": {
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.1785,
+        "mrr25": 0.042545811746415294,
+        "top1": 0.014,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.23835188653453943
+      },
+      "known": {
+        "molecules": 1340,
+        "candidate_recall": 1.0,
+        "mrr25": 0.6046255906927774,
+        "top1": 0.5656716417910448,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6046255906927774
+      }
+    }
+  },
+  "pending_competition_submission": null,
+  "regression_tests": 268,
+  "note": "User revoked remote publication; retained historical release records and frozen development gates. Local research continues."
+}

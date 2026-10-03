@@ -191,6 +191,9 @@ class Controller:
             write_json(self.path, state)
             return result
 
+    def local_only(self):
+        return bool(self.read().get("local_only", False))
+
     def stopped(self):
         return self.stop_path.exists()
 
@@ -377,6 +380,9 @@ class Controller:
             raise
 
     def reserve_submission(self, identity, version, message):
+        if self.local_only():
+            raise RuntimeError("Local-only policy prohibits submission reservation")
+
         def update(s):
             if self.stopped():
                 raise RuntimeError("Stop requested")
@@ -485,6 +491,8 @@ class Controller:
             self.publication_snapshot(identity)
 
     def refresh_kaggle(self):
+        if self.local_only():
+            return []
         from kaggle.api.kaggle_api_extended import KaggleApi
 
         api = KaggleApi()
@@ -551,6 +559,8 @@ class Controller:
         return rows
 
     def import_bootstrap(self):
+        if self.local_only():
+            return []
         identifier = self.config["bootstrap_submission"]
         identity = f"bootstrap-{identifier}"
 
@@ -705,6 +715,9 @@ class Controller:
         return result
 
     def sync_github(self, identifier, paths):
+        if self.local_only():
+            self.mark_round(identifier, local_recorded=True)
+            return "local_only"
         with (self.root / "github_sync.lock").open("a") as lock:
             fcntl.flock(lock, fcntl.LOCK_EX)
             try:
@@ -777,6 +790,8 @@ class Controller:
         """Submit a checksum-verified, locally checked development experiment once."""
         from kaggle.api.kaggle_api_extended import KaggleApi
 
+        if self.local_only():
+            return {"status": "local_only"}
         release = Path(release)
         verification = json.loads((release / "verification.json").read_text())
         r = next(r for r in self.read()["rounds"] if r["id"] == identifier)
@@ -967,6 +982,9 @@ class Controller:
         return paths
 
     def complete_round(self, identifier):
+        if self.local_only():
+            self.mark_round(identifier, local_recorded=True, publication_suspended=True)
+            return "round_complete"
         r = next(r for r in self.read()["rounds"] if r["id"] == identifier)
         if r["status"] == "eligible" and self.config["automatic_submission"]:
             if r["direction"] in [
@@ -1020,6 +1038,8 @@ class Controller:
         return "round_complete"
 
     def release_round(self, identifier):
+        if self.local_only():
+            return "local_only"
         from casmi_ml.experimental_release import package
 
         r = next(r for r in self.read()["rounds"] if r["id"] == identifier)
@@ -1261,7 +1281,7 @@ class Controller:
             self.change(lambda s: s.update(status="stopped"))
             return "stopped"
         state = self.read()
-        if state["pending_submission"] is not None:
+        if not state.get("local_only") and state["pending_submission"] is not None:
             try:
                 self.refresh_kaggle()
             except Exception as error:
@@ -1290,7 +1310,11 @@ class Controller:
                     "diagnostic_complete",
                     "recorded",
                 ]
-                and (not r["git_synced"] or r["status"] == "eligible")
+                and (
+                    not r.get("local_recorded", False)
+                    if state.get("local_only")
+                    else (not r["git_synced"] or r["status"] == "eligible")
+                )
             ),
             None,
         )
@@ -1479,14 +1503,31 @@ class Controller:
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument(
-        "command", choices=["run", "status", "stop", "resume", "run-auxiliary"]
+        "command",
+        choices=["run", "status", "stop", "resume", "run-auxiliary", "local-only"],
     )
     p.add_argument("--config", type=Path, default=CONFIG)
     p.add_argument("--once", action="store_true")
     p.add_argument("--round")
     a = p.parse_args()
     c = Controller(a.config)
-    if a.command == "run-auxiliary":
+    if a.command == "local-only":
+        c.change(
+            lambda s: s.update(
+                local_only=True,
+                publication_policy={
+                    "mode": "local_only",
+                    "kaggle_uploads": False,
+                    "competition_submissions": False,
+                    "github_pushes": False,
+                    "updated_at": now(),
+                },
+            )
+        )
+        print(
+            "Local-only policy enabled; local research continues, remote publication disabled"
+        )
+    elif a.command == "run-auxiliary":
         if not a.round:
             p.error("--round required")
         print(c.run_auxiliary(a.round))

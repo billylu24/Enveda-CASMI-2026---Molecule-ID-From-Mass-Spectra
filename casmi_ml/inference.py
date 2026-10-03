@@ -39,11 +39,18 @@ def locate(path, filename):
 @torch.inference_mode()
 def group_probability(model, group, prep):
     values = [features(row, prep) for row in group.to_dict('records')]
+    chemical = None
+    if 'diagnostic_precision' in prep:
+        from casmi_ml.diagnostic_residual import evidence_features
+        chemical = np.stack([evidence_features(row, precise=prep['diagnostic_precision'])
+                             for row in group.to_dict('records')])
     output = []
     for start in range(0, len(values), 64):
         part = values[start:start+64]
         batch = {key: torch.from_numpy(np.stack([item[i] for item in part]))
                  for i, key in enumerate(['hist', 'loss', 'meta', 'peaks', 'mask'])}
+        if chemical is not None:
+            batch["chemical"] = torch.from_numpy(chemical[start:start+64])
         output.append(torch.sigmoid(model(batch)).numpy())
     return np.concatenate(output).mean(0)
 

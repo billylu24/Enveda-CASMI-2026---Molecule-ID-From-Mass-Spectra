@@ -53,6 +53,9 @@ def load_deployment_checkpoint(path, family='fingerprint'):
     from casmi_ml.scale_models import ScaleModel
     checkpoint = torch.load(path, map_location='cpu', weights_only=True)
     model = ScaleModel(checkpoint['architecture'], checkpoint['metadata_dim'])
+    if checkpoint.get('diagnostic_residual'):
+        from casmi_ml.diagnostic_residual import DiagnosticResidual
+        model = DiagnosticResidual(model)
     model.load_state_dict(checkpoint['state_dict'])
     return model.eval(), checkpoint
 

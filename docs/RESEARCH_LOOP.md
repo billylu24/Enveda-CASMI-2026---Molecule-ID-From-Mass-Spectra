@@ -522,3 +522,6 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 第182轮参考库复用：实际400可观测质量中心及全2539608谱训练库，legacy/union各556890谱、10027422非零项的CSR data/indices/indptr、行次序及74956参考成员全部exact。两次构建71.99秒、单次40.65秒（共享主机诊断计时，非单次全管线保证）。独立181 shared_reference runtime包保持legacy质量过滤、历史路由、候选、所有科学规则；仅复用同union谱库，显式reference_runtime scan=shared_union_v1，新recipe严格拒绝其他配方。260项测试通过。独立包配置P100，未上传，需fresh75及cold400逐完整排名比较、之后平台400验证。Controller尊重已登记release路径，163平台失败记录退出eligible重试队列，开发决策不变。
 
 181单次400空缓存冷推理通过：689.90秒、6186.98MiB，207 critic fallback、172 remove-tail、17 strong-slot插入、4原前三碎裂gate保留163，193高置信组全部完成、无预算回退。真实参考handoff构建并被部署强参考分支使用。独立shared runtime包fresh75在空fragmentcache下75/75完整排名exact，73.34秒/1660.08MiB；该包400冷运行已启动，须全部400排名与原181一致后才上传P100。
+
+
+2026-10-03用户切换为仅本地持续改进。state.local_only=true及publication_policy持久化；Controller在release_round、publish_prepared、reserve_submission、refresh_kaggle、import_bootstrap、sync_github以及完成轮次路由均执行保护。CLI local-only可启用；完成本地轮次用local_recorded避免旧eligible记录造成空转。268项回归通过，不上传、不比赛提交、不GitHub push。shared181本地冷运行656.76秒/5729.88MiB、400排名与原181全部相同；不激活远端发布。183补位unknown0.042597579（+0.12%）失败；184原remove-tail个体挽救unknown不变失败。当前最佳181保留。新诊断残差matched coarse/exact模型冻结原编码器，仅添加24维可观测ion/precursor_loss/peak_loss证据残差；相同60K训练分子、随机代表谱、网络和3epoch，零初始化和无证据输出严格保持原模型。185训练前GPU锁重复申请失败，修复独立representation锁后以186/187新root运行，不删除预算记录。

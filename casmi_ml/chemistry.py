@@ -209,7 +209,7 @@ def clean_peaks(row):
     return mz[order], intensity[order]
 
 
-def extract_evidence(row, ppm=10.0, absolute_da=0.002):
+def extract_evidence(row, ppm=10.0, absolute_da=0.002, include_combinations=True):
     if ppm <= 0 or absolute_da <= 0:
         raise ValueError("Positive mass tolerances required")
     mz, intensity = clean_peaks(row)
@@ -298,7 +298,7 @@ def extract_evidence(row, ppm=10.0, absolute_da=0.002):
                     )
     loss_edges = [x for x in observed if x["kind"] != "ion"]
     combinations = []
-    for first in loss_edges:
+    for first in loss_edges if include_combinations else []:
         for second in loss_edges:
             if first["edge"][1] == second["edge"][0]:
                 combinations.append(
