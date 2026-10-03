@@ -1,0 +1,23 @@
+{
+  "round": "0163_high_fragment_completion",
+  "local_verification": {
+    "valid": true,
+    "identity": "c5f816155637fbedb7882679f7f87240119846577cf83724bd4b4dba119d0311",
+    "seconds": 1136.2956126210047,
+    "peak_rss_mib": 6058.5546875,
+    "molecules": 400,
+    "independent_acceptance": false
+  },
+  "status_counts": {
+    "critic_gate_fallback": 207,
+    "high_fragment_remove_tail": 172,
+    "high_fragment_inserted": 21
+  },
+  "external_seconds": 953.4444611729996,
+  "cold_fragment_cache": true,
+  "no_preexisting_local_output": true,
+  "fragment_deadline_seconds": 1200,
+  "total_deadline_seconds": 1800,
+  "independent_acceptance": false,
+  "scope": "Single full400 cold package; no budget fallback on visible high inserted groups. Kaggle platform validation still required."
+}

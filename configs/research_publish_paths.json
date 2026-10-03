@@ -275,7 +275,8 @@
     "casmi_ml/chembl_high_slot_support.py",
     "tests/test_high_slot_support.py",
     "casmi_ml/chembl_high_prefix1.py",
-    "tests/test_high_prefix1.py"
+    "tests/test_high_prefix1.py",
+    "casmi_ml/metfrag_thread_benchmark.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

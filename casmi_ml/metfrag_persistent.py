@@ -95,7 +95,10 @@ class PersistentRunner:
 
 
 class PersistentMonomerMetFrag(MonomerMetFrag):
-    def __init__(self, jar, cache, *, classes, **kwargs):
+    def __init__(self, jar, cache, *, classes, threads=1, **kwargs):
+        if type(threads) is not int or threads not in (1, 2):
+            raise ValueError("MetFrag candidate threads must be 1 or 2")
+        self.threads = threads
         super().__init__(jar, cache, **kwargs)
         self.runner = PersistentRunner(self.java, self.jar, classes)
 
@@ -103,6 +106,11 @@ class PersistentMonomerMetFrag(MonomerMetFrag):
         self.runner.close()
 
     def _run(self, cache_path, candidates, peaks, mass, adduct):
+        if self.threads != 1:
+            # Keep unvalidated execution variants out of legacy physical caches.
+            cache_path = cache_path.with_name(
+                f"{cache_path.stem}.threads{self.threads}.json"
+            )
         if cache_path.exists():
             return json.loads(cache_path.read_text())
 
@@ -149,7 +157,7 @@ class PersistentMonomerMetFrag(MonomerMetFrag):
                 "ResultsPath": str(work),
                 "SampleName": "result",
                 "MaximumTreeDepth": self.depth,
-                "NumberThreads": 1,
+                "NumberThreads": self.threads,
                 "UseSmiles": "True",
             }
             (work / "params.txt").write_text(

@@ -481,3 +481,9 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 第170逐名额双门控完整unknown0.041649731（对163+0.000039107/+0.094%），known0.604605524降0.0000677/Top1不变；删除246unknown/59known插入名额，仅167/40组改变，完整门槛失败，已拒绝并GitHub同步88bcf25。后续不继续筛阈值。
 
 第171位置单因素预登记：保持163同fragment分数与原三新增候选，只有163原高fragment支持分支，从原first3后移到原first1后；actual原first保护，其他原候选相对顺序保持。低分支、反证移除、missing/tied/budget所有组仍163。完整2000/1340对163，已知Top1必须不变、MRR降幅<=.001。无新模型/采样/Java/候选/阈值；原163逐组按physical结构和依赖cache key重建exact后再移位，不能以缓存诊断称cold资源。准备脚本首次因文本替换断言失败未写出模块，测试import失败；修正后两个位置保护用例通过，尚未执行新评分时冻结协议。163冷包仍冻结且独立运行。
+
+第171原first1保护对照：unknown0.042443957（对163+0.000833333/+2.003%），但known0.601563790降0.003109453，超过.001保护上限，虽然Top1不变仍拒绝；29255b1已GitHub同步。不发布或将unknown单项收益称合格，不根据标签改分支。
+
+下一项运行时方向准备：检查pinned jar字节码与来源发现每个candidate线程池结束检查使用1000ms轮询，每谱含固定等待开销；并行候选未必有效。先以与160相同12个observable hash组、两臂独立freshcache、同100+actual first/merged/depth2，比较persistent JVM NumberThreads1 vs2完整真实浮点字典。超时/失败或任意浮点差异不进入部署；heap1GiB/单请求60秒/共享600秒、所有模型不变。引擎新增bounded可选threads参数，default1保留163行为；163bundle保持冻结，源码变动不修改运行中资产。等163cold完成再执行Java benchmark，避免两轮Java争用影响冷资源测量。
+
+第163单次完整400冷部署通过1136.30秒/父RSS6058.55MiB；fresh retrieval与external缓存，fragment共享1200/总1800截止，193原high插入组172移除tail、21fragment-supported前移，207原critic fallback，无fragment budget fallback。旧149的193high新增组全排名发生变化，故新的平台完整400逐排名验证必须完成，不能因149已通过而替代。私有平台包准备由Controller上传，当前额度等待且无competition pending。232回归通过（含线程参数/default1及跨执行variant缓存隔离）；第172fresh单线程vs2线程Javabenchmark现在启动，原163包source/worker/identity未改。

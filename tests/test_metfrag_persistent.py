@@ -1,8 +1,11 @@
 import subprocess
 import sys
+import tempfile
 import unittest
+from pathlib import Path
+from unittest.mock import patch
 
-from casmi_ml.metfrag_persistent import PersistentRunner
+from casmi_ml.metfrag_persistent import PersistentMonomerMetFrag, PersistentRunner
 
 FAKE_WORKER = """
 import sys,time
@@ -45,3 +48,49 @@ class PersistentRequestLifecycleTests(unittest.TestCase):
         pid = runner.process.pid
         self.assertEqual(runner.run("two", 1).returncode, 0)
         self.assertNotEqual(runner.process.pid, pid)
+
+
+class CandidateThreadConfigurationTests(unittest.TestCase):
+    def test_default_preserves_single_thread_and_explicit_threads_are_bounded(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            jar = root / "jar"
+            jar.write_bytes(b"fake")
+            with patch("casmi_ml.metfrag_persistent.PersistentRunner"):
+                self.assertEqual(
+                    PersistentMonomerMetFrag(
+                        jar, root / "default", classes=root
+                    ).threads,
+                    1,
+                )
+                self.assertEqual(
+                    PersistentMonomerMetFrag(
+                        jar, root / "two", classes=root, threads=2
+                    ).threads,
+                    2,
+                )
+                for threads in (0, 3, 4, True):
+                    with self.assertRaises(ValueError):
+                        PersistentMonomerMetFrag(
+                            jar, root / "bad", classes=root, threads=threads
+                        )
+
+    def test_thread_variant_cannot_read_legacy_score_cache(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            jar = root / "jar"
+            jar.write_bytes(b"fake")
+            legacy = root / "score.json"
+            legacy.write_text('{"status":"complete","scores":{"legacy":1}}')
+            variant = root / "score.threads2.json"
+            variant.write_text('{"status":"complete","scores":{"variant":2}}')
+            with patch("casmi_ml.metfrag_persistent.PersistentRunner"):
+                engine = PersistentMonomerMetFrag(jar, root, classes=root, threads=2)
+                self.assertEqual(
+                    engine._run(legacy, {}, [], 0.0, "[M+H]+")["scores"], {"variant": 2}
+                )
+                unchanged = PersistentMonomerMetFrag(jar, root, classes=root)
+                self.assertEqual(
+                    unchanged._run(legacy, {}, [], 0.0, "[M+H]+")["scores"],
+                    {"legacy": 1},
+                )
