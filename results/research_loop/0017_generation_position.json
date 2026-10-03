@@ -944,5 +944,12 @@
     }
   },
   "independent_acceptance": false,
-  "evaluation": "Repeated fixed molecule development cohort; no new holdout opened"
+  "evaluation": "Repeated fixed molecule development cohort; no new holdout opened",
+  "public_submission": {
+    "id": 56786330,
+    "status": "PENDING",
+    "score": null,
+    "version": 1,
+    "error": null
+  }
 }

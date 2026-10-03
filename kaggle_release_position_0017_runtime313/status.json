@@ -1,11 +1,15 @@
 {
-  "status": "platform_verified_quota_wait",
+  "status": "submitted",
   "identity": "e4b8eae36a7b3fc8e8a255251a467f7531a2e263a0d3805d5cd091d3d64dbe45",
   "development_eligible": true,
   "independent_acceptance": false,
   "uploaded": true,
-  "submitted": false,
+  "submitted": true,
   "dataset_uploaded": true,
   "kernel": "giaok246/casmi26-research-0017-position-runtime313",
-  "kernel_version": 1
+  "kernel_version": 1,
+  "submission_id": 56786330,
+  "submission_status": "PENDING",
+  "public_score": null,
+  "retry_at": null
 }
