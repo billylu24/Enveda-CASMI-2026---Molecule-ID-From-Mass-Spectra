@@ -366,3 +366,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 化学适用范围观察（原researchdev confidence<.5，仅observable字段）：1782谱中exact monomer+highres628，unsupported ion但highres1029；主要[2M+Na]+653/[2M+H]+255/[2M-H]-101，非highres125不擅自调宽误差。旧第95/97 dimer experiment没有actual first fragment comparison，不能直接等同本轮relative-first protocol；第134新hash200预登记原encoder/native100、dimer observed monomer marker（>=.05强度/10ppm/.002Da）与低于monomer precursor products、actual first同组正向片段比较、critic+.05/informative/.5/prefix3/3slots/skip-impossible，compare第120 samehash max monomer控制，仅增加有实测marker支持的dimer dissociation adapter。不同ion/highres规则均不变，无merged，以隔离适用范围因素；固定1200秒，与新encoder实验不混用。若不改善samehash unknown或known保护失败不扩大。
+
+
+第135完整mass-window训练内prior proposals预登记：原746低置信query native质量窗全部624328候选（max2327），第117只校准原top500，因此仅检验排序未检验新preselection。固定原encoder与60K Laplace(1,1)背景，对所有原质量窗候选做corrected native evidence、native vs RRF0.5 vs corrected-only完整2000外部诊断，预选corrected-only；每组重建原全量native排名必须完全相同，保持质量/观测/结构来源不变，无新训练/采样，3600秒CPU。只改变截断之前候选评分，保存全量prior proposals但公开仅汇总和SHA；若改善覆盖与排名，另在原0062组合/known保护验证，不能用proposal指标提交。

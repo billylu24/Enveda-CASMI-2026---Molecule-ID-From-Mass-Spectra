@@ -32,6 +32,10 @@ from casmi_ml.research_protocol import ENCODER, ROOT, freeze
 from casmi_ml.secondary_inference import load_deployment_checkpoint
 from casmi_ml.training import configure
 
+PROPOSALS = Path(
+    "artifacts/research_loop/rounds/0071_chembl_candidate_slots/proposals.json"
+)
+
 VARIANTS = {
     "baseline": None,
     "margin0_prefix2": (0.0, 2, 3),
@@ -56,7 +60,9 @@ def run(
     proposal_limit=100,
     critic_checkpoint=CRITIC,
     proposal_encoder=ENCODER,
+    proposal_path=PROPOSALS,
 ):
+    proposal_path = Path(proposal_path)
     critic_checkpoint, proposal_encoder = (
         Path(critic_checkpoint),
         Path(proposal_encoder),
@@ -89,11 +95,11 @@ def run(
             "proposal_limit": proposal_limit,
             "rule": f"Freeze0062;confidence<.5;preselect first{proposal_limit} novel ChEMBL proposals by native fingerprint;critic ranks proposals and top proposal must exceed actual current first by margin; insert at most3 after prefix",
             "critic_sha256": critic_sha,
-            "native_proposals_sha256": digest(
-                Path(
-                    "artifacts/research_loop/rounds/0071_chembl_candidate_slots/proposals.json"
-                )
+            "native_proposals_sha256": digest(proposal_path),
+            "proposal_source_protocol_sha256": digest(
+                proposal_path.parent / "protocol.json"
             ),
+            "proposal_path": str(proposal_path),
             "mass_hypothesis": "charge_aware_union",
             "new_training": False,
             "new_sampling": False,
@@ -125,11 +131,19 @@ def run(
         raise ValueError("Full2000 keys required")
     encoder, saved = load_deployment_checkpoint(proposal_encoder, "scale")
     encoder.eval()
-    proposals = json.loads(
-        Path(
-            "artifacts/research_loop/rounds/0071_chembl_candidate_slots/proposals.json"
-        ).read_text()
-    )
+    proposal_protocol = json.loads((proposal_path.parent / "protocol.json").read_text())
+    if proposal_protocol["catalog_sha256"] != digest(DERIVED) or proposal_protocol[
+        "encoder_sha256"
+    ] != digest(ENCODER):
+        raise ValueError("Proposal source catalog/base encoder differs")
+    proposals = json.loads(proposal_path.read_text())
+    catalog_keys = set(index.catalog.inchikey14)
+    if not set(proposals).issubset(groups) or any(
+        len(values) != len(set(values)) or not set(values).issubset(catalog_keys)
+        for values in proposals.values()
+    ):
+        raise ValueError("Invalid proposal identities")
+    del catalog_keys
     lookup = candidate_lookup(ROOT, "researchdev", "unknown")
     lookup.update(
         {
@@ -380,6 +394,7 @@ def main():
     p.add_argument("--proposal-limit", type=int, choices=(100, 500), default=100)
     p.add_argument("--critic-checkpoint", type=Path, default=CRITIC)
     p.add_argument("--proposal-encoder", type=Path, default=ENCODER)
+    p.add_argument("--proposal-path", type=Path, default=PROPOSALS)
     a = p.parse_args()
     print(
         json.dumps(
@@ -389,6 +404,7 @@ def main():
                 a.proposal_limit,
                 a.critic_checkpoint,
                 a.proposal_encoder,
+                a.proposal_path,
             ),
             indent=2,
         )
