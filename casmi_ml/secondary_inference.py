@@ -156,17 +156,35 @@ def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
     neutral = neutral[np.isfinite(neutral)]
     if not len(neutral):
         raise ValueError('No supported precursor masses in the supplied test set')
-    records, _ = load_candidates(train_path, neutral)
+    reference_runtime = recipe.get('reference_runtime')
+    shared_reference = None
+    adaptive_observed = None
+    if reference_runtime is not None:
+        if (reference_runtime != {'scan': 'shared_union_v1'}
+                or mass_variant != 'charge_aware_union'
+                or recipe.get('generation', {}).get('adaptive_prefix') != 'second_unreferenced'
+                or not recipe.get('external_routed', {}).get('high_fragment', {}).get('strong_slots')):
+            raise ValueError('Shared reference runtime requires the frozen181 union recipe')
+        from casmi_ml.mass_candidates import mass_centers
+        from casmi_ml.reference_reuse import build_shared_reference
+        all_centers = set(neutral.tolist())
+        for _, query in test.groupby('molecule_id', sort=False):
+            all_centers.update(mass_centers(query, 'charge_aware_union'))
+        destination = str(output) + '.external_reference'
+        records, matrix, adaptive_observed = build_shared_reference(
+            train_path, neutral, all_centers, destination)
+        shared_reference = ReferenceIndex(destination)
+    else:
+        records, _ = load_candidates(train_path, neutral)
+        matrix = make_matrix([r[3] for r in records])
+        records = [r[:3] for r in records]
     if not records:
         raise ValueError('No reference spectra retained')
-    matrix = make_matrix([r[3] for r in records])
-    records = [r[:3] for r in records]
     masses = np.asarray([r[0] for r in records])
     order = np.argsort(masses)
     coco_order = np.argsort(coconut.exact_mass.to_numpy())
     coco_masses = coconut.exact_mass.to_numpy()[coco_order]
-    adaptive_observed = None
-    if recipe.get('generation', {}).get('adaptive_prefix') == 'second_unreferenced':
+    if adaptive_observed is None and recipe.get('generation', {}).get('adaptive_prefix') == 'second_unreferenced':
         from casmi_ml.mass_candidates import mass_centers
         all_centers = set(neutral.tolist())
         for _, query in test.groupby('molecule_id', sort=False):
@@ -200,7 +218,9 @@ def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
                     from casmi_ml.candidate_catalog import expanded_pool
                     expanded = CandidateIndex(expanded_pool(candidates.catalog, external))
                 reference = MemoryReference(records, matrix)
-                if mass_variant != 'legacy':
+                if shared_reference is not None:
+                    reference = shared_reference
+                elif mass_variant != 'legacy':
                     from casmi_ml.mass_candidates import mass_centers
                     centers = set(neutral.tolist())
                     for _, query in test.groupby('molecule_id', sort=False):

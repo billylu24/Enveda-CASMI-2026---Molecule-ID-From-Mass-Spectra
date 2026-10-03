@@ -14,7 +14,12 @@ from casmi_ml.research_loop import release_identity
 from casmi_ml.research_release import copy_inference_source
 
 
-def prepare(directory, output, base=Path("kaggle_release_gate_0062_runtime313")):
+def prepare(
+    directory,
+    output,
+    base=Path("kaggle_release_gate_0062_runtime313"),
+    shared_reference=False,
+):
     directory, output, base = Path(directory), Path(output), Path(base)
     decision = json.loads((directory / "decision.json").read_text())
     if (
@@ -31,6 +36,23 @@ def prepare(directory, output, base=Path("kaggle_release_gate_0062_runtime313"))
     verification = json.loads((directory / "replay.json").read_text())
     if not verification["valid"] or verification["molecules"] < 50:
         raise ValueError("Actual unlabeled external replay required")
+    if decision["direction"] == "chembl_high_strong_slots":
+        if (
+            verification.get("full_rank_matches") != verification["molecules"]
+            or not verification.get("unlabeled_input")
+            or verification.get("external_source_sha256")
+            != digest("casmi_ml/chembl_routed_inference.py")
+            or verification.get("protocol_sha256")
+            != digest(directory / "protocol.json")
+        ):
+            raise ValueError("Exact source-bound181 replay required")
+        source = json.loads((directory / "external_config.json").read_text())
+        if source.get("high_fragment", {}).get("strong_slots") != {
+            "reference_threshold": 0.5,
+            "original_prefix": 3,
+            "slots": 3,
+        }:
+            raise ValueError("Frozen181 strong slot recipe required")
     if output.exists():
         raise ValueError("Fresh release directory required")
     output.mkdir(parents=True)
@@ -114,6 +136,10 @@ def prepare(directory, output, base=Path("kaggle_release_gate_0062_runtime313"))
     ):
         if (DERIVED.parent / name).is_file():
             shutil.copy2(DERIVED.parent / name, attribution / name)
+    if shared_reference:
+        if decision["direction"] != "chembl_high_strong_slots":
+            raise ValueError("Shared reference only supports181")
+        recipe["reference_runtime"] = {"scan": "shared_union_v1"}
     recipe["external_routed"] = config
     recipe["development_decision"] = "development_decision.json"
     recipe["independent_acceptance"] = False
@@ -177,8 +203,9 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--directory", type=Path, required=True)
     p.add_argument("--output", type=Path, required=True)
+    p.add_argument("--shared-reference", action="store_true")
     a = p.parse_args()
-    print(prepare(a.directory, a.output))
+    print(prepare(a.directory, a.output, shared_reference=a.shared_reference))
 
 
 if __name__ == "__main__":

@@ -518,3 +518,5 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 181部署衔接：75真实无标签完整排名75/75一致（67.63秒、1863.52MiB，复用已有100候选证据，不作为400冷资源证据）。独立重建全部2000 unknown/1340 known排名指标及CSV，低置信分支保持163、原first保护通过。Controller加入chembl_high_strong_slots专用重放、匹配builder、GPU锁和强制平台gate；256项unittest通过。新私有包kaggle_release_strong_slots_0181已准备，正在单次400空缓存运行。两份163平台失败包保留，均不能作为已验证可提交版本。Kaggle SDK支持NvidiaTeslaT4及NvidiaTeslaP100；现有T4两次budget回退已复现，后续可在独立包中验证硬件或等价参考库复用，不延长冻结1200秒。
+
+第182轮参考库复用：实际400可观测质量中心及全2539608谱训练库，legacy/union各556890谱、10027422非零项的CSR data/indices/indptr、行次序及74956参考成员全部exact。两次构建71.99秒、单次40.65秒（共享主机诊断计时，非单次全管线保证）。独立181 shared_reference runtime包保持legacy质量过滤、历史路由、候选、所有科学规则；仅复用同union谱库，显式reference_runtime scan=shared_union_v1，新recipe严格拒绝其他配方。260项测试通过。独立包配置P100，未上传，需fresh75及cold400逐完整排名比较、之后平台400验证。Controller尊重已登记release路径，163平台失败记录退出eligible重试队列，开发决策不变。

@@ -89,3 +89,18 @@ class HighFragmentControllerTests(unittest.TestCase):
 class StrongSlotsControllerTests(HighFragmentControllerTests):
     direction = "chembl_high_strong_slots"
     replay_module = "casmi_ml.strong_slot_replay"
+
+    def test_registered_release_is_kept_instead_of_building_another_package(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            c, experiment = self.controller(root)
+            write_json(experiment / "replay.json", {"valid": True, "molecules": 75})
+            release = root / "verified_release"
+            release.mkdir()
+            write_json(release / "verification.json", {"valid": True})
+            c.mark_round("high", release=str(release))
+            with patch.object(
+                c, "publish_prepared", return_value={"status": "notebook_running"}
+            ) as publish:
+                self.assertEqual(c.release_round("high"), "notebook_running")
+            publish.assert_called_once_with("high", release)

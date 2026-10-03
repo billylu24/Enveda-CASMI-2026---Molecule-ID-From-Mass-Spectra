@@ -41,3 +41,23 @@ class HighFragmentReleaseGateTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "unlabeled external replay"):
                 prepare(source, root / "release")
             self.assertFalse((root / "release").exists())
+
+    def test181_valid_flag_with_incomplete_full_rank_match_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            source = root / "experiment"
+            source.mkdir()
+            (source / "decision.json").write_text(
+                json.dumps(
+                    {
+                        "direction": "chembl_high_strong_slots",
+                        "winner": {"gate": {"eligible": True}},
+                    }
+                )
+            )
+            (source / "replay.json").write_text(
+                json.dumps({"valid": True, "molecules": 75, "full_rank_matches": 74})
+            )
+            with self.assertRaisesRegex(ValueError, "source-bound181"):
+                prepare(source, root / "release")
+            self.assertFalse((root / "release").exists())

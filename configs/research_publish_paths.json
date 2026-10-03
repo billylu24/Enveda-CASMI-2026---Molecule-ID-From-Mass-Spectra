@@ -309,7 +309,11 @@
     "casmi_ml/reference_handoff.py",
     "tests/test_strong_slot_inference.py",
     "tests/test_reference_handoff.py",
-    "casmi_ml/strong_slot_replay.py"
+    "casmi_ml/strong_slot_replay.py",
+    "casmi_ml/reference_reuse.py",
+    "casmi_ml/shared_reference_benchmark.py",
+    "casmi_ml/strong_slot_release_verification.py",
+    "tests/test_reference_reuse.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

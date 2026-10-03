@@ -1,0 +1,26 @@
+{
+  "valid": true,
+  "diagnostic_only": true,
+  "reference_counts": {
+    "legacy": {
+      "rows": 556890,
+      "nonzero": 10027422,
+      "every_sparse_entry_exact": true
+    },
+    "union": {
+      "rows": 556890,
+      "nonzero": 10027422,
+      "every_sparse_entry_exact": true
+    }
+  },
+  "observed_members": 74956,
+  "seconds": {
+    "baseline_two_scans": 71.9944400289969,
+    "shared_one_scan": 40.646023762004916
+  },
+  "speedup": 1.7712541932895256,
+  "parent_peak_rss_mib": 5318.20703125,
+  "scope": "Reference construction equivalence only; cold full ranking and platform still required",
+  "independent_acceptance": false,
+  "timing_caveat": "Diagnostic wall times on shared host during independent fragment jobs; sparse/reference equivalence exact, cold total resource evidence separate."
+}

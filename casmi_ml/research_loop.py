@@ -1023,7 +1023,7 @@ class Controller:
         from casmi_ml.experimental_release import package
 
         r = next(r for r in self.read()["rounds"] if r["id"] == identifier)
-        release = self.root / "releases" / identifier
+        release = Path(r.get("release") or self.root / "releases" / identifier)
         if r.get("release"):
             release = Path(r["release"])
         decision = json.loads(Path(r["decision"]).read_text())
