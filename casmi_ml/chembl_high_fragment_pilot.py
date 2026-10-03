@@ -31,6 +31,15 @@ def run(output, incumbent, limit=200):
         raise ValueError("Fixed200 or full2000 required")
     output.mkdir(parents=True, exist_ok=True)
     config = json.loads((HIGH / "protocol.json").read_text())
+    dependency_paths = [
+        "casmi_ml/metfrag.py",
+        "casmi_ml/metfrag_monomer.py",
+        "casmi_ml/merged_fragments.py",
+        "casmi_ml/chemistry.py",
+        "external/metfrag/MetFragCommandLine-2.6.11.jar",
+        "external/metfrag/java21/jdk-21.0.12.1+1-jre/bin/java",
+    ]
+    dependencies = {path: digest(path) for path in dependency_paths}
     selected_path = incumbent / "selected_rankings.json"
     base_path = incumbent / "low_rankings.json"
     for name, path, sha in [
@@ -42,7 +51,7 @@ def run(output, incumbent, limit=200):
     freeze(
         output / "protocol.json",
         {
-            "version": 1,
+            "version": 2,
             "source_sha256": digest(Path(__file__)),
             "incumbent_report_sha256": digest(incumbent / "report.json"),
             "selected_rankings_sha256": digest(selected_path),
@@ -51,6 +60,10 @@ def run(output, incumbent, limit=200):
             "high_scores_sha256": digest(HIGH / "critic_scores.json"),
             "development_sha256": digest(ROOT / "researchdev.parquet"),
             "catalog_sha256": digest(DERIVED),
+            "critic_sha256": config["critic_sha256"],
+            "encoder_sha256": config["encoder_sha256"],
+            "dependencies_sha256": dependencies,
+            "first_representation": "Per-query generated SMILES if present, otherwise original candidate lookup with PubChemLite setdefault; identical to original high critic scoring. External representation never overwrites actual first.",
             "limit": limit,
             "pilot_selector": "hash256 fragment-representative-20261003:",
             "rule": "Freeze0149 low and all high noninsertions; only original high critic+.05 passed groups are rescored with merged exact monomer+actual first. Informative complete scores: relative first supported+critic+.05 uses fragment.5 top3 after10; otherwise remove existing tail additions. Missing/noninformative/budget keeps0149 tail unchanged.",
@@ -82,17 +95,23 @@ def run(output, incumbent, limit=200):
     catalog = pd.read_parquet(DERIVED, columns=["inchikey14", "normalized_smiles"])
     lookup = catalog.set_index("inchikey14").normalized_smiles.to_dict()
     del catalog
-    for mode in ("unknown", "known"):
-        lookup.update(
-            {
-                k: v
-                for k, v in candidate_lookup(ROOT, "researchdev", mode).items()
-                if k not in lookup
-            }
-        )
-    for r in json.loads(GENERATED.read_text()):
-        for c in r["candidates"]:
-            lookup.setdefault(c["key"], c["smiles"])
+    original_lookup = candidate_lookup(ROOT, "researchdev", "unknown")
+    pubchem = pd.read_parquet(
+        "external/pubchemlite/structures.parquet",
+        columns=["inchikey14", "normalized_smiles"],
+    )
+    original_lookup.update(
+        {
+            r.inchikey14: r.normalized_smiles
+            for r in pubchem.itertuples()
+            if r.inchikey14 not in original_lookup
+        }
+    )
+    del pubchem
+    generated_lookup = {
+        r["key"]: {c["key"]: c["smiles"] for c in r["candidates"]}
+        for r in json.loads(GENERATED.read_text())
+    }
     fragmenter = MonomerMetFrag(
         "external/metfrag/MetFragCommandLine-2.6.11.jar",
         ROOT / "chembl_metfrag_cache",
@@ -104,6 +123,8 @@ def run(output, incumbent, limit=200):
     report = {}
     counts = {}
     for mode in ("unknown", "known"):
+        if mode == "known":
+            original_lookup.update(candidate_lookup(ROOT, "researchdev", "known"))
         confidence = {
             r["key"]: r["confidence"]
             for r in json.loads(
@@ -135,8 +156,18 @@ def run(output, incumbent, limit=200):
                 native = [k for k in proposals[key] if k not in set(prior)][:100]
                 values = pairs[score_cache_key(key, prior[0], native, binding)]
                 candidates = sorted(native, key=lambda k: (-values[k], k))
+                actual_first = generated_lookup[key].get(
+                    prior[0], original_lookup.get(prior[0])
+                )
+                if actual_first is None:
+                    raise ValueError("Actual original first representation missing")
+                structures = {k: lookup[k] for k in candidates}
+                structures[prior[0]] = actual_first
                 scorekey = score_cache_key(
-                    "high_relative_merged_v1:" + key, prior[0], candidates
+                    "high_relative_merged_actual_first_v2:" + key,
+                    prior[0],
+                    candidates,
+                    {"structures": structures, "dependencies": dependencies},
                 )
                 if scorekey not in cache:
                     query = frame.iloc[groups[key]].drop(
@@ -154,11 +185,19 @@ def run(output, incumbent, limit=200):
                     scores, fallback = score_group_merged(
                         fragmenter,
                         query.to_dict("records"),
-                        {k: lookup[k] for k in candidates + [prior[0]]},
+                        structures,
                         deadline=started + 1200,
                     )
                     cache[scorekey] = {"scores": scores, "budget_fallback": fallback}
                     write_json(cache_path, cache)
+                    if len(cache) % 10 == 0:
+                        print(
+                            "high_relative_groups",
+                            len(cache),
+                            "seconds",
+                            time.monotonic() - started,
+                            flush=True,
+                        )
                 scores = cache[scorekey]["scores"]
                 proposed = rerank(
                     candidates,
@@ -215,6 +254,12 @@ def run(output, incumbent, limit=200):
         diagnostics={
             "counts": counts,
             "fragment_groups": len(cache),
+            "incremental_spectrum_execution_status_counts": getattr(
+                fragmenter, "status_counts", {}
+            ),
+            "execution_status_scope": "Traversed engine spectra only; complete may be content cache reuse. Incremental elapsed time is not a cold deployment guarantee.",
+            "dependencies_sha256": dependencies,
+            "actual_first_representation_preserved": True,
             "seconds": time.monotonic() - started,
             "parent_peak_rss_mib": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
             / 1024,

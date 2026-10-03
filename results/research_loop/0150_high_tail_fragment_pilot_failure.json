@@ -1,0 +1,23 @@
+{
+  "round": "0150_high_tail_fragment_pilot",
+  "status": "failed",
+  "diagnostic_only": true,
+  "failure": "Original first structural representation was not preserved in external-first lookup",
+  "representation_audit": {
+    "unknown": {
+      "eligible_firsts": 95,
+      "representation_string_differences": 2,
+      "nonstereochemical_graph_differences": 2
+    },
+    "known": {
+      "eligible_firsts": 61,
+      "representation_string_differences": 2,
+      "nonstereochemical_graph_differences": 2
+    }
+  },
+  "metrics_valid": false,
+  "submitted": false,
+  "independent_acceptance": false,
+  "source_at_start_matches_frozen_protocol": true,
+  "action": "Stop invalid run; repeat in fresh round with per-query actual first representation identical to original critic scoring. Content addressed Java cache may reuse identical structures; group cache not reused."
+}
