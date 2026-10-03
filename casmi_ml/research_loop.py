@@ -241,6 +241,18 @@ class Controller:
         self.change(update)
 
     def job(self, argv, log, seconds=None, auxiliary_key=None):
+        # Atomic ownership spans PID registration and child completion, even
+        # CPU jobs without a wall budget. Primary and auxiliary use one lock.
+        log = Path(log)
+        log.parent.mkdir(parents=True, exist_ok=True)
+        with (log.parent / "launch.lock").open("a") as owner:
+            try:
+                fcntl.flock(owner, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except BlockingIOError:
+                return "orphan_job_running"
+            return self._owned_job(argv, log, seconds, auxiliary_key)
+
+    def _owned_job(self, argv, log, seconds=None, auxiliary_key=None):
         if self.stopped():
             return "stopped"
         log = Path(log)
@@ -347,6 +359,8 @@ class Controller:
                 self.config["gpu_stage_seconds"]["generation"],
                 auxiliary_key=identifier,
             )
+            if result == "orphan_job_running":
+                return result
             if result == "complete" and not path.exists():
                 raise ValueError("Auxiliary experiment exited without report")
             self.mark_round(
@@ -1284,6 +1298,27 @@ class Controller:
                     return "auxiliary_running"
             self.change(lambda s: s.update(status="research_needed"))
             return "research_needed"
+        # Refresh after slow remote publication: the pending round might have
+        # acquired an auxiliary owner since the initial state snapshot.
+        current_state = self.read()
+        for entry in [
+            current_state.get("active_job"),
+            *current_state.get("auxiliary_jobs", {}).values(),
+        ]:
+            if not entry or entry["argv"] != pending["argv"]:
+                continue
+            try:
+                actual = [
+                    x.decode()
+                    for x in Path(f"/proc/{entry['pid']}/cmdline")
+                    .read_bytes()
+                    .split(b"\0")
+                    if x
+                ]
+            except FileNotFoundError:
+                continue
+            if actual == pending["argv"]:
+                return "orphan_job_running"
         rid = pending["id"]
 
         def mark(**values):
@@ -1353,6 +1388,8 @@ class Controller:
                 {"round": rid, "status": "failed", "error": str(error)},
             )
             raise
+        if result == "orphan_job_running":
+            return result
         if result == "budget_exhausted":
             mark(
                 status="failed", error="wall_time_budget_exhausted", completed_at=now()
