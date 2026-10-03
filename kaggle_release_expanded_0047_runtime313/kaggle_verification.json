@@ -1,0 +1,30 @@
+{
+  "valid": true,
+  "identity": "615ff1cc4dbe8f9885a227ac0583119ce0bed324bd8b00b78d72833c110f4c03",
+  "molecules": 400,
+  "local_full_top25_matches": 400,
+  "seconds": 739.8606102210001,
+  "parent_peak_rss_mib": 2916.0078125,
+  "remote_release": {
+    "kernel": "giaok246/casmi26-research-0047-generated-ex-23c5e5b0",
+    "version": 1
+  },
+  "independent_acceptance": false,
+  "inference_binding_fields": [
+    "checkpoint_sha256",
+    "baseline_sha256",
+    "critic_checkpoint_sha256",
+    "prefix",
+    "slots",
+    "open_protected",
+    "frequency_weight",
+    "token_length_exponent",
+    "critic_weight",
+    "adaptive_prefix",
+    "expanded_prefix",
+    "first_gate",
+    "sampling",
+    "formula_oracle_used"
+  ],
+  "scope": "Visible full rankings and resources; original development and replay gates retained; no new accuracy evidence"
+}

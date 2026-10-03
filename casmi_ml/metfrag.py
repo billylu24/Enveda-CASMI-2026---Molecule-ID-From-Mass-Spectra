@@ -28,7 +28,10 @@ def digest(path):
 
 
 class MetFrag:
-    def __init__(self, jar, cache, timeout=60, java="java"):
+    def __init__(self, jar, cache, timeout=60, java="java", depth=2):
+        if type(depth) is not int or depth not in (2, 3):
+            raise ValueError("MetFrag depth must be 2 or 3")
+        self.depth = depth
         self.jar = Path(jar).resolve()
         if not self.jar.is_file():
             raise FileNotFoundError(self.jar)
@@ -60,7 +63,7 @@ class MetFrag:
             "candidates": sorted(candidates.items()),
             "ppm": 10,
             "absolute_da": 0.002,
-            "depth": 2,
+            "depth": self.depth,
         }
         key = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
         cache_path = self.cache / f"{key}.json"
@@ -117,7 +120,7 @@ class MetFrag:
                 "MetFragCandidateWriter": "CSV",
                 "ResultsPath": str(work),
                 "SampleName": "result",
-                "MaximumTreeDepth": 2,
+                "MaximumTreeDepth": self.depth,
                 "NumberThreads": 1,
                 "UseSmiles": "True",
             }

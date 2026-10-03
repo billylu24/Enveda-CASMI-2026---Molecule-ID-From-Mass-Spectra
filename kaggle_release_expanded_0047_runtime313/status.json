@@ -1,8 +1,11 @@
 {
-  "status": "prepared",
+  "status": "platform_verified_quota_wait",
   "identity": "615ff1cc4dbe8f9885a227ac0583119ce0bed324bd8b00b78d72833c110f4c03",
   "development_eligible": true,
   "independent_acceptance": false,
-  "uploaded": false,
-  "submitted": false
+  "uploaded": true,
+  "submitted": false,
+  "dataset_uploaded": true,
+  "kernel": "giaok246/casmi26-research-0047-generated-ex-23c5e5b0",
+  "kernel_version": 1
 }

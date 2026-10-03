@@ -48,7 +48,7 @@ class MonomerMetFrag(MetFrag):
             "candidates": sorted(candidates.items()),
             "ppm": 10,
             "absolute_da": 0.002,
-            "depth": 2,
+            "depth": self.depth,
         }
         key = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()
         cache_path = self.cache / f"{key}.json"

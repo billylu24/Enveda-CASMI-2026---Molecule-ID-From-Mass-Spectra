@@ -13,7 +13,7 @@ import pandas as pd
 import torch
 
 from casmi_ml.chembl_catalog import DERIVED
-from casmi_ml.chemistry import rerank
+from casmi_ml.chemistry import extract_evidence, rerank, rule_manifest
 from casmi_ml.chemistry_experiment import candidate_lookup
 from casmi_ml.data import fingerprint, write_json
 from casmi_ml.direct_models import DirectRanker, score_group
@@ -104,7 +104,11 @@ def run(
     relative_candidate_gate=False,
     fragment_weight=0.5,
     mean_fragments=False,
+    chemical_prior=False,
+    fragment_depth=2,
 ):
+    if type(fragment_depth) is not int or fragment_depth not in (2, 3):
+        raise ValueError("Fragment depth must be 2 or 3")
     if fragment_weight not in (0.5, 1.0):
         raise ValueError("Fragment weight must be 0.5 or 1.0")
     if relative_candidate_gate and (
@@ -219,6 +223,7 @@ def run(
             "evidence_only": evidence_only,
             "candidate_gate": candidate_gate,
             "relative_candidate_gate": relative_candidate_gate,
+            "chemical_prior": chemical_prior,
             "fragment_weight": fragment_weight,
             "fragment_aggregation": "mean_normalized" if mean_fragments else "max_raw",
             "fragment_aggregation_source_sha256": digest("casmi_ml/paired_fragments.py")
@@ -233,6 +238,8 @@ def run(
             "proposal_critic_cache_sha256": digest(critic_path)
             if critic_checkpoint == CRITIC
             else None,
+            "fragment_depth": fragment_depth,
+            "fragment_engine_source_sha256": digest("casmi_ml/metfrag.py"),
             "fragment_adapter": adapter_name,
             "fragment_adapter_sha256": digest(
                 "casmi_ml/metfrag_dimer.py"
@@ -251,6 +258,9 @@ def run(
                 )
             ),
             "mass_hypothesis": "charge_aware_union",
+            "chemical_prior_weight": 0.25 if chemical_prior else 0.0,
+            "chemical_prior_rules": rule_manifest() if chemical_prior else None,
+            "chemistry_source_sha256": digest("casmi_ml/chemistry.py"),
             "new_training": False,
             "new_sampling": False,
             "truth_used_only_in_metrics": True,
@@ -329,6 +339,7 @@ def run(
         "external/metfrag/MetFragCommandLine-2.6.11.jar",
         ROOT / "chembl_metfrag_cache",
         java=JAVA,
+        depth=fragment_depth,
     )
     group_scorer = fragment_score_group
     if mean_fragments:
@@ -496,6 +507,12 @@ def run(
                     fragment_key = score_cache_key(
                         "mean_normalized_v1:" + key, current[0], candidates_external
                     )
+                if fragment_depth != 2 and candidates_external:
+                    fragment_key = score_cache_key(
+                        f"depth{fragment_depth}:" + str(fragment_key),
+                        current[0],
+                        candidates_external,
+                    )
                 fragments, fallback = {}, False
                 if candidates_external:
                     if fragment_key not in fragment_scores:
@@ -554,6 +571,30 @@ def run(
                         if spec
                         else []
                     )
+                    if chemical_prior and proposed:
+                        records = (
+                            frame.iloc[groups[key]]
+                            .drop(
+                                columns=[
+                                    c
+                                    for c in [
+                                        "inchikey14",
+                                        "normalized_smiles",
+                                        "molecular_formula",
+                                        "fingerprint",
+                                    ]
+                                    if c in frame
+                                ]
+                            )
+                            .to_dict("records")
+                        )
+                        proposed = rerank(
+                            proposed,
+                            external_lookup,
+                            [extract_evidence(r) for r in records],
+                            0.25,
+                            top_n=max(1, len(proposed)),
+                        )
                     external = []
                     if (
                         spec
@@ -640,6 +681,8 @@ def run(
             "fragment_groups_with_scores": sum(
                 bool(r["scores"]) for r in fragment_scores.values()
             ),
+            "fragment_depth": fragment_depth,
+            "fragment_engine_source_sha256": digest("casmi_ml/metfrag.py"),
             "fragment_adapter": adapter_name,
             "fragment_budget_fallbacks": sum(
                 r["budget_fallback"] for r in fragment_scores.values()
@@ -656,6 +699,7 @@ def run(
             "evidence_only": evidence_only,
             "candidate_gate": candidate_gate,
             "relative_candidate_gate": relative_candidate_gate,
+            "chemical_prior": chemical_prior,
             "fragment_weight": fragment_weight,
             "fragment_aggregation": "mean_normalized" if mean_fragments else "max_raw",
             "fragment_aggregation_source_sha256": digest("casmi_ml/paired_fragments.py")
@@ -693,6 +737,8 @@ def main():
     p.add_argument("--fragment-gate-only", action="store_true")
     p.add_argument("--skip-impossible", action="store_true")
     p.add_argument("--relative-candidate-gate", action="store_true")
+    p.add_argument("--fragment-depth", type=int, choices=(2, 3), default=2)
+    p.add_argument("--chemical-prior", action="store_true")
     p.add_argument("--mean-fragments", action="store_true")
     p.add_argument("--fragment-weight", type=float, choices=(0.5, 1.0), default=0.5)
     a = p.parse_args()
@@ -716,6 +762,8 @@ def main():
                 a.relative_candidate_gate,
                 a.fragment_weight,
                 a.mean_fragments,
+                a.chemical_prior,
+                a.fragment_depth,
             ),
             indent=2,
         )

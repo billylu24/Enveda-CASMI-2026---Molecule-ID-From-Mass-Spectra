@@ -45,3 +45,25 @@ class MonomerMetFragTests(unittest.TestCase):
                 f.score(row, {"x": "CCO"})
                 self.assertAlmostEqual(run.call_args.args[3], 180.0)
                 self.assertEqual(run.call_args.args[4], "[M+HCOO]-")
+
+    def test_depth_changes_cache_identity_and_invalid_depth_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            row = {
+                "adduct": "[M+H]+",
+                "precursor_mz": 181.007276,
+                "instrument_type": "Orbitrap",
+                "ms2_mzs": [45.0],
+                "ms2_normalized_intensities": [1.0],
+            }
+            paths = []
+            for depth in (2, 3):
+                adapter = MonomerMetFrag(__file__, directory, depth=depth)
+                with patch.object(
+                    adapter, "_run", return_value={"status": "complete", "scores": {}}
+                ) as run:
+                    adapter.score(row, {"x": "CCO"})
+                    paths.append(run.call_args.args[0])
+            self.assertNotEqual(paths[0], paths[1])
+            for depth in (0, 4, True, 2.0):
+                with self.assertRaises(ValueError):
+                    MonomerMetFrag(__file__, directory, depth=depth)

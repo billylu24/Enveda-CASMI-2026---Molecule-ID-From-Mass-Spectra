@@ -282,3 +282,8 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第105轮纯fragment排序fixed200：unknown各prefix都回到基线0.037997，没有新真值，known降0.000096，失败不扩大。第106轮同预算多谱fragment聚合单因素对照：原max_raw为每个结构分别在所有谱取最大分数，可能让拟首位和当前首位由不同碰撞能/分数尺度支持。新mean_normalized先在每张有区分度/finite/非负实际complete谱按组最高分归一化，再在同一组有效谱上等权平均，各候选共享分母；unsupported、空分数、全同分、无正分或非有限谱不给证据。Java候选组内容相同，可复用真实逐谱cache，但组汇总身份独立mean_normalized_v1，绝不复用max_raw组结果。保持原critic+相对fragment门控、weight0.5、100提案/3slots、同200、1200秒、整组预算回退；新增尺度、非有限、部分组回退与CLI转发回归，178测试通过。只是化学证据聚合实验，未启用GAN/DINO。
+
+
+第106轮normalized多谱均值fixed200所有prefix指标与第99轮完全相同，没增益，不扩大。第107轮将现有有来源8条诊断离子/中性丢失软规则用于外部ChEMBL候选排序对照：先保持原critic+MetFrag weight0.5排序，再以固定0.25 RRF融合combined规则（无差异/无观测严格返回原顺序）；所有原query首候选critic margin、真实相对fragment与informative门控仍检查重排后的实际首候选。只对谱字段提取证据，不读标签/公式，结构SMARTS只读取外部目录；不新增/调整规则，不以缺失规则硬排除。固定200、same88片段组、prefix2/3/5/10、无新增Java/训练。此前规则试验仅generated候选，这轮隔离外部目录化学支持；只有unknown正向/known保护才扩展。
+
+第45/47双ABI完整平台核对通过，400/400完整排名与各自本地一致，分别705.7秒/2942MiB、739.9秒/2916MiB。队列所有兼容包已通过平台绑定和资源门槛；第12比赛56784251仍PENDING，保留单个待评分，不重复提交。

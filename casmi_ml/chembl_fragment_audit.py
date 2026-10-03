@@ -37,6 +37,7 @@ def run(directory, output):
         protocol["limit"] != 2000
         or not protocol["compare_current_first_fragment"]
         or protocol["candidate_gate"]
+        or protocol.get("chemical_prior", False)
         or protocol.get("fragment_gate_only", False)
     ):
         raise ValueError("Audit requires complete relative-fragment/critic experiment")
@@ -141,6 +142,12 @@ def run(directory, output):
                             fk = score_cache_key(
                                 "mean_normalized_v1:" + key, current[0], shortlist
                             )
+                        if protocol.get("fragment_depth", 2) != 2:
+                            fk = score_cache_key(
+                                f"depth{protocol['fragment_depth']}:" + fk,
+                                current[0],
+                                shortlist,
+                            )
                         saved = fragment_scores[fk]
                         fragments = saved["scores"]
                         proposed = rerank(
@@ -184,11 +191,11 @@ def run(directory, output):
                             ]
                         if all(gates.values()):
                             counts["queries_inserted"] += 1
-                            counts["novel_truth_inserted"] += key in proposed[: spec[2]]
                             if protocol.get("relative_candidate_gate"):
                                 proposed = relative_supported_proposals(
                                     proposed, fragments, current[0]
                                 )
+                            counts["novel_truth_inserted"] += key in proposed[: spec[2]]
                             result = insert_generated(
                                 current, proposed, spec[1], spec[2]
                             )
