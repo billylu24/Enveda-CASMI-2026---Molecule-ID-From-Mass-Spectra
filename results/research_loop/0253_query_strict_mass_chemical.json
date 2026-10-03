@@ -1,0 +1,42 @@
+{
+  "round": "0253_query_strict_mass_chemical",
+  "direction": "representation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "train_development_overlap": 0,
+    "precise": true,
+    "mask_chemical_channels": false,
+    "strict_mass_negatives": true,
+    "strict_inside_hard_negatives": 720198,
+    "original_critic_tensors_exact": true,
+    "original_encoder_frozen": true,
+    "history": [
+      {
+        "epoch": 1,
+        "listwise_ce": 0.5335426352125533,
+        "query_anchor": 0.011629728649921239
+      },
+      {
+        "epoch": 2,
+        "listwise_ce": 0.5248673712953608,
+        "query_anchor": 0.02305021269365828
+      },
+      {
+        "epoch": 3,
+        "listwise_ce": 0.5155626023069341,
+        "query_anchor": 0.033113555198020124
+      }
+    ],
+    "seconds": 21.330796135007404,
+    "model_sha256": "438ad1060bda2c757968d85545ab019e3ebfb4119cedc0af1e5855d46e017c19",
+    "scope": "Training diagnostic only; complete paired full-system inference and matched chemical-mask attribution required"
+  },
+  "protocol_sha256": "b82df40d25e97372aa1e141f67d5199fdce74dedbe31ec465a7ee80c5b3ddce6",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

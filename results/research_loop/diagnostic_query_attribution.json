@@ -1,0 +1,54 @@
+{
+  "local_only": true,
+  "independent_acceptance": false,
+  "arms": {
+    "chemical": {
+      "round": "0247_diagnostic_query_chemical_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04363425722605642,
+          "top1": 0.016,
+          "top5": 0.082,
+          "top25": 0.1285,
+          "conditional_mrr25": 0.21981993564763944
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6037966434328772,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6821985684654767
+        }
+      }
+    },
+    "identity_masked": {
+      "round": "0248_diagnostic_query_mask_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.043422352464151666,
+          "top1": 0.0155,
+          "top5": 0.0825,
+          "top25": 0.1295,
+          "conditional_mrr25": 0.21875240536096557
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6037997528856134,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6822020816751451
+        }
+      }
+    }
+  },
+  "chemical_minus_mask_unknown_mrr25": 0.00021190476190475344,
+  "scope": "Matched candidate-facing query residual, all original encoder and critic tensor values frozen, same capacity/training rows/hard negatives/steps/presence gate. Repeated full-development attribution, not fresh acceptance or cold inference proof."
+}
