@@ -331,3 +331,8 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第118背景校准+fragment pilot：unknown所有prefix保持baseline0.037997，没有新真值；known prefix3仅降0.000096、132.9秒/2919MiB、69组23非空、0预算回退，未训练/GPU，不扩大。第119背景校准+critic-only固定200独立控制：只保留原actual first critic+.05条件，先critic与校准score以RRF0.5排序，固定prefix3/最多3插入，不进行Java、不要求片段门控；区别候选自身改进在后续片段重排/证据条件中丢失，而非因unsupported ion永远无插入机会。保持校准边际与score SHA不变、native500前100不变，baseline严格对0062，只有小试验正向/known保护才完整。
+
+
+第115真实跨CE DINO匹配控制完成：20pretrain+30finetune，908.8秒/GPU1764MiB、train/dev交集0；routed未知0.016491低于114同谱0.018332，raw0.014928低于0.018623，known略降，未坍塌effective rank79.91。两protocol除cross_energy之外完全相同、50轮phase/epoch/可配抽样数量逐轮完全相同、最终两ckpt weights_only加载且全部finite；固定final30、不按开发checkpoint。该跨能量不变性设置没有正向排序证据，不扩大到0062生产组合或部署，不将此失败解释为所有DINO架构不可能。公开比较汇总与代码/哈希，权重/数据/逐分子仍私有。
+
+第119prior+critic-only fixed200：unknown保持baseline0.037997、known降0.001909保护失败，59/26查询插入、无新真值；无Java、CPU4.56秒，停止此融合扩大。candidate单独分数提升不等于系统插入收益，后续优先检验效率和跨谱化学证据聚合，而不是去掉所有保护。

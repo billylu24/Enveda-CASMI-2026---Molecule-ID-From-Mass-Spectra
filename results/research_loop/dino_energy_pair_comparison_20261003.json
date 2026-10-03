@@ -1,0 +1,177 @@
+{
+  "round": "dino_energy_pair_comparison_20261003",
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "matched_protocol_except_cross_energy": true,
+  "matching_epoch_schedule_and_pair_rng_counts": true,
+  "fixed_training_epochs_per_arm": 50,
+  "weights_only_finite_models": true,
+  "checkpoint_sha256": [
+    "4519bb811993983542b4b9811e540cf8c360bd526157436523b8bb40350a14bc",
+    "33c722aef703eb72ad0213f1c515853add3d3e7982d97b88bd8734bd18e42370"
+  ],
+  "control": {
+    "diagnostic_only": true,
+    "representation": {
+      "routed": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0845,
+          "mrr25": 0.018332231063364627,
+          "top1": 0.0075,
+          "top5": 0.033,
+          "top25": 0.0615,
+          "conditional_mrr25": 0.21694948003981807
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8022388059701493,
+          "mrr25": 0.5897833081407429,
+          "top1": 0.5574626865671641,
+          "top5": 0.6126865671641791,
+          "top25": 0.6791044776119403,
+          "conditional_mrr25": 0.7351717515428794
+        }
+      },
+      "raw": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0845,
+          "mrr25": 0.018622775973390963,
+          "top1": 0.0105,
+          "top5": 0.026,
+          "top25": 0.056,
+          "conditional_mrr25": 0.22038788134190487
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8022388059701493,
+          "mrr25": 0.15560162905425018,
+          "top1": 0.0791044776119403,
+          "top5": 0.22761194029850745,
+          "top25": 0.49402985074626865,
+          "conditional_mrr25": 0.19395923993739092
+        }
+      }
+    },
+    "baseline": {
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.0845,
+        "mrr25": 0.01841226862845654,
+        "top1": 0.0065,
+        "top5": 0.034,
+        "top25": 0.062,
+        "conditional_mrr25": 0.21789667015924902
+      },
+      "known": {
+        "molecules": 1340,
+        "candidate_recall": 0.8022388059701493,
+        "mrr25": 0.5902933743597643,
+        "top1": 0.5574626865671641,
+        "top5": 0.6134328358208955,
+        "top25": 0.6805970149253732,
+        "conditional_mrr25": 0.7358075550158922
+      }
+    },
+    "diagnostic": {
+      "collapsed": false,
+      "mean_std": 0.8171282147654941,
+      "effective_rank": 83.71255125785956
+    },
+    "cross_energy": false,
+    "train_molecules": 60000,
+    "train_spectra": 214804,
+    "train_development_overlap": 0,
+    "eligible_cross_energy_rows": 160679,
+    "seconds": 931.0994890700094,
+    "gpu_peak_mib": 1764.2939453125,
+    "parent_peak_rss_mib": 10948.828125,
+    "checkpoint_sha256": "4519bb811993983542b4b9811e540cf8c360bd526157436523b8bb40350a14bc",
+    "independent_acceptance": false,
+    "scope": "Representation diagnostic only on original candidate pool; cannot qualify as improvement over combined0062"
+  },
+  "cross_energy": {
+    "diagnostic_only": true,
+    "representation": {
+      "routed": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0845,
+          "mrr25": 0.016491034051629862,
+          "top1": 0.005,
+          "top5": 0.0325,
+          "top25": 0.0605,
+          "conditional_mrr25": 0.1951601662914776
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8022388059701493,
+          "mrr25": 0.589563830195074,
+          "top1": 0.5567164179104478,
+          "top5": 0.6126865671641791,
+          "top25": 0.6805970149253732,
+          "conditional_mrr25": 0.734898169731534
+        }
+      },
+      "raw": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.0845,
+          "mrr25": 0.014927858981198427,
+          "top1": 0.0065,
+          "top5": 0.025,
+          "top25": 0.0545,
+          "conditional_mrr25": 0.17666105303193408
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8022388059701493,
+          "mrr25": 0.14740272571816082,
+          "top1": 0.07611940298507462,
+          "top5": 0.21194029850746268,
+          "top25": 0.4828358208955224,
+          "conditional_mrr25": 0.18373921159287024
+        }
+      }
+    },
+    "baseline": {
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.0845,
+        "mrr25": 0.01841226862845654,
+        "top1": 0.0065,
+        "top5": 0.034,
+        "top25": 0.062,
+        "conditional_mrr25": 0.21789667015924902
+      },
+      "known": {
+        "molecules": 1340,
+        "candidate_recall": 0.8022388059701493,
+        "mrr25": 0.5902933743597643,
+        "top1": 0.5574626865671641,
+        "top5": 0.6134328358208955,
+        "top25": 0.6805970149253732,
+        "conditional_mrr25": 0.7358075550158922
+      }
+    },
+    "diagnostic": {
+      "collapsed": false,
+      "mean_std": 0.804751114086803,
+      "effective_rank": 79.9127169945017
+    },
+    "cross_energy": true,
+    "train_molecules": 60000,
+    "train_spectra": 214804,
+    "train_development_overlap": 0,
+    "eligible_cross_energy_rows": 160679,
+    "seconds": 908.8142720529868,
+    "gpu_peak_mib": 1764.2939453125,
+    "parent_peak_rss_mib": 11147.21875,
+    "checkpoint_sha256": "33c722aef703eb72ad0213f1c515853add3d3e7982d97b88bd8734bd18e42370",
+    "independent_acceptance": false,
+    "scope": "Representation diagnostic only on original candidate pool; cannot qualify as improvement over combined0062"
+  },
+  "routed_unknown_difference": -0.0018411970117347652,
+  "decision": "Reject expansion: actual same-ion cross-energy DINO harmed final fixed-epoch ranking; no collapse, no deployment qualification."
+}
