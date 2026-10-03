@@ -468,4 +468,4 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 166/167前source binding编辑先因格式匹配失败，新增测试import失败，未执行任何新critic评分；修复后2项测试实际通过，历史原encoder proposal供新critic评分的兼容路径保留，明确alternate新预筛仍必须matching model SHA。
 
-当前166/167完整候选诊断执行中，实际same source/601? train60000，不在外部catalog中增加dev真值。164 source matched控制已证实与124每tensor一致；165 transformed30021谱、27.16秒包含CPU准备+3epoch，初始训练、critic和CPUmeta旧flag都冻结。缓存features每个改动行对应原row_id不重排，实际视图只在flagged models使用。215/217旧回归及221含dimer-input回归均通过，source binding修复测试2项已过。163补齐fragment仍在Java同预算运行，未出现新的eligible版本，149仍平台verified/quota-wait。
+当前166/167完整候选诊断执行中，实际same source/train60000，不在外部catalog中增加dev真值。164 source matched控制已证实与124每tensor一致；165 transformed30021谱、27.16秒包含CPU准备+3epoch，初始训练、critic和CPUmeta旧flag都冻结。缓存features每个改动行对应原row_id不重排，实际视图只在flagged models使用。215/217旧回归及221含dimer-input回归均通过，source binding修复测试2项已过。163补齐fragment仍在Java同预算运行，未出现新的eligible版本，149仍平台verified/quota-wait。
