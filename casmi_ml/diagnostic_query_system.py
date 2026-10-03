@@ -40,6 +40,16 @@ def run(output, critic, control=False):
     array_runtime = resolve_array_order(c)
     if array_runtime is not None:
         config["candidate_order_runtime"] = array_runtime
+    identity_proof = c.read().get("local_verified_inference", {})
+    if identity_proof.get("identity_source_sha256"):
+        if identity_proof["identity_source_sha256"] != digest(
+            "casmi_ml/cached_structure_keys.py"
+        ):
+            raise ValueError("Active structure identity cache source changed")
+        config.update(
+            structure_identity_runtime="cache_v1",
+            structure_identity_source_sha256=identity_proof["identity_source_sha256"],
+        )
     original_critic = config["critic"]
     ranker, weights = load_query_ranker(critic, original_critic)
     if control and any(

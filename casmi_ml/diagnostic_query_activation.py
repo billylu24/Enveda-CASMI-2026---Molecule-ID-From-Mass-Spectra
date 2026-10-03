@@ -70,6 +70,14 @@ def activate(c, directory, result):
         "independent_acceptance": False,
         "scope": "Complete cached candidate-facing residual winner with paired zero-residual implementation control; no fresh holdout or cold full pipeline acceptance",
     }
+    config = protocol.get("config", {})
+    if config.get("candidate_order_runtime") == "array_v1":
+        proof["array_source_sha256"] = digest("casmi_ml/candidate_array_order.py")
+    if config.get("structure_identity_runtime") == "cache_v1":
+        source_sha = config.get("structure_identity_source_sha256")
+        if source_sha != digest("casmi_ml/cached_structure_keys.py"):
+            raise ValueError("Query identity cache source changed before activation")
+        proof["identity_source_sha256"] = source_sha
     write_json("results/research_loop/query_verified_runtime_activation.json", proof)
     c.change(
         lambda state: state.update(

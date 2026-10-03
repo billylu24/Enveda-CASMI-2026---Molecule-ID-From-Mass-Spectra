@@ -44,7 +44,7 @@ def refresh():
             "object_candidate_followup.log",
             "diagnostic_query_strong_peak_followup.log",
             "structure_key_followup_v2.log",
-            "diagnostic_query_admission_followup.log",
+            "diagnostic_query_admission_followup_v2.log",
         ],
         "pending_sequence": "Strong-peak283/284 complete rejected.286 actualSMILES identity cache full3340 current-best exact before source amendment and287 current-source zero.289/290 training-only additive deployed+.05 admission-margin CE, then291/292 complete matched systems. Only frozen gate winners replace best.",
         "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",

@@ -432,7 +432,8 @@
     "casmi_ml/training_query_margin_audit.py",
     "casmi_ml/query_admission_objective.py",
     "tests/test_query_admission_objective.py",
-    "casmi_ml/diagnostic_query_admission_followup.py"
+    "casmi_ml/diagnostic_query_admission_followup.py",
+    "casmi_ml/charged_catalog_coverage_audit.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

@@ -1,0 +1,29 @@
+{
+  "round": "0286_structure_identity_full_control",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "unknown": {
+      "molecules": 2000,
+      "full_rank_matches": 2000,
+      "seconds": 176.7445867950155,
+      "parent_peak_rss_mib": 2957.875
+    },
+    "known": {
+      "molecules": 1340,
+      "full_rank_matches": 1340,
+      "seconds": 112.3481373260147,
+      "parent_peak_rss_mib": 3254.14453125
+    },
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "development_budget_fallbacks": 0,
+    "incremental_new_failure_contexts": 0,
+    "verified": true
+  },
+  "protocol_sha256": "0c829edf4fbb28d3a9bcba3372b4f408769bbdd0afde88177f82a9ec03d3d784",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

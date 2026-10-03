@@ -69,6 +69,33 @@ class QueryActivationTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Incomplete query evidence"):
                 activate(c, output, result)
 
+    def test_runtime_source_bindings_survive_a_new_scientific_query_winner(self):
+        with tempfile.TemporaryDirectory() as directory:
+            c, output, result, state = self.fixture(Path(directory))
+            protocol = json.loads((output / "protocol.json").read_text())
+            protocol["config"] = {
+                "candidate_order_runtime": "array_v1",
+                "structure_identity_runtime": "cache_v1",
+                "structure_identity_source_sha256": digest(
+                    "casmi_ml/cached_structure_keys.py"
+                ),
+            }
+            (output / "protocol.json").write_text(json.dumps(protocol))
+            with patch("casmi_ml.diagnostic_query_activation.write_json"):
+                proof = activate(c, output, result)
+            self.assertEqual(
+                state["local_verified_inference"]["identity_source_sha256"],
+                proof["identity_source_sha256"],
+            )
+            self.assertEqual(
+                proof["identity_source_sha256"],
+                digest("casmi_ml/cached_structure_keys.py"),
+            )
+            self.assertEqual(
+                proof["array_source_sha256"],
+                digest("casmi_ml/candidate_array_order.py"),
+            )
+
     def test_transform_source_requires_matching_zero_control(self):
         with tempfile.TemporaryDirectory() as directory:
             c, output, result, state = self.fixture(Path(directory))

@@ -1,0 +1,34 @@
+{
+  "round": "0293_complete_charged_catalog_coverage_audit",
+  "direction": "coverage_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "counts": {
+      "source_rows": 2897819,
+      "net_neutral": 149479,
+      "retained": 24526,
+      "mixture_or_nonorganic": 255,
+      "generic_or_isotopic": 10,
+      "charge_out_of_supported_range": 11,
+      "invalid": 1
+    },
+    "retained_unique_structures": 23844,
+    "charged_database_truth_upper_bound": 1,
+    "charged_observable_mass_window_truth_upper_bound": 0,
+    "new_over_neutral_chembl_truth_upper_bound": 0,
+    "hit_charge_counts": {
+      "1": 1
+    },
+    "seconds": 36.89990532700904,
+    "source_catalog_sha256": "c7de33cce8ab25df3d9c656952da3dc21ef83ceb4158b5486bd881eb4cb7d5f3",
+    "activated": false,
+    "scope": "Repeated2000 coverage diagnosis only; does not establish candidate addition beyond current union, correct ionic fragmentation, ranking improvement or known protection"
+  },
+  "protocol_sha256": "b8dc8ced29789658267c7f222e1e89961f071068f16da244573365a0067ebfcc",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03T13:23:40Z",
+  "updated_at": "2026-10-03T13:32:54Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -30,7 +30,7 @@
   },
   "local_verified_inference": {
     "scientific_round": "0236_low_supported_leader_first",
-    "evidence_round": "0258_array_order_full_inference_control",
+    "evidence_round": "0286_structure_identity_full_control",
     "previous_metrics": {
       "unknown": {
         "molecules": 2000,
@@ -87,24 +87,25 @@
         "evidence": "development_experimental; not independent acceptance"
       }
     },
-    "replay_report_sha256": "b0d40793cb32e161d2a1c35323374060b4984665d637c448ea446141e422be79",
+    "replay_report_sha256": "f3c5c45580ba54ada8f9f123f406a3d32d93c9d8effc3e16565e4c7fe4be449b",
     "rankings_sha256": "0a138e378dde6e21de266950251ec6d1d02245450ca73a3187d5f03df64c530b",
-    "external_config_sha256": "b9d84654a3adabf8b12261b7b506e74eb7c1ec0c600cbb0c41753db7414d385e",
-    "inference_sha256": "d11716f9aa92830d23e2ce1a79b03d0b10c5c1ccde23ea9acdc41ff815033588",
+    "external_config_sha256": "81ccd363a0b2cc17d9f69a1aabd8363752a75922ce09ef1ca33ed64aa19e1da1",
+    "inference_sha256": "e3ecb9cc491fcf42d7a245ed65aa8c4dc5e4a4c215bf4b65628125b0a4637ed3",
     "low_leader_source_sha256": "c0045fc1f4ae4b7e434ad50d9700f00cec08661b56012631412c2ba5d9e1af6b",
     "local_only": true,
     "remote_publication": false,
     "independent_acceptance": false,
-    "scope": "Same incumbent score arithmetic/models and every3340 full rank; array score/key ordering runtime amendment only; cached replay, no accuracy or cold acceptance gain",
+    "scope": "Same current scientific best every3340 full rank and all models/scores/evidence; bounded actualSMILES identity runtime cache only, no accuracy gain or cold acceptance",
     "external_config": "artifacts/research_loop/rounds/0237_low_leader_full_unlabeled_replay/external_config.json",
-    "array_source_sha256": "28926c166dbb88701c8676a8fd2e34b94b104029c43706da7c56f172b1876a41"
+    "array_source_sha256": "28926c166dbb88701c8676a8fd2e34b94b104029c43706da7c56f172b1876a41",
+    "identity_source_sha256": "e5ecca9173b0be7aab94b3037bacfda5c6a2787a3ba0f38677b9349f4a664b5d"
   },
   "active_rounds": [
     {
-      "id": "0286_structure_identity_full_control",
-      "direction": "runtime_diagnostic",
+      "id": "0291_query_admission_chemical_system",
+      "direction": "chemical_query_critic",
       "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0286_structure_identity_full_control/report.json"
+      "report": "artifacts/research_loop/rounds/0291_query_admission_chemical_system/report.json"
     }
   ],
   "local_candidate_runtime": {
@@ -121,7 +122,7 @@
     "enabled": true,
     "local_only": true,
     "source_sha256": "28926c166dbb88701c8676a8fd2e34b94b104029c43706da7c56f172b1876a41",
-    "control_directory": "artifacts/research_loop/rounds/0258_array_order_full_inference_control"
+    "control_directory": "artifacts/research_loop/rounds/0286_structure_identity_full_control"
   },
   "local_object_candidate_runtime": {
     "enabled": true,
@@ -167,7 +168,7 @@
     },
     "scope": "Explicit local full mass-window proposals only; three complete original-encoder dictionaries exact. Fingerprint runtime reuse, no accuracy improvement or cold inference acceptance."
   },
-  "local_query_zero_control": "artifacts/research_loop/rounds/0280_query_strong_peak_zero_control",
+  "local_query_zero_control": "artifacts/research_loop/rounds/0287_query_identity_runtime_zero_control",
   "drivers": [
     "diagnostic_query_multispectrum_followup.log",
     "diagnostic_query_chemical_only_followup.log",
@@ -175,7 +176,7 @@
     "object_candidate_followup.log",
     "diagnostic_query_strong_peak_followup.log",
     "structure_key_followup_v2.log",
-    "diagnostic_query_admission_followup.log"
+    "diagnostic_query_admission_followup_v2.log"
   ],
   "pending_sequence": "Strong-peak283/284 complete rejected.286 actualSMILES identity cache full3340 current-best exact before source amendment and287 current-source zero.289/290 training-only additive deployed+.05 admission-margin CE, then291/292 complete matched systems. Only frozen gate winners replace best.",
   "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
@@ -1088,6 +1089,41 @@
     {
       "id": "0286_structure_identity_full_control",
       "direction": "runtime_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0286_structure_identity_full_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0287_query_identity_runtime_zero_control",
+      "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0287_query_identity_runtime_zero_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0289_query_admission_chemical",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0289_query_admission_chemical.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0290_query_admission_mask",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0290_query_admission_mask.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0293_complete_charged_catalog_coverage_audit",
+      "direction": "coverage_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0293_complete_charged_catalog_coverage_audit.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0291_query_admission_chemical_system",
+      "direction": "chemical_query_critic",
       "status": "external_running",
       "decision": null,
       "local_recorded": false

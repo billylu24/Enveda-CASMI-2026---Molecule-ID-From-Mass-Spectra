@@ -24,7 +24,7 @@
     "raw_candidates_reused": 127088,
     "new_candidates_scored": 3025
   },
-  "active_round": "0286_structure_identity_full_control",
+  "active_round": "0291_query_admission_chemical_system",
   "coarse_complete": {
     "unknown_mrr25": 0.04268861838422192,
     "known_mrr25": 0.6046005738683694,
@@ -36,7 +36,7 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0286_structure_identity_full_control"
+    "0291_query_admission_chemical_system"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -326,9 +326,9 @@
       "original_critic_tensors_exact": true
     }
   },
-  "updated_at": "2026-10-03T13:23:40Z",
-  "current_query_zero_control": "artifacts/research_loop/rounds/0280_query_strong_peak_zero_control",
-  "local_verified_evidence_round": "0258_array_order_full_inference_control",
+  "updated_at": "2026-10-03T13:32:54Z",
+  "current_query_zero_control": "artifacts/research_loop/rounds/0287_query_identity_runtime_zero_control",
+  "local_verified_evidence_round": "0286_structure_identity_full_control",
   "multispectrum_attribution": {
     "local_only": true,
     "independent_acceptance": false,

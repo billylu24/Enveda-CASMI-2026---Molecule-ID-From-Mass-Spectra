@@ -20,7 +20,9 @@
     "Training-only279 eight broad SMARTS rule association audit shows weak peak-loss lift often nearzero or negative while stronger>.3 evidence lifts increase; used to preregister optional fixed strong-peak identity transform, rawstrength gate retained.",
     "Strong peak-loss input283 chemical unknownMRR.043620368 vs masked284.043449535; identity difference+.000170833 but chemical below original paired262 by-.000208571, failed incumbent gate; do not expand this transform.",
     "Strong masked training282 every critic/residual tensor equals prior paired masked261, and all3340 full ranks284 equal263; raw evidence gate preserved as intended.",
-    "Training-only288 original60K paired query margin audit: rank-correct51380 vs deployed+.05-admitted46973;4407 rank-correct below margin.Exact identical positive/negative2048 fingerprints665 pairs; residual cannot resolve this aliasing."
+    "Training-only288 original60K paired query margin audit: rank-correct51380 vs deployed+.05-admitted46973;4407 rank-correct below margin.Exact identical positive/negative2048 fingerprints665 pairs; residual cannot resolve this aliasing.",
+    "286 bounded actualSMILES identity memoization every3340 best full rank exact,0budget/newfailure, source amendment active locally; cached unknown176.74/known112.35s, not a matched cold pipeline resource gain.",
+    "287 actual identity-runtime current-source zero query control complete3340 exact,0budget/newfailure; local current verified inference remains scientific236/evidence286. Additive admission-margin289/290 training complete,291/292 full systems proceeding."
   ],
   "current_sequence": [
     "286 isolated actualSMILES identity cache full3340 control then amend core only if exact",

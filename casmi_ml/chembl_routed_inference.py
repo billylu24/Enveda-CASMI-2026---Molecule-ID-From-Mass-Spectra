@@ -88,6 +88,13 @@ def extend(
     candidate_order_runtime = config.get("candidate_order_runtime")
     if candidate_order_runtime not in (None, "array_v1"):
         raise ValueError("Unsupported candidate ordering runtime")
+    structure_identity_runtime = config.get("structure_identity_runtime")
+    if structure_identity_runtime not in (None, "cache_v1"):
+        raise ValueError("Unsupported structure identity runtime")
+    if structure_identity_runtime == "cache_v1" and config.get(
+        "structure_identity_source_sha256"
+    ) != digest("casmi_ml/cached_structure_keys.py"):
+        raise ValueError("Structure identity cache source binding changed")
     configure(threads=4)
     started = time.monotonic()
     test = pd.read_parquet(test_path)
@@ -171,10 +178,15 @@ def extend(
         current = []
         lookup = {}
         for value in smiles:
-            structure = Chem.MolFromSmiles(value)
-            if structure is None:
-                raise ValueError("Invalid current structure")
-            candidate = Chem.MolToInchiKey(structure)[:14]
+            if structure_identity_runtime == "cache_v1":
+                from casmi_ml.cached_structure_keys import structure_key
+
+                candidate = structure_key(value)
+            else:
+                structure = Chem.MolFromSmiles(value)
+                if structure is None:
+                    raise ValueError("Invalid current structure")
+                candidate = Chem.MolToInchiKey(structure)[:14]
             if candidate in lookup:
                 raise ValueError("Duplicate current full structure")
             current.append(candidate)
