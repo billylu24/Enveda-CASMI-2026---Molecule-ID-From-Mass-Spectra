@@ -27,6 +27,26 @@ from casmi_ml.secondary_inference import load_deployment_checkpoint
 from casmi_ml.training import configure
 
 
+def select_high_fragment(current, tail, candidates, critic, fragments, fallback):
+    if fallback:
+        return tail, candidates[:3], "high_fragment_budget_keep_tail"
+    proposed = rerank(
+        candidates, {}, [], 0.5, top_n=len(candidates), fragment_scores=fragments
+    )
+    if not informative_fragments(proposed, fragments):
+        return tail, candidates[:3], "high_fragment_evidence_keep_tail"
+    if (
+        fragments.get(proposed[0], 0) > fragments.get(current[0], 0)
+        and critic[proposed[0]] > critic[current[0]] + 0.05
+    ):
+        return (
+            insert_generated(current, proposed, 3, 3),
+            proposed[:3],
+            "high_fragment_inserted",
+        )
+    return current, [], "high_fragment_remove_tail"
+
+
 @torch.inference_mode()
 def extend(
     test_path,
@@ -84,8 +104,25 @@ def extend(
     critic.load_state_dict(weights["state_dict"])
     prior = np.load(paths["prior"])
     catalog = CandidateIndex(pd.read_parquet(paths["catalog"]))
-    fragmenter = MonomerMetFrag(
-        paths["jar"], cache or str(output) + ".external_fragment_cache", java=java
+    high_fragment = config.get("high_fragment")
+    engine_class, engine_options = MonomerMetFrag, {}
+    if high_fragment is not None:
+        if high_fragment.get("prefix") != 3 or high_fragment.get("weight") != 0.5:
+            raise ValueError("Only the frozen high fragment rule is supported")
+        if high_fragment.get("backend") != "persistent":
+            raise ValueError("High fragment requires the verified persistent backend")
+        worker = root / high_fragment["worker_class"]
+        if digest(worker) != high_fragment["worker_class_sha256"]:
+            raise ValueError("Java worker bytecode changed")
+        from casmi_ml.metfrag_persistent import PersistentMonomerMetFrag
+
+        engine_class = PersistentMonomerMetFrag
+        engine_options = {"classes": worker.parent}
+    fragmenter = engine_class(
+        paths["jar"],
+        cache or str(output) + ".external_fragment_cache",
+        java=java,
+        **engine_options,
     )
     rows, audit, final_full = [], [], []
     for key, group in test.groupby("molecule_id", sort=False):
@@ -154,6 +191,24 @@ def extend(
                                 inserted = candidates[:3]
                                 result = insert_generated(current, candidates, 10, 3)
                                 status = "high_tail_inserted"
+                                if high_fragment is not None:
+                                    fragments, fallback = score_group_merged(
+                                        fragmenter,
+                                        query.to_dict("records"),
+                                        {
+                                            k: lookup[k]
+                                            for k in candidates + [current[0]]
+                                        },
+                                        deadline=fragment_deadline,
+                                    )
+                                    result, inserted, status = select_high_fragment(
+                                        current,
+                                        result,
+                                        candidates,
+                                        scores,
+                                        fragments,
+                                        fallback,
+                                    )
                         else:
                             fragments, fallback = score_group_merged(
                                 fragmenter,
@@ -195,6 +250,8 @@ def extend(
                 "inserted": len(inserted),
             }
         )
+    if high_fragment is not None:
+        fragmenter.close()
     submission = pd.DataFrame(rows)
     validate_submission(test, submission)
     submission.to_csv(output, index=False)

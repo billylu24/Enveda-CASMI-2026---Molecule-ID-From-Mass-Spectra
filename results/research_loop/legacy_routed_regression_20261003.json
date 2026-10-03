@@ -1,0 +1,14 @@
+{
+  "round": "legacy_routed_regression_20261003",
+  "diagnostic_only": true,
+  "status": "recorded",
+  "molecules": 75,
+  "complete_smiles_rank_matches": 75,
+  "legacy_config_preserved": true,
+  "source_sha256": "e56271e287c56e1f6034b3dae411be72695463f6f86765809d585b42b40fdad4",
+  "new_high_fragment_enabled": false,
+  "legacy_release149_unchanged": true,
+  "seconds": 20.14300226198975,
+  "scope": "Actual unlabeled inference backward compatibility replay with content cache, not cold resource or new accuracy evidence",
+  "independent_acceptance": false
+}
