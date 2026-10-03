@@ -1,0 +1,44 @@
+{
+  "diagnostic_only": true,
+  "cohort": "repeated_development",
+  "independent_acceptance": false,
+  "development_sha256": "f297677effa13eefc2404eebe375c76d2f114a088eb0ad2aad4d404b198035c7",
+  "confidence_sha256": "39d78818ded75aa4feef5ea9354d364acb1b3e88746c5125b7a37ded95180a29",
+  "adapter_sha256": "6e19b6d1e5f8b763cedfc218136783aef970b2b09def4c66b4946db8747ebd2b",
+  "selection": "All unknown-mode development confidence<.5, observable-only applicability; not a new holdout",
+  "counts": {
+    "spectra": 1782,
+    "exact_monomer_supported": 628,
+    "additional_observed_dimer_products_supported": 931
+  },
+  "unsupported_adduct_counts": {
+    "[2M+Na]+": 653,
+    "[2M+H]+": 255,
+    "[2M-H]-": 101,
+    "[M+2H]2+": 20,
+    "[M-H2O+H]+": 20,
+    "[2M+NH4]+": 3,
+    "[M-2H2O+H]+": 3,
+    "[M]+": 1,
+    "[M-CH3]-": 1,
+    "[M]-": 4
+  },
+  "nonhighresolution_instrument_counts": {
+    "ToF": 62,
+    "nan": 37,
+    "iontrap": 1,
+    "LC-ESI-QIT": 2,
+    "Linear Ion Trap": 5,
+    "LC-ESI-QQ": 4,
+    "LC-ESI-IT": 2,
+    "N/A": 1,
+    "Flow-injection QqQ/MS": 3,
+    "QQQ": 3,
+    "SI-BE": 1,
+    "in source CID": 1,
+    "Ion Trap": 1,
+    "Quattro_QQQ:10eV": 1,
+    "Quattro_QQQ:25eV": 1
+  },
+  "interpretation": "Applicability is not candidate accuracy; expanded adapter must pass paired ranking and known protection"
+}
