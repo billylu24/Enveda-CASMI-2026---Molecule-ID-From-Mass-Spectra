@@ -41,7 +41,9 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0230_diagnostic_context_exact_system"
+    "0234_diagnostic_context_mask_proposals",
+    "0244_diagnostic_query_zero_control",
+    "0249_local_ranking_runtime_profile"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -129,5 +131,28 @@
     "first_changed": 0,
     "candidate_membership_changed": 102,
     "direction": "chemical residual on frozen final candidate critic query with matched identity mask"
+  },
+  "precise_context_complete": {
+    "unknown": {
+      "molecules": 2000,
+      "candidate_recall": 0.1985,
+      "mrr25": 0.04268861838422192,
+      "top1": 0.014,
+      "top5": 0.0825,
+      "top25": 0.13,
+      "conditional_mrr25": 0.21505601201119356
+    },
+    "known": {
+      "molecules": 1340,
+      "candidate_recall": 0.8850746268656716,
+      "mrr25": 0.6046025377332556,
+      "top1": 0.5656716417910448,
+      "top5": 0.6335820895522388,
+      "top25": 0.7395522388059701,
+      "conditional_mrr25": 0.6831091067137962
+    },
+    "eligible": false,
+    "budget_fallbacks": 0,
+    "new_failure_contexts": 0
   }
 }
