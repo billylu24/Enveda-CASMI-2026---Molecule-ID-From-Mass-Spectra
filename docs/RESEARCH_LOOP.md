@@ -551,3 +551,6 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 222增量adapter独立fresh验证通过：固定12query/15merged谱完整dict15/15 exact、13complete/2unsupported、fail0，adapter实际14个seed读取/12次增量请求，复用1176候选/新增36，无失败。221收集完整control的精确失败请求hash后才启用持久local runtime，任何新failed context/budget仍禁止提升。207首轮unknown0.040940821但812分支budgetfallback，不能据此归因模型净损失；完整报告只diagnostic，然后以已验证增量证据补齐后新root回放，对206及181共同门槛。
+
+
+本地后续driver diagnostic_next_cycle：等待221严格原控制及222独立freshadapter报告、核验当前adapter SHA与已审计物理失败scope后仅本地持久启用；等待207/208完整首轮，再223/224证据完整回放，每臂最多3次有界cache完成、任意新failed hash/budget禁止提升。结果保留后才225/226上下文粗/精确3epoch匹配训练（独立representation账本及外层gpu.lock单卡保护），227/228全masspool诊断、229/230完整2000/1340系统与双重门槛。只本地记录，不改冻结科学配置、无远端发布。新源码287项回归通过，训练尚未启动。
