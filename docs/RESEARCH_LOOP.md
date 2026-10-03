@@ -542,3 +542,6 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 204完整补齐原模型：unknown2000 MRR0.042728301、known1340 0.604600574/Top1 .565671642，unknown626.97秒复用已验证控制、known1058.84秒cached，无budget回退；此非新架构收益、不更新181。205空证据/预算独立归因unknown全部exact，known尚1处非empty聚合差异；该组4谱中3个legacy物理complete、1个physical文件缺失，当前4个均complete，不能把partial aggregate当完成证据。216扩展至全部活跃high物理输入并保持原181规则，全部2000/1340完整rank exact通过；未知身份4组、已知2组，原空/预算活跃unknown48/known491组均审计，未以标签挑个例。206原严格回放对216、207/208粗/精确残差系统评价继续。215增量fragment鲜缓存12query/15merged谱全部完整dict exact、13complete/2unsupported、0failed/timeout；整池15.97秒、增量1.55秒，原seed16.32秒另列，只是原候选分数可复用的局部runtime证明，不称cold全管线或准确率提升。281项回归通过。
+
+
+206严格审计控制通过：unknown2000/known1340完整rank逐项与216预期exact，known缓存执行352.63秒、无budget。207粗容差完整系统已启动，208顺序跟进。218本地增量证据索引47.30秒，已有2191个complete物理请求，覆盖unknown1085/known756个有分数组，new Java0；源码及benchmark SHA、精确物理context、候选key+实际SMILES与每份source SHA保留私有。217因bundled jar文件名不同却digest相同被guard拒绝，无评分；219因临时构造函数替换后lazy加载派生class失败，无模型结果，修正为先加载class后作用域覆盖。220以独立完整原控制再次验证增量adapter，不改部署源码或冻结配置，仅本地评价显式启用；若有request失败或budget，模型只诊断、不更新best。284项回归通过。

@@ -4,7 +4,9 @@ import argparse
 import json
 import shutil
 import time
+from contextlib import nullcontext
 from pathlib import Path
+from unittest.mock import patch
 
 import pandas as pd
 import torch
@@ -62,10 +64,31 @@ def run(
     control_reference=None,
     reuse_unknown=None,
     paired_control=None,
+    incremental_benchmark=None,
 ):
     if control and audit_control:
         raise ValueError("Strict control and audit-only modes are mutually exclusive")
     comparison = BEST
+    incremental_instances = []
+    incremental_type = None
+
+    def incremental_engine(*args, **kwargs):
+        engine = incremental_type(*args, benchmark=incremental_benchmark, **kwargs)
+        incremental_instances.append(engine)
+        return engine
+
+    if incremental_benchmark:
+        from casmi_ml.development_incremental_metfrag import (
+            DevelopmentIncrementalMetFrag,
+        )
+        from casmi_ml.research_loop import Controller
+
+        incremental_type = DevelopmentIncrementalMetFrag
+
+        if not Controller().local_only() or not (paired_control or control):
+            raise ValueError(
+                "Incremental scoring requires local-only paired or strict control evaluation"
+            )
     if control_reference is not None:
         if not control:
             raise ValueError("Audited reference is only permitted for strict control")
@@ -108,6 +131,16 @@ def run(
         output / "protocol.json",
         {
             "critic_frozen_base_verification": base_binding,
+            "development_incremental_benchmark_sha256": digest(
+                Path(incremental_benchmark) / "report.json"
+            )
+            if incremental_benchmark
+            else None,
+            "development_incremental_source_sha256": digest(
+                "casmi_ml/development_incremental_metfrag.py"
+            )
+            if incremental_benchmark
+            else None,
             "control": control,
             "audit_control": audit_control,
             "control_reference": str(comparison),
@@ -251,23 +284,32 @@ def run(
             ):
                 shutil.copy2(reuse / mode / name, directory / name)
         else:
-            extend(
-                directory / "test.parquet",
-                directory / "baseline.csv",
-                directory / "baseline_full.json",
-                directory / "routing.csv",
-                directory / "selected.csv",
-                Path("."),
-                config,
-                deadline=started + 3600,
-                fragment_deadline=started + 1200,
-                java="external/metfrag/java21/jdk-21.0.12.1+1-jre/bin/java",
-                cache="artifacts/chemistry_20261001/chembl_metfrag_cache",
-                output_full_rankings=directory / "full.json",
-                reference=ReferenceIndex(
-                    "artifacts/research_loop/rounds/0001_mass_v2/reference/" + mode
-                ),
+            manager = (
+                patch(
+                    "casmi_ml.metfrag_persistent.PersistentMonomerMetFrag",
+                    new=incremental_engine,
+                )
+                if incremental_benchmark
+                else nullcontext()
             )
+            with manager:
+                extend(
+                    directory / "test.parquet",
+                    directory / "baseline.csv",
+                    directory / "baseline_full.json",
+                    directory / "routing.csv",
+                    directory / "selected.csv",
+                    Path("."),
+                    config,
+                    deadline=started + 3600,
+                    fragment_deadline=started + 1200,
+                    java="external/metfrag/java21/jdk-21.0.12.1+1-jre/bin/java",
+                    cache="artifacts/chemistry_20261001/chembl_metfrag_cache",
+                    output_full_rankings=directory / "full.json",
+                    reference=ReferenceIndex(
+                        "artifacts/research_loop/rounds/0001_mass_v2/reference/" + mode
+                    ),
+                )
         execution[mode] = json.loads(
             (directory / "selected.csv.external.report.json").read_text()
         )
@@ -332,10 +374,16 @@ def run(
         if "budget" in status
     )
     report["development_budget_fallbacks"] = budget_fallbacks
-    if paired and budget_fallbacks:
+    report["development_incremental_stats"] = [
+        engine.incremental_stats for engine in incremental_instances
+    ]
+    incomplete_incremental = sum(
+        engine.incremental_stats["failed_requests"] for engine in incremental_instances
+    )
+    if paired and (budget_fallbacks or incomplete_incremental):
         report["diagnostic_only"] = True
         report["promotion_blocked_reason"] = (
-            "Incomplete physical evidence under cached development deadline; repeat bounded run after cache preparation before accuracy selection"
+            "Incomplete physical evidence under cached development deadline or incremental request failure; repeat bounded run after cache preparation before accuracy selection"
         )
     if paired:
         paired_report = json.loads((paired / "report.json").read_text())
@@ -364,6 +412,7 @@ def main():
     p.add_argument("--control-reference", type=Path)
     p.add_argument("--reuse-unknown", type=Path)
     p.add_argument("--paired-control", type=Path)
+    p.add_argument("--incremental-benchmark", type=Path)
     print(json.dumps(run(**vars(p.parse_args())), indent=2))
 
 

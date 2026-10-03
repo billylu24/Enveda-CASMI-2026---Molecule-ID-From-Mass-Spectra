@@ -1,0 +1,7 @@
+{
+  "status": "implementation_failed",
+  "local_only": true,
+  "diagnostic_only": true,
+  "best_updated": false,
+  "reason": "Asset digest matched but bundled jar filename differed from benchmark; strict filename guard rejected before evidence indexing. Resolved by digest-based jar identity while still pinning worker and process hashes."
+}

@@ -1,0 +1,7 @@
+{
+  "status": "implementation_failed",
+  "local_only": true,
+  "diagnostic_only": true,
+  "best_updated": false,
+  "reason": "Lazy subclass import happened after adapter constructor override, causing TypeError before scoring. Load adapter class before entering temporary constructor override; no accuracy result."
+}

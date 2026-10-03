@@ -1,0 +1,40 @@
+{
+  "round": "0218_incremental_completed_control_seed",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "counts": {
+      "unknown": {
+        "queries": 1995,
+        "groups_with_complete_evidence": 1085
+      },
+      "known": {
+        "queries": 1340,
+        "groups_with_complete_evidence": 756
+      }
+    },
+    "seconds": 47.299762412993005,
+    "incremental_stats": {
+      "seed_full_requests": 2191,
+      "reused_candidates": 0,
+      "new_candidates": 0,
+      "incremental_requests": 0,
+      "failed_requests": 0
+    },
+    "engine_status_counts": {
+      "complete": 2191,
+      "unsupported_ion_or_resolution": 2938,
+      "not_seeded": 889,
+      "empty": 8
+    },
+    "new_java_requests": 0,
+    "scope": "Local existing evidence indexing only; no metric or cold inference improvement claim"
+  },
+  "protocol_sha256": "4caebf29982d78dfe785785a42f7db350d1f209b8c5c81451a60874e16d9bc50",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
