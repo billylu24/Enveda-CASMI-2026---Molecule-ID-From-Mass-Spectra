@@ -47,6 +47,27 @@ def select_high_fragment(current, tail, candidates, critic, fragments, fallback)
     return current, [], "high_fragment_remove_tail"
 
 
+def runtime_options(root, high_fragment, worker):
+    from casmi_ml.metfrag_polling_patch import CLASS_NAME, PATCHED_SHA, PROCESS_SHA
+
+    runtime = high_fragment.get("runtime")
+    process = worker.parent / CLASS_NAME
+    if runtime is None:
+        if process.exists():
+            raise ValueError("Unbound candidate-process runtime override")
+        return {}
+    if runtime.get("candidate_threads") != 2 or runtime.get("polling_ms") != 10:
+        raise ValueError("Only the verified two-thread10ms runtime is supported")
+    if (
+        root / runtime.get("process_class", "") != process
+        or runtime.get("process_class_sha256") != PATCHED_SHA
+        or runtime.get("original_process_class_sha256") != PROCESS_SHA
+        or digest(process) != PATCHED_SHA
+    ):
+        raise ValueError("Derived candidate-process runtime binding differs")
+    return {"threads": 2}
+
+
 @torch.inference_mode()
 def extend(
     test_path,
@@ -118,6 +139,7 @@ def extend(
 
         engine_class = PersistentMonomerMetFrag
         engine_options = {"classes": worker.parent}
+        engine_options.update(runtime_options(root, high_fragment, worker))
     fragmenter = engine_class(
         paths["jar"],
         cache or str(output) + ".external_fragment_cache",

@@ -491,3 +491,9 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 第1722threads鲜缓存实际评分12/12字典逐float exact，19complete/3unsupported两臂一致、timeout/failed0，单线程58.91秒→双线程37.91秒（1.554倍）、parent2057MiB；仅runtime基准，不是新开发accuracy或直接修改163包。
 
 第173轮询间隔runtime预登记：pinned jar SHA绑定，其CombinedMetFragProcess唯一CONSTANT_Long1000是candidate线程池isTerminated后Thread.sleep轮询，javap验证引用，评分/碎裂代码不变。私有派生class仅该常量改10，原jar保持未修改，class大小/其他字节不变；classes前置+原MetFragWorker，原class/派生class SHA绑定。与172同12hash组/独立freshcache/两臂NumberThreads2/同heap1GiB/request60秒/共享600秒，完整真实浮点字典必须exact、执行状态一致且无失败，才可考虑新的runtime适配；无准确率宣称。两个class parser绑定/唯一常量及拒绝用例通过。不会更改163正在Kaggle运行的bundle/identity。
+
+第173轮询1000msvs10ms同threads2完成：12/12完整分数字典exact，19complete/3unsupported两臂一致，36.90秒→24.59秒（1.501倍），父2101MiB，无timeout/failed；仅运行时改善，无accuracyclaim。673ec46已GitHub同步。第163原平台Notebook v1仍running，源包/identity不改。
+
+第174加速部署实现验证预登记：独立163runtime sibling使用threads2+10ms派生class、同模型/目录/所有科学门槛/物理参数。绑定原jar/原process SHA50015c...与唯一常量派生SHAeffe991.../实际worker SHA，config无runtime保持单线程和原class；发现存在未绑定process覆盖时主动拒绝。各执行variant缓存隔离，源码默认行为保护及SHA/path/config guard两项测试通过。首个私有fastpoll包在未运行任何验证/上传前因额外guard加固被新v2取代，原包记录superseded，不复用验证。新v2要求空cache75完整ranking重放、fresh400冷运行与原163完整400Top25完全相同，然后才能激活runtime候选或平台。当前只私有本地验证，不增加比赛队列条目、不称新accuracygain。
+
+第174 fastpoll_v2真实75freshcache无标签完整rank重放75/75一致、65.66秒/1471MiB（与开发比较只验证实施，不新增精度），19high插入/3移除/2low插入，其他原回退。新400冷包05:11UTC启动，仍同1200共享fragment/1800总截止。激活工具实现严格bundle改动白名单（只3个runtime源/config/processclass/署名）、科学recipe剥除runtime后exact一致、全部模型/其他资产SHA不变、replay绑定bundleSHA、400完整Top25一致及资源门槛，并拒绝任何已接受或模糊比赛submission迁移；即使激活仍强制平台400核对。4项未完成replay/资源失败/排名变化/accepted或intent拒绝与合格但平台继续required用例通过。236+4回归适当验证，当前未激活/上传加速包。

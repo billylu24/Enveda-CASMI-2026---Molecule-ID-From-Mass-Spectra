@@ -10,6 +10,8 @@ from casmi_ml.data import write_json
 from casmi_ml.metfrag import digest
 
 JAR_SHA = "8c55322fbc706c76df109dd886257262029695837bb1fb2211d4b88d945d8cfb"
+PROCESS_SHA = "50015c7744430c550649c5f719bf34c673f6cd0005f6dad77f5a64279eca5375"
+PATCHED_SHA = "effe991f7a9028eb471b9cf66f9873283383cfe60a255bae43ade45d893ef9bf"
 CLASS_NAME = "de/ipbhalle/metfraglib/process/CombinedMetFragProcess.class"
 
 
@@ -72,6 +74,8 @@ def prepare(jar, worker, output):
     with zipfile.ZipFile(jar) as archive:
         original = archive.read(CLASS_NAME)
     original_sha = hashlib.sha256(original).hexdigest()
+    if original_sha != PROCESS_SHA:
+        raise ValueError("Pinned candidate process class differs")
     # The jar hash binds this exact class; no downloaded/recompiled algorithm source.
     patched = replace_wait_constant(original, original_sha)
     target = output / CLASS_NAME

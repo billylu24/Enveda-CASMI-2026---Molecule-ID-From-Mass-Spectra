@@ -279,7 +279,11 @@
     "casmi_ml/metfrag_thread_benchmark.py",
     "casmi_ml/metfrag_polling_patch.py",
     "casmi_ml/metfrag_polling_benchmark.py",
-    "tests/test_metfrag_polling_patch.py"
+    "tests/test_metfrag_polling_patch.py",
+    "casmi_ml/fragment_runtime_release.py",
+    "casmi_ml/fragment_runtime_verification.py",
+    "tests/test_fragment_runtime_binding.py",
+    "tests/test_fragment_runtime_release.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
