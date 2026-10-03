@@ -1,0 +1,91 @@
+{
+  "round": "0152_high_tail_actual_first_pilot",
+  "direction": "chembl_high_fragment",
+  "status": "diagnostic_complete",
+  "report": {
+    "unknown": {
+      "baseline": {
+        "molecules": 200,
+        "candidate_recall": 0.2,
+        "mrr25": 0.03139321789321789,
+        "top1": 0.005,
+        "top5": 0.07,
+        "top25": 0.135,
+        "conditional_mrr25": 0.15696608946608945
+      },
+      "high_relative_fragment": {
+        "molecules": 200,
+        "candidate_recall": 0.2,
+        "mrr25": 0.031777833277833276,
+        "top1": 0.005,
+        "top5": 0.07,
+        "top25": 0.14,
+        "conditional_mrr25": 0.15888916638916636
+      }
+    },
+    "known": {
+      "baseline": {
+        "molecules": 118,
+        "candidate_recall": 1.0,
+        "mrr25": 0.5692271711339507,
+        "top1": 0.5254237288135594,
+        "top5": 0.6016949152542372,
+        "top25": 0.711864406779661,
+        "conditional_mrr25": 0.5692271711339507
+      },
+      "high_relative_fragment": {
+        "molecules": 118,
+        "candidate_recall": 1.0,
+        "mrr25": 0.5694292363895397,
+        "top1": 0.5254237288135594,
+        "top5": 0.6016949152542372,
+        "top25": 0.711864406779661,
+        "conditional_mrr25": 0.5694292363895397
+      }
+    },
+    "diagnostic_only": true,
+    "diagnostics": {
+      "counts": {
+        "unknown": {
+          "eligible_high_groups": 95,
+          "informative_groups": 92,
+          "tail_removed": 32,
+          "tail_reranked": 60,
+          "missing_evidence_fallback": 3,
+          "budget_fallback": 0
+        },
+        "known": {
+          "eligible_high_groups": 61,
+          "informative_groups": 60,
+          "tail_removed": 46,
+          "tail_reranked": 14,
+          "missing_evidence_fallback": 1,
+          "budget_fallback": 0
+        }
+      },
+      "fragment_groups": 136,
+      "incremental_spectrum_execution_status_counts": {
+        "unsupported_ion_or_resolution": 83,
+        "complete": 174,
+        "timeout": 1
+      },
+      "execution_status_scope": "Traversed engine spectra only; complete may be content cache reuse. Incremental elapsed time is not a cold deployment guarantee.",
+      "dependencies_sha256": {
+        "casmi_ml/metfrag.py": "a48cf210a6bb8125662fcb5d5e6c428d451ca4a3ed3916f9276b763ec597b5e7",
+        "casmi_ml/metfrag_monomer.py": "f346b92f052ac363f0755f12f8c2a552fd06f200f0af086421e929dd2094f290",
+        "casmi_ml/merged_fragments.py": "2896f6b4266293fd93e58f05f5c5d6917291031ebde954713808a4fc82236751",
+        "casmi_ml/chemistry.py": "3d6a1296cfabf79dd0763cc4c24dd392e2e9709c6f028fa3da32e7a976f8c66f",
+        "external/metfrag/MetFragCommandLine-2.6.11.jar": "8c55322fbc706c76df109dd886257262029695837bb1fb2211d4b88d945d8cfb",
+        "external/metfrag/java21/jdk-21.0.12.1+1-jre/bin/java": "999c141a6e620c71aa4230ccb62341a89162f37818753ff006d766bf935dcbe1"
+      },
+      "actual_first_representation_preserved": true,
+      "seconds": 80.32755997398635,
+      "parent_peak_rss_mib": 2370.41015625,
+      "independent_acceptance": false
+    }
+  },
+  "protocol_sha256": "3f8abd4de6fa8fea747e876d429174e2a7cf9f866045a8ca42d9891ebfb0d4c7",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
