@@ -439,3 +439,7 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 第154排序融合在完整指标前被保护断言拦截：原排名不足10时current[:10]包含已插入tail，错误限制了本来允许变化的tail；完整unknown有8个此类插入、known14个。第153新添加的同断言也受影响，主动停止未完成full，保留源/protocol/cache并记录实现失败，不视为新模型负结果。修复共享validate_tail：high result[:min(10,len(prior))]必须等于prior[:10]，low仍全列表不变；新增5项短列表/full前10/非法变动/low冻结/confidence边界回归。第155新full仅修正断言，所有科学规则与153/152相同，复用153完成组的structures/依赖绑定cache，1200秒预算保持；第156新融合同154规则，只修正断言。两轮保持各自完整对149、无叠加，不重写失败protocol。
 
 第157质量条件训练内指纹背景完整诊断预登记：原60K每分子一个fp/formula质量，query只observable charge-aware median中性质量；背景选质量距离最小1024个训练分子，距离相同按真实key，含完整边界tie；Laplace(1,1)逐bit边际，不使用dev真值/目录identity/采样结果选背景，不训练encoder或critic。完整原ChEMBL质量窗先严格重建147 native及global prior每query排名必须exact，再用local prior校准排序；固定同全2000/截断500/Top25/100/500，3600秒CPU，仅external diagnostic。train/dev交集0、train60000与fp2048验证，原cohort/catalog/source/对照prior SHA冻结。局部背景不按dev挑邻居数，不把外部收益当发布。4项nearest/tie/完整duplicate边界/nonfinite回归通过。只有对global control正向才完整当前149融合测试，下一轮保持first保护与门槛。
+
+第157预检在候选评分前失败：原60K中5个formula末尾含+，旧formula_mass拒绝，未删除训练样本或计算候选指标。第158新协议只修正training原子组成质量解析：移除末尾单一+/-注释，原子计数不变；60000训练fp/质量全部finite预检通过。边界质量邻居含完整等距run并用nextafter覆盖浮点端点，新增全distance/key排序nearest对照和charged formula回归；6项通过。所有157科学选择不变，输出source/protocol单独冻结；保留157失败。
+
+循环进展UTC03:25：第156原100池的critic/corrected排序RRF完整unknown0.040484，比149增0.000157/+0.388%，known0.604623略升；绝对及相对门槛未过，拒绝且同步GitHub。第155固定高尾fragment完整仍运行；第158质量条件train背景已通过几百query的原native与global prior完整排序exact matched检查，等待完整external诊断。149平台已验证但quota等待、无competition pending，公共最佳仍0.176。

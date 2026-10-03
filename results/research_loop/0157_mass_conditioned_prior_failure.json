@@ -1,0 +1,9 @@
+{
+  "round": "0157_mass_conditioned_prior",
+  "status": "failed",
+  "metrics_valid": false,
+  "failure": "Existing formula_mass rejects trailing charge markers in5 of60000 original training formula strings",
+  "candidate_scoring_started": false,
+  "action": "Parse an optional terminal + or - as charge annotation, retain exact atomic composition mass; fresh protocol and full training preflight",
+  "independent_acceptance": false
+}

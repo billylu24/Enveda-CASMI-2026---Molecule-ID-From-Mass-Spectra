@@ -25,9 +25,19 @@ from casmi_ml.secondary_inference import load_deployment_checkpoint
 from casmi_ml.training import configure
 
 
+def training_atomic_mass(formula):
+    # Background matching uses neutral atomic composition mass, consistent with
+    # the existing candidate catalog; a charge annotation is not an atom.
+    if isinstance(formula, str) and formula.endswith(("+", "-")):
+        formula = formula[:-1]
+    return formula_mass(formula)
+
+
 def local_prior(center, masses, keys, fps, neighbors=1024):
     if (
-        not np.isfinite(center)
+        type(neighbors) is not int
+        or neighbors < 1
+        or not np.isfinite(center)
         or len(masses) < neighbors
         or len(keys) != len(masses)
         or len(fps) != len(masses)
@@ -41,8 +51,8 @@ def local_prior(center, masses, keys, fps, neighbors=1024):
     radius = np.partition(distances, neighbors - 1)[neighbors - 1]
     # Include every boundary tie before resolving by key; a duplicate mass run
     # can extend beyond the initial index neighborhood.
-    lo, hi = np.searchsorted(masses, [center - radius, center + radius], side="left")
-    hi = np.searchsorted(masses, center + radius, side="right")
+    lo = np.searchsorted(masses, np.nextafter(center - radius, -np.inf), side="left")
+    hi = np.searchsorted(masses, np.nextafter(center + radius, np.inf), side="right")
     order = np.lexsort((keys[lo:hi], np.abs(masses[lo:hi] - center)))[:neighbors] + lo
     return (fps[order].sum(0, dtype=np.float64) + 1) / (neighbors + 2)
 
@@ -69,10 +79,11 @@ def run(output, all_queries=True):
     freeze(
         output / "protocol.json",
         {
-            "version": 1,
+            "version": 2,
             "source_sha256": digest(Path(__file__)),
             "prior_source_sha256": digest("casmi_ml/chembl_fingerprint_prior.py"),
             "background_neighbors": 1024,
+            "training_mass": "Atomic composition formula mass; optional terminal charge + or - removed as annotation, atomic counts unchanged",
             "matched_control_protocol_sha256": digest(control / "protocol.json"),
             "matched_control_native_sha256": digest(control / "native_proposals.json"),
             "matched_control_corrected_sha256": digest(
@@ -120,7 +131,9 @@ def run(output, all_queries=True):
         raise ValueError("Training/development overlap")
     if len(training) != 60000:
         raise ValueError("Exactly original60K training molecules required")
-    training_masses = training.molecular_formula.map(formula_mass).to_numpy(dtype=float)
+    training_masses = training.molecular_formula.map(training_atomic_mass).to_numpy(
+        dtype=float
+    )
     training_keys = training.inchikey14.to_numpy()
     training_fps = np.stack(
         [np.unpackbits(np.frombuffer(v, dtype=np.uint8)) for v in training.fingerprint]

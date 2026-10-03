@@ -1,0 +1,52 @@
+{
+  "round": "research_checkpoint_20261003_0325",
+  "status": "recorded",
+  "diagnostic_only": true,
+  "development_best": "0149_chembl_routed_combination",
+  "public_best": {
+    "score": 0.176,
+    "submission_id": 56535378
+  },
+  "platform149": {
+    "valid": true,
+    "identity": "da2febf20eea3f850c679d7219002edc720c722e8dbd6da07356f7fe089e3eb7",
+    "molecules": 400,
+    "local_full_top25_matches": 400,
+    "seconds": 1006.9097734329998,
+    "parent_peak_rss_mib": 3210.83984375,
+    "remote_release": {
+      "kernel": "giaok246/casmi26-research-0149-chembl-route-39205da2",
+      "version": 1
+    },
+    "independent_acceptance": false,
+    "inference_binding_fields": [
+      "checkpoint_sha256",
+      "baseline_sha256",
+      "critic_checkpoint_sha256",
+      "prefix",
+      "slots",
+      "open_protected",
+      "frequency_weight",
+      "token_length_exponent",
+      "critic_weight",
+      "adaptive_prefix",
+      "expanded_prefix",
+      "first_gate",
+      "sampling",
+      "formula_oracle_used"
+    ],
+    "scope": "Visible full rankings and resources; original development and replay gates retained; no new accuracy evidence"
+  },
+  "round151": "rejected: shortlist500 unknownMRR0.040209",
+  "round152": "pilot positive: unknown0.031393->0.031778; known protection passed, not eligible",
+  "round153": "implementation verification failure, invalid metrics",
+  "round154": "implementation verification failure, invalid metrics",
+  "round155": "running: full high fragment, corrected short prefix assertion",
+  "round156": "rejected: RRF score fusion unknownMRR0.040484, gain below gate",
+  "round157": "preflight failure:5 charged formulas, no candidate metrics",
+  "round158": "running: corrected training mass local background diagnostic",
+  "submit_after": "2026-10-04T00:00:00Z",
+  "source158_launch_sha256": "2f148ce35a9bb03e383420859897e6c552f2afc998f06ab58d6cdfbe70791ba1",
+  "independent_acceptance": false,
+  "evaluation": "Repeated development; failures preserved; current active work continues"
+}

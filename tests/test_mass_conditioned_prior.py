@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-from casmi_ml.chembl_mass_prior import local_prior
+from casmi_ml.chembl_mass_prior import local_prior, training_atomic_mass
 
 
 class MassConditionedPriorTests(unittest.TestCase):
@@ -29,6 +29,27 @@ class MassConditionedPriorTests(unittest.TestCase):
         keys = np.array(["z", "y", "x", "w", "v", "u", "b", "a"])
         fps = np.array([[0], [0], [0], [0], [0], [0], [1], [1]])
         np.testing.assert_allclose(local_prior(30.0, masses, keys, fps, 2), [0.75])
+
+    def test_nearest_selection_matches_full_distance_sort_at_edges_and_ties(self):
+        rng = np.random.default_rng(23)
+        masses = np.sort(np.round(rng.uniform(50, 1000, 200), 1))
+        keys = np.array([f"key{v:03}" for v in rng.permutation(200)])
+        fps = rng.integers(0, 2, (200, 8))
+        for center in [0.0, 50.0, 555.2, 1000.0, 2000.0]:
+            order = np.lexsort((keys, np.abs(masses - center)))[:17]
+            expected = (fps[order].sum(0) + 1) / 19
+            np.testing.assert_allclose(
+                local_prior(center, masses, keys, fps, 17), expected
+            )
+
+    def test_charged_training_formula_preserves_atomic_composition(self):
+        self.assertEqual(
+            training_atomic_mass("C27H31O16+"), training_atomic_mass("C27H31O16")
+        )
+        self.assertEqual(
+            training_atomic_mass("C27H31O16-"), training_atomic_mass("C27H31O16")
+        )
+        self.assertFalse(np.isfinite(training_atomic_mass("invalid+")))
 
     def test_nonfinite_observable_mass_rejected(self):
         with self.assertRaises(ValueError):
