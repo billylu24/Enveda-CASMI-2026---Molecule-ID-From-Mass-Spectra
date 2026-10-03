@@ -443,3 +443,5 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 第157预检在候选评分前失败：原60K中5个formula末尾含+，旧formula_mass拒绝，未删除训练样本或计算候选指标。第158新协议只修正training原子组成质量解析：移除末尾单一+/-注释，原子计数不变；60000训练fp/质量全部finite预检通过。边界质量邻居含完整等距run并用nextafter覆盖浮点端点，新增全distance/key排序nearest对照和charged formula回归；6项通过。所有157科学选择不变，输出source/protocol单独冻结；保留157失败。
 
 循环进展UTC03:25：第156原100池的critic/corrected排序RRF完整unknown0.040484，比149增0.000157/+0.388%，known0.604623略升；绝对及相对门槛未过，拒绝且同步GitHub。第155固定高尾fragment完整仍运行；第158质量条件train背景已通过几百query的原native与global prior完整排序exact matched检查，等待完整external诊断。149平台已验证但quota等待、无competition pending，公共最佳仍0.176。
+
+第158质量条件prior全2000诊断完成：原native与global control每query排名exact重建通过；corrected-only external MRR0.042452→0.042207，Top25真值165→163/Top100208→207/Top500241→240，固定1024邻居无改善；融合也0.036472→0.036201下降。不扩大至完整149排序，不选择其他variant或邻居数。1779260候选/1984query、314.6秒/1976.7MiB，无训练和采样。同步GitHub，现有global prior继续保留。LOTUS公开2026-04-13数据checksum核对/覆盖审计继续，不能把目录key交集当可用结构或系统收益。
