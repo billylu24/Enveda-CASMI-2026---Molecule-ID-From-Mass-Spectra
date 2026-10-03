@@ -36,7 +36,9 @@ def fragment_structures(key, first, candidates, external, original, generated):
     return structures
 
 
-def run(output, incumbent, limit=200, prefix=10):
+def run(output, incumbent, limit=200, prefix=10, backend="cli"):
+    if backend not in ("cli", "persistent"):
+        raise ValueError("Unknown Java execution backend")
     if prefix not in (3, 10):
         raise ValueError("Predeclared prefix3 or10 required")
     output, incumbent = Path(output), Path(incumbent)
@@ -53,6 +55,16 @@ def run(output, incumbent, limit=200, prefix=10):
         "external/metfrag/java21/jdk-21.0.12.1+1-jre/bin/java",
     ]
     dependencies = {path: digest(path) for path in dependency_paths}
+    execution_binding = {}
+    if backend == "persistent":
+        execution_binding = {
+            path: digest(path)
+            for path in (
+                "casmi_ml/metfrag_persistent.py",
+                "casmi_ml/java/MetFragWorker.java",
+                "artifacts/research_loop/metfrag_worker_classes/MetFragWorker.class",
+            )
+        }
     selected_path = incumbent / "selected_rankings.json"
     base_path = incumbent / "low_rankings.json"
     for name, path, sha in [
@@ -84,6 +96,8 @@ def run(output, incumbent, limit=200, prefix=10):
             "pilot_selector": "hash256 fragment-representative-20261003:",
             "rule": "Freeze0149 low and all high noninsertions; only original high critic+.05 passed groups are rescored with merged exact monomer+actual first. Informative complete scores: relative first supported+critic+.05 uses fragment.5 top3 after the frozen prefix; otherwise remove existing tail additions. Missing/noninformative/budget keeps0149 tail unchanged.",
             "prefix": prefix,
+            "execution_backend": backend,
+            "execution_backend_binding": execution_binding,
             "slots": 3,
             "fragment_weight": 0.5,
             "fragment_seconds": 1200,
@@ -128,10 +142,18 @@ def run(output, incumbent, limit=200, prefix=10):
         r["key"]: {c["key"]: c["smiles"] for c in r["candidates"]}
         for r in json.loads(GENERATED.read_text())
     }
-    fragmenter = MonomerMetFrag(
+    engine_class = MonomerMetFrag
+    engine_options = {}
+    if backend == "persistent":
+        from casmi_ml.metfrag_persistent import PersistentMonomerMetFrag
+
+        engine_class = PersistentMonomerMetFrag
+        engine_options = {"classes": "artifacts/research_loop/metfrag_worker_classes"}
+    fragmenter = engine_class(
         "external/metfrag/MetFragCommandLine-2.6.11.jar",
         ROOT / "chembl_metfrag_cache",
         java="external/metfrag/java21/jdk-21.0.12.1+1-jre/bin/java",
+        **engine_options,
     )
     cache_path = output / "fragment_scores.json"
     cache = json.loads(cache_path.read_text()) if cache_path.exists() else {}
@@ -264,6 +286,8 @@ def run(output, incumbent, limit=200, prefix=10):
                 else None,
             }
             per.reset_index().to_csv(output / f"{mode}_{name}.csv", index=False)
+    if backend == "persistent":
+        fragmenter.close()
     report.update(
         diagnostic_only=limit != 2000,
         diagnostics={
@@ -275,6 +299,8 @@ def run(output, incumbent, limit=200, prefix=10):
             "execution_status_scope": "Traversed engine spectra only; complete may be content cache reuse. Incremental elapsed time is not a cold deployment guarantee.",
             "dependencies_sha256": dependencies,
             "actual_first_representation_preserved": True,
+            "execution_backend": backend,
+            "execution_backend_binding": execution_binding,
             "seconds": time.monotonic() - started,
             "parent_peak_rss_mib": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
             / 1024,
@@ -292,8 +318,11 @@ def main():
     p.add_argument("--incumbent", type=Path, required=True)
     p.add_argument("--limit", type=int, default=200)
     p.add_argument("--prefix", type=int, choices=(3, 10), default=10)
+    p.add_argument("--backend", choices=("cli", "persistent"), default="cli")
     a = p.parse_args()
-    print(json.dumps(run(a.output, a.incumbent, a.limit, a.prefix), indent=2))
+    print(
+        json.dumps(run(a.output, a.incumbent, a.limit, a.prefix, a.backend), indent=2)
+    )
 
 
 if __name__ == "__main__":
