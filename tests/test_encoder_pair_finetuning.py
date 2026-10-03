@@ -7,6 +7,7 @@ import numpy as np
 from casmi_ml.chembl_critic_slots import score_cache_key, validate_proposal_membership
 from casmi_ml.chembl_fragment_pilot import score_cache_key as fragment_cache_key
 from casmi_ml.encoder_pair_finetuning import validate_hard_table
+from casmi_ml.chembl_prior_proposals import ordered_proposals
 
 
 class EncoderPairBindingTests(unittest.TestCase):
@@ -29,6 +30,17 @@ class EncoderPairBindingTests(unittest.TestCase):
         self.assertEqual(
             score_cache_key(*args, original), score_cache_key(*args, original.copy())
         )
+
+    def test_preselection_ties_use_the_scored_candidate_keys(self):
+        self.assertEqual(
+            ordered_proposals(["z", "a", "b"], np.zeros(3)), ["a", "b", "z"]
+        )
+        self.assertEqual(
+            ordered_proposals(["z", "a", "b"], np.array([0.0, 1.0, 0.0])),
+            ["a", "b", "z"],
+        )
+        with self.assertRaises(ValueError):
+            ordered_proposals(["a"], np.array([np.nan]))
 
     def test_preselection_cannot_change_mass_pool_membership(self):
         original = {"q": ["a", "b"]}

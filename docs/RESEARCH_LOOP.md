@@ -374,3 +374,8 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 第132/133完整融合对照完成：BCE unknown0.039782（+1.456%），hard-pair0.039626（+1.059%）；known两臂原0.604984/Top1不变，两轮0整组预算回退、新增真值7 vs6，156.3/137.1秒为增量内容cache运行。完整unknown hard比BCE低0.000156；同原初始化/随机协议最终只contrastive与weight两字段不同，candidate单独Top3改善没有转为完整收益，停止扩大该encoder设置。完整排序audit两轮均重建1e-12通过，模型绑定与SOURCE snapshot SHA保存；187回归通过。GAN不因训练CE下降而启动，仍缺有效系统增益证据。
 
 Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合格第24轮56786923已接受PENDING，保持一个待评分。第12/13为0.175，不能用本地开发收益推断榜单提升。
+
+
+第134同hash200有实测marker的dimer+relative-first：unknown prefix3仍0.030939与单体控制120相同，known0.569429→0.568836（降0.000593），31/9查询插入、2新增真值、0回退、180.6秒；扩适用范围128complete但没有更多精确命中，不扩大。
+
+第135完整prior proposals原排序重建失败保存/同步：约第200query后两个候选位置48/49交换，最大分数差1.38778e-17；按原mass/key窗口顺序重算可精确复现，原因是指纹矩阵候选行顺序改变引起BLAS舍入而非数据/标签改变。不能直接关闭native一致性检查。第136新轮固定同实验，先按原mass/key稳定顺序计算fp score，再对比原全量native排名必须exact，再做prior校准；保存失败135 protocol/源和private定位诊断，不修改原轮。自定义proposal只允许完整原mass pool排列、完整cohort SHA绑定，新增回归；不引入候选/按truth选择。

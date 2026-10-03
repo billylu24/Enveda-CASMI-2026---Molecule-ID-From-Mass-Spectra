@@ -1,0 +1,5 @@
+{
+  "round": "0136_chembl_full_prior_proposals",
+  "status": "failed",
+  "error": "Child exited -15: ['.venv/bin/python', '-u', '-m', 'casmi_ml.chembl_prior_proposals', '--output', 'artifacts/research_loop/rounds/0136_chembl_full_prior_proposals']; see artifacts/research_loop/rounds/0136_chembl_full_prior_proposals/execution.log"
+}

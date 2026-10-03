@@ -23,6 +23,15 @@ from casmi_ml.secondary_inference import load_deployment_checkpoint
 from casmi_ml.training import configure
 
 
+def ordered_proposals(keys, values):
+    if len(keys) != len(values) or not np.isfinite(values).all():
+        raise ValueError("Proposal identities and finite scores must align")
+    return [
+        key
+        for key, _ in sorted(zip(keys, values), key=lambda pair: (-pair[1], pair[0]))
+    ]
+
+
 @torch.inference_mode()
 def run(output):
     output = Path(output)
@@ -46,6 +55,7 @@ def run(output):
             "prior": "Equal original60K molecule weight, Laplace(1,1) fingerprint marginal",
             "fusion": "Fixed0.5 reciprocal rank fusion on complete native and corrected rankings",
             "query_selection": "Original native proposals confidence<.5, no query keys selected using outcomes",
+            "native_reconstruction": "Compute fingerprint matrix in original stable mass/key window order to preserve BLAS numerical arithmetic; require exact stored native rank",
             "new_training": False,
             "new_sampling": False,
             "truth_used_only_in_metrics": True,
@@ -66,12 +76,13 @@ def run(output):
     np.save(output / "prior.npy", prior)
     groups = frame.groupby("inchikey14", sort=True).indices
     wanted = {k for key in groups for k in native.get(key, [])}
-    catalog = pd.read_parquet(DERIVED, columns=["inchikey14", "normalized_smiles"])
-    lookup = (
-        catalog[catalog.inchikey14.isin(wanted)]
-        .set_index("inchikey14")
-        .normalized_smiles.to_dict()
+    catalog = pd.read_parquet(
+        DERIVED, columns=["inchikey14", "normalized_smiles", "mass"]
     )
+    wanted_catalog = catalog[catalog.inchikey14.isin(wanted)].set_index("inchikey14")
+    lookup = wanted_catalog.normalized_smiles.to_dict()
+    mass_lookup = wanted_catalog.mass.to_dict()
+    del wanted_catalog
     del catalog
     model, saved = load_deployment_checkpoint(ENCODER, "scale")
     model.eval()
@@ -105,11 +116,12 @@ def run(output):
                         if c in frame
                     ]
                 )
-                fps = np.stack([fingerprint(lookup[k]) for k in base]).astype(
+                scoring_order = sorted(base, key=lambda k: (mass_lookup[k], k))
+                fps = np.stack([fingerprint(lookup[k]) for k in scoring_order]).astype(
                     np.float32
                 )
                 probability = group_probability(model, query, saved["preprocessing"])
-                actual_native = neural_rank(probability, base, fps)
+                actual_native = neural_rank(probability, scoring_order, fps)
                 if actual_native != base:
                     raise ValueError(
                         "Native full mass-window ranking reconstruction differs"
@@ -117,12 +129,7 @@ def run(output):
                 values = corrected_scores(probability, fps, prior)
                 if not np.isfinite(values).all():
                     raise ValueError("Nonfinite corrected proposals")
-                corrected = [
-                    base[i]
-                    for i in sorted(
-                        range(len(base)), key=lambda i: (-values[i], base[i])
-                    )
-                ]
+                corrected = ordered_proposals(scoring_order, values)
                 score_count += len(base)
                 scored_queries += 1
                 if scored_queries % 25 == 0:
