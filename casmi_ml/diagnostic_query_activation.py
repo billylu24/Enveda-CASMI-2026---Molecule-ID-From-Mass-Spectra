@@ -28,6 +28,10 @@ def activate(c, directory, result):
     ]:
         if digest(name) != protocol[field]:
             raise ValueError("Verified query inference source changed")
+    if protocol.get("strength_transform_sha256") and protocol[
+        "strength_transform_sha256"
+    ] != digest("casmi_ml/diagnostic_strength_transform.py"):
+        raise ValueError("Query strength transform source changed")
     best = c.read()["development_best"]
     if best["directory"] != str(directory) or best["variant"] != winner["variant"]:
         raise ValueError("Query activation must match the current complete winner")
@@ -48,6 +52,10 @@ def activate(c, directory, result):
         ]
     ):
         raise ValueError("Exact query zero-residual full-ranking control required")
+    if protocol.get("strength_transform_sha256") != control_protocol.get(
+        "strength_transform_sha256"
+    ):
+        raise ValueError("Query strength transform zero control source differs")
     proof = {
         "scientific_round": best["round"],
         "evidence_round": directory.name,

@@ -1,0 +1,29 @@
+{
+  "round": "0276_object_candidate_full_control",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "unknown": {
+      "molecules": 2000,
+      "full_rank_matches": 2000,
+      "seconds": 280.10224498901516,
+      "parent_peak_rss_mib": 2981.3359375
+    },
+    "known": {
+      "molecules": 1340,
+      "full_rank_matches": 1340,
+      "seconds": 164.5367404879944,
+      "parent_peak_rss_mib": 3177.1171875
+    },
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "development_budget_fallbacks": 0,
+    "incremental_new_failure_contexts": 0,
+    "verified": true
+  },
+  "protocol_sha256": "37dea50f37caecc2d36f0842de1c5555020d2de96c20363a66f7fd8c975495a9",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

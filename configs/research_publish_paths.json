@@ -416,7 +416,12 @@
     "casmi_ml/object_candidate_activation.py",
     "casmi_ml/object_candidate_followup.py",
     "tests/test_object_candidate_runtime.py",
-    "tests/test_object_candidate_activation.py"
+    "tests/test_object_candidate_activation.py",
+    "casmi_ml/training_diagnostic_reliability.py",
+    "casmi_ml/diagnostic_strength_transform.py",
+    "tests/test_diagnostic_strength_transform.py",
+    "casmi_ml/diagnostic_query_strong_peak_followup.py",
+    "tests/test_strong_peak_query_compatibility.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

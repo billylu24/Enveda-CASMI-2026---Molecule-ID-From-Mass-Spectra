@@ -13,12 +13,16 @@
     "Peak-loss identity masked contextual arm also retained same complete system unknown and known metrics as all-channel and all-identity-masked controls; no observed final-system chemical identity effect in these fixed-BCE heads.",
     "Candidate-facing query residual single, strict-mass and measured-pair arms did not pass incumbent gates. Multi-spectrum chemical-minus-mask unknown MRR+.0003794 but both below incumbent.",
     "Training-only4096-key audit first-linear chemistry RMS1.4%-1.6% of latent context; not causal proof. Chemical-only correction full unknown MRR.044125166 and masked.043908856 both below frozen2% relative gain versus incumbent; original tensors remain exact.",
-    "200 actual windows with object candidate string storage retain every row value/order and float32 fingerprint. Window segment2.36/2.33s->.163/.183s in sequential microbenchmark; complete3340+three complete proposal controls pending, not enabled."
+    "200 actual windows with object candidate string storage retain every row value/order and float32 fingerprint. Window segment2.36/2.33s->.163/.183s in sequential microbenchmark; complete3340+three complete proposal controls pending, not enabled.",
+    "Balanced modality inputs274/275 chemical MRR.044060091 vs mask.043463023, identity difference+.000597067; chemical gain vs unbalanced+.000231151, but incumbent gain+.000081790 fails frozen absolute and relative gates.",
+    "Current three chemical query variants improve/regress only7/6-10 of2000 ranks and paired bootstrap95 intervals crosszero; repetitive development evidence cannot establish broad generalization.",
+    "Object candidate storage controls276 all3340 fullranks exact,0budget/newfailure, plus277 three complete2000 proposal dictionaries exact; local-only runtime enabled after275 science arms completed.",
+    "Training-only279 eight broad SMARTS rule association audit shows weak peak-loss lift often nearzero or negative while stronger>.3 evidence lifts increase; used to preregister optional fixed strong-peak identity transform, rawstrength gate retained."
   ],
   "current_sequence": [
-    "Complete272/273 fixed paired modality-balanced input training and274/275 full systems; same labels/steps, frozen original models, no development scalar selection.",
-    "Finish276 object candidate full ranks and277 complete proposal dictionaries; enable only after science arms complete and unchanged-incumbent proof confirmed.",
-    "Retain frozen threshold and current verified best if gates fail; no Kaggle or GitHub remote actions."
+    "New strong-peak source-bound zero280 full3340 exact before architecture training",
+    "281/282 matched raw-context measured-pair training with optional peak-loss-only relu(x-.3)/.7 identity input; original max-strength gate, ion/precursor-loss inputs unchanged",
+    "283/284 complete paired full-system controls, full comparison to current best+0206+181; failed gate retains current model"
   ],
   "gan": {
     "status": "not_expanded",

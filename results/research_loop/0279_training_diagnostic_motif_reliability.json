@@ -1,0 +1,1029 @@
+{
+  "round": "0279_training_diagnostic_motif_reliability",
+  "direction": "training_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "training_rows": 120000,
+    "train_development_overlap": 0,
+    "associations": {
+      "water:ion": {
+        "baseline_training_positive_motif_fraction": 0.3155833333333333,
+        "nonzero_evidence_molecules": 0,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          }
+        ]
+      },
+      "water:precursor_loss": {
+        "baseline_training_positive_motif_fraction": 0.3155833333333333,
+        "nonzero_evidence_molecules": 14693,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 8313,
+            "positive_motif_fraction": 0.24960904607241668,
+            "negative_motif_fraction": 0.25296122538995147,
+            "positive_minus_negative_fraction": -0.003352179317534787,
+            "training_molecules_with_discriminative_pinned_negative": 7802
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 3869,
+            "positive_motif_fraction": 0.4525717239596795,
+            "negative_motif_fraction": 0.31479279744981475,
+            "positive_minus_negative_fraction": 0.13777892650986473,
+            "training_molecules_with_discriminative_pinned_negative": 3736
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 1498,
+            "positive_motif_fraction": 0.6401869158878505,
+            "negative_motif_fraction": 0.36417445482866045,
+            "positive_minus_negative_fraction": 0.27601246105919003,
+            "training_molecules_with_discriminative_pinned_negative": 1450
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 1013,
+            "positive_motif_fraction": 0.788746298124383,
+            "negative_motif_fraction": 0.4018427114182297,
+            "positive_minus_negative_fraction": 0.3869035867061533,
+            "training_molecules_with_discriminative_pinned_negative": 1000
+          }
+        ]
+      },
+      "water:peak_loss": {
+        "baseline_training_positive_motif_fraction": 0.3155833333333333,
+        "nonzero_evidence_molecules": 38438,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 12593,
+            "positive_motif_fraction": 0.17565314063368537,
+            "negative_motif_fraction": 0.249524868313084,
+            "positive_minus_negative_fraction": -0.07387172767939862,
+            "training_molecules_with_discriminative_pinned_negative": 11832
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 16342,
+            "positive_motif_fraction": 0.2692448904662832,
+            "negative_motif_fraction": 0.27800350834251214,
+            "positive_minus_negative_fraction": -0.008758617876228947,
+            "training_molecules_with_discriminative_pinned_negative": 15435
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 7270,
+            "positive_motif_fraction": 0.4298486932599725,
+            "negative_motif_fraction": 0.3250343878954608,
+            "positive_minus_negative_fraction": 0.1048143053645117,
+            "training_molecules_with_discriminative_pinned_negative": 6956
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 2233,
+            "positive_motif_fraction": 0.5669502910882221,
+            "negative_motif_fraction": 0.3760561277802657,
+            "positive_minus_negative_fraction": 0.19089416330795644,
+            "training_molecules_with_discriminative_pinned_negative": 2162
+          }
+        ]
+      },
+      "ammonia:ion": {
+        "baseline_training_positive_motif_fraction": 0.6007333333333333,
+        "nonzero_evidence_molecules": 0,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          }
+        ]
+      },
+      "ammonia:precursor_loss": {
+        "baseline_training_positive_motif_fraction": 0.6007333333333333,
+        "nonzero_evidence_molecules": 6324,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 4437,
+            "positive_motif_fraction": 0.7067838629704756,
+            "negative_motif_fraction": 0.6310119450078883,
+            "positive_minus_negative_fraction": 0.07577191796258731,
+            "training_molecules_with_discriminative_pinned_negative": 4353
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 1010,
+            "positive_motif_fraction": 0.9118811881188119,
+            "negative_motif_fraction": 0.622970297029703,
+            "positive_minus_negative_fraction": 0.28891089108910895,
+            "training_molecules_with_discriminative_pinned_negative": 991
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 446,
+            "positive_motif_fraction": 0.9618834080717489,
+            "negative_motif_fraction": 0.6251121076233184,
+            "positive_minus_negative_fraction": 0.3367713004484305,
+            "training_molecules_with_discriminative_pinned_negative": 437
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 431,
+            "positive_motif_fraction": 0.988399071925754,
+            "negative_motif_fraction": 0.6250580046403712,
+            "positive_minus_negative_fraction": 0.36334106728538285,
+            "training_molecules_with_discriminative_pinned_negative": 424
+          }
+        ]
+      },
+      "ammonia:peak_loss": {
+        "baseline_training_positive_motif_fraction": 0.6007333333333333,
+        "nonzero_evidence_molecules": 31577,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 9512,
+            "positive_motif_fraction": 0.5168208578637511,
+            "negative_motif_fraction": 0.6000210260723297,
+            "positive_minus_negative_fraction": -0.08320016820857856,
+            "training_molecules_with_discriminative_pinned_negative": 9411
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 13998,
+            "positive_motif_fraction": 0.6172310330047149,
+            "negative_motif_fraction": 0.6143877696813831,
+            "positive_minus_negative_fraction": 0.002843263323331846,
+            "training_molecules_with_discriminative_pinned_negative": 13748
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 6351,
+            "positive_motif_fraction": 0.7027239804755157,
+            "negative_motif_fraction": 0.631837505904582,
+            "positive_minus_negative_fraction": 0.07088647457093367,
+            "training_molecules_with_discriminative_pinned_negative": 6215
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 1716,
+            "positive_motif_fraction": 0.8409090909090909,
+            "negative_motif_fraction": 0.6590909090909091,
+            "positive_minus_negative_fraction": 0.18181818181818188,
+            "training_molecules_with_discriminative_pinned_negative": 1665
+          }
+        ]
+      },
+      "carbon_monoxide:ion": {
+        "baseline_training_positive_motif_fraction": 0.8331166666666666,
+        "nonzero_evidence_molecules": 0,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          }
+        ]
+      },
+      "carbon_monoxide:precursor_loss": {
+        "baseline_training_positive_motif_fraction": 0.8331166666666666,
+        "nonzero_evidence_molecules": 4121,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 2972,
+            "positive_motif_fraction": 0.8563257065948856,
+            "negative_motif_fraction": 0.8426873037236429,
+            "positive_minus_negative_fraction": 0.013638402871242739,
+            "training_molecules_with_discriminative_pinned_negative": 2328
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 722,
+            "positive_motif_fraction": 0.9127423822714681,
+            "negative_motif_fraction": 0.832409972299169,
+            "positive_minus_negative_fraction": 0.08033240997229907,
+            "training_molecules_with_discriminative_pinned_negative": 603
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 238,
+            "positive_motif_fraction": 0.9327731092436975,
+            "negative_motif_fraction": 0.8196078431372549,
+            "positive_minus_negative_fraction": 0.11316526610644262,
+            "training_molecules_with_discriminative_pinned_negative": 202
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 189,
+            "positive_motif_fraction": 0.9629629629629629,
+            "negative_motif_fraction": 0.8165784832451499,
+            "positive_minus_negative_fraction": 0.146384479717813,
+            "training_molecules_with_discriminative_pinned_negative": 168
+          }
+        ]
+      },
+      "carbon_monoxide:peak_loss": {
+        "baseline_training_positive_motif_fraction": 0.8331166666666666,
+        "nonzero_evidence_molecules": 38943,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 8254,
+            "positive_motif_fraction": 0.6647685970438575,
+            "negative_motif_fraction": 0.8035619093772717,
+            "positive_minus_negative_fraction": -0.1387933123334142,
+            "training_molecules_with_discriminative_pinned_negative": 6880
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 14197,
+            "positive_motif_fraction": 0.8115799112488554,
+            "negative_motif_fraction": 0.8354206287713367,
+            "positive_minus_negative_fraction": -0.02384071752248129,
+            "training_molecules_with_discriminative_pinned_negative": 11226
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 10857,
+            "positive_motif_fraction": 0.876577323385834,
+            "negative_motif_fraction": 0.8547787909490037,
+            "positive_minus_negative_fraction": 0.021798532436830387,
+            "training_molecules_with_discriminative_pinned_negative": 8315
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 5635,
+            "positive_motif_fraction": 0.9245785270629991,
+            "negative_motif_fraction": 0.8676131322094055,
+            "positive_minus_negative_fraction": 0.05696539485359364,
+            "training_molecules_with_discriminative_pinned_negative": 4144
+          }
+        ]
+      },
+      "carbon_dioxide:ion": {
+        "baseline_training_positive_motif_fraction": 0.23438333333333333,
+        "nonzero_evidence_molecules": 0,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          }
+        ]
+      },
+      "carbon_dioxide:precursor_loss": {
+        "baseline_training_positive_motif_fraction": 0.23438333333333333,
+        "nonzero_evidence_molecules": 3446,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 1642,
+            "positive_motif_fraction": 0.4658952496954933,
+            "negative_motif_fraction": 0.24636622005684125,
+            "positive_minus_negative_fraction": 0.21952902963865203,
+            "training_molecules_with_discriminative_pinned_negative": 1466
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 621,
+            "positive_motif_fraction": 0.8405797101449275,
+            "negative_motif_fraction": 0.3545893719806763,
+            "positive_minus_negative_fraction": 0.4859903381642512,
+            "training_molecules_with_discriminative_pinned_negative": 610
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 345,
+            "positive_motif_fraction": 0.9333333333333333,
+            "negative_motif_fraction": 0.4092753623188406,
+            "positive_minus_negative_fraction": 0.5240579710144928,
+            "training_molecules_with_discriminative_pinned_negative": 342
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 838,
+            "positive_motif_fraction": 0.9809069212410502,
+            "negative_motif_fraction": 0.4514717581543357,
+            "positive_minus_negative_fraction": 0.5294351630867145,
+            "training_molecules_with_discriminative_pinned_negative": 837
+          }
+        ]
+      },
+      "carbon_dioxide:peak_loss": {
+        "baseline_training_positive_motif_fraction": 0.23438333333333333,
+        "nonzero_evidence_molecules": 34461,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 21096,
+            "positive_motif_fraction": 0.11016306408797877,
+            "negative_motif_fraction": 0.15981860700290734,
+            "positive_minus_negative_fraction": -0.049655542914928574,
+            "training_molecules_with_discriminative_pinned_negative": 15954
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 9545,
+            "positive_motif_fraction": 0.2815086432687271,
+            "negative_motif_fraction": 0.2268482626156801,
+            "positive_minus_negative_fraction": 0.054660380653046986,
+            "training_molecules_with_discriminative_pinned_negative": 7982
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 2904,
+            "positive_motif_fraction": 0.5275482093663911,
+            "negative_motif_fraction": 0.3135904499540863,
+            "positive_minus_negative_fraction": 0.21395775941230483,
+            "training_molecules_with_discriminative_pinned_negative": 2639
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 916,
+            "positive_motif_fraction": 0.7489082969432315,
+            "negative_motif_fraction": 0.3466521106259097,
+            "positive_minus_negative_fraction": 0.40225618631732174,
+            "training_molecules_with_discriminative_pinned_negative": 875
+          }
+        ]
+      },
+      "hexose_residue:ion": {
+        "baseline_training_positive_motif_fraction": 0.05471666666666666,
+        "nonzero_evidence_molecules": 0,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          }
+        ]
+      },
+      "hexose_residue:precursor_loss": {
+        "baseline_training_positive_motif_fraction": 0.05471666666666666,
+        "nonzero_evidence_molecules": 3152,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 2626,
+            "positive_motif_fraction": 0.0297029702970297,
+            "negative_motif_fraction": 0.033257171871033255,
+            "positive_minus_negative_fraction": -0.003554201574003553,
+            "training_molecules_with_discriminative_pinned_negative": 854
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 341,
+            "positive_motif_fraction": 0.12609970674486803,
+            "negative_motif_fraction": 0.0541544477028348,
+            "positive_minus_negative_fraction": 0.07194525904203324,
+            "training_molecules_with_discriminative_pinned_negative": 146
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 106,
+            "positive_motif_fraction": 0.2641509433962264,
+            "negative_motif_fraction": 0.09937106918238994,
+            "positive_minus_negative_fraction": 0.16477987421383647,
+            "training_molecules_with_discriminative_pinned_negative": 61
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 79,
+            "positive_motif_fraction": 0.620253164556962,
+            "negative_motif_fraction": 0.1350210970464135,
+            "positive_minus_negative_fraction": 0.4852320675105485,
+            "training_molecules_with_discriminative_pinned_negative": 61
+          }
+        ]
+      },
+      "hexose_residue:peak_loss": {
+        "baseline_training_positive_motif_fraction": 0.05471666666666666,
+        "nonzero_evidence_molecules": 22913,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 20338,
+            "positive_motif_fraction": 0.04307208181728783,
+            "negative_motif_fraction": 0.0416592913101911,
+            "positive_minus_negative_fraction": 0.0014127905070967298,
+            "training_molecules_with_discriminative_pinned_negative": 8206
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 2200,
+            "positive_motif_fraction": 0.0659090909090909,
+            "negative_motif_fraction": 0.05842424242424243,
+            "positive_minus_negative_fraction": 0.007484848484848476,
+            "training_molecules_with_discriminative_pinned_negative": 988
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 306,
+            "positive_motif_fraction": 0.2222222222222222,
+            "negative_motif_fraction": 0.11350762527233116,
+            "positive_minus_negative_fraction": 0.10871459694989105,
+            "training_molecules_with_discriminative_pinned_negative": 175
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 69,
+            "positive_motif_fraction": 0.6231884057971014,
+            "negative_motif_fraction": 0.2251207729468599,
+            "positive_minus_negative_fraction": 0.39806763285024155,
+            "training_molecules_with_discriminative_pinned_negative": 62
+          }
+        ]
+      },
+      "deoxyhexose_residue:ion": {
+        "baseline_training_positive_motif_fraction": 0.05471666666666666,
+        "nonzero_evidence_molecules": 0,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          }
+        ]
+      },
+      "deoxyhexose_residue:precursor_loss": {
+        "baseline_training_positive_motif_fraction": 0.05471666666666666,
+        "nonzero_evidence_molecules": 2752,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 2287,
+            "positive_motif_fraction": 0.027547004809794492,
+            "negative_motif_fraction": 0.032735752805713454,
+            "positive_minus_negative_fraction": -0.005188747995918962,
+            "training_molecules_with_discriminative_pinned_negative": 770
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 312,
+            "positive_motif_fraction": 0.08012820512820513,
+            "negative_motif_fraction": 0.046794871794871795,
+            "positive_minus_negative_fraction": 0.03333333333333334,
+            "training_molecules_with_discriminative_pinned_negative": 117
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 94,
+            "positive_motif_fraction": 0.11702127659574468,
+            "negative_motif_fraction": 0.0375886524822695,
+            "positive_minus_negative_fraction": 0.07943262411347518,
+            "training_molecules_with_discriminative_pinned_negative": 35
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 59,
+            "positive_motif_fraction": 0.13559322033898305,
+            "negative_motif_fraction": 0.061016949152542375,
+            "positive_minus_negative_fraction": 0.07457627118644067,
+            "training_molecules_with_discriminative_pinned_negative": 26
+          }
+        ]
+      },
+      "deoxyhexose_residue:peak_loss": {
+        "baseline_training_positive_motif_fraction": 0.05471666666666666,
+        "nonzero_evidence_molecules": 24281,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 21247,
+            "positive_motif_fraction": 0.042970772344330964,
+            "negative_motif_fraction": 0.041888266578811124,
+            "positive_minus_negative_fraction": 0.0010825057655198395,
+            "training_molecules_with_discriminative_pinned_negative": 8553
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 2618,
+            "positive_motif_fraction": 0.05576776165011459,
+            "negative_motif_fraction": 0.05495289024700789,
+            "positive_minus_negative_fraction": 0.0008148714031067025,
+            "training_molecules_with_discriminative_pinned_negative": 1106
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 372,
+            "positive_motif_fraction": 0.11827956989247312,
+            "negative_motif_fraction": 0.07616487455197132,
+            "positive_minus_negative_fraction": 0.0421146953405018,
+            "training_molecules_with_discriminative_pinned_negative": 181
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 44,
+            "positive_motif_fraction": 0.29545454545454547,
+            "negative_motif_fraction": 0.09848484848484848,
+            "positive_minus_negative_fraction": 0.196969696969697,
+            "training_molecules_with_discriminative_pinned_negative": 25
+          }
+        ]
+      },
+      "pentose_residue:ion": {
+        "baseline_training_positive_motif_fraction": 0.043383333333333336,
+        "nonzero_evidence_molecules": 0,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          }
+        ]
+      },
+      "pentose_residue:precursor_loss": {
+        "baseline_training_positive_motif_fraction": 0.043383333333333336,
+        "nonzero_evidence_molecules": 2065,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 1668,
+            "positive_motif_fraction": 0.042565947242206234,
+            "negative_motif_fraction": 0.04244604316546763,
+            "positive_minus_negative_fraction": 0.00011990407673860559,
+            "training_molecules_with_discriminative_pinned_negative": 728
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 252,
+            "positive_motif_fraction": 0.0992063492063492,
+            "negative_motif_fraction": 0.04047619047619048,
+            "positive_minus_negative_fraction": 0.05873015873015872,
+            "training_molecules_with_discriminative_pinned_negative": 111
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 72,
+            "positive_motif_fraction": 0.06944444444444445,
+            "negative_motif_fraction": 0.05,
+            "positive_minus_negative_fraction": 0.019444444444444445,
+            "training_molecules_with_discriminative_pinned_negative": 35
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 73,
+            "positive_motif_fraction": 0.4657534246575342,
+            "negative_motif_fraction": 0.053881278538812784,
+            "positive_minus_negative_fraction": 0.4118721461187214,
+            "training_molecules_with_discriminative_pinned_negative": 51
+          }
+        ]
+      },
+      "pentose_residue:peak_loss": {
+        "baseline_training_positive_motif_fraction": 0.043383333333333336,
+        "nonzero_evidence_molecules": 25305,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 21685,
+            "positive_motif_fraction": 0.04851279686419184,
+            "negative_motif_fraction": 0.044153408654215666,
+            "positive_minus_negative_fraction": 0.004359388209976174,
+            "training_molecules_with_discriminative_pinned_negative": 9617
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 3186,
+            "positive_motif_fraction": 0.05524168236032643,
+            "negative_motif_fraction": 0.04088721489851433,
+            "positive_minus_negative_fraction": 0.014354467461812098,
+            "training_molecules_with_discriminative_pinned_negative": 1368
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 397,
+            "positive_motif_fraction": 0.08060453400503778,
+            "negative_motif_fraction": 0.04550797649034425,
+            "positive_minus_negative_fraction": 0.03509655751469353,
+            "training_molecules_with_discriminative_pinned_negative": 192
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 37,
+            "positive_motif_fraction": 0.24324324324324326,
+            "negative_motif_fraction": 0.04684684684684685,
+            "positive_minus_negative_fraction": 0.19639639639639642,
+            "training_molecules_with_discriminative_pinned_negative": 21
+          }
+        ]
+      },
+      "phosphocholine:ion": {
+        "baseline_training_positive_motif_fraction": 0.005183333333333333,
+        "nonzero_evidence_molecules": 2431,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 2148,
+            "positive_motif_fraction": 0.0,
+            "negative_motif_fraction": 0.0009621353196772191,
+            "positive_minus_negative_fraction": -0.0009621353196772191,
+            "training_molecules_with_discriminative_pinned_negative": 12
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 185,
+            "positive_motif_fraction": 0.005405405405405406,
+            "negative_motif_fraction": 0.010810810810810811,
+            "positive_minus_negative_fraction": -0.005405405405405406,
+            "training_molecules_with_discriminative_pinned_negative": 12
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 33,
+            "positive_motif_fraction": 0.030303030303030304,
+            "negative_motif_fraction": 0.026262626262626262,
+            "positive_minus_negative_fraction": 0.004040404040404042,
+            "training_molecules_with_discriminative_pinned_negative": 4
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 65,
+            "positive_motif_fraction": 0.8615384615384616,
+            "negative_motif_fraction": 0.13948717948717948,
+            "positive_minus_negative_fraction": 0.7220512820512821,
+            "training_molecules_with_discriminative_pinned_negative": 60
+          }
+        ]
+      },
+      "phosphocholine:precursor_loss": {
+        "baseline_training_positive_motif_fraction": 0.005183333333333333,
+        "nonzero_evidence_molecules": 0,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          }
+        ]
+      },
+      "phosphocholine:peak_loss": {
+        "baseline_training_positive_motif_fraction": 0.005183333333333333,
+        "nonzero_evidence_molecules": 0,
+        "strength_bands": [
+          {
+            "lower_exclusive": 0.0,
+            "upper_inclusive": 0.1,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.1,
+            "upper_inclusive": 0.3,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.3,
+            "upper_inclusive": 0.6,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          },
+          {
+            "lower_exclusive": 0.6,
+            "upper_inclusive": 1.0,
+            "training_molecules": 0,
+            "positive_motif_fraction": null,
+            "negative_motif_fraction": null,
+            "positive_minus_negative_fraction": null,
+            "training_molecules_with_discriminative_pinned_negative": 0
+          }
+        ]
+      }
+    },
+    "seconds": 39.993826662015636,
+    "scope": "Broad SMARTS association against pinned near-mass training negatives; positive associations are not mechanistic proof, confidence calibration or an accuracy gain"
+  },
+  "protocol_sha256": "9fb7a05453cf86a815b080c6d1f37a983b1b2d10d9d6150bc3cc3ff6cc3eaa17",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

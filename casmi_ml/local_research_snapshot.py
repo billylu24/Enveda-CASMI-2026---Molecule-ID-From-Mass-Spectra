@@ -42,8 +42,9 @@ def refresh():
             "diagnostic_query_chemical_only_followup.log",
             "diagnostic_query_balanced_followup.log",
             "object_candidate_followup.log",
+            "diagnostic_query_strong_peak_followup.log",
         ],
-        "pending_sequence": "Finish chemical-only attribution268/269, then training-only modality balancing272/273 and complete systems274/275. Object candidate window storage control276+proposal277 must both pass exact before local activation. Only complete frozen gate winners replace local best.",
+        "pending_sequence": "Complete274/275 balancing attribution and activate exact object runtime276/277. New optional strong-peak input needs280 source-bound zero control, then281/282 same-pair training and283/284 complete matched systems. Only complete frozen gate winners replace best.",
         "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
         "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
         "independent_acceptance": False,
@@ -82,6 +83,7 @@ def refresh():
         ("multispectrum_attribution", "query_multispectrum_attribution.json"),
         ("chemical_only_attribution", "query_chemical_only_attribution.json"),
         ("balanced_attribution", "query_balanced_attribution.json"),
+        ("strong_peak_attribution", "query_strong_peak_attribution.json"),
     ]:
         report = Path("results/research_loop") / filename
         if report.exists():

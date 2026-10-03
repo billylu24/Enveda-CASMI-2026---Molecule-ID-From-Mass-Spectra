@@ -13,13 +13,15 @@ from casmi_ml.metfrag import digest
 class DiagnosticQueryRanker(nn.Module):
     uses_chemical_query = True
 
-    def __init__(self, base, mask_chemical_channels=False):
+    def __init__(self, base, mask_chemical_channels=False, strong_peak_losses=False):
         super().__init__()
         if base.architecture != "fingerprint":
             raise ValueError("Frozen fingerprint critic required")
         self.base = base.requires_grad_(False).eval()
         self.architecture = base.architecture
-        self.query_residual = DiagnosticQueryResidual(mask_chemical_channels)
+        self.query_residual = DiagnosticQueryResidual(
+            mask_chemical_channels, strong_peak_losses
+        )
 
     @property
     def log_scale(self):
@@ -50,9 +52,17 @@ def load_query_ranker(path, original):
         or not meta.get("precise")
     ):
         raise ValueError("Query residual original critic/feature binding differs")
+    if meta.get("strong_peak_losses") and meta.get(
+        "strength_transform_sha256"
+    ) != digest("casmi_ml/diagnostic_strength_transform.py"):
+        raise ValueError("Strong peak-loss feature source binding differs")
     base = DirectRanker("fingerprint")
     base.load_state_dict(base_weights["state_dict"])
-    model = DiagnosticQueryRanker(base, meta.get("mask_chemical_channels", False))
+    model = DiagnosticQueryRanker(
+        base,
+        meta.get("mask_chemical_channels", False),
+        meta.get("strong_peak_losses", False),
+    )
     state = weights["state_dict"]
     expected = {"base." + key for key in base_weights["state_dict"]}
     if {key for key in state if key.startswith("base.")} != expected:

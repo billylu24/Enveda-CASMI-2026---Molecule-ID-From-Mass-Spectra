@@ -55,6 +55,9 @@ def run(output, critic, control=False):
         "original_critic_sha256": digest(original_critic),
         "ranker_source_sha256": digest("casmi_ml/diagnostic_query_ranker.py"),
         "residual_source_sha256": digest("casmi_ml/diagnostic_query_residual.py"),
+        "strength_transform_source_sha256": digest(
+            "casmi_ml/diagnostic_strength_transform.py"
+        ),
     }
     benchmark, inherited, _ = resolve_local_incremental(str(CONTROL), None)
     freeze(
@@ -62,6 +65,12 @@ def run(output, critic, control=False):
         {
             "source_sha256": digest(__file__),
             "local_candidate_runtime": c.read().get("local_candidate_runtime"),
+            "local_object_candidate_runtime": c.read().get(
+                "local_object_candidate_runtime"
+            ),
+            "strength_transform_sha256": digest(
+                "casmi_ml/diagnostic_strength_transform.py"
+            ),
             "inference_source_sha256": digest("casmi_ml/chembl_routed_inference.py"),
             "query_source_sha256": digest("casmi_ml/diagnostic_query_ranker.py"),
             "query_residual_sha256": digest("casmi_ml/diagnostic_query_residual.py"),

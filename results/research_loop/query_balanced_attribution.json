@@ -1,0 +1,56 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "arms": {
+    "chemical": {
+      "round": "0274_query_balanced_chemical_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04406009055938976,
+          "top1": 0.016,
+          "top5": 0.0835,
+          "top25": 0.1305,
+          "conditional_mrr25": 0.221965191734961
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6037977890207273,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6821998628058809
+        }
+      }
+    },
+    "identity_masked": {
+      "round": "0275_query_balanced_mask_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.0434630231461267,
+          "top1": 0.0155,
+          "top5": 0.081,
+          "top25": 0.1295,
+          "conditional_mrr25": 0.21895729544648204
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6037992638599698,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6822015291503876
+        }
+      }
+    }
+  },
+  "chemical_minus_mask_unknown_mrr25": 0.0005970674132630624,
+  "balanced_minus_unbalanced_unknown_mrr25": 0.00023115079365079727,
+  "scope": "Same120K measured pair rows, capacity/steps/labels and verified inference graph as260/261. Each unmasked input block scaled to training-only unit mean squared L2 energy; same factors in identity mask arm, original maximum-strength gate untouched. Scalars folded into first input weights for original forward graph; floating equivalence checked<=1e-6. Repeated full3340 evidence; no fresh acceptance."
+}

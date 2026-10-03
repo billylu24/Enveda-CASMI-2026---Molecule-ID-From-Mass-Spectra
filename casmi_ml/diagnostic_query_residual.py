@@ -5,12 +5,14 @@ from torch import nn
 from torch.nn import functional as F
 
 from casmi_ml.diagnostic_residual import DIM
+from casmi_ml.diagnostic_strength_transform import strong_peak_loss_features
 
 
 class DiagnosticQueryResidual(nn.Module):
-    def __init__(self, mask_chemical_channels=False):
+    def __init__(self, mask_chemical_channels=False, strong_peak_losses=False):
         super().__init__()
         self.mask_chemical_channels = mask_chemical_channels
+        self.strong_peak_losses = strong_peak_losses
         self.correction = nn.Sequential(
             nn.Linear(768 + DIM, 64), nn.GELU(), nn.Linear(64, 128)
         )
@@ -27,7 +29,13 @@ class DiagnosticQueryResidual(nn.Module):
                 "Frozen critic query128, encoder latent768 and chemical24 required"
             )
         features = (
-            torch.zeros_like(chemical) if self.mask_chemical_channels else chemical
+            torch.zeros_like(chemical)
+            if self.mask_chemical_channels
+            else (
+                strong_peak_loss_features(chemical)
+                if self.strong_peak_losses
+                else chemical
+            )
         )
         delta = self.correction(torch.cat([latent, features], -1)) * chemical.amax(
             -1, keepdim=True

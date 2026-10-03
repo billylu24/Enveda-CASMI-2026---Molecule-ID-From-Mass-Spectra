@@ -1,0 +1,36 @@
+{
+  "local_only": true,
+  "independent_acceptance": false,
+  "reference": "0237 corrected full evidence scientific incumbent236",
+  "method": "Same fixed2000 molecule keys,2000 bootstrap paired resamples seed42. Descriptive repeated-development uncertainty only, no gate replacement.",
+  "reports": {
+    "0262_query_multispectrum_chemical_system": {
+      "unknown_mrr_delta": -0.00014936115816550582,
+      "improved_molecules": 7,
+      "regressed_molecules": 10,
+      "bootstrap95": [
+        -0.0008726063429324297,
+        0.00043297769229562715
+      ]
+    },
+    "0268_query_chemical_only_system": {
+      "unknown_mrr_delta": 0.00014686507936507951,
+      "improved_molecules": 7,
+      "regressed_molecules": 6,
+      "bootstrap95": [
+        -0.0003365753968253967,
+        0.0006810982142857142
+      ]
+    },
+    "0274_query_balanced_chemical_system": {
+      "unknown_mrr_delta": 8.17896354852877e-05,
+      "improved_molecules": 7,
+      "regressed_molecules": 6,
+      "bootstrap95": [
+        -0.0003641378968253968,
+        0.0005761140873015871
+      ]
+    }
+  },
+  "current_best_retained": true
+}

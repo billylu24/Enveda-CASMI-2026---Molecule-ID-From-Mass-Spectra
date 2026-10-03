@@ -1,0 +1,41 @@
+{
+  "local_only": true,
+  "sources": {
+    "casmi_ml/diagnostic_query_residual.py": {
+      "original_sha256": "5670acd86e747d0424678de84478f428ac064115001e600ea1b9ac6a00d7108e",
+      "trial": "artifacts/research_loop/strong_peak_source_trial/diagnostic_query_residual.py",
+      "trial_sha256": "7cc6ebf62af2db2a64258d04bf5759d5c05c14370628a8aa7a9cfa8ae1329db7"
+    },
+    "casmi_ml/diagnostic_query_ranker.py": {
+      "original_sha256": "f86ff755a312ddd08375607ee5448ae1d47c2c97555400cb9e0c26da7c4d6258",
+      "trial": "artifacts/research_loop/strong_peak_source_trial/diagnostic_query_ranker.py",
+      "trial_sha256": "8448960eb340259d98a4ccb7b110b4d55cbe61cec0345c776ab2174de13ea844"
+    },
+    "casmi_ml/diagnostic_query_training.py": {
+      "original_sha256": "7e16e9c93521ac665fa2e661dd722db8fef56ac8ee0eb2394af2b9d8749f881e",
+      "trial": "artifacts/research_loop/strong_peak_source_trial/diagnostic_query_training.py",
+      "trial_sha256": "e47e7ac3d0e54e29225abaaf03e410b71bb7f11570ef3a5eb4098a9abf50192e"
+    },
+    "casmi_ml/diagnostic_query_followup.py": {
+      "original_sha256": "4cc7f7021b6d94fad94485d26ab0a0f494617fb51336c721e743732111992aab",
+      "trial": "artifacts/research_loop/strong_peak_source_trial/diagnostic_query_followup.py",
+      "trial_sha256": "c26584fb05005fe81ae740ac536fa805c8376010989efd2f6ac8e5c7db867e60"
+    },
+    "casmi_ml/diagnostic_query_system.py": {
+      "original_sha256": "6ba241c4c839797f229f621175ef808f4fb8762adf0b68288fadf65dc4733497",
+      "trial": "artifacts/research_loop/strong_peak_source_trial/diagnostic_query_system.py",
+      "trial_sha256": "38ff082503b86c99500bb6345c6476d8d8875cdd6ce2d042631c0cbe39ae3a24"
+    },
+    "casmi_ml/diagnostic_query_activation.py": {
+      "original_sha256": "a717be77cc49e14b6fa7501b5de52d13bfc84b273eec1d72ff5f785d68a24764",
+      "trial": "artifacts/research_loop/strong_peak_source_trial/diagnostic_query_activation.py",
+      "trial_sha256": "84f62a00a266813533f23e021f867c5b5ff4a1d9e7f8dde124e5a09e155e61a5"
+    },
+    "casmi_ml/local_verified_extension.py": {
+      "original_sha256": "eb1831591cc6db01fc474682ce8be1eb9ea2a286b6ff9ba2c45db6bb2e86718a",
+      "trial": "artifacts/research_loop/strong_peak_source_trial/local_verified_extension.py",
+      "trial_sha256": "2cb3630f7266cb7e85ddd46ce7b8ae451bf1cc7c3d69c018aeefa22583169e3d"
+    }
+  },
+  "scope": "Optional false-by-default transform; previous scientific arms finalized before source update, incumbent original critic graph unchanged. New zero280 required for any transformed query acceptance."
+}

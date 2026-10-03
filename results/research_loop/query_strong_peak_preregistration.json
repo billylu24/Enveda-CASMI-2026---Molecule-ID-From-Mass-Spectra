@@ -1,0 +1,19 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "training_evidence": "279 training-only60000 original keys+actual measured pair audit. Weak peak-loss motif lifts vs pinned15 negatives: water(-.0739,-.0088), ammonia(-.0832,+.0028), CO(-.1388,-.0238) in strength(0,.1],(.1,.3] bins. Stronger>.3 bins show positive broader motif differences. Associations are not causal proof or development gains; original8rule SMARTS broad.",
+  "hypothesis": "Prespecified peak-loss-only feature attenuation relu(strength-.3)/.7; ion and precursor-loss channels untouched. Keep original maximum raw evidence gate in both chemical and matched identity-masked arms to isolate strength/identity input effect. No absent-evidence penalty, no new rules or claimed diagnostic specificity.",
+  "architecture": "Same contextual792->64->128 query graph with optional named strong_peak_losses input transform; zero initialized/no evidence must preserve original query and full3340 ranks exact. Existing models defaultFalse retain old graph behavior. New source requires dedicated zero280 control before training/full-system activation.",
+  "training": "Same60K labels, fixed120K measured pair rows, unrestricted15 pinned negatives,3epochs235steps, AdamW.001 wd.01 CE+.1 anchor. Original unbalanced objective retained to isolate input transform, no combination with unfinished balanced hypothesis. Same raw strength gate and identity mask capacity/steps.",
+  "sequence": [
+    "Finish274/275 modality-balanced systems",
+    "Activate exact object runtime controls276/277 if incumbent unchanged",
+    "Implement optional transform preserving old model default",
+    "280 strong-transform current-source zero full3340 control",
+    "281/282 matched fixed training",
+    "283/284 full-system arms"
+  ],
+  "gates": "Current incumbent+.0005 and+2% AND knownMRRdrop<=.001 Top1drop<=.005; protect completed0206 and historical181, zero budgetfallback/newfailed contexts.1200s fragmentation/scenario and24 GPUh/arm unchanged.",
+  "holdout_used": false
+}

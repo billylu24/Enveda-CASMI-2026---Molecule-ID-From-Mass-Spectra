@@ -44,7 +44,12 @@ def run(
     multispectrum=False,
     chemical_only_correction=False,
     balance_modalities=False,
+    strong_peak_losses=False,
 ):
+    if strong_peak_losses and (balance_modalities or chemical_only_correction):
+        raise ValueError(
+            "Strong-peak input is a separate hypothesis from normalization and context removal"
+        )
     if chemical_only_correction and balance_modalities:
         raise ValueError(
             "Constrained context and balanced context are separate hypotheses"
@@ -69,6 +74,10 @@ def run(
             "multispectrum": multispectrum,
             "chemical_only_correction": chemical_only_correction,
             "balance_modalities": balance_modalities,
+            "strong_peak_losses": strong_peak_losses,
+            "strength_transform_sha256": digest(
+                "casmi_ml/diagnostic_strength_transform.py"
+            ),
             "modality_balance_sha256": digest("casmi_ml/query_modality_balance.py"),
             "modality_balance_rule": "One training-only scalar per block to unit mean squared L2 energy; compute on unmasked same120K measured pair rows, same factors in both arms. Only correction input scaled, original strength gate and baseline unchanged. Fold factors into first-layer weights before saving; existing inference graph retained."
             if balance_modalities
@@ -197,7 +206,9 @@ def run(
         chemical = torch.from_numpy(chemical).to("cuda")
         scales = fit_scales(contexts, chemical) if balance_modalities else None
         hard = torch.from_numpy(hard).to("cuda")
-        model = DiagnosticQueryRanker(base, mask_chemical_channels).to("cuda")
+        model = DiagnosticQueryRanker(
+            base, mask_chemical_channels, strong_peak_losses
+        ).to("cuda")
         if chemical_only_correction:
             constrain_context_weights(model.query_residual)
         optimizer = torch.optim.AdamW(
@@ -299,6 +310,10 @@ def run(
             "multispectrum": multispectrum,
             "chemical_only_correction": chemical_only_correction,
             "balance_modalities": balance_modalities,
+            "strong_peak_losses": strong_peak_losses,
+            "strength_transform_sha256": digest(
+                "casmi_ml/diagnostic_strength_transform.py"
+            ),
             "folded_input_scales": scales,
         }
         torch.save(weights, output / "model.pt")
@@ -314,6 +329,10 @@ def run(
             "multispectrum": multispectrum,
             "chemical_only_correction": chemical_only_correction,
             "balance_modalities": balance_modalities,
+            "strong_peak_losses": strong_peak_losses,
+            "strength_transform_sha256": digest(
+                "casmi_ml/diagnostic_strength_transform.py"
+            ),
             "folded_input_scales": scales,
             "fold_max_abs_query_error": fold_error,
             "correction_latent_nonzero_weights": int(
@@ -343,6 +362,7 @@ def main():
     parser.add_argument("--multispectrum", action="store_true")
     parser.add_argument("--chemical-only-correction", action="store_true")
     parser.add_argument("--balance-modalities", action="store_true")
+    parser.add_argument("--strong-peak-losses", action="store_true")
     print(json.dumps(run(**vars(parser.parse_args())), indent=2))
 
 

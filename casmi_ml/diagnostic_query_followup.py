@@ -16,19 +16,23 @@ from casmi_ml.metfrag import digest
 from casmi_ml.research_loop import Controller
 
 
-def prepare_zero(directory):
+def prepare_zero(directory, strong_peak_losses=False):
     directory.mkdir(parents=True, exist_ok=True)
     torch.manual_seed(42)
     weights = torch.load(CRITIC, map_location="cpu", weights_only=True)
     base = DirectRanker("fingerprint")
     base.load_state_dict(weights["state_dict"])
-    model = DiagnosticQueryRanker(base)
+    model = DiagnosticQueryRanker(base, strong_peak_losses=strong_peak_losses)
     weights["state_dict"] = model.state_dict()
     weights["diagnostic_query_residual"] = {
         "base_critic_sha256": digest(CRITIC),
         "dimension": 24,
         "precise": True,
         "mask_chemical_channels": False,
+        "strong_peak_losses": strong_peak_losses,
+        "strength_transform_sha256": digest(
+            "casmi_ml/diagnostic_strength_transform.py"
+        ),
     }
     path = directory / "zero_model.pt"
     if not path.exists():

@@ -92,6 +92,14 @@ def run(test, baseline, full, routing, reference, output):
                     raise ValueError(
                         "Query residual implementation changed; replay again"
                     )
+            if (
+                query_spec.get("strength_transform_source_sha256")
+                and digest("casmi_ml/diagnostic_strength_transform.py")
+                != query_spec["strength_transform_source_sha256"]
+            ):
+                raise ValueError(
+                    "Query strength transform source changed; replay again"
+                )
             ranker, _ = load_query_ranker(
                 config["critic"], query_spec["original_critic"]
             )
