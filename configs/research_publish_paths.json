@@ -256,7 +256,11 @@
     "casmi_ml/chembl_tail_controls.py",
     "tests/test_chembl_tail_controls.py",
     "casmi_ml/chembl_mass_prior.py",
-    "tests/test_mass_conditioned_prior.py"
+    "tests/test_mass_conditioned_prior.py",
+    "casmi_ml/metfrag_persistent.py",
+    "casmi_ml/metfrag_worker_benchmark.py",
+    "casmi_ml/java/MetFragWorker.java",
+    "tests/test_metfrag_persistent.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
