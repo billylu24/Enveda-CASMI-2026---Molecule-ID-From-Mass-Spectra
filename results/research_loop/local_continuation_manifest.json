@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03T15:22:05Z",
+  "updated_at": "2026-10-03T15:33:28Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -102,10 +102,10 @@
   },
   "active_rounds": [
     {
-      "id": "0319_validation_cache_full_ranking_control",
-      "direction": "runtime_diagnostic",
+      "id": "0323_max_candidate_chemical_system",
+      "direction": "candidate_chemistry_compatibility",
       "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0319_validation_cache_full_ranking_control/report.json"
+      "report": "artifacts/research_loop/rounds/0323_max_candidate_chemical_system/report.json"
     }
   ],
   "local_candidate_runtime": {
@@ -147,7 +147,19 @@
     "scope": "Every3340 best full rank and three full2000 original proposal dictionaries exact; storage runtime only, no accuracy or cold acceptance gain"
   },
   "local_blas_runtime": null,
-  "local_validation_runtime": null,
+  "local_validation_runtime": {
+    "enabled": true,
+    "local_only": true,
+    "scientific_round": "0236_low_supported_leader_first",
+    "control_directory": "artifacts/research_loop/rounds/0319_validation_cache_full_ranking_control",
+    "control_report_sha256": "67ff7af4c1985aad02f5b7a6805cccf93687cc188a55d0a377d0348539ec0e0e",
+    "control_protocol_sha256": "e94719253a2c9741abc29816e3099100b81889ae24e0b5997f893ab1c1dd2cfe",
+    "cache_source_sha256": "418edd4c836891db752726f9634311cfbc970581000610cf959e224e7460c748",
+    "original_validator_source_sha256": "97c5c228bbf13a324e58461fb4a2a57076b9043275af6bf424742ba9b7baf560",
+    "entry_source_sha256": "fa5ecc29f008abdc9b9214b8ba80ad0efaef0a305e9746e753301e11f391f831",
+    "runtime_source_sha256": "4e6429ffd9eb184fccbb328aef3774ab7046297e92f7cdae7801f9e16cccb39a",
+    "scope": "Pure SMILES validity/identity memoization with all3340 cached inference full ranks exact and validation-only paired timing; no accuracy or cold pipeline gain claim"
+  },
   "local_proposal_runtime": {
     "enabled": true,
     "local_only": true,
@@ -183,9 +195,10 @@
     "candidate_compatibility_followup.log",
     "extended_candidate_followup.log",
     "intensity_candidate_followup.log",
-    "max_candidate_followup.log"
+    "max_candidate_followup.log",
+    "full_gap_candidate_followup.log"
   ],
-  "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306/310 zero/mask complete3340 exact;309 extended candidate MRR.043994968 rejected.311 BLAS score microbenchmark then312 current-best full exact control.313-317 intensity-weighted candidate hypothesis prepared after runtime checks; no added feature runtime active. 311 BLAS1 changed6 intermediate candidate orders,312 failed preflight, no activation.313/317 zero/mask exact3340;316 intensity weighting unchanged best metrics, rejected.318 validation-only paired speed36.70->11.22s,319 full current-best control active.320-324 max across chemical spectra staged after319, original critic mean unchanged. Only frozen gate winners replace best.",
+  "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306/310 zero/mask complete3340 exact;309 extended candidate MRR.043994968 rejected.311 BLAS score microbenchmark then312 current-best full exact control.313-317 intensity-weighted candidate hypothesis prepared after runtime checks; no added feature runtime active. 311 BLAS1 changed6 intermediate candidate orders,312 failed preflight, no activation.313/317 zero/mask exact3340;316 intensity weighting unchanged best metrics, rejected.318 validation-only paired speed36.70->11.22s,319 full current-best control active.319 exact3340 validation cache active.320 zero max exact;321/322 fit then323/324 full systems.325 training-only theoretical cosine-gap ceiling yields lower objective,326-330 separate full-gap trial staged behind324; scientific margin/gates unchanged. Only frozen gate winners replace best.",
   "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
   "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
   "independent_acceptance": false,
@@ -1313,9 +1326,9 @@
     {
       "id": "0319_validation_cache_full_ranking_control",
       "direction": "runtime_diagnostic",
-      "status": "external_running",
-      "decision": null,
-      "local_recorded": false
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0319_validation_cache_full_ranking_control.json",
+      "local_recorded": true
     },
     {
       "id": "0317_intensity_candidate_mask_system",
@@ -1323,6 +1336,41 @@
       "status": "diagnostic_complete",
       "decision": "results/research_loop/0317_intensity_candidate_mask_system.json",
       "local_recorded": true
+    },
+    {
+      "id": "0320_max_candidate_zero_control",
+      "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0320_max_candidate_zero_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0325_training_candidate_bonus_capacity_audit",
+      "direction": "training_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0325_training_candidate_bonus_capacity_audit.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0321_max_candidate_chemical",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0321_max_candidate_chemical.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0322_max_candidate_mask",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0322_max_candidate_mask.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0323_max_candidate_chemical_system",
+      "direction": "candidate_chemistry_compatibility",
+      "status": "external_running",
+      "decision": null,
+      "local_recorded": false
     }
   ]
 }

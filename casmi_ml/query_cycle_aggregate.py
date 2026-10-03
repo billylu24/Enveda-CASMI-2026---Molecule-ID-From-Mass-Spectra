@@ -19,6 +19,7 @@ CYCLES = {
     "extended_candidate_chemistry": "extended_candidate_attribution.json",
     "intensity_candidate_chemistry": "intensity_candidate_attribution.json",
     "max_candidate_chemistry": "max_candidate_attribution.json",
+    "full_cosine_gap_candidate_chemistry": "full_gap_candidate_attribution.json",
 }
 
 

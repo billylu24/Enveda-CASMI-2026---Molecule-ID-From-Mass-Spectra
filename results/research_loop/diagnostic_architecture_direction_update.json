@@ -32,12 +32,14 @@
     "Candidate compatibility304 train mass audit:720198/900000 original pinned pairs mass-compatible across57260 molecules; trained bonus favors positive94737 vs negative93288, tiny mean positive-minus-negative.000361968. Do not claim unrestricted mass mismatch explains failure.",
     "Additional12 broad hypotheses305 training-only audit finds methanol/SO2 precursor-loss motif associations and rare phosphate-ion signals; weak many peak-loss bands nearzero/negative, no mechanism or uniqueness proof.",
     "Extended60D candidate features306 zero and310 identity-masked complete3340 ranks exact;309 chemical unknownMRR.043994968 exactly same aggregate as302 and known.603792116 unchanged. Fails frozen promotion. Methanol peak-loss receives most training bonus but no extra complete-system gain.",
-    "BLAS24->1 trial311 score segment4.1145->1.3144s over200 actual windows/183382 candidates but166 windows tiny score changes(max5.55e-17) and6 candidate-order differences.312 rejected before full3340 control; original runtime retained, no lowering numerical behavior gate."
+    "BLAS24->1 trial311 score segment4.1145->1.3144s over200 actual windows/183382 candidates but166 windows tiny score changes(max5.55e-17) and6 candidate-order differences.312 rejected before full3340 control; original runtime retained, no lowering numerical behavior gate.",
+    "Intensity-weighted candidate316 complete unknownMRR.043978301/known.603792116 equals incumbent, matched317 complete3340 exact; no scientific promotion.",
+    "Pure validation cache318 actual6670 input/output rows legacy36.70/36.71s versus cache11.22/11.21s, 113151hits/48013misses;319 all3340 current-best cached ranks exact0budget/newfailures, local runtime activated. Validation-only paired speed, not accuracy or cold full-pipeline gain.",
+    "Training-only capacity325 original.05 cap objective.5290418 vs fixed mathematical2.0 normalized cosine full-gap ceiling.5246472, weight sum1.715<2,31active,max.262. No dev score evaluated or deployed enlarged model. Provides a concrete capacity hypothesis, not scientific improvement."
   ],
   "current_sequence": [
-    "313 intensity zero complete3340 exact,314/315 fixed train chemical/mask done,316/317 paired complete systems running; train normalized intensity before spectrum average, same20 rules and.05 cap",
-    "318 every actual baseline and best-output row validation legacy/cache alternating paired timing;319 full current-best exact ranks only if validation-only speed and behavior checks pass",
-    "Unchanged incumbent retained unless complete frozen gates pass; local completion watcher can bind a real intensity winner to actual verified entry"
+    "323/324 complete max chemistry pooling paired systems; original critic query mean and rawsqrt strength retained",
+    "326-330 independent full cosine-gap capacity ceiling2.0 versus prior307/308, original mean/rawsqrt restored and deploymentmargin.05 unchanged; all frozen best/original0206/historical181 and physical completion gates retained"
   ],
   "gan": {
     "status": "not_expanded",

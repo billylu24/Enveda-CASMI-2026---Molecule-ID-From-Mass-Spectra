@@ -101,6 +101,12 @@ def resolve_score(config, proof):
     spec = proof.get("extended_candidate_compatibility")
     if not spec:
         return None
+    if spec.get("variant") == "full_cosine_gap":
+        from casmi_ml.full_gap_candidate_activation import (
+            resolve_score as resolve_full_gap,
+        )
+
+        return resolve_full_gap(config, proof)
     if config.get("query_residual"):
         raise ValueError(
             "Candidate chemistry was evaluated over original frozen critic"

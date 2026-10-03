@@ -1,0 +1,52 @@
+{
+  "round": "0319_validation_cache_full_ranking_control",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "unknown": {
+      "molecules": 2000,
+      "full_rank_matches": 2000,
+      "seconds": 169.01213100898894,
+      "parent_peak_rss_mib": 2963.52734375,
+      "status_counts": {
+        "high_strong_slot_inserted": 546,
+        "fragment_evidence_fallback": 467,
+        "critic_gate_fallback": 381,
+        "high_fragment_remove_tail": 297,
+        "strong_original_gate_fallback": 163,
+        "low_supported_leader_first": 95,
+        "high_fragment_evidence_keep_tail": 27,
+        "no_supported_external_candidates": 14,
+        "strong_original_evidence_fallback": 5
+      }
+    },
+    "known": {
+      "molecules": 1340,
+      "full_rank_matches": 1340,
+      "seconds": 105.94670135600609,
+      "parent_peak_rss_mib": 3229.73046875,
+      "status_counts": {
+        "high_fragment_remove_tail": 513,
+        "critic_gate_fallback": 352,
+        "fragment_evidence_fallback": 217,
+        "high_strong_slot_inserted": 172,
+        "strong_original_gate_fallback": 59,
+        "high_fragment_evidence_keep_tail": 14,
+        "low_supported_leader_first": 5,
+        "no_supported_external_candidates": 5,
+        "strong_original_evidence_fallback": 3
+      }
+    },
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "development_budget_fallbacks": 0,
+    "incremental_new_failure_contexts": 0,
+    "verified": true,
+    "scope": "Exact current-best full cached ranking control. Microbenchmark supports validation-segment timing; this unpaired full control does not prove cold end-to-end speed gain."
+  },
+  "protocol_sha256": "e94719253a2c9741abc29816e3099100b81889ae24e0b5997f893ab1c1dd2cfe",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

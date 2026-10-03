@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "local_only": true,
+  "scientific_round": "0236_low_supported_leader_first",
+  "control_directory": "artifacts/research_loop/rounds/0319_validation_cache_full_ranking_control",
+  "control_report_sha256": "67ff7af4c1985aad02f5b7a6805cccf93687cc188a55d0a377d0348539ec0e0e",
+  "control_protocol_sha256": "e94719253a2c9741abc29816e3099100b81889ae24e0b5997f893ab1c1dd2cfe",
+  "cache_source_sha256": "418edd4c836891db752726f9634311cfbc970581000610cf959e224e7460c748",
+  "original_validator_source_sha256": "97c5c228bbf13a324e58461fb4a2a57076b9043275af6bf424742ba9b7baf560",
+  "entry_source_sha256": "fa5ecc29f008abdc9b9214b8ba80ad0efaef0a305e9746e753301e11f391f831",
+  "runtime_source_sha256": "4e6429ffd9eb184fccbb328aef3774ab7046297e92f7cdae7801f9e16cccb39a",
+  "scope": "Pure SMILES validity/identity memoization with all3340 cached inference full ranks exact and validation-only paired timing; no accuracy or cold pipeline gain claim"
+}

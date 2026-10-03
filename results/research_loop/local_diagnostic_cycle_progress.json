@@ -13,7 +13,7 @@
     "budget_fallbacks": 861,
     "diagnostic_only": true
   },
-  "next_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306/310 zero/mask complete3340 exact;309 extended candidate MRR.043994968 rejected.311 BLAS score microbenchmark then312 current-best full exact control.313-317 intensity-weighted candidate hypothesis prepared after runtime checks; no added feature runtime active. 311 BLAS1 changed6 intermediate candidate orders,312 failed preflight, no activation.313/317 zero/mask exact3340;316 intensity weighting unchanged best metrics, rejected.318 validation-only paired speed36.70->11.22s,319 full current-best control active.320-324 max across chemical spectra staged after319, original critic mean unchanged. Only frozen gate winners replace best.",
+  "next_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306/310 zero/mask complete3340 exact;309 extended candidate MRR.043994968 rejected.311 BLAS score microbenchmark then312 current-best full exact control.313-317 intensity-weighted candidate hypothesis prepared after runtime checks; no added feature runtime active. 311 BLAS1 changed6 intermediate candidate orders,312 failed preflight, no activation.313/317 zero/mask exact3340;316 intensity weighting unchanged best metrics, rejected.318 validation-only paired speed36.70->11.22s,319 full current-best control active.319 exact3340 validation cache active.320 zero max exact;321/322 fit then323/324 full systems.325 training-only theoretical cosine-gap ceiling yields lower objective,326-330 separate full-gap trial staged behind324; scientific margin/gates unchanged. Only frozen gate winners replace best.",
   "independent_acceptance": false,
   "precision_first_pass": {
     "unknown_mrr25": 0.04268861838422192,
@@ -24,7 +24,7 @@
     "raw_candidates_reused": 127088,
     "new_candidates_scored": 3025
   },
-  "active_round": "0319_validation_cache_full_ranking_control",
+  "active_round": "0323_max_candidate_chemical_system",
   "coarse_complete": {
     "unknown_mrr25": 0.04268861838422192,
     "known_mrr25": 0.6046005738683694,
@@ -36,7 +36,7 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0319_validation_cache_full_ranking_control"
+    "0323_max_candidate_chemical_system"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -326,7 +326,7 @@
       "original_critic_tensors_exact": true
     }
   },
-  "updated_at": "2026-10-03T15:22:05Z",
+  "updated_at": "2026-10-03T15:33:28Z",
   "current_query_zero_control": "artifacts/research_loop/rounds/0287_query_identity_runtime_zero_control",
   "local_verified_evidence_round": "0286_structure_identity_full_control",
   "multispectrum_attribution": {

@@ -1,0 +1,27 @@
+{
+  "round": "0321_max_candidate_chemical",
+  "direction": "representation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "train_development_overlap": 0,
+    "original_encoder_and_critic_frozen": true,
+    "history": {
+      "initial_ce": 0.5295985417218343,
+      "final_objective": 0.5288703723600594,
+      "optimizer_iterations": 9,
+      "sum_nonnegative_cosine_weights": 0.05000000000000001,
+      "maximum_possible_bonus": 0.05
+    },
+    "seconds": 62.70221772699733,
+    "model_sha256": "784ba5041405aea2062150f99a1f3b9d7a002c82762b9431046c8b69308e3326",
+    "scope": "Bounded extended candidate chemistry fitting only; current-best complete zero control and paired full3340 systems required"
+  },
+  "protocol_sha256": "39f313cab325babeb3482571450a2e937d65bc088ade36bd6c8e1bb4091425f5",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

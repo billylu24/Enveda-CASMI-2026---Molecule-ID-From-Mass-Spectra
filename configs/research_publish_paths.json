@@ -484,7 +484,16 @@
     "casmi_ml/max_candidate_activation.py",
     "casmi_ml/max_candidate_compatibility.py",
     "tests/test_max_candidate_activation.py",
-    "tests/test_max_candidate_compatibility.py"
+    "tests/test_max_candidate_compatibility.py",
+    "casmi_ml/candidate_bonus_capacity_audit.py",
+    "casmi_ml/full_gap_candidate_compatibility.py",
+    "casmi_ml/full_gap_candidate_activation.py",
+    "casmi_ml/full_gap_candidate_followup.py",
+    "casmi_ml/full_gap_candidate_training.py",
+    "casmi_ml/full_gap_candidate_bonus.py",
+    "casmi_ml/full_gap_candidate_system.py",
+    "tests/test_full_gap_candidate_activation.py",
+    "tests/test_full_gap_candidate_compatibility.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
