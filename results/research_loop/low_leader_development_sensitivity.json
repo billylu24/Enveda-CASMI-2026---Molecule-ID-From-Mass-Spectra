@@ -1,0 +1,36 @@
+{
+  "local_only": true,
+  "independent_acceptance": false,
+  "bootstrap_draws": 10000,
+  "seed": 236,
+  "comparison": "0236 versus181",
+  "arms": {
+    "unknown": {
+      "molecules": 2000,
+      "improved": 5,
+      "worsened": 6,
+      "unchanged": 1989,
+      "mean_difference": 0.00125,
+      "total_positive_rr_change": 3.75,
+      "total_negative_rr_change": -1.25,
+      "paired_molecule_bootstrap_95_percentile": [
+        -0.0003343749999999992,
+        0.0031666666666666666
+      ]
+    },
+    "known": {
+      "molecules": 1340,
+      "improved": 0,
+      "worsened": 3,
+      "unchanged": 1337,
+      "mean_difference": -0.000808457711442786,
+      "total_positive_rr_change": 0.0,
+      "total_negative_rr_change": -1.0833333333333333,
+      "paired_molecule_bootstrap_95_percentile": [
+        -0.001990049751243781,
+        0.0
+      ]
+    }
+  },
+  "interpretation": "Repeated-development sensitivity only; narrow intervals or bootstrap signs would not establish fresh holdout generalization; frozen gate unchanged."
+}

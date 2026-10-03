@@ -1,0 +1,101 @@
+"""Run the currently verified local external rule on a label-free baseline handoff."""
+
+import argparse
+import json
+import time
+from pathlib import Path
+from unittest.mock import patch
+
+from casmi_ml.chembl_routed_inference import extend
+from casmi_ml.data import write_json
+from casmi_ml.development_incremental_metfrag import DevelopmentIncrementalMetFrag
+from casmi_ml.diagnostic_system_evaluation import resolve_local_incremental
+from casmi_ml.metfrag import digest
+from casmi_ml.ranking import ReferenceIndex
+from casmi_ml.research_loop import Controller
+
+
+def verified_config(c):
+    if not c.local_only():
+        raise ValueError("Verified local extension requires local-only mode")
+    proof = c.read().get("local_verified_inference", {})
+    if not proof or not proof.get("local_only"):
+        raise ValueError("No fully replayed local inference rule is active")
+    directory = c.root / "rounds" / proof["evidence_round"]
+    for name, field in [
+        ("report.json", "replay_report_sha256"),
+        ("selected_rankings.json", "rankings_sha256"),
+        ("external_config.json", "external_config_sha256"),
+    ]:
+        if digest(directory / name) != proof[field]:
+            raise ValueError("Local inference evidence changed: " + name)
+    for name, field in [
+        ("casmi_ml/chembl_routed_inference.py", "inference_sha256"),
+        ("casmi_ml/low_leader_inference.py", "low_leader_source_sha256"),
+    ]:
+        if digest(name) != proof[field]:
+            raise ValueError("Local inference source changed; replay again: " + name)
+    if c.read()["development_best"]["round"] != proof["scientific_round"]:
+        raise ValueError("Active verified inference no longer matches current best")
+    return json.loads((directory / "external_config.json").read_text()), proof
+
+
+def run(test, baseline, full, routing, reference, output):
+    c = Controller()
+    config, proof = verified_config(c)
+    benchmark, inherited, _ = resolve_local_incremental("verified-local", None)
+    engines = []
+
+    def engine(*args, **kwargs):
+        obj = DevelopmentIncrementalMetFrag(*args, benchmark=benchmark, **kwargs)
+        engines.append(obj)
+        return obj
+
+    started = time.monotonic()
+    with patch("casmi_ml.metfrag_persistent.PersistentMonomerMetFrag", new=engine):
+        result = extend(
+            test,
+            baseline,
+            full,
+            routing,
+            output,
+            Path("."),
+            config,
+            deadline=started + 3600,
+            fragment_deadline=started + 1200,
+            java="external/metfrag/java21/jdk-21.0.12.1+1-jre/bin/java",
+            cache="artifacts/chemistry_20261001/chembl_metfrag_cache",
+            output_full_rankings=str(output) + ".full.json",
+            reference=ReferenceIndex(reference),
+        )
+    failures = set().union(*(e.failed_physical_requests for e in engines))
+    report = json.loads(Path(str(output) + ".external.report.json").read_text())
+    budgets = sum(
+        n for status, n in report["status_counts"].items() if "budget" in status
+    )
+    write_json(
+        str(output) + ".local_verified.json",
+        {
+            "local_only": True,
+            "scientific_round": proof["scientific_round"],
+            "evidence_round": proof["evidence_round"],
+            "development_budget_fallbacks": budgets,
+            "new_failure_contexts": len(failures - inherited),
+            "complete_evidence": not budgets and not (failures - inherited),
+            "scope": "Verified local external extension of supplied baseline; new input outputs do not establish accuracy or cold full-pipeline resource acceptance",
+            "remote_publication": False,
+            "independent_acceptance": False,
+        },
+    )
+    return result
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    for name in ["test", "baseline", "full", "routing", "reference", "output"]:
+        parser.add_argument("--" + name, required=True)
+    run(**vars(parser.parse_args()))
+
+
+if __name__ == "__main__":
+    main()
