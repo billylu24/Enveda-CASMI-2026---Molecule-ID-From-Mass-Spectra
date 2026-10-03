@@ -3,6 +3,7 @@ import unittest
 from casmi_ml.chembl_fragment_pilot import (
     informative_fragments,
     possible_critic_gate,
+    relative_supported_proposals,
     supported_proposals,
 )
 
@@ -38,3 +39,17 @@ class PossibleCriticGateTests(unittest.TestCase):
         scores = {"first": 0.5, "a": 0.55, "b": 0.2, "c": 0.6}
         self.assertFalse(possible_critic_gate(["a", "b"], scores, "first", 0.05))
         self.assertTrue(possible_critic_gate(["a", "c"], scores, "first", 0.05))
+
+
+class RelativeSupportTests(unittest.TestCase):
+    def test_only_candidates_strictly_beating_current_fragment_can_insert(self):
+        values = {"first": 2, "a": 3, "b": 2, "c": 1, "d": float("nan")}
+        self.assertEqual(
+            relative_supported_proposals(
+                ["a", "b", "c", "d", "missing"], values, "first"
+            ),
+            ["a"],
+        )
+        self.assertEqual(
+            relative_supported_proposals(["a", "b"], {"a": 1}, "missing_first"), ["a"]
+        )

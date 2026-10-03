@@ -270,3 +270,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第100轮逐阶段汇总审计（只用于诊断，不改选择规则）：741个低置信未知查询，native100中20个库外真值，critic shortlist仍20；15个所在组有候选可能超过首位critic+0.05，但20个中10个fragment预算回退。只有6个真值得到正碎裂并超过首位fragment，最终插入6个；known没有新真值，只有3查询插入。新chembl_fragment_audit独立重建排序，未知/已知MRR及Top1与冻结原报告1e-12内一致；stage counts有重叠，不能相加，全部为重复开发且不公开逐分子信息。这支持先完成第103轮预算优先化，而非仅放宽critic或继续增大训练。
+
+
+第104轮每候选相对碎裂门控fixed200预注册：保留第98/99轮实际首位同组评分、query首候选critic margin0.05、正分/非同分/finite碎裂条件、native100与fragment0.5；只允许每个插入结构自身fragment严格大于实际首位且为正值。此条件区别于第96/97轮每候选critic margin造成真值全部丢失的规则；本轮仍只有query首候选需要critic margin。原顺序中前候选触发后，过滤无相对碎裂支持者再取最多3个。复用第98轮同88个组、固定200、prefix2/3/5/10，不额外Java/训练；174测试通过。小试验改善且known保护通过才考虑完整。第103轮在修改前真实加载源码已核对SHA并保留source_at_start，正在运行的代码不受新参数影响。

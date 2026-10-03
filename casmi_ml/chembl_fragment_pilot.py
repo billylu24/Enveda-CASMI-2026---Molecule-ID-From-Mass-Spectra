@@ -71,6 +71,15 @@ def supported_proposals(proposed, critic_scores, current_first, fragments, margi
     ]
 
 
+def relative_supported_proposals(proposed, fragments, current_first):
+    threshold = max(0.0, fragments.get(current_first, 0.0))
+    return [
+        k
+        for k in proposed
+        if np.isfinite(fragments.get(k, 0.0)) and fragments.get(k, 0.0) > threshold
+    ]
+
+
 def score_cache_key(query, first, candidates):
     payload = json.dumps([query, first, candidates], separators=(",", ":"))
     return hashlib.sha256(payload.encode()).hexdigest()
@@ -92,7 +101,14 @@ def run(
     compare_first=False,
     fragment_gate_only=False,
     skip_impossible=False,
+    relative_candidate_gate=False,
 ):
+    if relative_candidate_gate and (
+        not compare_first or not evidence_only or candidate_gate
+    ):
+        raise ValueError(
+            "Relative candidate gate requires first comparison and informative evidence, without per-candidate critic gate"
+        )
     if skip_impossible and fragment_gate_only:
         raise ValueError("Cannot skip critic gate when that gate is disabled")
     if fragment_gate_only and (
@@ -179,6 +195,7 @@ def run(
             "initial_fragment_cache_sha256": digest(seed_path),
             "evidence_only": evidence_only,
             "candidate_gate": candidate_gate,
+            "relative_candidate_gate": relative_candidate_gate,
             "compare_current_first_fragment": compare_first,
             "fragment_gate_only": fragment_gate_only,
             "skip_impossible_critic_gate": skip_impossible,
@@ -529,6 +546,10 @@ def run(
                                 spec[0],
                             )
                             if candidate_gate
+                            else relative_supported_proposals(
+                                proposed, fragments, current[0]
+                            )
+                            if relative_candidate_gate
                             else proposed
                         )
                     novel_external = (
@@ -597,6 +618,7 @@ def run(
             "fragment_limit": fragment_limit,
             "evidence_only": evidence_only,
             "candidate_gate": candidate_gate,
+            "relative_candidate_gate": relative_candidate_gate,
             "compare_current_first_fragment": compare_first,
             "fragment_gate_only": fragment_gate_only,
             "skip_impossible_critic_gate": skip_impossible,
@@ -628,6 +650,7 @@ def main():
     p.add_argument("--compare-first", action="store_true")
     p.add_argument("--fragment-gate-only", action="store_true")
     p.add_argument("--skip-impossible", action="store_true")
+    p.add_argument("--relative-candidate-gate", action="store_true")
     a = p.parse_args()
     print(
         json.dumps(
@@ -646,6 +669,7 @@ def main():
                 a.compare_first,
                 a.fragment_gate_only,
                 a.skip_impossible,
+                a.relative_candidate_gate,
             ),
             indent=2,
         )
