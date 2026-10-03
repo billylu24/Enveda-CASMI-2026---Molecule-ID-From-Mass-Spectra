@@ -563,3 +563,6 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 232当前runtime源码全5439谱×粗/精确24维继续bitwise exact通过，legacy_evidence_features保留为oracle、fast版本不依赖原residual模块避免循环import；默认24维化学特征改为同值max提取，已有模型输出语义不变。291项回归通过。当前208首轮使用早期进程加载的共同failure-reset逻辑，若诊断不通过保持记录，223/224新进程按已修复resolve逻辑重放；未知最佳181没有变化。
+
+
+208精确首轮全2000/1340：unknown0.042688618、known0.604600574/Top1 .565671642、budget0；原模型完整controlunknown0.042728301，精确残差仍未达双门槛。增量复用127088个候选score、新增3025，成功减少物理重算；原进程reset共同失败清单导致1个原控制失败误记newfailure，仅diagnostic。223修复逻辑重评粗已启动，protocol正确绑定commonfailure SHA；随后224精确重评，再按既有配对上下文协议推进。未知best181保持、无远端发布。

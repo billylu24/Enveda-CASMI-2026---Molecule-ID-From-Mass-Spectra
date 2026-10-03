@@ -1,18 +1,11 @@
 {
   "local_only": true,
   "remote_publication": false,
-  "status": "precision_arm_known_running",
+  "status": "complete_evidence_replay_running",
   "best_round": "0181_high_strong_slot_full",
   "original_completed_control": {
     "unknown_mrr25": 0.04272830092390447,
     "known_mrr25": 0.6046005738683694
-  },
-  "precise_unknown_partial_report": {
-    "molecules": 2000,
-    "mrr25": 0.04268861838422192,
-    "budget_fallbacks": 0,
-    "full_known_pending": true,
-    "scope": "Complete unknown phase, full paired final decision awaits known; not a best update"
   },
   "coarse_first_pass": {
     "unknown_mrr25": 0.040940820903924445,
@@ -27,5 +20,15 @@
     "227/228 candidate diagnostics",
     "229/230 full paired development gates"
   ],
-  "independent_acceptance": false
+  "independent_acceptance": false,
+  "precision_first_pass": {
+    "unknown_mrr25": 0.04268861838422192,
+    "known_mrr25": 0.6046005738683694,
+    "budget_fallbacks": 0,
+    "incorrectly_unbound_common_failure_contexts": 1,
+    "diagnostic_only": true,
+    "raw_candidates_reused": 127088,
+    "new_candidates_scored": 3025
+  },
+  "active_round": "0223_diagnostic_coarse_complete_system"
 }

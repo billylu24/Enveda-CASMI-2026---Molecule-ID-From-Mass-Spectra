@@ -1,0 +1,134 @@
+{
+  "round": "0208_diagnostic_exact_system",
+  "direction": "diagnostic_residual_system",
+  "status": "diagnostic_complete",
+  "report": {
+    "unknown": {
+      "baseline": {
+        "molecules": 2000,
+        "candidate_recall": 0.1985,
+        "mrr25": 0.042545811746415294,
+        "top1": 0.014,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.21433658310536674
+      },
+      "diagnostic_residual": {
+        "molecules": 2000,
+        "candidate_recall": 0.1985,
+        "mrr25": 0.04268861838422192,
+        "top1": 0.014,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.21505601201119356
+      }
+    },
+    "known": {
+      "baseline": {
+        "molecules": 1340,
+        "candidate_recall": 0.8850746268656716,
+        "mrr25": 0.6046255906927774,
+        "top1": 0.5656716417910448,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6831351530592932
+      },
+      "diagnostic_residual": {
+        "molecules": 1340,
+        "candidate_recall": 0.8850746268656716,
+        "mrr25": 0.6046005738683694,
+        "top1": 0.5656716417910448,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.683106887844532
+      }
+    },
+    "diagnostic_only": true,
+    "independent_acceptance": false,
+    "local_only": true,
+    "execution_diagnostics": {
+      "unknown": {
+        "molecules": 1995,
+        "seconds": 635.562821139989,
+        "parent_peak_rss_mib": 2470.80859375,
+        "status_counts": {
+          "high_strong_slot_inserted": 547,
+          "fragment_evidence_fallback": 467,
+          "critic_gate_fallback": 381,
+          "high_fragment_remove_tail": 299,
+          "strong_original_gate_fallback": 160,
+          "low_fragment_inserted": 95,
+          "high_fragment_evidence_keep_tail": 27,
+          "no_supported_external_candidates": 14,
+          "strong_original_evidence_fallback": 5
+        }
+      },
+      "known": {
+        "molecules": 1340,
+        "seconds": 368.77771164200385,
+        "parent_peak_rss_mib": 2774.0546875,
+        "status_counts": {
+          "high_fragment_remove_tail": 512,
+          "critic_gate_fallback": 352,
+          "fragment_evidence_fallback": 217,
+          "high_strong_slot_inserted": 173,
+          "strong_original_gate_fallback": 59,
+          "high_fragment_evidence_keep_tail": 14,
+          "low_fragment_inserted": 5,
+          "no_supported_external_candidates": 5,
+          "strong_original_evidence_fallback": 3
+        }
+      }
+    },
+    "development_budget_fallbacks": 0,
+    "development_incremental_stats": [
+      {
+        "seed_full_requests": 1369,
+        "reused_candidates": 91638,
+        "new_candidates": 2822,
+        "incremental_requests": 926,
+        "failed_requests": 1
+      },
+      {
+        "seed_full_requests": 826,
+        "reused_candidates": 35450,
+        "new_candidates": 203,
+        "incremental_requests": 84,
+        "failed_requests": 0
+      }
+    ],
+    "incremental_new_failure_contexts": 1,
+    "incremental_inherited_failure_contexts": 0,
+    "promotion_blocked_reason": "Incomplete physical evidence under cached development deadline or incremental request failure; repeat bounded run after cache preparation before accuracy selection",
+    "required_comparators": {
+      "completed_evidence_original_model": {
+        "directory": "artifacts/research_loop/rounds/0206_full181_audited_exact_control",
+        "variant": "diagnostic_residual",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.04272830092390447,
+            "top1": 0.014,
+            "top5": 0.0825,
+            "top25": 0.13,
+            "conditional_mrr25": 0.21525592404989657
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6046005738683694,
+            "top1": 0.5656716417910448,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.683106887844532
+          }
+        }
+      }
+    }
+  },
+  "protocol_sha256": "de2e793dd5e0beaed39d5ebbdbcd2f06e363ffe0e690a51c790d7a60030413d4",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

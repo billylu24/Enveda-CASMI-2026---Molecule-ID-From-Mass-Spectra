@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "local_only": true,
+  "control": "0206_full181_audited_exact_control",
+  "arms": [
+    "0207_diagnostic_coarse_system",
+    "0208_diagnostic_exact_system"
+  ],
+  "remote_publication": false
+}
