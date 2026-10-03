@@ -230,7 +230,9 @@
     "casmi_ml/paired_fragments.py",
     "tests/test_paired_fragments.py",
     "casmi_ml/chembl_sequence_pilot.py",
-    "tests/test_chembl_sequence.py"
+    "tests/test_chembl_sequence.py",
+    "casmi_ml/dino_energy_pairs.py",
+    "tests/test_dino_energy_pairs.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

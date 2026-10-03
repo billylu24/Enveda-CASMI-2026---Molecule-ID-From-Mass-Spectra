@@ -147,8 +147,11 @@ class Distillation(nn.Module):
         self.teacher_project.eval()
         return self
 
-    def loss(self, batch):
-        first, second = augmented(batch), augmented(batch)
+    def loss(self, batch, second_batch=None):
+        first, second = (
+            augmented(batch),
+            augmented(batch if second_batch is None else second_batch),
+        )
         a = self.project(self.student.encode(first)) / 0.1
         b = self.project(self.student.encode(second)) / 0.1
         with torch.no_grad():

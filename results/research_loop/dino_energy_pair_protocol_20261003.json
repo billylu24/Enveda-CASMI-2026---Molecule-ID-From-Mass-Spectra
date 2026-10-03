@@ -1,0 +1,23 @@
+{
+  "round": "dino_energy_pair_protocol_20261003",
+  "status": "recorded",
+  "hypothesis": "Actual same-molecule/same-ion cross-energy positives may teach fragmentation invariance absent from same-spectrum DINO augmentation.",
+  "train_molecules": 60000,
+  "train_spectra": 214804,
+  "molecules_with_distinct_energy_same_ion_instrument": 49352,
+  "first_epoch_available_pairs_after_uniform_row_sampling": 42543,
+  "matched_controls": [
+    "0114_dino_same_spectrum_control",
+    "0115_dino_cross_energy_pairs"
+  ],
+  "pretrain_epochs": 20,
+  "finetune_epochs": 30,
+  "checkpoint_selection": "Fixed final epoch; no development checkpoint selection",
+  "GPU": "Sequential; cross arm waiting until same-spectrum control exits",
+  "validation": {
+    "unittest_tests": 181,
+    "status": "passed"
+  },
+  "independent_acceptance": false,
+  "release_eligibility": false
+}

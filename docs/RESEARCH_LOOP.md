@@ -307,3 +307,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第111固定200 direct conditional+fragment融合：prefix3 unknown0.037997→0.038997（增0.001000），known降0.000096保护通过，较第102相同wide500→critic100+fragment额外0.000167；70组23非空、130.6秒、3025MiB、无预算回退，新增真值仍1但位置提高。第113完整扩展只冻结prefix3、query-only ratio0、critic+sequence RRF0.5→前100→MetFrag0.5、双门控与skip-impossible，same2000/1340对0062、1200秒fragment预算；复用111完整70组和110冻结完整score SHA，不再改ratio/权重，不声称独立验收。与112为独立因素对照，GPU无新增作业，各CPU组/总预算分开，内容cache锁避免同谱重复评分。
+
+
+第114/115轮DINO真实跨碰撞能正对与同谱增强同预算控制预注册：只用原60000训练分子/214804谱，dev交集0；观测训练中49352个分子有同adduct/instrument、distinct CE signature，仅finite非负eV、非缺失ion/instrument可配，不能凭不同谱自动称不同CE。20固定预训练轮+30固定fingerprint BCE微调轮，不按开发挑checkpoint；width256/layers4、lr1e-4→3e-4、原weak-peak-drop/保留诊断峰/质量不变增强与EMA/projection完全相同。两臂初始化/first谱/partner抽样/torch dropout与batch遍历RNG相同，control消耗partner抽样但用first谱两视图；没有不同CE有效partner时same row。微调两臂reset1042，公平相同步数；24小时单GPU总表征预算，两臂顺序运行。最终只报告旧候选池表征诊断，不能与0062完整组合直接比较或据此提交，必要时再在冻结生成器/检索排名上单因素测试新指纹排序。旧DINO不优于监督（非坍塌），此次针对真实同分子多能量不变性而非仅加模型规模；GAN仍未训练。181回归通过，pair isolation test覆盖不同ion/instrument/分子/非法CE。
