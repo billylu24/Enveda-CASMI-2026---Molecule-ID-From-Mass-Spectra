@@ -211,6 +211,7 @@ def run(directory, limit=25):
         adaptive_prefix=deployment.get("adaptive_prefix"),
         expanded_prefix=deployment.get("expanded_prefix"),
         first_gate=first_gate,
+        output_full_rankings=output / "generated_full.json",
     )
     actual = pd.read_csv(output / "submission.csv").set_index("molecule_id")
     matches = sum(

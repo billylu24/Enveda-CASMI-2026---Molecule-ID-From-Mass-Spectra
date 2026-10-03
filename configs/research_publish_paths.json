@@ -240,7 +240,15 @@
     "casmi_ml/encoder_pair_finetuning.py",
     "tests/test_encoder_pair_finetuning.py",
     "casmi_ml/chembl_prior_proposals.py",
-    "casmi_ml/chembl_routed_combination.py"
+    "casmi_ml/chembl_routed_combination.py",
+    "casmi_ml/chembl_routed_inference.py",
+    "casmi_ml/chembl_routed_release.py",
+    "kaggle_release_routed_0149/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_routed_0149/notebook/kernel-metadata.json",
+    "kaggle_release_routed_0149/status.json",
+    "kaggle_release_routed_0149/verification.json",
+    "kaggle_release_routed_0149/kaggle_verification.json",
+    "tests/test_chembl_routed_inference.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

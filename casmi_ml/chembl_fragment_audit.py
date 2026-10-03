@@ -30,7 +30,7 @@ from casmi_ml.reference_guard import protects_reference
 from casmi_ml.research_protocol import ROOT
 
 
-def run(directory, output):
+def run(directory, output, rankings_output=None):
     directory = Path(directory)
     protocol = json.loads((directory / "protocol.json").read_text())
     report = json.loads((directory / "report.json").read_text())
@@ -77,8 +77,9 @@ def run(directory, output):
     )
     variant = f"{'fragment1' if protocol.get('fragment_weight', 0.5) == 1.0 else 'fragment05'}_prefix{protocol['insertion_prefix']}"
     spec = protocol["variants"][variant]
-    aggregate = {}
+    aggregate, full_rankings, baseline_rankings = {}, {}, {}
     for mode in ("unknown", "known"):
+        full_rankings[mode], baseline_rankings[mode] = {}, {}
         rows = json.loads((SOURCE / f"{mode}_records.json").read_text())
         confidence = {
             r["key"]: r["confidence"]
@@ -122,6 +123,7 @@ def run(directory, output):
                     0.05,
                 )
             current = insert_generated(selected["ranking"], generated, prefix, 5)
+            baseline_rankings[mode][key] = current
             result = current
             if confidence[key] < 0.5 and current:
                 counts["low_confidence_queries"] += 1
@@ -223,6 +225,7 @@ def run(directory, output):
                             result = insert_generated(
                                 current, proposed, spec[1], spec[2]
                             )
+            full_rankings[mode][key] = result
             rank = result.index(key) + 1 if key in result else 0
             reciprocal += 1 / rank if 1 <= rank <= 25 else 0
             top1 += rank == 1
@@ -247,6 +250,10 @@ def run(directory, output):
         "stage_counts_are_not_disjoint": True,
         "aggregate": aggregate,
     }
+    if rankings_output is not None:
+        write_json(
+            rankings_output, {"selected": full_rankings, "baseline": baseline_rankings}
+        )
     write_json(output, result)
     return result
 

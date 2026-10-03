@@ -414,3 +414,9 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 第147全部query外部评分：native MRR0.026609→corrected-only0.042452，Top25 127→165/Top100177→208/Top500237→241；1984非空非singleton/1779260候选，282.7秒/1559MiB，新source全部2000且原746 exact复现。第148高置信tail full:未知0.039783（+1.458%）、known降0.000422/Top1不变；1247high query中85新truth进入top100、critic Top3 21，实际17新truth插入，前10顺序保持、33.2秒。独立分支未过相对2%门槛。
 
 第149路由组合完整预登记：两个已冻结disjoint scope按原检索confidence<.5/ >=.5确定；low严格123 merged union native100 originalcritic+.05/actual first fragment positive/informative/relative/.5/prefix3，high严格148 corrected preselect100原critic+.05/prefix10。每query只一个arm，保持各原margin/prefix/权重与原0062生成检索；逐key原始baseline一致、各source inactive scope必须完全等于0062，既不叠加两个插入也不按标签选route。完整2000/1340对0062门槛；即使组合eligible，也需新增单次真实无标签推理、冷资源和平台复现，不能把两轮时间相加当部署保证。
+
+
+第149完整组合开发通过门槛：unknown0.040328（+0.001117/+2.848%），known0.604561（降0.000422）、Top1不变；只route confidence分开123与148原规则，无stack或新阈值。完整ranking独立重建unknown/known MRR1e-12完全吻合，149source低/高完整protocol/report SHA冻结。新无标签chembl_routed_inference模块仅输入molecule_id及observable谱，禁止truth/formula/fp字段；对真实0062生成full手递使用75query，原baseline真实generator75/75 Top25通过，新全部完整ranking75/75匹配，high22插入/low2插入、21critic与30fragment证据回退。high25query原first10、low50query原first3逐项保持；内容cache另private目录，fragment支持真实Java，部署总1800秒/共享原fragment截止1200秒不是两轮相加。私有release_routed_0149准备，ChEMBL原CC-BY-SA3.0/license/README/required attribution保留，双cp312/cp313离线RDKit与原Java21/weights原0062不变。400query end-to-end cold run启动，平台验证前不提交。190回归通过。
+
+
+第149整包本地400冷运行通过：286.76秒/父进程峰6048.0MiB、submission400全合法；无test label、完整source/weight/catalog/prior SHA及新release identity绑定。统一1800总deadline与1200 shared wall fragment deadline，实际base扫描与生成全流程包含资源，不能把此前75query外部阶段当此冷验证。私有Kaggle平台新kernel尚未验证，requires_platform_verification强制阻止competition submit；今日quota恢复UTC10月4日00:00后仅平台完整400排名/规则/资源匹配才能顺序提交一次。

@@ -54,6 +54,7 @@ def predict(
     adaptive_prefix=None,
     expanded_prefix=None,
     first_gate=None,
+    output_full_rankings=None,
 ):
     if not 0 <= frequency_weight <= 1:
         raise ValueError("Frequency fusion weight must be between zero and one")
@@ -157,7 +158,7 @@ def predict(
         ).second_candidate_has_reference.to_dict()
         if any(not isinstance(v, (bool, np.bool_)) for v in second_reference.values()):
             raise ValueError("Second candidate reference flags must be boolean")
-    rows, audit = [], []
+    rows, audit, final_full = [], [], []
     for molecule_id, group in test.groupby("molecule_id", sort=False):
         smiles = (
             full[molecule_id]
@@ -191,6 +192,14 @@ def predict(
                     deadline=started + seconds,
                 )
             except TimeoutError:
+                final_full.append(
+                    {
+                        "molecule_id": molecule_id,
+                        "smiles": full[molecule_id]
+                        if full is not None
+                        else original_top25,
+                    }
+                )
                 rows.append(
                     {"molecule_id": molecule_id, "smiles": ";".join(original_top25)}
                 )
@@ -332,11 +341,26 @@ def predict(
         elif not protected[molecule_id]:
             status = "budget_retrieval_fallback"
         smiles = smiles[:25] if status == "generated_and_merged" else original_top25
+        final_full.append(
+            {
+                "molecule_id": molecule_id,
+                "smiles": [lookup[k] for k in rank]
+                if status == "generated_and_merged"
+                else (full[molecule_id] if full is not None else original_top25),
+            }
+        )
         rows.append({"molecule_id": molecule_id, "smiles": ";".join(smiles)})
         audit.append({"molecule_id": molecule_id, "status": status, **stats})
     submission = pd.DataFrame(rows)
     validate_submission(test, submission)
     submission.to_csv(output, index=False)
+    if output_full_rankings is not None:
+        if any(
+            r["smiles"][:25] != submission.iloc[i].smiles.split(";")
+            for i, r in enumerate(final_full)
+        ):
+            raise ValueError("Final generation handoff differs from submission")
+        write_json(output_full_rankings, final_full)
     pd.DataFrame(audit).to_csv(str(output) + ".generation.csv", index=False)
     write_json(
         str(output) + ".report.json",

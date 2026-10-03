@@ -228,7 +228,7 @@ def run(
         lock_path=output / "score.lock",
     )
     started = time.monotonic()
-    report, diagnostics, coverage = {}, {}, {}
+    report, diagnostics, coverage, full_rankings = {}, {}, {}, {}
     try:
         for mode in ("unknown", "known"):
             rows = json.loads((SOURCE / f"{mode}_records.json").read_text())
@@ -401,6 +401,7 @@ def run(
                     diagnostics[mode][name]["novel_inserted_truths"] += (
                         key in novel_external
                     )
+            full_rankings[mode] = ranks
             report[mode] = {}
             for name in variants:
                 result, per = metrics(ranks[name], pools[name])
@@ -425,6 +426,7 @@ def run(
                         raise ValueError("Paired baseline must match0062")
                 report[mode][name] = result
                 per.to_csv(output / f"{mode}_{name}.csv", index=False)
+        write_json(output / "rankings.json", full_rankings)
         write_json(cache_path, pair_scores)
         write_json(output / "diagnostics.json", diagnostics)
         report["diagnostics"] = {

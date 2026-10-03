@@ -34,11 +34,14 @@ def predict(recipe_path, data_dir, coconut, output):
     retrieve_predict(recipe_path, data_dir, coconut, baseline, full_rankings=full)
     test = locate(Path(data_dir) / "test.parquet", "test.parquet")
     remaining = max(0.001, generation["total_seconds"] - (time.monotonic() - started))
+    external = recipe.get("external_routed")
+    generated_output = output.with_name("generated_base.csv") if external else output
+    generated_full = output.with_name("generated_base_full.json") if external else None
     result = generate_predict(
         generation_path,
         test,
         baseline,
-        output,
+        generated_output,
         samples=generation["samples"],
         seconds=remaining,
         encoder_path=recipe_path.parent / recipe["checkpoint"],
@@ -53,8 +56,27 @@ def predict(recipe_path, data_dir, coconut, output):
         adaptive_prefix=generation.get("adaptive_prefix"),
         expanded_prefix=generation.get("expanded_prefix"),
         first_gate=generation.get("first_gate"),
+        output_full_rankings=generated_full,
     )
-    report = json.loads(Path(str(output) + ".report.json").read_text())
+    report = json.loads(Path(str(generated_output) + ".report.json").read_text())
+    if external:
+        from casmi_ml.chembl_routed_inference import extend
+
+        result = extend(
+            test,
+            generated_output,
+            generated_full,
+            str(baseline) + ".routing.csv",
+            output,
+            recipe_path.parent,
+            external,
+            deadline=started + generation["total_seconds"],
+            fragment_deadline=started + recipe["chemistry"]["fragment_seconds"],
+        )
+        report["external_routed"] = json.loads(
+            Path(str(output) + ".external.report.json").read_text()
+        )
+        generated_full.unlink()
     report.update(
         seconds=time.monotonic() - started,
         peak_rss_mib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024,

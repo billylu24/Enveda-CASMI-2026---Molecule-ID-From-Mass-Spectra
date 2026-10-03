@@ -1,0 +1,34 @@
+{
+  "valid": true,
+  "molecules": 75,
+  "full_rank_matches": 75,
+  "unlabeled_input": true,
+  "real_frozen_generator_baseline": true,
+  "baseline_generation_top25_matches": 75,
+  "external_source_sha256": "068f1ad5c282154e68f7291647bfa370dcf5f0b06d5755572552e5283c37cd2e",
+  "protocol_sha256": "334aa6651752e5b23db2458b9222eb69fa33095aebb3a178bf7162d84589da13",
+  "seconds": 62.45218546700198,
+  "peak_rss_mib": 1344.64453125,
+  "status_counts": {
+    "fragment_evidence_fallback": 30,
+    "high_tail_inserted": 22,
+    "critic_gate_fallback": 21,
+    "low_fragment_inserted": 2
+  },
+  "independent_acceptance": false,
+  "resource_scope": "75query external stage with cold private cache; full400 end-to-end cold resources still required",
+  "diagnostic_only": true,
+  "confidence_prefix_preservation": {
+    "high_first10_preserved": 25,
+    "low_first3_preserved": 50
+  },
+  "cohort": "repeated_development",
+  "round": "0149_chembl_routed_combination",
+  "gate": {
+    "eligible": true,
+    "absolute_gain": 0.001116674145428008,
+    "relative_gain": 0.028478530179982753,
+    "reasons": [],
+    "evidence": "development_experimental; not independent acceptance"
+  }
+}

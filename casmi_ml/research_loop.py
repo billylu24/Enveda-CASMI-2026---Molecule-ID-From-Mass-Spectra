@@ -983,6 +983,7 @@ class Controller:
                 "generated_expanded_route",
                 "generated_first_gate",
                 "protected_generation",
+                "chembl_routed_combination",
             ]:
                 outcome = self.release_round(identifier)
                 if outcome in [
@@ -1146,7 +1147,12 @@ class Controller:
                 finally:
                     gpu.close()
         if not release.exists():
-            package(identifier, r["decision"], release)
+            if r["direction"] == "chembl_routed_combination":
+                from casmi_ml.chembl_routed_release import prepare
+
+                prepare(Path(r["report"]).parent, release)
+            else:
+                package(identifier, r["decision"], release)
         if not (release / "verification.json").exists():
             gpu = None
             if r["direction"] in [
@@ -1161,6 +1167,7 @@ class Controller:
                 "generated_expanded_route",
                 "generated_first_gate",
                 "protected_generation",
+                "chembl_routed_combination",
             ]:
                 gpu = (self.root / "gpu.lock").open("a")
                 try:
@@ -1185,6 +1192,7 @@ class Controller:
                             "generated_expanded_route",
                             "generated_first_gate",
                             "protected_generation",
+                            "chembl_routed_combination",
                         ]
                         else ".venv/bin/python",
                         "-m",

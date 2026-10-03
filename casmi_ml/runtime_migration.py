@@ -189,6 +189,16 @@ def verify_platform(identifier, output_dir):
         raise ValueError(
             "Platform checkpoint or inference rule differs from local package"
         )
+    if local_report.get("external_routed"):
+        external_local, external_remote = (
+            local_report["external_routed"],
+            report.get("external_routed", {}),
+        )
+        if any(
+            external_local.get(key) != external_remote.get(key)
+            for key in ("config", "source_sha256", "unlabeled_input")
+        ):
+            raise ValueError("Platform external candidate rules or source differ")
     if (
         report["seconds"] > c.config["inference_seconds"]
         or report["peak_rss_mib"] > c.config["inference_rss_mib"]
@@ -216,7 +226,7 @@ def verify_platform(identifier, output_dir):
         kernel_version=r["remote_release"]["version"],
     )
     write_json(release / "status.json", status)
-    amendment = r["runtime_amendment"]
+    amendment = r.get("runtime_amendment", {})
     if amendment.get("aggregate"):
         path = Path(amendment["aggregate"])
         aggregate = json.loads(path.read_text())
