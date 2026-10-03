@@ -325,3 +325,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第117轮训练内fingerprint背景扣除诊断预注册：冻结当前60K encoder和ChEMBL前500质量提案，只使用train60K每分子一次的原2048bit指纹，Laplace(1,1)平滑各bit边际q；对实际predicted probability p计算Bernoulli log-likelihood ratio，即原native分数减去candidate fingerprint在q下的loglikelihood（候选无关常数省略）。固定native vs ratioRRF0.5 vs ratio-only1，完整2000外部候选排序，仅诊断，不直接提交；不使用开发结构拟合边际或权重，不增训练/GPU采样，CPU3600秒。动机为普通结构先验可能压制稀有诊断峰对应的fingerprint，作为冻结表征的可审计评分校准，而不是对抗训练。回归验证p=q时所有候选比值分数均为0、非法边际拒绝。
+
+
+第117训练内fingerprint背景校准full2000外部诊断：native MRR0.010153→corrected融合0.012625→corrected-only0.014147；候选recall均0.045、Top25 46→59→61/2000，原60K平滑边际且train/dev交集0。CPU56.8秒/1159MiB、737queries，未训练/GPU/采样；不能从候选诊断直接发布。第118同200融合pilot预注册：native500→原critic→以RRF0.5融合背景扣除native scores→前100→真实MetFrag0.5；仍要求实际首候选critic+.05、fragment严格高于0062首位、正且非同分证据，slots3/prefix2/3/5/10/skip-impossible固定，1200秒整组预算。和sequence融合隔离，不混用两份评分；完整score/protocol SHA、encoder/catalog/dev绑定，评分缺失者保持原槽位。不是重新训练判别器或GAN。

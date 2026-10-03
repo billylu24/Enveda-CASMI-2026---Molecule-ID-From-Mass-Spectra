@@ -38,6 +38,7 @@ def run(directory, output):
         protocol["limit"] != 2000
         or not protocol["compare_current_first_fragment"]
         or protocol["candidate_gate"]
+        or protocol.get("fingerprint_prior_ranking", False)
         or protocol.get("chemical_prior", False)
         or protocol.get("fragment_gate_only", False)
     ):

@@ -108,7 +108,12 @@ def run(
     fragment_depth=2,
     sequence_scores=None,
     sequence_ratio=1.0,
+    fingerprint_prior_scores=None,
 ):
+    if sequence_scores is not None and fingerprint_prior_scores is not None:
+        raise ValueError(
+            "Sequence and fingerprint-prior scoring are isolated experiments"
+        )
     if sequence_ratio not in (0.0, 1.0):
         raise ValueError("Sequence ratio weight must be 0 or 1")
     if type(fragment_depth) is not int or fragment_depth not in (2, 3):
@@ -222,6 +227,27 @@ def run(
                 "Require frozen full2000 external sequence scores bound to this encoder/catalog/cohort"
             )
         sequence_values = json.loads(sequence_scores.read_text())
+    prior_values = {}
+    if fingerprint_prior_scores is not None:
+        fingerprint_prior_scores = Path(fingerprint_prior_scores)
+        prior_protocol = json.loads(
+            (fingerprint_prior_scores.parent / "protocol.json").read_text()
+        )
+        prior_report = json.loads(
+            (fingerprint_prior_scores.parent / "report.json").read_text()
+        )
+        if (
+            prior_protocol["encoder_sha256"] != digest(ENCODER)
+            or prior_protocol["catalog_sha256"] != digest(DERIVED)
+            or prior_protocol["development_sha256"]
+            != digest(ROOT / "researchdev.parquet")
+            or prior_protocol["limit"] != 2000
+            or prior_report["external_only"]["native"]["molecules"] != 2000
+        ):
+            raise ValueError(
+                "Require frozen full2000 training-prior scores with matching encoder/catalog/cohort"
+            )
+        prior_values = json.loads(fingerprint_prior_scores.read_text())
     output, incumbent = Path(output), Path(incumbent)
     output.mkdir(parents=True, exist_ok=True)
     seed_path = output / "initial_fragment_scores.json"
@@ -249,6 +275,7 @@ def run(
             "rule": f"Freeze0062;confidence<.5;native first{proposal_limit} novel ChEMBL proposals;critic shortlist first{fragment_limit}, then MetFrag tie-aware rerank; actual first proposal critic must exceed current first by.05;insert3 after frozen prefix",
             "limit": limit,
             "insertion_prefix": prefix,
+            "fingerprint_prior_ranking": fingerprint_prior_scores is not None,
             "sequence_ranking": sequence_scores is not None,
             "proposal_limit": proposal_limit,
             "fragment_limit": fragment_limit,
@@ -293,6 +320,17 @@ def run(
             "chemical_prior_rules": rule_manifest() if chemical_prior else None,
             "chemistry_source_sha256": digest("casmi_ml/chemistry.py"),
             "new_training": False,
+            "fingerprint_prior_scores_sha256": digest(fingerprint_prior_scores)
+            if fingerprint_prior_scores
+            else None,
+            "fingerprint_prior_protocol_sha256": digest(
+                fingerprint_prior_scores.parent / "protocol.json"
+            )
+            if fingerprint_prior_scores
+            else None,
+            "fingerprint_prior_fusion_weight": 0.5
+            if fingerprint_prior_scores
+            else None,
             "sequence_scores_sha256": digest(sequence_scores)
             if sequence_scores
             else None,
@@ -536,6 +574,16 @@ def run(
                                 sequence_values.get(key, {}),
                                 sequence_ratio,
                             )
+                        if fingerprint_prior_scores is not None:
+                            from casmi_ml.chembl_sequence_pilot import reorder_scoreable
+
+                            mapped_scores = {
+                                k: {"query": v, "prior": 0.0}
+                                for k, v in prior_values.get(key, {}).items()
+                            }
+                            candidates_external = reorder_scoreable(
+                                candidates_external, mapped_scores, 0.0
+                            )
                         candidates_external = candidates_external[:fragment_limit]
                 if (
                     skip_impossible
@@ -750,6 +798,7 @@ def run(
             "parent_peak_rss_mib": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
             / 1024,
             "proposal_queries_scored": len(pair_scores),
+            "fingerprint_prior_ranking": fingerprint_prior_scores is not None,
             "sequence_ranking": sequence_scores is not None,
             "proposal_limit": proposal_limit,
             "fragment_limit": fragment_limit,
@@ -792,6 +841,7 @@ def main():
     p.add_argument("--fragment-gate-only", action="store_true")
     p.add_argument("--skip-impossible", action="store_true")
     p.add_argument("--relative-candidate-gate", action="store_true")
+    p.add_argument("--fingerprint-prior-scores", type=Path)
     p.add_argument("--sequence-ratio", type=float, choices=(0.0, 1.0), default=1.0)
     p.add_argument("--sequence-scores", type=Path)
     p.add_argument("--fragment-depth", type=int, choices=(2, 3), default=2)
@@ -823,6 +873,7 @@ def main():
                 a.fragment_depth,
                 a.sequence_scores,
                 a.sequence_ratio,
+                a.fingerprint_prior_scores,
             ),
             indent=2,
         )
