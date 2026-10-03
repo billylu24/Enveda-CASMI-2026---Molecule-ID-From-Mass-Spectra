@@ -99,22 +99,23 @@
   },
   "active_rounds": [
     {
-      "id": "0247_diagnostic_query_chemical_system",
+      "id": "0255_query_strict_mass_chemical_system",
       "direction": "chemical_query_critic",
       "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0247_diagnostic_query_chemical_system/report.json"
+      "report": "artifacts/research_loop/rounds/0255_query_strict_mass_chemical_system/report.json"
     }
   ],
   "drivers": [
     "diagnostic_attribution_followup_v2.log",
     "diagnostic_peak_loss_followup.log",
     "diagnostic_query_followup_v2.log",
-    "packed_candidate_followup.log"
+    "packed_candidate_followup.log",
+    "diagnostic_query_strict_followup.log"
   ],
-  "pending_sequence": "247 complete chemical-query critic system ->248 complete identity-masked critic system ->paired attribution. Query training245/246 complete; old all-channel/chemical-mask/peak-mask fingerprint-context attribution complete with no extra final MRR gain; exact3340 candidate runtime active.",
+  "pending_sequence": "248 masked query known phase ->253/254 strict mass-window matched training ->255/256 complete systems and paired objective attribution. Current best and exact packed candidate runtime unchanged.",
   "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; required completed original comparator; no new failed or budget fallback promotion; no threshold weakening.",
   "runtime_claims": "Best full3340 cached replay exact and packed cache full3340 ranks exact; local packed runtime active. No fresh acceptance or cold inference proof claimed.",
-  "tests": "318 unittest tests passed",
+  "tests": "320 unittest tests passed",
   "notes": [
     "Do not restart a driver that owns child processes. Only waiting-only driver may be terminated/reloaded after source change.",
     "No Kaggle submission, upload, GitHub push, or unrelated user-file changes.",
