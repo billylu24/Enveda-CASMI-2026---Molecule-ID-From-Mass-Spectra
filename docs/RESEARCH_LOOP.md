@@ -357,3 +357,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 第126/127完整encoder对照：原native100仅20新真值可评分，BCE control外部critic Top3 5→hard-pair9，Top25 13→15；预选prefix5 combined未知0.039191→0.039351（hard对0062仅+0.356%），known0.604220→0.604201，保护通过，全部既有变体门槛失败。低位插入无法充分将候选排序改善转为系统收益，下一只做一个固定hash200 fragment证据融合对照；不按此full挑新prefix/margin。
 
 第128/129同hash200 matched fragment pilot登记：沿用122 merged union/原0062/相对actual first/critic+.05/fragment.5/native100/3slots/prefix3/skip-impossible，仅换BCE vs hard-pair proposal encoder与原冻结critic（新绑定）；旧生成/检索保持原模型。预选prefix3，禁止新模型复用旧critic分数，cache包含两模型SHA，片段内容仍可内容缓存。以两臂同200增益/known保护判断，若没有正向不扩大。187项回归通过，audit新增绑定支持后再核对full。
+
+
+第130/131 native500完整encoder双臂诊断预登记：第126/127 native100只有20可新增真值、原wide50040，先在固定新encoder/critic权重和原0062排名上扩大原label无关native提案到500以检验召回/排名能力；BCE vs BCE+hard仍匹配两臂，既有prefix5预选、其余旧变体只报告，不据此称训练成功或GAN可行。与fragment证据小试验独立因素，未改变Java预算/fragment模型/生成。若critic-only仍不能过门槛，必须看candidate精确排序与证据支持再决定完整fragment，不能凭训练CE直接发布。
