@@ -35,6 +35,7 @@ from casmi_ml.research_protocol import ENCODER, ROOT, TRAIN, freeze
 from casmi_ml.secondary_inference import load_deployment_checkpoint
 from casmi_ml.strict_mass_negative_mask import admissible_negatives
 from casmi_ml.training import configure
+from casmi_ml.training_query_groups import grouped_rows, masked_group_mean
 from casmi_ml.training_query_pairs import paired_rows
 
 
@@ -47,7 +48,19 @@ def run(
     balance_modalities=False,
     strong_peak_losses=False,
     admission_margin=False,
+    all_spectra=False,
 ):
+    if all_spectra and (
+        multispectrum
+        or admission_margin
+        or balance_modalities
+        or strong_peak_losses
+        or chemical_only_correction
+        or strict_mass_negatives
+    ):
+        raise ValueError(
+            "All-spectra aggregation is a separate original raw contextual hypothesis"
+        )
     if admission_margin and (
         strong_peak_losses
         or balance_modalities
@@ -83,6 +96,8 @@ def run(
             "mask_chemical_channels": mask_chemical_channels,
             "strict_mass_negatives": strict_mass_negatives,
             "multispectrum": multispectrum,
+            "all_spectra": all_spectra,
+            "query_group_source_sha256": digest("casmi_ml/training_query_groups.py"),
             "chemical_only_correction": chemical_only_correction,
             "balance_modalities": balance_modalities,
             "strong_peak_losses": strong_peak_losses,
@@ -104,10 +119,14 @@ def run(
                 "casmi_ml/chemical_query_constraint.py"
             ),
             "training_molecules": 60000,
-            "row_selection": "one RNG42 representative per original60K molecule, same arms",
+            "row_selection": "All original measured rows per original60K molecule, stable source order; originalRNG42 representative still used for target validation/padding, zero padding vote"
+            if all_spectra
+            else "one RNG42 representative per original60K molecule, same arms",
             "epochs": 3,
             "query_pair_source_sha256": digest("casmi_ml/training_query_pairs.py"),
-            "query_aggregation": "Two measured rows under same molecule/adduct/mode, representativeRNG42 plus separate pairRNG260; per-spectrum corrected normalized queries averaged before CE and displacement anchor. Singleton row duplicated exactly."
+            "query_aggregation": "All original measured rows per molecule in stable source order, all observed adducts and ionization modes; explicit padding mask removes repeated representative rows from query and anchor means. Same60K optimizer molecule weights; maximum4 real rows."
+            if all_spectra
+            else "Two measured rows under same molecule/adduct/mode, representativeRNG42 plus separate pairRNG260; per-spectrum corrected normalized queries averaged before CE and displacement anchor. Singleton row duplicated exactly."
             if multispectrum
             else "One originalRNG42 representative row per molecule",
             "optimizer": "AdamW .001 wd.01",
@@ -177,6 +196,11 @@ def run(
         feature_ids = (
             np.column_stack([ids, paired]).reshape(-1) if multispectrum else ids
         )
+        group_valid = np.ones((60000, rows_per_molecule), dtype=bool)
+        if all_spectra:
+            grouped, group_valid = grouped_rows(train, ids)
+            rows_per_molecule = grouped.shape[1]
+            feature_ids = grouped.reshape(-1)
         chemical = np.stack(
             [
                 evidence_features(row, True)
@@ -222,6 +246,7 @@ def run(
         queries = queries.reshape(60000, rows_per_molecule, 128)
         chemical = chemical.reshape(60000, rows_per_molecule, DIM)
         chemical = torch.from_numpy(chemical).to("cuda")
+        group_valid = torch.from_numpy(group_valid).to("cuda")
         scales = fit_scales(contexts, chemical) if balance_modalities else None
         hard = torch.from_numpy(hard).to("cuda")
         model = DiagnosticQueryRanker(
@@ -251,7 +276,12 @@ def run(
                     if balance_modalities
                     else model.query_residual(*query_inputs)
                 )
-                query = corrected.reshape(len(index), rows_per_molecule, 128).mean(1)
+                corrected = corrected.reshape(len(index), rows_per_molecule, 128)
+                query = (
+                    masked_group_mean(corrected, group_valid[index])
+                    if all_spectra
+                    else corrected.mean(1)
+                )
                 selected = torch.cat([index[:, None], hard[index]], -1)
                 cosine = (query[:, None] * molecules[selected]).sum(-1)
                 scale = model.log_scale.exp().clamp(max=50)
@@ -276,7 +306,12 @@ def run(
                 ce = F.cross_entropy(
                     logits, torch.zeros(len(index), dtype=torch.long, device="cuda")
                 )
-                anchor = (query - queries[index].mean(1)).square().sum(-1).mean()
+                original_query = (
+                    masked_group_mean(queries[index], group_valid[index])
+                    if all_spectra
+                    else queries[index].mean(1)
+                )
+                anchor = (query - original_query).square().sum(-1).mean()
                 loss = ce + 0.1 * anchor
                 if not torch.isfinite(loss):
                     raise FloatingPointError("Nonfinite query residual loss")
@@ -330,6 +365,8 @@ def run(
             "mask_chemical_channels": mask_chemical_channels,
             "strict_mass_negatives": strict_mass_negatives,
             "multispectrum": multispectrum,
+            "all_spectra": all_spectra,
+            "query_group_source_sha256": digest("casmi_ml/training_query_groups.py"),
             "chemical_only_correction": chemical_only_correction,
             "balance_modalities": balance_modalities,
             "strong_peak_losses": strong_peak_losses,
@@ -353,6 +390,8 @@ def run(
             "mask_chemical_channels": mask_chemical_channels,
             "strict_mass_negatives": strict_mass_negatives,
             "multispectrum": multispectrum,
+            "all_spectra": all_spectra,
+            "query_group_source_sha256": digest("casmi_ml/training_query_groups.py"),
             "chemical_only_correction": chemical_only_correction,
             "balance_modalities": balance_modalities,
             "strong_peak_losses": strong_peak_losses,
@@ -371,6 +410,12 @@ def run(
             "strict_inside_hard_negatives": strict_inside,
             "distinct_same_ion_training_pairs": distinct_pairs,
             "rows_per_training_molecule": rows_per_molecule,
+            "spectrum_slots_are_padded": all_spectra,
+            "actual_rows_per_molecule_histogram": {
+                str(n): int((group_valid.sum(-1) == n).sum())
+                for n in range(1, rows_per_molecule + 1)
+            },
+            "measured_training_rows_used": int(group_valid.sum()),
             "original_critic_tensors_exact": True,
             "original_encoder_frozen": True,
             "history": history,
@@ -394,6 +439,7 @@ def main():
     parser.add_argument("--balance-modalities", action="store_true")
     parser.add_argument("--strong-peak-losses", action="store_true")
     parser.add_argument("--admission-margin", action="store_true")
+    parser.add_argument("--all-spectra", action="store_true")
     print(json.dumps(run(**vars(parser.parse_args())), indent=2))
 
 

@@ -22,13 +22,15 @@
     "Strong masked training282 every critic/residual tensor equals prior paired masked261, and all3340 full ranks284 equal263; raw evidence gate preserved as intended.",
     "Training-only288 original60K paired query margin audit: rank-correct51380 vs deployed+.05-admitted46973;4407 rank-correct below margin.Exact identical positive/negative2048 fingerprints665 pairs; residual cannot resolve this aliasing.",
     "286 bounded actualSMILES identity memoization every3340 best full rank exact,0budget/newfailure, source amendment active locally; cached unknown176.74/known112.35s, not a matched cold pipeline resource gain.",
-    "287 actual identity-runtime current-source zero query control complete3340 exact,0budget/newfailure; local current verified inference remains scientific236/evidence286. Additive admission-margin289/290 training complete,291/292 full systems proceeding."
+    "287 actual identity-runtime current-source zero query control complete3340 exact,0budget/newfailure; local current verified inference remains scientific236/evidence286. Additive admission-margin289/290 training complete,291/292 full systems proceeding.",
+    "Charged ChEMBL full-source audit293 retained23844 additional charged structures,1 database identity hit but0 observable mass-window truth hits, no expansion activated.",
+    "Admission chemical291 complete unknownMRR.043659452 below incumbent and original paired chemical262; matched mask292 remains in evaluation.",
+    "Observed original training31478 mixed-adduct and17918 mixed-mode groups, development464/246; current same-ion pair duplicates for7963 multirow training groups with no same-ion partner. Preregister all-measured row aggregation294/295, raw CE and unchanged inference graph, no combination with admission margin."
   ],
   "current_sequence": [
-    "286 isolated actualSMILES identity cache full3340 control then amend core only if exact",
-    "287 current-source zero query control after identity source amendment",
-    "289/290 matched original raw contextual paired training with deployed cosine+.05 additive positive-margin CE; same labels/negatives/steps",
-    "291/292 complete full systems and identity+objective attribution, retain incumbent unless all frozen gates pass"
+    "Complete292 paired admission control and attribution",
+    "294/295 all214804 original training rows/60K molecules with zero padding vote in query and anchor means, same original15CE and optimizer steps",
+    "296/297 complete paired full systems, all incumbent+0206+181 safeguards retained"
   ],
   "gan": {
     "status": "not_expanded",

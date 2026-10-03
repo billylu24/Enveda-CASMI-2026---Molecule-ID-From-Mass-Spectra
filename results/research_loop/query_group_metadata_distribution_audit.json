@@ -1,0 +1,39 @@
+{
+  "local_only": true,
+  "independent_acceptance": false,
+  "parts": {
+    "training": {
+      "molecules": 60000,
+      "spectra": 214804,
+      "query_count_histogram": {
+        "1": 3632,
+        "2": 3525,
+        "3": 7250,
+        "4": 45593
+      },
+      "mixed_adduct_groups": 31478,
+      "mixed_mode_groups": 17918,
+      "scope": "Observed metadata distribution, no performance labels or holdout used",
+      "fixed_pair_distinct_same_ion": 48405,
+      "fixed_pair_singleton_but_other_ion_row_available": 7963
+    },
+    "development_observable": {
+      "molecules": 2000,
+      "spectra": 5439,
+      "query_count_histogram": {
+        "1": 392,
+        "2": 529,
+        "3": 527,
+        "4": 425,
+        "5": 72,
+        "6": 43,
+        "7": 6,
+        "8": 6
+      },
+      "mixed_adduct_groups": 464,
+      "mixed_mode_groups": 246,
+      "scope": "Observed metadata distribution, no performance labels or holdout used"
+    }
+  },
+  "note": "Development observable metadata used only to diagnose aggregation distribution mismatch; no truth outcomes, development threshold fitting or fresh acceptance."
+}

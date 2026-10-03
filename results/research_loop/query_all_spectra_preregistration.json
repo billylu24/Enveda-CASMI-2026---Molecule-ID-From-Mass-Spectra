@@ -1,0 +1,17 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "motivation": "No query intervention has passed incumbent gates. Observable metadata audit shows training31478/60000 mixed-adduct and17918 mixed-mode groups; development464/2000 mixed-adduct and246 mixed-mode. Current same-ion pair duplicates first row for7963 multirow training molecules because no same-ion partner, while deployed query averages all supplied rows. Audit did not use development outcomes or holdout.",
+  "hypothesis": "Train raw contextual query correction on complete1-4 original measured training rows per molecule, preserving all adduct/mode inputs, each molecule equally weighted. Pad to4 original representative slots but explicitmask gives padded copies zero vote in CE query and displacement anchor.",
+  "training": "All214804 original actual training spectra/60000 labels, no new molecules; original unrestricted15 pinned negatives and raw unbalanced CE+.1 anchor. Same3epochs235 optimizer steps AdamW.001 wd.01; original encoder/critic frozen. Two same capacity chemical/masked arms, no combination with admission-margin negative objective or weak-peak input transform.",
+  "inference": "Same verified raw contextual792->64->128 correction graph; no newsource forward path, current zero287 valid. Increased training spectra is reported as intervention, not hidden extra compute or matched spectrum count to old pair arm.",
+  "sequence": [
+    "Finish292 admission-margin complete paired comparison",
+    "294/295 singleGPU serial all-spectrum group training",
+    "296/297 complete paired full3340 systems",
+    "Attribution all-vs-fixedpair and chemical-vs-mask"
+  ],
+  "gates": "Current best unknown absolute+.0005 and relative+2%; knownMRRdrop<=.001 Top1drop<=.005, protect0206+181, no budgetfallback/newfailed physical contexts.1200s fragmentation/scenario and24GPUh/representation arm unchanged.",
+  "claim": "Observed group mismatch motivates the experiment; it does not establish cause, future accuracy gain or independent acceptance."
+}

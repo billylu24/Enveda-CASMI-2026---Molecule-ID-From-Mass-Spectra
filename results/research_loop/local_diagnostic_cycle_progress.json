@@ -13,7 +13,7 @@
     "budget_fallbacks": 861,
     "diagnostic_only": true
   },
-  "next_sequence": "Strong-peak283/284 complete rejected.286 actualSMILES identity cache full3340 current-best exact before source amendment and287 current-source zero.289/290 training-only additive deployed+.05 admission-margin CE, then291/292 complete matched systems. Only frozen gate winners replace best.",
+  "next_sequence": "286 identity runtime active,287 current-source zero exact.291/292 additive admission CE systems followed by294/295 fixed all original measured training spectra group means and296/297 matched full systems. Only frozen gate winners replace best.",
   "independent_acceptance": false,
   "precision_first_pass": {
     "unknown_mrr25": 0.04268861838422192,
@@ -24,7 +24,7 @@
     "raw_candidates_reused": 127088,
     "new_candidates_scored": 3025
   },
-  "active_round": "0291_query_admission_chemical_system",
+  "active_round": "0292_query_admission_mask_system",
   "coarse_complete": {
     "unknown_mrr25": 0.04268861838422192,
     "known_mrr25": 0.6046005738683694,
@@ -36,7 +36,7 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0291_query_admission_chemical_system"
+    "0292_query_admission_mask_system"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -326,7 +326,7 @@
       "original_critic_tensors_exact": true
     }
   },
-  "updated_at": "2026-10-03T13:32:54Z",
+  "updated_at": "2026-10-03T13:41:18Z",
   "current_query_zero_control": "artifacts/research_loop/rounds/0287_query_identity_runtime_zero_control",
   "local_verified_evidence_round": "0286_structure_identity_full_control",
   "multispectrum_attribution": {

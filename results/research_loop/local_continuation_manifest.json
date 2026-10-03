@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03T13:32:54Z",
+  "updated_at": "2026-10-03T13:41:18Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -102,10 +102,10 @@
   },
   "active_rounds": [
     {
-      "id": "0291_query_admission_chemical_system",
+      "id": "0292_query_admission_mask_system",
       "direction": "chemical_query_critic",
       "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0291_query_admission_chemical_system/report.json"
+      "report": "artifacts/research_loop/rounds/0292_query_admission_mask_system/report.json"
     }
   ],
   "local_candidate_runtime": {
@@ -176,9 +176,10 @@
     "object_candidate_followup.log",
     "diagnostic_query_strong_peak_followup.log",
     "structure_key_followup_v2.log",
-    "diagnostic_query_admission_followup_v2.log"
+    "diagnostic_query_admission_followup_v2.log",
+    "diagnostic_query_all_spectra_followup.log"
   ],
-  "pending_sequence": "Strong-peak283/284 complete rejected.286 actualSMILES identity cache full3340 current-best exact before source amendment and287 current-source zero.289/290 training-only additive deployed+.05 admission-margin CE, then291/292 complete matched systems. Only frozen gate winners replace best.",
+  "pending_sequence": "286 identity runtime active,287 current-source zero exact.291/292 additive admission CE systems followed by294/295 fixed all original measured training spectra group means and296/297 matched full systems. Only frozen gate winners replace best.",
   "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
   "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
   "independent_acceptance": false,
@@ -1123,6 +1124,13 @@
     },
     {
       "id": "0291_query_admission_chemical_system",
+      "direction": "chemical_query_critic",
+      "status": "rejected",
+      "decision": "results/research_loop/0291_query_admission_chemical_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0292_query_admission_mask_system",
       "direction": "chemical_query_critic",
       "status": "external_running",
       "decision": null,

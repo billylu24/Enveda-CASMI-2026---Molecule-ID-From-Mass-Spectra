@@ -45,8 +45,9 @@ def refresh():
             "diagnostic_query_strong_peak_followup.log",
             "structure_key_followup_v2.log",
             "diagnostic_query_admission_followup_v2.log",
+            "diagnostic_query_all_spectra_followup.log",
         ],
-        "pending_sequence": "Strong-peak283/284 complete rejected.286 actualSMILES identity cache full3340 current-best exact before source amendment and287 current-source zero.289/290 training-only additive deployed+.05 admission-margin CE, then291/292 complete matched systems. Only frozen gate winners replace best.",
+        "pending_sequence": "286 identity runtime active,287 current-source zero exact.291/292 additive admission CE systems followed by294/295 fixed all original measured training spectra group means and296/297 matched full systems. Only frozen gate winners replace best.",
         "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
         "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
         "independent_acceptance": False,
@@ -87,6 +88,7 @@ def refresh():
         ("balanced_attribution", "query_balanced_attribution.json"),
         ("strong_peak_attribution", "query_strong_peak_attribution.json"),
         ("admission_margin_attribution", "query_admission_attribution.json"),
+        ("all_spectra_attribution", "query_all_spectra_attribution.json"),
     ]:
         report = Path("results/research_loop") / filename
         if report.exists():
