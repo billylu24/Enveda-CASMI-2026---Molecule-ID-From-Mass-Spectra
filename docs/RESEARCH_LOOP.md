@@ -336,3 +336,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 第115真实跨CE DINO匹配控制完成：20pretrain+30finetune，908.8秒/GPU1764MiB、train/dev交集0；routed未知0.016491低于114同谱0.018332，raw0.014928低于0.018623，known略降，未坍塌effective rank79.91。两protocol除cross_energy之外完全相同、50轮phase/epoch/可配抽样数量逐轮完全相同、最终两ckpt weights_only加载且全部finite；固定final30、不按开发checkpoint。该跨能量不变性设置没有正向排序证据，不扩大到0062生产组合或部署，不将此失败解释为所有DINO架构不可能。公开比较汇总与代码/哈希，权重/数据/逐分子仍私有。
 
 第119prior+critic-only fixed200：unknown保持baseline0.037997、known降0.001909保护失败，59/26查询插入、无新真值；无Java、CPU4.56秒，停止此融合扩大。candidate单独分数提升不等于系统插入收益，后续优先检验效率和跨谱化学证据聚合，而不是去掉所有保护。
+
+
+第120/121 hash固定200跨谱聚合匹配对照预注册：此前alphabetical first200多种改动都依赖同1个库外新增真值，full多次不复现，先检查更代表性的固定抽样而非扩大权重搜索。使用SHA256("fragment-representative-20261003:"+molecule_key)最小200键，顺序与是否命中/谱/结构标签无关；仍全部来自已重复使用的2000，绝非fresh holdout。原same0062/critic+.05/native100/单体/实际首位fragment比较/weight0.5/slots3/skip-impossible，预选关注prefix3，不以新hash结果再挑其他prefix；只改变max_raw vs mean_normalized聚合，真实逐谱content-cache可复用，两轮汇总缓存独立，1200秒整组回退不变。基线与0062对应这200键逐行一致。数据选择不改训练或Kaggle发布协议，先用两种方法同键差异决定是否值得完整扩展。

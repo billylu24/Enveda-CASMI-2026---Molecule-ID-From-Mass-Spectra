@@ -1,0 +1,187 @@
+{
+  "round": "0120_chembl_hash_max_control",
+  "direction": "chembl_fragment_slots",
+  "status": "diagnostic_complete",
+  "report": {
+    "unknown": {
+      "baseline": {
+        "molecules": 200,
+        "candidate_recall": 0.16,
+        "mrr25": 0.028855339105339106,
+        "top1": 0.005,
+        "top5": 0.065,
+        "top25": 0.12,
+        "conditional_mrr25": 0.18034586940836939
+      },
+      "fragment05": {
+        "molecules": 200,
+        "candidate_recall": 0.17,
+        "mrr25": 0.03152200577200577,
+        "top1": 0.005,
+        "top5": 0.075,
+        "top25": 0.13,
+        "conditional_mrr25": 0.18542356336473984
+      },
+      "fragment05_prefix3": {
+        "molecules": 200,
+        "candidate_recall": 0.17,
+        "mrr25": 0.030938672438672443,
+        "top1": 0.005,
+        "top5": 0.07,
+        "top25": 0.13,
+        "conditional_mrr25": 0.1819921908157202
+      },
+      "fragment05_prefix5": {
+        "molecules": 200,
+        "candidate_recall": 0.17,
+        "mrr25": 0.030313672438672442,
+        "top1": 0.005,
+        "top5": 0.065,
+        "top25": 0.13,
+        "conditional_mrr25": 0.17831572022748493
+      },
+      "fragment05_prefix10": {
+        "molecules": 200,
+        "candidate_recall": 0.17,
+        "mrr25": 0.029764430014430014,
+        "top1": 0.005,
+        "top5": 0.065,
+        "top25": 0.13,
+        "conditional_mrr25": 0.1750848824378236
+      }
+    },
+    "known": {
+      "baseline": {
+        "molecules": 118,
+        "candidate_recall": 1.0,
+        "mrr25": 0.5694292363895397,
+        "top1": 0.5254237288135594,
+        "top5": 0.6016949152542372,
+        "top25": 0.711864406779661,
+        "conditional_mrr25": 0.5694292363895397
+      },
+      "fragment05": {
+        "molecules": 118,
+        "candidate_recall": 1.0,
+        "mrr25": 0.5694292363895397,
+        "top1": 0.5254237288135594,
+        "top5": 0.6016949152542372,
+        "top25": 0.711864406779661,
+        "conditional_mrr25": 0.5694292363895397
+      },
+      "fragment05_prefix3": {
+        "molecules": 118,
+        "candidate_recall": 1.0,
+        "mrr25": 0.5694292363895397,
+        "top1": 0.5254237288135594,
+        "top5": 0.6016949152542372,
+        "top25": 0.711864406779661,
+        "conditional_mrr25": 0.5694292363895397
+      },
+      "fragment05_prefix5": {
+        "molecules": 118,
+        "candidate_recall": 1.0,
+        "mrr25": 0.5694292363895397,
+        "top1": 0.5254237288135594,
+        "top5": 0.6016949152542372,
+        "top25": 0.711864406779661,
+        "conditional_mrr25": 0.5694292363895397
+      },
+      "fragment05_prefix10": {
+        "molecules": 118,
+        "candidate_recall": 1.0,
+        "mrr25": 0.5694292363895397,
+        "top1": 0.5254237288135594,
+        "top5": 0.6016949152542372,
+        "top25": 0.711864406779661,
+        "conditional_mrr25": 0.5694292363895397
+      }
+    },
+    "diagnostic_only": true,
+    "diagnostics": {
+      "molecules": 200,
+      "incremental_spectrum_execution_status_counts": {
+        "unsupported_ion_or_resolution": 122,
+        "complete": 32
+      },
+      "execution_status_scope": "Only spectra actually traversed by this run; precomputed group cache skips are excluded. Complete may be content-cache reuse, not cold Java execution.",
+      "fragment_groups": 63,
+      "fragment_groups_with_scores": 13,
+      "fragment_depth": 2,
+      "fragment_engine_source_sha256": "a48cf210a6bb8125662fcb5d5e6c428d451ca4a3ed3916f9276b763ec597b5e7",
+      "fragment_adapter": "exact_monomer",
+      "fragment_budget_fallbacks": 0,
+      "scope": "fixed200 structural pilot; no publication eligibility",
+      "seconds": 3.677508813008899,
+      "parent_peak_rss_mib": 2815.92578125,
+      "proposal_queries_scored": 762,
+      "fingerprint_prior_ranking": false,
+      "sequence_ranking": false,
+      "proposal_limit": 100,
+      "fragment_limit": 100,
+      "evidence_only": true,
+      "critic_only": false,
+      "candidate_gate": false,
+      "relative_candidate_gate": false,
+      "chemical_prior": false,
+      "fragment_weight": 0.5,
+      "fragment_aggregation": "max_raw",
+      "fragment_aggregation_source_sha256": "a48cf210a6bb8125662fcb5d5e6c428d451ca4a3ed3916f9276b763ec597b5e7",
+      "compare_current_first_fragment": true,
+      "fragment_gate_only": false,
+      "skip_impossible_critic_gate": true,
+      "evidence_gate": "Positive proposed first fragment score and distinct finite fragment scores required; missing/all tied scores never enable insertion",
+      "variants": {
+        "unknown": {
+          "baseline": {
+            "queries_with_inserted_candidates": 0,
+            "novel_inserted_truths": 0
+          },
+          "fragment05": {
+            "queries_with_inserted_candidates": 6,
+            "novel_inserted_truths": 2
+          },
+          "fragment05_prefix3": {
+            "queries_with_inserted_candidates": 6,
+            "novel_inserted_truths": 2
+          },
+          "fragment05_prefix5": {
+            "queries_with_inserted_candidates": 6,
+            "novel_inserted_truths": 2
+          },
+          "fragment05_prefix10": {
+            "queries_with_inserted_candidates": 6,
+            "novel_inserted_truths": 2
+          }
+        },
+        "known": {
+          "baseline": {
+            "queries_with_inserted_candidates": 0,
+            "novel_inserted_truths": 0
+          },
+          "fragment05": {
+            "queries_with_inserted_candidates": 0,
+            "novel_inserted_truths": 0
+          },
+          "fragment05_prefix3": {
+            "queries_with_inserted_candidates": 0,
+            "novel_inserted_truths": 0
+          },
+          "fragment05_prefix5": {
+            "queries_with_inserted_candidates": 0,
+            "novel_inserted_truths": 0
+          },
+          "fragment05_prefix10": {
+            "queries_with_inserted_candidates": 0,
+            "novel_inserted_truths": 0
+          }
+        }
+      },
+      "independent_acceptance": false
+    }
+  },
+  "protocol_sha256": "d6db48f770f706392efd0184799ea44261eb2cc69800f63e99180364ee175463",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

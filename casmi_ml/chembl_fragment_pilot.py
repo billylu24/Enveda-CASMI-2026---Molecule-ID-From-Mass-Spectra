@@ -110,7 +110,10 @@ def run(
     sequence_ratio=1.0,
     fingerprint_prior_scores=None,
     critic_only=False,
+    pilot_selector="prefix",
 ):
+    if pilot_selector not in ("prefix", "hash"):
+        raise ValueError("Pilot selector must be prefix or hash")
     if critic_only and (
         evidence_only
         or compare_first
@@ -287,6 +290,10 @@ def run(
             "variants": variants,
             "rule": f"Freeze0062;confidence<.5;native first{proposal_limit} novel ChEMBL proposals;critic shortlist first{fragment_limit}, then MetFrag tie-aware rerank; actual first proposal critic must exceed current first by.05;insert3 after frozen prefix",
             "limit": limit,
+            "pilot_selector": pilot_selector,
+            "pilot_selector_salt": "fragment-representative-20261003"
+            if pilot_selector == "hash"
+            else None,
             "insertion_prefix": prefix,
             "fingerprint_prior_ranking": fingerprint_prior_scores is not None,
             "sequence_ranking": sequence_scores is not None,
@@ -416,7 +423,14 @@ def run(
         if critic_checkpoint == CRITIC
         else {}
     )
-    allowed_keys = set(sorted(groups)[:limit])
+    selection_keys = sorted(groups)
+    if pilot_selector == "hash":
+        selection_keys.sort(
+            key=lambda k: hashlib.sha256(
+                ("fragment-representative-20261003:" + k).encode()
+            ).digest()
+        )
+    allowed_keys = set(selection_keys[:limit])
     adapter = MetFrag
     if monomer:
         from casmi_ml.metfrag_monomer import MonomerMetFrag
@@ -856,6 +870,7 @@ def main():
     p.add_argument("--fragment-gate-only", action="store_true")
     p.add_argument("--skip-impossible", action="store_true")
     p.add_argument("--relative-candidate-gate", action="store_true")
+    p.add_argument("--pilot-selector", choices=("prefix", "hash"), default="prefix")
     p.add_argument("--critic-only", action="store_true")
     p.add_argument("--fingerprint-prior-scores", type=Path)
     p.add_argument("--sequence-ratio", type=float, choices=(0.0, 1.0), default=1.0)
@@ -891,6 +906,7 @@ def main():
                 a.sequence_ratio,
                 a.fingerprint_prior_scores,
                 a.critic_only,
+                a.pilot_selector,
             ),
             indent=2,
         )
