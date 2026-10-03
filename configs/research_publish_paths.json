@@ -232,7 +232,9 @@
     "casmi_ml/chembl_sequence_pilot.py",
     "tests/test_chembl_sequence.py",
     "casmi_ml/dino_energy_pairs.py",
-    "tests/test_dino_energy_pairs.py"
+    "tests/test_dino_energy_pairs.py",
+    "casmi_ml/chembl_fingerprint_prior.py",
+    "tests/test_fingerprint_prior.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

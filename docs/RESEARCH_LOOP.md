@@ -322,3 +322,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第116同规则补齐完整评分：unknown0.039606（增0.000395/+1.007%）、known0.604974、Top1不变，absolute及relative门槛均失败，拒绝并同步GitHub。625缓存组210非空、回退0、新真值6、85unknown/5known插入，123.4秒/3108MiB为增量非冷推理；新增遍历complete42/unsupported141，无本轮timeout/failed，不推断原547组执行状态。条件似然融合即使补齐预算仍不优于原103，停止继续增权/采样。下一正在运行为DINO匹配跨CE控制，公共最佳0.176与开发最佳0062均保留。
+
+
+第117轮训练内fingerprint背景扣除诊断预注册：冻结当前60K encoder和ChEMBL前500质量提案，只使用train60K每分子一次的原2048bit指纹，Laplace(1,1)平滑各bit边际q；对实际predicted probability p计算Bernoulli log-likelihood ratio，即原native分数减去candidate fingerprint在q下的loglikelihood（候选无关常数省略）。固定native vs ratioRRF0.5 vs ratio-only1，完整2000外部候选排序，仅诊断，不直接提交；不使用开发结构拟合边际或权重，不增训练/GPU采样，CPU3600秒。动机为普通结构先验可能压制稀有诊断峰对应的fingerprint，作为冻结表征的可审计评分校准，而不是对抗训练。回归验证p=q时所有候选比值分数均为0、非法边际拒绝。
