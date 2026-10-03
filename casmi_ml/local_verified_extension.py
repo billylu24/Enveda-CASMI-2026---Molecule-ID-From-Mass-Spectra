@@ -68,6 +68,16 @@ def run(test, baseline, full, routing, reference, output):
         from casmi_ml.blas_runtime import resolve as resolve_blas
 
         stack.enter_context(resolve_blas(c))
+        from casmi_ml.validation_cache_runtime import resolve as resolve_validation
+
+        cached_validator = resolve_validation(c)
+        if cached_validator is not None:
+            stack.enter_context(
+                patch(
+                    "casmi_ml.chembl_routed_inference.validate_submission",
+                    new=cached_validator,
+                )
+            )
         stack.enter_context(
             patch("casmi_ml.metfrag_persistent.PersistentMonomerMetFrag", new=engine)
         )

@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03T15:01:40Z",
+  "updated_at": "2026-10-03T15:08:59Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -102,16 +102,22 @@
   },
   "active_rounds": [
     {
-      "id": "0313_intensity_candidate_zero_control",
-      "direction": "implementation_control",
-      "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0313_intensity_candidate_zero_control/report.json"
-    },
-    {
       "id": "0318_actual_submission_validation_cache_benchmark",
       "direction": "runtime_diagnostic",
       "status": "queued",
       "report": "artifacts/research_loop/rounds/0318_actual_submission_validation_cache_benchmark/report.json"
+    },
+    {
+      "id": "0316_intensity_candidate_chemical_system",
+      "direction": "candidate_chemistry_compatibility",
+      "status": "external_running",
+      "report": "artifacts/research_loop/rounds/0316_intensity_candidate_chemical_system/report.json"
+    },
+    {
+      "id": "0319_validation_cache_full_ranking_control",
+      "direction": "runtime_diagnostic",
+      "status": "queued",
+      "report": "artifacts/research_loop/rounds/0319_validation_cache_full_ranking_control/report.json"
     }
   ],
   "local_candidate_runtime": {
@@ -1282,12 +1288,40 @@
     {
       "id": "0313_intensity_candidate_zero_control",
       "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0313_intensity_candidate_zero_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0318_actual_submission_validation_cache_benchmark",
+      "direction": "runtime_diagnostic",
+      "status": "queued",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "0314_intensity_candidate_chemical",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0314_intensity_candidate_chemical.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0315_intensity_candidate_mask",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0315_intensity_candidate_mask.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0316_intensity_candidate_chemical_system",
+      "direction": "candidate_chemistry_compatibility",
       "status": "external_running",
       "decision": null,
       "local_recorded": false
     },
     {
-      "id": "0318_actual_submission_validation_cache_benchmark",
+      "id": "0319_validation_cache_full_ranking_control",
       "direction": "runtime_diagnostic",
       "status": "queued",
       "decision": null,

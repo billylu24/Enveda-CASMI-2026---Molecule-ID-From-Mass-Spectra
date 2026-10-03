@@ -473,7 +473,11 @@
     "tests/test_intensity_candidate_activation.py",
     "casmi_ml/cached_submission_validation.py",
     "casmi_ml/validation_cache_benchmark.py",
-    "tests/test_cached_submission_validation.py"
+    "tests/test_cached_submission_validation.py",
+    "casmi_ml/local_candidate_completion.py",
+    "casmi_ml/validation_cache_full_control.py",
+    "casmi_ml/validation_cache_runtime.py",
+    "tests/test_validation_cache_runtime.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

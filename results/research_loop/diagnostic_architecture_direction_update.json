@@ -31,12 +31,13 @@
     "Candidate structural chemistry299 zero bonus all3340 full ranks exact,0budget/newfailure.300/301 train-only convex24D fitting, weight total<=.05;302/303 complete chemicalMRR.043994968 vs mask.043978301, knownMRR.603792116 unchanged, gain+.000016667 fails frozen incumbent gates. Actual local best remains236/evidence286.",
     "Candidate compatibility304 train mass audit:720198/900000 original pinned pairs mass-compatible across57260 molecules; trained bonus favors positive94737 vs negative93288, tiny mean positive-minus-negative.000361968. Do not claim unrestricted mass mismatch explains failure.",
     "Additional12 broad hypotheses305 training-only audit finds methanol/SO2 precursor-loss motif associations and rare phosphate-ion signals; weak many peak-loss bands nearzero/negative, no mechanism or uniqueness proof.",
-    "Extended60D candidate features306 zero and310 identity-masked complete3340 ranks exact;309 chemical unknownMRR.043994968 exactly same aggregate as302 and known.603792116 unchanged. Fails frozen promotion. Methanol peak-loss receives most training bonus but no extra complete-system gain."
+    "Extended60D candidate features306 zero and310 identity-masked complete3340 ranks exact;309 chemical unknownMRR.043994968 exactly same aggregate as302 and known.603792116 unchanged. Fails frozen promotion. Methanol peak-loss receives most training bonus but no extra complete-system gain.",
+    "BLAS24->1 trial311 score segment4.1145->1.3144s over200 actual windows/183382 candidates but166 windows tiny score changes(max5.55e-17) and6 candidate-order differences.312 rejected before full3340 control; original runtime retained, no lowering numerical behavior gate."
   ],
   "current_sequence": [
-    "311 actual candidate native/corrected scores BLAS24vs1 alternating repetitions and exact values/order audit",
-    "312 full current-best3340 single-BLAS verification only if candidate score-window speed and rank checks pass; activate guarded runtime only after complete evidence",
-    "313-317 bounded60D candidate features sqrt(normalized intensity)->normalized intensity before per-spectrum average, same objective and total .05, staged with matched zero/mask/full system controls"
+    "313 intensity zero complete3340 exact,314/315 fixed train chemical/mask done,316/317 paired complete systems running; train normalized intensity before spectrum average, same20 rules and.05 cap",
+    "318 every actual baseline and best-output row validation legacy/cache alternating paired timing;319 full current-best exact ranks only if validation-only speed and behavior checks pass",
+    "Unchanged incumbent retained unless complete frozen gates pass; local completion watcher can bind a real intensity winner to actual verified entry"
   ],
   "gan": {
     "status": "not_expanded",
