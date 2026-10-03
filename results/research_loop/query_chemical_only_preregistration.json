@@ -1,0 +1,72 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "motivation": "260 chemical paired query full system MRR.0438289398 below incumbent.0439783009. Training-only4096-key audit shows chemistry first-linear RMS only1.39%-1.57% of context, query chemical counterfactual L2.00759-.00822 versus total.1195-.1275. These are scale/interaction diagnostics, not causal proof of shortcut or development gain.",
+  "audit": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 4096,
+    "training_rows": 8192,
+    "arms": {
+      "single_chemical": {
+        "latent_linear_rms": 2.9493536949157715,
+        "chemical_linear_rms": 0.0409122072160244,
+        "chemical_over_latent_linear_rms": 0.013871583895329578,
+        "corrected_query_displacement_mean_l2": 0.11950365453958511,
+        "chemical_identity_counterfactual_mean_l2": 0.007586014922708273,
+        "chemical_identity_counterfactual_max_l2": 0.14702199399471283,
+        "evidence_rows": 5480,
+        "rows": 8192
+      },
+      "single_masked": {
+        "latent_linear_rms": 2.9938740730285645,
+        "chemical_linear_rms": 0.0,
+        "chemical_over_latent_linear_rms": 0.0,
+        "corrected_query_displacement_mean_l2": 0.11966748535633087,
+        "chemical_identity_counterfactual_mean_l2": 0.0,
+        "chemical_identity_counterfactual_max_l2": 0.0,
+        "evidence_rows": 5480,
+        "rows": 8192
+      },
+      "paired_chemical": {
+        "latent_linear_rms": 2.7895827293395996,
+        "chemical_linear_rms": 0.043814174830913544,
+        "chemical_over_latent_linear_rms": 0.015706354348302847,
+        "corrected_query_displacement_mean_l2": 0.12751491367816925,
+        "chemical_identity_counterfactual_mean_l2": 0.008222618140280247,
+        "chemical_identity_counterfactual_max_l2": 0.11762195080518723,
+        "evidence_rows": 5480,
+        "rows": 8192
+      },
+      "paired_masked": {
+        "latent_linear_rms": 2.729893207550049,
+        "chemical_linear_rms": 0.0,
+        "chemical_over_latent_linear_rms": 0.0,
+        "corrected_query_displacement_mean_l2": 0.1258895993232727,
+        "chemical_identity_counterfactual_mean_l2": 0.0,
+        "chemical_identity_counterfactual_max_l2": 0.0,
+        "evidence_rows": 5480,
+        "rows": 8192
+      }
+    },
+    "seconds": 11.278157152992208,
+    "scope": "Training-only descriptive mechanism audit; no development rank evaluation or acceptance claim"
+  },
+  "hypothesis": "Remove trainable latent shortcut in correction branch to test whether precise chemical identity can learn useful final critic shifts. Frozen original baseline still uses all latent768. Test masked identity control with shared strength gate.",
+  "intervention": "Verified existing792->64->128 graph unchanged; input weight first768 columns initialized exactly0 and gradient-masked every step, zero assertion after AdamW training. Remaining chemical24 columns/biases train, all original encoder/critic tensors frozen. Saved model loads through existing verified query path.",
+  "matched_arms": [
+    "chemical-only correction",
+    "same constrained correction with24 identities masked, strength gate retained"
+  ],
+  "training": "Same60K representativeRNG42+same-ion partnerRNG260 pairs, pinned unrestricted15 negatives,3epochs235steps each AdamW.001 wd.01 and CE+.1 query anchor. No sweep/checkpoint selection by development.",
+  "sequence": [
+    "Complete263 identity-masked paired full system",
+    "266/267 serial fixed training",
+    "268/269 full systems with bounded physical cache completion",
+    "paired identity and contextual-vs-chemical attribution"
+  ],
+  "gates": "Current0259 zero-query full3340 exact remains valid because inference graph/source unchanged; incumbent+historical181+complete0206 comparisons, unknown absolute+.0005 and relative+2%, known MRRdrop<=.001 Top1drop<=.005, zero budget fallback or new failure required.",
+  "budget": "Each serial GPU arm maximum24h.1200s fragmentation per scenario unchanged."
+}

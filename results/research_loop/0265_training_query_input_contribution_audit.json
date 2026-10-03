@@ -1,0 +1,60 @@
+{
+  "round": "0265_training_query_input_contribution_audit",
+  "direction": "training_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 4096,
+    "training_rows": 8192,
+    "arms": {
+      "single_chemical": {
+        "latent_linear_rms": 2.9493536949157715,
+        "chemical_linear_rms": 0.0409122072160244,
+        "chemical_over_latent_linear_rms": 0.013871583895329578,
+        "corrected_query_displacement_mean_l2": 0.11950365453958511,
+        "chemical_identity_counterfactual_mean_l2": 0.007586014922708273,
+        "chemical_identity_counterfactual_max_l2": 0.14702199399471283,
+        "evidence_rows": 5480,
+        "rows": 8192
+      },
+      "single_masked": {
+        "latent_linear_rms": 2.9938740730285645,
+        "chemical_linear_rms": 0.0,
+        "chemical_over_latent_linear_rms": 0.0,
+        "corrected_query_displacement_mean_l2": 0.11966748535633087,
+        "chemical_identity_counterfactual_mean_l2": 0.0,
+        "chemical_identity_counterfactual_max_l2": 0.0,
+        "evidence_rows": 5480,
+        "rows": 8192
+      },
+      "paired_chemical": {
+        "latent_linear_rms": 2.7895827293395996,
+        "chemical_linear_rms": 0.043814174830913544,
+        "chemical_over_latent_linear_rms": 0.015706354348302847,
+        "corrected_query_displacement_mean_l2": 0.12751491367816925,
+        "chemical_identity_counterfactual_mean_l2": 0.008222618140280247,
+        "chemical_identity_counterfactual_max_l2": 0.11762195080518723,
+        "evidence_rows": 5480,
+        "rows": 8192
+      },
+      "paired_masked": {
+        "latent_linear_rms": 2.729893207550049,
+        "chemical_linear_rms": 0.0,
+        "chemical_over_latent_linear_rms": 0.0,
+        "corrected_query_displacement_mean_l2": 0.1258895993232727,
+        "chemical_identity_counterfactual_mean_l2": 0.0,
+        "chemical_identity_counterfactual_max_l2": 0.0,
+        "evidence_rows": 5480,
+        "rows": 8192
+      }
+    },
+    "seconds": 11.278157152992208,
+    "scope": "Training-only descriptive mechanism audit; no development rank evaluation or acceptance claim"
+  },
+  "protocol_sha256": "c9977c714f3e24387202735856971b2dd89965e1d80547072a42e3b637406e09",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

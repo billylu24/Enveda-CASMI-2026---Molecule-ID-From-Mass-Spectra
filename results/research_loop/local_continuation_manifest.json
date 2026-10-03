@@ -1,4 +1,5 @@
 {
+  "updated_at": "2026-10-03T12:27:16Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -29,7 +30,7 @@
   },
   "local_verified_inference": {
     "scientific_round": "0236_low_supported_leader_first",
-    "evidence_round": "0237_low_leader_full_unlabeled_replay",
+    "evidence_round": "0258_array_order_full_inference_control",
     "previous_metrics": {
       "unknown": {
         "molecules": 2000,
@@ -86,41 +87,25 @@
         "evidence": "development_experimental; not independent acceptance"
       }
     },
-    "replay_report_sha256": "600ba5960eec699708293ddf2970063e37c0f9cee4d940ecaf3798b13b9f74c1",
+    "replay_report_sha256": "b0d40793cb32e161d2a1c35323374060b4984665d637c448ea446141e422be79",
     "rankings_sha256": "0a138e378dde6e21de266950251ec6d1d02245450ca73a3187d5f03df64c530b",
-    "external_config_sha256": "04a304f9f566d33c12c72fa6e51be6cf87460b4a781301ee52b5ea47a0bb5042",
-    "inference_sha256": "44e6338368e28676d4afc6b3fbf9f7fddf25c8f1a1ed0b9970542726b4864389",
+    "external_config_sha256": "b9d84654a3adabf8b12261b7b506e74eb7c1ec0c600cbb0c41753db7414d385e",
+    "inference_sha256": "d11716f9aa92830d23e2ce1a79b03d0b10c5c1ccde23ea9acdc41ff815033588",
     "low_leader_source_sha256": "c0045fc1f4ae4b7e434ad50d9700f00cec08661b56012631412c2ba5d9e1af6b",
     "local_only": true,
     "remote_publication": false,
     "independent_acceptance": false,
-    "scope": "Same screened low leader rule; use audited complete physical original-control evidence on other branches and matched candidate universe. Cached development replay, no independent acceptance or cold runtime proof.",
-    "external_config": "artifacts/research_loop/rounds/0237_low_leader_full_unlabeled_replay/external_config.json"
+    "scope": "Same incumbent score arithmetic/models and every3340 full rank; array score/key ordering runtime amendment only; cached replay, no accuracy or cold acceptance gain",
+    "external_config": "artifacts/research_loop/rounds/0237_low_leader_full_unlabeled_replay/external_config.json",
+    "array_source_sha256": "28926c166dbb88701c8676a8fd2e34b94b104029c43706da7c56f172b1876a41"
   },
   "active_rounds": [
     {
-      "id": "0255_query_strict_mass_chemical_system",
+      "id": "0268_query_chemical_only_system",
       "direction": "chemical_query_critic",
       "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0255_query_strict_mass_chemical_system/report.json"
+      "report": "artifacts/research_loop/rounds/0268_query_chemical_only_system/report.json"
     }
-  ],
-  "drivers": [
-    "diagnostic_attribution_followup_v2.log",
-    "diagnostic_peak_loss_followup.log",
-    "diagnostic_query_followup_v2.log",
-    "packed_candidate_followup.log",
-    "diagnostic_query_strict_followup.log"
-  ],
-  "pending_sequence": "248 masked query known phase ->253/254 strict mass-window matched training ->255/256 complete systems and paired objective attribution. Current best and exact packed candidate runtime unchanged.",
-  "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; required completed original comparator; no new failed or budget fallback promotion; no threshold weakening.",
-  "runtime_claims": "Best full3340 cached replay exact and packed cache full3340 ranks exact; local packed runtime active. No fresh acceptance or cold inference proof claimed.",
-  "tests": "320 unittest tests passed",
-  "notes": [
-    "Do not restart a driver that owns child processes. Only waiting-only driver may be terminated/reloaded after source change.",
-    "No Kaggle submission, upload, GitHub push, or unrelated user-file changes.",
-    "Query zero residual implementation must be exact before any architecture acceptance.",
-    "Do not treat failed/partial cache evidence as valid. Attribution uses finalized complete retry."
   ],
   "local_candidate_runtime": {
     "enabled": true,
@@ -131,5 +116,828 @@
     "source_sha256": "744848689ef00b4874e8f4c987d70425326fc8069fa89a04d6cdd5f322248477",
     "control_report_sha256": "919de453ef681df82de5a071a068293a4279285b3e48a093bbda7f3e0778c178",
     "scope": "Exact all3340 full-ranking local runtime cache; candidate bit values and ordering unchanged, no accuracy increase or cold runtime acceptance claim"
-  }
+  },
+  "local_array_runtime": {
+    "enabled": true,
+    "local_only": true,
+    "source_sha256": "28926c166dbb88701c8676a8fd2e34b94b104029c43706da7c56f172b1876a41",
+    "control_directory": "artifacts/research_loop/rounds/0258_array_order_full_inference_control"
+  },
+  "local_proposal_runtime": {
+    "enabled": true,
+    "local_only": true,
+    "control_directory": "artifacts/research_loop/rounds/0264_packed_external_proposal_control",
+    "report_sha256": "2399da2c0a973aeb26da936b853fa600f692ec19d9bbce6b75776f008923b4e2",
+    "runtime_protocol_sha256": "d65cd8046163a5348d0caa748dba2aa1d61deef0dd72dc52dbf46858327b6f67",
+    "proposal_source_sha256": "11ce6133add7e549197de9841d4d73b51251344658b0e26adcd08978eb0cc931",
+    "control_source_sha256": "8b8b07df60a7af32d36998aa7caf78a59862452c9c9b2faa4638563e9a589bd4",
+    "wrapper_source_sha256": "7d693708745f6ba2c9ce8bfd85c1a402c600e76a94ff1a99f88b8bd78c9fab9f",
+    "original_protocol_sha256": "87adf65e67053ab3ae2c00aa3192dad9fae6ad936d3b3a692a09fe7c115ed153",
+    "candidate_runtime": {
+      "enabled": true,
+      "local_only": true,
+      "store": "artifacts/research_loop/rounds/0250_local_packed_candidate_preparation",
+      "control_directory": "artifacts/research_loop/rounds/0252_packed_candidate_full_inference_control",
+      "catalog_sha256": "3cfa1f39ee99bab83861609fb36ead49fa138b191955c0428504f88bd55178da",
+      "source_sha256": "744848689ef00b4874e8f4c987d70425326fc8069fa89a04d6cdd5f322248477",
+      "control_report_sha256": "919de453ef681df82de5a071a068293a4279285b3e48a093bbda7f3e0778c178",
+      "scope": "Exact all3340 full-ranking local runtime cache; candidate bit values and ordering unchanged, no accuracy increase or cold runtime acceptance claim"
+    },
+    "scope": "Explicit local full mass-window proposals only; three complete original-encoder dictionaries exact. Fingerprint runtime reuse, no accuracy improvement or cold inference acceptance."
+  },
+  "local_query_zero_control": "artifacts/research_loop/rounds/0259_query_array_zero_control",
+  "drivers": [
+    "diagnostic_query_multispectrum_followup.log",
+    "diagnostic_query_chemical_only_followup.log"
+  ],
+  "pending_sequence": "Finish paired multi-spectrum attribution; chemical-only versus same constrained masked query heads266/267, full systems268/269. Only complete frozen gate winners replace local best.",
+  "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
+  "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
+  "independent_acceptance": false,
+  "recent_rounds": [
+    {
+      "id": "publication_snapshot_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "controller_persistence_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "coverage_deployment_control_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "protected_publication_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "platform_preparation_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "submission_receipts_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "allowance_recovery_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "condition_alignment_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "position_local_verification_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "decoder_control_verification_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "decoder_deployment_path_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "position_platform_verification_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "research_checkpoint_20261002_1153",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "decoder_full_diagnostics_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "decoder_local_verification_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "decoder_platform_pending_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "decoder_platform_verified_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "decoder_training_extension_protocol_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "decoder_pilot_decisions_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "temperature_pilot_protocol_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "decoder_mixture_protocol_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "decoder_randomized_protocol_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "research_checkpoint_20261002_1229",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "decoder_randomized_verification_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "decoder_interpolation_protocol_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "decoder_overlap_diagnostics_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "formula_decoder_composition_protocol_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "research_checkpoint_20261002_1240",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "generated_frequency_protocol_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "generated_frequency_full_protocol_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "generated_mass_and_length_diagnostics_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "frequency_deployment_support_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "calibrated_position_development_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "calibrated_publication_metadata_fix_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "calibrated_platform_verification_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "second_reference_platform_verification_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "expanded_generation_platform_verification_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "chebi_branch_coverage_20261002",
+      "direction": "catalog_audit",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "lr_training_integrity_20261002",
+      "direction": "integrity",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "generated_first_deployment_fix_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "runtime313_offline_verification_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "condition_training_pilot_decision_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "generated_first_platform_verification_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "chembl37_coverage_protocol_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "github_network_recovery_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "auxiliary_owner_guard_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "chembl_fragment_protocol_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "chembl_fragment_gain_bound_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "chembl_fragment_support_audit_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "metfrag_monomer_compatibility_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "critic_hard_negative_protocol_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "critic_finetuning_integrity_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "metfrag_dimer_protocol_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "protected_generation_runtime313_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "reference_generation_runtime313_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "generation_position_runtime313_20261002",
+      "direction": "publication",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "runtime_migration_workflow_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "kaggle_kernel_capacity_recovery_20261002",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "controller_launch_ownership_20261003",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "chembl_fragment_stage_audit_0100",
+      "direction": "diagnostic",
+      "status": "diagnostic_complete",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "chembl_fragment_stage_audit_0103",
+      "direction": "diagnostic",
+      "status": "diagnostic_complete",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "chembl_sequence_novel_audit_0110",
+      "direction": "diagnostic",
+      "status": "diagnostic_complete",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "dino_energy_pair_protocol_20261003",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "fragment_execution_telemetry_20261003",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "fragment_telemetry_mock_compatibility_20261003",
+      "direction": "controller",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "chembl_fragment_stage_audit_0112",
+      "direction": "diagnostic",
+      "status": "diagnostic_complete",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "chembl_fragment_stage_audit_0113",
+      "direction": "diagnostic",
+      "status": "diagnostic_complete",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "chembl_fragment_stage_audit_0116",
+      "direction": "diagnostic",
+      "status": "diagnostic_complete",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "dino_energy_pair_comparison_20261003",
+      "direction": "diagnostic",
+      "status": "diagnostic_complete",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "chembl_fragment_stage_audit_0123",
+      "direction": "diagnostic",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "fragment_applicability_audit_20261003",
+      "direction": "diagnostic",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "chembl_fragment_stage_audit_0132",
+      "direction": "diagnostic",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "encoder_pair_comparison_20261003",
+      "direction": "diagnostic",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "chembl_fragment_stage_audit_0133",
+      "direction": "diagnostic",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "chembl_routing_coverage_audit_20261003",
+      "direction": "diagnostic",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "routed_deployment_replay_0149",
+      "direction": "diagnostic",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "research_status_20261003_0305",
+      "direction": "diagnostic",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "routed_platform_verification_0149",
+      "direction": "diagnostic",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "research_checkpoint_20261003_0325",
+      "direction": "diagnostic",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "legacy_routed_regression_20261003",
+      "direction": "diagnostic",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "high_fragment_deployment_replay_0161",
+      "direction": "diagnostic",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "high_fragment_deployment_replay_0163",
+      "direction": "deployment_validation",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "high_fragment_cold_package_0163",
+      "direction": "deployment_validation",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "fragment_fastpoll_replay_0163",
+      "direction": "deployment_validation",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "fragment_fastpoll_platform_failure_0163",
+      "direction": "deployment_validation",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "strong_slots_deployment_replay_0181",
+      "direction": "deployment_validation",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "strong_slots_cold_package_0181",
+      "direction": "deployment_validation",
+      "status": "recorded",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "0244_diagnostic_query_zero_control",
+      "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0244_diagnostic_query_zero_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0249_local_ranking_runtime_profile",
+      "direction": "runtime_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0249_local_ranking_runtime_profile.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0250_local_packed_candidate_preparation",
+      "direction": "runtime_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0250_local_packed_candidate_preparation.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0251_packed_candidate_window_benchmark",
+      "direction": "runtime_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0251_packed_candidate_window_benchmark.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0252_packed_candidate_full_inference_control",
+      "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0252_packed_candidate_full_inference_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0245_diagnostic_query_chemical",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0245_diagnostic_query_chemical.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0246_diagnostic_query_mask_control",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0246_diagnostic_query_mask_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0247_diagnostic_query_chemical_system",
+      "direction": "chemical_query_critic",
+      "status": "rejected",
+      "decision": "results/research_loop/0247_diagnostic_query_chemical_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0248_diagnostic_query_mask_system",
+      "direction": "chemical_query_critic",
+      "status": "rejected",
+      "decision": "results/research_loop/0248_diagnostic_query_mask_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0253_query_strict_mass_chemical",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0253_query_strict_mass_chemical.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0254_query_strict_mass_mask_control",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0254_query_strict_mass_mask_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0255_query_strict_mass_chemical_system",
+      "direction": "chemical_query_critic",
+      "status": "rejected",
+      "decision": "results/research_loop/0255_query_strict_mass_chemical_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0257_candidate_array_order_benchmark",
+      "direction": "runtime_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0257_candidate_array_order_benchmark.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0256_query_strict_mass_mask_system",
+      "direction": "chemical_query_critic",
+      "status": "rejected",
+      "decision": "results/research_loop/0256_query_strict_mass_mask_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0258_array_order_full_inference_control",
+      "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0258_array_order_full_inference_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0259_query_array_zero_control",
+      "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0259_query_array_zero_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0260_query_multispectrum_chemical",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0260_query_multispectrum_chemical.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0261_query_multispectrum_mask_control",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0261_query_multispectrum_mask_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0264_packed_external_proposal_control",
+      "direction": "runtime_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0264_packed_external_proposal_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0262_query_multispectrum_chemical_system",
+      "direction": "chemical_query_critic",
+      "status": "rejected",
+      "decision": "results/research_loop/0262_query_multispectrum_chemical_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0263_query_multispectrum_mask_system",
+      "direction": "chemical_query_critic",
+      "status": "rejected",
+      "decision": "results/research_loop/0263_query_multispectrum_mask_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0265_training_query_input_contribution_audit",
+      "direction": "training_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0265_training_query_input_contribution_audit.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0266_query_chemical_only",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0266_query_chemical_only.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0267_query_chemical_only_mask",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0267_query_chemical_only_mask.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0268_query_chemical_only_system",
+      "direction": "chemical_query_critic",
+      "status": "external_running",
+      "decision": null,
+      "local_recorded": false
+    }
+  ]
 }

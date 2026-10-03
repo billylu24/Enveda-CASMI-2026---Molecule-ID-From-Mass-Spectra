@@ -397,7 +397,14 @@
     "casmi_ml/training_query_pairs.py",
     "casmi_ml/diagnostic_query_multispectrum_followup.py",
     "tests/test_training_query_pairs.py",
-    "casmi_ml/proposal_runtime_control.py"
+    "casmi_ml/proposal_runtime_control.py",
+    "casmi_ml/query_input_contribution_audit.py",
+    "casmi_ml/local_proposal_runtime.py",
+    "tests/test_local_proposal_runtime.py",
+    "casmi_ml/chemical_query_constraint.py",
+    "tests/test_chemical_query_constraint.py",
+    "casmi_ml/diagnostic_query_chemical_only_followup.py",
+    "casmi_ml/local_research_snapshot.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

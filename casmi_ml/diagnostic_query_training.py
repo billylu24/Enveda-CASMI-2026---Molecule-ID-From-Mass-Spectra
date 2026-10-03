@@ -10,6 +10,10 @@ import pandas as pd
 import torch
 from torch.nn import functional as F
 
+from casmi_ml.chemical_query_constraint import (
+    constrain_context_weights,
+    verify_context_weights,
+)
 from casmi_ml.data import write_json
 from casmi_ml.diagnostic_query_ranker import DiagnosticQueryRanker
 from casmi_ml.diagnostic_residual import DIM, evidence_features
@@ -37,6 +41,7 @@ def run(
     mask_chemical_channels=False,
     strict_mass_negatives=False,
     multispectrum=False,
+    chemical_only_correction=False,
 ):
     configure(42, threads=4)
     output = Path(output)
@@ -56,6 +61,10 @@ def run(
             "mask_chemical_channels": mask_chemical_channels,
             "strict_mass_negatives": strict_mass_negatives,
             "multispectrum": multispectrum,
+            "chemical_only_correction": chemical_only_correction,
+            "chemical_constraint_sha256": digest(
+                "casmi_ml/chemical_query_constraint.py"
+            ),
             "training_molecules": 60000,
             "row_selection": "one RNG42 representative per original60K molecule, same arms",
             "epochs": 3,
@@ -73,6 +82,9 @@ def run(
                 "casmi_ml/strict_mass_negative_mask.py"
             ),
             "architecture": "Frozen768 latent plus24 precise chemistry ->64 GELU ->128 zero-initialized query residual; same maximum chemistry strength gate and normalized original critic space; all original encoder and critic tensors frozen",
+            "correction_context": "768 latent input columns fixed exactly zero throughout AdamW; chemical24 identities and biases trainable, matched mask preserves only evidence-strength gate. Original latent still supplies frozen baseline query."
+            if chemical_only_correction
+            else "Original contextual latent+chemical correction",
             "selection": "Fixed epoch3; development or holdout labels not used for training or checkpoint selection",
             "local_only": True,
             "independent_acceptance": False,
@@ -174,6 +186,8 @@ def run(
         chemical = torch.from_numpy(chemical).to("cuda")
         hard = torch.from_numpy(hard).to("cuda")
         model = DiagnosticQueryRanker(base, mask_chemical_channels).to("cuda")
+        if chemical_only_correction:
+            constrain_context_weights(model.query_residual)
         optimizer = torch.optim.AdamW(
             model.query_residual.parameters(), lr=0.001, weight_decay=0.01
         )
@@ -233,6 +247,8 @@ def run(
                 }
             )
             print(history[-1], flush=True)
+        if chemical_only_correction:
+            verify_context_weights(model.query_residual)
         original = torch.load(CRITIC, map_location="cpu", weights_only=True)[
             "state_dict"
         ]
@@ -251,6 +267,7 @@ def run(
             "mask_chemical_channels": mask_chemical_channels,
             "strict_mass_negatives": strict_mass_negatives,
             "multispectrum": multispectrum,
+            "chemical_only_correction": chemical_only_correction,
         }
         torch.save(weights, output / "model.pt")
         report = {
@@ -263,6 +280,10 @@ def run(
             "mask_chemical_channels": mask_chemical_channels,
             "strict_mass_negatives": strict_mass_negatives,
             "multispectrum": multispectrum,
+            "chemical_only_correction": chemical_only_correction,
+            "correction_latent_nonzero_weights": int(
+                model.query_residual.correction[0].weight[:, :768].count_nonzero()
+            ),
             "strict_inside_hard_negatives": strict_inside,
             "distinct_same_ion_training_pairs": distinct_pairs,
             "rows_per_training_molecule": rows_per_molecule,
@@ -285,6 +306,7 @@ def main():
     parser.add_argument("--mask-chemical-channels", action="store_true")
     parser.add_argument("--strict-mass-negatives", action="store_true")
     parser.add_argument("--multispectrum", action="store_true")
+    parser.add_argument("--chemical-only-correction", action="store_true")
     print(json.dumps(run(**vars(parser.parse_args())), indent=2))
 
 

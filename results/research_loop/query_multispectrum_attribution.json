@@ -1,0 +1,55 @@
+{
+  "local_only": true,
+  "independent_acceptance": false,
+  "arms": {
+    "chemical": {
+      "round": "0262_query_multispectrum_chemical_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04382893976573896,
+          "top1": 0.016,
+          "top5": 0.0835,
+          "top25": 0.13,
+          "conditional_mrr25": 0.2208007041095162
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6037997528856134,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6822020816751451
+        }
+      }
+    },
+    "identity_masked": {
+      "round": "0263_query_multispectrum_mask_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.0434495350038342,
+          "top1": 0.0155,
+          "top5": 0.0825,
+          "top25": 0.1295,
+          "conditional_mrr25": 0.21888934510747707
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6037997528856134,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6822020816751451
+        }
+      }
+    }
+  },
+  "chemical_minus_mask_unknown_mrr25": 0.00037940476190476136,
+  "paired_minus_single_chemical_unknown_mrr25": 0.0001946825396825433,
+  "scope": "Same original60K labels, fixed same-adduct/mode measured pair RNG260 after original representative RNG42, optimizer steps/capacity fixed; corrected per-spectrum queries averaged exactly as inference. Unrestricted pinned15 negative objective retained after strict-mass negative rejection. Repeated full3340 comparison, no fresh acceptance."
+}

@@ -13,12 +13,7 @@
     "budget_fallbacks": 861,
     "diagnostic_only": true
   },
-  "next_sequence": [
-    "237 full label-free replay with per-group exact expected ranks from audited complete control plus supported low leader only",
-    "229/230 complete paired contextual system evaluations",
-    "233/234/235 matched chemical-channel mask attribution using final complete cache retry",
-    "Only retained gains may update local runtime; no Kaggle or GitHub publication"
-  ],
+  "next_sequence": "Finish paired multi-spectrum attribution; chemical-only versus same constrained masked query heads266/267, full systems268/269. Only complete frozen gate winners replace local best.",
   "independent_acceptance": false,
   "precision_first_pass": {
     "unknown_mrr25": 0.04268861838422192,
@@ -29,7 +24,7 @@
     "raw_candidates_reused": 127088,
     "new_candidates_scored": 3025
   },
-  "active_round": "0224_diagnostic_exact_complete_system",
+  "active_round": "0268_query_chemical_only_system",
   "coarse_complete": {
     "unknown_mrr25": 0.04268861838422192,
     "known_mrr25": 0.6046005738683694,
@@ -41,8 +36,7 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0262_query_multispectrum_chemical_system",
-    "0264_packed_external_proposal_control"
+    "0268_query_chemical_only_system"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -265,7 +259,7 @@
     "known_seconds_before": 6.469992910919245,
     "known_seconds_after": 0.04308252994087525,
     "activated": true,
-    "scope": "Sorting segment only, full inference verification pending",
+    "scope": "Sorting-segment microbenchmark followed by exact3340 cached inference control; activated, no accuracy or cold acceptance gain",
     "unknown_full_rank_matches": 2000,
     "unknown_cached_trial_seconds": 235.08685930399224,
     "known_verification_pending": false,
@@ -331,5 +325,74 @@
       "rows_per_training_molecule": 2,
       "original_critic_tensors_exact": true
     }
+  },
+  "updated_at": "2026-10-03T12:27:16Z",
+  "current_query_zero_control": "artifacts/research_loop/rounds/0259_query_array_zero_control",
+  "local_verified_evidence_round": "0258_array_order_full_inference_control",
+  "multispectrum_attribution": {
+    "local_only": true,
+    "independent_acceptance": false,
+    "arms": {
+      "chemical": {
+        "round": "0262_query_multispectrum_chemical_system",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.04382893976573896,
+            "top1": 0.016,
+            "top5": 0.0835,
+            "top25": 0.13,
+            "conditional_mrr25": 0.2208007041095162
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6037997528856134,
+            "top1": 0.564179104477612,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.6822020816751451
+          }
+        }
+      },
+      "identity_masked": {
+        "round": "0263_query_multispectrum_mask_system",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.0434495350038342,
+            "top1": 0.0155,
+            "top5": 0.0825,
+            "top25": 0.1295,
+            "conditional_mrr25": 0.21888934510747707
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6037997528856134,
+            "top1": 0.564179104477612,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.6822020816751451
+          }
+        }
+      }
+    },
+    "chemical_minus_mask_unknown_mrr25": 0.00037940476190476136,
+    "paired_minus_single_chemical_unknown_mrr25": 0.0001946825396825433,
+    "scope": "Same original60K labels, fixed same-adduct/mode measured pair RNG260 after original representative RNG42, optimizer steps/capacity fixed; corrected per-spectrum queries averaged exactly as inference. Unrestricted pinned15 negative objective retained after strict-mass negative rejection. Repeated full3340 comparison, no fresh acceptance."
+  },
+  "proposal_runtime_control": {
+    "complete": true,
+    "full_query_matches_per_variant": 2000,
+    "variants": [
+      "native",
+      "corrected_only",
+      "corrected_fusion"
+    ],
+    "accuracy_gain_claim": false,
+    "enabled_for_explicit_local_proposal_entry": true
   }
 }
