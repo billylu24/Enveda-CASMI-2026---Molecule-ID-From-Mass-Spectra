@@ -41,7 +41,7 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0242_diagnostic_context_precursor_proposals"
+    "0247_diagnostic_query_chemical_system"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -82,19 +82,7 @@
     "decision": "Keep current verified best; safety pilot improvement remains below both frozen minimum gates."
   },
   "queued_rounds": [
-    "0233_diagnostic_context_mask_control",
-    "0234_diagnostic_context_mask_proposals",
-    "0235_diagnostic_context_mask_system",
-    "0241_diagnostic_context_precursor_channels",
-    "0242_diagnostic_context_precursor_proposals",
-    "0243_diagnostic_context_precursor_system",
-    "0244_diagnostic_query_zero_control",
-    "0245_diagnostic_query_chemical",
-    "0246_diagnostic_query_mask_control",
-    "0247_diagnostic_query_chemical_system",
-    "0248_diagnostic_query_mask_system",
-    "0251_packed_candidate_window_benchmark",
-    "0252_packed_candidate_full_inference_control"
+    "0248_diagnostic_query_mask_system"
   ],
   "coarse_context_complete": {
     "unknown": {
@@ -195,5 +183,57 @@
     "unknown_mrr_difference_vs_matched_mask": 0.0,
     "known_mrr_difference_vs_matched_mask": 0.0,
     "claim": "No observed complete-system metric benefit from24 chemical identities under this contextual BCE architecture; strength gate/context remain common."
+  },
+  "peak_loss_identity_attribution": {
+    "complete": true,
+    "unknown_mrr_difference_vs_all_channels": 0.0,
+    "known_mrr_difference_vs_all_channels": 0.0,
+    "eligible": false
+  },
+  "query_residual_training": {
+    "0245_diagnostic_query_chemical": {
+      "history": [
+        {
+          "epoch": 1,
+          "listwise_ce": 0.5716257541737658,
+          "query_anchor": 0.011776000263783684
+        },
+        {
+          "epoch": 2,
+          "listwise_ce": 0.5635803244215377,
+          "query_anchor": 0.022407939403932146
+        },
+        {
+          "epoch": 3,
+          "listwise_ce": 0.5544732422270673,
+          "query_anchor": 0.032341998308262926
+        }
+      ],
+      "seconds": 21.330246202996932,
+      "original_critic_tensors_exact": true,
+      "original_encoder_frozen": true
+    },
+    "0246_diagnostic_query_mask_control": {
+      "history": [
+        {
+          "epoch": 1,
+          "listwise_ce": 0.5716389653530527,
+          "query_anchor": 0.011687148136502885
+        },
+        {
+          "epoch": 2,
+          "listwise_ce": 0.5636191266648313,
+          "query_anchor": 0.02236148627038966
+        },
+        {
+          "epoch": 3,
+          "listwise_ce": 0.5547719819748655,
+          "query_anchor": 0.03185087148337922
+        }
+      ],
+      "seconds": 21.235654270014493,
+      "original_critic_tensors_exact": true,
+      "original_encoder_frozen": true
+    }
   }
 }

@@ -1,0 +1,72 @@
+{
+  "local_only": true,
+  "independent_acceptance": false,
+  "arms": {
+    "all_channels": {
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.1985,
+        "mrr25": 0.04268861838422192,
+        "top1": 0.014,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.21505601201119356
+      },
+      "known": {
+        "molecules": 1340,
+        "candidate_recall": 0.8850746268656716,
+        "mrr25": 0.6046025377332556,
+        "top1": 0.5656716417910448,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6831091067137962
+      }
+    },
+    "all_identity_masked": {
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.1985,
+        "mrr25": 0.04268861838422192,
+        "top1": 0.014,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.21505601201119356
+      },
+      "known": {
+        "molecules": 1340,
+        "candidate_recall": 0.8850746268656716,
+        "mrr25": 0.6046025377332556,
+        "top1": 0.5656716417910448,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6831091067137962
+      }
+    },
+    "peak_loss_masked": {
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.1985,
+        "mrr25": 0.04268861838422192,
+        "top1": 0.014,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.21505601201119356
+      },
+      "known": {
+        "molecules": 1340,
+        "candidate_recall": 0.8850746268656716,
+        "mrr25": 0.6046025377332556,
+        "top1": 0.5656716417910448,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6831091067137962
+      }
+    }
+  },
+  "source_rounds": {
+    "all_channels": "0230_diagnostic_context_exact_system",
+    "all_identity_masked": "0235_diagnostic_context_mask_system",
+    "peak_loss_masked": "0243_diagnostic_context_precursor_system"
+  },
+  "scope": "Matched24 chemical dimensions, fixed context/capacity/representative spectra/steps/strength gate; only peak_loss identities zeroed. Repeated development attribution, no new independent holdout or cold inference claim."
+}
