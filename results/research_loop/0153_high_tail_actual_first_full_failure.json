@@ -1,0 +1,10 @@
+{
+  "round": "0153_high_tail_actual_first_full",
+  "status": "failed",
+  "metrics_valid": false,
+  "submitted": false,
+  "failure": "Overstrict verification of original first10 for original rankings shorter than10; inserted tail must remain editable",
+  "correction": "Protect prior[:10] against result[:min(10,len(prior))]; preserve all original candidates when prior is short",
+  "independent_acceptance": false,
+  "cohort": "repeated_development"
+}
