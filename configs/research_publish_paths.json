@@ -271,7 +271,9 @@
     "kaggle_release_high_fragment_0163/verification.json",
     "kaggle_release_high_fragment_0163/kaggle_verification.json",
     "kaggle_release_high_fragment_0163/notebook/casmi_chemistry.ipynb",
-    "kaggle_release_high_fragment_0163/notebook/kernel-metadata.json"
+    "kaggle_release_high_fragment_0163/notebook/kernel-metadata.json",
+    "casmi_ml/chembl_high_slot_support.py",
+    "tests/test_high_slot_support.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

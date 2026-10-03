@@ -475,3 +475,5 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 第163同规则缓存补齐通过开发门槛：unknown2000 MRR0.041610624（对149+0.001282862/+3.1811%），known1340 MRR0.604673243略升、Top1不变，成为当前重复开发最佳；五个固定unknown折均正向。982unknown/267known informative，未知286移除/696rerank、已知115移除/152rerank，其余missing/budget按149回退。此开发缓存经多轮补齐，不能称单次cold资源保障。第168/169完整输入视图matched系统评价均未过门槛，不发布。
 
 第163实际无标签75完整排名重放75/75一致；独立重建2000/1340每分子RR/Top1/5/25与CSV/汇总一致，低置信完整列表冻结、高置信保护原0062实际已有前三项，包含两个模式各6个短原列表。原验证误将149新增tail当短原列表保护项，修正验证使用原0062前缀，科学规则未改变。新私有包kaggle_release_high_fragment_0163由eligible gate+replay建立，fresh local_output执行单次400冷推理，共享碎裂1200/总1800秒/父RSS8192MiB门槛。Controller增加chembl_high_fragment专用replay/builder/GPU校验与强制平台验证；不修改149已冻结资产。
+
+第170逐插入名额证据预登记：当前163只以proposed第一名fragment>actual first及critic+.05作为三个名额的共同门控。保持163所有low/missing/tied/budget/remove-tail分支，只有已通过高fragment组中，原前三新增候选分别满足相同严格双门槛才保留；不从第四名以后补位，不改变100候选、权重、阈值或任何原排名前三项。完整2000/1340对163，逐组用缓存结构/依赖hash重建原163实际完整排名并exact检查，再计量过滤。无新模型/采样/Java；缓存诊断不是冷运行保证。若失败即记录与同步，不选更多阈值。
