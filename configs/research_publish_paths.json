@@ -362,7 +362,11 @@
     "casmi_ml/diagnostic_feature_coverage.py",
     "casmi_ml/low_leader_activation.py",
     "casmi_ml/local_verified_extension.py",
-    "tests/test_low_leader_activation.py"
+    "tests/test_low_leader_activation.py",
+    "casmi_ml/low_leader_prefix_evaluation.py",
+    "tests/test_low_leader_prefix.py",
+    "casmi_ml/low_supported_slots_evaluation.py",
+    "tests/test_low_supported_slots.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

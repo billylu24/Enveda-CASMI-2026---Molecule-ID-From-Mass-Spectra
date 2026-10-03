@@ -1,7 +1,7 @@
 {
   "local_only": true,
   "remote_publication": false,
-  "status": "low_leader_label_free_verification_and_contextual_systems_running",
+  "status": "verified_local_improvement_and_continued_experiments",
   "best_round": "0236_low_supported_leader_first",
   "original_completed_control": {
     "unknown_mrr25": 0.04272830092390447,
@@ -41,8 +41,8 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0237_low_leader_full_unlabeled_replay",
-    "0228_diagnostic_context_exact_proposals"
+    "0229_diagnostic_context_coarse_system",
+    "0240_low_individually_supported_slots"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -58,8 +58,28 @@
     "unknown_relative_gain_vs181": 0.02938009521243463,
     "known_mrr_change_vs181": -0.0008084577114426676,
     "development_gate_passed": true,
-    "label_free_full_replay_pending": true,
-    "candidate_coverage_audit_pending": true,
+    "label_free_full_replay_pending": false,
+    "candidate_coverage_audit_pending": false,
     "independent_acceptance": false
+  },
+  "verified_low_leader": {
+    "unknown_mrr25": 0.04397830092390447,
+    "known_mrr25": 0.6037921161569266,
+    "evidence_round": "0237_low_leader_full_unlabeled_replay",
+    "unknown_relative_gain_vs181": 0.033669334740331354,
+    "unknown_relative_gain_vs_complete_control": 0.02925461516071389,
+    "full_rank_matches": 3340,
+    "budget_fallbacks": 0,
+    "new_failure_contexts": 0,
+    "candidate_coverage_corrected": true,
+    "independent_acceptance": false
+  },
+  "prefix_supported_leader": {
+    "unknown_mrr25": 0.044394967590571134,
+    "known_mrr25": 0.6041652504852849,
+    "unknown_gain_vs_verified_best": 0.0004166666666666624,
+    "unknown_relative_gain_vs_verified_best": 0.009474369357461526,
+    "eligible": false,
+    "decision": "Keep current verified best; safety pilot improvement remains below both frozen minimum gates."
   }
 }
