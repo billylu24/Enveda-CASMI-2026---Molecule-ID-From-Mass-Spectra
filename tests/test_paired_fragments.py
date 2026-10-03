@@ -25,6 +25,10 @@ class PairedFragmentTests(unittest.TestCase):
         self.assertAlmostEqual(scores["first"], 0.55)
         self.assertAlmostEqual(scores["new"], 0.55)
         self.assertEqual(fragmenter.timeout, 60)
+        self.assertEqual(
+            fragmenter.status_counts,
+            {"complete": 3, "unsupported_ion_or_resolution": 1},
+        )
 
     def test_invalid_or_noninformative_evidence_never_enables_insertion(self):
         for scores in ({}, {"a": 0, "b": 0}, {"a": float("nan")}, {"a": -1}):

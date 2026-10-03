@@ -310,3 +310,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第114/115轮DINO真实跨碰撞能正对与同谱增强同预算控制预注册：只用原60000训练分子/214804谱，dev交集0；观测训练中49352个分子有同adduct/instrument、distinct CE signature，仅finite非负eV、非缺失ion/instrument可配，不能凭不同谱自动称不同CE。20固定预训练轮+30固定fingerprint BCE微调轮，不按开发挑checkpoint；width256/layers4、lr1e-4→3e-4、原weak-peak-drop/保留诊断峰/质量不变增强与EMA/projection完全相同。两臂初始化/first谱/partner抽样/torch dropout与batch遍历RNG相同，control消耗partner抽样但用first谱两视图；没有不同CE有效partner时same row。微调两臂reset1042，公平相同步数；24小时单GPU总表征预算，两臂顺序运行。最终只报告旧候选池表征诊断，不能与0062完整组合直接比较或据此提交，必要时再在冻结生成器/检索排名上单因素测试新指纹排序。旧DINO不优于监督（非坍塌），此次针对真实同分子多能量不变性而非仅加模型规模；GAN仍未训练。181回归通过，pair isolation test覆盖不同ion/instrument/分子/非法CE。
+
+
+逐谱执行状态观测补充：未来max_raw与mean_normalized scorer记录实际遍历complete/unsupported/empty/timeout/failed等状态，不改变分数/门槛/预算回退；report明确只覆盖增量谱遍历，complete可能为内容cache复用，不能称cold Java工作。112/113仍执行修改前已加载实现，保存engine源与冻结protocol SHA逐项吻合；旧runner在report生成时重读磁盘源SHA，执行时磁盘已可前进，旧report字段以protocol/source_at_start为实际来源，不重新改写实验protocol。新runner在启动时捕获源码SHA并固定沿用到报告。181回归通过。

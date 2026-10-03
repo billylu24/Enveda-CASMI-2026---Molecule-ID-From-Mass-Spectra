@@ -163,6 +163,13 @@ class MetFrag:
             return result
 
 
+def record_status(fragmenter, result):
+    counts = getattr(fragmenter, "status_counts", {})
+    status = result.get("status", "unspecified")
+    counts[status] = counts.get(status, 0) + 1
+    fragmenter.status_counts = counts
+
+
 def score_group(fragmenter, records, candidates, deadline=None):
     """Bounded sequential Java scoring; an interrupted group uses retrieval fallback."""
     scores = {}
@@ -175,6 +182,7 @@ def score_group(fragmenter, records, candidates, deadline=None):
                     return {}, True
                 fragmenter.timeout = min(original_timeout, remaining)
             result = fragmenter.score(row, candidates)
+            record_status(fragmenter, result)
             for key, value in result["scores"].items():
                 scores[key] = max(scores.get(key, 0.0), value)
             if deadline is not None and time.monotonic() >= deadline:

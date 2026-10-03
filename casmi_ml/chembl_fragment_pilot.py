@@ -146,6 +146,12 @@ def run(
         raise ValueError(
             "Mean fragment evidence requires actual first in the same spectra"
         )
+    execution_engine_sha256 = digest("casmi_ml/metfrag.py")
+    execution_aggregation_sha256 = (
+        digest("casmi_ml/paired_fragments.py")
+        if mean_fragments
+        else execution_engine_sha256
+    )
     critic_checkpoint = Path(critic_checkpoint)
     if proposal_limit not in (100, 500) or not 1 <= fragment_limit <= proposal_limit:
         raise ValueError("Invalid proposal or fragment shortlist limit")
@@ -253,9 +259,7 @@ def run(
             "chemical_prior": chemical_prior,
             "fragment_weight": fragment_weight,
             "fragment_aggregation": "mean_normalized" if mean_fragments else "max_raw",
-            "fragment_aggregation_source_sha256": digest("casmi_ml/paired_fragments.py")
-            if mean_fragments
-            else digest("casmi_ml/metfrag.py"),
+            "fragment_aggregation_source_sha256": execution_aggregation_sha256,
             "compare_current_first_fragment": compare_first,
             "fragment_gate_only": fragment_gate_only,
             "skip_impossible_critic_gate": skip_impossible,
@@ -266,7 +270,7 @@ def run(
             if critic_checkpoint == CRITIC
             else None,
             "fragment_depth": fragment_depth,
-            "fragment_engine_source_sha256": digest("casmi_ml/metfrag.py"),
+            "fragment_engine_source_sha256": execution_engine_sha256,
             "fragment_adapter": adapter_name,
             "fragment_adapter_sha256": digest(
                 "casmi_ml/metfrag_dimer.py"
@@ -725,12 +729,16 @@ def run(
         report["diagnostic_only"] = limit < 2000
         report["diagnostics"] = {
             "molecules": len(allowed_keys),
+            "incremental_spectrum_execution_status_counts": getattr(
+                fragmenter, "status_counts", {}
+            ),
+            "execution_status_scope": "Only spectra actually traversed by this run; precomputed group cache skips are excluded. Complete may be content-cache reuse, not cold Java execution.",
             "fragment_groups": len(fragment_scores),
             "fragment_groups_with_scores": sum(
                 bool(r["scores"]) for r in fragment_scores.values()
             ),
             "fragment_depth": fragment_depth,
-            "fragment_engine_source_sha256": digest("casmi_ml/metfrag.py"),
+            "fragment_engine_source_sha256": execution_engine_sha256,
             "fragment_adapter": adapter_name,
             "fragment_budget_fallbacks": sum(
                 r["budget_fallback"] for r in fragment_scores.values()
@@ -751,9 +759,7 @@ def run(
             "chemical_prior": chemical_prior,
             "fragment_weight": fragment_weight,
             "fragment_aggregation": "mean_normalized" if mean_fragments else "max_raw",
-            "fragment_aggregation_source_sha256": digest("casmi_ml/paired_fragments.py")
-            if mean_fragments
-            else digest("casmi_ml/metfrag.py"),
+            "fragment_aggregation_source_sha256": execution_aggregation_sha256,
             "compare_current_first_fragment": compare_first,
             "fragment_gate_only": fragment_gate_only,
             "skip_impossible_critic_gate": skip_impossible,

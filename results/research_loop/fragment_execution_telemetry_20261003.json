@@ -1,0 +1,17 @@
+{
+  "round": "fragment_execution_telemetry_20261003",
+  "status": "recorded",
+  "change": "Record complete/unsupported/empty/timeout/failed statuses for spectra traversed by future runs; ranking values and fallback logic unchanged.",
+  "scope": "Incremental scoring only; cached group skips excluded; complete may reuse exact content cache and does not imply cold Java work.",
+  "source_binding": "Future runner captures implementation hashes at start rather than hashing possibly changed files again at report completion.",
+  "existing_running_rounds": [
+    "0112_chembl_fragment_depth3_full",
+    "0113_chembl_sequence_fragment_full"
+  ],
+  "existing_source_snapshots_match_protocol": true,
+  "validation": {
+    "tests": 181,
+    "status": "passed"
+  },
+  "independent_acceptance": false
+}

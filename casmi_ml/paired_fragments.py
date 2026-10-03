@@ -3,6 +3,8 @@
 import math
 import time
 
+from casmi_ml.metfrag import record_status
+
 
 def normalized_scores(scores, candidates):
     values = {k: float(scores.get(k, 0.0)) for k in candidates}
@@ -27,6 +29,7 @@ def score_group_mean(fragmenter, records, candidates, deadline=None):
                     return {}, True
                 fragmenter.timeout = min(original_timeout, remaining)
             result = fragmenter.score(row, candidates)
+            record_status(fragmenter, result)
             if deadline is not None and time.monotonic() >= deadline:
                 return {}, True
             if result["status"] != "complete":
