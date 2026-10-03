@@ -304,3 +304,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第112轮深度3完整扩展预注册：只保留pilot通过的prefix3，depth3/native100/critic+.05/相对实际首位fragment/fragment0.5/3slots/skip-impossible全部固定，same2000/1340，对0062。复用108完整67组、深度绑定逐谱cache，1200秒总预算（不足整组回退）、60秒单Java和1GiB heap不变，不根据truth优先安排组。先检查真实有限预算能否改善完整指标，深度3高成本可能使覆盖回退；若门槛失败不发布，不以去除预算改变目标。
+
+
+第111固定200 direct conditional+fragment融合：prefix3 unknown0.037997→0.038997（增0.001000），known降0.000096保护通过，较第102相同wide500→critic100+fragment额外0.000167；70组23非空、130.6秒、3025MiB、无预算回退，新增真值仍1但位置提高。第113完整扩展只冻结prefix3、query-only ratio0、critic+sequence RRF0.5→前100→MetFrag0.5、双门控与skip-impossible，same2000/1340对0062、1200秒fragment预算；复用111完整70组和110冻结完整score SHA，不再改ratio/权重，不声称独立验收。与112为独立因素对照，GPU无新增作业，各CPU组/总预算分开，内容cache锁避免同谱重复评分。
