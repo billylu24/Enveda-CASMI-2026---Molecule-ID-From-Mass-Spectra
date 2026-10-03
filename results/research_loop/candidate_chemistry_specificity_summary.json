@@ -1,0 +1,585 @@
+{
+  "diagnostic_only": true,
+  "local_only": true,
+  "independent_acceptance": false,
+  "training_molecules": 60000,
+  "training_slots": 120000,
+  "train_development_overlap": 0,
+  "weight_sum": 1.7151858236430644,
+  "unique20_motif_patterns": 510,
+  "positive_bonus_quantiles": {
+    "q0": 0.0,
+    "q25": 0.0,
+    "q50": 0.011765934098248693,
+    "q75": 0.03630633374778741,
+    "q100": 0.5794399132774912
+  },
+  "contrasts": {
+    "unrestricted": {
+      "pairs": 900000,
+      "positive_bonus_larger": 299083,
+      "negative_bonus_larger": 196120,
+      "bonus_ties": 404797,
+      "mean_positive_minus_negative": 0.009221028970225188,
+      "molecules_with_any_positive_advantage": 37781,
+      "molecules_with_any_negative_advantage": 32883,
+      "all20_motif_alias_pairs": 94781,
+      "observed_weighted_channel_alias_pairs": 404797
+    },
+    "mass_compatible": {
+      "pairs": 720198,
+      "positive_bonus_larger": 239742,
+      "negative_bonus_larger": 166136,
+      "bonus_ties": 314320,
+      "mean_positive_minus_negative": 0.008739833743145272,
+      "molecules_with_any_positive_advantage": 34531,
+      "molecules_with_any_negative_advantage": 30120,
+      "all20_motif_alias_pairs": 83636,
+      "observed_weighted_channel_alias_pairs": 314320
+    }
+  },
+  "channels": [
+    {
+      "channel": "water:ion",
+      "weight": 5.66987554036068e-19,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "water:precursor_loss",
+      "weight": 0.1390463568134641,
+      "observed_training_molecules": 14693,
+      "mass_compatible_observed_pairs": 187491,
+      "observed_positive_support_fraction": 0.38004491934935003,
+      "observed_negative_support_fraction": 0.2514840712354193,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.025680141523480415
+    },
+    {
+      "channel": "water:peak_loss",
+      "weight": 0.020801767559160474,
+      "observed_training_molecules": 38438,
+      "mass_compatible_observed_pairs": 481624,
+      "observed_positive_support_fraction": 0.28625318695041363,
+      "observed_negative_support_fraction": 0.24106149195222829,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.010873803868889809
+    },
+    {
+      "channel": "ammonia:ion",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "ammonia:precursor_loss",
+      "weight": 0.13843342317665097,
+      "observed_training_molecules": 6324,
+      "mass_compatible_observed_pairs": 82213,
+      "observed_positive_support_fraction": 0.7767235926628716,
+      "observed_negative_support_fraction": 0.6405556298882172,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.020546061918139458
+    },
+    {
+      "channel": "ammonia:peak_loss",
+      "weight": 0.03415260866758918,
+      "observed_training_molecules": 31577,
+      "mass_compatible_observed_pairs": 407685,
+      "observed_positive_support_fraction": 0.6163346739715616,
+      "observed_negative_support_fraction": 0.6240553368409434,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.006974720861762762
+    },
+    {
+      "channel": "carbon_monoxide:ion",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "carbon_monoxide:precursor_loss",
+      "weight": 0.04500948883136173,
+      "observed_training_molecules": 4121,
+      "mass_compatible_observed_pairs": 53066,
+      "observed_positive_support_fraction": 0.8755156515408882,
+      "observed_negative_support_fraction": 0.8435344665133984,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.006451709195971489
+    },
+    {
+      "channel": "carbon_monoxide:peak_loss",
+      "weight": 0.04375072380486646,
+      "observed_training_molecules": 38943,
+      "mass_compatible_observed_pairs": 491818,
+      "observed_positive_support_fraction": 0.8149346480753923,
+      "observed_negative_support_fraction": 0.8406707359226381,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.0047561354003846645
+    },
+    {
+      "channel": "carbon_dioxide:ion",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "carbon_dioxide:precursor_loss",
+      "weight": 0.1855392528019359,
+      "observed_training_molecules": 3446,
+      "mass_compatible_observed_pairs": 39397,
+      "observed_positive_support_fraction": 0.7054556006964596,
+      "observed_negative_support_fraction": 0.2806558875041247,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.11295563727617264
+    },
+    {
+      "channel": "carbon_dioxide:peak_loss",
+      "weight": 0.08287052150324022,
+      "observed_training_molecules": 34461,
+      "mass_compatible_observed_pairs": 440932,
+      "observed_positive_support_fraction": 0.20977336699457358,
+      "observed_negative_support_fraction": 0.1609567915234095,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.012364917434751987
+    },
+    {
+      "channel": "hexose_residue:ion",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "hexose_residue:precursor_loss",
+      "weight": 0.020906459676699338,
+      "observed_training_molecules": 3152,
+      "mass_compatible_observed_pairs": 43350,
+      "observed_positive_support_fraction": 0.06281725888324872,
+      "observed_negative_support_fraction": 0.03331026528258362,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.005267244763672352
+    },
+    {
+      "channel": "hexose_residue:peak_loss",
+      "weight": 0.012257382975443492,
+      "observed_training_molecules": 22913,
+      "mass_compatible_observed_pairs": 310773,
+      "observed_positive_support_fraction": 0.049404268319294724,
+      "observed_negative_support_fraction": 0.04023837334646189,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.00023630938085261732
+    },
+    {
+      "channel": "deoxyhexose_residue:ion",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "deoxyhexose_residue:precursor_loss",
+      "weight": 0.015841867212531634,
+      "observed_training_molecules": 2752,
+      "mass_compatible_observed_pairs": 37876,
+      "observed_positive_support_fraction": 0.03888081395348837,
+      "observed_negative_support_fraction": 0.03165592987643891,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.0009693271131254733
+    },
+    {
+      "channel": "deoxyhexose_residue:peak_loss",
+      "weight": 0.02773614817101873,
+      "observed_training_molecules": 24281,
+      "mass_compatible_observed_pairs": 328862,
+      "observed_positive_support_fraction": 0.04596186318520654,
+      "observed_negative_support_fraction": 0.04001678515608371,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.00011418063513701782
+    },
+    {
+      "channel": "pentose_residue:ion",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "pentose_residue:precursor_loss",
+      "weight": 0.0062320833641294,
+      "observed_training_molecules": 2065,
+      "mass_compatible_observed_pairs": 27653,
+      "observed_positive_support_fraction": 0.06537530266343826,
+      "observed_negative_support_fraction": 0.04368422955917983,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.01113782450556755
+    },
+    {
+      "channel": "pentose_residue:peak_loss",
+      "weight": 0.03469621821409558,
+      "observed_training_molecules": 25305,
+      "mass_compatible_observed_pairs": 341555,
+      "observed_positive_support_fraction": 0.05014819205690575,
+      "observed_negative_support_fraction": 0.044473071686843994,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.0006632799049839377
+    },
+    {
+      "channel": "phosphocholine:ion",
+      "weight": 0.01066547810745046,
+      "observed_training_molecules": 2431,
+      "mass_compatible_observed_pairs": 33175,
+      "observed_positive_support_fraction": 0.02385849444672974,
+      "observed_negative_support_fraction": 0.0027128862094951017,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.0014213346876204014
+    },
+    {
+      "channel": "phosphocholine:precursor_loss",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "phosphocholine:peak_loss",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "phenyl_ion:ion",
+      "weight": 0.0,
+      "observed_training_molecules": 22590,
+      "mass_compatible_observed_pairs": 310213,
+      "observed_positive_support_fraction": 0.6925188136343515,
+      "observed_negative_support_fraction": 0.6901677234674239,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.00531183835119009
+    },
+    {
+      "channel": "phenyl_ion:precursor_loss",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "phenyl_ion:peak_loss",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "benzyl_tropylium_ion:ion",
+      "weight": 0.04122793538036199,
+      "observed_training_molecules": 21917,
+      "mass_compatible_observed_pairs": 294335,
+      "observed_positive_support_fraction": 0.7066660583109002,
+      "observed_negative_support_fraction": 0.6983335315202066,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.014717692509293556
+    },
+    {
+      "channel": "benzyl_tropylium_ion:precursor_loss",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "benzyl_tropylium_ion:peak_loss",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "benzoyl_ion:ion",
+      "weight": 0.08134073139097955,
+      "observed_training_molecules": 7571,
+      "mass_compatible_observed_pairs": 105090,
+      "observed_positive_support_fraction": 0.224408928807291,
+      "observed_negative_support_fraction": 0.1730326386906461,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.015720317140221596
+    },
+    {
+      "channel": "benzoyl_ion:precursor_loss",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "benzoyl_ion:peak_loss",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "benzoate_ion:ion",
+      "weight": 0.00011310775712475796,
+      "observed_training_molecules": 627,
+      "mass_compatible_observed_pairs": 7522,
+      "observed_positive_support_fraction": 0.17862838915470494,
+      "observed_negative_support_fraction": 0.05344323318266418,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.015484482981264591
+    },
+    {
+      "channel": "benzoate_ion:precursor_loss",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "benzoate_ion:peak_loss",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "phosphate_ion:ion",
+      "weight": 0.015096802250153172,
+      "observed_training_molecules": 192,
+      "mass_compatible_observed_pairs": 1385,
+      "observed_positive_support_fraction": 0.484375,
+      "observed_negative_support_fraction": 0.15162454873646208,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.03418893367052078
+    },
+    {
+      "channel": "phosphate_ion:precursor_loss",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "phosphate_ion:peak_loss",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "dihydrogen_phosphate_ion:ion",
+      "weight": 0.0036395493340681765,
+      "observed_training_molecules": 82,
+      "mass_compatible_observed_pairs": 730,
+      "observed_positive_support_fraction": 0.4146341463414634,
+      "observed_negative_support_fraction": 0.06164383561643835,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.03797648847103119
+    },
+    {
+      "channel": "dihydrogen_phosphate_ion:precursor_loss",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "dihydrogen_phosphate_ion:peak_loss",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "methanol:ion",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "methanol:precursor_loss",
+      "weight": 0.1880723016255822,
+      "observed_training_molecules": 3632,
+      "mass_compatible_observed_pairs": 48159,
+      "observed_positive_support_fraction": 0.6941079295154186,
+      "observed_negative_support_fraction": 0.2545941568554164,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.08196505159139633
+    },
+    {
+      "channel": "methanol:peak_loss",
+      "weight": 0.14787762102900195,
+      "observed_training_molecules": 33503,
+      "mass_compatible_observed_pairs": 433456,
+      "observed_positive_support_fraction": 0.1842820045966033,
+      "observed_negative_support_fraction": 0.1618457236720682,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.01569991186261177
+    },
+    {
+      "channel": "sulfur_dioxide:ion",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "sulfur_dioxide:precursor_loss",
+      "weight": 0.04514091017696939,
+      "observed_training_molecules": 1473,
+      "mass_compatible_observed_pairs": 18924,
+      "observed_positive_support_fraction": 0.8384249830278343,
+      "observed_negative_support_fraction": 0.39611075882477276,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.04901569336652756
+    },
+    {
+      "channel": "sulfur_dioxide:peak_loss",
+      "weight": 0.2619592396223715,
+      "observed_training_molecules": 26298,
+      "mass_compatible_observed_pairs": 352165,
+      "observed_positive_support_fraction": 0.18054604912921135,
+      "observed_negative_support_fraction": 0.13712606306702824,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.017882658168673515
+    },
+    {
+      "channel": "sulfur_trioxide:ion",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "sulfur_trioxide:precursor_loss",
+      "weight": 0.02600848007371532,
+      "observed_training_molecules": 415,
+      "mass_compatible_observed_pairs": 4953,
+      "observed_positive_support_fraction": 0.0819277108433735,
+      "observed_negative_support_fraction": 0.0024227740763173833,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.003226978937163949
+    },
+    {
+      "channel": "sulfur_trioxide:peak_loss",
+      "weight": 0.01850981680829367,
+      "observed_training_molecules": 23173,
+      "mass_compatible_observed_pairs": 312917,
+      "observed_positive_support_fraction": 0.0023302981918612176,
+      "observed_negative_support_fraction": 0.0008532614079771952,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 5.1376919145695865e-05
+    },
+    {
+      "channel": "phosphoric_acid:ion",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "phosphoric_acid:precursor_loss",
+      "weight": 0.009146807933675661,
+      "observed_training_molecules": 616,
+      "mass_compatible_observed_pairs": 7676,
+      "observed_positive_support_fraction": 0.1038961038961039,
+      "observed_negative_support_fraction": 0.005601875977071392,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.04729318246245384
+    },
+    {
+      "channel": "phosphoric_acid:peak_loss",
+      "weight": 0.010908131023170939,
+      "observed_training_molecules": 23429,
+      "mass_compatible_observed_pairs": 317417,
+      "observed_positive_support_fraction": 0.006530368346920483,
+      "observed_negative_support_fraction": 0.002047779419501791,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.0007340023876167834
+    },
+    {
+      "channel": "metaphosphoric_acid:ion",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "metaphosphoric_acid:precursor_loss",
+      "weight": 0.0,
+      "observed_training_molecules": 578,
+      "mass_compatible_observed_pairs": 6682,
+      "observed_positive_support_fraction": 0.031141868512110725,
+      "observed_negative_support_fraction": 0.004489673750374139,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.0027606042567640543
+    },
+    {
+      "channel": "metaphosphoric_acid:peak_loss",
+      "weight": 0.0051837237670194665,
+      "observed_training_molecules": 24189,
+      "mass_compatible_observed_pairs": 326655,
+      "observed_positive_support_fraction": 0.006986646822936046,
+      "observed_negative_support_fraction": 0.0021674243467878955,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.0002681623736862093
+    },
+    {
+      "channel": "acetic_acid:ion",
+      "weight": 0.0,
+      "observed_training_molecules": 0,
+      "mass_compatible_observed_pairs": 0,
+      "observed_positive_support_fraction": null,
+      "observed_negative_support_fraction": null,
+      "mean_interaction_contrast_on_observed_compatible_pairs": null
+    },
+    {
+      "channel": "acetic_acid:precursor_loss",
+      "weight": 0.03252626585295793,
+      "observed_training_molecules": 3924,
+      "mass_compatible_observed_pairs": 48619,
+      "observed_positive_support_fraction": 0.02217125382262997,
+      "observed_negative_support_fraction": 0.0030646455089574035,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.0054091415368020535
+    },
+    {
+      "channel": "acetic_acid:peak_loss",
+      "weight": 0.010494618737981083,
+      "observed_training_molecules": 32005,
+      "mass_compatible_observed_pairs": 415015,
+      "observed_positive_support_fraction": 0.004499296984846118,
+      "observed_negative_support_fraction": 0.0022794356830476005,
+      "mean_interaction_contrast_on_observed_compatible_pairs": 0.0005766262765973806
+    }
+  ],
+  "seconds": 48.59114112801035,
+  "scope": "Training-only broad-motif discrimination/aliasing audit, not full candidate pool recall, chemical mechanism proof, or accuracy qualification. No model/route/source changes or newly opened holdout."
+}

@@ -1,0 +1,453 @@
+{
+  "round": "0332_candidate_chemistry_counts_audit",
+  "direction": "implementation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "train_development_overlap": 0,
+    "unique_binary_patterns": 510,
+    "unique_count_patterns": 4539,
+    "mass_compatible_pairs": 720198,
+    "all20_binary_alias_pairs": 83636,
+    "all20_count_alias_pairs": 41133,
+    "binary_aliases_separated_by_multiplicity": 42503,
+    "motifs": [
+      {
+        "name": "water",
+        "maximum_count": 29,
+        "positive_molecules_with_multiple_matches": 5322
+      },
+      {
+        "name": "ammonia",
+        "maximum_count": 28,
+        "positive_molecules_with_multiple_matches": 8545
+      },
+      {
+        "name": "carbon_monoxide",
+        "maximum_count": 28,
+        "positive_molecules_with_multiple_matches": 19869
+      },
+      {
+        "name": "carbon_dioxide",
+        "maximum_count": 13,
+        "positive_molecules_with_multiple_matches": 2906
+      },
+      {
+        "name": "hexose_residue",
+        "maximum_count": 9,
+        "positive_molecules_with_multiple_matches": 569
+      },
+      {
+        "name": "deoxyhexose_residue",
+        "maximum_count": 9,
+        "positive_molecules_with_multiple_matches": 569
+      },
+      {
+        "name": "pentose_residue",
+        "maximum_count": 7,
+        "positive_molecules_with_multiple_matches": 126
+      },
+      {
+        "name": "phosphocholine",
+        "maximum_count": 1,
+        "positive_molecules_with_multiple_matches": 0
+      },
+      {
+        "name": "phenyl_ion",
+        "maximum_count": 10,
+        "positive_molecules_with_multiple_matches": 9694
+      },
+      {
+        "name": "benzyl_tropylium_ion",
+        "maximum_count": 10,
+        "positive_molecules_with_multiple_matches": 9694
+      },
+      {
+        "name": "benzoyl_ion",
+        "maximum_count": 10,
+        "positive_molecules_with_multiple_matches": 814
+      },
+      {
+        "name": "benzoate_ion",
+        "maximum_count": 10,
+        "positive_molecules_with_multiple_matches": 144
+      },
+      {
+        "name": "phosphate_ion",
+        "maximum_count": 3,
+        "positive_molecules_with_multiple_matches": 29
+      },
+      {
+        "name": "dihydrogen_phosphate_ion",
+        "maximum_count": 3,
+        "positive_molecules_with_multiple_matches": 29
+      },
+      {
+        "name": "methanol",
+        "maximum_count": 8,
+        "positive_molecules_with_multiple_matches": 1883
+      },
+      {
+        "name": "sulfur_dioxide",
+        "maximum_count": 3,
+        "positive_molecules_with_multiple_matches": 108
+      },
+      {
+        "name": "sulfur_trioxide",
+        "maximum_count": 4,
+        "positive_molecules_with_multiple_matches": 71
+      },
+      {
+        "name": "phosphoric_acid",
+        "maximum_count": 3,
+        "positive_molecules_with_multiple_matches": 29
+      },
+      {
+        "name": "metaphosphoric_acid",
+        "maximum_count": 3,
+        "positive_molecules_with_multiple_matches": 29
+      },
+      {
+        "name": "acetic_acid",
+        "maximum_count": 8,
+        "positive_molecules_with_multiple_matches": 82
+      }
+    ],
+    "observed_extended_channels": [
+      {
+        "channel": "phenyl_ion:ion",
+        "observed_compatible_pairs": 310213,
+        "observed_binary_tied_pairs": 224066,
+        "observed_binary_ties_separated_by_count": 43438,
+        "observed_positive_count_larger": 63847,
+        "observed_negative_count_larger": 65738,
+        "mean_positive_minus_negative_count": -0.007807538691157366
+      },
+      {
+        "channel": "phenyl_ion:precursor_loss",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "phenyl_ion:peak_loss",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "benzyl_tropylium_ion:ion",
+        "observed_compatible_pairs": 294335,
+        "observed_binary_tied_pairs": 214183,
+        "observed_binary_ties_separated_by_count": 43829,
+        "observed_positive_count_larger": 64002,
+        "observed_negative_count_larger": 59979,
+        "mean_positive_minus_negative_count": 0.01672244211527681
+      },
+      {
+        "channel": "benzyl_tropylium_ion:precursor_loss",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "benzyl_tropylium_ion:peak_loss",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "benzoyl_ion:ion",
+        "observed_compatible_pairs": 105090,
+        "observed_binary_tied_pairs": 76311,
+        "observed_binary_ties_separated_by_count": 983,
+        "observed_positive_count_larger": 17324,
+        "observed_negative_count_larger": 12438,
+        "mean_positive_minus_negative_count": 0.051041964030830715
+      },
+      {
+        "channel": "benzoyl_ion:precursor_loss",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "benzoyl_ion:peak_loss",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "benzoate_ion:ion",
+        "observed_compatible_pairs": 7522,
+        "observed_binary_tied_pairs": 6130,
+        "observed_binary_ties_separated_by_count": 6,
+        "observed_positive_count_larger": 1100,
+        "observed_negative_count_larger": 298,
+        "mean_positive_minus_negative_count": 0.1236373304972082
+      },
+      {
+        "channel": "benzoate_ion:precursor_loss",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "benzoate_ion:peak_loss",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "phosphate_ion:ion",
+        "observed_compatible_pairs": 1385,
+        "observed_binary_tied_pairs": 1277,
+        "observed_binary_ties_separated_by_count": 10,
+        "observed_positive_count_larger": 109,
+        "observed_negative_count_larger": 9,
+        "mean_positive_minus_negative_count": 0.07725631768953069
+      },
+      {
+        "channel": "phosphate_ion:precursor_loss",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "phosphate_ion:peak_loss",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "dihydrogen_phosphate_ion:ion",
+        "observed_compatible_pairs": 730,
+        "observed_binary_tied_pairs": 664,
+        "observed_binary_ties_separated_by_count": 1,
+        "observed_positive_count_larger": 65,
+        "observed_negative_count_larger": 2,
+        "mean_positive_minus_negative_count": 0.09452054794520548
+      },
+      {
+        "channel": "dihydrogen_phosphate_ion:precursor_loss",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "dihydrogen_phosphate_ion:peak_loss",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "methanol:ion",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "methanol:precursor_loss",
+        "observed_compatible_pairs": 48159,
+        "observed_binary_tied_pairs": 23039,
+        "observed_binary_ties_separated_by_count": 3087,
+        "observed_positive_count_larger": 24977,
+        "observed_negative_count_larger": 3230,
+        "mean_positive_minus_negative_count": 0.5162897900703918
+      },
+      {
+        "channel": "methanol:peak_loss",
+        "observed_compatible_pairs": 433456,
+        "observed_binary_tied_pairs": 335127,
+        "observed_binary_ties_separated_by_count": 7725,
+        "observed_positive_count_larger": 57942,
+        "observed_negative_count_larger": 48112,
+        "mean_positive_minus_negative_count": 0.02516979808792588
+      },
+      {
+        "channel": "sulfur_dioxide:ion",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "sulfur_dioxide:precursor_loss",
+        "observed_compatible_pairs": 18924,
+        "observed_binary_tied_pairs": 9585,
+        "observed_binary_ties_separated_by_count": 139,
+        "observed_positive_count_larger": 9034,
+        "observed_negative_count_larger": 444,
+        "mean_positive_minus_negative_count": 0.45883534136546184
+      },
+      {
+        "channel": "sulfur_dioxide:peak_loss",
+        "observed_compatible_pairs": 352165,
+        "observed_binary_tied_pairs": 294768,
+        "observed_binary_ties_separated_by_count": 404,
+        "observed_positive_count_larger": 35162,
+        "observed_negative_count_larger": 22639,
+        "mean_positive_minus_negative_count": 0.03576448539746994
+      },
+      {
+        "channel": "sulfur_trioxide:ion",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "sulfur_trioxide:precursor_loss",
+        "observed_compatible_pairs": 4953,
+        "observed_binary_tied_pairs": 4895,
+        "observed_binary_ties_separated_by_count": 3,
+        "observed_positive_count_larger": 55,
+        "observed_negative_count_larger": 6,
+        "mean_positive_minus_negative_count": 0.01877649909145972
+      },
+      {
+        "channel": "sulfur_trioxide:peak_loss",
+        "observed_compatible_pairs": 312917,
+        "observed_binary_tied_pairs": 312522,
+        "observed_binary_ties_separated_by_count": 5,
+        "observed_positive_count_larger": 143,
+        "observed_negative_count_larger": 257,
+        "mean_positive_minus_negative_count": -0.0002748332624945273
+      },
+      {
+        "channel": "phosphoric_acid:ion",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "phosphoric_acid:precursor_loss",
+        "observed_compatible_pairs": 7676,
+        "observed_binary_tied_pairs": 7120,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 526,
+        "observed_negative_count_larger": 30,
+        "mean_positive_minus_negative_count": 0.06487754038561751
+      },
+      {
+        "channel": "phosphoric_acid:peak_loss",
+        "observed_compatible_pairs": 317417,
+        "observed_binary_tied_pairs": 316299,
+        "observed_binary_ties_separated_by_count": 3,
+        "observed_positive_count_larger": 671,
+        "observed_negative_count_larger": 450,
+        "mean_positive_minus_negative_count": 0.0006993954325067655
+      },
+      {
+        "channel": "metaphosphoric_acid:ion",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "metaphosphoric_acid:precursor_loss",
+        "observed_compatible_pairs": 6682,
+        "observed_binary_tied_pairs": 6530,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 133,
+        "observed_negative_count_larger": 19,
+        "mean_positive_minus_negative_count": 0.01706076025142173
+      },
+      {
+        "channel": "metaphosphoric_acid:peak_loss",
+        "observed_compatible_pairs": 326655,
+        "observed_binary_tied_pairs": 325705,
+        "observed_binary_ties_separated_by_count": 10,
+        "observed_positive_count_larger": 482,
+        "observed_negative_count_larger": 478,
+        "mean_positive_minus_negative_count": 9.184001469440235e-06
+      },
+      {
+        "channel": "acetic_acid:ion",
+        "observed_compatible_pairs": 0,
+        "observed_binary_tied_pairs": 0,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 0,
+        "observed_negative_count_larger": 0,
+        "mean_positive_minus_negative_count": null
+      },
+      {
+        "channel": "acetic_acid:precursor_loss",
+        "observed_compatible_pairs": 48619,
+        "observed_binary_tied_pairs": 47870,
+        "observed_binary_ties_separated_by_count": 0,
+        "observed_positive_count_larger": 628,
+        "observed_negative_count_larger": 121,
+        "mean_positive_minus_negative_count": 0.010407453876056686
+      },
+      {
+        "channel": "acetic_acid:peak_loss",
+        "observed_compatible_pairs": 415015,
+        "observed_binary_tied_pairs": 413188,
+        "observed_binary_ties_separated_by_count": 2,
+        "observed_positive_count_larger": 924,
+        "observed_negative_count_larger": 905,
+        "mean_positive_minus_negative_count": -0.00014457308771972097
+      }
+    ],
+    "private_counts_sha256": "87d39cd4c31b4c8c676774961649c08c029a29ad09e3ca4b21dfc5c48a123b0e",
+    "seconds": 15.31810586899519,
+    "scope": "Training-only multiplicity availability and association; count diversity is not predictive benefit or chemical fragmentation mechanism. No new fitted model or development score, no best replacement."
+  },
+  "protocol_sha256": "a3ce8cddd0b1be1d0eb3c08a5fb848713a78550ca10e2d32f2ce08688fb8e9a3",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

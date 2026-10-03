@@ -7,6 +7,7 @@ from casmi_ml.data import write_json
 from casmi_ml.research_loop import Controller
 
 CYCLES = {
+    "candidate_motif_counts": "candidate_count_attribution.json",
     "single_contextual": "diagnostic_query_attribution.json",
     "strict_mass": "diagnostic_query_strict_mass_attribution.json",
     "same_ion_measured_pair": "query_multispectrum_attribution.json",

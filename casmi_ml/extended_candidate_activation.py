@@ -101,6 +101,10 @@ def resolve_score(config, proof):
     spec = proof.get("extended_candidate_compatibility")
     if not spec:
         return None
+    if spec.get("variant") == "motif_count":
+        from casmi_ml.candidate_count_activation import resolve_score as resolve_count
+
+        return resolve_count(config, proof)
     if spec.get("variant") == "full_cosine_gap":
         from casmi_ml.full_gap_candidate_activation import (
             resolve_score as resolve_full_gap,

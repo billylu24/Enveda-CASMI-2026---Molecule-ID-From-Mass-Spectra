@@ -52,9 +52,10 @@ def refresh():
             "extended_candidate_followup.log",
             "intensity_candidate_followup.log",
             "max_candidate_followup.log",
-            "full_gap_candidate_followup.log",
+            "full_gap_candidate_followup_v2.log",
+            "candidate_count_followup.log",
         ],
-        "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306/310 zero/mask complete3340 exact;309 extended candidate MRR.043994968 rejected.311 BLAS score microbenchmark then312 current-best full exact control.313-317 intensity-weighted candidate hypothesis prepared after runtime checks; no added feature runtime active. 311 BLAS1 changed6 intermediate candidate orders,312 failed preflight, no activation.313/317 zero/mask exact3340;316 intensity weighting unchanged best metrics, rejected.318 validation-only paired speed36.70->11.22s,319 full current-best control active.319 exact3340 validation cache active.320 zero max exact;321/322 fit then323/324 full systems.325 training-only theoretical cosine-gap ceiling yields lower objective,326-330 separate full-gap trial staged behind324; scientific margin/gates unchanged. Only frozen gate winners replace best.",
+        "pending_sequence": "Scientific236/evidence286 retained.319 exact3340 validation cache active.323max and329full-gap rejected; latter gain+.000166667/+0.379% from1/2000 true rank change.331 broad chemistry ties43.64%,332 counts separate42503 broad aliases,333 fixed120D training objective gain.000073151.334-338 new count cycle: all3340 zero exact, paired60K chemical/mask fit, both complete full physical systems and exactmask before scientific evaluation/activation. Separate explicitly requested single236 Kaggle publication and verification; local_only research and no GitHub push persist.",
         "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
         "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
         "independent_acceptance": False,
@@ -96,10 +97,15 @@ def refresh():
         ("strong_peak_attribution", "query_strong_peak_attribution.json"),
         ("admission_margin_attribution", "query_admission_attribution.json"),
         ("all_spectra_attribution", "query_all_spectra_attribution.json"),
-        ("candidate_compatibility_attribution", "candidate_compatibility_attribution.json"),
+        (
+            "candidate_compatibility_attribution",
+            "candidate_compatibility_attribution.json",
+        ),
         ("extended_candidate_attribution", "extended_candidate_attribution.json"),
         ("intensity_candidate_attribution", "intensity_candidate_attribution.json"),
         ("max_candidate_attribution", "max_candidate_attribution.json"),
+        ("full_gap_candidate_attribution", "full_gap_candidate_attribution.json"),
+        ("candidate_count_attribution", "candidate_count_attribution.json"),
     ]:
         report = Path("results/research_loop") / filename
         if report.exists():

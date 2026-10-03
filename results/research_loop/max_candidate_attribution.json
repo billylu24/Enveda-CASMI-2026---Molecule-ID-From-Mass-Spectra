@@ -1,0 +1,59 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "arms": {
+    "chemical": {
+      "round": "0323_max_candidate_chemical_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04399496759057114,
+          "top1": 0.016,
+          "top5": 0.083,
+          "top25": 0.13,
+          "conditional_mrr25": 0.2216371163252954
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6037921161569266,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6821934533307603
+        }
+      },
+      "winner": null,
+      "runtime_activation_required": false
+    },
+    "identity_masked": {
+      "round": "0324_max_candidate_mask_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04397830092390447,
+          "top1": 0.016,
+          "top5": 0.0825,
+          "top25": 0.13,
+          "conditional_mrr25": 0.22155315326904013
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6037921161569266,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6821934533307603
+        }
+      },
+      "winner": null,
+      "runtime_activation_required": false
+    }
+  },
+  "chemical_minus_mask_unknown_mrr25": 1.666666666666483e-05,
+  "scope": "Complete repeated development3340 with bounded candidate SMARTS-conditioned observed chemistry, unchanged original encoder/critic and physical routing. Mask equals original critic; not independent acceptance or cold inference."
+}

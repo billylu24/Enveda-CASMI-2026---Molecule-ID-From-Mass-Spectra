@@ -77,14 +77,14 @@ def main():
             {
                 "hypothesis": "Training-only325 fixed full cosine-gap capacity2 audit improves original mean-pool objective.5290418->.5246472, learned sum1.715<2 and max.262. Original.05 cap binds; test training-L2-regularized chemistry under fixed theoretical2 ceiling; contrast with changing query vectors, no absent-peak penalty.",
                 "training": "Original60K train only, original frozen encoder/critic, original pinned unrestricted15 negatives, same RNG42 representative/RNG260 same-ion pair as260/261. Convex60D nonnegative weights, total2.0 full theoretical normalized-cosine gap ceiling, CE frozen scale and L2.01, fixedSLSQP200 ftol1e-10. No dev-selected weights or budget.",
-                "difference_from_0049": "Separate60 rule/kind channels from original8+12 broad hypotheses, frozen original critic offset, total .05 cap unchanged vs300. Only candidate-chemical hypothesis weight budget.05->2.0 changes versus307/308. Same20 rules/60 channels, original mean pooling/raw sqrt strength restored, no max/squared combination, same train-onlyL2.01 and frozen critic scale.2.0 is mathematical cosine full difference, not a dev-selected multiplier. Deployment margin remains.05; all science gates unchanged.",
+                "difference_from_0049": "Separate60 rule/kind channels from original8+12 broad hypotheses, frozen original critic offset. Only candidate-chemical hypothesis weight budget.05->2.0 changes versus307/308. Same20 rules/60 channels, original mean pooling/raw sqrt strength restored, no max/squared combination, same train-onlyL2.01 and frozen critic scale.2.0 is mathematical cosine full difference, not a dev-selected multiplier. Deployment margin remains.05; all science gates unchanged.",
                 "controls": "First zero bonus complete3340 exact ranking comparison to237; matched identity-masked training then full3340 original-critic control. No parameter tuning based on chemical dev outcome.",
                 "promotion": "Existing frozen gates versus current best, completed original0206 and historical181. No promotion on incomplete physical evidence/budget fallback. Winner requires explicit runtime binding before activation.",
                 "representation_seconds_per_arm": 86400,
                 "fragment_seconds_per_scenario": 1200,
                 "audit_report_sha256": digest(
                     c.root
-                    / "rounds/0305_extended_diagnostic_rule_training_audit/report.json"
+                    / "rounds/0325_training_candidate_bonus_capacity_audit/report.json"
                 ),
                 "source_sha256": digest(__file__),
                 "training_source_sha256": digest(

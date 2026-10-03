@@ -1,0 +1,46 @@
+{
+  "local_only": true,
+  "independent_acceptance": false,
+  "baseline_rankings_sha256": "0a138e378dde6e21de266950251ec6d1d02245450ca73a3187d5f03df64c530b",
+  "arm_rankings_sha256": "77774eabe1e5b59a291ae99a343772f0ef7a4a4ad8fd44f408e5b771700a148b",
+  "bootstrap": {
+    "seed": 20261003,
+    "replicates": 10000,
+    "sampling_unit": "molecule"
+  },
+  "movement": {
+    "unknown": {
+      "molecules": 2000,
+      "full_rank_changes": 221,
+      "top1_identity_changes": 12,
+      "true_reciprocal_rank_improvements": 1,
+      "true_reciprocal_rank_regressions": 0,
+      "mean_reciprocal_rank_delta": 0.00016666666666666666,
+      "paired_bootstrap95_gain_interval": [
+        0.0,
+        0.0005
+      ],
+      "rank_transitions_without_identifiers": [
+        {
+          "baseline_rank25": 0,
+          "chemical_rank25": 3,
+          "reciprocal_rank_delta": 0.3333333333333333
+        }
+      ]
+    },
+    "known": {
+      "molecules": 1340,
+      "full_rank_changes": 62,
+      "top1_identity_changes": 0,
+      "true_reciprocal_rank_improvements": 0,
+      "true_reciprocal_rank_regressions": 0,
+      "mean_reciprocal_rank_delta": 0.0,
+      "paired_bootstrap95_gain_interval": [
+        0.0,
+        0.0
+      ],
+      "rank_transitions_without_identifiers": []
+    }
+  },
+  "scope": "Descriptive finalized repeated-development concentration audit. No parameter or stratum fitting; unchanged scientific236, no new holdout."
+}
