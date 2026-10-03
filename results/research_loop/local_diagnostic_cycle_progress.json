@@ -1,8 +1,8 @@
 {
   "local_only": true,
   "remote_publication": false,
-  "status": "precise_corrected_replay_running",
-  "best_round": "0181_high_strong_slot_full",
+  "status": "low_leader_label_free_verification_and_contextual_systems_running",
+  "best_round": "0236_low_supported_leader_first",
   "original_completed_control": {
     "unknown_mrr25": 0.04272830092390447,
     "known_mrr25": 0.6046005738683694
@@ -14,11 +14,10 @@
     "diagnostic_only": true
   },
   "next_sequence": [
-    "Complete precise known phase",
-    "223/224 corrected inherited-failure binding and cached complete replay",
-    "225/226 matched contextual residual training",
-    "227/228 candidate diagnostics",
-    "229/230 full paired development gates"
+    "237 full label-free replay with per-group exact expected ranks from audited complete control plus supported low leader only",
+    "229/230 complete paired contextual system evaluations",
+    "233/234/235 matched chemical-channel mask attribution using final complete cache retry",
+    "Only retained gains may update local runtime; no Kaggle or GitHub publication"
   ],
   "independent_acceptance": false,
   "precision_first_pass": {
@@ -40,5 +39,27 @@
     "eligible": false,
     "absolute_gain_vs181": 0.00014280663780662922,
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
+  },
+  "active_rounds": [
+    "0237_low_leader_full_unlabeled_replay",
+    "0228_diagnostic_context_exact_proposals"
+  ],
+  "precise_complete": {
+    "unknown_mrr25": 0.04268861838422192,
+    "known_mrr25": 0.6046005738683694,
+    "eligible": false,
+    "budget_fallbacks": 0,
+    "new_failure_contexts": 0,
+    "inherited_failure_contexts": 1
+  },
+  "screened_low_leader": {
+    "unknown_mrr25": 0.043795811746415295,
+    "known_mrr25": 0.6038171329813347,
+    "unknown_relative_gain_vs181": 0.02938009521243463,
+    "known_mrr_change_vs181": -0.0008084577114426676,
+    "development_gate_passed": true,
+    "label_free_full_replay_pending": true,
+    "candidate_coverage_audit_pending": true,
+    "independent_acceptance": false
   }
 }

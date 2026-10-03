@@ -150,6 +150,12 @@ def extend(
                 raise ValueError("Only frozen181 strong-slot rules supported")
             if reference is None:
                 raise ValueError("Actual unlabeled spectral reference required for181")
+    low_fragment = config.get("low_fragment")
+    if low_fragment is not None:
+        from casmi_ml.low_leader_inference import LOW_LEADER_RULE
+
+        if low_fragment != LOW_LEADER_RULE:
+            raise ValueError("Only the frozen supported low leader rule is supported")
     fragmenter = engine_class(
         paths["jar"],
         cache or str(output) + ".external_fragment_cache",
@@ -303,21 +309,18 @@ def extend(
                                 top_n=len(candidates),
                                 fragment_scores=fragments,
                             )
-                            status = (
-                                "fragment_budget_fallback"
-                                if fallback
-                                else "fragment_evidence_fallback"
+                            from casmi_ml.low_leader_inference import (
+                                select_low_fragment,
                             )
-                            if (
-                                not fallback
-                                and informative_fragments(proposed, fragments)
-                                and fragments.get(proposed[0], 0)
-                                > fragments.get(current[0], 0)
-                                and scores[proposed[0]] > scores[current[0]] + 0.05
-                            ):
-                                inserted = proposed[:3]
-                                result = insert_generated(current, proposed, 3, 3)
-                                status = "low_fragment_inserted"
+
+                            result, inserted, status = select_low_fragment(
+                                current,
+                                proposed,
+                                scores,
+                                fragments,
+                                fallback,
+                                leader_first=low_fragment is not None,
+                            )
         result_smiles = [lookup[k] for k in result]
         rows.append({"molecule_id": key, "smiles": ";".join(result_smiles[:25])})
         final_full.append({"molecule_id": key, "smiles": result_smiles})

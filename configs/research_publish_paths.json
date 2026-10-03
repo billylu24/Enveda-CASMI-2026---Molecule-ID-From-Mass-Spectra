@@ -352,7 +352,13 @@
     "casmi_ml/diagnostic_feature_audit.py",
     "tests/test_diagnostic_feature_runtime.py",
     "tests/test_local_incremental_selection.py",
-    "casmi_ml/diagnostic_attribution_followup.py"
+    "casmi_ml/diagnostic_attribution_followup.py",
+    "casmi_ml/low_fragment_first.py",
+    "casmi_ml/low_leader_inference.py",
+    "casmi_ml/low_leader_replay.py",
+    "casmi_ml/completed_system_reports.py",
+    "tests/test_low_fragment_first.py",
+    "tests/test_completed_system_reports.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

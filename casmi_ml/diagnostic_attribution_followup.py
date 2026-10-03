@@ -3,10 +3,10 @@
 import fcntl
 import json
 
+from casmi_ml.completed_system_reports import wait_for_complete_system
 from casmi_ml.data import write_json
 from casmi_ml.diagnostic_local_followup import execute
 from casmi_ml.diagnostic_next_cycle import complete_system
-from casmi_ml.diagnostic_system_followup import wait_for_report
 from casmi_ml.research_loop import Controller
 
 
@@ -16,7 +16,11 @@ def main():
         raise ValueError("Chemical attribution followup is local-only")
     with (c.root / "diagnostic_attribution_followup.lock").open("a") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        if not wait_for_report(c, "0230_diagnostic_context_exact_system"):
+        precise = wait_for_complete_system(c, "0230_diagnostic_context_exact_system")
+        if precise is None:
+            return
+        coarse = wait_for_complete_system(c, "0229_diagnostic_context_coarse_system")
+        if coarse is None:
             return
         if c.stopped():
             return
@@ -60,8 +64,8 @@ def main():
             return
         reports = {}
         for name, source in [
-            ("precise", c.root / "rounds/0230_diagnostic_context_exact_system"),
-            ("coarse", c.root / "rounds/0229_diagnostic_context_coarse_system"),
+            ("precise", precise),
+            ("coarse", coarse),
             ("precise_channels_masked", masked),
         ]:
             report = json.loads((source / "report.json").read_text())
@@ -75,6 +79,11 @@ def main():
                 "local_only": True,
                 "independent_acceptance": False,
                 "arms": reports,
+                "source_rounds": {
+                    "precise": precise.name,
+                    "coarse": coarse.name,
+                    "precise_channels_masked": masked.name,
+                },
                 "precise_minus_mask_unknown_mrr25": reports["precise"]["unknown"][
                     "mrr25"
                 ]
