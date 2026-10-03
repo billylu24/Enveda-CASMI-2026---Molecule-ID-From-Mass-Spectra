@@ -342,3 +342,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第120/121哈希同200匹配：prefix3未知0.028855→0.030939，两聚合指标完全相同，known0.569429不变；既不是fresh holdout，也没有证明mean优于max，不扩大。第122 merged_peak_union同hash200效率/化学证据pilot预注册：只合并引擎支持的exact monomer alias、high resolution、neutral masses在10ppm/floor.002Da一致的谱；adduct不同/不支持/质量不一致保留独立引擎输入。每谱先归一化，产物峰去各自precursor以下，within10ppm/floor.002Da聚类取最大强度但固定一个真实观测质量（无链式漂移），合并precursor取中位数；保留跨能量所有观测峰，不使用标签/式/结构推断。片段图对同ion候选不变，尝试减少重复Java枚举和利用互补产物支持；每候选在union同一组评分，仍原critic+.05、actual first相对fragment、informative、weight0.5、prefix3/3slots/native100/skip-impossible。不同聚合缓存身份独立merged_peak_union_v1、总1200秒/每Java60秒/1GiB heap不变；同200匹配max控制，185回归包括标签剥离/观察质量/不同ion和neutral质量不合并。若正向再完整，实际效率只用本轮引擎输入数量与资源，不能用旧cache推断冷运行。
+
+
+第122 merged_peak_union hash200：unknown/known指标与max控制第120全部相同，prefix3增0.002083、known不变，缓存组63、非空13、0预算回退；实际引擎输入154→139，其中complete32谱→17组（不支持加合物122张保持独立），26.3秒/2828MiB为本轮增量，不能当冷资源。第123完整2000/1340效率/准确性控制预注册：prefix3与merged union/native100/critic+.05/fragment.5/3slots/actual current first comparison/skip-impossible全部固定，复用122同内容完整63组，其余merged actual Java继续；总fragment1200秒/单次60秒/1GiB heap不变。small ranking相同但支持谱引擎输入约减半，检验完整预算内更高覆盖或跨CE互补是否有实际ranking收益；结果不合格不发布，不额外按full调整merge容差。
