@@ -20,10 +20,20 @@ from casmi_ml.secondary_inference import load_deployment_checkpoint
 from casmi_ml.training import configure
 
 
-def run(output, precise=False, contextual=False, mask_chemical_channels=False):
+def run(
+    output,
+    precise=False,
+    contextual=False,
+    mask_chemical_channels=False,
+    mask_peak_losses=False,
+):
     if mask_chemical_channels and (not contextual or not precise):
         raise ValueError(
             "Matched chemical-channel mask requires precise contextual arm"
+        )
+    if mask_peak_losses and (not contextual or not precise or mask_chemical_channels):
+        raise ValueError(
+            "Peak-loss attribution requires precise contextual unmasked arm"
         )
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
@@ -40,6 +50,7 @@ def run(output, precise=False, contextual=False, mask_chemical_channels=False):
             "precise": precise,
             "contextual": contextual,
             "mask_chemical_channels": mask_chemical_channels,
+            "mask_peak_losses": mask_peak_losses,
             "width": 64,
             "feature_dim": DIM,
             "epochs": 3,
@@ -121,7 +132,10 @@ def run(output, precise=False, contextual=False, mask_chemical_channels=False):
             ]
         ).astype(np.float32)
         model = DiagnosticResidual(
-            base, contextual=contextual, mask_chemical_channels=mask_chemical_channels
+            base,
+            contextual=contextual,
+            mask_chemical_channels=mask_chemical_channels,
+            mask_peak_losses=mask_peak_losses,
         ).to("cuda")
         optimizer = torch.optim.AdamW(
             model.correction.parameters(), lr=0.001, weight_decay=0.01
@@ -167,6 +181,7 @@ def run(output, precise=False, contextual=False, mask_chemical_channels=False):
             "dimension": DIM,
             "contextual": contextual,
             "mask_chemical_channels": mask_chemical_channels,
+            "mask_peak_losses": mask_peak_losses,
             "base_sha256": digest(ENCODER),
         }
         saved["preprocessing"] = dict(
@@ -182,6 +197,7 @@ def run(output, precise=False, contextual=False, mask_chemical_channels=False):
             "base_encoder_exact": True,
             "contextual": contextual,
             "mask_chemical_channels": mask_chemical_channels,
+            "mask_peak_losses": mask_peak_losses,
             "evidence_nonempty": int((chemical.max(1) > 0).sum()),
             "seconds": time.monotonic() - started,
             "encoder_sha256": digest(output / "model.pt"),
@@ -201,6 +217,7 @@ def main():
     p.add_argument("--precise", action="store_true")
     p.add_argument("--contextual", action="store_true")
     p.add_argument("--mask-chemical-channels", action="store_true")
+    p.add_argument("--mask-peak-losses", action="store_true")
     print(json.dumps(run(**vars(p.parse_args())), indent=2))
 
 

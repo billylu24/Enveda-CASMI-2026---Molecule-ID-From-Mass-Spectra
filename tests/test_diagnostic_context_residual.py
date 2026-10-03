@@ -72,3 +72,56 @@ class ContextualDiagnosticTests(unittest.TestCase):
         _, model, _ = self.fixture()
         with self.assertRaisesRegex(ValueError, "frozen768"):
             model.residual(torch.ones(2, DIM))
+
+
+class PeakLossAttributionTests(unittest.TestCase):
+    def test_mask_removes_peak_loss_identity_while_retaining_strength_gate(self):
+        torch.manual_seed(42)
+        base = ScaleModel("wide_enhanced", 7).eval()
+        model = DiagnosticResidual(base, contextual=True, mask_peak_losses=True).eval()
+        torch.nn.init.normal_(model.correction[-1].weight)
+        context = torch.ones(1, 768)
+        first = torch.zeros(1, DIM)
+        first[:, 2] = 1
+        second = torch.zeros(1, DIM)
+        second[:, 5] = 1
+        torch.testing.assert_close(
+            model.residual(first, context),
+            model.residual(second, context),
+            rtol=0,
+            atol=0,
+        )
+        precursor = torch.zeros(1, DIM)
+        precursor[:, 1] = 1
+        self.assertFalse(
+            torch.equal(
+                model.residual(first, context), model.residual(precursor, context)
+            )
+        )
+        torch.testing.assert_close(
+            model.residual(torch.zeros_like(first), context),
+            torch.zeros(1, 2048),
+            rtol=0,
+            atol=0,
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "model.pt"
+            torch.save(
+                {
+                    "architecture": "wide_enhanced",
+                    "metadata_dim": 7,
+                    "state_dict": model.state_dict(),
+                    "diagnostic_residual": {
+                        "contextual": True,
+                        "mask_peak_losses": True,
+                    },
+                },
+                path,
+            )
+            loaded, _ = load_deployment_checkpoint(path, "scale")
+            torch.testing.assert_close(
+                loaded.residual(first, context),
+                model.residual(first, context),
+                rtol=0,
+                atol=0,
+            )

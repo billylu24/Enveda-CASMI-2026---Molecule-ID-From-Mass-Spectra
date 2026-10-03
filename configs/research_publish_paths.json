@@ -366,7 +366,8 @@
     "casmi_ml/low_leader_prefix_evaluation.py",
     "tests/test_low_leader_prefix.py",
     "casmi_ml/low_supported_slots_evaluation.py",
-    "tests/test_low_supported_slots.py"
+    "tests/test_low_supported_slots.py",
+    "casmi_ml/diagnostic_peak_loss_followup.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

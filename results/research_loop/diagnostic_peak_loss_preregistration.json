@@ -1,0 +1,17 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "motivation": "Observable precise channels have many more peak-pair matches than precursor matches; current coarse contextual full unknown result has not preserved external proposal ranking benefit. Test information in peak-loss identity separately from original evidence strength gate and context head capacity.",
+  "hypothesis": "Matched masking of all8 peak_loss identities may reduce spurious common peak-pair associations while retaining observed ion and precursor-loss identities.",
+  "training": "Same original60K RNG42 representative spectra, fixed3epochs, AdamW .001 wd.01, correction792->64->2048, all original base tensors frozen; precise feature vector unchanged before mask; original maximum evidence strength gate retained.",
+  "comparison": "All-channel precise contextual and all-identity-masked contextual; finalized complete cache-retry reports only.",
+  "limitations": "Because the precise maximum gate is retained, masked peak channels can still supply evidence presence/strength. This tests their chemical identity information; it is not a claim to eliminate all peak-loss influence.",
+  "cohorts": "Same2000 unknown and1340 known, no fresh holdout opened; current verified best and independently completed original control gates unchanged.",
+  "sequence": [
+    "Wait235 final chemical-identity attribution",
+    "241 precursor/ion identity residual training with matched peak-loss mask",
+    "242 external proposal diagnostics",
+    "243 bounded complete full system evaluation"
+  ]
+}

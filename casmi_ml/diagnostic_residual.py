@@ -30,11 +30,22 @@ def evidence_features(row, precise=True):
 
 
 class DiagnosticResidual(nn.Module):
-    def __init__(self, base, contextual=False, mask_chemical_channels=False):
+    def __init__(
+        self,
+        base,
+        contextual=False,
+        mask_chemical_channels=False,
+        mask_peak_losses=False,
+    ):
         super().__init__()
         self.base = base.requires_grad_(False)
         self.contextual = contextual
         self.mask_chemical_channels = mask_chemical_channels
+        self.mask_peak_losses = mask_peak_losses
+        if mask_peak_losses and (not contextual or mask_chemical_channels):
+            raise ValueError(
+                "Peak-loss attribution requires contextual unmasked chemical channels"
+            )
         if mask_chemical_channels and not contextual:
             raise ValueError(
                 "Chemical-channel attribution mask requires contextual residual"
@@ -60,6 +71,9 @@ class DiagnosticResidual(nn.Module):
         features = (
             torch.zeros_like(chemical) if self.mask_chemical_channels else chemical
         )
+        if self.mask_peak_losses:
+            features = features.clone()
+            features[..., 2::3] = 0
         if self.contextual:
             if context is None or context.shape[-1] != 768:
                 raise ValueError(
