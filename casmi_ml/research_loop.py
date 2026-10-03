@@ -844,7 +844,7 @@ class Controller:
                 # Explicit rejected launch: no remote version exists. Wait for
                 # capacity instead of aborting local research or retrying a POST
                 # that might have been accepted.
-                if response.ref or response.version_number is not None:
+                if response.ref or response.version_number not in (None, 0):
                     raise ValueError("Ambiguous kernel launch with capacity error")
                 self.mark_round(
                     identifier,

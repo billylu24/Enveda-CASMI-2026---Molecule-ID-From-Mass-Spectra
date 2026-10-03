@@ -1629,10 +1629,10 @@
   "independent_acceptance": false,
   "evaluation": "Repeated fixed molecule development cohort; no new holdout opened",
   "public_submission": {
-    "id": null,
-    "status": "quota_wait",
+    "id": 56784251,
+    "status": "PENDING",
     "score": null,
     "version": 1,
-    "error": "Kaggle daily submission allowance exhausted; HTTP400 confirmed no acceptance"
+    "error": ""
   }
 }

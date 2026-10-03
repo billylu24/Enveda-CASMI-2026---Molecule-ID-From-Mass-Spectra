@@ -67,6 +67,11 @@ class KernelCapacityTests(unittest.TestCase):
                 self.assertIsNone(row.get("remote_release"))
                 self.assertIsNone(controller.read()["pending_submission"])
                 api.competition_submit_code.assert_not_called()
+                response.version_number = 0
+                self.assertEqual(
+                    controller.publish_prepared("round", release)["status"],
+                    "notebook_running",
+                )
                 response.ref = "owner/ambiguous"
                 with self.assertRaises(ValueError):
                     controller.publish_prepared("round", release)

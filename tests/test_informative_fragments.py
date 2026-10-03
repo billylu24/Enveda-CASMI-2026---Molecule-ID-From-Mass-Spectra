@@ -1,6 +1,10 @@
 import unittest
 
-from casmi_ml.chembl_fragment_pilot import informative_fragments, supported_proposals
+from casmi_ml.chembl_fragment_pilot import (
+    informative_fragments,
+    possible_critic_gate,
+    supported_proposals,
+)
 
 
 class InformativeFragmentTests(unittest.TestCase):
@@ -27,3 +31,10 @@ class SupportedProposalTests(unittest.TestCase):
         self.assertEqual(
             supported_proposals(proposed, critic, "first", fragments, 0.05), ["a", "d"]
         )
+
+
+class PossibleCriticGateTests(unittest.TestCase):
+    def test_no_fragment_order_can_pass_when_max_critic_cannot_pass(self):
+        scores = {"first": 0.5, "a": 0.55, "b": 0.2, "c": 0.6}
+        self.assertFalse(possible_critic_gate(["a", "b"], scores, "first", 0.05))
+        self.assertTrue(possible_critic_gate(["a", "c"], scores, "first", 0.05))

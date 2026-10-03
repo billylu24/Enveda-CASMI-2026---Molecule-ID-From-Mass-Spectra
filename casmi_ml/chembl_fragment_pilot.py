@@ -55,6 +55,13 @@ def informative_fragments(proposed, fragments):
     )
 
 
+def possible_critic_gate(candidates, scores, current_first, margin):
+    return bool(
+        candidates
+        and max(scores[k] for k in candidates) > scores[current_first] + margin
+    )
+
+
 def supported_proposals(proposed, critic_scores, current_first, fragments, margin):
     return [
         k
@@ -84,7 +91,10 @@ def run(
     candidate_gate=False,
     compare_first=False,
     fragment_gate_only=False,
+    skip_impossible=False,
 ):
+    if skip_impossible and fragment_gate_only:
+        raise ValueError("Cannot skip critic gate when that gate is disabled")
     if fragment_gate_only and (
         not compare_first or not evidence_only or candidate_gate
     ):
@@ -171,6 +181,7 @@ def run(
             "candidate_gate": candidate_gate,
             "compare_current_first_fragment": compare_first,
             "fragment_gate_only": fragment_gate_only,
+            "skip_impossible_critic_gate": skip_impossible,
             "evidence_gate": "Positive proposed first fragment score and distinct finite fragment scores required; missing/all tied scores never enable insertion"
             if evidence_only
             else None,
@@ -413,6 +424,17 @@ def run(
                             candidates_external,
                             key=lambda k: (-pair_scores[cache_key][k], k),
                         )[:fragment_limit]
+                if (
+                    skip_impossible
+                    and candidates_external
+                    and not possible_critic_gate(
+                        candidates_external,
+                        pair_scores[cache_key],
+                        current[0],
+                        min(spec[0] for spec in variants.values() if spec),
+                    )
+                ):
+                    candidates_external = []
                 fragment_key = cache_key
                 if compare_first and candidates_external:
                     fragment_key = score_cache_key(
@@ -577,6 +599,7 @@ def run(
             "candidate_gate": candidate_gate,
             "compare_current_first_fragment": compare_first,
             "fragment_gate_only": fragment_gate_only,
+            "skip_impossible_critic_gate": skip_impossible,
             "evidence_gate": "Positive proposed first fragment score and distinct finite fragment scores required; missing/all tied scores never enable insertion"
             if evidence_only
             else None,
@@ -604,6 +627,7 @@ def main():
     p.add_argument("--candidate-gate", action="store_true")
     p.add_argument("--compare-first", action="store_true")
     p.add_argument("--fragment-gate-only", action="store_true")
+    p.add_argument("--skip-impossible", action="store_true")
     a = p.parse_args()
     print(
         json.dumps(
@@ -621,6 +645,7 @@ def main():
                 a.candidate_gate,
                 a.compare_first,
                 a.fragment_gate_only,
+                a.skip_impossible,
             ),
             indent=2,
         )
