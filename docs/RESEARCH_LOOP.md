@@ -363,3 +363,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第128/129 hash200峰并集匹配完成：BCE prefix3 unknown0.030939，hard-pair0.031105（同baseline0.028855）；known0.569429两臂不变，新增真值均2，hard略改善非新真值排名而非仅增coverage。方向有限正向，第132/133登记同prefix3完整2000/1340两臂，保持1200秒fragment总预算、原0062、merged union与所有门控规则，复用本臂小试验完整score/cache，其余实际Java。不能把小试验相对baseline的改善代替full门槛；也不将增量时间当cold资源。full需对0062和两臂同时核对再决定，继续保留独立公共最佳。
+
+
+化学适用范围观察（原researchdev confidence<.5，仅observable字段）：1782谱中exact monomer+highres628，unsupported ion但highres1029；主要[2M+Na]+653/[2M+H]+255/[2M-H]-101，非highres125不擅自调宽误差。旧第95/97 dimer experiment没有actual first fragment comparison，不能直接等同本轮relative-first protocol；第134新hash200预登记原encoder/native100、dimer observed monomer marker（>=.05强度/10ppm/.002Da）与低于monomer precursor products、actual first同组正向片段比较、critic+.05/informative/.5/prefix3/3slots/skip-impossible，compare第120 samehash max monomer控制，仅增加有实测marker支持的dimer dissociation adapter。不同ion/highres规则均不变，无merged，以隔离适用范围因素；固定1200秒，与新encoder实验不混用。若不改善samehash unknown或known保护失败不扩大。
