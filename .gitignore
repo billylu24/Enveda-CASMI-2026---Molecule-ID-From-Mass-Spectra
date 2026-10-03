@@ -41,3 +41,7 @@ kaggle_release*/training_budget.json
 kaggle_release*/training_budget.lock
 
 kaggle_release*/launch.lock
+
+# Private label-free runtime validation handoffs
+kaggle_release*/implementation_replay/
+kaggle_release*/runtime_migration.json
