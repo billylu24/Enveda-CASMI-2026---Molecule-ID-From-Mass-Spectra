@@ -1,14 +1,14 @@
 {
-  "status": "formal_training_completed_acceptance_in_progress",
+  "status": "competition_submitted_hidden_notebook_running",
   "checked_at": "2026-10-02",
   "competition": "enveda-CASMI26-molecule-id-mass-spectra",
   "notebook": "https://www.kaggle.com/code/xiaoyuzhoux120/casmi-2026-chemical-priors-hybrid",
   "public_score": null,
-  "competition_submitted": false,
+  "competition_submitted": true,
   "gan_trained_on_competition_data": true,
-  "generated_new_molecular_graphs": null,
+  "generated_new_molecular_graphs": 36676,
   "historical_best_public_score": 0.176,
-  "note": "Both arms performed real training. Lowest eligible logged development BCE is not a substitute for verifying selected checkpoints and final acceptance reports. No new competition score yet.",
+  "note": "Formal V2 completed and actual aggregate report plus both selected model binaries were reviewed. GAN incremental CI versus matched supervised crosses zero. Competition accepted the submission and is still Notebook Running; no new public score. Full case archives and independent recomputation remain pending.",
   "embedded_source_sha256": "ee7ccca6b373156e81522dea9598ccf4aeae1fe4eae1c4f827bc4383b4a2f93d",
   "engineering_smoke": "actual synthetic prepare/train/checkpoint/reload/evaluate/inference completed; not generalization evidence",
   "accelerator_requested": "GPU T4 x2",
@@ -18,7 +18,7 @@
     "skipped": 1,
     "subtests_passed": 10
   },
-  "observed_at_utc": "2026-10-02T20:21:02Z",
+  "observed_at_utc": "2026-10-03T04:17:49.118292+00:00",
   "notebook_version": 2,
   "notebook_script_version_id": 354698716,
   "frozen_source_commit": "a45c65e9f16501c554dfd4a12679003d630cb0ff",
@@ -30,8 +30,8 @@
     "interval_minutes": 15,
     "until": "formal experiment reviewed, competition Succeeded with score, and GitHub reports updated"
   },
-  "latest_logged_stage": "unknown-reference independent acceptance ranking, after development ranking",
-  "proof": "kaggle_run_in_progress.jpg",
+  "latest_logged_stage": "formal visible run succeeded; competition privately reruns frozen Version 2 against hidden test",
+  "proof": "kaggle_submission_running.png",
   "observed_training": {
     "baseline": {
       "logged_epochs": 12,
@@ -54,15 +54,54 @@
       "final_train_probe_bce": 0.1826565576313847
     }
   },
-  "independent_acceptance_complete": false,
-  "formal_notebook_completed": false,
+  "independent_acceptance_complete": true,
+  "formal_notebook_completed": true,
   "training_diagnostic_notes": [
     "Both arms logged 12 complete epochs and 5424 generator updates; GAN logged 4520 discriminator updates.",
     "Warm-up epoch 1 and 2 metrics match exactly across arms.",
     "Lowest eligible logged development weighted BCE is epoch 6 in both arms; checkpoint and ranking verification remain pending.",
     "Discriminator real accuracy at threshold 0.5 is not calibrated to its unequal real/fake/mismatch loss weighting; real accuracy zero alone does not establish an engineering failure."
   ],
-  "observed_ranking_progress": {
+  "runtime_review": "../docs/RUNTIME_REVIEW_20261002.md",
+  "competition_submission_status": "Notebook Running",
+  "formal_notebook_runtime_seconds": 20252.3,
+  "independent_acceptance_outputs_verified": true,
+  "full_output_downloaded": false,
+  "formal_run_proof": "kaggle_run_success.png",
+  "competition_submission_description": "Frozen source a45c65e9: real conditional fingerprint GAN, matched supervised control, official identity holdouts and shared bounded graph edits. Both arms 12 epochs; GAN 4520 discriminator updates. Guard 0.75, neural RRF 0.35, chemical weight 0.1. Experimental GAN arm; fingerprints generated, no learned molecular graph decoder.",
+  "acceptance_verification_scope": "actual aggregate report and both selected checkpoints; full case recomputation pending",
+  "full_case_audit_complete": false,
+  "generated_graph_count_unit": "unique candidate graphs per query, summed across cohorts; not globally unique molecules",
+  "graph_only_newcoverage_unknown": 0,
+  "graph_only_newcoverage_known": 0,
+  "selected_checkpoints_verified": {
+    "baseline": {
+      "sha256": "6447eb4df6e0641e01edd2d29cbfcffec15c25095c5754408139b1077ac811de",
+      "bytes": 5408597,
+      "selected_epoch": 6,
+      "selected_g_steps": 2712,
+      "selected_d_steps": 0,
+      "total_g_steps": 5424,
+      "total_d_steps": 0,
+      "discriminator_tensor_count": 0,
+      "all_tensors_finite": true,
+      "selected_weight_metadata_matches_actual_report": true
+    },
+    "cgan": {
+      "sha256": "c4591135018b6dd97ed3bd3839d6dfb32df730ef44003e9b36bf816303c0ab4b",
+      "bytes": 10742773,
+      "selected_epoch": 6,
+      "selected_g_steps": 2712,
+      "selected_d_steps": 1808,
+      "total_g_steps": 5424,
+      "total_d_steps": 4520,
+      "discriminator_tensor_count": 16,
+      "all_tensors_finite": true,
+      "selected_weight_metadata_matches_actual_report": true
+    }
+  },
+  "validation_summary": "validation_summary.json",
+  "historical_ranking_progress_snapshot": {
     "development": {
       "total": 991,
       "last_logged_completed": 900,
@@ -74,6 +113,5 @@
       "last_log_elapsed_seconds": 13767.1
     },
     "runtime_elapsed_seconds_at_observation": 14049.6
-  },
-  "runtime_review": "../docs/RUNTIME_REVIEW_20261002.md"
+  }
 }

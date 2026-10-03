@@ -60,9 +60,10 @@ GAN experiment is running; its results are recorded separately below.
 The real conditional generator/discriminator implementation and matched supervised
 control were frozen at commit `a45c65e9f16501c554dfd4a12679003d630cb0ff`. Formal
 Kaggle notebook version 2 (`scriptVersionId` 354698716), named **Conditional GAN
-Shared Graph Edits v2**, is running on GPU T4 x2 with internet disabled; the runtime
-confirmed CUDA availability. No new competition score is recorded until the saved
-run completes and its prediction is submitted successfully.
+Shared Graph Edits v2**, completed on GPU T4 x2 with internet disabled in
+20,252.3 seconds. Its `submission.csv` was actually submitted; the competition
+status is **Notebook Running** during hidden-test execution, not Succeeded.
+No new competition score is recorded yet.
 
 Both neural arms share the candidate pool and bounded formula-preserving graph
 edits. The GAN generates fingerprints, not molecular graphs; the graph edits are
@@ -72,8 +73,12 @@ locally novel candidates rather than established globally new molecules. See
 and [result interpretation](GAN_RESULT_INTERPRETATION_20261002.md). Engineering
 verification passed 106 tests, one skip and ten subtests; a real synthetic cold
 start exercised training, checkpoint reload and complete inference. These checks
-are not chemical generalization results. Both 12-epoch training arms have now
-completed; independent ranking acceptance is ongoing. The [runtime audit](RUNTIME_REVIEW_20261002.md)
+are not chemical generalization results. The actual formal aggregate report and
+both selected checkpoint binaries are now reviewed: unknown routed MRR is
+0.016693 supervised / 0.016840 GAN, known MRR 0.782591 / 0.781980. Both
+GAN-minus-supervised paired 95% intervals cross zero; graph-only new truth
+coverage is zero. Full case identity/bootstrap recomputation remains pending.
+See [validation summary](../kaggle_release_gan/validation_summary.json). The [runtime audit](RUNTIME_REVIEW_20261002.md)
 documents repeated CPU structure work and constraints for a later inference-only release.
 
 ## Repository contents

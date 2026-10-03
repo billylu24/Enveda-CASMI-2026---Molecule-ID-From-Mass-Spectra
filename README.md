@@ -19,9 +19,13 @@ The [generative-model analysis](docs/GENERATIVE_MODELS_20261001.md) reviews
 the spectrum-to-structure architecture. A real conditional fingerprint GAN,
 a matched supervised generator control, canonical identity deduplication and
 shared formula-preserving graph candidates are now implemented. Formal offline
-GPU training has completed both 12-epoch arms in notebook version 2; independent
-ranking acceptance is still running. Its completion, submission and
-score are tracked separately in [the GAN release](kaggle_release_gan/README.md).
+GPU notebook version 2 completed in **5h 37m 32s** and was actually submitted.
+Kaggle is rerunning it against hidden tests (**Notebook Running**, no new score yet).
+The actual report and both selected checkpoints were reviewed: GAN adds
+unknown MRR +0.000146 versus the matched routed supervised control, with a
+95% interval crossing zero; graph edits add no exact truth coverage. Full case
+recomputation remains pending. See [the GAN release](kaggle_release_gan/README.md)
+and [measured validation](kaggle_release_gan/validation_summary.json).
 The previous chemical-prior score of 0.176 does not establish GAN effectiveness.
 
 The [Chinese analysis](docs/OVERNIGHT_RESULTS_20261002.md) compares our submission
