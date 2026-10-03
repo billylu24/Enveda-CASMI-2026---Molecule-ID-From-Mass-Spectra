@@ -1,5 +1,5 @@
 ref,fileName,date,description,status,publicScore,privateScore
-56784251,submission.csv,2026-10-03 00:00:25.187000,Research 0012_protected_generation dev-experimental c1526ab3072f4242,SubmissionStatus.PENDING,,
+56784251,submission.csv,2026-10-03 00:00:25.187000,Research 0012_protected_generation dev-experimental c1526ab3072f4242,SubmissionStatus.COMPLETE,0.175,
 56771973,submission.csv,2026-10-02 10:39:05.097000,Research 0011_reference_guard dev-experimental a61cb27ac2d7b1ec,SubmissionStatus.COMPLETE,0.173,
 56771252,submission.csv,2026-10-02 09:52:30.643000,Research 0004_generation_shared dev-experimental 8fc1e6159423e499,SubmissionStatus.COMPLETE,0.173,
 56770705,submission.csv,2026-10-02 09:21:43.113000,Research 0001_mass_v2 dev-experimental e8bd4ccbf2f03a0c,SubmissionStatus.COMPLETE,0.173,

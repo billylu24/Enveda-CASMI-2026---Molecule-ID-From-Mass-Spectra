@@ -106,6 +106,7 @@ def run(
     mean_fragments=False,
     chemical_prior=False,
     fragment_depth=2,
+    sequence_scores=None,
 ):
     if type(fragment_depth) is not int or fragment_depth not in (2, 3):
         raise ValueError("Fragment depth must be 2 or 3")
@@ -190,6 +191,28 @@ def run(
         }
     if not 1 <= limit <= 2000:
         raise ValueError("Pilot limit must be in[1,2000]")
+    sequence_values = {}
+    if sequence_scores is not None:
+        sequence_scores = Path(sequence_scores)
+        sequence_protocol = json.loads(
+            (sequence_scores.parent / "protocol.json").read_text()
+        )
+        sequence_report = json.loads(
+            (sequence_scores.parent / "report.json").read_text()
+        )
+        if (
+            sequence_protocol["encoder_sha256"] != digest(ENCODER)
+            or sequence_protocol["catalog_sha256"] != digest(DERIVED)
+            or sequence_protocol["development_sha256"]
+            != digest(ROOT / "researchdev.parquet")
+            or sequence_protocol["limit"] != 2000
+            or not sequence_report["diagnostic_only"]
+            or sequence_report["external_only"]["native"]["molecules"] != 2000
+        ):
+            raise ValueError(
+                "Require frozen full2000 external sequence scores bound to this encoder/catalog/cohort"
+            )
+        sequence_values = json.loads(sequence_scores.read_text())
     output, incumbent = Path(output), Path(incumbent)
     output.mkdir(parents=True, exist_ok=True)
     seed_path = output / "initial_fragment_scores.json"
@@ -217,6 +240,7 @@ def run(
             "rule": f"Freeze0062;confidence<.5;native first{proposal_limit} novel ChEMBL proposals;critic shortlist first{fragment_limit}, then MetFrag tie-aware rerank; actual first proposal critic must exceed current first by.05;insert3 after frozen prefix",
             "limit": limit,
             "insertion_prefix": prefix,
+            "sequence_ranking": sequence_scores is not None,
             "proposal_limit": proposal_limit,
             "fragment_limit": fragment_limit,
             "initial_fragment_cache_sha256": digest(seed_path),
@@ -262,6 +286,14 @@ def run(
             "chemical_prior_rules": rule_manifest() if chemical_prior else None,
             "chemistry_source_sha256": digest("casmi_ml/chemistry.py"),
             "new_training": False,
+            "sequence_scores_sha256": digest(sequence_scores)
+            if sequence_scores
+            else None,
+            "sequence_protocol_sha256": digest(sequence_scores.parent / "protocol.json")
+            if sequence_scores
+            else None,
+            "sequence_ratio_weight": 1.0 if sequence_scores else None,
+            "sequence_fusion_weight": 0.5 if sequence_scores else None,
             "new_sampling": False,
             "truth_used_only_in_metrics": True,
             "holdout_used": False,
@@ -484,7 +516,18 @@ def run(
                         candidates_external = sorted(
                             candidates_external,
                             key=lambda k: (-pair_scores[cache_key][k], k),
-                        )[:fragment_limit]
+                        )
+                        if sequence_scores is not None:
+                            if key not in sequence_values:
+                                raise ValueError(
+                                    "Full external sequence cache missing a query with proposals"
+                                )
+                            from casmi_ml.chembl_sequence_pilot import reorder_scoreable
+
+                            candidates_external = reorder_scoreable(
+                                candidates_external, sequence_values.get(key, {}), 1.0
+                            )
+                        candidates_external = candidates_external[:fragment_limit]
                 if (
                     skip_impossible
                     and candidates_external
@@ -694,6 +737,7 @@ def run(
             "parent_peak_rss_mib": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
             / 1024,
             "proposal_queries_scored": len(pair_scores),
+            "sequence_ranking": sequence_scores is not None,
             "proposal_limit": proposal_limit,
             "fragment_limit": fragment_limit,
             "evidence_only": evidence_only,
@@ -737,6 +781,7 @@ def main():
     p.add_argument("--fragment-gate-only", action="store_true")
     p.add_argument("--skip-impossible", action="store_true")
     p.add_argument("--relative-candidate-gate", action="store_true")
+    p.add_argument("--sequence-scores", type=Path)
     p.add_argument("--fragment-depth", type=int, choices=(2, 3), default=2)
     p.add_argument("--chemical-prior", action="store_true")
     p.add_argument("--mean-fragments", action="store_true")
@@ -764,6 +809,7 @@ def main():
                 a.mean_fragments,
                 a.chemical_prior,
                 a.fragment_depth,
+                a.sequence_scores,
             ),
             indent=2,
         )
