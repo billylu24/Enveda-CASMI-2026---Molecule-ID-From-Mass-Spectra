@@ -1,14 +1,14 @@
 {
-  "status": "competition_submitted_hidden_notebook_running",
-  "checked_at": "2026-10-02",
+  "status": "completed_formal_GAN_experiment_and_competition_scored",
+  "checked_at": "2026-10-03",
   "competition": "enveda-CASMI26-molecule-id-mass-spectra",
   "notebook": "https://www.kaggle.com/code/xiaoyuzhoux120/casmi-2026-chemical-priors-hybrid",
-  "public_score": null,
+  "public_score": 0.171,
   "competition_submitted": true,
   "gan_trained_on_competition_data": true,
   "generated_new_molecular_graphs": 36676,
   "historical_best_public_score": 0.176,
-  "note": "Formal V2 full 104.25 MB output archive verified against both selected checkpoints and report. Independently canonicalized 68,155 unique SMILES, rechecked all case ranks/metrics and paired confidence intervals, and verified all 400 visible submission rows. GAN incremental CI versus matched supervised crosses zero; graph-only exact new truth coverage is zero. Competition remains Notebook Running with no new public score.",
+  "note": "Formal V2 full 104.25 MB output archive verified against both selected checkpoints and report. Independently canonicalized 68,155 unique SMILES, rechecked all case ranks/metrics and paired confidence intervals, and verified all 400 visible submission rows. GAN incremental CI versus matched supervised crosses zero; graph-only exact new truth coverage is zero. Competition Succeeded with public MRR@25 0.171, below historical best 0.176 by 0.005. This whole-version difference is not a GAN-only causal effect.",
   "embedded_source_sha256": "ee7ccca6b373156e81522dea9598ccf4aeae1fe4eae1c4f827bc4383b4a2f93d",
   "engineering_smoke": "actual synthetic prepare/train/checkpoint/reload/evaluate/inference completed; not generalization evidence",
   "accelerator_requested": "GPU T4 x2",
@@ -18,7 +18,7 @@
     "skipped": 1,
     "subtests_passed": 10
   },
-  "observed_at_utc": "2026-10-03T04:38:31.502777+00:00",
+  "observed_at_utc": "2026-10-03T18:28:35.196722+00:00",
   "notebook_version": 2,
   "notebook_script_version_id": 354698716,
   "frozen_source_commit": "a45c65e9f16501c554dfd4a12679003d630cb0ff",
@@ -28,10 +28,11 @@
     "kind": "current_thread_heartbeat",
     "automation_id": "casmi26-gan",
     "interval_minutes": 15,
-    "until": "formal experiment reviewed, competition Succeeded with score, and GitHub reports updated"
+    "until": "formal experiment reviewed, competition Succeeded with score, and GitHub reports updated",
+    "status": "completed; stop after GitHub publication"
   },
-  "latest_logged_stage": "formal visible run succeeded; competition privately reruns frozen Version 2 against hidden test",
-  "proof": "kaggle_submission_running.png",
+  "latest_logged_stage": "competition hidden rerun succeeded and public score verified",
+  "proof": "kaggle_submission_succeeded.jpg",
   "observed_training": {
     "baseline": {
       "logged_epochs": 12,
@@ -59,11 +60,11 @@
   "training_diagnostic_notes": [
     "Both arms logged 12 complete epochs and 5424 generator updates; GAN logged 4520 discriminator updates.",
     "Warm-up epoch 1 and 2 metrics match exactly across arms.",
-    "Lowest eligible logged development weighted BCE is epoch 6 in both arms; checkpoint and ranking verification remain pending.",
+    "Lowest eligible logged development weighted BCE is epoch 6 in both arms; actual visible-run checkpoint binaries and all retained rankings verified.",
     "Discriminator real accuracy at threshold 0.5 is not calibrated to its unequal real/fake/mismatch loss weighting; real accuracy zero alone does not establish an engineering failure."
   ],
   "runtime_review": "../docs/RUNTIME_REVIEW_20261002.md",
-  "competition_submission_status": "Notebook Running",
+  "competition_submission_status": "Succeeded",
   "formal_notebook_runtime_seconds": 20252.3,
   "independent_acceptance_outputs_verified": true,
   "full_output_downloaded": true,
@@ -129,5 +130,50 @@
     "max_candidates": 25,
     "ids_match_actual_runtime_audit": true,
     "ids_match_external_hidden_test": "not observable"
-  }
+  },
+  "public_score_difference_vs_historical_best": -0.005,
+  "competition_submission_id": null,
+  "competition_submission_id_note": "The visible submission row and details expose notebook version 354698716, not a competition submission ID.",
+  "competition_score_verified": true,
+  "competition_proofs": {
+    "kaggle_submission_succeeded.jpg": {
+      "sha256": "cca8fc1346dedd0a850adb2660241426165b18e22c70f2abeb858126e34a8ffe",
+      "bytes": 101010
+    },
+    "kaggle_submission_details_succeeded.jpg": {
+      "sha256": "0a5a649a71f69dd58e91eb8840f4bba3eb2c2c966286c89362d83fd21ef269e7",
+      "bytes": 109724
+    },
+    "kaggle_leaderboard_20261003.jpg": {
+      "sha256": "e989366ebbfe50c09fc6ede523ba0b3062f23065e61e8bcc17f4109e6ef036ec",
+      "bytes": 79098
+    }
+  },
+  "leaderboard_snapshot": {
+    "observed_at_utc": "2026-10-03T18:28:35.196722+00:00",
+    "team": "Spectral_Forge",
+    "rank": 1645,
+    "total_ranked_teams": 2315,
+    "best_public_score": 0.176,
+    "latest_public_score": 0.171,
+    "entries": 17,
+    "leader_score": 0.471,
+    "top10_displayed_scores": [
+      0.471,
+      0.441,
+      0.44,
+      0.435,
+      0.433,
+      0.432,
+      0.431,
+      0.429,
+      0.429,
+      0.428
+    ],
+    "top10_mean": 0.4369,
+    "all_team_mean": null,
+    "source": "https://www.kaggle.com/competitions/enveda-CASMI26-molecule-id-mass-spectra/leaderboard",
+    "proof": "kaggle_leaderboard_20261003.jpg"
+  },
+  "public_result_interpretation": "The frozen GAN-assisted whole pipeline scored 0.171 versus historical best/chemical-only v1 0.176. Matched proxy acceptance GAN increments have intervals crossing zero. Public score change cannot be attributed solely to adversarial training, since models, graph candidates, routing and identity handling also differ."
 }

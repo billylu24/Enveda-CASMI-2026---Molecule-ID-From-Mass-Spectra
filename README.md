@@ -4,7 +4,7 @@ This is a mass-filtered spectral-library retrieval baseline for the [Enveda CASM
 
 ## Current results snapshot
 
-Best public MRR@25: **0.176**. The chemical-prior historical-hybrid experiment was submitted successfully from notebook version 1 on 2026-10-02 and scored **0.176**, tying the historical hybrid. The preceding PubChemLite experiment scored **0.171**. See [the consolidated results and repository contents](docs/GITHUB_SNAPSHOT.md) for all submissions, validation caveats, and which assets must be regenerated.
+Best public MRR@25: **0.176**. The real conditional fingerprint GAN v2 submission **Succeeded** and scored **0.171**, verified on 2026-10-03; it is 0.005 below the best. The chemical-prior historical-hybrid experiment was submitted successfully from notebook version 1 on 2026-10-02 and scored **0.176**, tying the historical hybrid. The preceding PubChemLite experiment scored **0.171**. See [the consolidated results and repository contents](docs/GITHUB_SNAPSHOT.md) for all submissions, validation caveats, and which assets must be regenerated.
 
 ## Chemical priors and generative-model analysis (2026-10-02)
 
@@ -20,12 +20,12 @@ the spectrum-to-structure architecture. A real conditional fingerprint GAN,
 a matched supervised generator control, canonical identity deduplication and
 shared formula-preserving graph candidates are now implemented. Formal offline
 GPU notebook version 2 completed in **5h 37m 32s** and was actually submitted.
-Kaggle is rerunning it against hidden tests (**Notebook Running**, no new score yet).
+The hidden-test competition execution **Succeeded** with public MRR@25 **0.171**, below chemical-only v1 / historical best **0.176**. [Score proof](kaggle_release_gan/kaggle_submission_succeeded.jpg).
 The actual report and both selected checkpoints were reviewed: GAN adds
 unknown MRR +0.000146 versus the matched routed supervised control, with a
 95% interval crossing zero; graph edits add no exact truth coverage. All retained case ranks/identities and intervals were independently rechecked. See [the GAN release](kaggle_release_gan/README.md)
 and [measured validation](kaggle_release_gan/validation_summary.json).
-The previous chemical-prior score of 0.176 does not establish GAN effectiveness.
+The matched proxy comparison does not establish GAN effectiveness. The public 0.005 decrease measures the entire version change and cannot be assigned to the GAN alone.
 
 The [Chinese analysis](docs/OVERNIGHT_RESULTS_20261002.md) compares our submission
 history and leaderboard position, gives actual ranking failures and separates

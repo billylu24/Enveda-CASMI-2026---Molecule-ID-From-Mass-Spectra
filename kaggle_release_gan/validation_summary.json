@@ -1,12 +1,12 @@
 {
-  "status": "formal_V2_full_outputs_checkpoints_and_all_retained_cases_verified_hidden_score_pending",
+  "status": "completed_formal_GAN_experiment_and_competition_scored",
   "notebook_script_version_id": 354698716,
   "frozen_source_commit": "a45c65e9f16501c554dfd4a12679003d630cb0ff",
   "report_sha256": "27b315bdd0bf8fa91ad522492ced9edf95ba1018adf073cf8a09c9de172cdebe",
-  "observed_at_utc": "2026-10-03T04:38:31.502777+00:00",
+  "observed_at_utc": "2026-10-03T18:28:35.196722+00:00",
   "competition_submitted": true,
-  "competition_submission_status": "Notebook Running",
-  "public_score": null,
+  "competition_submission_status": "Succeeded",
+  "public_score": 0.171,
   "checkpoints": {
     "baseline": {
       "sha256": "6447eb4df6e0641e01edd2d29cbfcffec15c25095c5754408139b1077ac811de",
@@ -759,7 +759,7 @@
     "Retained output does not include all individual fitted training rows; separation is checked against the frozen deterministic identity-split code and actual acceptance identities.",
     "Candidate recall is reaggregated from actual per-arm coverage flags; the full pre-Top25 mass pools are not retained.",
     "Scaffold stratum labels are retained from the formal run; training scaffold sets are not included in the archive.",
-    "These are formal visible-run outputs; the competition hidden rerun score remains pending.",
+    "These are formal visible-run outputs; the competition hidden rerun Succeeded with public score 0.171; hidden checkpoint binaries and per-query true labels remain unavailable.",
     "Official hidden test labels and the final private leaderboard are not observable; these are proxy tasks.",
     "The competition reruns training on substituted hidden test inputs. Content-match exclusions may change fitted identities; downloaded checkpoints and acceptance counts describe the saved visible run, not a verified hidden-rerun checkpoint."
   ],
@@ -898,7 +898,7 @@
       "Retained output does not include all individual fitted training rows; separation is checked against the frozen deterministic identity-split code and actual acceptance identities.",
       "Candidate recall is reaggregated from actual per-arm coverage flags; the full pre-Top25 mass pools are not retained.",
       "Scaffold stratum labels are retained from the formal run; training scaffold sets are not included in the archive.",
-      "These are formal visible-run outputs; the competition hidden rerun score remains pending."
+      "These are formal visible-run outputs; the competition hidden rerun Succeeded with public score 0.171; hidden checkpoint binaries and per-query true labels remain unavailable."
     ]
   },
   "archive": {
@@ -1055,5 +1055,51 @@
         "truth_supported_rule_ids": []
       }
     }
-  ]
+  ],
+  "historical_best_public_score": 0.176,
+  "public_score_difference_vs_historical_best": -0.005,
+  "competition_submission_id": null,
+  "competition_submission_id_note": "The visible submission row and details expose notebook version 354698716, not a competition submission ID.",
+  "competition_score_verified": true,
+  "competition_proofs": {
+    "kaggle_submission_succeeded.jpg": {
+      "sha256": "cca8fc1346dedd0a850adb2660241426165b18e22c70f2abeb858126e34a8ffe",
+      "bytes": 101010
+    },
+    "kaggle_submission_details_succeeded.jpg": {
+      "sha256": "0a5a649a71f69dd58e91eb8840f4bba3eb2c2c966286c89362d83fd21ef269e7",
+      "bytes": 109724
+    },
+    "kaggle_leaderboard_20261003.jpg": {
+      "sha256": "e989366ebbfe50c09fc6ede523ba0b3062f23065e61e8bcc17f4109e6ef036ec",
+      "bytes": 79098
+    }
+  },
+  "leaderboard_snapshot": {
+    "observed_at_utc": "2026-10-03T18:28:35.196722+00:00",
+    "team": "Spectral_Forge",
+    "rank": 1645,
+    "total_ranked_teams": 2315,
+    "best_public_score": 0.176,
+    "latest_public_score": 0.171,
+    "entries": 17,
+    "leader_score": 0.471,
+    "top10_displayed_scores": [
+      0.471,
+      0.441,
+      0.44,
+      0.435,
+      0.433,
+      0.432,
+      0.431,
+      0.429,
+      0.429,
+      0.428
+    ],
+    "top10_mean": 0.4369,
+    "all_team_mean": null,
+    "source": "https://www.kaggle.com/competitions/enveda-CASMI26-molecule-id-mass-spectra/leaderboard",
+    "proof": "kaggle_leaderboard_20261003.jpg"
+  },
+  "public_result_interpretation": "The frozen GAN-assisted whole pipeline scored 0.171 versus historical best/chemical-only v1 0.176. Matched proxy acceptance GAN increments have intervals crossing zero. Public score change cannot be attributed solely to adversarial training, since models, graph candidates, routing and identity handling also differ."
 }

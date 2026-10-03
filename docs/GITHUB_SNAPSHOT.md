@@ -1,4 +1,4 @@
-# Results snapshot — 2026-10-02
+# Results snapshot — 2026-10-03
 
 ## Kaggle public results
 
@@ -12,6 +12,7 @@
 | 56688097 | 60K residual neutral-loss model | 0.173 |
 | 56690108 | Experimental PubChemLite expansion | 0.171 |
 | Notebook version 1 | [Chemical-prior historical hybrid](https://www.kaggle.com/code/xiaoyuzhoux120/casmi-2026-chemical-priors-hybrid) | **0.176** |
+| Notebook version 2 | Conditional fingerprint GAN + shared bounded graph edits | 0.171 |
 
 The seven historical scores were checked using the Kaggle CLI on 2026-09-29.
 The chemical-prior experiment's competition status **Succeeded** and public
@@ -52,8 +53,8 @@ with 27 new mass candidates and 19 new output candidates in the audit totals.
 These previously observed examples are **not independent validation**, and
 the results were not used to tune the weight. The public-score tie and protected
 visible outputs do not establish independent chemical effectiveness or improved
-generalization. Independent chemical ablation remains outstanding. A new paired
-GAN experiment is running; its results are recorded separately below.
+generalization. Independent chemical ablation remains outstanding. The paired
+GAN experiment and competition scoring have completed; results follow below.
 
 ### Conditional fingerprint GAN experiment
 
@@ -62,8 +63,13 @@ control were frozen at commit `a45c65e9f16501c554dfd4a12679003d630cb0ff`. Formal
 Kaggle notebook version 2 (`scriptVersionId` 354698716), named **Conditional GAN
 Shared Graph Edits v2**, completed on GPU T4 x2 with internet disabled in
 20,252.3 seconds. Its `submission.csv` was actually submitted; the competition
-status is **Notebook Running** during hidden-test execution, not Succeeded.
-No new competition score is recorded yet.
+status is **Succeeded**, with public MRR@25 **0.171** verified on 2026-10-03.
+This is 0.005 below chemical-only v1 / historical best 0.176. The row and details
+match version 2 and the frozen source description; the UI exposes no competition
+submission ID. [Score proof](../kaggle_release_gan/kaggle_submission_succeeded.jpg).
+The current leaderboard snapshot ranks Spectral_Forge **1645 / 2315**, retaining
+best score 0.176; the leader scores 0.471 and the displayed top-ten mean is 0.4369.
+No all-team mean was obtained. Whole-version public changes are not GAN-only effects.
 
 Both neural arms share the candidate pool and bounded formula-preserving graph
 edits. The GAN generates fingerprints, not molecular graphs; the graph edits are
