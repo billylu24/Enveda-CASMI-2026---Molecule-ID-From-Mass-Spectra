@@ -25,6 +25,16 @@ from casmi_ml.research_protocol import ROOT, freeze
 HIGH = Path("artifacts/research_loop/rounds/0148_chembl_high_confidence_tail")
 
 
+def fragment_structures(key, first, candidates, external, original, generated):
+    """Use the same actual first SMILES as the frozen original critic."""
+    actual_first = generated[key].get(first, original.get(first))
+    if actual_first is None:
+        raise ValueError("Actual original first representation missing")
+    structures = {k: external[k] for k in candidates}
+    structures[first] = actual_first
+    return structures
+
+
 def run(output, incumbent, limit=200):
     output, incumbent = Path(output), Path(incumbent)
     if limit not in (200, 2000):
@@ -156,13 +166,9 @@ def run(output, incumbent, limit=200):
                 native = [k for k in proposals[key] if k not in set(prior)][:100]
                 values = pairs[score_cache_key(key, prior[0], native, binding)]
                 candidates = sorted(native, key=lambda k: (-values[k], k))
-                actual_first = generated_lookup[key].get(
-                    prior[0], original_lookup.get(prior[0])
+                structures = fragment_structures(
+                    key, prior[0], candidates, lookup, original_lookup, generated_lookup
                 )
-                if actual_first is None:
-                    raise ValueError("Actual original first representation missing")
-                structures = {k: lookup[k] for k in candidates}
-                structures[prior[0]] = actual_first
                 scorekey = score_cache_key(
                     "high_relative_merged_actual_first_v2:" + key,
                     prior[0],

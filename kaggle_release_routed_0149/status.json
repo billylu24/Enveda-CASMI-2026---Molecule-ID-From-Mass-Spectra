@@ -1,8 +1,11 @@
 {
-  "status": "prepared",
+  "status": "platform_verified_quota_wait",
   "development_eligible": true,
   "independent_acceptance": false,
-  "uploaded": false,
+  "uploaded": true,
   "submitted": false,
-  "identity": "da2febf20eea3f850c679d7219002edc720c722e8dbd6da07356f7fe089e3eb7"
+  "identity": "da2febf20eea3f850c679d7219002edc720c722e8dbd6da07356f7fe089e3eb7",
+  "dataset_uploaded": true,
+  "kernel": "giaok246/casmi26-research-0149-chembl-route-39205da2",
+  "kernel_version": 1
 }

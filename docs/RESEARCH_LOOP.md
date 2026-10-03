@@ -427,3 +427,7 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 第150起点源码已恢复核对：Ruff移除import后额外空行导致磁盘SHA变化，仅空行差异。private source_at_start.py与冻结protocol SHA逐字节匹配；不修改原protocol或正在运行的实现。README与下一轮方向已更新为149当前开发最佳、当前无待评分比赛提交和UTC10月4日额度等待；早期62状态标为历史。
 
 第151高置信corrected预筛扩大完整对照预登记：仅将148高分支前100改为前500，原encoder/critic、完整observable质量窗、confidence>=.5、actual first critic+.05、prefix10/3slots完全固定；149低置信123峰并集分支逐项保持。生成/检索不重训、不新增谱样本或改变质量窗口。已有147 Top100→Top500额外33个truth仅是覆盖诊断，不能当净收益；完整2000/1340配对门槛对149。新worker先重建0062，再保存完整rank验证first10与CSV逐项一致；3600秒CPU预算、单一预选variant，不按full挑prefix/threshold。扩大候选的竞争与资源成本必须计入最终评价，达标也需新的真实无标签与冷平台验证。
+
+第150实现审计主动停止：95 eligible unknown/61 known首位中各2个结构表示实际非立体图不同，原lookup以ChEMBL优先错误覆写actual first；未产生完整指标，不视为化学模型负结果。保存原protocol/launch源/partial cache与private representation audit，公开仅汇总。第152新目录用与原high critic完全相同的逐query生成SMILES优先、原候选lookup/PubChemLite setdefault回退，ChEMBL只用于external候选。samehash200/全部150科学规则不变，新cache含实际structures/engine SHA且不复制错误group cache；允许内容相同的逐谱cache复用，不称cold。增加3项实际first优先/缺失拒绝回归，源和Java依赖预绑定，打印组进度。
+
+第149 Kaggle新kernel v1平台验证通过：400完整Top25排名逐项与本地一致，模型/原生成门槛及external config/source/unlabeled input绑定全部相同，1006.9秒/3210.8MiB通过1800秒/8192MiB限制。external阶段193 high插入/207critic回退，当前可见400全部high，不据此声称low隐藏资源或准确率改善；75真实无标签三范围重放和开发门槛仍分别保留。private输出下载并验证，平台safe汇总同步，未比赛提交，仅UTC10月4日quota等待。第151预筛500完整unknown0.040209（对149降0.000119），known不变；候选truth100但criticTop3只有18（100预筛为85/21），竞争降低系统收益，不扩大。第152修复后高tail samehash200运行，195回归通过。
