@@ -41,8 +41,8 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0235_diagnostic_context_mask_system",
-    "0252_packed_candidate_full_inference_control"
+    "0252_packed_candidate_full_inference_control",
+    "0242_diagnostic_context_precursor_proposals"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -187,5 +187,11 @@
     "full_rank_matches": 3340,
     "budget_fallbacks": 0,
     "new_failure_contexts": 0
+  },
+  "chemical_identity_attribution": {
+    "complete": true,
+    "unknown_mrr_difference_vs_matched_mask": 0.0,
+    "known_mrr_difference_vs_matched_mask": 0.0,
+    "claim": "No observed complete-system metric benefit from24 chemical identities under this contextual BCE architecture; strength gate/context remain common."
   }
 }

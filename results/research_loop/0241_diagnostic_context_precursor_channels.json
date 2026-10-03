@@ -1,0 +1,39 @@
+{
+  "round": "0241_diagnostic_context_precursor_channels",
+  "direction": "representation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "training_molecules": 60000,
+    "selected_spectra": 60000,
+    "train_development_overlap": 0,
+    "precise": true,
+    "base_encoder_exact": true,
+    "contextual": true,
+    "mask_chemical_channels": false,
+    "mask_peak_losses": true,
+    "evidence_nonempty": 40285,
+    "seconds": 20.949131353001576,
+    "encoder_sha256": "a831ffb49041de72ac465677274ed8fa4a798478e4e849eb2dd8fcb537166cec",
+    "history": [
+      {
+        "epoch": 1,
+        "bce": 0.042802428549274484
+      },
+      {
+        "epoch": 2,
+        "bce": 0.04268177701754773
+      },
+      {
+        "epoch": 3,
+        "bce": 0.042528872746736446
+      }
+    ],
+    "independent_acceptance": false,
+    "scope": "Training diagnostics only; complete proposal and final181 system evaluation still required"
+  },
+  "protocol_sha256": "2ea60158352aabc585f24f9581e67bd504953a07feee95b0719f15310df910a1",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

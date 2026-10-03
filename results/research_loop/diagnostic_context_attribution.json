@@ -1,0 +1,73 @@
+{
+  "local_only": true,
+  "independent_acceptance": false,
+  "arms": {
+    "precise": {
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.1985,
+        "mrr25": 0.04268861838422192,
+        "top1": 0.014,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.21505601201119356
+      },
+      "known": {
+        "molecules": 1340,
+        "candidate_recall": 0.8850746268656716,
+        "mrr25": 0.6046025377332556,
+        "top1": 0.5656716417910448,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6831091067137962
+      }
+    },
+    "coarse": {
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.1985,
+        "mrr25": 0.04268861838422192,
+        "top1": 0.014,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.21505601201119356
+      },
+      "known": {
+        "molecules": 1340,
+        "candidate_recall": 0.8850746268656716,
+        "mrr25": 0.6046025377332556,
+        "top1": 0.5656716417910448,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6831091067137962
+      }
+    },
+    "precise_channels_masked": {
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.1985,
+        "mrr25": 0.04268861838422192,
+        "top1": 0.014,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.21505601201119356
+      },
+      "known": {
+        "molecules": 1340,
+        "candidate_recall": 0.8850746268656716,
+        "mrr25": 0.6046025377332556,
+        "top1": 0.5656716417910448,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6831091067137962
+      }
+    }
+  },
+  "source_rounds": {
+    "precise": "0230_diagnostic_context_exact_system",
+    "coarse": "0229_diagnostic_context_coarse_system",
+    "precise_channels_masked": "0235_diagnostic_context_mask_system"
+  },
+  "precise_minus_mask_unknown_mrr25": 0.0,
+  "scope": "Matched channels masked under same precise strength gate, frozen original latent, model capacity and training budget; repeated development attribution, no fresh holdout"
+}
