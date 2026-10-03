@@ -36,6 +36,11 @@ def verified_config(c):
     ]:
         if digest(name) != proof[field]:
             raise ValueError("Local inference source changed; replay again: " + name)
+    if (
+        proof.get("array_source_sha256")
+        and digest("casmi_ml/candidate_array_order.py") != proof["array_source_sha256"]
+    ):
+        raise ValueError("Local array ordering source changed; replay again")
     if c.read()["development_best"]["round"] != proof["scientific_round"]:
         raise ValueError("Active verified inference no longer matches current best")
     return json.loads((directory / "external_config.json").read_text()), proof
