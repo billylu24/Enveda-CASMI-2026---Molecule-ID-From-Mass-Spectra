@@ -560,3 +560,6 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 231全部5439 observable开发谱图两容差24维float32逐项exact：coarse原枚举64.91秒→max3.62秒，precise12.82秒→.97秒，共享主机微基准；切换evidence_features为等价max实现并保留legacy oracle，232当前源码再核验两臂全量，训练通过相同特征不改标签或预处理。发现运行时选择后变量重新初始化会清空继承failure清单，提取resolve_local_incremental并新增清单存活/篡改拒绝回归；208首轮仍原进程版本，记录后223/224用修复逻辑完整重放。源码变动只修复证据绑定和运行时；不能把首轮partial或速度算为准确率提升。
+
+
+232当前runtime源码全5439谱×粗/精确24维继续bitwise exact通过，legacy_evidence_features保留为oracle、fast版本不依赖原residual模块避免循环import；默认24维化学特征改为同值max提取，已有模型输出语义不变。291项回归通过。当前208首轮使用早期进程加载的共同failure-reset逻辑，若诊断不通过保持记录，223/224新进程按已修复resolve逻辑重放；未知最佳181没有变化。

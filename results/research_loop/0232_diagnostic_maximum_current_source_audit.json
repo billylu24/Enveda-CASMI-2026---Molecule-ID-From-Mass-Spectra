@@ -1,0 +1,32 @@
+{
+  "round": "0232_diagnostic_maximum_current_source_audit",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "verified": true,
+    "arms": {
+      "coarse": {
+        "spectra": 5439,
+        "exact_features": 5439,
+        "nonempty": 3234,
+        "legacy_seconds": 65.64441935019568,
+        "maximum_seconds": 3.655188578675734
+      },
+      "precise": {
+        "spectra": 5439,
+        "exact_features": 5439,
+        "nonempty": 3048,
+        "legacy_seconds": 13.135051080927951,
+        "maximum_seconds": 0.9849660329637118
+      }
+    },
+    "scope": "Observable feature extraction equivalence and shared-machine microbenchmark only; no accuracy or cold full-system claim"
+  },
+  "protocol_sha256": "2b04aaf659c6e0525824699e463fc7f3dafda39feac72a071752dd7bbf645478",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
