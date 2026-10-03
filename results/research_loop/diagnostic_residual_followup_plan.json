@@ -1,6 +1,6 @@
 {
   "local_only": true,
-  "status": "running",
+  "status": "local_system_evaluation_running",
   "training_rounds": [
     "0186_diagnostic_residual_coarse",
     "0187_diagnostic_residual_exact"
@@ -9,7 +9,7 @@
     "0188_diagnostic_coarse_proposals",
     "0189_diagnostic_exact_proposals"
   ],
-  "full_inference_control": "0190_full181_inference_control",
+  "full_inference_control": "0206_full181_audited_exact_control",
   "baseline": "0181_high_strong_slot_full",
   "acceptance_thresholds": {
     "minimum_molecules": 2000,
@@ -19,5 +19,16 @@
     "known_top1_tolerance": 0.005,
     "folds": 5
   },
-  "scope": "Precise ion and precursor/peak losses compared with a coarse tolerance matched control; full external diagnostics followed by same scientific final system evaluation; no remote publication."
+  "scope": "Precise ion and precursor/peak losses compared with a coarse tolerance matched control; full external diagnostics followed by same scientific final system evaluation; no remote publication.",
+  "independent_attribution": "0216_full181_all_physical_control_attribution",
+  "full_system_arms": [
+    "0207_diagnostic_coarse_system",
+    "0208_diagnostic_exact_system"
+  ],
+  "incremental_runtime_benchmark": "0215_incremental_fragment_fresh_benchmark",
+  "incremental_control": "0220_incremental_exact_system_control",
+  "required_comparisons": [
+    "0181_high_strong_slot_full",
+    "0206_full181_audited_exact_control"
+  ]
 }
