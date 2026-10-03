@@ -287,3 +287,12 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 第106轮normalized多谱均值fixed200所有prefix指标与第99轮完全相同，没增益，不扩大。第107轮将现有有来源8条诊断离子/中性丢失软规则用于外部ChEMBL候选排序对照：先保持原critic+MetFrag weight0.5排序，再以固定0.25 RRF融合combined规则（无差异/无观测严格返回原顺序）；所有原query首候选critic margin、真实相对fragment与informative门控仍检查重排后的实际首候选。只对谱字段提取证据，不读标签/公式，结构SMARTS只读取外部目录；不新增/调整规则，不以缺失规则硬排除。固定200、same88片段组、prefix2/3/5/10、无新增Java/训练。此前规则试验仅generated候选，这轮隔离外部目录化学支持；只有unknown正向/known保护才扩展。
 
 第45/47双ABI完整平台核对通过，400/400完整排名与各自本地一致，分别705.7秒/2942MiB、739.9秒/2916MiB。队列所有兼容包已通过平台绑定和资源门槛；第12比赛56784251仍PENDING，保留单个待评分，不重复提交。
+
+
+第107规则融合fixed200：unknown各prefix都回到baseline0.037997，新增真值虽还在pool但未进25，known仍prefix3降0.000096；不扩大。第108轮MetFrag树深度2→3真实碎裂单因素pilot预注册：相同100候选/原critic margin0.05/相对实际首位fragment/weight0.5/3slots和同200，小试验prefix2/3/5/10；skip impossible提前筛组保持规则不变，1200秒预算、60秒单Java、1GiB heap不变。独立depth3组和逐谱缓存（cache payload和真实MaximumTreeDepth都绑定3），不能复用depth2分数；原default2行为和cache payload保持。动机为完整20库外真值只有9有匹配fragment，深度2可能不足解释多步断裂。真实Java depth3合成葡萄糖/山梨糖同质量smoke complete，两候选均有有限正分，只证明引擎可执行，不证明排序准确；179回归通过（含跨depth缓存隔离/错误depth拒绝）。
+
+
+第109轮固定200外部结构条件似然诊断预注册：冻结第20 decoder/原60K encoder和soft formula，native质量过滤ChEMBL前500（不使用真值挑候选），canonical SMILES teacher-forced mean logp含EOS、temperature0.8和原special mask。比较native原顺序、actual query logp、actual-prior logp，以固定0.5 RRF融合原native；prior仅均匀分子加权train60K平均encoder latent，保留实际meta/mass/预测softformula，与已有generated prior实现一致。词表/长度不支持候选保留原槽位，只重排能评分者。training/dev交集必须0；一次GPU诊断预算3600秒，单GPU StageBudget共享锁，与CPU深度3可共存。无新增训练/采样、不声称GAN，只检验冻结生成器在外部候选排序的条件敏感性；先报告candidate MRR/recall，再决定是否值得与完整检索融合，不能直接eligible。
+
+
+第109外部500排序pilot完成：固定200中87个查询有提案、33584候选/33554词表长度可评分，pool真值4；native MRR0.001667、query mean logp0.001146、conditional ratio0.005000（1个Top1），candidate recall均0.02。20.0秒/GPU140MiB、父进程2225MiB，无训练/采样。只有候选排序诊断正向，不是完整组合提升；第110轮同协议扩展2000外部候选诊断，复用109完整query分数，3600秒总budget/单GPU，variant比例1.0与fusion0.5固定，不再按full挑ratio。随后若正向才开发完整unknown/known保护融合。

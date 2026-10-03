@@ -228,7 +228,9 @@
     "tests/test_launch_ownership.py",
     "casmi_ml/chembl_fragment_audit.py",
     "casmi_ml/paired_fragments.py",
-    "tests/test_paired_fragments.py"
+    "tests/test_paired_fragments.py",
+    "casmi_ml/chembl_sequence_pilot.py",
+    "tests/test_chembl_sequence.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

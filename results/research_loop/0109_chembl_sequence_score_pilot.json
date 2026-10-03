@@ -1,0 +1,53 @@
+{
+  "round": "0109_chembl_sequence_score_pilot",
+  "direction": "generation_pilot",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "external_only": {
+      "native": {
+        "molecules": 200,
+        "candidate_recall": 0.02,
+        "mrr25": 0.0016666666666666666,
+        "top1": 0.0,
+        "top5": 0.005,
+        "top25": 0.005,
+        "conditional_mrr25": 0.08333333333333333
+      },
+      "query": {
+        "molecules": 200,
+        "candidate_recall": 0.02,
+        "mrr25": 0.0011458333333333333,
+        "top1": 0.0,
+        "top5": 0.0,
+        "top25": 0.01,
+        "conditional_mrr25": 0.057291666666666664
+      },
+      "conditional_ratio": {
+        "molecules": 200,
+        "candidate_recall": 0.02,
+        "mrr25": 0.005,
+        "top1": 0.005,
+        "top5": 0.005,
+        "top25": 0.005,
+        "conditional_mrr25": 0.25
+      }
+    },
+    "statistics": {
+      "queries": 87,
+      "candidates": 33584,
+      "unscoreable_candidates": 30,
+      "scored_candidates": 33554
+    },
+    "seconds": 20.013287198002217,
+    "parent_peak_rss_mib": 2225.4140625,
+    "gpu_peak_mib": 140.37744140625,
+    "independent_acceptance": false,
+    "new_training": false,
+    "new_sampling": false
+  },
+  "protocol_sha256": "0432f8db765100d9319c0c6c653634f41e51411c1306b92210cbd3c92e5df0d3",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
