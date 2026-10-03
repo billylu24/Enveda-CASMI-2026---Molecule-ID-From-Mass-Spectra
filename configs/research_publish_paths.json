@@ -286,7 +286,9 @@
     "tests/test_fragment_runtime_release.py",
     "casmi_ml/observed_reference_keys.py",
     "casmi_ml/reference_membership_benchmark.py",
-    "tests/test_observed_reference_keys.py"
+    "tests/test_observed_reference_keys.py",
+    "casmi_ml/chembl_high_reference_prefix.py",
+    "tests/test_high_reference_prefix.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
