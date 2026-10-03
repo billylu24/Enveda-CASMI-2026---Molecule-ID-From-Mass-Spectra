@@ -1,0 +1,130 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "best": {
+    "round": "0236_low_supported_leader_first",
+    "variant": "supported_leader_replay",
+    "directory": "artifacts/research_loop/rounds/0237_low_leader_full_unlabeled_replay",
+    "metrics": {
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.1985,
+        "mrr25": 0.04397830092390447,
+        "top1": 0.016,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.22155315326904013
+      },
+      "known": {
+        "molecules": 1340,
+        "candidate_recall": 0.8850746268656716,
+        "mrr25": 0.6037921161569266,
+        "top1": 0.564179104477612,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6821934533307603
+      }
+    },
+    "evidence_amendment": "results/research_loop/low_leader_evidence_amendment.json"
+  },
+  "local_verified_inference": {
+    "scientific_round": "0236_low_supported_leader_first",
+    "evidence_round": "0237_low_leader_full_unlabeled_replay",
+    "previous_metrics": {
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.1785,
+        "mrr25": 0.043795811746415295,
+        "top1": 0.016,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.2453546876549876
+      },
+      "known": {
+        "molecules": 1340,
+        "candidate_recall": 1.0,
+        "mrr25": 0.6038171329813347,
+        "top1": 0.564179104477612,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6038171329813347
+      }
+    },
+    "metrics": {
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.1985,
+        "mrr25": 0.04397830092390447,
+        "top1": 0.016,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.22155315326904013
+      },
+      "known": {
+        "molecules": 1340,
+        "candidate_recall": 0.8850746268656716,
+        "mrr25": 0.6037921161569266,
+        "top1": 0.564179104477612,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6821934533307603
+      }
+    },
+    "gates": {
+      "historical181": {
+        "eligible": true,
+        "absolute_gain": 0.0014324891774891782,
+        "relative_gain": 0.033669334740331354,
+        "reasons": [],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "completed_original": {
+        "eligible": true,
+        "absolute_gain": 0.0012500000000000011,
+        "relative_gain": 0.02925461516071389,
+        "reasons": [],
+        "evidence": "development_experimental; not independent acceptance"
+      }
+    },
+    "replay_report_sha256": "600ba5960eec699708293ddf2970063e37c0f9cee4d940ecaf3798b13b9f74c1",
+    "rankings_sha256": "0a138e378dde6e21de266950251ec6d1d02245450ca73a3187d5f03df64c530b",
+    "external_config_sha256": "04a304f9f566d33c12c72fa6e51be6cf87460b4a781301ee52b5ea47a0bb5042",
+    "inference_sha256": "44e6338368e28676d4afc6b3fbf9f7fddf25c8f1a1ed0b9970542726b4864389",
+    "low_leader_source_sha256": "c0045fc1f4ae4b7e434ad50d9700f00cec08661b56012631412c2ba5d9e1af6b",
+    "local_only": true,
+    "remote_publication": false,
+    "independent_acceptance": false,
+    "scope": "Same screened low leader rule; use audited complete physical original-control evidence on other branches and matched candidate universe. Cached development replay, no independent acceptance or cold runtime proof.",
+    "external_config": "artifacts/research_loop/rounds/0237_low_leader_full_unlabeled_replay/external_config.json"
+  },
+  "active_rounds": [
+    {
+      "id": "0235_diagnostic_context_mask_system",
+      "direction": "diagnostic_residual_system",
+      "status": "external_running",
+      "report": "artifacts/research_loop/rounds/0235_diagnostic_context_mask_system/report.json"
+    },
+    {
+      "id": "0252_packed_candidate_full_inference_control",
+      "direction": "implementation_control",
+      "status": "external_running",
+      "report": "artifacts/research_loop/rounds/0252_packed_candidate_full_inference_control/report.json"
+    }
+  ],
+  "drivers": [
+    "diagnostic_attribution_followup_v2.log",
+    "diagnostic_peak_loss_followup.log",
+    "diagnostic_query_followup_v2.log",
+    "packed_candidate_followup.log"
+  ],
+  "pending_sequence": "233mask ->234proposals ->235full; 241peakmask ->242proposals ->243full; 244zero query full ->245/246chemical/masked query training after243 ->247/248full; 250packed preparation ->251exact windows ->252full3340control ->local cache activation.",
+  "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; required completed original comparator; no new failed or budget fallback promotion; no threshold weakening.",
+  "runtime_claims": "Best full3340 cached replay exact; no fresh independent holdout or cold400 resource acceptance claim. Packed cache not yet active.",
+  "tests": "318 unittest tests passed after latest changes",
+  "notes": [
+    "Do not restart a driver that owns child processes. Only waiting-only driver may be terminated/reloaded after source change.",
+    "No Kaggle submission, upload, GitHub push, or unrelated user-file changes.",
+    "Query zero residual implementation must be exact before any architecture acceptance.",
+    "Do not treat failed/partial cache evidence as valid. Attribution uses finalized complete retry."
+  ]
+}
