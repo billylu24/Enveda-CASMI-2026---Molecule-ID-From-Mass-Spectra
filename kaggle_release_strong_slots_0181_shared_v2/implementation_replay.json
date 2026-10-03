@@ -1,0 +1,20 @@
+{
+  "valid": true,
+  "molecules": 75,
+  "full_rank_matches": 75,
+  "fresh_fragment_cache": true,
+  "seconds": 73.3434546260105,
+  "parent_peak_rss_mib": 1660.08203125,
+  "status_counts": {
+    "fragment_evidence_fallback": 30,
+    "critic_gate_fallback": 21,
+    "high_strong_slot_inserted": 16,
+    "high_fragment_remove_tail": 3,
+    "strong_original_gate_fallback": 3,
+    "low_fragment_inserted": 2
+  },
+  "source_sha256": "ada379c92c84df57ac5f3e6e573e2ba94521cc79421ff092d6c57b9cce50a4e8",
+  "bundle_sums_sha256": "5d63a32403851fffec1376f16d80e8efcbf707aed120362fffbcb15490578413",
+  "independent_acceptance": false,
+  "scope": "Same75 actual label-free generator handoff, complete ranks unchanged; cold400 and platform400 still required."
+}

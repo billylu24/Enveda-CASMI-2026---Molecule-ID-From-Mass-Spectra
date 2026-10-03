@@ -1,0 +1,39 @@
+{
+  "valid": true,
+  "cold400": {
+    "valid": true,
+    "identity": "ac434e025b03e52f22f3e2d9dfe1f6ed8f6290eb5894801a9943220483cc1b6a",
+    "seconds": 689.8971092299907,
+    "peak_rss_mib": 6186.9765625,
+    "molecules": 400,
+    "independent_acceptance": false
+  },
+  "external_status_counts": {
+    "critic_gate_fallback": 207,
+    "high_fragment_remove_tail": 172,
+    "high_strong_slot_inserted": 17,
+    "strong_original_gate_fallback": 4
+  },
+  "fresh75": {
+    "valid": true,
+    "molecules": 75,
+    "full_rank_matches": 75,
+    "fresh_fragment_cache": true,
+    "seconds": 73.3434546260105,
+    "parent_peak_rss_mib": 1660.08203125,
+    "status_counts": {
+      "fragment_evidence_fallback": 30,
+      "critic_gate_fallback": 21,
+      "high_strong_slot_inserted": 16,
+      "high_fragment_remove_tail": 3,
+      "strong_original_gate_fallback": 3,
+      "low_fragment_inserted": 2
+    },
+    "source_sha256": "ada379c92c84df57ac5f3e6e573e2ba94521cc79421ff092d6c57b9cce50a4e8",
+    "bundle_sums_sha256": "5d63a32403851fffec1376f16d80e8efcbf707aed120362fffbcb15490578413",
+    "independent_acceptance": false,
+    "scope": "Same75 actual label-free generator handoff, complete ranks unchanged; cold400 and platform400 still required."
+  },
+  "scope": "Single cold actual400 reference handoff and fragments complete; shared runtime cold comparison and platform still required.",
+  "independent_acceptance": false
+}

@@ -1,0 +1,21 @@
+{
+  "id": "giaok246/casmi26-181-shared-ref-p100",
+  "title": "CASMI26 181 Shared Reference P100",
+  "code_file": "casmi_chemistry.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "competition_sources": [
+    "enveda-CASMI26-molecule-id-mass-spectra"
+  ],
+  "dataset_sources": [
+    "giaok246/casmi26-181-shared-ref-p100-bundle",
+    "aidensong123/casmi26-coconut-202609"
+  ],
+  "kernel_sources": [],
+  "model_sources": [],
+  "machine_shape": "NvidiaTeslaP100"
+}

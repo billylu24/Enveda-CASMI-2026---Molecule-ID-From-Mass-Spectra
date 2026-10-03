@@ -313,7 +313,16 @@
     "casmi_ml/reference_reuse.py",
     "casmi_ml/shared_reference_benchmark.py",
     "casmi_ml/strong_slot_release_verification.py",
-    "tests/test_reference_reuse.py"
+    "tests/test_reference_reuse.py",
+    "kaggle_release_strong_slots_0181/status.json",
+    "kaggle_release_strong_slots_0181/verification.json",
+    "kaggle_release_strong_slots_0181_shared_v2/status.json",
+    "kaggle_release_strong_slots_0181_shared_v2/verification.json",
+    "kaggle_release_strong_slots_0181_shared_v2/implementation_replay.json",
+    "kaggle_release_strong_slots_0181_shared_v2/kaggle_verification.json",
+    "kaggle_release_strong_slots_0181_shared_v2/platform_failure.json",
+    "kaggle_release_strong_slots_0181_shared_v2/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_strong_slots_0181_shared_v2/notebook/kernel-metadata.json"
   ],
   "aggregate_directories": [
     "results/research_loop",
