@@ -41,7 +41,7 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0247_diagnostic_query_chemical_system"
+    "0248_diagnostic_query_mask_system"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -82,7 +82,10 @@
     "decision": "Keep current verified best; safety pilot improvement remains below both frozen minimum gates."
   },
   "queued_rounds": [
-    "0248_diagnostic_query_mask_system"
+    "0253_query_strict_mass_chemical",
+    "0254_query_strict_mass_mask_control",
+    "0255_query_strict_mass_chemical_system",
+    "0256_query_strict_mass_mask_system"
   ],
   "coarse_context_complete": {
     "unknown": {
@@ -235,5 +238,13 @@
       "original_critic_tensors_exact": true,
       "original_encoder_frozen": true
     }
+  },
+  "chemical_query_complete": {
+    "unknown_mrr25": 0.04363425722605642,
+    "known_mrr25": 0.6037966434328772,
+    "eligible": false,
+    "budget_fallbacks": 0,
+    "new_failure_contexts": 0,
+    "first_place_changes": 21
   }
 }

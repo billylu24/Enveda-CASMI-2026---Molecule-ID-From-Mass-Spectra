@@ -27,10 +27,11 @@ from casmi_ml.metfrag import digest
 from casmi_ml.research_budget import StageBudget
 from casmi_ml.research_protocol import ENCODER, ROOT, TRAIN, freeze
 from casmi_ml.secondary_inference import load_deployment_checkpoint
+from casmi_ml.strict_mass_negative_mask import admissible_negatives
 from casmi_ml.training import configure
 
 
-def run(output, mask_chemical_channels=False):
+def run(output, mask_chemical_channels=False, strict_mass_negatives=False):
     configure(42, threads=4)
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
@@ -47,11 +48,19 @@ def run(output, mask_chemical_channels=False):
             "hard_table_sha256": digest(HARD),
             "precise": True,
             "mask_chemical_channels": mask_chemical_channels,
+            "strict_mass_negatives": strict_mass_negatives,
             "training_molecules": 60000,
             "row_selection": "one RNG42 representative per original60K molecule, same arms",
             "epochs": 3,
             "optimizer": "AdamW .001 wd.01",
-            "objective": "Original frozen scale listwise CE over training positive and15 pinned near-mass hard negatives + .1 squared query displacement anchor",
+            "objective": (
+                "Original frozen scale listwise CE over positive and admissible pinned negatives inside35ppm/floor.006Da; other logits excluded, all original60K steps retained + .1 squared query displacement anchor"
+                if strict_mass_negatives
+                else "Original frozen scale listwise CE over training positive and15 pinned near-mass hard negatives + .1 squared query displacement anchor"
+            ),
+            "strict_mass_source_sha256": digest(
+                "casmi_ml/strict_mass_negative_mask.py"
+            ),
             "architecture": "Frozen768 latent plus24 precise chemistry ->64 GELU ->128 zero-initialized query residual; same maximum chemistry strength gate and normalized original critic space; all original encoder and critic tensors frozen",
             "selection": "Fixed epoch3; development or holdout labels not used for training or checkpoint selection",
             "local_only": True,
@@ -83,6 +92,9 @@ def run(output, mask_chemical_channels=False):
         validate_training_binding(data, training, cached, devkeys, saved)
         hard = np.load(HARD)
         validate_hard_table(hard, data)
+        strict_allowed = admissible_negatives(data["masses"], hard)
+        strict_inside = int(strict_allowed.sum())
+        strict_allowed = torch.from_numpy(strict_allowed).to("cuda")
         groups = train.groupby("inchikey14", sort=True).indices
         if list(groups) != list(data["keys"]):
             raise ValueError("Hard-negative and training key order differ")
@@ -157,6 +169,19 @@ def run(output, mask_chemical_channels=False):
                 logits = (query[:, None] * molecules[selected]).sum(
                     -1
                 ) * model.log_scale.exp().clamp(max=50)
+                if strict_mass_negatives:
+                    admissible = torch.cat(
+                        [
+                            torch.ones(
+                                (len(index), 1), dtype=torch.bool, device="cuda"
+                            ),
+                            strict_allowed[index],
+                        ],
+                        -1,
+                    )
+                    logits = logits.masked_fill(
+                        ~admissible, torch.finfo(logits.dtype).min
+                    )
                 ce = F.cross_entropy(
                     logits, torch.zeros(len(index), dtype=torch.long, device="cuda")
                 )
@@ -194,6 +219,7 @@ def run(output, mask_chemical_channels=False):
             "precise": True,
             "dimension": DIM,
             "mask_chemical_channels": mask_chemical_channels,
+            "strict_mass_negatives": strict_mass_negatives,
         }
         torch.save(weights, output / "model.pt")
         report = {
@@ -204,6 +230,8 @@ def run(output, mask_chemical_channels=False):
             "train_development_overlap": 0,
             "precise": True,
             "mask_chemical_channels": mask_chemical_channels,
+            "strict_mass_negatives": strict_mass_negatives,
+            "strict_inside_hard_negatives": strict_inside,
             "original_critic_tensors_exact": True,
             "original_encoder_frozen": True,
             "history": history,
@@ -221,6 +249,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", required=True)
     parser.add_argument("--mask-chemical-channels", action="store_true")
+    parser.add_argument("--strict-mass-negatives", action="store_true")
     print(json.dumps(run(**vars(parser.parse_args())), indent=2))
 
 

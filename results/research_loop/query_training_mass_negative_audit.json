@@ -1,0 +1,21 @@
+{
+  "local_only": true,
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "training_molecules": 60000,
+  "hard_negatives_total": 900000,
+  "strict_mass_window_hard_negatives": 720198,
+  "hard_negatives_outside_35ppm_or_0_006Da": 179802,
+  "training_molecules_with_any_strict_mass_negative": 57260,
+  "training_molecules_with_all15_inside": 42098,
+  "strict_count_quantiles": [
+    0.0,
+    10.0,
+    15.0,
+    15.0,
+    15.0
+  ],
+  "hard_table_sha256": "3873f40a2f6db3fd23cf744658b9301daabe6be0b2d8014de083a2e5423eabcd",
+  "rule": "Read-only training-only mass ambiguity audit; same fixed35ppm/floor.006 window used by observed candidate rules. No development labels or molecule selection.",
+  "implication": "Existing pinned15 hard table allows nearest-mass fallback negatives outside actual observed windows; assess objective/domain match before extending chemical query training."
+}

@@ -1,0 +1,20 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "motivation": "247 candidate-facing chemical query changed21 first places but unknownMRR declined; read-only original training mass audit shows179802/900000 pinned negatives lie outside actual35ppm/floor.006 window. Test objective-to-candidate ambiguity match without expanding architecture or optimizing thresholds.",
+  "hypothesis": "Exclude physically inadmissible negative logits from training CE, keeping same training rows, positive examples, pinned15 table, network capacity and optimizer step schedule. All60K examples retained; if no admissible negative, CE is0 and displacement anchor remains.",
+  "matched_arms": [
+    "precise chemical identity and frozen context, strict mass negatives",
+    "chemical identity masked and frozen context, same strict mass negatives"
+  ],
+  "budget": "Same3epochs AdamW .001 wd.01, 792->64->128 residual, original encoder/critic/molecular tower tensors frozen; .1 squared query displacement anchor; serial single GPU under per-round24h bound.",
+  "source_control": "Original247/248 unrestricted negative arms; source-bound hard table and mass-data mapping checked. Zero residual3340 control244 reused only because inference architecture unchanged.",
+  "acceptance": "Current best plus completed original plus historical181 known protection; same3340 keys, complete physical evidence, no budget or new failures; no relaxation of absolute+.0005 or relative+2% gates.",
+  "sequence": [
+    "Wait248 completed masked query system",
+    "253/254 matched strict mass training",
+    "255/256 bounded complete system",
+    "Matched chemical attribution and strict-versus-original objective comparison"
+  ]
+}

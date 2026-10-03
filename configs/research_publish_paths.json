@@ -384,7 +384,10 @@
     "casmi_ml/packed_candidate_runtime.py",
     "casmi_ml/packed_candidate_verification.py",
     "casmi_ml/packed_candidate_followup.py",
-    "tests/test_packed_candidate_runtime.py"
+    "tests/test_packed_candidate_runtime.py",
+    "casmi_ml/strict_mass_negative_mask.py",
+    "casmi_ml/diagnostic_query_strict_followup.py",
+    "tests/test_strict_mass_negative_mask.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
