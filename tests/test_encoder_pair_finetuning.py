@@ -6,8 +6,8 @@ import numpy as np
 
 from casmi_ml.chembl_critic_slots import score_cache_key, validate_proposal_membership
 from casmi_ml.chembl_fragment_pilot import score_cache_key as fragment_cache_key
-from casmi_ml.encoder_pair_finetuning import validate_hard_table
 from casmi_ml.chembl_prior_proposals import ordered_proposals
+from casmi_ml.encoder_pair_finetuning import validate_hard_table
 
 
 class EncoderPairBindingTests(unittest.TestCase):

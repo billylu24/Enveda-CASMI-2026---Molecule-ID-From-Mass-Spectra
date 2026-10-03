@@ -379,3 +379,6 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 第134同hash200有实测marker的dimer+relative-first：unknown prefix3仍0.030939与单体控制120相同，known0.569429→0.568836（降0.000593），31/9查询插入、2新增真值、0回退、180.6秒；扩适用范围128complete但没有更多精确命中，不扩大。
 
 第135完整prior proposals原排序重建失败保存/同步：约第200query后两个候选位置48/49交换，最大分数差1.38778e-17；按原mass/key窗口顺序重算可精确复现，原因是指纹矩阵候选行顺序改变引起BLAS舍入而非数据/标签改变。不能直接关闭native一致性检查。第136新轮固定同实验，先按原mass/key稳定顺序计算fp score，再对比原全量native排名必须exact，再做prior校准；保存失败135 protocol/源和private定位诊断，不修改原轮。自定义proposal只允许完整原mass pool排列、完整cohort SHA绑定，新增回归；不引入候选/按truth选择。
+
+
+第136在完整metrics产生前主动停止：恢复mass order时tie sorting仍误用old native列表索引，可能把数值相同候选的顺序绑错，不能接受该中间实现。保留source/protocol/failed记录并同步。第137改为显式(key,score)配对排序，真实key打破平局；新增数值相同及非法score回归，避免不同候选数组索引混用，完整native重建仍要求exact。错误停止不视为新模型失败或发布证据。
