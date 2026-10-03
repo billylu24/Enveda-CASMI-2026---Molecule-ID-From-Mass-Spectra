@@ -239,7 +239,8 @@
     "tests/test_merged_fragments.py",
     "casmi_ml/encoder_pair_finetuning.py",
     "tests/test_encoder_pair_finetuning.py",
-    "casmi_ml/chembl_prior_proposals.py"
+    "casmi_ml/chembl_prior_proposals.py",
+    "casmi_ml/chembl_routed_combination.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

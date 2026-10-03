@@ -409,3 +409,8 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 第148高置信candidate-tail-only完整预登记：只confidence>=.5，147完整质量窗corrected-only前100，经原critic对actual first+.05支持时最多3个new结构插在前10之后；first10完整rank顺序不可变、原0062low路线与生成冻结。只一个固定variant margin005_prefix10，完整2000/1340/known门槛不变。提案必须覆盖全部cohort，每query成员严格等于observable mass_centers charge-aware union窗口，不能借all-query source增窗或添加结构；新增回归覆盖外窗候选和缺失query。先看high scope scoring/覆盖证据，不从结果挑新margin/prefix。若无增益，不部署。
+
+
+第147全部query外部评分：native MRR0.026609→corrected-only0.042452，Top25 127→165/Top100177→208/Top500237→241；1984非空非singleton/1779260候选，282.7秒/1559MiB，新source全部2000且原746 exact复现。第148高置信tail full:未知0.039783（+1.458%）、known降0.000422/Top1不变；1247high query中85新truth进入top100、critic Top3 21，实际17新truth插入，前10顺序保持、33.2秒。独立分支未过相对2%门槛。
+
+第149路由组合完整预登记：两个已冻结disjoint scope按原检索confidence<.5/ >=.5确定；low严格123 merged union native100 originalcritic+.05/actual first fragment positive/informative/relative/.5/prefix3，high严格148 corrected preselect100原critic+.05/prefix10。每query只一个arm，保持各原margin/prefix/权重与原0062生成检索；逐key原始baseline一致、各source inactive scope必须完全等于0062，既不叠加两个插入也不按标签选route。完整2000/1340对0062门槛；即使组合eligible，也需新增单次真实无标签推理、冷资源和平台复现，不能把两轮时间相加当部署保证。
