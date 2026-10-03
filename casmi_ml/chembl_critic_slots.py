@@ -53,6 +53,14 @@ def score_cache_key(query, first, candidates, model_binding=None):
     return hashlib.sha256(payload.encode()).hexdigest()
 
 
+def validate_proposal_membership(proposals, original):
+    if set(proposals) != set(original) or any(
+        len(values) != len(set(values)) or set(values) != set(original[key])
+        for key, values in proposals.items()
+    ):
+        raise ValueError("Custom proposals must preserve each original mass window")
+
+
 @torch.inference_mode()
 def run(
     output,
@@ -137,6 +145,12 @@ def run(
     ] != digest(ENCODER):
         raise ValueError("Proposal source catalog/base encoder differs")
     proposals = json.loads(proposal_path.read_text())
+    if proposal_path != PROPOSALS:
+        if proposal_protocol.get("development_sha256") != digest(
+            ROOT / "researchdev.parquet"
+        ):
+            raise ValueError("Custom proposals require explicit cohort binding")
+        validate_proposal_membership(proposals, json.loads(PROPOSALS.read_text()))
     catalog_keys = set(index.catalog.inchikey14)
     if not set(proposals).issubset(groups) or any(
         len(values) != len(set(values)) or not set(values).issubset(catalog_keys)

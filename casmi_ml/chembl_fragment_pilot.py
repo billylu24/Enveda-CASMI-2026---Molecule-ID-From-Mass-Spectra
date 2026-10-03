@@ -13,6 +13,7 @@ import pandas as pd
 import torch
 
 from casmi_ml.chembl_catalog import DERIVED
+from casmi_ml.chembl_critic_slots import validate_proposal_membership
 from casmi_ml.chemistry import extract_evidence, rerank, rule_manifest
 from casmi_ml.chemistry_experiment import candidate_lookup
 from casmi_ml.data import fingerprint, write_json
@@ -433,6 +434,12 @@ def run(
     ):
         raise ValueError("Proposal source catalog/base encoder/cohort differs")
     proposals = json.loads(proposal_path.read_text())
+    if proposal_path != PROPOSALS:
+        if proposal_protocol.get("development_sha256") != digest(
+            ROOT / "researchdev.parquet"
+        ):
+            raise ValueError("Custom proposals require explicit cohort binding")
+        validate_proposal_membership(proposals, json.loads(PROPOSALS.read_text()))
     catalog_keys = set(index.catalog.inchikey14)
     if not set(proposals).issubset(groups) or any(
         len(values) != len(set(values)) or not set(values).issubset(catalog_keys)

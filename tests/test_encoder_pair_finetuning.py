@@ -4,7 +4,7 @@ import unittest
 
 import numpy as np
 
-from casmi_ml.chembl_critic_slots import score_cache_key
+from casmi_ml.chembl_critic_slots import score_cache_key, validate_proposal_membership
 from casmi_ml.chembl_fragment_pilot import score_cache_key as fragment_cache_key
 from casmi_ml.encoder_pair_finetuning import validate_hard_table
 
@@ -29,6 +29,13 @@ class EncoderPairBindingTests(unittest.TestCase):
         self.assertEqual(
             score_cache_key(*args, original), score_cache_key(*args, original.copy())
         )
+
+    def test_preselection_cannot_change_mass_pool_membership(self):
+        original = {"q": ["a", "b"]}
+        validate_proposal_membership({"q": ["b", "a"]}, original)
+        for changed in ({"q": ["a", "c"]}, {"q": ["a"]}, {}, {"q": ["a", "a"]}):
+            with self.assertRaisesRegex(ValueError, "original mass window"):
+                validate_proposal_membership(changed, original)
 
     def test_invalid_negatives_rejected(self):
         count = 17
