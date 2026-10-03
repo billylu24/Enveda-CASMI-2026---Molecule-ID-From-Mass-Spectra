@@ -385,3 +385,8 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 第137完整质量窗prior preselection完成：重建原全量native每组exact通过，2000外部native MRR0.010153→corrected-only0.014626、Top25 46→61、Top100 65→78、Top500 90→92（RRF0.5 MRR0.012380）。737非空query/624323实际评分（另5 singleton不用校准）、73.8秒/1356MiB；60K训练边际SHA与117一致，prior未重训。Top500虽改善很小，Top100分配比原native有所改善，不能用外部指标发布。第138同old encoder/critic native100预筛改为完整corrected-only top100，完整0062 matched；第139同hash200/merged union/relative-first/critic+.05/prefix3/.5/slots3/skip-impossible仅改prior在截断前的preselection，对第122/120匹配观察，1200秒Java不变。自定义文件逐query质量池成员/duplicates与完整cohort SHA核对，新scorecache含完整ordered proposals；不能偷换native source或给旧生成换encoder。189回归通过。
+
+
+第138完整corrected preselect+原critic：前100库外真值20→29，但critic Top3仅3，预选prefix5未知0.039101低于0062、known0.604107保护通过，所有旧变体门槛失败。第139同hash200+merged fragment仍与122相同prefix3 0.030939、known不变，新真值2，不扩大相同critic融合。
+
+第140hash200校准证据评分独立替换预登记：corrected-only全质量窗前100仍固定，但候选排序与actual first比较均用训练边际扣除native fingerprint证据，不再用旧近质量cosine critic；原0062生成前置gate仍原critic不变。新proposal score只要求严格大于actual first（两量同单位，校准per-bit evidence不能套cosine .05），仍要求真实片段正且有区分度、严格大于first fragment、RRF.5/prefix3/3slots/merged union/1200秒/skip-impossible。先samehash200对139，唯一因素为proposal scoring type；没有拟合开发阈值/权重，新cache score_type/encoder/prior SHA分离，prior同60K且TRAIN/catalog/cohort/model绑定验证。小试验若无增益不扩大。不是取消化学门控/对抗训练。

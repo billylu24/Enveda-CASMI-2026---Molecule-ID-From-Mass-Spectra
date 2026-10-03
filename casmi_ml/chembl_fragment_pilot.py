@@ -122,7 +122,27 @@ def run(
     merge_spectra=False,
     proposal_encoder=ENCODER,
     proposal_path=PROPOSALS,
+    proposal_score_type="critic",
 ):
+    if proposal_score_type not in ("critic", "calibrated_native"):
+        raise ValueError("Unknown proposal scoring type")
+    if proposal_score_type == "calibrated_native" and (
+        proposal_encoder != ENCODER
+        or sequence_scores is not None
+        or fingerprint_prior_scores is not None
+        or fragment_gate_only
+        or critic_only
+    ):
+        raise ValueError(
+            "Calibrated native scoring requires original encoder and isolated fragment evidence"
+        )
+    proposal_margin = 0.0 if proposal_score_type == "calibrated_native" else 0.05
+    prior_path = Path(
+        "artifacts/research_loop/rounds/0137_chembl_full_prior_proposals/prior.npy"
+    )
+    prior_sha256 = (
+        digest(prior_path) if proposal_score_type == "calibrated_native" else None
+    )
     if merge_spectra and (mean_fragments or not compare_first or not monomer or dimer):
         raise ValueError(
             "Merged spectra require exact monomer and same-group first comparison, without mean or dimer"
@@ -199,6 +219,12 @@ def run(
         if proposal_encoder == ENCODER and critic_checkpoint == CRITIC
         else {"encoder_sha256": encoder_sha, "critic_sha256": critic_sha}
     )
+    if proposal_score_type == "calibrated_native":
+        model_binding = {
+            "encoder_sha256": encoder_sha,
+            "score_type": proposal_score_type,
+            "prior_sha256": prior_sha256,
+        }
     if proposal_limit not in (100, 500) or not 1 <= fragment_limit <= proposal_limit:
         raise ValueError("Invalid proposal or fragment shortlist limit")
     critic_path = Path(
@@ -248,6 +274,11 @@ def run(
         variants = {"baseline": None, "critic_control": (0.05, prefix, 3, 0.0)}
     if not 1 <= limit <= 2000:
         raise ValueError("Pilot limit must be in[1,2000]")
+    if proposal_score_type == "calibrated_native":
+        variants = {
+            name: None if spec is None else (proposal_margin, *spec[1:])
+            for name, spec in variants.items()
+        }
     sequence_values = {}
     if sequence_scores is not None:
         sequence_scores = Path(sequence_scores)
@@ -311,6 +342,9 @@ def run(
             "encoder_sha256": encoder_sha,
             "baseline_encoder_sha256": digest(ENCODER),
             "proposal_model_binding": model_binding,
+            "proposal_score_type": proposal_score_type,
+            "proposal_margin": proposal_margin,
+            "proposal_prior_sha256": prior_sha256,
             "encoder_scope": "External proposals and actual first critic only;0062 retrieval and generation frozen",
             "development_sha256": digest(ROOT / "researchdev.parquet"),
             "generated_sha256": digest(GENERATED),
@@ -318,7 +352,7 @@ def run(
             "promotion_scores_sha256": digest(pair_path),
             "incumbent_report_sha256": digest(incumbent / "report.json"),
             "variants": variants,
-            "rule": f"Freeze0062;confidence<.5;native first{proposal_limit} novel ChEMBL proposals;critic shortlist first{fragment_limit}, then MetFrag tie-aware rerank; actual first proposal critic must exceed current first by.05;insert3 after frozen prefix",
+            "rule": f"Freeze0062;confidence<.5;native first{proposal_limit} novel ChEMBL proposals;critic shortlist first{fragment_limit}, then MetFrag tie-aware rerank; actual first proposal {proposal_score_type} must exceed current first by{proposal_margin};insert3 after frozen prefix",
             "limit": limit,
             "pilot_selector": pilot_selector,
             "pilot_selector_salt": "fragment-representative-20261003"
@@ -469,6 +503,23 @@ def run(
         raise ValueError("Proposal critic/encoder binding differs")
     critic = DirectRanker("fingerprint").eval()
     critic.load_state_dict(weights["state_dict"])
+    prior = None
+    if proposal_score_type == "calibrated_native":
+        from casmi_ml.research_protocol import TRAIN
+
+        prior_protocol = json.loads((prior_path.parent / "protocol.json").read_text())
+        prior_report = json.loads((prior_path.parent / "report.json").read_text())
+        if (
+            prior_protocol["encoder_sha256"] != encoder_sha
+            or prior_protocol["training_sha256"] != digest(TRAIN)
+            or prior_protocol["catalog_sha256"] != digest(DERIVED)
+            or prior_protocol["development_sha256"]
+            != digest(ROOT / "researchdev.parquet")
+            or prior_report["prior_sha256"] != prior_sha256
+        ):
+            raise ValueError("Calibrated native training prior binding differs")
+        prior = np.load(prior_path)
+
     cache_path = output / "critic_scores.json"
     pair_scores = (
         json.loads(cache_path.read_text())
@@ -620,16 +671,28 @@ def run(
                         smiles = [first_smiles] + [
                             external_lookup[k] for k in candidates_external
                         ]
-                        values = score_group(
-                            critic,
-                            encoder,
-                            query,
-                            saved["preprocessing"],
-                            pd.DataFrame({"normalized_smiles": smiles}),
-                            np.stack([fingerprint(s) for s in smiles]).astype(
-                                np.float32
-                            ),
-                        )
+                        fps = np.stack(
+                            [fingerprint(smiles_value) for smiles_value in smiles]
+                        ).astype(np.float32)
+                        if proposal_score_type == "calibrated_native":
+                            from casmi_ml.chembl_fingerprint_prior import (
+                                corrected_scores,
+                            )
+                            from casmi_ml.inference import group_probability
+
+                            probability = group_probability(
+                                encoder, query, saved["preprocessing"]
+                            )
+                            values = corrected_scores(probability, fps, prior)
+                        else:
+                            values = score_group(
+                                critic,
+                                encoder,
+                                query,
+                                saved["preprocessing"],
+                                pd.DataFrame({"normalized_smiles": smiles}),
+                                fps,
+                            )
                         if not np.isfinite(values).all():
                             raise ValueError("Nonfinite catalog critic scores")
                         pair_scores[cache_key] = {
@@ -875,6 +938,9 @@ def run(
             "execution_status_scope": "Only spectra actually traversed by this run; precomputed group cache skips are excluded. Complete may be content-cache reuse, not cold Java execution.",
             "merged_input_spectra": getattr(fragmenter, "merged_input_spectra", None),
             "merged_engine_spectra": getattr(fragmenter, "merged_engine_spectra", None),
+            "proposal_score_type": proposal_score_type,
+            "proposal_margin": proposal_margin,
+            "proposal_prior_sha256": prior_sha256,
             "fragment_groups": len(fragment_scores),
             "fragment_groups_with_scores": sum(
                 bool(r["scores"]) for r in fragment_scores.values()
@@ -936,6 +1002,11 @@ def main():
     p.add_argument("--critic-checkpoint", type=Path, default=CRITIC)
     p.add_argument("--proposal-encoder", type=Path, default=ENCODER)
     p.add_argument("--proposal-path", type=Path, default=PROPOSALS)
+    p.add_argument(
+        "--proposal-score-type",
+        choices=("critic", "calibrated_native"),
+        default="critic",
+    )
     p.add_argument("--dimer", action="store_true")
     p.add_argument("--candidate-gate", action="store_true")
     p.add_argument("--compare-first", action="store_true")
@@ -983,6 +1054,7 @@ def main():
                 a.merge_spectra,
                 a.proposal_encoder,
                 a.proposal_path,
+                a.proposal_score_type,
             ),
             indent=2,
         )
