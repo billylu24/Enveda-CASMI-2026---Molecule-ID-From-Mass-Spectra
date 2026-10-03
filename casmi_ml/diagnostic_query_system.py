@@ -191,7 +191,19 @@ def run(output, critic, control=False):
     )
     old = json.loads((CONTROL / "report.json").read_text())
     local = json.loads((LOCAL_CONTROL / "report.json").read_text())
+    historical_directory = Path(
+        "artifacts/research_loop/rounds/0181_high_strong_slot_full"
+    )
+    historical = json.loads((historical_directory / "report.json").read_text())
     report["required_comparators"] = {
+        "historical181": {
+            "directory": str(historical_directory),
+            "variant": "strong_slot_prefix",
+            "metrics": {
+                mode: historical[mode]["strong_slot_prefix"]
+                for mode in ("unknown", "known")
+            },
+        },
         "completed_original": {
             "directory": str(CONTROL),
             "variant": "diagnostic_residual",
