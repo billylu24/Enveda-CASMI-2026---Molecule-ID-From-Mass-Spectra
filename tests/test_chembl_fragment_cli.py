@@ -54,6 +54,7 @@ class ChemblFragmentCLITests(unittest.TestCase):
             None,
             False,
             "prefix",
+            False,
         )
 
     def test_fragment_evidence_controls_reach_run(self):
@@ -77,6 +78,6 @@ class ChemblFragmentCLITests(unittest.TestCase):
         ):
             main()
         self.assertEqual(
-            run.call_args.args[-10:],
-            (True, 1.0, True, False, 2, None, 1.0, None, False, "prefix"),
+            run.call_args.args[-11:],
+            (True, 1.0, True, False, 2, None, 1.0, None, False, "prefix", False),
         )

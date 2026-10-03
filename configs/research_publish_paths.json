@@ -234,7 +234,9 @@
     "casmi_ml/dino_energy_pairs.py",
     "tests/test_dino_energy_pairs.py",
     "casmi_ml/chembl_fingerprint_prior.py",
-    "tests/test_fingerprint_prior.py"
+    "tests/test_fingerprint_prior.py",
+    "casmi_ml/merged_fragments.py",
+    "tests/test_merged_fragments.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

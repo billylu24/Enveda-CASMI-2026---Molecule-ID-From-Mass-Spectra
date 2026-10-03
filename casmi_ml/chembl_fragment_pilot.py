@@ -111,7 +111,12 @@ def run(
     fingerprint_prior_scores=None,
     critic_only=False,
     pilot_selector="prefix",
+    merge_spectra=False,
 ):
+    if merge_spectra and (mean_fragments or not compare_first or not monomer or dimer):
+        raise ValueError(
+            "Merged spectra require exact monomer and same-group first comparison, without mean or dimer"
+        )
     if pilot_selector not in ("prefix", "hash"):
         raise ValueError("Pilot selector must be prefix or hash")
     if critic_only and (
@@ -171,6 +176,8 @@ def run(
         if mean_fragments
         else execution_engine_sha256
     )
+    if merge_spectra:
+        execution_aggregation_sha256 = digest("casmi_ml/merged_fragments.py")
     critic_checkpoint = Path(critic_checkpoint)
     if proposal_limit not in (100, 500) or not 1 <= fragment_limit <= proposal_limit:
         raise ValueError("Invalid proposal or fragment shortlist limit")
@@ -306,7 +313,11 @@ def run(
             "relative_candidate_gate": relative_candidate_gate,
             "chemical_prior": chemical_prior,
             "fragment_weight": fragment_weight,
-            "fragment_aggregation": "mean_normalized" if mean_fragments else "max_raw",
+            "fragment_aggregation": "merged_peak_union"
+            if merge_spectra
+            else "mean_normalized"
+            if mean_fragments
+            else "max_raw",
             "fragment_aggregation_source_sha256": execution_aggregation_sha256,
             "compare_current_first_fragment": compare_first,
             "fragment_gate_only": fragment_gate_only,
@@ -451,6 +462,10 @@ def run(
         from casmi_ml.paired_fragments import score_group_mean
 
         group_scorer = score_group_mean
+    if merge_spectra:
+        from casmi_ml.merged_fragments import score_group_merged
+
+        group_scorer = score_group_merged
     fragment_path = output / "fragment_scores.json"
     fragment_scores = (
         json.loads(fragment_path.read_text()) if fragment_path.exists() else {}
@@ -635,6 +650,10 @@ def run(
                     fragment_key = score_cache_key(
                         "mean_normalized_v1:" + key, current[0], candidates_external
                     )
+                if merge_spectra and candidates_external:
+                    fragment_key = score_cache_key(
+                        "merged_peak_union_v1:" + key, current[0], candidates_external
+                    )
                 if fragment_depth != 2 and candidates_external:
                     fragment_key = score_cache_key(
                         f"depth{fragment_depth}:" + str(fragment_key),
@@ -809,6 +828,8 @@ def run(
                 fragmenter, "status_counts", {}
             ),
             "execution_status_scope": "Only spectra actually traversed by this run; precomputed group cache skips are excluded. Complete may be content-cache reuse, not cold Java execution.",
+            "merged_input_spectra": getattr(fragmenter, "merged_input_spectra", None),
+            "merged_engine_spectra": getattr(fragmenter, "merged_engine_spectra", None),
             "fragment_groups": len(fragment_scores),
             "fragment_groups_with_scores": sum(
                 bool(r["scores"]) for r in fragment_scores.values()
@@ -836,7 +857,11 @@ def run(
             "relative_candidate_gate": relative_candidate_gate,
             "chemical_prior": chemical_prior,
             "fragment_weight": fragment_weight,
-            "fragment_aggregation": "mean_normalized" if mean_fragments else "max_raw",
+            "fragment_aggregation": "merged_peak_union"
+            if merge_spectra
+            else "mean_normalized"
+            if mean_fragments
+            else "max_raw",
             "fragment_aggregation_source_sha256": execution_aggregation_sha256,
             "compare_current_first_fragment": compare_first,
             "fragment_gate_only": fragment_gate_only,
@@ -870,6 +895,7 @@ def main():
     p.add_argument("--fragment-gate-only", action="store_true")
     p.add_argument("--skip-impossible", action="store_true")
     p.add_argument("--relative-candidate-gate", action="store_true")
+    p.add_argument("--merge-spectra", action="store_true")
     p.add_argument("--pilot-selector", choices=("prefix", "hash"), default="prefix")
     p.add_argument("--critic-only", action="store_true")
     p.add_argument("--fingerprint-prior-scores", type=Path)
@@ -907,6 +933,7 @@ def main():
                 a.fingerprint_prior_scores,
                 a.critic_only,
                 a.pilot_selector,
+                a.merge_spectra,
             ),
             indent=2,
         )
