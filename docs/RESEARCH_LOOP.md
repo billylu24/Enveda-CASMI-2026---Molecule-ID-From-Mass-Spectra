@@ -536,3 +536,9 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 本地critic重绑定加固：残差模型base_sha、全部24原张量、architecture/metadata_dim及除diagnostic_precision外全部预处理必须exact，任何改变拒绝复用原critic。新模型完整cached开发结果若有任意budget状态，仅作diagnostic_complete、禁止升级最佳，先完成有界证据准备再重跑；不延长部署1200秒、也不把已有缓存计时当cold。278项回归测试通过；本地提交保留、无远端push。
+
+
+本地完整控制若仍有development预算fallback，先以新root进行最多3次有界cache补齐回放，每次保留1200秒和原unknown可观测输入逐文件/语义核对，旧失败与预算记录不覆盖。独立归因前必须无budget回退；补齐执行证据的基线只作新模型额外比较，不更新181best。另预登记12个固定observable hash query的增量碎裂fresh对照：同merged monomer、100候选、2线程/10ms/depth2/raw FragmenterScore，分别fresh seed整池、fresh precise新整池、fresh仅新增或SMILES变化项；重建逐谱完整字典及状态必须exact且无failed/timeout。统计seed准备成本，不能把缓存后时间称完整cold。暂未执行、未用于排名。
+
+
+204完整补齐原模型：unknown2000 MRR0.042728301、known1340 0.604600574/Top1 .565671642，unknown626.97秒复用已验证控制、known1058.84秒cached，无budget回退；此非新架构收益、不更新181。205空证据/预算独立归因unknown全部exact，known尚1处非empty聚合差异；该组4谱中3个legacy物理complete、1个physical文件缺失，当前4个均complete，不能把partial aggregate当完成证据。216扩展至全部活跃high物理输入并保持原181规则，全部2000/1340完整rank exact通过；未知身份4组、已知2组，原空/预算活跃unknown48/known491组均审计，未以标签挑个例。206原严格回放对216、207/208粗/精确残差系统评价继续。215增量fragment鲜缓存12query/15merged谱全部完整dict exact、13complete/2unsupported、0failed/timeout；整池15.97秒、增量1.55秒，原seed16.32秒另列，只是原候选分数可复用的局部runtime证明，不称cold全管线或准确率提升。281项回归通过。

@@ -1,0 +1,33 @@
+{
+  "round": "0215_incremental_fragment_fresh_benchmark",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "verified": true,
+    "counts": {
+      "queries": 12,
+      "spectra": 15,
+      "exact_dictionaries": 15,
+      "complete": 13,
+      "unsupported_or_empty": 2,
+      "failures": 0,
+      "new_candidates": 30,
+      "reused_candidates": 1091
+    },
+    "seconds_by_arm": {
+      "seed": 16.320467337965965,
+      "full": 15.97295526607195,
+      "incremental": 1.549862870015204
+    },
+    "seconds_total": 34.204305797989946,
+    "parent_peak_rss_mib": 1222.40625,
+    "scope": "Fresh physics scoring benchmark only; no cold full-system or accuracy claim. Seed preparation excluded from incremental runtime and reported separately."
+  },
+  "protocol_sha256": "dbf22e9557fb41c558e309bab565daa37546dcf2ab4f24fe6475279804fb8e92",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

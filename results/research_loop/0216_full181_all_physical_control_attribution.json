@@ -1,0 +1,31 @@
+{
+  "round": "0216_full181_all_physical_control_attribution",
+  "direction": "implementation_control_audit",
+  "status": "diagnostic_complete",
+  "report": {
+    "summary": {
+      "unknown": {
+        "molecules": 2000,
+        "identity_affected_groups": 4,
+        "active_empty_evidence_groups": 48,
+        "unexplained_differences": 0,
+        "full_control_exact": true
+      },
+      "known": {
+        "molecules": 1340,
+        "identity_affected_groups": 2,
+        "active_empty_evidence_groups": 491,
+        "unexplained_differences": 0,
+        "full_control_exact": true
+      }
+    },
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "control_passed": true
+  },
+  "protocol_sha256": "9c86b7c5d556ab680cfc12c3ef3890debb3b91d3effb724e44ddc25b619d98bd",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

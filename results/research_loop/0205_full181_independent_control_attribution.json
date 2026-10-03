@@ -1,0 +1,10 @@
+{
+  "status": "implementation_control_failed",
+  "local_only": true,
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "unknown_unexplained": 0,
+  "known_unexplained": 1,
+  "best_updated": false,
+  "reason": "Initial audit only completed empty or budget aggregate groups. One nonempty four-spectrum aggregate had three complete legacy physical files and one absent result; current fourth completion changes frozen selection. Full label-free physical audit required and independently completed as0216."
+}

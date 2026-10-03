@@ -340,7 +340,9 @@
     "tests/test_diagnostic_control_audit.py",
     "casmi_ml/diagnostic_local_followup.py",
     "tests/test_required_comparator.py",
-    "tests/test_residual_binding.py"
+    "tests/test_residual_binding.py",
+    "casmi_ml/incremental_metfrag_benchmark.py",
+    "tests/test_incremental_score_reuse.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

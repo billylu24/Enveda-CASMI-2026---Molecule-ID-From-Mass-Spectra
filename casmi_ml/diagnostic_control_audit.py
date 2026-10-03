@@ -44,17 +44,30 @@ def normalize_ranking(order, structures):
     return result
 
 
-def run(output, observed):
+def run(output, observed, all_physical_evidence=False):
     output, observed = Path(output), Path(observed)
     output.mkdir(parents=True, exist_ok=True)
+    for mode in ("unknown", "known"):
+        execution = json.loads(
+            (observed / mode / "selected.csv.external.report.json").read_text()
+        )
+        if any(
+            count
+            for status, count in execution["status_counts"].items()
+            if "budget" in status
+        ):
+            raise ValueError(
+                "Control still has development budget fallback; complete cached evidence before independent attribution"
+            )
     freeze(
         output / "protocol.json",
         {
             "source_sha256": digest(__file__),
+            "all_physical_evidence": all_physical_evidence,
             "incumbent_rankings_sha256": digest(BEST / "selected_rankings.json"),
             "observed_rankings_sha256": digest(observed / "selected_rankings.json"),
             "fragment_cache_sha256": digest(FRAGMENT / "fragment_scores.json"),
-            "rule": "Normalize all historical structure identities from actual original SMILES; independently recompute all active frozen empty or budget high-fragment groups with same physical inputs and unchanged181 rules. Reject any other control drift. No query truth consulted.",
+            "rule": "Normalize all historical structure identities from actual original SMILES; independently recompute active high-fragment groups using the same physical inputs and unchanged181 rules. Optional full physical audit includes nonempty aggregates that may contain partial request failures. Reject any other control drift. No query truth consulted.",
             "local_only": True,
             "diagnostic_only": True,
             "independent_acceptance": False,
@@ -158,7 +171,7 @@ def run(output, observed):
                         {"structures": physical, "dependencies": dependencies},
                     )
                     item = fragments[cache_key]
-                    if not item["scores"]:
+                    if not item["scores"] or all_physical_evidence:
                         query = frame.iloc[groups[key]].drop(
                             columns=[
                                 c
@@ -216,13 +229,21 @@ def run(output, observed):
                         structures.update(physical)
                         normalized = normalize_ranking(result, structures)
                         detail.update(
-                            frozen_empty_evidence=True,
+                            frozen_empty_evidence=not bool(item["scores"]),
+                            physical_score_difference_count=sum(
+                                item["scores"].get(k) != scores.get(k)
+                                for k in set(item["scores"]) | set(scores)
+                            ),
                             frozen_budget_fallback=item["budget_fallback"],
                             completed_score_count=len(scores),
                             independently_selected_status=status,
                         )
                 selected[mode][key] = normalized
-                if detail["identity_changes"] or detail.get("frozen_empty_evidence"):
+                if (
+                    detail["identity_changes"]
+                    or detail.get("frozen_empty_evidence")
+                    or detail.get("physical_score_difference_count")
+                ):
                     audits[mode][key] = detail
             if set(selected[mode]) != set(actual[mode]):
                 raise ValueError("Observed control cohort differs")
@@ -266,6 +287,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--output", required=True)
     p.add_argument("--observed", required=True)
+    p.add_argument("--all-physical-evidence", action="store_true")
     run(**vars(p.parse_args()))
 
 

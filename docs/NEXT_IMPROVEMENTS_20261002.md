@@ -82,3 +82,6 @@ P0 和 P1 可准备数据和基线，但单项开发选择需分开，之后再�
 
 
 193 unknown缓存完整回放626.97秒，无fragment预算回退；完整rank33处不同：4处实际SMILES身份、1处原empty证据、28处原163预算fallback已完成。原模型unknown MRR0.042728301（对181+0.000182489），不能把补齐证据算为残差收益，未更新最佳。known重建遗漏来源导致193失败；198仅routing CSV行序哈希不同而拒绝复用，199保留unknown来源兼容但还有3个dev结构遗漏；3个结构从原0001 known真实参考SMILES恢复，不使用query truth或重建公式。新204复用已证明输入相同的unknown原模型输出，继续known；205独立归因所有活跃原empty或budget组，206必须完整rank exact，之后207/208残差对照。Controller要求同时通过历史181和206证据完整原模型门槛，且逐分子CSV与报告一致；失败或未知差异均保留，不降低门槛。
+
+
+204完整补齐原模型：unknown2000 MRR0.042728301、known1340 0.604600574/Top1 .565671642，unknown626.97秒复用已验证控制、known1058.84秒cached，无budget回退；此非新架构收益、不更新181。205空证据/预算独立归因unknown全部exact，known尚1处非empty聚合差异；该组4谱中3个legacy物理complete、1个physical文件缺失，当前4个均complete，不能把partial aggregate当完成证据。216扩展至全部活跃high物理输入并保持原181规则，全部2000/1340完整rank exact通过；未知身份4组、已知2组，原空/预算活跃unknown48/known491组均审计，未以标签挑个例。206原严格回放对216、207/208粗/精确残差系统评价继续。215增量fragment鲜缓存12query/15merged谱全部完整dict exact、13complete/2unsupported、0failed/timeout；整池15.97秒、增量1.55秒，原seed16.32秒另列，只是原候选分数可复用的局部runtime证明，不称cold全管线或准确率提升。281项回归通过。

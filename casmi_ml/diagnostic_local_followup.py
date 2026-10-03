@@ -31,15 +31,9 @@ def main():
         raise RuntimeError("This driver requires persistent local-only mode")
     with (c.root / "diagnostic_local_followup.lock").open("a") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        if not wait_for_report(c, "0204_full181_complete_control_audit"):
+        if not wait_for_report(c, "0216_full181_all_physical_control_attribution"):
             return
-        audit, _ = execute(
-            c,
-            "0205_full181_independent_control_attribution",
-            "casmi_ml.diagnostic_control_audit",
-            ["--observed", str(c.root / "rounds/0204_full181_complete_control_audit")],
-            "implementation_control_audit",
-        )
+        audit = c.root / "rounds/0216_full181_all_physical_control_attribution"
         if not json.loads((audit / "report.json").read_text()).get("control_passed"):
             raise RuntimeError("Independent complete control attribution failed")
         if c.stopped():
@@ -59,6 +53,8 @@ def main():
                 "--control",
                 "--control-reference",
                 str(audit),
+                "--reuse-unknown",
+                str(c.root / "rounds/0204_full181_complete_control_audit"),
             ],
             "implementation_control",
         )
@@ -94,7 +90,7 @@ def main():
                 ],
                 "diagnostic_residual_system",
             )
-            print("Local full system gate", rid, result["winner"], flush=True)
+            print("Local full system gate", rid, result.get("winner"), flush=True)
         Path(
             "results/research_loop/diagnostic_residual_local_followup.json"
         ).write_text(
