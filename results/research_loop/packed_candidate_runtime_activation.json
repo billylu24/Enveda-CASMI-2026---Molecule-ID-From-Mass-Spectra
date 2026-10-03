@@ -1,0 +1,10 @@
+{
+  "enabled": true,
+  "local_only": true,
+  "store": "artifacts/research_loop/rounds/0250_local_packed_candidate_preparation",
+  "control_directory": "artifacts/research_loop/rounds/0252_packed_candidate_full_inference_control",
+  "catalog_sha256": "3cfa1f39ee99bab83861609fb36ead49fa138b191955c0428504f88bd55178da",
+  "source_sha256": "744848689ef00b4874e8f4c987d70425326fc8069fa89a04d6cdd5f322248477",
+  "control_report_sha256": "919de453ef681df82de5a071a068293a4279285b3e48a093bbda7f3e0778c178",
+  "scope": "Exact all3340 full-ranking local runtime cache; candidate bit values and ordering unchanged, no accuracy increase or cold runtime acceptance claim"
+}

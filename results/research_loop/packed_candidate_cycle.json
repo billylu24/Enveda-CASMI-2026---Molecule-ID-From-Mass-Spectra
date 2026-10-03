@@ -1,0 +1,8 @@
+{
+  "local_only": true,
+  "status": "complete",
+  "independent_acceptance": false,
+  "remote_publication": false,
+  "exact_full_rankings": 3340,
+  "scope": "Candidate preparation runtime only; no accuracy or cold inference claim"
+}
