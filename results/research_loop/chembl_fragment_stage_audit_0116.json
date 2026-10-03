@@ -1,0 +1,67 @@
+{
+  "diagnostic_only": true,
+  "cohort": "repeated_development",
+  "independent_acceptance": false,
+  "experiment": "0116_chembl_sequence_budget_completion",
+  "protocol_sha256": "4c835c4cd31af8b0fe26be8b160e4069948f1757210eb20fde7477b3500ca1c3",
+  "report_sha256": "1475242eb20b18d7aa096c504d252e14f7e76a382c9d4d40ef64503475a18016",
+  "truth_used_only_for_aggregate_diagnosis": true,
+  "stage_counts_are_not_disjoint": true,
+  "aggregate": {
+    "unknown": {
+      "counts": {
+        "molecules": 2000,
+        "low_confidence_queries": 741,
+        "novel_truth_in_native": 40,
+        "novel_truth_in_critic_shortlist": 33,
+        "queries_with_possible_critic_gate": 590,
+        "novel_truth_in_possible_group": 32,
+        "skipped_impossible_group": 144,
+        "queries_passing_budget": 590,
+        "novel_truth_groups_passing_budget": 32,
+        "queries_passing_positive_informative": 203,
+        "novel_truth_groups_passing_positive_informative": 13,
+        "queries_passing_relative_fragment": 120,
+        "novel_truth_groups_passing_relative_fragment": 11,
+        "queries_passing_critic_margin": 442,
+        "novel_truth_groups_passing_critic_margin": 30,
+        "queries_inserted": 85,
+        "novel_truth_inserted": 6,
+        "novel_truth_positive_fragment": 11,
+        "novel_truth_fragment_beats_first": 11,
+        "novel_truth_own_critic_passes": 14,
+        "novel_truth_proposed_top3": 9,
+        "novel_truth_budget_fallback": 0
+      },
+      "reconstructed_metrics": {
+        "mrr25": 0.03960607885417856,
+        "top1": 0.014
+      }
+    },
+    "known": {
+      "counts": {
+        "molecules": 1340,
+        "low_confidence_queries": 281,
+        "novel_truth_in_native": 0,
+        "novel_truth_in_critic_shortlist": 0,
+        "queries_with_possible_critic_gate": 242,
+        "novel_truth_in_possible_group": 0,
+        "queries_passing_budget": 242,
+        "novel_truth_groups_passing_budget": 0,
+        "queries_passing_positive_informative": 11,
+        "novel_truth_groups_passing_positive_informative": 0,
+        "queries_passing_relative_fragment": 7,
+        "novel_truth_groups_passing_relative_fragment": 0,
+        "queries_passing_critic_margin": 181,
+        "novel_truth_groups_passing_critic_margin": 0,
+        "queries_inserted": 5,
+        "novel_truth_inserted": 0,
+        "skipped_impossible_group": 39
+      },
+      "reconstructed_metrics": {
+        "mrr25": 0.6049741558036106,
+        "top1": 0.5656716417910448
+      }
+    }
+  }
+}
