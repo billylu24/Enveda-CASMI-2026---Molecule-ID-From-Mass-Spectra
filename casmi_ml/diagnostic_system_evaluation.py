@@ -152,6 +152,11 @@ def run(
         raise ValueError("Replay reuse is only permitted for original control")
     reuse = Path(reuse_unknown) if reuse_unknown else None
     config = json.loads((BEST / "external_config.json").read_text())
+    from casmi_ml.array_order_runtime import resolve as resolve_array_order
+
+    array_runtime = resolve_array_order(Controller())
+    if array_runtime is not None:
+        config["candidate_order_runtime"] = array_runtime
     base_binding = (
         validate_residual_binding(encoder, config["encoder"]) if paired else None
     )

@@ -392,7 +392,11 @@
     "casmi_ml/candidate_array_benchmark.py",
     "tests/test_candidate_array_order.py",
     "casmi_ml/array_order_full_replay.py",
-    "tests/test_array_order_activation.py"
+    "tests/test_array_order_activation.py",
+    "casmi_ml/array_order_runtime.py",
+    "casmi_ml/training_query_pairs.py",
+    "casmi_ml/diagnostic_query_multispectrum_followup.py",
+    "tests/test_training_query_pairs.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

@@ -1,0 +1,10 @@
+{
+  "local_only": true,
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "molecules": 60000,
+  "spectra": 214804,
+  "molecules_with_at_least2_same_adduct_and_mode_spectra": 54956,
+  "molecules_with_at_least3_same_adduct_and_mode_spectra": 33889,
+  "scope": "Training-only observable query aggregation availability audit; no development label selection. Actual inference averages per-spectrum critic queries, current residual training uses one fixed representative."
+}

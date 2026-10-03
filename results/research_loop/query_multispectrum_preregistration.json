@@ -1,0 +1,20 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "motivation": "Original query residual and strict observed-mass objectives both failed complete incumbent gates. Training uses one fixed representative whereas actual candidate inference averages normalized per-spectrum queries. Training-only availability audit shows54956/60000 molecules have at least2 same-adduct/mode measured rows.",
+  "hypothesis": "Train CE on averaged corrected queries from two actual same-molecule/adduct/mode training rows; separate deterministicRNG260 picks second distinct row after originalRNG42 representative. Singleton duplicates preserve its original query exactly.",
+  "matched_arms": [
+    "precise chemical query residual with two measured spectra",
+    "same-capacity chemical identity masked residual with same pairs"
+  ],
+  "training": "Same60K molecules and labels, same pinned15 negatives and original unrestricted CE+.1 displacement anchor, fixed3epochs same235steps/epoch AdamW.001 wd.01; original encoder and all original critic tensors frozen. Increased spectra per example is the aggregation intervention, not additional optimizer updates.",
+  "budget": "Serial GPU, per-arm representation24h maximum. No development or holdout checkpoint selection.",
+  "control": "259 current array-source zero residual3340 exact control before training; same runtime proof and all incumbent/historical/completed-original gates. Inference architecture unchanged, only objective now averages two per-spectrum outputs.",
+  "sequence": [
+    "Finish259 current zero control",
+    "260/261 same-pair matched training",
+    "262/263 complete paired systems",
+    "Chemical identity attribution and two-versus-single spectrum objective diagnostic"
+  ]
+}

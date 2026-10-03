@@ -85,6 +85,9 @@ def extend(
     reference=None,
 ):
     root, output = Path(root), Path(output)
+    candidate_order_runtime = config.get("candidate_order_runtime")
+    if candidate_order_runtime not in (None, "array_v1"):
+        raise ValueError("Unsupported candidate ordering runtime")
     configure(threads=4)
     started = time.monotonic()
     test = pd.read_parquet(test_path)
@@ -192,13 +195,18 @@ def extend(
                 high = confidence[key] >= 0.5
                 if high:
                     values = corrected_scores(probability, fps, prior)
-                    native = [
-                        pool.iloc[i].inchikey14
-                        for i in sorted(
-                            range(len(pool)),
-                            key=lambda i: (-values[i], pool.iloc[i].inchikey14),
-                        )
-                    ]
+                    if candidate_order_runtime == "array_v1":
+                        from casmi_ml.candidate_array_order import rank_values
+
+                        native = rank_values(pool.inchikey14.tolist(), values)
+                    else:
+                        native = [
+                            pool.iloc[i].inchikey14
+                            for i in sorted(
+                                range(len(pool)),
+                                key=lambda i: (-values[i], pool.iloc[i].inchikey14),
+                            )
+                        ]
                 candidates = [k for k in native if k not in set(current)][:100]
                 for candidate, structure in zip(
                     pool.inchikey14, pool.normalized_smiles

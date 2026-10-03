@@ -35,6 +35,11 @@ def run(output, critic, control=False):
     output, critic = Path(output), Path(critic)
     output.mkdir(parents=True, exist_ok=True)
     config = json.loads((LOCAL_CONTROL / "external_config.json").read_text())
+    from casmi_ml.array_order_runtime import resolve as resolve_array_order
+
+    array_runtime = resolve_array_order(c)
+    if array_runtime is not None:
+        config["candidate_order_runtime"] = array_runtime
     original_critic = config["critic"]
     ranker, weights = load_query_ranker(critic, original_critic)
     if control and any(

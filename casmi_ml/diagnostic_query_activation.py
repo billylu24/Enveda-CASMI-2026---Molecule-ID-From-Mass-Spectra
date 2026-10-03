@@ -31,7 +31,12 @@ def activate(c, directory, result):
     best = c.read()["development_best"]
     if best["directory"] != str(directory) or best["variant"] != winner["variant"]:
         raise ValueError("Query activation must match the current complete winner")
-    zero = c.root / "rounds/0244_diagnostic_query_zero_control"
+    zero = Path(
+        c.read().get(
+            "local_query_zero_control",
+            c.root / "rounds/0244_diagnostic_query_zero_control",
+        )
+    )
     control = json.loads((zero / "report.json").read_text())
     control_protocol = json.loads((zero / "protocol.json").read_text())
     if not control.get("control_passed") or any(

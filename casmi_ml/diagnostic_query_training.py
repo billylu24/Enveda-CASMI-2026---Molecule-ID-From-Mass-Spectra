@@ -29,9 +29,15 @@ from casmi_ml.research_protocol import ENCODER, ROOT, TRAIN, freeze
 from casmi_ml.secondary_inference import load_deployment_checkpoint
 from casmi_ml.strict_mass_negative_mask import admissible_negatives
 from casmi_ml.training import configure
+from casmi_ml.training_query_pairs import paired_rows
 
 
-def run(output, mask_chemical_channels=False, strict_mass_negatives=False):
+def run(
+    output,
+    mask_chemical_channels=False,
+    strict_mass_negatives=False,
+    multispectrum=False,
+):
     configure(42, threads=4)
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
@@ -49,9 +55,14 @@ def run(output, mask_chemical_channels=False, strict_mass_negatives=False):
             "precise": True,
             "mask_chemical_channels": mask_chemical_channels,
             "strict_mass_negatives": strict_mass_negatives,
+            "multispectrum": multispectrum,
             "training_molecules": 60000,
             "row_selection": "one RNG42 representative per original60K molecule, same arms",
             "epochs": 3,
+            "query_pair_source_sha256": digest("casmi_ml/training_query_pairs.py"),
+            "query_aggregation": "Two measured rows under same molecule/adduct/mode, representativeRNG42 plus separate pairRNG260; per-spectrum corrected normalized queries averaged before CE and displacement anchor. Singleton row duplicated exactly."
+            if multispectrum
+            else "One originalRNG42 representative row per molecule",
             "optimizer": "AdamW .001 wd.01",
             "objective": (
                 "Original frozen scale listwise CE over positive and admissible pinned negatives inside35ppm/floor.006Da; other logits excluded, all original60K steps retained + .1 squared query displacement anchor"
@@ -111,9 +122,18 @@ def run(output, mask_chemical_channels=False, strict_mass_negatives=False):
             raise ValueError(
                 "Training target fingerprints differ from frozen direct candidates"
             )
-        chemical = np.stack(
-            [evidence_features(row, True) for row in chosen.to_dict("records")]
+        paired = paired_rows(train, ids) if multispectrum else ids.copy()
+        rows_per_molecule = 2 if multispectrum else 1
+        feature_ids = (
+            np.column_stack([ids, paired]).reshape(-1) if multispectrum else ids
         )
+        chemical = np.stack(
+            [
+                evidence_features(row, True)
+                for row in train.iloc[feature_ids].to_dict("records")
+            ]
+        )
+        distinct_pairs = int((paired != ids).sum()) if multispectrum else 0
         del target, train, chosen
         arrays = {
             name: np.load(FEATURES / (name + ".npy"), mmap_mode="r")
@@ -125,18 +145,18 @@ def run(output, mask_chemical_channels=False, strict_mass_negatives=False):
             raise ValueError("Original critic/encoder binding differs")
         base = DirectRanker("fingerprint").eval().to("cuda")
         base.load_state_dict(weights["state_dict"])
-        contexts = torch.empty(60000, 768, device="cuda")
-        queries = torch.empty(60000, 128, device="cuda")
+        contexts = torch.empty(len(feature_ids), 768, device="cuda")
+        queries = torch.empty(len(feature_ids), 128, device="cuda")
         molecules = torch.empty(60000, 128, device="cuda")
         with torch.inference_mode():
-            for start in range(0, 60000, 256):
+            for start in range(0, len(feature_ids), 256):
                 if not budget.checkpoint():
                     raise TimeoutError("Query preparation budget exhausted")
                 features = torch.cat(
                     [
-                        torch.from_numpy(np.array(a[ids[start : start + 256]])).to(
-                            "cuda"
-                        )
+                        torch.from_numpy(
+                            np.array(a[feature_ids[start : start + 256]])
+                        ).to("cuda")
                         for a in arrays.values()
                     ],
                     -1,
@@ -144,9 +164,13 @@ def run(output, mask_chemical_channels=False, strict_mass_negatives=False):
                 latent = encoder.encoder(features)
                 contexts[start : start + 256] = latent
                 queries[start : start + 256] = base.encode_spectra(latent)
+            for start in range(0, 60000, 256):
                 molecules[start : start + 256] = base.encode_molecules(
                     torch.from_numpy(data["fps"][start : start + 256]).to("cuda")
                 )
+        contexts = contexts.reshape(60000, rows_per_molecule, 768)
+        queries = queries.reshape(60000, rows_per_molecule, 128)
+        chemical = chemical.reshape(60000, rows_per_molecule, DIM)
         chemical = torch.from_numpy(chemical).to("cuda")
         hard = torch.from_numpy(hard).to("cuda")
         model = DiagnosticQueryRanker(base, mask_chemical_channels).to("cuda")
@@ -162,8 +186,14 @@ def run(output, mask_chemical_channels=False, strict_mass_negatives=False):
                 if not budget.checkpoint():
                     raise TimeoutError("Query training budget exhausted")
                 index = torch.from_numpy(indexes).to("cuda")
-                query = model.query_residual(
-                    queries[index], contexts[index], chemical[index]
+                query = (
+                    model.query_residual(
+                        queries[index].reshape(-1, 128),
+                        contexts[index].reshape(-1, 768),
+                        chemical[index].reshape(-1, DIM),
+                    )
+                    .reshape(len(index), rows_per_molecule, 128)
+                    .mean(1)
                 )
                 selected = torch.cat([index[:, None], hard[index]], -1)
                 logits = (query[:, None] * molecules[selected]).sum(
@@ -185,7 +215,7 @@ def run(output, mask_chemical_channels=False, strict_mass_negatives=False):
                 ce = F.cross_entropy(
                     logits, torch.zeros(len(index), dtype=torch.long, device="cuda")
                 )
-                anchor = (query - queries[index]).square().sum(-1).mean()
+                anchor = (query - queries[index].mean(1)).square().sum(-1).mean()
                 loss = ce + 0.1 * anchor
                 if not torch.isfinite(loss):
                     raise FloatingPointError("Nonfinite query residual loss")
@@ -220,6 +250,7 @@ def run(output, mask_chemical_channels=False, strict_mass_negatives=False):
             "dimension": DIM,
             "mask_chemical_channels": mask_chemical_channels,
             "strict_mass_negatives": strict_mass_negatives,
+            "multispectrum": multispectrum,
         }
         torch.save(weights, output / "model.pt")
         report = {
@@ -231,7 +262,10 @@ def run(output, mask_chemical_channels=False, strict_mass_negatives=False):
             "precise": True,
             "mask_chemical_channels": mask_chemical_channels,
             "strict_mass_negatives": strict_mass_negatives,
+            "multispectrum": multispectrum,
             "strict_inside_hard_negatives": strict_inside,
+            "distinct_same_ion_training_pairs": distinct_pairs,
+            "rows_per_training_molecule": rows_per_molecule,
             "original_critic_tensors_exact": True,
             "original_encoder_frozen": True,
             "history": history,
@@ -250,6 +284,7 @@ def main():
     parser.add_argument("--output", required=True)
     parser.add_argument("--mask-chemical-channels", action="store_true")
     parser.add_argument("--strict-mass-negatives", action="store_true")
+    parser.add_argument("--multispectrum", action="store_true")
     print(json.dumps(run(**vars(parser.parse_args())), indent=2))
 
 
