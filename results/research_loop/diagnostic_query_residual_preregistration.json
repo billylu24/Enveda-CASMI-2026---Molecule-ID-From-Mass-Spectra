@@ -1,0 +1,21 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "motivation": "Fingerprint residual has mainly changed candidate preselection while final candidate critic continues using unchanged768 latent; complete coarse contextual system failed despite candidate-only gain. Test chemical information directly in final candidate-facing scores without altering base encoder or candidate tower.",
+  "architecture": "Original normalized128 critic query + learned 792->64 GELU->128 correction in normalized space; original encoder768 latent, molecular tower and all original critic tensors exact/frozen; zero initialized last layer and zero-evidence exact original scores.",
+  "matched_arms": [
+    "precise_chemical_identity_plus_original_context",
+    "precise_chemical_identity_masked_plus_original_context"
+  ],
+  "training": "Same original60K RNG42 representative rows, same pinned15 training-only near-mass hard negatives, fixed3epochs AdamW .001 wd.01; CE under frozen critic scale + .1 query squared displacement. No development checkpoint selection.",
+  "gate": "Full3340 label-free zero-residual control before any train-arm full ranking; current verified best and completed original control frozen gates; no promotion with budget fallbacks or new physical failure contexts.",
+  "sequence": [
+    "Wait230 finalized precise system",
+    "244 zero-residual full implementation control",
+    "Wait243 finalized precursor/peak identity ablation",
+    "245/246 matched query correction training serial GPU",
+    "247/248 complete paired system and chemical-mask attribution"
+  ],
+  "GAN_DINO": "This is supervised anchored ranking, not GAN or DINO; existing actual cross-energy DINO negative evidence retained; no adversarial architecture expansion based on names alone."
+}

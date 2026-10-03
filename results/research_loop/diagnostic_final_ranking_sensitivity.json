@@ -1,0 +1,36 @@
+{
+  "local_only": true,
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "scope": "Observable exact full ranking changes versus completed original control; labels not used for group selection; precise context known phase pending.",
+  "unknown": {
+    "0223_diagnostic_coarse_complete_system": {
+      "molecules": 2000,
+      "full_ranking_changed": 98,
+      "top25_changed": 98,
+      "first_changed": 0,
+      "candidate_membership_changed": 78
+    },
+    "0224_diagnostic_exact_complete_system": {
+      "molecules": 2000,
+      "full_ranking_changed": 86,
+      "top25_changed": 86,
+      "first_changed": 0,
+      "candidate_membership_changed": 69
+    },
+    "0229_diagnostic_context_coarse_system": {
+      "molecules": 2000,
+      "full_ranking_changed": 139,
+      "top25_changed": 139,
+      "first_changed": 0,
+      "candidate_membership_changed": 113
+    },
+    "0230_diagnostic_context_exact_system": {
+      "molecules": 2000,
+      "full_ranking_changed": 131,
+      "top25_changed": 131,
+      "first_changed": 0,
+      "candidate_membership_changed": 102
+    }
+  }
+}

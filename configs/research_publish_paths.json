@@ -367,7 +367,14 @@
     "tests/test_low_leader_prefix.py",
     "casmi_ml/low_supported_slots_evaluation.py",
     "tests/test_low_supported_slots.py",
-    "casmi_ml/diagnostic_peak_loss_followup.py"
+    "casmi_ml/diagnostic_peak_loss_followup.py",
+    "casmi_ml/diagnostic_query_residual.py",
+    "casmi_ml/diagnostic_query_ranker.py",
+    "casmi_ml/diagnostic_query_training.py",
+    "casmi_ml/diagnostic_query_system.py",
+    "casmi_ml/diagnostic_query_followup.py",
+    "tests/test_diagnostic_query_residual.py",
+    "tests/test_diagnostic_query_ranker.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
