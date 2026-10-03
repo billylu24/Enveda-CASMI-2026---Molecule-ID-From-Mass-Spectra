@@ -328,3 +328,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第117训练内fingerprint背景校准full2000外部诊断：native MRR0.010153→corrected融合0.012625→corrected-only0.014147；候选recall均0.045、Top25 46→59→61/2000，原60K平滑边际且train/dev交集0。CPU56.8秒/1159MiB、737queries，未训练/GPU/采样；不能从候选诊断直接发布。第118同200融合pilot预注册：native500→原critic→以RRF0.5融合背景扣除native scores→前100→真实MetFrag0.5；仍要求实际首候选critic+.05、fragment严格高于0062首位、正且非同分证据，slots3/prefix2/3/5/10/skip-impossible固定，1200秒整组预算。和sequence融合隔离，不混用两份评分；完整score/protocol SHA、encoder/catalog/dev绑定，评分缺失者保持原槽位。不是重新训练判别器或GAN。
+
+
+第118背景校准+fragment pilot：unknown所有prefix保持baseline0.037997，没有新真值；known prefix3仅降0.000096、132.9秒/2919MiB、69组23非空、0预算回退，未训练/GPU，不扩大。第119背景校准+critic-only固定200独立控制：只保留原actual first critic+.05条件，先critic与校准score以RRF0.5排序，固定prefix3/最多3插入，不进行Java、不要求片段门控；区别候选自身改进在后续片段重排/证据条件中丢失，而非因unsupported ion永远无插入机会。保持校准边际与score SHA不变、native500前100不变，baseline严格对0062，只有小试验正向/known保护才完整。

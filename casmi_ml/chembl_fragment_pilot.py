@@ -109,7 +109,18 @@ def run(
     sequence_scores=None,
     sequence_ratio=1.0,
     fingerprint_prior_scores=None,
+    critic_only=False,
 ):
+    if critic_only and (
+        evidence_only
+        or compare_first
+        or mean_fragments
+        or relative_candidate_gate
+        or chemical_prior
+    ):
+        raise ValueError(
+            "Critic-only control cannot require fragment evidence or chemical-prior gates"
+        )
     if sequence_scores is not None and fingerprint_prior_scores is not None:
         raise ValueError(
             "Sequence and fingerprint-prior scoring are isolated experiments"
@@ -203,6 +214,8 @@ def run(
                 fragment_weight,
             ),
         }
+    if critic_only:
+        variants = {"baseline": None, "critic_control": (0.05, prefix, 3, 0.0)}
     if not 1 <= limit <= 2000:
         raise ValueError("Pilot limit must be in[1,2000]")
     sequence_values = {}
@@ -281,6 +294,7 @@ def run(
             "fragment_limit": fragment_limit,
             "initial_fragment_cache_sha256": digest(seed_path),
             "evidence_only": evidence_only,
+            "critic_only": critic_only,
             "candidate_gate": candidate_gate,
             "relative_candidate_gate": relative_candidate_gate,
             "chemical_prior": chemical_prior,
@@ -614,7 +628,7 @@ def run(
                         candidates_external,
                     )
                 fragments, fallback = {}, False
-                if candidates_external:
+                if candidates_external and not critic_only:
                     if fragment_key not in fragment_scores:
                         query = frame.iloc[groups[key]].drop(
                             columns=[
@@ -803,6 +817,7 @@ def run(
             "proposal_limit": proposal_limit,
             "fragment_limit": fragment_limit,
             "evidence_only": evidence_only,
+            "critic_only": critic_only,
             "candidate_gate": candidate_gate,
             "relative_candidate_gate": relative_candidate_gate,
             "chemical_prior": chemical_prior,
@@ -841,6 +856,7 @@ def main():
     p.add_argument("--fragment-gate-only", action="store_true")
     p.add_argument("--skip-impossible", action="store_true")
     p.add_argument("--relative-candidate-gate", action="store_true")
+    p.add_argument("--critic-only", action="store_true")
     p.add_argument("--fingerprint-prior-scores", type=Path)
     p.add_argument("--sequence-ratio", type=float, choices=(0.0, 1.0), default=1.0)
     p.add_argument("--sequence-scores", type=Path)
@@ -874,6 +890,7 @@ def main():
                 a.sequence_scores,
                 a.sequence_ratio,
                 a.fingerprint_prior_scores,
+                a.critic_only,
             ),
             indent=2,
         )
