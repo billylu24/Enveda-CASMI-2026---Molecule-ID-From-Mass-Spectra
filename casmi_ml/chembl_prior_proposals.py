@@ -15,8 +15,9 @@ from casmi_ml.chembl_fingerprint_prior import corrected_scores, marginal_prior
 from casmi_ml.chembl_sequence_pilot import PROPOSALS
 from casmi_ml.data import fingerprint, write_json
 from casmi_ml.inference import group_probability
+from casmi_ml.mass_candidates import candidate_window
 from casmi_ml.metfrag import digest
-from casmi_ml.ranking import metrics, neural_rank, rrf
+from casmi_ml.ranking import CandidateIndex, metrics, neural_rank, rrf
 from casmi_ml.research_budget import StageBudget
 from casmi_ml.research_protocol import ENCODER, ROOT, TRAIN, freeze
 from casmi_ml.secondary_inference import load_deployment_checkpoint
@@ -33,7 +34,7 @@ def ordered_proposals(keys, values):
 
 
 @torch.inference_mode()
-def run(output):
+def run(output, all_queries=False):
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     freeze(
@@ -49,12 +50,15 @@ def run(output):
             "native_proposals_sha256": digest(PROPOSALS),
             "limit": 2000,
             "candidate_limit": 500,
+            "all_queries": all_queries,
             "scope": "Complete frozen charge-aware mass window before top500 proposal selection; external diagnostic only",
             "variants": ["native", "corrected_fusion", "corrected_only"],
             "primary": "corrected_only",
             "prior": "Equal original60K molecule weight, Laplace(1,1) fingerprint marginal",
             "fusion": "Fixed0.5 reciprocal rank fusion on complete native and corrected rankings",
-            "query_selection": "Original native proposals confidence<.5, no query keys selected using outcomes",
+            "query_selection": "All development query keys"
+            if all_queries
+            else "Original native proposals confidence<.5; outcomes never select query keys",
             "native_reconstruction": "Compute fingerprint matrix in original stable mass/key window order to preserve BLAS numerical arithmetic; require exact stored native rank",
             "new_training": False,
             "new_sampling": False,
@@ -79,6 +83,7 @@ def run(output):
     catalog = pd.read_parquet(
         DERIVED, columns=["inchikey14", "normalized_smiles", "mass"]
     )
+    index = CandidateIndex(catalog) if all_queries else None
     wanted_catalog = catalog[catalog.inchikey14.isin(wanted)].set_index("inchikey14")
     lookup = wanted_catalog.normalized_smiles.to_dict()
     mass_lookup = wanted_catalog.mass.to_dict()
@@ -103,7 +108,7 @@ def run(output):
                 raise TimeoutError("Full mass-window prior scoring budget exhausted")
             base = native.get(key, [])
             corrected = base
-            if len(base) >= 2:
+            if len(base) >= 2 or (all_queries and key not in native):
                 query = frame.iloc[ids].drop(
                     columns=[
                         c
@@ -116,21 +121,33 @@ def run(output):
                         if c in frame
                     ]
                 )
-                scoring_order = sorted(base, key=lambda k: (mass_lookup[k], k))
-                fps = np.stack([fingerprint(lookup[k]) for k in scoring_order]).astype(
-                    np.float32
-                )
+                if all_queries and key not in native:
+                    if len(index.cache) > 20000:
+                        index.cache.clear()
+                    pool, fps = candidate_window(index, query, "charge_aware_union")
+                    scoring_order = pool.inchikey14.tolist()
+                else:
+                    scoring_order = sorted(base, key=lambda k: (mass_lookup[k], k))
+                    fps = np.stack(
+                        [fingerprint(lookup[k]) for k in scoring_order]
+                    ).astype(np.float32)
+                if not scoring_order:
+                    for rankings in proposals.values():
+                        rankings[key] = []
+                    continue
                 probability = group_probability(model, query, saved["preprocessing"])
                 actual_native = neural_rank(probability, scoring_order, fps)
-                if actual_native != base:
+                if key in native and actual_native != base:
                     raise ValueError(
                         "Native full mass-window ranking reconstruction differs"
                     )
+                if key not in native:
+                    base = actual_native
                 values = corrected_scores(probability, fps, prior)
                 if not np.isfinite(values).all():
                     raise ValueError("Nonfinite corrected proposals")
                 corrected = ordered_proposals(scoring_order, values)
-                score_count += len(base)
+                score_count += len(scoring_order)
                 scored_queries += 1
                 if scored_queries % 25 == 0:
                     print(
@@ -157,12 +174,15 @@ def run(output):
             }
             write_json(
                 output / f"{name}_proposals.json",
-                {k: v for k, v in rankings.items() if k in native},
+                rankings
+                if all_queries
+                else {k: v for k, v in rankings.items() if k in native},
             )
         result = {
             "diagnostic_only": True,
             "external_only": report,
             "coverage_counts": coverage,
+            "all_queries": all_queries,
             "scored_queries": scored_queries,
             "scored_candidates": score_count,
             "seconds": time.monotonic() - started,
@@ -181,7 +201,9 @@ def run(output):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
-    print(json.dumps(run(parser.parse_args().output), indent=2))
+    parser.add_argument("--all-queries", action="store_true")
+    args = parser.parse_args()
+    print(json.dumps(run(args.output, args.all_queries), indent=2))
 
 
 if __name__ == "__main__":

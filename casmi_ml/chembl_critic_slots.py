@@ -24,6 +24,7 @@ from casmi_ml.generated_score_combination import (
 )
 from casmi_ml.generated_second_reference import select_prefix
 from casmi_ml.generation_slots import insert_generated
+from casmi_ml.mass_candidates import mass_centers
 from casmi_ml.metfrag import digest
 from casmi_ml.ranking import CandidateIndex, metrics
 from casmi_ml.reference_guard import protects_reference
@@ -61,6 +62,23 @@ def validate_proposal_membership(proposals, original):
         raise ValueError("Custom proposals must preserve each original mass window")
 
 
+def validate_all_query_mass_windows(proposals, index, frame, groups):
+    if set(proposals) != set(groups):
+        raise ValueError("All-query proposals require every frozen query key")
+    for key, ids in groups.items():
+        query = frame.iloc[ids][["adduct", "precursor_mz"]]
+        allowed = {
+            candidate
+            for center in mass_centers(query, "charge_aware_union")
+            for candidate in index.query(center).inchikey14
+        }
+        if (
+            len(proposals[key]) != len(set(proposals[key]))
+            or set(proposals[key]) != allowed
+        ):
+            raise ValueError("All-query proposals differ from observable mass window")
+
+
 @torch.inference_mode()
 def run(
     output,
@@ -69,7 +87,15 @@ def run(
     critic_checkpoint=CRITIC,
     proposal_encoder=ENCODER,
     proposal_path=PROPOSALS,
+    confidence_scope="low",
 ):
+    if confidence_scope not in ("low", "high"):
+        raise ValueError("Confidence scope must be low or high")
+    variants = (
+        VARIANTS
+        if confidence_scope == "low"
+        else {"baseline": None, "margin005_prefix10": VARIANTS["margin005_prefix10"]}
+    )
     proposal_path = Path(proposal_path)
     critic_checkpoint, proposal_encoder = (
         Path(critic_checkpoint),
@@ -99,7 +125,11 @@ def run(
             "critic_scores_sha256": digest(SCORES),
             "promotion_scores_sha256": digest(pair_path),
             "incumbent_report_sha256": digest(incumbent / "report.json"),
-            "variants": VARIANTS,
+            "variants": variants,
+            "confidence_scope": confidence_scope,
+            "high_scope_rule": "Only confidence>=.5, preserve original first10, at most3 novel proposals after10, actual first critic+.05 gate"
+            if confidence_scope == "high"
+            else None,
             "proposal_limit": proposal_limit,
             "rule": f"Freeze0062;confidence<.5;preselect first{proposal_limit} novel ChEMBL proposals by native fingerprint;critic ranks proposals and top proposal must exceed actual current first by margin; insert at most3 after prefix",
             "critic_sha256": critic_sha,
@@ -150,7 +180,14 @@ def run(
             ROOT / "researchdev.parquet"
         ):
             raise ValueError("Custom proposals require explicit cohort binding")
-        validate_proposal_membership(proposals, json.loads(PROPOSALS.read_text()))
+        if proposal_protocol.get("all_queries"):
+            validate_all_query_mass_windows(proposals, index, frame, groups)
+        else:
+            validate_proposal_membership(proposals, json.loads(PROPOSALS.read_text()))
+    if confidence_scope == "high" and not proposal_protocol.get("all_queries"):
+        raise ValueError(
+            "High-confidence scoring requires complete all-query proposals"
+        )
     catalog_keys = set(index.catalog.inchikey14)
     if not set(proposals).issubset(groups) or any(
         len(values) != len(set(values)) or not set(values).issubset(catalog_keys)
@@ -220,14 +257,14 @@ def run(
                 "critic_top10": 0,
                 "critic_top25": 0,
             }
-            ranks = {name: {} for name in VARIANTS}
-            pools = {name: {} for name in VARIANTS}
+            ranks = {name: {} for name in variants}
+            pools = {name: {} for name in variants}
             diagnostics[mode] = {
                 name: {
                     "queries_with_inserted_candidates": 0,
                     "novel_inserted_truths": 0,
                 }
-                for name in VARIANTS
+                for name in variants
             }
             for i, row in enumerate(rows, 1):
                 if mode == "known" and not row["known"]:
@@ -261,7 +298,12 @@ def run(
                 current_pool = selected["pool"] + candidates
                 candidates_external = []
                 cache_key = None
-                if confidence[key] < 0.5 and current:
+                in_scope = (
+                    confidence[key] < 0.5
+                    if confidence_scope == "low"
+                    else confidence[key] >= 0.5
+                )
+                if in_scope and current:
                     current_set = set(current)
                     candidates_external = [
                         k for k in proposals[key] if k not in current_set
@@ -333,7 +375,7 @@ def run(
                         coverage[mode][f"critic_top{cutoff}"] += (
                             key in candidates_external[:cutoff]
                         )
-                for name, spec in VARIANTS.items():
+                for name, spec in variants.items():
                     external = []
                     if (
                         spec
@@ -360,7 +402,7 @@ def run(
                         key in novel_external
                     )
             report[mode] = {}
-            for name in VARIANTS:
+            for name in variants:
                 result, per = metrics(ranks[name], pools[name])
                 if name == "baseline":
                     expected = (
@@ -409,6 +451,7 @@ def main():
     p.add_argument("--critic-checkpoint", type=Path, default=CRITIC)
     p.add_argument("--proposal-encoder", type=Path, default=ENCODER)
     p.add_argument("--proposal-path", type=Path, default=PROPOSALS)
+    p.add_argument("--confidence-scope", choices=("low", "high"), default="low")
     a = p.parse_args()
     print(
         json.dumps(
@@ -419,6 +462,7 @@ def main():
                 a.critic_checkpoint,
                 a.proposal_encoder,
                 a.proposal_path,
+                a.confidence_scope,
             ),
             indent=2,
         )

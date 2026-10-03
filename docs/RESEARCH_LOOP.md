@@ -401,3 +401,11 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 第141/142 matched训练完成15.4/14.6秒，joint critic11 tensors实际变化且finite、新encoder binding正确；142 frozen模型state_dict与旧125逐tensor完全一致，开关重构未改变control训练过程。第143/144完整native100 candidate: control Top3 9/Top10 12/Top25 15，joint9/13/15；预选prefix5 MRR0.039351→0.039359仅+0.000009、known0.604201→0.604248，均未过0062门槛。训练CE joint0.572206低于control0.604951仍不能视为系统收益。第145/146 samehash200 merged fragment matched双臂预登记：原0062/native100/first相对fragment/score margin.05/RRF.5/prefix3/3slots/skip-impossible/1200秒，全保持；只对比冻结与joint scorer，用同源码/独立模型绑定缓存。仅若joint比matched control改善且known保护才考虑full，不从143/144选择新prefix。
+
+
+第146与145 matched fragment所有指标相同，prefix3 0.031105、known不变、新真值均2，不扩大joint设置；189回归通过。
+
+第147 confidence routing完整coverage审计后的预登记：ChEMBL质量窗中当前0062排名不包含的真值，confidence<.2为28、.2-.5为18、>=.5为103（1254query）。仅低置信路由使大多数外部可用覆盖尚未检验；这是label-only aggregate upper bound，不能据此降低known保护。先同原encoder/60K背景在全部2000 query做完整native/corrected proposal诊断，原746低置信quality window原排名逐组exact重建，新1254只使用observable precursor/ion质量窗，不使用truth决定query/候选集合。native vs corrected-only vs RRF.5固定，500截断不变、3600秒CPU；全query source独立目录/明确all_queries，不能混入原lowconf proposal cache。此轮仍仅外部诊断；若high范围有稳定可评分候选，再预先冻结tail-prefix10并保护原first10完整顺序的对照，known gate不变。不会将confidence误当正确率或靠oracle改路由。
+
+
+第148高置信candidate-tail-only完整预登记：只confidence>=.5，147完整质量窗corrected-only前100，经原critic对actual first+.05支持时最多3个new结构插在前10之后；first10完整rank顺序不可变、原0062low路线与生成冻结。只一个固定variant margin005_prefix10，完整2000/1340/known门槛不变。提案必须覆盖全部cohort，每query成员严格等于observable mass_centers charge-aware union窗口，不能借all-query source增窗或添加结构；新增回归覆盖外窗候选和缺失query。先看high scope scoring/覆盖证据，不从结果挑新margin/prefix。若无增益，不部署。

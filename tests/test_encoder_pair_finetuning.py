@@ -3,11 +3,17 @@
 import unittest
 
 import numpy as np
+import pandas as pd
 
-from casmi_ml.chembl_critic_slots import score_cache_key, validate_proposal_membership
+from casmi_ml.chembl_critic_slots import (
+    score_cache_key,
+    validate_all_query_mass_windows,
+    validate_proposal_membership,
+)
 from casmi_ml.chembl_fragment_pilot import score_cache_key as fragment_cache_key
 from casmi_ml.chembl_prior_proposals import ordered_proposals
 from casmi_ml.encoder_pair_finetuning import validate_hard_table
+from casmi_ml.ranking import CandidateIndex
 
 
 class EncoderPairBindingTests(unittest.TestCase):
@@ -30,6 +36,18 @@ class EncoderPairBindingTests(unittest.TestCase):
         self.assertEqual(
             score_cache_key(*args, original), score_cache_key(*args, original.copy())
         )
+
+    def test_all_query_proposals_cannot_add_out_of_mass_candidates(self):
+        index = CandidateIndex(
+            pd.DataFrame({"inchikey14": ["a", "b"], "mass": [100.0, 200.0]})
+        )
+        frame = pd.DataFrame({"adduct": ["[M+H]+"], "precursor_mz": [101.007276]})
+        groups = {"q": np.array([0])}
+        validate_all_query_mass_windows({"q": ["a"]}, index, frame, groups)
+        with self.assertRaisesRegex(ValueError, "observable mass window"):
+            validate_all_query_mass_windows({"q": ["a", "b"]}, index, frame, groups)
+        with self.assertRaisesRegex(ValueError, "every frozen query"):
+            validate_all_query_mass_windows({}, index, frame, groups)
 
     def test_preselection_ties_use_the_scored_candidate_keys(self):
         self.assertEqual(
