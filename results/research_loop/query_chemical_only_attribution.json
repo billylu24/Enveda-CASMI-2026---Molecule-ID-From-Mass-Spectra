@@ -1,0 +1,56 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "arms": {
+    "chemical": {
+      "round": "0268_query_chemical_only_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04412516600326956,
+          "top1": 0.016,
+          "top5": 0.084,
+          "top25": 0.1305,
+          "conditional_mrr25": 0.22229302772427983
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.60394136988827,
+          "top1": 0.564179104477612,
+          "top5": 0.6343283582089553,
+          "top25": 0.7402985074626866,
+          "conditional_mrr25": 0.6823620873948413
+        }
+      }
+    },
+    "identity_masked": {
+      "round": "0269_query_chemical_only_mask_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04390885647946003,
+          "top1": 0.016,
+          "top5": 0.083,
+          "top25": 0.1295,
+          "conditional_mrr25": 0.22120330720130996
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6037873323834861,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.682188048392809
+        }
+      }
+    }
+  },
+  "chemical_minus_mask_unknown_mrr25": 0.00021630952380952834,
+  "chemical_only_minus_contextual_unknown_mrr25": 0.000296226237530596,
+  "scope": "Same pairs, labels, hard negatives, steps and fixed forward graph as260/261. Latent columns of correction input frozen zero in both arms; frozen original latent still produces baseline query. Matched mask removes24 identities but keeps maximum-strength gate. Repeated full3340 evidence; no fresh acceptance."
+}

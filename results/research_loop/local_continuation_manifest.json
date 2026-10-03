@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03T12:27:16Z",
+  "updated_at": "2026-10-03T12:44:04Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -101,10 +101,16 @@
   },
   "active_rounds": [
     {
-      "id": "0268_query_chemical_only_system",
+      "id": "0276_object_candidate_full_control",
+      "direction": "runtime_diagnostic",
+      "status": "external_running",
+      "report": "artifacts/research_loop/rounds/0276_object_candidate_full_control/report.json"
+    },
+    {
+      "id": "0274_query_balanced_chemical_system",
       "direction": "chemical_query_critic",
       "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0268_query_chemical_only_system/report.json"
+      "report": "artifacts/research_loop/rounds/0274_query_balanced_chemical_system/report.json"
     }
   ],
   "local_candidate_runtime": {
@@ -123,6 +129,7 @@
     "source_sha256": "28926c166dbb88701c8676a8fd2e34b94b104029c43706da7c56f172b1876a41",
     "control_directory": "artifacts/research_loop/rounds/0258_array_order_full_inference_control"
   },
+  "local_object_candidate_runtime": null,
   "local_proposal_runtime": {
     "enabled": true,
     "local_only": true,
@@ -148,9 +155,11 @@
   "local_query_zero_control": "artifacts/research_loop/rounds/0259_query_array_zero_control",
   "drivers": [
     "diagnostic_query_multispectrum_followup.log",
-    "diagnostic_query_chemical_only_followup.log"
+    "diagnostic_query_chemical_only_followup.log",
+    "diagnostic_query_balanced_followup.log",
+    "object_candidate_followup.log"
   ],
-  "pending_sequence": "Finish paired multi-spectrum attribution; chemical-only versus same constrained masked query heads266/267, full systems268/269. Only complete frozen gate winners replace local best.",
+  "pending_sequence": "Finish chemical-only attribution268/269, then training-only modality balancing272/273 and complete systems274/275. Object candidate window storage control276+proposal277 must both pass exact before local activation. Only complete frozen gate winners replace local best.",
   "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
   "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
   "independent_acceptance": false,
@@ -934,6 +943,62 @@
     },
     {
       "id": "0268_query_chemical_only_system",
+      "direction": "chemical_query_critic",
+      "status": "rejected",
+      "decision": "results/research_loop/0268_query_chemical_only_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0270_verified_packed_array_runtime_profile",
+      "direction": "runtime_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0270_verified_packed_array_runtime_profile.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0269_query_chemical_only_mask_system",
+      "direction": "chemical_query_critic",
+      "status": "rejected",
+      "decision": "results/research_loop/0269_query_chemical_only_mask_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0271_object_candidate_window_benchmark",
+      "direction": "runtime_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0271_object_candidate_window_benchmark.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0276_object_candidate_full_control",
+      "direction": "runtime_diagnostic",
+      "status": "external_running",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "0277_object_candidate_proposal_control",
+      "direction": "runtime_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0277_object_candidate_proposal_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0272_query_balanced_chemical",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0272_query_balanced_chemical.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0273_query_balanced_mask",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0273_query_balanced_mask.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0274_query_balanced_chemical_system",
       "direction": "chemical_query_critic",
       "status": "external_running",
       "decision": null,

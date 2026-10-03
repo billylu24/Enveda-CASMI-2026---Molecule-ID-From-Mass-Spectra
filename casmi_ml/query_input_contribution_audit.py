@@ -120,11 +120,6 @@ def run(output):
         delta_masked = head.correction[-1](hidden_masked) * chemical.amax(
             -1, keepdim=True
         )
-        masked = (
-            baseline
-            + F.normalize(baseline + delta_masked, dim=-1)
-            - F.normalize(baseline, dim=-1)
-        )
         # Parenthesize normalization difference to match actual residual arithmetic.
         masked = baseline + (
             F.normalize(baseline + delta_masked, dim=-1) - F.normalize(baseline, dim=-1)

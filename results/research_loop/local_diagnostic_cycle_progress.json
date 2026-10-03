@@ -13,7 +13,7 @@
     "budget_fallbacks": 861,
     "diagnostic_only": true
   },
-  "next_sequence": "Finish paired multi-spectrum attribution; chemical-only versus same constrained masked query heads266/267, full systems268/269. Only complete frozen gate winners replace local best.",
+  "next_sequence": "Finish chemical-only attribution268/269, then training-only modality balancing272/273 and complete systems274/275. Object candidate window storage control276+proposal277 must both pass exact before local activation. Only complete frozen gate winners replace local best.",
   "independent_acceptance": false,
   "precision_first_pass": {
     "unknown_mrr25": 0.04268861838422192,
@@ -24,7 +24,7 @@
     "raw_candidates_reused": 127088,
     "new_candidates_scored": 3025
   },
-  "active_round": "0268_query_chemical_only_system",
+  "active_round": "0274_query_balanced_chemical_system",
   "coarse_complete": {
     "unknown_mrr25": 0.04268861838422192,
     "known_mrr25": 0.6046005738683694,
@@ -36,7 +36,8 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0268_query_chemical_only_system"
+    "0276_object_candidate_full_control",
+    "0274_query_balanced_chemical_system"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -326,7 +327,7 @@
       "original_critic_tensors_exact": true
     }
   },
-  "updated_at": "2026-10-03T12:27:16Z",
+  "updated_at": "2026-10-03T12:44:04Z",
   "current_query_zero_control": "artifacts/research_loop/rounds/0259_query_array_zero_control",
   "local_verified_evidence_round": "0258_array_order_full_inference_control",
   "multispectrum_attribution": {
@@ -394,5 +395,61 @@
     ],
     "accuracy_gain_claim": false,
     "enabled_for_explicit_local_proposal_entry": true
+  },
+  "chemical_only_attribution": {
+    "local_only": true,
+    "remote_publication": false,
+    "independent_acceptance": false,
+    "arms": {
+      "chemical": {
+        "round": "0268_query_chemical_only_system",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.04412516600326956,
+            "top1": 0.016,
+            "top5": 0.084,
+            "top25": 0.1305,
+            "conditional_mrr25": 0.22229302772427983
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.60394136988827,
+            "top1": 0.564179104477612,
+            "top5": 0.6343283582089553,
+            "top25": 0.7402985074626866,
+            "conditional_mrr25": 0.6823620873948413
+          }
+        }
+      },
+      "identity_masked": {
+        "round": "0269_query_chemical_only_mask_system",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.04390885647946003,
+            "top1": 0.016,
+            "top5": 0.083,
+            "top25": 0.1295,
+            "conditional_mrr25": 0.22120330720130996
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6037873323834861,
+            "top1": 0.564179104477612,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.682188048392809
+          }
+        }
+      }
+    },
+    "chemical_minus_mask_unknown_mrr25": 0.00021630952380952834,
+    "chemical_only_minus_contextual_unknown_mrr25": 0.000296226237530596,
+    "scope": "Same pairs, labels, hard negatives, steps and fixed forward graph as260/261. Latent columns of correction input frozen zero in both arms; frozen original latent still produces baseline query. Matched mask removes24 identities but keeps maximum-strength gate. Repeated full3340 evidence; no fresh acceptance."
   }
 }

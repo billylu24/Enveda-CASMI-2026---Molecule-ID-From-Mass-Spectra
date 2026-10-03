@@ -404,7 +404,19 @@
     "casmi_ml/chemical_query_constraint.py",
     "tests/test_chemical_query_constraint.py",
     "casmi_ml/diagnostic_query_chemical_only_followup.py",
-    "casmi_ml/local_research_snapshot.py"
+    "casmi_ml/local_research_snapshot.py",
+    "casmi_ml/verified_runtime_profile.py",
+    "casmi_ml/object_candidate_runtime.py",
+    "casmi_ml/object_candidate_benchmark.py",
+    "casmi_ml/query_modality_balance.py",
+    "tests/test_query_modality_balance.py",
+    "casmi_ml/diagnostic_query_balanced_followup.py",
+    "casmi_ml/object_candidate_verification.py",
+    "casmi_ml/object_candidate_proposal_control.py",
+    "casmi_ml/object_candidate_activation.py",
+    "casmi_ml/object_candidate_followup.py",
+    "tests/test_object_candidate_runtime.py",
+    "tests/test_object_candidate_activation.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

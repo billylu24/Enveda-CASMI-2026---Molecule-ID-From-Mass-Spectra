@@ -1,0 +1,17 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "evidence": "Training-only audit265 chemistry first-linear RMS1.4%-1.6% of context; paired chemical system262 fails incumbent gain gate. Chemical-only isolate268/269 evaluated first; normalization is a separately preregistered scale intervention retaining contextual interactions, not a development weight sweep.",
+  "hypothesis": "Balance total squaredL2 energy of latent768 and chemistry24 correction input blocks using one scalar per block fit only on fixed120K training spectrum pair rows. Test same factors with24 chemical identity mask; original evidence maximum-strength gate and baseline query unchanged.",
+  "architecture": "Same792->64GELU->128 correction graph, original encoder and critic frozen. Train on scaled input then fold input scales into first-layer weights. Fixed sample trained-vs-folded output check<=1e-6; zero initialized correction remains exact and0259 existing zero control applies because deployed forward graph/source unchanged.",
+  "training": "Same60K labels, RNG42 representatives plus RNG260 actual same-ion pair, unrestricted pinned15 negatives, three fixed epochs235steps, AdamW.001 wd.01 CE+.1 anchor. No dev checkpoint, scalar or hyperparameter selection.",
+  "sequence": [
+    "Complete269 paired chemical-only evidence",
+    "272/273 serial fixed training",
+    "274/275 paired full systems",
+    "Persist balanced-vs-unbalanced and chemical-vs-masked attribution"
+  ],
+  "gates": "Current best+completed0206+historical181, unknown absolute+.0005 AND relative+2%; known MRRdrop<=.001 Top1drop<=.005, no budget fallback or new failed physical evidence.1200s fragmentation/scenario unchanged,24 GPUh per representation arm maximum.",
+  "claim": "Balanced input training and numerical folding alone do not prove ranking improvement or independent acceptance."
+}

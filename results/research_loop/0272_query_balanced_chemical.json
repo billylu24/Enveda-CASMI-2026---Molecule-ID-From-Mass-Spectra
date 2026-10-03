@@ -1,0 +1,53 @@
+{
+  "round": "0272_query_balanced_chemical",
+  "direction": "representation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "train_development_overlap": 0,
+    "precise": true,
+    "mask_chemical_channels": false,
+    "strict_mass_negatives": false,
+    "multispectrum": true,
+    "chemical_only_correction": false,
+    "balance_modalities": true,
+    "folded_input_scales": {
+      "latent": 0.027140476060688236,
+      "chemical": 2.25542539060674
+    },
+    "fold_max_abs_query_error": 4.470348358154297e-08,
+    "correction_latent_nonzero_weights": 49152,
+    "strict_inside_hard_negatives": 720198,
+    "distinct_same_ion_training_pairs": 48405,
+    "rows_per_training_molecule": 2,
+    "original_critic_tensors_exact": true,
+    "original_encoder_frozen": true,
+    "history": [
+      {
+        "epoch": 1,
+        "listwise_ce": 0.5239168178527913,
+        "query_anchor": 0.007629981495475922
+      },
+      {
+        "epoch": 2,
+        "listwise_ce": 0.5187025114576868,
+        "query_anchor": 0.01293378881911965
+      },
+      {
+        "epoch": 3,
+        "listwise_ce": 0.5132461826852027,
+        "query_anchor": 0.01830602890633522
+      }
+    ],
+    "seconds": 52.508606130984845,
+    "model_sha256": "955f9c823426d7f1c11b8ec20985b65186735fe1933a731c863008a1deb7475d",
+    "scope": "Training diagnostic only; complete paired full-system inference and matched chemical-mask attribution required"
+  },
+  "protocol_sha256": "b5ef4210380cb56104f3870e489d10dae1f5995e1bc48fdca7f1760c6464ce6f",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

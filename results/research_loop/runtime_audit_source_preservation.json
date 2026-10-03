@@ -1,0 +1,18 @@
+{
+  "local_only": true,
+  "independent_acceptance": false,
+  "entries": [
+    {
+      "round": "0265_training_query_input_contribution_audit",
+      "executed_source_sha256": "0791ba8643212d408546b6dba351f18394a3449d94db48525c9a0f0461e3ab45",
+      "current_source_sha256": "44feb1f9dfdbaf015027a7985741aed56c57343c0e8af4f79b36d6c290a130e6",
+      "amendment": "Removed overwritten temporary arithmetic; retained final residual expression and report. Executed source archived privately; frozen report untouched."
+    },
+    {
+      "round": "0270_verified_packed_array_runtime_profile",
+      "executed_source_sha256": "1626852e4b5885ce077548670de17dc2813cd48bd2fd6529caa5c437ae448cd4",
+      "current_source_sha256": "dda957997ce97ef414e0662674acd807735caf54013cf91d69dcef515cffe97a",
+      "amendment": "Sorted imports only after full sample execution finished; executed source archived privately, frozen profile/report untouched."
+    }
+  ]
+}

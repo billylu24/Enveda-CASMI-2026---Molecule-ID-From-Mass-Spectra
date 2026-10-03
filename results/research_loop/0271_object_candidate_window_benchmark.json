@@ -1,0 +1,47 @@
+{
+  "round": "0271_object_candidate_window_benchmark",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "full_value_and_float32_fingerprint_windows_exact": 200,
+    "timing": {
+      "unknown": {
+        "packed_arrow": {
+          "queries": 100,
+          "candidate_rows": 84947,
+          "window_seconds": 2.3606370950874407,
+          "initialization_seconds": 7.781559710012516
+        },
+        "packed_object": {
+          "queries": 100,
+          "candidate_rows": 84947,
+          "window_seconds": 0.16346761194290593,
+          "initialization_seconds": 8.206393567001214
+        }
+      },
+      "known": {
+        "packed_arrow": {
+          "queries": 100,
+          "candidate_rows": 98435,
+          "window_seconds": 2.3256922902946826,
+          "initialization_seconds": 7.781559710012516
+        },
+        "packed_object": {
+          "queries": 100,
+          "candidate_rows": 98435,
+          "window_seconds": 0.1826822551083751,
+          "initialization_seconds": 8.206393567001214
+        }
+      }
+    },
+    "activated": false,
+    "scope": "Candidate-window storage microbenchmark only; complete3340 inference required before activation"
+  },
+  "protocol_sha256": "c11e5725eed5c0f9db1ad10a80bf3aadd779d61a14ac03c36274a2623a0e9db9",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

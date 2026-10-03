@@ -28,6 +28,7 @@ from casmi_ml.encoder_pair_finetuning import (
 )
 from casmi_ml.generated_first_critic import CRITIC
 from casmi_ml.metfrag import digest
+from casmi_ml.query_modality_balance import balanced_query, fit_scales, fold_scales
 from casmi_ml.research_budget import StageBudget
 from casmi_ml.research_protocol import ENCODER, ROOT, TRAIN, freeze
 from casmi_ml.secondary_inference import load_deployment_checkpoint
@@ -42,7 +43,12 @@ def run(
     strict_mass_negatives=False,
     multispectrum=False,
     chemical_only_correction=False,
+    balance_modalities=False,
 ):
+    if chemical_only_correction and balance_modalities:
+        raise ValueError(
+            "Constrained context and balanced context are separate hypotheses"
+        )
     configure(42, threads=4)
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
@@ -62,6 +68,11 @@ def run(
             "strict_mass_negatives": strict_mass_negatives,
             "multispectrum": multispectrum,
             "chemical_only_correction": chemical_only_correction,
+            "balance_modalities": balance_modalities,
+            "modality_balance_sha256": digest("casmi_ml/query_modality_balance.py"),
+            "modality_balance_rule": "One training-only scalar per block to unit mean squared L2 energy; compute on unmasked same120K measured pair rows, same factors in both arms. Only correction input scaled, original strength gate and baseline unchanged. Fold factors into first-layer weights before saving; existing inference graph retained."
+            if balance_modalities
+            else "No input normalization",
             "chemical_constraint_sha256": digest(
                 "casmi_ml/chemical_query_constraint.py"
             ),
@@ -184,6 +195,7 @@ def run(
         queries = queries.reshape(60000, rows_per_molecule, 128)
         chemical = chemical.reshape(60000, rows_per_molecule, DIM)
         chemical = torch.from_numpy(chemical).to("cuda")
+        scales = fit_scales(contexts, chemical) if balance_modalities else None
         hard = torch.from_numpy(hard).to("cuda")
         model = DiagnosticQueryRanker(base, mask_chemical_channels).to("cuda")
         if chemical_only_correction:
@@ -200,15 +212,17 @@ def run(
                 if not budget.checkpoint():
                     raise TimeoutError("Query training budget exhausted")
                 index = torch.from_numpy(indexes).to("cuda")
-                query = (
-                    model.query_residual(
-                        queries[index].reshape(-1, 128),
-                        contexts[index].reshape(-1, 768),
-                        chemical[index].reshape(-1, DIM),
-                    )
-                    .reshape(len(index), rows_per_molecule, 128)
-                    .mean(1)
+                query_inputs = (
+                    queries[index].reshape(-1, 128),
+                    contexts[index].reshape(-1, 768),
+                    chemical[index].reshape(-1, DIM),
                 )
+                corrected = (
+                    balanced_query(model.query_residual, *query_inputs, scales)
+                    if balance_modalities
+                    else model.query_residual(*query_inputs)
+                )
+                query = corrected.reshape(len(index), rows_per_molecule, 128).mean(1)
                 selected = torch.cat([index[:, None], hard[index]], -1)
                 logits = (query[:, None] * molecules[selected]).sum(
                     -1
@@ -247,6 +261,22 @@ def run(
                 }
             )
             print(history[-1], flush=True)
+        fold_error = None
+        if balance_modalities:
+            with torch.no_grad():
+                inputs = (
+                    queries[:256].reshape(-1, 128),
+                    contexts[:256].reshape(-1, 768),
+                    chemical[:256].reshape(-1, DIM),
+                )
+                trained_output = balanced_query(model.query_residual, *inputs, scales)
+                fold_scales(model.query_residual, scales)
+                deployed_output = model.query_residual(*inputs)
+                fold_error = float((trained_output - deployed_output).abs().max())
+                if fold_error > 1e-6:
+                    raise ValueError(
+                        "Folded training input scaling differs above numerical tolerance"
+                    )
         if chemical_only_correction:
             verify_context_weights(model.query_residual)
         original = torch.load(CRITIC, map_location="cpu", weights_only=True)[
@@ -268,6 +298,8 @@ def run(
             "strict_mass_negatives": strict_mass_negatives,
             "multispectrum": multispectrum,
             "chemical_only_correction": chemical_only_correction,
+            "balance_modalities": balance_modalities,
+            "folded_input_scales": scales,
         }
         torch.save(weights, output / "model.pt")
         report = {
@@ -281,6 +313,9 @@ def run(
             "strict_mass_negatives": strict_mass_negatives,
             "multispectrum": multispectrum,
             "chemical_only_correction": chemical_only_correction,
+            "balance_modalities": balance_modalities,
+            "folded_input_scales": scales,
+            "fold_max_abs_query_error": fold_error,
             "correction_latent_nonzero_weights": int(
                 model.query_residual.correction[0].weight[:, :768].count_nonzero()
             ),
@@ -307,6 +342,7 @@ def main():
     parser.add_argument("--strict-mass-negatives", action="store_true")
     parser.add_argument("--multispectrum", action="store_true")
     parser.add_argument("--chemical-only-correction", action="store_true")
+    parser.add_argument("--balance-modalities", action="store_true")
     print(json.dumps(run(**vars(parser.parse_args())), indent=2))
 
 

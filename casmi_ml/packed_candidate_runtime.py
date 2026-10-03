@@ -25,6 +25,11 @@ def resolve(c, catalog_sha256):
         or report["incremental_new_failure_contexts"]
     ):
         raise ValueError("Active packed cache has no complete inference control")
+    from casmi_ml.object_candidate_activation import resolve as resolve_object
+
+    object_factory = resolve_object(c, value)
+    if object_factory is not None:
+        return object_factory
     return lambda catalog: PackedCandidateIndex(catalog, value["store"], catalog_sha256)
 
 

@@ -10,12 +10,15 @@
     "Supported low leader observable promotion passed frozen historical and completed-control gates, exact3340 replay; verified unknown MRR0.04397830092390447, known0.6037921161569266.",
     "Stronger originalfirst3 support and per-slot support improved development metrics further but failed frozen2% relative-gain gate versus verified incumbent; neither replaced best.",
     "Source-bound packed fingerprints retained all2616801 candidate bit vectors and all3340 full ranks exactly; local cached control wall time unknown301.29s, known209.35s, with peak RSS about3.2GiB. These are cached controls, not independent cold inference proofs.",
-    "Peak-loss identity masked contextual arm also retained same complete system unknown and known metrics as all-channel and all-identity-masked controls; no observed final-system chemical identity effect in these fixed-BCE heads."
+    "Peak-loss identity masked contextual arm also retained same complete system unknown and known metrics as all-channel and all-identity-masked controls; no observed final-system chemical identity effect in these fixed-BCE heads.",
+    "Candidate-facing query residual single, strict-mass and measured-pair arms did not pass incumbent gates. Multi-spectrum chemical-minus-mask unknown MRR+.0003794 but both below incumbent.",
+    "Training-only4096-key audit first-linear chemistry RMS1.4%-1.6% of latent context; not causal proof. Chemical-only correction full unknown MRR.044125166 and masked.043908856 both below frozen2% relative gain versus incumbent; original tensors remain exact.",
+    "200 actual windows with object candidate string storage retain every row value/order and float32 fingerprint. Window segment2.36/2.33s->.163/.183s in sequential microbenchmark; complete3340+three complete proposal controls pending, not enabled."
   ],
   "current_sequence": [
-    "Complete247 chemical query and248 masked query critic systems; original encoder/critic molecular tensors frozen.",
-    "Current verified best, completed original control and historical181 known protection required.",
-    "Persist full-system paired chemical identity attribution; any failed gate retains current best."
+    "Complete272/273 fixed paired modality-balanced input training and274/275 full systems; same labels/steps, frozen original models, no development scalar selection.",
+    "Finish276 object candidate full ranks and277 complete proposal dictionaries; enable only after science arms complete and unchanged-incumbent proof confirmed.",
+    "Retain frozen threshold and current verified best if gates fail; no Kaggle or GitHub remote actions."
   ],
   "gan": {
     "status": "not_expanded",

@@ -34,13 +34,16 @@ def refresh():
         "active_rounds": active,
         "local_candidate_runtime": state.get("local_candidate_runtime"),
         "local_array_runtime": state.get("local_array_runtime"),
+        "local_object_candidate_runtime": state.get("local_object_candidate_runtime"),
         "local_proposal_runtime": state.get("local_proposal_runtime"),
         "local_query_zero_control": state.get("local_query_zero_control"),
         "drivers": [
             "diagnostic_query_multispectrum_followup.log",
             "diagnostic_query_chemical_only_followup.log",
+            "diagnostic_query_balanced_followup.log",
+            "object_candidate_followup.log",
         ],
-        "pending_sequence": "Finish paired multi-spectrum attribution; chemical-only versus same constrained masked query heads266/267, full systems268/269. Only complete frozen gate winners replace local best.",
+        "pending_sequence": "Finish chemical-only attribution268/269, then training-only modality balancing272/273 and complete systems274/275. Object candidate window storage control276+proposal277 must both pass exact before local activation. Only complete frozen gate winners replace local best.",
         "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
         "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
         "independent_acceptance": False,
@@ -78,6 +81,7 @@ def refresh():
     for name, filename in [
         ("multispectrum_attribution", "query_multispectrum_attribution.json"),
         ("chemical_only_attribution", "query_chemical_only_attribution.json"),
+        ("balanced_attribution", "query_balanced_attribution.json"),
     ]:
         report = Path("results/research_loop") / filename
         if report.exists():

@@ -1,0 +1,351 @@
+{
+  "round": "0270_verified_packed_array_runtime_profile",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "unknown": {
+      "molecules": 100,
+      "full_rank_matches": 100,
+      "seconds_with_profile": 27.042428041022504,
+      "top_cumulative_functions": [
+        {
+          "file": "packed_candidate_runtime.py",
+          "line": 28,
+          "function": "<lambda>",
+          "calls": 1,
+          "self_seconds": 9.659e-06,
+          "cumulative_seconds": 7.602712950000001
+        },
+        {
+          "file": "packed_candidate_cache.py",
+          "line": 96,
+          "function": "__init__",
+          "calls": 1,
+          "self_seconds": 7.6445e-05,
+          "cumulative_seconds": 7.602703291
+        },
+        {
+          "file": "packed_candidate_cache.py",
+          "line": 19,
+          "function": "catalog_identity",
+          "calls": 1,
+          "self_seconds": 5.4363e-05,
+          "cumulative_seconds": 4.832290085
+        },
+        {
+          "file": "hashing.py",
+          "line": 84,
+          "function": "hash_pandas_object",
+          "calls": 1,
+          "self_seconds": 1.6902000000000002e-05,
+          "cumulative_seconds": 4.820964806
+        },
+        {
+          "file": "hashing.py",
+          "line": 48,
+          "function": "combine_hash_arrays",
+          "calls": 1,
+          "self_seconds": 0.013410772000000001,
+          "cumulative_seconds": 4.820714341
+        },
+        {
+          "file": "hashing.py",
+          "line": 164,
+          "function": "<genexpr>",
+          "calls": 4,
+          "self_seconds": 1.9827000000000002e-05,
+          "cumulative_seconds": 4.806624442
+        },
+        {
+          "file": "hashing.py",
+          "line": 244,
+          "function": "hash_array",
+          "calls": 7,
+          "self_seconds": 0.16613839200000002,
+          "cumulative_seconds": 4.806277014
+        },
+        {
+          "file": "base.py",
+          "line": 2406,
+          "function": "_hash_pandas_object",
+          "calls": 2,
+          "self_seconds": 1.1882e-05,
+          "cumulative_seconds": 4.7272914440000005
+        },
+        {
+          "file": "hashing.py",
+          "line": 299,
+          "function": "_hash_ndarray",
+          "calls": 5,
+          "self_seconds": 0.6801158850000001,
+          "cumulative_seconds": 4.368989219
+        },
+        {
+          "file": "module.py",
+          "line": 1779,
+          "function": "_wrapped_call_impl",
+          "calls": 6800,
+          "self_seconds": 0.010265081,
+          "cumulative_seconds": 3.4380103500000003
+        },
+        {
+          "file": "module.py",
+          "line": 1787,
+          "function": "_call_impl",
+          "calls": 6800,
+          "self_seconds": 0.01176718,
+          "cumulative_seconds": 3.437259721
+        },
+        {
+          "file": "container.py",
+          "line": 254,
+          "function": "forward",
+          "calls": 1000,
+          "self_seconds": 0.008654995,
+          "cumulative_seconds": 3.393905643
+        },
+        {
+          "file": "algorithms.py",
+          "line": 652,
+          "function": "factorize",
+          "calls": 5,
+          "self_seconds": 0.006328236,
+          "cumulative_seconds": 3.075112498
+        },
+        {
+          "file": "indexing.py",
+          "line": 1192,
+          "function": "__getitem__",
+          "calls": 7454,
+          "self_seconds": 0.017263239,
+          "cumulative_seconds": 3.02545316
+        },
+        {
+          "file": "inchi.py",
+          "line": 382,
+          "function": "MolToInchiKey",
+          "calls": 15369,
+          "self_seconds": 2.7259382650000004,
+          "cumulative_seconds": 2.7259382650000004
+        },
+        {
+          "file": "direct_models.py",
+          "line": 133,
+          "function": "score_group",
+          "calls": 100,
+          "self_seconds": 0.005670442,
+          "cumulative_seconds": 2.657409882
+        },
+        {
+          "file": "array.py",
+          "line": 1625,
+          "function": "take",
+          "calls": 786,
+          "self_seconds": 0.015430436,
+          "cumulative_seconds": 2.5333775600000004
+        },
+        {
+          "file": "mass_candidates.py",
+          "line": 26,
+          "function": "candidate_window",
+          "calls": 100,
+          "self_seconds": 0.001674715,
+          "cumulative_seconds": 2.494847988
+        },
+        {
+          "file": "compute.py",
+          "line": 467,
+          "function": "take",
+          "calls": 786,
+          "self_seconds": 2.490892928,
+          "cumulative_seconds": 2.491610868
+        },
+        {
+          "file": "managers.py",
+          "line": 813,
+          "function": "reindex_indexer",
+          "calls": 308,
+          "self_seconds": 0.00875045,
+          "cumulative_seconds": 2.4877437820000003
+        }
+      ]
+    },
+    "known": {
+      "molecules": 100,
+      "full_rank_matches": 100,
+      "seconds_with_profile": 26.578942032007035,
+      "top_cumulative_functions": [
+        {
+          "file": "packed_candidate_runtime.py",
+          "line": 28,
+          "function": "<lambda>",
+          "calls": 1,
+          "self_seconds": 8.897000000000001e-06,
+          "cumulative_seconds": 7.535534291
+        },
+        {
+          "file": "packed_candidate_cache.py",
+          "line": 96,
+          "function": "__init__",
+          "calls": 1,
+          "self_seconds": 8.36e-05,
+          "cumulative_seconds": 7.535525394
+        },
+        {
+          "file": "packed_candidate_cache.py",
+          "line": 19,
+          "function": "catalog_identity",
+          "calls": 1,
+          "self_seconds": 4.6927e-05,
+          "cumulative_seconds": 4.780729694000001
+        },
+        {
+          "file": "hashing.py",
+          "line": 84,
+          "function": "hash_pandas_object",
+          "calls": 1,
+          "self_seconds": 0.0047357680000000004,
+          "cumulative_seconds": 4.769610196
+        },
+        {
+          "file": "hashing.py",
+          "line": 48,
+          "function": "combine_hash_arrays",
+          "calls": 1,
+          "self_seconds": 0.012966138,
+          "cumulative_seconds": 4.764679178000001
+        },
+        {
+          "file": "hashing.py",
+          "line": 164,
+          "function": "<genexpr>",
+          "calls": 4,
+          "self_seconds": 6.803e-05,
+          "cumulative_seconds": 4.751069799000001
+        },
+        {
+          "file": "hashing.py",
+          "line": 244,
+          "function": "hash_array",
+          "calls": 7,
+          "self_seconds": 0.158121763,
+          "cumulative_seconds": 4.750661635
+        },
+        {
+          "file": "base.py",
+          "line": 2406,
+          "function": "_hash_pandas_object",
+          "calls": 2,
+          "self_seconds": 1.2424e-05,
+          "cumulative_seconds": 4.677588695
+        },
+        {
+          "file": "hashing.py",
+          "line": 299,
+          "function": "_hash_ndarray",
+          "calls": 5,
+          "self_seconds": 0.589525201,
+          "cumulative_seconds": 4.362132289
+        },
+        {
+          "file": "module.py",
+          "line": 1779,
+          "function": "_wrapped_call_impl",
+          "calls": 6800,
+          "self_seconds": 0.013305908,
+          "cumulative_seconds": 3.399344315
+        },
+        {
+          "file": "module.py",
+          "line": 1787,
+          "function": "_call_impl",
+          "calls": 6800,
+          "self_seconds": 0.015126574,
+          "cumulative_seconds": 3.398555453
+        },
+        {
+          "file": "container.py",
+          "line": 254,
+          "function": "forward",
+          "calls": 1000,
+          "self_seconds": 0.00877434,
+          "cumulative_seconds": 3.350639283
+        },
+        {
+          "file": "inchi.py",
+          "line": 382,
+          "function": "MolToInchiKey",
+          "calls": 17213,
+          "self_seconds": 3.116624176,
+          "cumulative_seconds": 3.116624176
+        },
+        {
+          "file": "algorithms.py",
+          "line": 652,
+          "function": "factorize",
+          "calls": 5,
+          "self_seconds": 0.008932984,
+          "cumulative_seconds": 2.9918043460000003
+        },
+        {
+          "file": "indexing.py",
+          "line": 1192,
+          "function": "__getitem__",
+          "calls": 6149,
+          "self_seconds": 0.015617417000000001,
+          "cumulative_seconds": 2.8190481970000003
+        },
+        {
+          "file": "mass_candidates.py",
+          "line": 26,
+          "function": "candidate_window",
+          "calls": 100,
+          "self_seconds": 0.0017800440000000002,
+          "cumulative_seconds": 2.608174244
+        },
+        {
+          "file": "direct_models.py",
+          "line": 133,
+          "function": "score_group",
+          "calls": 100,
+          "self_seconds": 0.0059699720000000005,
+          "cumulative_seconds": 2.560216182
+        },
+        {
+          "file": "array.py",
+          "line": 1625,
+          "function": "take",
+          "calls": 694,
+          "self_seconds": 0.010417674,
+          "cumulative_seconds": 2.4325058410000002
+        },
+        {
+          "file": "compute.py",
+          "line": 467,
+          "function": "take",
+          "calls": 694,
+          "self_seconds": 2.396405188,
+          "cumulative_seconds": 2.397078359
+        },
+        {
+          "file": "managers.py",
+          "line": 813,
+          "function": "reindex_indexer",
+          "calls": 263,
+          "self_seconds": 0.005406983000000001,
+          "cumulative_seconds": 2.3753613000000002
+        }
+      ]
+    },
+    "scientific_round": "0236_low_supported_leader_first",
+    "verified_evidence_round": "0258_array_order_full_inference_control",
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "new_failure_contexts": 0
+  },
+  "protocol_sha256": "9be44c4ba1d8ab13daf7b6b6d165776feaa4d581c40e6f161d55ec5620b04968",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
