@@ -4,7 +4,7 @@ import argparse
 import json
 import shutil
 import time
-from contextlib import nullcontext
+from contextlib import ExitStack, nullcontext
 from pathlib import Path
 from unittest.mock import patch
 
@@ -335,7 +335,23 @@ def run(
                 if incremental_benchmark
                 else nullcontext()
             )
-            with manager:
+            with ExitStack() as stack:
+                stack.enter_context(manager)
+                from casmi_ml.packed_candidate_runtime import (
+                    resolve as resolve_candidates,
+                )
+                from casmi_ml.research_loop import Controller
+
+                candidate_constructor = resolve_candidates(
+                    Controller(), config["catalog_sha256"]
+                )
+                if candidate_constructor is not None:
+                    stack.enter_context(
+                        patch(
+                            "casmi_ml.chembl_routed_inference.CandidateIndex",
+                            new=candidate_constructor,
+                        )
+                    )
                 extend(
                     directory / "test.parquet",
                     directory / "baseline.csv",

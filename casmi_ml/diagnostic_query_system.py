@@ -4,6 +4,7 @@ import argparse
 import json
 import shutil
 import time
+from contextlib import ExitStack
 from pathlib import Path
 from unittest.mock import patch
 
@@ -98,13 +99,31 @@ def run(output, critic, control=False):
         ]:
             shutil.copy2(source / name, dest / name)
         started = time.monotonic()
-        with (
-            patch("casmi_ml.metfrag_persistent.PersistentMonomerMetFrag", new=engine),
-            patch("casmi_ml.chembl_routed_inference.DirectRanker", new=constructor),
-            patch(
-                "casmi_ml.chembl_routed_inference.score_group", new=score_chemical_group
-            ),
-        ):
+        with ExitStack() as stack:
+            stack.enter_context(
+                patch(
+                    "casmi_ml.metfrag_persistent.PersistentMonomerMetFrag", new=engine
+                )
+            )
+            stack.enter_context(
+                patch("casmi_ml.chembl_routed_inference.DirectRanker", new=constructor)
+            )
+            stack.enter_context(
+                patch(
+                    "casmi_ml.chembl_routed_inference.score_group",
+                    new=score_chemical_group,
+                )
+            )
+            from casmi_ml.packed_candidate_runtime import resolve as resolve_candidates
+
+            candidate_constructor = resolve_candidates(c, config["catalog_sha256"])
+            if candidate_constructor is not None:
+                stack.enter_context(
+                    patch(
+                        "casmi_ml.chembl_routed_inference.CandidateIndex",
+                        new=candidate_constructor,
+                    )
+                )
             extend(
                 dest / "test.parquet",
                 dest / "baseline.csv",
