@@ -36,7 +36,9 @@ def fragment_structures(key, first, candidates, external, original, generated):
     return structures
 
 
-def run(output, incumbent, limit=200):
+def run(output, incumbent, limit=200, prefix=10):
+    if prefix not in (3, 10):
+        raise ValueError("Predeclared prefix3 or10 required")
     output, incumbent = Path(output), Path(incumbent)
     if limit not in (200, 2000):
         raise ValueError("Fixed200 or full2000 required")
@@ -80,8 +82,8 @@ def run(output, incumbent, limit=200):
             "first_representation": "Per-query generated SMILES if present, otherwise original candidate lookup with PubChemLite setdefault; identical to original high critic scoring. External representation never overwrites actual first.",
             "limit": limit,
             "pilot_selector": "hash256 fragment-representative-20261003:",
-            "rule": "Freeze0149 low and all high noninsertions; only original high critic+.05 passed groups are rescored with merged exact monomer+actual first. Informative complete scores: relative first supported+critic+.05 uses fragment.5 top3 after10; otherwise remove existing tail additions. Missing/noninformative/budget keeps0149 tail unchanged.",
-            "prefix": 10,
+            "rule": "Freeze0149 low and all high noninsertions; only original high critic+.05 passed groups are rescored with merged exact monomer+actual first. Informative complete scores: relative first supported+critic+.05 uses fragment.5 top3 after the frozen prefix; otherwise remove existing tail additions. Missing/noninformative/budget keeps0149 tail unchanged.",
+            "prefix": prefix,
             "slots": 3,
             "fragment_weight": 0.5,
             "fragment_seconds": 1200,
@@ -226,14 +228,14 @@ def run(output, incumbent, limit=200):
                         scores.get(proposed[0], 0) > scores.get(prior[0], 0)
                         and values[proposed[0]] > values[prior[0]] + 0.05
                     ):
-                        result = insert_generated(prior, proposed, 10, 3)
+                        result = insert_generated(prior, proposed, prefix, 3)
                         counts[mode]["tail_reranked"] += 1
                     else:
                         result = prior
                         counts[mode]["tail_removed"] += 1
                 else:
                     counts[mode]["missing_evidence_fallback"] += 1
-            validate_tail(prior, current, result, confidence[key])
+            validate_tail(prior, current, result, confidence[key], prefix=prefix)
             selected[key] = result
         all_selected[mode] = selected
         report[mode] = {}
@@ -289,8 +291,9 @@ def main():
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--incumbent", type=Path, required=True)
     p.add_argument("--limit", type=int, default=200)
+    p.add_argument("--prefix", type=int, choices=(3, 10), default=10)
     a = p.parse_args()
-    print(json.dumps(run(a.output, a.incumbent, a.limit), indent=2))
+    print(json.dumps(run(a.output, a.incumbent, a.limit, a.prefix), indent=2))
 
 
 if __name__ == "__main__":

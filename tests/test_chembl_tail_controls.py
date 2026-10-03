@@ -21,5 +21,22 @@ class ProtectedOriginalPrefixTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "low arm"):
             validate_tail(["a"], ["a", "x"], ["a", "y"], 0.49)
 
+    def test_explicit_chemically_supported_prefix3_preserves_original_first3(self):
+        validate_tail(
+            ["a", "b", "c", "d"],
+            ["a", "b", "c", "d", "x"],
+            ["a", "b", "c", "y", "d"],
+            0.8,
+            prefix=3,
+        )
+        with self.assertRaisesRegex(ValueError, "protected prefix"):
+            validate_tail(
+                ["a", "b", "c", "d"],
+                ["a", "b", "c", "d", "x"],
+                ["a", "b", "y", "c", "d"],
+                0.8,
+                prefix=3,
+            )
+
     def test_high_boundary_uses_original_prefix(self):
         validate_tail(["a"], ["a", "x"], ["a", "y"], 0.5)
