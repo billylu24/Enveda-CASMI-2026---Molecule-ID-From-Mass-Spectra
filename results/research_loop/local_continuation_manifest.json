@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03T14:36:16Z",
+  "updated_at": "2026-10-03T14:48:38Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -102,10 +102,22 @@
   },
   "active_rounds": [
     {
-      "id": "0306_extended_candidate_zero_control",
+      "id": "0311_blas_candidate_score_benchmark",
+      "direction": "runtime_diagnostic",
+      "status": "queued",
+      "report": "artifacts/research_loop/rounds/0311_blas_candidate_score_benchmark/report.json"
+    },
+    {
+      "id": "0312_single_blas_full_ranking_control",
+      "direction": "runtime_diagnostic",
+      "status": "queued",
+      "report": "artifacts/research_loop/rounds/0312_single_blas_full_ranking_control/report.json"
+    },
+    {
+      "id": "0310_extended_candidate_mask_system",
       "direction": "implementation_control",
       "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0306_extended_candidate_zero_control/report.json"
+      "report": "artifacts/research_loop/rounds/0310_extended_candidate_mask_system/report.json"
     }
   ],
   "local_candidate_runtime": {
@@ -146,6 +158,7 @@
     "proposal_protocol_sha256": "cb3d110e40eb21526a4e4c91df7af4743630d1209ef35a3a08644d31ab5e3dfa",
     "scope": "Every3340 best full rank and three full2000 original proposal dictionaries exact; storage runtime only, no accuracy or cold acceptance gain"
   },
+  "local_blas_runtime": null,
   "local_proposal_runtime": {
     "enabled": true,
     "local_only": true,
@@ -181,7 +194,7 @@
     "candidate_compatibility_followup.log",
     "extended_candidate_followup.log"
   ],
-  "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306 zero control,307/308 fixed bounded60D fitting,309/310 full paired systems. No added feature runtime active. Only frozen gate winners replace best.",
+  "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306 zero control,307/308 fixed bounded60D fitting,309/310 full paired systems. No added feature runtime active. 311 score-window BLAS24/1 paired microbenchmark and312 full current-best exact control pending science completion. Only frozen gate winners replace best.",
   "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
   "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
   "independent_acceptance": false,
@@ -1224,6 +1237,48 @@
     },
     {
       "id": "0306_extended_candidate_zero_control",
+      "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0306_extended_candidate_zero_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0307_extended_candidate_chemical",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0307_extended_candidate_chemical.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0308_extended_candidate_mask",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0308_extended_candidate_mask.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0311_blas_candidate_score_benchmark",
+      "direction": "runtime_diagnostic",
+      "status": "queued",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "0309_extended_candidate_chemical_system",
+      "direction": "candidate_chemistry_compatibility",
+      "status": "rejected",
+      "decision": "results/research_loop/0309_extended_candidate_chemical_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0312_single_blas_full_ranking_control",
+      "direction": "runtime_diagnostic",
+      "status": "queued",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "0310_extended_candidate_mask_system",
       "direction": "implementation_control",
       "status": "external_running",
       "decision": null,

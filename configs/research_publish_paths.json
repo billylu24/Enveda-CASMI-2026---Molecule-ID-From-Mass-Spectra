@@ -459,7 +459,11 @@
     "casmi_ml/extended_candidate_training.py",
     "casmi_ml/bounded_candidate_bonus.py",
     "tests/test_extended_candidate_compatibility.py",
-    "tests/test_extended_candidate_activation.py"
+    "tests/test_extended_candidate_activation.py",
+    "casmi_ml/blas_runtime_control.py",
+    "casmi_ml/blas_candidate_benchmark.py",
+    "casmi_ml/blas_runtime.py",
+    "tests/test_blas_runtime.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

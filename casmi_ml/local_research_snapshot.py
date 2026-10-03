@@ -35,6 +35,7 @@ def refresh():
         "local_candidate_runtime": state.get("local_candidate_runtime"),
         "local_array_runtime": state.get("local_array_runtime"),
         "local_object_candidate_runtime": state.get("local_object_candidate_runtime"),
+        "local_blas_runtime": state.get("local_blas_runtime"),
         "local_proposal_runtime": state.get("local_proposal_runtime"),
         "local_query_zero_control": state.get("local_query_zero_control"),
         "drivers": [
@@ -49,7 +50,7 @@ def refresh():
             "candidate_compatibility_followup.log",
             "extended_candidate_followup.log",
         ],
-        "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306 zero control,307/308 fixed bounded60D fitting,309/310 full paired systems. No added feature runtime active. Only frozen gate winners replace best.",
+        "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306 zero control,307/308 fixed bounded60D fitting,309/310 full paired systems. No added feature runtime active. 311 score-window BLAS24/1 paired microbenchmark and312 full current-best exact control pending science completion. Only frozen gate winners replace best.",
         "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
         "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
         "independent_acceptance": False,

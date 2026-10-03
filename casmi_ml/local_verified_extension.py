@@ -65,6 +65,9 @@ def run(test, baseline, full, routing, reference, output):
 
     started = time.monotonic()
     with ExitStack() as stack:
+        from casmi_ml.blas_runtime import resolve as resolve_blas
+
+        stack.enter_context(resolve_blas(c))
         stack.enter_context(
             patch("casmi_ml.metfrag_persistent.PersistentMonomerMetFrag", new=engine)
         )
