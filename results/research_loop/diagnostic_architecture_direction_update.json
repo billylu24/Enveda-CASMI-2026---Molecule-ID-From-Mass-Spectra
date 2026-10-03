@@ -1,0 +1,32 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "completed_findings": [
+    "Evidence-only coarse and precise fingerprint residuals both failed complete paired system gates.",
+    "Contextual coarse and precise fingerprint residuals improved some external candidate diagnostics but complete unknown MRR stayed0.04268861838422192.",
+    "Chemical-identity masked contextual control produced identical complete unknown and known aggregate metrics to all-channel contextual arm; chemical-specific full-system benefit remains unobserved.",
+    "Precise contextual full unknown ranks changed131 groups but no first place; frozen candidate critic and protected insertion routes are a likely integration bottleneck.",
+    "Supported low leader observable promotion passed frozen historical and completed-control gates, exact3340 replay; verified unknown MRR0.04397830092390447, known0.6037921161569266.",
+    "Stronger originalfirst3 support and per-slot support improved development metrics further but failed frozen2% relative-gain gate versus verified incumbent; neither replaced best.",
+    "Source-bound packed fingerprints retained all2616801 candidate bit vectors and all3340 full ranks exactly; local cached control wall time unknown301.29s, known209.35s, with peak RSS about3.2GiB. These are cached controls, not independent cold inference proofs."
+  ],
+  "current_sequence": [
+    "Finish precise peak-loss-identity mask complete system; compare matched all-channel and all-identity-masked controls.",
+    "After exact3340 zero query-residual control, train same-capacity chemical and masked query residuals on original60K plus15 pinned training-only near-mass negatives.",
+    "Run complete systems with all original encoder and critic tensors frozen; only normalized query correction changes final candidate-facing scores.",
+    "Require current-best, completed-original and historical181 known protection; bounded physical cache completion, no promotion with budget or new failures.",
+    "Retain full negative evidence and current verified incumbent whenever any gate fails."
+  ],
+  "gan": {
+    "status": "not_expanded",
+    "reason": "Current complete evidence identifies final rank integration and sparse candidate support as concrete bottlenecks. Adversarial discrete molecule generation would add optimization complexity and mode/validity checks without demonstrated candidate coverage or full-system gain under the existing budget.",
+    "revisit_conditions": "A training-only candidate discriminator must first show complete paired score integration gain; any later adversarial objective requires a matched non-adversarial control, validity/diversity/coverage checks and full-system ranking gate."
+  },
+  "dino": {
+    "status": "prior_cross_energy_setting_rejected",
+    "evidence": "Matched same-ion actual cross-energy DINO fixed50epochs reduced routed unknown MRR by0.0018411970117347652 versus same-spectrum control; no collapse, but no architecture gain or deployment qualification.",
+    "revisit_conditions": "Only a new augmentation/objective hypothesis grounded in actual spectrum identity and collision energy may justify a new matched run; representation loss or non-collapse alone is insufficient."
+  },
+  "limitations": "Repeated development metrics, no new untouched acceptance cohort. No guarantee that every experiment improves or that local gains transfer to hidden competition data. No Kaggle submission or GitHub push."
+}
