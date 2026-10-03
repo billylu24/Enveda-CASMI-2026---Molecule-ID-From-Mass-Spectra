@@ -68,6 +68,30 @@ def run(
 ):
     if control and audit_control:
         raise ValueError("Strict control and audit-only modes are mutually exclusive")
+    # Local persisted runtime selection is independent of frozen scientific config.
+    if paired_control and incremental_benchmark is None:
+        from casmi_ml.research_loop import Controller
+
+        controller = Controller()
+        runtime = controller.read().get("local_development_incremental", {})
+        if controller.local_only() and runtime.get("enabled"):
+            verified = Path(runtime["control_directory"])
+            proof = json.loads((verified / "protocol.json").read_text())
+            result = json.loads((verified / "report.json").read_text())
+            attribution = json.loads(
+                (Path(proof["control_reference"]) / "report.json").read_text()
+            )
+            if (
+                not proof.get("control")
+                or not attribution.get("control_passed")
+                or result.get("development_budget_fallbacks")
+                or proof.get("development_incremental_source_sha256")
+                != digest("casmi_ml/development_incremental_metfrag.py")
+            ):
+                raise ValueError(
+                    "Persisted local incremental runtime proof does not bind current adapter"
+                )
+            incremental_benchmark = runtime["benchmark_directory"]
     comparison = BEST
     incremental_instances = []
     incremental_type = None

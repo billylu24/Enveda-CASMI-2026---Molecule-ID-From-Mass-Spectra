@@ -1,0 +1,43 @@
+{
+  "status": "planned_after_current_full_system_arms",
+  "local_only": true,
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "motivation": "Current24-channel evidence-only correction cannot condition a water/CO/hexose loss on the original spectrum representation; matched external proposal diagnostics show only0.50% precise MRR gain and unchanged top100/top500 coverage. Full current system results must be recorded before new training.",
+  "architecture": {
+    "frozen_base": "wide_enhanced_60000",
+    "original_latent_dimensions": 768,
+    "chemical_dimensions": 24,
+    "correction": "concat(observed chemical evidence, frozen original spectrum latent) ->64 GELU ->2048 logit residual",
+    "zero_evidence_policy": "Multiply correction by chemical maximum; no evidence preserves original logits exactly",
+    "initialization": "Final correction layer strictly zero",
+    "critic_policy": "All original base tensors and preprocessing exact; critic original latent remains unchanged"
+  },
+  "matched_comparison": {
+    "arms": [
+      "context_coarse_0.5Da",
+      "context_precise_0.002Da_ppm10"
+    ],
+    "training_molecules": 60000,
+    "representative_spectrum": "Same selected row RNG42 as186/187",
+    "epochs": 3,
+    "optimizer": "AdamW lr0.001 wd0.01",
+    "same_step_order_and_capacity": true,
+    "single_gpu": true,
+    "representation_gpu_seconds_maximum_per_round": 86400
+  },
+  "evaluation": [
+    "Same mass-window external diagnostics first; no accuracy claim from training loss",
+    "Original unmodified scientific181 inference rule and generation cache",
+    "Paired original control and best181 gates, complete2000unknown/1340known",
+    "Verified local incremental physical scoring permissible; no partial or failed evidence used for promotion"
+  ],
+  "gate": {
+    "unknown_absolute_mrr_gain_min": 0.0005,
+    "unknown_relative_mrr_gain_min": 0.02,
+    "known_mrr_drop_max": 0.001,
+    "known_top1_drop_max": 0.005
+  },
+  "remote_publication": false,
+  "gan_dino": "No expansion without a concrete new paired hypothesis and full-system evidence; existing cross-CE DINO negative result retained."
+}
