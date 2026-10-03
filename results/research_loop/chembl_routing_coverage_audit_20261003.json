@@ -1,0 +1,30 @@
+{
+  "diagnostic_only": true,
+  "cohort": "repeated_development",
+  "independent_acceptance": false,
+  "catalog_sha256": "3cfa1f39ee99bab83861609fb36ead49fa138b191955c0428504f88bd55178da",
+  "development_sha256": "f297677effa13eefc2404eebe375c76d2f114a088eb0ad2aad4d404b198035c7",
+  "current_rank_reference": "0062 exactly reconstructed retrieval+generation first gate",
+  "confidence_bands": {
+    "below0.2": {
+      "queries": 524,
+      "catalog_truths": 47,
+      "mass_window_truths": 44,
+      "novel_mass_window_truths": 28
+    },
+    "0.2_to0.5": {
+      "queries": 222,
+      "catalog_truths": 55,
+      "mass_window_truths": 55,
+      "novel_mass_window_truths": 18
+    },
+    "atleast0.5": {
+      "queries": 1254,
+      "catalog_truths": 152,
+      "mass_window_truths": 152,
+      "novel_mass_window_truths": 103
+    }
+  },
+  "truth_used_only_for_aggregate_diagnosis": true,
+  "note": "Coverage is an upper bound, not retrieval confidence calibration or evidence to weaken known protection"
+}
