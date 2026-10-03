@@ -10,6 +10,7 @@ import pandas as pd
 from casmi_ml.chembl_fragment_pilot import (
     informative_fragments,
     possible_critic_gate,
+    relative_supported_proposals,
     score_cache_key,
 )
 from casmi_ml.chemistry import rerank
@@ -60,7 +61,8 @@ def run(directory, output):
             "artifacts/research_loop/rounds/0061_generated_first_critic/scores.json"
         ).read_text()
     )
-    spec = protocol["variants"][f"fragment05_prefix{protocol['insertion_prefix']}"]
+    variant = f"{'fragment1' if protocol.get('fragment_weight', 0.5) == 1.0 else 'fragment05'}_prefix{protocol['insertion_prefix']}"
+    spec = protocol["variants"][variant]
     aggregate = {}
     for mode in ("unknown", "known"):
         rows = json.loads((SOURCE / f"{mode}_records.json").read_text())
@@ -135,6 +137,10 @@ def run(directory, output):
                         fk = score_cache_key(
                             "include_current_first_v1:" + key, current[0], shortlist
                         )
+                        if protocol.get("fragment_aggregation") == "mean_normalized":
+                            fk = score_cache_key(
+                                "mean_normalized_v1:" + key, current[0], shortlist
+                            )
                         saved = fragment_scores[fk]
                         fragments = saved["scores"]
                         proposed = rerank(
@@ -179,13 +185,17 @@ def run(directory, output):
                         if all(gates.values()):
                             counts["queries_inserted"] += 1
                             counts["novel_truth_inserted"] += key in proposed[: spec[2]]
+                            if protocol.get("relative_candidate_gate"):
+                                proposed = relative_supported_proposals(
+                                    proposed, fragments, current[0]
+                                )
                             result = insert_generated(
                                 current, proposed, spec[1], spec[2]
                             )
             rank = result.index(key) + 1 if key in result else 0
             reciprocal += 1 / rank if 1 <= rank <= 25 else 0
             top1 += rank == 1
-        expected = report[mode][f"fragment05_prefix{protocol['insertion_prefix']}"]
+        expected = report[mode][variant]
         actual = {
             "mrr25": reciprocal / counts["molecules"],
             "top1": top1 / counts["molecules"],

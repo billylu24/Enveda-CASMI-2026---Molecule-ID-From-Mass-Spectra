@@ -103,6 +103,7 @@ def run(
     skip_impossible=False,
     relative_candidate_gate=False,
     fragment_weight=0.5,
+    mean_fragments=False,
 ):
     if fragment_weight not in (0.5, 1.0):
         raise ValueError("Fragment weight must be 0.5 or 1.0")
@@ -133,6 +134,10 @@ def run(
         if monomer
         else "proton_only"
     )
+    if mean_fragments and not compare_first:
+        raise ValueError(
+            "Mean fragment evidence requires actual first in the same spectra"
+        )
     critic_checkpoint = Path(critic_checkpoint)
     if proposal_limit not in (100, 500) or not 1 <= fragment_limit <= proposal_limit:
         raise ValueError("Invalid proposal or fragment shortlist limit")
@@ -215,6 +220,10 @@ def run(
             "candidate_gate": candidate_gate,
             "relative_candidate_gate": relative_candidate_gate,
             "fragment_weight": fragment_weight,
+            "fragment_aggregation": "mean_normalized" if mean_fragments else "max_raw",
+            "fragment_aggregation_source_sha256": digest("casmi_ml/paired_fragments.py")
+            if mean_fragments
+            else digest("casmi_ml/metfrag.py"),
             "compare_current_first_fragment": compare_first,
             "fragment_gate_only": fragment_gate_only,
             "skip_impossible_critic_gate": skip_impossible,
@@ -321,6 +330,11 @@ def run(
         ROOT / "chembl_metfrag_cache",
         java=JAVA,
     )
+    group_scorer = fragment_score_group
+    if mean_fragments:
+        from casmi_ml.paired_fragments import score_group_mean
+
+        group_scorer = score_group_mean
     fragment_path = output / "fragment_scores.json"
     fragment_scores = (
         json.loads(fragment_path.read_text()) if fragment_path.exists() else {}
@@ -478,6 +492,10 @@ def run(
                         current[0],
                         candidates_external,
                     )
+                if mean_fragments and candidates_external:
+                    fragment_key = score_cache_key(
+                        "mean_normalized_v1:" + key, current[0], candidates_external
+                    )
                 fragments, fallback = {}, False
                 if candidates_external:
                     if fragment_key not in fragment_scores:
@@ -503,7 +521,7 @@ def run(
                             if first_smiles is None:
                                 raise ValueError("Current first representation missing")
                             fragment_candidates[current[0]] = first_smiles
-                        fragments, fallback = fragment_score_group(
+                        fragments, fallback = group_scorer(
                             fragmenter,
                             query.to_dict("records"),
                             fragment_candidates,
@@ -639,6 +657,10 @@ def run(
             "candidate_gate": candidate_gate,
             "relative_candidate_gate": relative_candidate_gate,
             "fragment_weight": fragment_weight,
+            "fragment_aggregation": "mean_normalized" if mean_fragments else "max_raw",
+            "fragment_aggregation_source_sha256": digest("casmi_ml/paired_fragments.py")
+            if mean_fragments
+            else digest("casmi_ml/metfrag.py"),
             "compare_current_first_fragment": compare_first,
             "fragment_gate_only": fragment_gate_only,
             "skip_impossible_critic_gate": skip_impossible,
@@ -671,6 +693,7 @@ def main():
     p.add_argument("--fragment-gate-only", action="store_true")
     p.add_argument("--skip-impossible", action="store_true")
     p.add_argument("--relative-candidate-gate", action="store_true")
+    p.add_argument("--mean-fragments", action="store_true")
     p.add_argument("--fragment-weight", type=float, choices=(0.5, 1.0), default=0.5)
     a = p.parse_args()
     print(
@@ -692,6 +715,7 @@ def main():
                 a.skip_impossible,
                 a.relative_candidate_gate,
                 a.fragment_weight,
+                a.mean_fragments,
             ),
             indent=2,
         )

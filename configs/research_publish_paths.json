@@ -226,7 +226,9 @@
     "kaggle_release_decoder_0024_runtime313/runtime_migration.json",
     "tests/test_kernel_capacity.py",
     "tests/test_launch_ownership.py",
-    "casmi_ml/chembl_fragment_audit.py"
+    "casmi_ml/chembl_fragment_audit.py",
+    "casmi_ml/paired_fragments.py",
+    "tests/test_paired_fragments.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

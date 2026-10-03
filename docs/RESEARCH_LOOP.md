@@ -279,3 +279,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第104轮每候选相对fragment支持fixed200：所有prefix未知/已知指标与第99轮完全相同，14/2查询插入，新真值1；没有新改善，不扩大。第105轮只改变外部结构排序权重0.5→1.0，保留query首候选critic margin0.05、当前首位相对fragment比较与informative gate、100候选和最多3插入，取消critic原顺序在fragment RRF中的0.5份额。动机为第103审计9个库外真值fragment超过首位、仅7入前三；检查化学排序证据是否被原critic秩稀释，而非放宽所有门控。固定同200/88评分缓存、prefix2/3/5/10，无新增评分/训练；only positive/known保护才扩大。variant命名fragment1绑定protocol实际权重。
+
+
+第105轮纯fragment排序fixed200：unknown各prefix都回到基线0.037997，没有新真值，known降0.000096，失败不扩大。第106轮同预算多谱fragment聚合单因素对照：原max_raw为每个结构分别在所有谱取最大分数，可能让拟首位和当前首位由不同碰撞能/分数尺度支持。新mean_normalized先在每张有区分度/finite/非负实际complete谱按组最高分归一化，再在同一组有效谱上等权平均，各候选共享分母；unsupported、空分数、全同分、无正分或非有限谱不给证据。Java候选组内容相同，可复用真实逐谱cache，但组汇总身份独立mean_normalized_v1，绝不复用max_raw组结果。保持原critic+相对fragment门控、weight0.5、100提案/3slots、同200、1200秒、整组预算回退；新增尺度、非有限、部分组回退与CLI转发回归，178测试通过。只是化学证据聚合实验，未启用GAN/DINO。

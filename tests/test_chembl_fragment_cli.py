@@ -46,4 +46,27 @@ class ChemblFragmentCLITests(unittest.TestCase):
             False,
             False,
             0.5,
+            False,
         )
+
+    def test_fragment_evidence_controls_reach_run(self):
+        with (
+            patch(
+                "sys.argv",
+                [
+                    "pilot",
+                    "--output",
+                    "out",
+                    "--incumbent",
+                    "best",
+                    "--fragment-weight",
+                    "1",
+                    "--mean-fragments",
+                    "--relative-candidate-gate",
+                ],
+            ),
+            patch("casmi_ml.chembl_fragment_pilot.run", return_value={}) as run,
+            patch("builtins.print"),
+        ):
+            main()
+        self.assertEqual(run.call_args.args[-3:], (True, 1.0, True))
