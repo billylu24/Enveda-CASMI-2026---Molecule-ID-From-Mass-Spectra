@@ -1,0 +1,30 @@
+{
+  "round": "0257_candidate_array_order_benchmark",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "unknown": {
+      "queries": 100,
+      "candidate_rows": 84947,
+      "complete_orders_exact": true,
+      "scalar_sort_seconds": 5.437382265808992,
+      "array_sort_seconds": 0.041446144110523164
+    },
+    "known": {
+      "queries": 100,
+      "candidate_rows": 98435,
+      "complete_orders_exact": true,
+      "scalar_sort_seconds": 6.469992910919245,
+      "array_sort_seconds": 0.04308252994087525
+    },
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "verified": true,
+    "scope": "Fixed200 opaque-query actual corrected ranking order benchmark; complete full inference control required before activation"
+  },
+  "protocol_sha256": "ea7fc3f9de94c43119a5e99a74c3bf7103b8a2855bcd27630bafe40b117ad569",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

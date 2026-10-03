@@ -387,7 +387,10 @@
     "tests/test_packed_candidate_runtime.py",
     "casmi_ml/strict_mass_negative_mask.py",
     "casmi_ml/diagnostic_query_strict_followup.py",
-    "tests/test_strict_mass_negative_mask.py"
+    "tests/test_strict_mass_negative_mask.py",
+    "casmi_ml/candidate_array_order.py",
+    "casmi_ml/candidate_array_benchmark.py",
+    "tests/test_candidate_array_order.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
