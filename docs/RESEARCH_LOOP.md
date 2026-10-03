@@ -525,3 +525,5 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 2026-10-03用户切换为仅本地持续改进。state.local_only=true及publication_policy持久化；Controller在release_round、publish_prepared、reserve_submission、refresh_kaggle、import_bootstrap、sync_github以及完成轮次路由均执行保护。CLI local-only可启用；完成本地轮次用local_recorded避免旧eligible记录造成空转。268项回归通过，不上传、不比赛提交、不GitHub push。shared181本地冷运行656.76秒/5729.88MiB、400排名与原181全部相同；不激活远端发布。183补位unknown0.042597579（+0.12%）失败；184原remove-tail个体挽救unknown不变失败。当前最佳181保留。新诊断残差matched coarse/exact模型冻结原编码器，仅添加24维可观测ion/precursor_loss/peak_loss证据残差；相同60K训练分子、随机代表谱、网络和3epoch，零初始化和无证据输出严格保持原模型。185训练前GPU锁重复申请失败，修复独立representation锁后以186/187新root运行，不删除预算记录。
+
+诊断残差配对完成：186 coarse 1077.29秒，187 precise214.77秒，各固定3epochs、60000训练分子、训练开发交集0。两模型24个base tensor均逐项与原编码器相同，仅4个残差tensor改变；代表训练行RNG42 SHA 55d6b28542102ddc91e0fe48090c4ff5c9646af9083a2a47fb12b7be15010772。188/189全2000外部校正MRR原0.042451796、coarse0.042514599、precise0.042662996，三者top100 truth均208、top500均241；精确组+0.50%只属外部诊断，不能称最终系统提升。190完整181推理control进行中，成功后191/192完整系统对照由本地driver顺序运行。500个相同物理hash的原threads1和threads2碎裂分数字典完全一致，原完整400 runtime等价已证；2917 legacy complete物理缓存仅复用于本地开发准确率计算，记录私有逐文件SHA，不用于冷耗时声明。

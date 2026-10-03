@@ -1,0 +1,18 @@
+{
+  "local_only": true,
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "base_encoder_sha256": "0bce6b953f084c1f841b607df99ec46703d7b92a487c8f0812be3db176b3c564",
+  "base_tensor_counts": {
+    "coarse": 24,
+    "precise": 24
+  },
+  "residual_trainable_tensor_counts": {
+    "coarse": 4,
+    "precise": 4
+  },
+  "residual_finite": true,
+  "matched_selected_training_rows": 60000,
+  "selected_rows_rng42_sha256": "55d6b28542102ddc91e0fe48090c4ff5c9646af9083a2a47fb12b7be15010772",
+  "comparison": "Same frozen base and same selected training rows; only evidence tolerance and learned correction differ."
+}

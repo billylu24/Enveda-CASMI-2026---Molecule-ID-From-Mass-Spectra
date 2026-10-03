@@ -1,0 +1,36 @@
+{
+  "round": "0187_diagnostic_residual_exact",
+  "direction": "representation",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "training_molecules": 60000,
+    "selected_spectra": 60000,
+    "train_development_overlap": 0,
+    "precise": true,
+    "base_encoder_exact": true,
+    "evidence_nonempty": 40285,
+    "seconds": 214.76627577398904,
+    "encoder_sha256": "f2b80a5977f9e85df3f006b562919fb349f82d39606b1c6b946d1b722338101e",
+    "history": [
+      {
+        "epoch": 1,
+        "bce": 0.0428250548370341
+      },
+      {
+        "epoch": 2,
+        "bce": 0.04279974640366879
+      },
+      {
+        "epoch": 3,
+        "bce": 0.04278677846205996
+      }
+    ],
+    "independent_acceptance": false,
+    "scope": "Training diagnostics only; complete proposal and final181 system evaluation still required"
+  },
+  "protocol_sha256": "696847802c34319bfe0c9abd0141153cf5850394a7fa1877edbc7966c1549989",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

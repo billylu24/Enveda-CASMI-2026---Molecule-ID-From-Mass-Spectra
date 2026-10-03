@@ -1,0 +1,8 @@
+{
+  "diagnostic_only": true,
+  "local_only": true,
+  "paired_files_exact": 500,
+  "content_bound_physical_scores_reused": 2917,
+  "scope": "Local cached development only, not cold timing or fresh evidence; pinned identical physical hashes, verified threads1/2 exact pairs and prior400 exact runtime validation.",
+  "independent_acceptance": false
+}

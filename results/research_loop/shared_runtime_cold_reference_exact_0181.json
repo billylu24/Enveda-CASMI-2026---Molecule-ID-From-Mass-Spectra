@@ -1,0 +1,8 @@
+{
+  "valid": true,
+  "local_only": true,
+  "reference_rows_exact": 556890,
+  "sparse_nonzeros_exact": 10027422,
+  "all_sparse_fields_exact": true,
+  "scope": "Private actual400 cold runs used the exact same spectral reference rows, ordering and sparse values; no remote publication."
+}

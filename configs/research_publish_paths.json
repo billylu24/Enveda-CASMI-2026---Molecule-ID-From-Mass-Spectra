@@ -334,7 +334,8 @@
     "tests/test_strong_slot_backfill.py",
     "tests/test_diagnostic_residual.py",
     "casmi_ml/diagnostic_proposal_followup.py",
-    "casmi_ml/diagnostic_system_evaluation.py"
+    "casmi_ml/diagnostic_system_evaluation.py",
+    "casmi_ml/diagnostic_system_followup.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

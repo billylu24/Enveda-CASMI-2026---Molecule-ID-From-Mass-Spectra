@@ -1,0 +1,27 @@
+{
+  "local_only": true,
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "molecules": 2000,
+  "ranking_comparison": {
+    "original": {
+      "mrr25": 0.042451796178014714,
+      "top1": 0.028,
+      "top100_truths": 208,
+      "top500_truths": 241
+    },
+    "coarse": {
+      "mrr25": 0.04251459867479554,
+      "top1": 0.0285,
+      "top100_truths": 208,
+      "top500_truths": 241
+    },
+    "precise": {
+      "mrr25": 0.04266299648355712,
+      "top1": 0.0285,
+      "top100_truths": 208,
+      "top500_truths": 241
+    }
+  },
+  "scope": "Same observable candidate mass pools; external ranking only, final181 system and known protection still required."
+}
