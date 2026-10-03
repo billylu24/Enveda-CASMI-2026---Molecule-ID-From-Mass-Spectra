@@ -390,7 +390,9 @@
     "tests/test_strict_mass_negative_mask.py",
     "casmi_ml/candidate_array_order.py",
     "casmi_ml/candidate_array_benchmark.py",
-    "tests/test_candidate_array_order.py"
+    "tests/test_candidate_array_order.py",
+    "casmi_ml/array_order_full_replay.py",
+    "tests/test_array_order_activation.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
