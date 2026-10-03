@@ -947,8 +947,8 @@
   "evaluation": "Repeated fixed molecule development cohort; no new holdout opened",
   "public_submission": {
     "id": 56786330,
-    "status": "PENDING",
-    "score": null,
+    "status": "COMPLETE",
+    "score": 0.174,
     "version": 1,
     "error": ""
   }

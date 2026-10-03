@@ -360,3 +360,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第130/131 native500完整encoder双臂诊断预登记：第126/127 native100只有20可新增真值、原wide50040，先在固定新encoder/critic权重和原0062排名上扩大原label无关native提案到500以检验召回/排名能力；BCE vs BCE+hard仍匹配两臂，既有prefix5预选、其余旧变体只报告，不据此称训练成功或GAN可行。与fragment证据小试验独立因素，未改变Java预算/fragment模型/生成。若critic-only仍不能过门槛，必须看candidate精确排序与证据支持再决定完整fragment，不能凭训练CE直接发布。
+
+
+第128/129 hash200峰并集匹配完成：BCE prefix3 unknown0.030939，hard-pair0.031105（同baseline0.028855）；known0.569429两臂不变，新增真值均2，hard略改善非新真值排名而非仅增coverage。方向有限正向，第132/133登记同prefix3完整2000/1340两臂，保持1200秒fragment总预算、原0062、merged union与所有门控规则，复用本臂小试验完整score/cache，其余实际Java。不能把小试验相对baseline的改善代替full门槛；也不将增量时间当cold资源。full需对0062和两臂同时核对再决定，继续保留独立公共最佳。
