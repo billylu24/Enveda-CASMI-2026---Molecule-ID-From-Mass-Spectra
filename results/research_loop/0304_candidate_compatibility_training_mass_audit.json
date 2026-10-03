@@ -1,0 +1,377 @@
+{
+  "round": "0304_candidate_compatibility_training_mass_audit",
+  "direction": "training_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "training_slots": 120000,
+    "arms": {
+      "unrestricted": {
+        "pairs": 900000,
+        "molecules_with_negative": 60000,
+        "pairs_with_any_candidate_motif_difference": 423689,
+        "pairs_with_trained_bonus_difference": 241011,
+        "pairs_bonus_favors_training_positive": 124621,
+        "pairs_bonus_favors_training_negative": 116390,
+        "mean_positive_minus_negative_bonus": 0.00040535543594013055,
+        "channels": [
+          {
+            "channel": "water:ion",
+            "weight": 2.8481842344278873e-17,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "water:precursor_loss",
+            "weight": 0.01723803435798679,
+            "positive_support_advantage_pairs": 49888,
+            "negative_support_advantage_pairs": 30229,
+            "mean_interaction_positive_minus_negative": 0.007438845466822386
+          },
+          {
+            "channel": "water:peak_loss",
+            "weight": 0.004326489288211123,
+            "positive_support_advantage_pairs": 95333,
+            "negative_support_advantage_pairs": 93610,
+            "mean_interaction_positive_minus_negative": 0.00904883723706007
+          },
+          {
+            "channel": "ammonia:ion",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "ammonia:precursor_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 25037,
+            "negative_support_advantage_pairs": 11015,
+            "mean_interaction_positive_minus_negative": 0.003139849752187729
+          },
+          {
+            "channel": "ammonia:peak_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 94993,
+            "negative_support_advantage_pairs": 94834,
+            "mean_interaction_positive_minus_negative": 0.005822798237204552
+          },
+          {
+            "channel": "carbon_monoxide:ion",
+            "weight": 2.2452376191758327e-18,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "carbon_monoxide:precursor_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 7561,
+            "negative_support_advantage_pairs": 5264,
+            "mean_interaction_positive_minus_negative": 0.0006021296721883118
+          },
+          {
+            "channel": "carbon_monoxide:peak_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 59971,
+            "negative_support_advantage_pairs": 73867,
+            "mean_interaction_positive_minus_negative": 0.0035563900601118803
+          },
+          {
+            "channel": "carbon_dioxide:ion",
+            "weight": 2.176340833689423e-18,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "carbon_dioxide:precursor_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 21966,
+            "negative_support_advantage_pairs": 2665,
+            "mean_interaction_positive_minus_negative": 0.007066685240715742
+          },
+          {
+            "channel": "carbon_dioxide:peak_loss",
+            "weight": 0.028435476353802024,
+            "positive_support_advantage_pairs": 66802,
+            "negative_support_advantage_pairs": 59842,
+            "mean_interaction_positive_minus_negative": 0.00836893543601036
+          },
+          {
+            "channel": "hexose_residue:ion",
+            "weight": 3.207076511228647e-18,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "hexose_residue:precursor_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 2476,
+            "negative_support_advantage_pairs": 1411,
+            "mean_interaction_positive_minus_negative": 0.0006276970962062478
+          },
+          {
+            "channel": "hexose_residue:peak_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 14680,
+            "negative_support_advantage_pairs": 13091,
+            "mean_interaction_positive_minus_negative": 0.0005296021117828786
+          },
+          {
+            "channel": "deoxyhexose_residue:ion",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "deoxyhexose_residue:precursor_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 1417,
+            "negative_support_advantage_pairs": 1261,
+            "mean_interaction_positive_minus_negative": 0.00010606869182083756
+          },
+          {
+            "channel": "deoxyhexose_residue:peak_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 14573,
+            "negative_support_advantage_pairs": 13831,
+            "mean_interaction_positive_minus_negative": 0.00019904159125871956
+          },
+          {
+            "channel": "pentose_residue:ion",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "pentose_residue:precursor_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 1827,
+            "negative_support_advantage_pairs": 1130,
+            "mean_interaction_positive_minus_negative": 0.0004575979837682098
+          },
+          {
+            "channel": "pentose_residue:peak_loss",
+            "weight": 1.409462824231157e-18,
+            "positive_support_advantage_pairs": 17178,
+            "negative_support_advantage_pairs": 14756,
+            "mean_interaction_positive_minus_negative": 0.0003227927372790873
+          },
+          {
+            "channel": "phosphocholine:ion",
+            "weight": 2.832478175618382e-18,
+            "positive_support_advantage_pairs": 744,
+            "negative_support_advantage_pairs": 84,
+            "mean_interaction_positive_minus_negative": 0.0005282952333800495
+          },
+          {
+            "channel": "phosphocholine:precursor_loss",
+            "weight": 1.9737259922578296e-18,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "phosphocholine:peak_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          }
+        ]
+      },
+      "mass_compatible": {
+        "pairs": 720198,
+        "molecules_with_negative": 57260,
+        "pairs_with_any_candidate_motif_difference": 344901,
+        "pairs_with_trained_bonus_difference": 188025,
+        "pairs_bonus_favors_training_positive": 94737,
+        "pairs_bonus_favors_training_negative": 93288,
+        "mean_positive_minus_negative_bonus": 0.00036196785629746993,
+        "channels": [
+          {
+            "channel": "water:ion",
+            "weight": 2.8481842344278873e-17,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "water:precursor_loss",
+            "weight": 0.01723803435798679,
+            "positive_support_advantage_pairs": 39935,
+            "negative_support_advantage_pairs": 26144,
+            "mean_interaction_positive_minus_negative": 0.006685376632958651
+          },
+          {
+            "channel": "water:peak_loss",
+            "weight": 0.004326489288211123,
+            "positive_support_advantage_pairs": 73573,
+            "negative_support_advantage_pairs": 76264,
+            "mean_interaction_positive_minus_negative": 0.007271729409694672
+          },
+          {
+            "channel": "ammonia:ion",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "ammonia:precursor_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 20090,
+            "negative_support_advantage_pairs": 10164,
+            "mean_interaction_positive_minus_negative": 0.0023454015608876944
+          },
+          {
+            "channel": "ammonia:peak_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 76794,
+            "negative_support_advantage_pairs": 82857,
+            "mean_interaction_positive_minus_negative": 0.003948204219341278
+          },
+          {
+            "channel": "carbon_monoxide:ion",
+            "weight": 2.2452376191758327e-18,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "carbon_monoxide:precursor_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 6146,
+            "negative_support_advantage_pairs": 4474,
+            "mean_interaction_positive_minus_negative": 0.0004753781540784985
+          },
+          {
+            "channel": "carbon_monoxide:peak_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 47705,
+            "negative_support_advantage_pairs": 60889,
+            "mean_interaction_positive_minus_negative": 0.003247930435463786
+          },
+          {
+            "channel": "carbon_dioxide:ion",
+            "weight": 2.176340833689423e-18,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "carbon_dioxide:precursor_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 16667,
+            "negative_support_advantage_pairs": 2071,
+            "mean_interaction_positive_minus_negative": 0.006179013755172491
+          },
+          {
+            "channel": "carbon_dioxide:peak_loss",
+            "weight": 0.028435476353802024,
+            "positive_support_advantage_pairs": 49450,
+            "negative_support_advantage_pairs": 47114,
+            "mean_interaction_positive_minus_negative": 0.007570262532681227
+          },
+          {
+            "channel": "hexose_residue:ion",
+            "weight": 3.207076511228647e-18,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "hexose_residue:precursor_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 1534,
+            "negative_support_advantage_pairs": 1199,
+            "mean_interaction_positive_minus_negative": 0.0003170448471792042
+          },
+          {
+            "channel": "hexose_residue:peak_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 11650,
+            "negative_support_advantage_pairs": 10968,
+            "mean_interaction_positive_minus_negative": 0.00010196997754974291
+          },
+          {
+            "channel": "deoxyhexose_residue:ion",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "deoxyhexose_residue:precursor_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 1130,
+            "negative_support_advantage_pairs": 1060,
+            "mean_interaction_positive_minus_negative": 5.0977971113752574e-05
+          },
+          {
+            "channel": "deoxyhexose_residue:peak_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 12048,
+            "negative_support_advantage_pairs": 11590,
+            "mean_interaction_positive_minus_negative": 5.213797703618184e-05
+          },
+          {
+            "channel": "pentose_residue:ion",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "pentose_residue:precursor_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 1504,
+            "negative_support_advantage_pairs": 1031,
+            "mean_interaction_positive_minus_negative": 0.00042765220860019326
+          },
+          {
+            "channel": "pentose_residue:peak_loss",
+            "weight": 1.409462824231157e-18,
+            "positive_support_advantage_pairs": 15869,
+            "negative_support_advantage_pairs": 13422,
+            "mean_interaction_positive_minus_negative": 0.00031456147553399205
+          },
+          {
+            "channel": "phosphocholine:ion",
+            "weight": 2.832478175618382e-18,
+            "positive_support_advantage_pairs": 86,
+            "negative_support_advantage_pairs": 31,
+            "mean_interaction_positive_minus_negative": 6.547196244355291e-05
+          },
+          {
+            "channel": "phosphocholine:precursor_loss",
+            "weight": 1.9737259922578296e-18,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          },
+          {
+            "channel": "phosphocholine:peak_loss",
+            "weight": 0.0,
+            "positive_support_advantage_pairs": 0,
+            "negative_support_advantage_pairs": 0,
+            "mean_interaction_positive_minus_negative": 0.0
+          }
+        ]
+      }
+    },
+    "scope": "Training-only chemical candidate discrimination; molecular mass is permitted training structure property, not test truth. Pinned compatible subset is not a complete deployed competitor pool; no accuracy or generalization claim."
+  },
+  "protocol_sha256": "58794018d9c92cdebac4dfac2a6780ba4ad4ed5951c0d03c39e44a1bb9e61d6a",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

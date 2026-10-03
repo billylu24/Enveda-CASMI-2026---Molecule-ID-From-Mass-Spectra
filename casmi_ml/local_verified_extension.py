@@ -88,6 +88,21 @@ def run(test, baseline, full, routing, reference, output):
                     new=compatibility_score,
                 )
             )
+        from casmi_ml.extended_candidate_activation import (
+            resolve_score as resolve_extended_score,
+        )
+
+        extended_score = resolve_extended_score(config, proof)
+        if compatibility_score is not None and extended_score is not None:
+            raise ValueError(
+                "Only one fully evaluated candidate chemistry bank may be active"
+            )
+        if extended_score is not None:
+            stack.enter_context(
+                patch(
+                    "casmi_ml.chembl_routed_inference.score_group", new=extended_score
+                )
+            )
         query_spec = config.get("query_residual")
         if query_spec:
             from casmi_ml.diagnostic_query_ranker import (

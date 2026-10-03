@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03T14:10:18Z",
+  "updated_at": "2026-10-03T14:36:16Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -102,10 +102,10 @@
   },
   "active_rounds": [
     {
-      "id": "0299_candidate_compatibility_zero_control",
+      "id": "0306_extended_candidate_zero_control",
       "direction": "implementation_control",
       "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0299_candidate_compatibility_zero_control/report.json"
+      "report": "artifacts/research_loop/rounds/0306_extended_candidate_zero_control/report.json"
     }
   ],
   "local_candidate_runtime": {
@@ -178,9 +178,10 @@
     "structure_key_followup_v2.log",
     "diagnostic_query_admission_followup_v2.log",
     "diagnostic_query_all_spectra_followup.log",
-    "candidate_compatibility_followup.log"
+    "candidate_compatibility_followup.log",
+    "extended_candidate_followup.log"
   ],
-  "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero candidate bonus full control precedes300/301 bounded train-only SMARTS interactions and302/303 full paired systems. Only frozen gate winners replace best.",
+  "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306 zero control,307/308 fixed bounded60D fitting,309/310 full paired systems. No added feature runtime active. Only frozen gate winners replace best.",
   "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
   "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
   "independent_acceptance": false,
@@ -1174,6 +1175,55 @@
     },
     {
       "id": "0299_candidate_compatibility_zero_control",
+      "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0299_candidate_compatibility_zero_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0300_candidate_compatibility_chemical",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0300_candidate_compatibility_chemical.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0301_candidate_compatibility_mask",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0301_candidate_compatibility_mask.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0302_candidate_compatibility_chemical_system",
+      "direction": "candidate_chemistry_compatibility",
+      "status": "rejected",
+      "decision": "results/research_loop/0302_candidate_compatibility_chemical_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0303_candidate_compatibility_mask_system",
+      "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0303_candidate_compatibility_mask_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0304_candidate_compatibility_training_mass_audit",
+      "direction": "training_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0304_candidate_compatibility_training_mass_audit.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0305_extended_diagnostic_rule_training_audit",
+      "direction": "training_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0305_extended_diagnostic_rule_training_audit.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0306_extended_candidate_zero_control",
       "direction": "implementation_control",
       "status": "external_running",
       "decision": null,

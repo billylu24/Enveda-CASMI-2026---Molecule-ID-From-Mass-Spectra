@@ -16,6 +16,7 @@ CYCLES = {
     "deployed_admission_margin": "query_admission_attribution.json",
     "all_measured_group": "query_all_spectra_attribution.json",
     "candidate_structural_compatibility": "candidate_compatibility_attribution.json",
+    "extended_candidate_chemistry": "extended_candidate_attribution.json",
 }
 
 

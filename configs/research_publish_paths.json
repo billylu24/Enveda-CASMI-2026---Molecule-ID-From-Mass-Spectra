@@ -447,7 +447,19 @@
     "tests/test_candidate_compatibility_training.py",
     "tests/test_candidate_compatibility_binding.py",
     "casmi_ml/candidate_compatibility_activation.py",
-    "tests/test_candidate_compatibility_activation.py"
+    "tests/test_candidate_compatibility_activation.py",
+    "casmi_ml/candidate_compatibility_admissibility_audit.py",
+    "casmi_ml/extended_diagnostic_rules.py",
+    "casmi_ml/extended_diagnostic_rule_audit.py",
+    "tests/test_extended_diagnostic_rules.py",
+    "casmi_ml/extended_candidate_activation.py",
+    "casmi_ml/extended_candidate_followup.py",
+    "casmi_ml/extended_candidate_system.py",
+    "casmi_ml/extended_candidate_compatibility.py",
+    "casmi_ml/extended_candidate_training.py",
+    "casmi_ml/bounded_candidate_bonus.py",
+    "tests/test_extended_candidate_compatibility.py",
+    "tests/test_extended_candidate_activation.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

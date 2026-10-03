@@ -47,8 +47,9 @@ def refresh():
             "diagnostic_query_admission_followup_v2.log",
             "diagnostic_query_all_spectra_followup.log",
             "candidate_compatibility_followup.log",
+            "extended_candidate_followup.log",
         ],
-        "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero candidate bonus full control precedes300/301 bounded train-only SMARTS interactions and302/303 full paired systems. Only frozen gate winners replace best.",
+        "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306 zero control,307/308 fixed bounded60D fitting,309/310 full paired systems. No added feature runtime active. Only frozen gate winners replace best.",
         "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
         "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
         "independent_acceptance": False,
@@ -91,6 +92,7 @@ def refresh():
         ("admission_margin_attribution", "query_admission_attribution.json"),
         ("all_spectra_attribution", "query_all_spectra_attribution.json"),
         ("candidate_compatibility_attribution", "candidate_compatibility_attribution.json"),
+        ("extended_candidate_attribution", "extended_candidate_attribution.json"),
     ]:
         report = Path("results/research_loop") / filename
         if report.exists():

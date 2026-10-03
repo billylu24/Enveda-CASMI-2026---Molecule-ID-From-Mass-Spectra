@@ -26,12 +26,14 @@
     "Charged ChEMBL full-source audit293 retained23844 additional charged structures,1 database identity hit but0 observable mass-window truth hits, no expansion activated.",
     "Admission chemical291 complete unknownMRR.043659452 below incumbent and original paired chemical262; matched mask292 remains in evaluation.",
     "Observed original training31478 mixed-adduct and17918 mixed-mode groups, development464/246; current same-ion pair duplicates for7963 multirow training groups with no same-ion partner. Preregister all-measured row aggregation294/295, raw CE and unchanged inference graph, no combination with admission margin.",
-    "Admission-margin matched291/292 complete chemicalMRR.043659452 vs mask.043910285, chemical-minus-mask-.000250833 and chemical-minus-originalCE-.000169488, both below incumbent; do not expand fixed margin objective."
+    "Admission-margin matched291/292 complete chemicalMRR.043659452 vs mask.043910285, chemical-minus-mask-.000250833 and chemical-minus-originalCE-.000169488, both below incumbent; do not expand fixed margin objective.",
+    "All-measured214804 spectra294/295 fixed235 updates;296/297 complete chemicalMRR.043688023 vs mask.043624928, both rejected, no expansion of group aggregation.",
+    "Candidate structural chemistry299 zero bonus all3340 full ranks exact,0budget/newfailure.300/301 train-only convex24D fitting, weight total<=.05;302/303 complete chemicalMRR.043994968 vs mask.043978301, knownMRR.603792116 unchanged, gain+.000016667 fails frozen incumbent gates. Actual local best remains236/evidence286.",
+    "Candidate compatibility304 train mass audit:720198/900000 original pinned pairs mass-compatible across57260 molecules; trained bonus favors positive94737 vs negative93288, tiny mean positive-minus-negative.000361968. Do not claim unrestricted mass mismatch explains failure."
   ],
   "current_sequence": [
-    "Complete292 paired admission control and attribution",
-    "294/295 all214804 original training rows/60K molecules with zero padding vote in query and anchor means, same original15CE and optimizer steps",
-    "296/297 complete paired full systems, all incumbent+0206+181 safeguards retained"
+    "305 train-only12 additional broad ion/loss hypothesis specificity audit, no new deployed rule or parameter fitting yet",
+    "If actual training information supports it, preregister one matched bounded candidate-score arm and full zero/mask systems; otherwise retain best and change direction"
   ],
   "gan": {
     "status": "not_expanded",
