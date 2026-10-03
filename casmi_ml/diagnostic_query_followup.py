@@ -8,6 +8,7 @@ import torch
 from casmi_ml.completed_system_reports import wait_for_complete_system
 from casmi_ml.data import write_json
 from casmi_ml.diagnostic_local_followup import execute
+from casmi_ml.diagnostic_query_activation import activate
 from casmi_ml.diagnostic_query_ranker import DiagnosticQueryRanker
 from casmi_ml.direct_models import DirectRanker
 from casmi_ml.generated_first_critic import CRITIC
@@ -52,6 +53,7 @@ def complete_query_system(c, model, rid):
             not report["development_budget_fallbacks"]
             and not report["incremental_new_failure_contexts"]
         ):
+            activate(c, source, result)
             print(
                 "Complete local query system",
                 trial,

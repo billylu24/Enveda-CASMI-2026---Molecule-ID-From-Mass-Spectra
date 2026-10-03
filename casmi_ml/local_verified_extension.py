@@ -3,6 +3,7 @@
 import argparse
 import json
 import time
+from contextlib import ExitStack
 from pathlib import Path
 from unittest.mock import patch
 
@@ -52,7 +53,45 @@ def run(test, baseline, full, routing, reference, output):
         return obj
 
     started = time.monotonic()
-    with patch("casmi_ml.metfrag_persistent.PersistentMonomerMetFrag", new=engine):
+    with ExitStack() as stack:
+        stack.enter_context(
+            patch("casmi_ml.metfrag_persistent.PersistentMonomerMetFrag", new=engine)
+        )
+        query_spec = config.get("query_residual")
+        if query_spec:
+            from casmi_ml.diagnostic_query_ranker import (
+                load_query_ranker,
+                score_chemical_group,
+            )
+
+            if (
+                digest(query_spec["original_critic"])
+                != query_spec["original_critic_sha256"]
+            ):
+                raise ValueError("Query residual original critic source changed")
+            for name, field in [
+                ("casmi_ml/diagnostic_query_ranker.py", "ranker_source_sha256"),
+                ("casmi_ml/diagnostic_query_residual.py", "residual_source_sha256"),
+            ]:
+                if digest(name) != query_spec[field]:
+                    raise ValueError(
+                        "Query residual implementation changed; replay again"
+                    )
+            ranker, _ = load_query_ranker(
+                config["critic"], query_spec["original_critic"]
+            )
+            stack.enter_context(
+                patch(
+                    "casmi_ml.chembl_routed_inference.DirectRanker",
+                    new=lambda architecture: ranker,
+                )
+            )
+            stack.enter_context(
+                patch(
+                    "casmi_ml.chembl_routed_inference.score_group",
+                    new=score_chemical_group,
+                )
+            )
         result = extend(
             test,
             baseline,

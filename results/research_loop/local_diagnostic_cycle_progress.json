@@ -87,7 +87,12 @@
     "0235_diagnostic_context_mask_system",
     "0241_diagnostic_context_precursor_channels",
     "0242_diagnostic_context_precursor_proposals",
-    "0243_diagnostic_context_precursor_system"
+    "0243_diagnostic_context_precursor_system",
+    "0244_diagnostic_query_zero_control",
+    "0245_diagnostic_query_chemical",
+    "0246_diagnostic_query_mask_control",
+    "0247_diagnostic_query_chemical_system",
+    "0248_diagnostic_query_mask_system"
   ],
   "coarse_context_complete": {
     "unknown": {
@@ -118,5 +123,11 @@
     "eligible": false,
     "relative_gain_vs_verified_best": 0.011937705390401591,
     "decision": "Below frozen2% relative gain; keep verified best."
+  },
+  "unknown_context_ranking_sensitivity": {
+    "precise_context_full_changed": 131,
+    "first_changed": 0,
+    "candidate_membership_changed": 102,
+    "direction": "chemical residual on frozen final candidate critic query with matched identity mask"
   }
 }

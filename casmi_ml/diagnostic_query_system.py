@@ -44,6 +44,12 @@ def run(output, critic, control=False):
     ):
         raise ValueError("Implementation control requires strictly zero residual")
     config.update(critic=str(critic), critic_sha256=digest(critic))
+    config["query_residual"] = {
+        "original_critic": original_critic,
+        "original_critic_sha256": digest(original_critic),
+        "ranker_source_sha256": digest("casmi_ml/diagnostic_query_ranker.py"),
+        "residual_source_sha256": digest("casmi_ml/diagnostic_query_residual.py"),
+    }
     benchmark, inherited, _ = resolve_local_incremental(str(CONTROL), None)
     freeze(
         output / "protocol.json",
@@ -177,6 +183,7 @@ def run(output, critic, control=False):
             "metrics": {m: local[m]["metrics"] for m in ("unknown", "known")},
         },
     }
+    write_json(output / "external_config.json", config)
     write_json(output / "selected_rankings.json", selected)
     write_json(output / "report.json", report)
     return report

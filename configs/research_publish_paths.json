@@ -374,7 +374,9 @@
     "casmi_ml/diagnostic_query_system.py",
     "casmi_ml/diagnostic_query_followup.py",
     "tests/test_diagnostic_query_residual.py",
-    "tests/test_diagnostic_query_ranker.py"
+    "tests/test_diagnostic_query_ranker.py",
+    "casmi_ml/diagnostic_query_activation.py",
+    "tests/test_diagnostic_query_activation.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
