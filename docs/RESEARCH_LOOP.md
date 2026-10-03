@@ -557,3 +557,6 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 221当前adapter严格原控制全2000/1340 rank exact、无budget，1个精确physical request仍失败但原控制同回退，private failed hash清单与SHA冻结；222独立fresh同adapter字典exact证据绑定当前source后，本地runtime持久启用，不更改部署/scientific config。207粗容差首轮unknown0.040940821、known0.604624265，合计861预算回退，严格仅diagnostic_complete，best181保持；208精确完整系统已显式绑定incremental benchmark和共同failure清单，顺序运行。231新24维最大证据计算全observable谱图双容差bitwise审核启动，避免构建模型不用的全部edge字典；通过前不用于训练或评价，无模型/阈值变化。
+
+
+231全部5439 observable开发谱图两容差24维float32逐项exact：coarse原枚举64.91秒→max3.62秒，precise12.82秒→.97秒，共享主机微基准；切换evidence_features为等价max实现并保留legacy oracle，232当前源码再核验两臂全量，训练通过相同特征不改标签或预处理。发现运行时选择后变量重新初始化会清空继承failure清单，提取resolve_local_incremental并新增清单存活/篡改拒绝回归；208首轮仍原进程版本，记录后223/224用修复逻辑完整重放。源码变动只修复证据绑定和运行时；不能把首轮partial或速度算为准确率提升。

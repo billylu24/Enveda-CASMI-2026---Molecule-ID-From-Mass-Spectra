@@ -10,7 +10,7 @@ import pandas as pd
 
 from casmi_ml.data import write_json
 from casmi_ml.diagnostic_feature_runtime import maximum_evidence_features
-from casmi_ml.diagnostic_residual import evidence_features
+from casmi_ml.diagnostic_residual import legacy_evidence_features
 from casmi_ml.metfrag import digest
 from casmi_ml.research_protocol import ROOT, freeze
 
@@ -51,7 +51,7 @@ def run(output):
         nonempty = 0
         for i, row in enumerate(rows):
             start = time.monotonic()
-            expected = evidence_features(row, precise)
+            expected = legacy_evidence_features(row, precise)
             legacy_seconds += time.monotonic() - start
             start = time.monotonic()
             actual = maximum_evidence_features(row, precise)

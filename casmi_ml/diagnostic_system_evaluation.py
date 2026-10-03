@@ -55,19 +55,9 @@ def validate_residual_binding(encoder, original):
     }
 
 
-def run(
-    output,
-    encoder,
-    proposals,
-    control=False,
-    audit_control=False,
-    control_reference=None,
-    reuse_unknown=None,
-    paired_control=None,
-    incremental_benchmark=None,
-):
-    if control and audit_control:
-        raise ValueError("Strict control and audit-only modes are mutually exclusive")
+def resolve_local_incremental(paired_control, incremental_benchmark):
+    inherited_failure_hashes = set()
+    incremental_runtime = None
     # Local persisted runtime selection is independent of frozen scientific config.
     if paired_control and incremental_benchmark is None:
         from casmi_ml.research_loop import Controller
@@ -97,10 +87,27 @@ def run(
                 raise ValueError("Local controlled failure context changed")
             inherited_failure_hashes = set(json.loads(failure_file.read_text()))
             incremental_benchmark = runtime["benchmark_directory"]
+    return incremental_benchmark, inherited_failure_hashes, incremental_runtime
+
+
+def run(
+    output,
+    encoder,
+    proposals,
+    control=False,
+    audit_control=False,
+    control_reference=None,
+    reuse_unknown=None,
+    paired_control=None,
+    incremental_benchmark=None,
+):
+    if control and audit_control:
+        raise ValueError("Strict control and audit-only modes are mutually exclusive")
+    incremental_benchmark, inherited_failure_hashes, incremental_runtime = (
+        resolve_local_incremental(paired_control, incremental_benchmark)
+    )
     comparison = BEST
     incremental_instances = []
-    inherited_failure_hashes = set()
-    incremental_runtime = None
     incremental_type = None
 
     def incremental_engine(*args, **kwargs):

@@ -5,7 +5,8 @@ import math
 import numpy as np
 
 from casmi_ml.chemistry import RULES, clean_peaks, high_resolution, parse_adduct
-from casmi_ml.diagnostic_residual import DIM
+
+DIM = len(RULES) * 3
 
 
 def maximum_evidence_features(row, precise=True):

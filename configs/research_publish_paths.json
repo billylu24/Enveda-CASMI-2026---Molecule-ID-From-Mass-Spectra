@@ -350,7 +350,8 @@
     "casmi_ml/diagnostic_next_cycle.py",
     "casmi_ml/diagnostic_feature_runtime.py",
     "casmi_ml/diagnostic_feature_audit.py",
-    "tests/test_diagnostic_feature_runtime.py"
+    "tests/test_diagnostic_feature_runtime.py",
+    "tests/test_local_incremental_selection.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

@@ -10,7 +10,7 @@ KINDS = ("ion", "precursor_loss", "peak_loss")
 DIM = len(RULES) * len(KINDS)
 
 
-def evidence_features(row, precise=True):
+def legacy_evidence_features(row, precise=True):
     result = np.zeros(DIM, np.float32)
     names = {rule.name: i for i, rule in enumerate(RULES)}
     for match in extract_evidence(
@@ -21,6 +21,12 @@ def evidence_features(row, precise=True):
             i = names[match["rule"]] * len(KINDS) + KINDS.index(kind)
             result[i] = max(result[i], match["strength"])
     return result
+
+
+def evidence_features(row, precise=True):
+    from casmi_ml.diagnostic_feature_runtime import maximum_evidence_features
+
+    return maximum_evidence_features(row, precise)
 
 
 class DiagnosticResidual(nn.Module):
