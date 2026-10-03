@@ -5,6 +5,7 @@ import unittest
 import numpy as np
 
 from casmi_ml.chembl_critic_slots import score_cache_key
+from casmi_ml.chembl_fragment_pilot import score_cache_key as fragment_cache_key
 from casmi_ml.encoder_pair_finetuning import validate_hard_table
 
 
@@ -19,6 +20,12 @@ class EncoderPairBindingTests(unittest.TestCase):
             score_cache_key(*args, dict(original, critic_sha256="critic2")),
         }
         self.assertEqual(len(keys), 4)
+        self.assertEqual(
+            fragment_cache_key(*args, original), score_cache_key(*args, original)
+        )
+        self.assertNotEqual(
+            fragment_cache_key(*args), fragment_cache_key(*args, original)
+        )
         self.assertEqual(
             score_cache_key(*args, original), score_cache_key(*args, original.copy())
         )

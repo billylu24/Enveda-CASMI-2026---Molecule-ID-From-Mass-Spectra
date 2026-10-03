@@ -352,3 +352,8 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 第124/125编码器候选匹配受控微调预注册及执行：原60K/214804谱、原scale encoder初始化、critic完全冻结；control仅fingerprint BCE，实验BCE+0.1训练内15近质量hard-negative listwise CE。固定3epoch/lr1e-5/batch128/seed42，相同分子抽样、dropout RNG、hard table、两项前向与遍历顺序，每分子每epoch一张谱，无开发label/checkpoint选择；训练特征preprocessing、row_id与缓存/原encoder逐项一致，hard mining protocol/训练/critic SHA匹配，所有负例distinct且在原近质量池、train/dev交集0。两臂GPU顺序约14.8/14.6秒、291.5MiB；最终权重finite，critic state_dict逐tensor保持原权重，仅绑定新encoder。固定第3epoch：control BCE0.046090/CE0.676279，实验BCE0.046688/CE0.604951。训练CE降低不是提交证据。
 
 第126/127完整候选匹配对照已登记：固定原ChEMBL100 native proposals、原0062全部检索/生成排序、新encoder仅用于external与实际first critic；两组均同original frozen critic权重、独立encoder绑定与cache key含两模型SHA，不能给旧decoder换条件空间。完整2000/1340对0062评价、预选margin005_prefix5（沿用原critic-only规则），其余既有prefix报告诊断；若合格仍需部署资源/平台验证。这是受监督候选匹配，不是GAN。新增binding/负例保护及相关回归7项通过。
+
+
+第126/127完整encoder对照：原native100仅20新真值可评分，BCE control外部critic Top3 5→hard-pair9，Top25 13→15；预选prefix5 combined未知0.039191→0.039351（hard对0062仅+0.356%），known0.604220→0.604201，保护通过，全部既有变体门槛失败。低位插入无法充分将候选排序改善转为系统收益，下一只做一个固定hash200 fragment证据融合对照；不按此full挑新prefix/margin。
+
+第128/129同hash200 matched fragment pilot登记：沿用122 merged union/原0062/相对actual first/critic+.05/fragment.5/native100/3slots/prefix3/skip-impossible，仅换BCE vs hard-pair proposal encoder与原冻结critic（新绑定）；旧生成/检索保持原模型。预选prefix3，禁止新模型复用旧critic分数，cache包含两模型SHA，片段内容仍可内容缓存。以两臂同200增益/known保护判断，若没有正向不扩大。187项回归通过，audit新增绑定支持后再核对full。

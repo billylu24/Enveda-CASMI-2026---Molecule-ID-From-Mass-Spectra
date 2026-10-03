@@ -80,8 +80,11 @@ def relative_supported_proposals(proposed, fragments, current_first):
     ]
 
 
-def score_cache_key(query, first, candidates):
-    payload = json.dumps([query, first, candidates], separators=(",", ":"))
+def score_cache_key(query, first, candidates, model_binding=None):
+    values = [query, first, candidates]
+    if model_binding is not None:
+        values.append(model_binding)
+    payload = json.dumps(values, separators=(",", ":"))
     return hashlib.sha256(payload.encode()).hexdigest()
 
 
@@ -112,6 +115,7 @@ def run(
     critic_only=False,
     pilot_selector="prefix",
     merge_spectra=False,
+    proposal_encoder=ENCODER,
 ):
     if merge_spectra and (mean_fragments or not compare_first or not monomer or dimer):
         raise ValueError(
@@ -178,7 +182,16 @@ def run(
     )
     if merge_spectra:
         execution_aggregation_sha256 = digest("casmi_ml/merged_fragments.py")
-    critic_checkpoint = Path(critic_checkpoint)
+    critic_checkpoint, proposal_encoder = (
+        Path(critic_checkpoint),
+        Path(proposal_encoder),
+    )
+    encoder_sha, critic_sha = digest(proposal_encoder), digest(critic_checkpoint)
+    model_binding = (
+        None
+        if proposal_encoder == ENCODER and critic_checkpoint == CRITIC
+        else {"encoder_sha256": encoder_sha, "critic_sha256": critic_sha}
+    )
     if proposal_limit not in (100, 500) or not 1 <= fragment_limit <= proposal_limit:
         raise ValueError("Invalid proposal or fragment shortlist limit")
     critic_path = Path(
@@ -288,7 +301,10 @@ def run(
             "version": 1,
             "source_sha256": digest(Path(__file__)),
             "catalog_sha256": digest(DERIVED),
-            "encoder_sha256": digest(ENCODER),
+            "encoder_sha256": encoder_sha,
+            "baseline_encoder_sha256": digest(ENCODER),
+            "proposal_model_binding": model_binding,
+            "encoder_scope": "External proposals and actual first critic only;0062 retrieval and generation frozen",
             "development_sha256": digest(ROOT / "researchdev.parquet"),
             "generated_sha256": digest(GENERATED),
             "critic_scores_sha256": digest(SCORES),
@@ -326,7 +342,7 @@ def run(
             if evidence_only
             else None,
             "proposal_critic_cache_sha256": digest(critic_path)
-            if critic_checkpoint == CRITIC
+            if model_binding is None
             else None,
             "fragment_depth": fragment_depth,
             "fragment_engine_source_sha256": execution_engine_sha256,
@@ -398,7 +414,7 @@ def run(
     pairs = json.loads(pair_path.read_text())
     if len(generated) != 2000 or set(ordered) != set(groups):
         raise ValueError("Full2000 keys required")
-    encoder, saved = load_deployment_checkpoint(ENCODER, "scale")
+    encoder, saved = load_deployment_checkpoint(proposal_encoder, "scale")
     encoder.eval()
     proposals = json.loads(
         Path(
@@ -420,10 +436,11 @@ def run(
         r["key"]: {c["key"]: c["smiles"] for c in r["candidates"]} for r in generated
     }
     weights = torch.load(critic_checkpoint, map_location="cpu", weights_only=True)
-    assert (
-        weights["encoder_sha256"] == digest(ENCODER)
-        and weights["architecture"] == "fingerprint"
-    )
+    if (
+        weights["encoder_sha256"] != encoder_sha
+        or weights["architecture"] != "fingerprint"
+    ):
+        raise ValueError("Proposal critic/encoder binding differs")
     critic = DirectRanker("fingerprint").eval()
     critic.load_state_dict(weights["state_dict"])
     cache_path = output / "critic_scores.json"
@@ -431,7 +448,7 @@ def run(
         json.loads(cache_path.read_text())
         if cache_path.exists()
         else json.loads(critic_path.read_text())
-        if critic_checkpoint == CRITIC
+        if model_binding is None
         else {}
     )
     selection_keys = sorted(groups)
@@ -549,7 +566,9 @@ def run(
                     candidates_external = [
                         k for k in proposals[key] if k not in current_set
                     ][:proposal_limit]
-                    cache_key = score_cache_key(key, current[0], candidates_external)
+                    cache_key = score_cache_key(
+                        key, current[0], candidates_external, model_binding
+                    )
                     if candidates_external and cache_key not in pair_scores:
                         if not budget.checkpoint():
                             raise TimeoutError("Proposal critic budget exhausted")
@@ -889,6 +908,7 @@ def main():
     p.add_argument("--fragment-limit", type=int, default=100)
     p.add_argument("--evidence-only", action="store_true")
     p.add_argument("--critic-checkpoint", type=Path, default=CRITIC)
+    p.add_argument("--proposal-encoder", type=Path, default=ENCODER)
     p.add_argument("--dimer", action="store_true")
     p.add_argument("--candidate-gate", action="store_true")
     p.add_argument("--compare-first", action="store_true")
@@ -934,6 +954,7 @@ def main():
                 a.critic_only,
                 a.pilot_selector,
                 a.merge_spectra,
+                a.proposal_encoder,
             ),
             indent=2,
         )

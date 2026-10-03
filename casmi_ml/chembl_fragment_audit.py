@@ -127,7 +127,9 @@ def run(directory, output):
                 ]
                 true_novel = key in native
                 counts["novel_truth_in_native"] += true_novel
-                ck = score_cache_key(key, current[0], native)
+                ck = score_cache_key(
+                    key, current[0], native, protocol.get("proposal_model_binding")
+                )
                 if native:
                     critic = pair_scores[ck]
                     shortlist = sorted(native, key=lambda k: (-critic[k], k))
