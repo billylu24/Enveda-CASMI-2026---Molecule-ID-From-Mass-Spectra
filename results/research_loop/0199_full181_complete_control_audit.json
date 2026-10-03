@@ -1,0 +1,9 @@
+{
+  "status": "implementation_control_failed",
+  "local_only": true,
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "best_updated": false,
+  "remote_publication": false,
+  "reason": "Unknown replay inputs validated including order-independent routing. Known reconstruction lacked3 dev catalog structures; recovered from original0001 known spectral reference SMILES. No full accuracy report."
+}

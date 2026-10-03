@@ -654,11 +654,40 @@ class Controller:
                     or abs(frame.top1.mean() - selected[mode]["top1"]) > 1e-10
                 ):
                     raise ValueError("Metric report differs from paired CSV")
+            gate = development_gate(selected, baseline, self.config)
+            comparison_gates = {}
+            for name, comparator in report.get("required_comparators", {}).items():
+                comparator_folds = {}
+                for mode in ("unknown", "known"):
+                    other = pd.read_csv(
+                        Path(comparator["directory"])
+                        / f"{mode}_{comparator['variant']}.csv"
+                    )
+                    expected = comparator["metrics"][mode]
+                    if (
+                        len(other) != expected["molecules"]
+                        or abs(other.reciprocal_rank.mean() - expected["mrr25"]) > 1e-10
+                        or abs(other.top1.mean() - expected["top1"]) > 1e-10
+                    ):
+                        raise ValueError("Required comparator differs from paired CSV")
+                    comparator_folds[mode] = fold_summary(
+                        pd.read_csv(directory / f"{mode}_{variant}.csv"),
+                        other,
+                        self.config["development"]["folds"],
+                    )
+                extra_gate = development_gate(
+                    selected, comparator["metrics"], self.config
+                )
+                comparison_gates[name] = {"gate": extra_gate, "folds": comparator_folds}
+                if not extra_gate["eligible"]:
+                    gate["eligible"] = False
+                    gate["reasons"].append("required_comparator_failed:" + name)
             choices.append(
                 {
                     "variant": variant,
                     "metrics": selected,
-                    "gate": development_gate(selected, baseline, self.config),
+                    "gate": gate,
+                    "required_comparator_gates": comparison_gates,
                     "folds": folds,
                 }
             )

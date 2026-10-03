@@ -1,0 +1,44 @@
+{
+  "local_only": true,
+  "diagnostic_only": true,
+  "cohort": "repeated_development",
+  "scope": "Observable candidate identities only; no truth or accuracy selection. Same top100 excluding original0062 actual candidate identities.",
+  "arms": {
+    "coarse": {
+      "unknown": {
+        "queries": 2000,
+        "identical_scoring_candidate_sets": 819,
+        "changed_scoring_candidate_sets": 1181,
+        "new_candidates_total": 3859,
+        "maximum_new_per_query": 13,
+        "empty_candidate_sets": 16
+      },
+      "known": {
+        "queries": 1340,
+        "identical_scoring_candidate_sets": 483,
+        "changed_scoring_candidate_sets": 857,
+        "new_candidates_total": 2778,
+        "maximum_new_per_query": 13,
+        "empty_candidate_sets": 5
+      }
+    },
+    "precise": {
+      "unknown": {
+        "queries": 2000,
+        "identical_scoring_candidate_sets": 906,
+        "changed_scoring_candidate_sets": 1094,
+        "new_candidates_total": 3285,
+        "maximum_new_per_query": 14,
+        "empty_candidate_sets": 16
+      },
+      "known": {
+        "queries": 1340,
+        "identical_scoring_candidate_sets": 550,
+        "changed_scoring_candidate_sets": 790,
+        "new_candidates_total": 2351,
+        "maximum_new_per_query": 14,
+        "empty_candidate_sets": 5
+      }
+    }
+  }
+}

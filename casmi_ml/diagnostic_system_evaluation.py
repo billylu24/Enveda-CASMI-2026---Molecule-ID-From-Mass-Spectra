@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import shutil
 import time
 from pathlib import Path
 
@@ -28,6 +29,8 @@ def run(
     control=False,
     audit_control=False,
     control_reference=None,
+    reuse_unknown=None,
+    paired_control=None,
 ):
     if control and audit_control:
         raise ValueError("Strict control and audit-only modes are mutually exclusive")
@@ -39,8 +42,21 @@ def run(
         audit = json.loads((comparison / "report.json").read_text())
         if not audit.get("control_passed"):
             raise ValueError("Independent control attribution did not pass")
+    paired = Path(paired_control) if paired_control else None
+    if paired:
+        paired_protocol = json.loads((paired / "protocol.json").read_text())
+        if not paired_protocol.get("control") or not paired_protocol.get(
+            "control_reference"
+        ):
+            raise ValueError(
+                "Paired comparison must be independently audited strict control"
+            )
+        json.loads((paired / "report.json").read_text())
     output, encoder, proposals = Path(output), Path(encoder), Path(proposals)
     output.mkdir(parents=True, exist_ok=True)
+    if reuse_unknown and not (control or audit_control):
+        raise ValueError("Replay reuse is only permitted for original control")
+    reuse = Path(reuse_unknown) if reuse_unknown else None
     config = json.loads((BEST / "external_config.json").read_text())
     original_critic = Path(config["critic"])
     weights = torch.load(original_critic, map_location="cpu", weights_only=True)
@@ -61,6 +77,18 @@ def run(
             "audit_control": audit_control,
             "control_reference": str(comparison),
             "control_reference_sha256": digest(comparison / "selected_rankings.json"),
+            "paired_control_report_sha256": digest(paired / "report.json")
+            if paired
+            else None,
+            "paired_control_rankings_sha256": digest(paired / "selected_rankings.json")
+            if paired
+            else None,
+            "reused_unknown_outputs": {
+                name: digest(reuse / "unknown" / name)
+                for name in ("full.json", "selected.csv.external.report.json")
+            }
+            if reuse
+            else None,
             "source_sha256": digest(__file__),
             "inference_source_sha256": digest("casmi_ml/chembl_routed_inference.py"),
             "encoder_sha256": digest(encoder),
@@ -86,11 +114,18 @@ def run(
     }
     proposal_data = json.loads(proposals.read_text())
     report, selected = {}, {}
+    lookup = candidate_lookup(ROOT, "researchdev", "unknown")
     for mode in ["unknown", "known"]:
         original = originals[mode]
         directory = output / mode
         directory.mkdir(exist_ok=True)
-        lookup = candidate_lookup(ROOT, "researchdev", mode)
+        if mode == "known":
+            lookup.update(candidate_lookup(ROOT, "researchdev", mode))
+            for row in pd.read_parquet(
+                "artifacts/research_loop/rounds/0001_mass_v2/reference/known/rows.parquet",
+                columns=["inchikey14", "normalized_smiles"],
+            ).itertuples():
+                lookup.setdefault(row.inchikey14, row.normalized_smiles)
         for row in pd.read_parquet(
             "external/pubchemlite/structures.parquet",
             columns=["inchikey14", "normalized_smiles"],
@@ -134,23 +169,70 @@ def run(
             [{"molecule_id": k, "confidence": confidence[k]} for k in ids]
         ).to_csv(directory / "routing.csv", index=False)
         started = time.monotonic()
-        extend(
-            directory / "test.parquet",
-            directory / "baseline.csv",
-            directory / "baseline_full.json",
-            directory / "routing.csv",
-            directory / "selected.csv",
-            Path("."),
-            config,
-            deadline=started + 3600,
-            fragment_deadline=started + 1200,
-            java="external/metfrag/java21/jdk-21.0.12.1+1-jre/bin/java",
-            cache="artifacts/chemistry_20261001/chembl_metfrag_cache",
-            output_full_rankings=directory / "full.json",
-            reference=ReferenceIndex(
-                "artifacts/research_loop/rounds/0001_mass_v2/reference/" + mode
-            ),
-        )
+        if reuse and mode == "unknown":
+            previous = json.loads((reuse / "protocol.json").read_text())
+            for name in (
+                "encoder_sha256",
+                "critic_original_sha256",
+                "inference_source_sha256",
+                "baseline_full_sha256",
+                "proposal_sha256",
+                "development_sha256",
+            ):
+                if (
+                    previous[name]
+                    != json.loads((output / "protocol.json").read_text())[name]
+                ):
+                    raise ValueError(
+                        "Reused original control input or implementation differs: "
+                        + name
+                    )
+            for name in (
+                "test.parquet",
+                "baseline_full.json",
+                "baseline.csv",
+            ):
+                if digest(reuse / mode / name) != digest(directory / name):
+                    raise ValueError("Reused control observable input differs: " + name)
+            previous_routing = (
+                pd.read_csv(reuse / mode / "routing.csv")
+                .sort_values("molecule_id")
+                .reset_index(drop=True)
+            )
+            current_routing = (
+                pd.read_csv(directory / "routing.csv")
+                .sort_values("molecule_id")
+                .reset_index(drop=True)
+            )
+            if not previous_routing.equals(current_routing):
+                raise ValueError(
+                    "Reused control routing identities or confidence differ"
+                )
+            for name in (
+                "full.json",
+                "selected.csv",
+                "selected.csv.external.csv",
+                "selected.csv.external.report.json",
+            ):
+                shutil.copy2(reuse / mode / name, directory / name)
+        else:
+            extend(
+                directory / "test.parquet",
+                directory / "baseline.csv",
+                directory / "baseline_full.json",
+                directory / "routing.csv",
+                directory / "selected.csv",
+                Path("."),
+                config,
+                deadline=started + 3600,
+                fragment_deadline=started + 1200,
+                java="external/metfrag/java21/jdk-21.0.12.1+1-jre/bin/java",
+                cache="artifacts/chemistry_20261001/chembl_metfrag_cache",
+                output_full_rankings=directory / "full.json",
+                reference=ReferenceIndex(
+                    "artifacts/research_loop/rounds/0001_mass_v2/reference/" + mode
+                ),
+            )
         ranks = {
             r["molecule_id"]: [
                 Chem.MolToInchiKey(Chem.MolFromSmiles(s))[:14] for s in r["smiles"]
@@ -198,6 +280,18 @@ def run(
         independent_acceptance=False,
         local_only=True,
     )
+    if paired:
+        paired_report = json.loads((paired / "report.json").read_text())
+        report["required_comparators"] = {
+            "completed_evidence_original_model": {
+                "directory": str(paired),
+                "variant": "diagnostic_residual",
+                "metrics": {
+                    mode: paired_report[mode]["diagnostic_residual"]
+                    for mode in ("unknown", "known")
+                },
+            }
+        }
     write_json(output / "report.json", report)
     return report
 
@@ -211,6 +305,8 @@ def main():
     modes.add_argument("--control", action="store_true")
     modes.add_argument("--audit-control", action="store_true")
     p.add_argument("--control-reference", type=Path)
+    p.add_argument("--reuse-unknown", type=Path)
+    p.add_argument("--paired-control", type=Path)
     print(json.dumps(run(**vars(p.parse_args())), indent=2))
 
 

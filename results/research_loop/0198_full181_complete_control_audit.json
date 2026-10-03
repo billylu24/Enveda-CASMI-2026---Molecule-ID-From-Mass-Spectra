@@ -1,0 +1,9 @@
+{
+  "status": "implementation_control_failed",
+  "local_only": true,
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "best_updated": false,
+  "remote_publication": false,
+  "reason": "Read-only unknown replay reuse rejected because routing CSV order differed; confidence/identity content unchanged. No inference executed."
+}

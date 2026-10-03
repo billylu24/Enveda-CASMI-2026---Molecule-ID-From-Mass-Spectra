@@ -54,7 +54,7 @@ def run(output, observed):
             "incumbent_rankings_sha256": digest(BEST / "selected_rankings.json"),
             "observed_rankings_sha256": digest(observed / "selected_rankings.json"),
             "fragment_cache_sha256": digest(FRAGMENT / "fragment_scores.json"),
-            "rule": "Normalize all historical structure identities from actual original SMILES; independently recompute all active frozen empty nonbudget high-fragment groups with same physical inputs and unchanged181 rules. Reject any other control drift. No query truth consulted.",
+            "rule": "Normalize all historical structure identities from actual original SMILES; independently recompute all active frozen empty or budget high-fragment groups with same physical inputs and unchanged181 rules. Reject any other control drift. No query truth consulted.",
             "local_only": True,
             "diagnostic_only": True,
             "independent_acceptance": False,
@@ -102,9 +102,16 @@ def run(output, observed):
         threads=2,
     )
     deadline = time.monotonic() + 1200
+    lookup = candidate_lookup(ROOT, "researchdev", "unknown")
     try:
         for mode in ("unknown", "known"):
-            lookup = candidate_lookup(ROOT, "researchdev", mode)
+            if mode == "known":
+                lookup.update(candidate_lookup(ROOT, "researchdev", mode))
+                for row in pd.read_parquet(
+                    "artifacts/research_loop/rounds/0001_mass_v2/reference/known/rows.parquet",
+                    columns=["inchikey14", "normalized_smiles"],
+                ).itertuples():
+                    lookup.setdefault(row.inchikey14, row.normalized_smiles)
             for r in pd.read_parquet(
                 "external/pubchemlite/structures.parquet",
                 columns=["inchikey14", "normalized_smiles"],
@@ -151,7 +158,7 @@ def run(output, observed):
                         {"structures": physical, "dependencies": dependencies},
                     )
                     item = fragments[cache_key]
-                    if not item["scores"] and not item["budget_fallback"]:
+                    if not item["scores"]:
                         query = frame.iloc[groups[key]].drop(
                             columns=[
                                 c
@@ -210,6 +217,7 @@ def run(output, observed):
                         normalized = normalize_ranking(result, structures)
                         detail.update(
                             frozen_empty_evidence=True,
+                            frozen_budget_fallback=item["budget_fallback"],
                             completed_score_count=len(scores),
                             independently_selected_status=status,
                         )
