@@ -41,7 +41,8 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0258_array_order_full_inference_control"
+    "0262_query_multispectrum_chemical_system",
+    "0264_packed_external_proposal_control"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -81,7 +82,9 @@
     "eligible": false,
     "decision": "Keep current verified best; safety pilot improvement remains below both frozen minimum gates."
   },
-  "queued_rounds": [],
+  "queued_rounds": [
+    "0263_query_multispectrum_mask_system"
+  ],
   "coarse_context_complete": {
     "unknown": {
       "molecules": 2000,
@@ -261,16 +264,72 @@
     "unknown_seconds_after": 0.041446144110523164,
     "known_seconds_before": 6.469992910919245,
     "known_seconds_after": 0.04308252994087525,
-    "activated": false,
+    "activated": true,
     "scope": "Sorting segment only, full inference verification pending",
     "unknown_full_rank_matches": 2000,
     "unknown_cached_trial_seconds": 235.08685930399224,
-    "known_verification_pending": true
+    "known_verification_pending": false,
+    "full_rank_matches": 3340,
+    "known_cached_trial_seconds": 151.2831031010137
   },
   "strict_mass_attribution": {
     "complete": true,
     "chemical_minus_mask_unknown_mrr25": -0.00018888888888889122,
     "strict_minus_unrestricted_chemical_unknown_mrr25": -0.00021984519104083916,
     "eligible": false
+  },
+  "current_array_query_zero_control": {
+    "control_passed": true,
+    "full_rank_matches": 3340,
+    "budget_fallbacks": 0,
+    "new_failure_contexts": 0
+  },
+  "multispectrum_training": {
+    "0260_query_multispectrum_chemical": {
+      "history": [
+        {
+          "epoch": 1,
+          "listwise_ce": 0.5238828853089759,
+          "query_anchor": 0.011698190124824327
+        },
+        {
+          "epoch": 2,
+          "listwise_ce": 0.516227819691313,
+          "query_anchor": 0.021956810077771227
+        },
+        {
+          "epoch": 3,
+          "listwise_ce": 0.5087905540111217,
+          "query_anchor": 0.02970930743724742
+        }
+      ],
+      "seconds": 35.03593056098907,
+      "distinct_same_ion_training_pairs": 48405,
+      "rows_per_training_molecule": 2,
+      "original_critic_tensors_exact": true
+    },
+    "0261_query_multispectrum_mask_control": {
+      "history": [
+        {
+          "epoch": 1,
+          "listwise_ce": 0.5239417415984133,
+          "query_anchor": 0.011634481454545513
+        },
+        {
+          "epoch": 2,
+          "listwise_ce": 0.5164381665118197,
+          "query_anchor": 0.021665112182815024
+        },
+        {
+          "epoch": 3,
+          "listwise_ce": 0.5090812986201428,
+          "query_anchor": 0.029451972618699074
+        }
+      ],
+      "seconds": 35.72249927200028,
+      "distinct_same_ion_training_pairs": 48405,
+      "rows_per_training_molecule": 2,
+      "original_critic_tensors_exact": true
+    }
   }
 }
