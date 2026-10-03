@@ -1,0 +1,94 @@
+{
+  "diagnostic_only": true,
+  "cohort": "repeated_development",
+  "independent_acceptance": false,
+  "training_protocol_differences": {
+    "contrastive": [
+      false,
+      true
+    ],
+    "contrastive_weight": [
+      0.0,
+      0.1
+    ]
+  },
+  "comparisons": {
+    "0126_encoder_bce_chembl_vs_0127_encoder_hard_chembl": {
+      "variant": "margin005_prefix5",
+      "paired": {
+        "unknown": {
+          "molecules": 2000,
+          "control_mrr25": 0.039191472100105665,
+          "hard_mrr25": 0.03935055239889185,
+          "difference": 0.0001590802987861811,
+          "improved_molecules": 5,
+          "worsened_molecules": 1
+        },
+        "known": {
+          "molecules": 1340,
+          "control_mrr25": 0.6042204652554211,
+          "hard_mrr25": 0.6042012409059727,
+          "difference": -1.9224349448229994e-05,
+          "improved_molecules": 5,
+          "worsened_molecules": 4
+        }
+      },
+      "protocol_sha256": {
+        "0126_encoder_bce_chembl": "5b85cd0c510e4f6ab12cd0e08507d2e1ab390beb83633a4809adbbbf5f92cacd",
+        "0127_encoder_hard_chembl": "a27b31dab570fe89a7a66fecdee3f2c0481dd981abbd0fab03ad5201813417b7"
+      }
+    },
+    "0130_encoder_bce_chembl_wide_vs_0131_encoder_hard_chembl_wide": {
+      "variant": "margin005_prefix5",
+      "paired": {
+        "unknown": {
+          "molecules": 2000,
+          "control_mrr25": 0.039191472100105665,
+          "hard_mrr25": 0.03922555239889185,
+          "difference": 3.40802987861811e-05,
+          "improved_molecules": 3,
+          "worsened_molecules": 1
+        },
+        "known": {
+          "molecules": 1340,
+          "control_mrr25": 0.6041242765641642,
+          "hard_mrr25": 0.6041076299476721,
+          "difference": -1.6646616492068803e-05,
+          "improved_molecules": 3,
+          "worsened_molecules": 3
+        }
+      },
+      "protocol_sha256": {
+        "0130_encoder_bce_chembl_wide": "0853d78372827f785a9cc044888fa9deb40ce79f54d4fcfde400dc7212723585",
+        "0131_encoder_hard_chembl_wide": "9ff1d634a7feb4b9e905f5834a0ecd7434509e6d0493bcc28bb3d0e4a96286d3"
+      }
+    },
+    "0132_encoder_bce_fragment_full_vs_0133_encoder_hard_fragment_full": {
+      "variant": "fragment05_prefix3",
+      "paired": {
+        "unknown": {
+          "molecules": 2000,
+          "control_mrr25": 0.03978187250497218,
+          "hard_mrr25": 0.039626316949416616,
+          "difference": -0.00015555555555555556,
+          "improved_molecules": 2,
+          "worsened_molecules": 3
+        },
+        "known": {
+          "molecules": 1340,
+          "control_mrr25": 0.6049835625513847,
+          "hard_mrr25": 0.6049835625513847,
+          "difference": 0.0,
+          "improved_molecules": 0,
+          "worsened_molecules": 0
+        }
+      },
+      "protocol_sha256": {
+        "0132_encoder_bce_fragment_full": "dd05aa63afb3008ce380f2a5d5cfb70c78cfa1fb0fe14e3fd3eca9d937f0afd8",
+        "0133_encoder_hard_fragment_full": "19bb53d5b97cd525f61e6bcf4bbdc42b75f1fb6fa333a6eecd5ebaae17e9f827"
+      }
+    }
+  },
+  "interpretation": "Hard-negative auxiliary CE improves candidate-only top3 but fails to beat matched BCE control after full fragment integration; no eligible release and no support to expand this setting",
+  "adversarial_training": false
+}

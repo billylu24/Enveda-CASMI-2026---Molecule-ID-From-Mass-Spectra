@@ -55,7 +55,10 @@ def run(directory, output):
     pair_scores = json.loads((directory / "critic_scores.json").read_text())
     proposals = json.loads(
         Path(
-            "artifacts/research_loop/rounds/0071_chembl_candidate_slots/proposals.json"
+            protocol.get(
+                "proposal_path",
+                "artifacts/research_loop/rounds/0071_chembl_candidate_slots/proposals.json",
+            )
         ).read_text()
     )
     scores = json.loads(SCORES.read_text())

@@ -369,3 +369,8 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第135完整mass-window训练内prior proposals预登记：原746低置信query native质量窗全部624328候选（max2327），第117只校准原top500，因此仅检验排序未检验新preselection。固定原encoder与60K Laplace(1,1)背景，对所有原质量窗候选做corrected native evidence、native vs RRF0.5 vs corrected-only完整2000外部诊断，预选corrected-only；每组重建原全量native排名必须完全相同，保持质量/观测/结构来源不变，无新训练/采样，3600秒CPU。只改变截断之前候选评分，保存全量prior proposals但公开仅汇总和SHA；若改善覆盖与排名，另在原0062组合/known保护验证，不能用proposal指标提交。
+
+
+第132/133完整融合对照完成：BCE unknown0.039782（+1.456%），hard-pair0.039626（+1.059%）；known两臂原0.604984/Top1不变，两轮0整组预算回退、新增真值7 vs6，156.3/137.1秒为增量内容cache运行。完整unknown hard比BCE低0.000156；同原初始化/随机协议最终只contrastive与weight两字段不同，candidate单独Top3改善没有转为完整收益，停止扩大该encoder设置。完整排序audit两轮均重建1e-12通过，模型绑定与SOURCE snapshot SHA保存；187回归通过。GAN不因训练CE下降而启动，仍缺有效系统增益证据。
+
+Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合格第24轮56786923已接受PENDING，保持一个待评分。第12/13为0.175，不能用本地开发收益推断榜单提升。

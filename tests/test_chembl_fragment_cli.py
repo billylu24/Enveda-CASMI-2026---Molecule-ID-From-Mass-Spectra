@@ -2,7 +2,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from casmi_ml.chembl_fragment_pilot import CRITIC, ENCODER, main
+from casmi_ml.chembl_fragment_pilot import CRITIC, ENCODER, PROPOSALS, main
 
 
 class ChemblFragmentCLITests(unittest.TestCase):
@@ -56,6 +56,7 @@ class ChemblFragmentCLITests(unittest.TestCase):
             "prefix",
             False,
             ENCODER,
+            PROPOSALS,
         )
 
     def test_fragment_evidence_controls_reach_run(self):
@@ -79,7 +80,7 @@ class ChemblFragmentCLITests(unittest.TestCase):
         ):
             main()
         self.assertEqual(
-            run.call_args.args[-12:],
+            run.call_args.args[-13:],
             (
                 True,
                 1.0,
@@ -93,5 +94,6 @@ class ChemblFragmentCLITests(unittest.TestCase):
                 "prefix",
                 False,
                 ENCODER,
+                PROPOSALS,
             ),
         )

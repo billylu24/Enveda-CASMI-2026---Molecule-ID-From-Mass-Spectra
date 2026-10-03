@@ -35,6 +35,10 @@ from casmi_ml.research_protocol import ENCODER, ROOT, freeze
 from casmi_ml.secondary_inference import load_deployment_checkpoint
 from casmi_ml.training import configure
 
+PROPOSALS = Path(
+    "artifacts/research_loop/rounds/0071_chembl_candidate_slots/proposals.json"
+)
+
 VARIANTS = {
     "baseline": None,
     "critic_control": (0.05, 5, 3, 0.0),
@@ -116,6 +120,7 @@ def run(
     pilot_selector="prefix",
     merge_spectra=False,
     proposal_encoder=ENCODER,
+    proposal_path=PROPOSALS,
 ):
     if merge_spectra and (mean_fragments or not compare_first or not monomer or dimer):
         raise ValueError(
@@ -182,6 +187,7 @@ def run(
     )
     if merge_spectra:
         execution_aggregation_sha256 = digest("casmi_ml/merged_fragments.py")
+    proposal_path = Path(proposal_path)
     critic_checkpoint, proposal_encoder = (
         Path(critic_checkpoint),
         Path(proposal_encoder),
@@ -358,10 +364,10 @@ def run(
             "java_sha256": digest(JAVA),
             "jar_sha256": digest("external/metfrag/MetFragCommandLine-2.6.11.jar"),
             "critic_sha256": digest(critic_checkpoint),
-            "native_proposals_sha256": digest(
-                Path(
-                    "artifacts/research_loop/rounds/0071_chembl_candidate_slots/proposals.json"
-                )
+            "native_proposals_sha256": digest(proposal_path),
+            "proposal_path": str(proposal_path),
+            "proposal_source_protocol_sha256": digest(
+                proposal_path.parent / "protocol.json"
             ),
             "mass_hypothesis": "charge_aware_union",
             "chemical_prior_weight": 0.25 if chemical_prior else 0.0,
@@ -416,11 +422,24 @@ def run(
         raise ValueError("Full2000 keys required")
     encoder, saved = load_deployment_checkpoint(proposal_encoder, "scale")
     encoder.eval()
-    proposals = json.loads(
-        Path(
-            "artifacts/research_loop/rounds/0071_chembl_candidate_slots/proposals.json"
-        ).read_text()
-    )
+    proposal_protocol = json.loads((proposal_path.parent / "protocol.json").read_text())
+    if (
+        proposal_protocol["catalog_sha256"] != digest(DERIVED)
+        or proposal_protocol["encoder_sha256"] != digest(ENCODER)
+        or proposal_protocol.get(
+            "development_sha256", digest(ROOT / "researchdev.parquet")
+        )
+        != digest(ROOT / "researchdev.parquet")
+    ):
+        raise ValueError("Proposal source catalog/base encoder/cohort differs")
+    proposals = json.loads(proposal_path.read_text())
+    catalog_keys = set(index.catalog.inchikey14)
+    if not set(proposals).issubset(groups) or any(
+        len(values) != len(set(values)) or not set(values).issubset(catalog_keys)
+        for values in proposals.values()
+    ):
+        raise ValueError("Invalid proposal identities")
+    del catalog_keys
     lookup = candidate_lookup(ROOT, "researchdev", "unknown")
     lookup.update(
         {
@@ -909,6 +928,7 @@ def main():
     p.add_argument("--evidence-only", action="store_true")
     p.add_argument("--critic-checkpoint", type=Path, default=CRITIC)
     p.add_argument("--proposal-encoder", type=Path, default=ENCODER)
+    p.add_argument("--proposal-path", type=Path, default=PROPOSALS)
     p.add_argument("--dimer", action="store_true")
     p.add_argument("--candidate-gate", action="store_true")
     p.add_argument("--compare-first", action="store_true")
@@ -955,6 +975,7 @@ def main():
                 a.pilot_selector,
                 a.merge_spectra,
                 a.proposal_encoder,
+                a.proposal_path,
             ),
             indent=2,
         )
