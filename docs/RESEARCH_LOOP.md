@@ -459,3 +459,5 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 为162可能达标预备真实无标签high fragment推理：config无新field继续原149行为，有明确high_fragment/backend/worker SHA才启用严格first比较、critic+.05、prefix3；informative但不支持回原0062，missing/tied/budget保留原149tail。5项新规则回归验证fallback/相对actual first/critic/首3保护。未改已验证149bundle/notebook/identity，当前无新release或Kaggle上传。准备旧配置75真实完整排名回归，新的开发gate/replay/cold/platform仍分别执行，未授权以未完成开发证据发布。
 
 旧配置实际无标签回归75/75完整SMILES排名逐字相同，新增optional high fragment不改变149语义，215回归通过；已验证149bundle/source SHA保持原资产，未来新包使用新source需单独验证。高fragment replay/worker打包实现已准备，尚无162完整指标或新release，不能跳过门槛。README/下一轮方向改为最新151至162状态，历史段落明确保留来源。
+
+第162 same prefix3/persistent full追加完成：unknown0.040889（+0.000561/+1.391%），known0.604639略升、Top1不变，absolute过但relative2%失败；700unknown informative/316budget回退（161为662），known198informative/560budget回退。1200秒Java阶段后报告总1249秒保存开销，父进程2355MiB；缓存拼接不视为cold资源。第163同source/候选100/critic+.05/actual first fragment/.5/prefix3/3slots完全固定，只复制162已完成组并剔除回退，在同1200追加预算内继续评分，以观察完整证据性能上限；完整对149，未来若eligible仍严格单次真实无标签/cold包资源/平台验证，不能直接用此缓存指标发布。无新模型/阈值/候选，原149发布队列保留。
