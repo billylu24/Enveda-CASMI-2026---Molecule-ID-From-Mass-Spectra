@@ -382,3 +382,6 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 第136在完整metrics产生前主动停止：恢复mass order时tie sorting仍误用old native列表索引，可能把数值相同候选的顺序绑错，不能接受该中间实现。保留source/protocol/failed记录并同步。第137改为显式(key,score)配对排序，真实key打破平局；新增数值相同及非法score回归，避免不同候选数组索引混用，完整native重建仍要求exact。错误停止不视为新模型失败或发布证据。
+
+
+第137完整质量窗prior preselection完成：重建原全量native每组exact通过，2000外部native MRR0.010153→corrected-only0.014626、Top25 46→61、Top100 65→78、Top500 90→92（RRF0.5 MRR0.012380）。737非空query/624323实际评分（另5 singleton不用校准）、73.8秒/1356MiB；60K训练边际SHA与117一致，prior未重训。Top500虽改善很小，Top100分配比原native有所改善，不能用外部指标发布。第138同old encoder/critic native100预筛改为完整corrected-only top100，完整0062 matched；第139同hash200/merged union/relative-first/critic+.05/prefix3/.5/slots3/skip-impossible仅改prior在截断前的preselection，对第122/120匹配观察，1200秒Java不变。自定义文件逐query质量池成员/duplicates与完整cohort SHA核对，新scorecache含完整ordered proposals；不能偷换native source或给旧生成换encoder。189回归通过。
