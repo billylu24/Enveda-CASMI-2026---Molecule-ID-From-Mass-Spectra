@@ -41,7 +41,7 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0256_query_strict_mass_mask_system"
+    "0258_array_order_full_inference_control"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -81,9 +81,7 @@
     "eligible": false,
     "decision": "Keep current verified best; safety pilot improvement remains below both frozen minimum gates."
   },
-  "queued_rounds": [
-    "array-order full rank control after256"
-  ],
+  "queued_rounds": [],
   "coarse_context_complete": {
     "unknown": {
       "molecules": 2000,
@@ -264,6 +262,15 @@
     "known_seconds_before": 6.469992910919245,
     "known_seconds_after": 0.04308252994087525,
     "activated": false,
-    "scope": "Sorting segment only, full inference verification pending"
+    "scope": "Sorting segment only, full inference verification pending",
+    "unknown_full_rank_matches": 2000,
+    "unknown_cached_trial_seconds": 235.08685930399224,
+    "known_verification_pending": true
+  },
+  "strict_mass_attribution": {
+    "complete": true,
+    "chemical_minus_mask_unknown_mrr25": -0.00018888888888889122,
+    "strict_minus_unrestricted_chemical_unknown_mrr25": -0.00021984519104083916,
+    "eligible": false
   }
 }

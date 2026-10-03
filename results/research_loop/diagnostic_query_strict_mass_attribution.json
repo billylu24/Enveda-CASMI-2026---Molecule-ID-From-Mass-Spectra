@@ -1,0 +1,55 @@
+{
+  "local_only": true,
+  "independent_acceptance": false,
+  "arms": {
+    "chemical": {
+      "round": "0255_query_strict_mass_chemical_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04341441203501558,
+          "top1": 0.0155,
+          "top5": 0.0825,
+          "top25": 0.1295,
+          "conditional_mrr25": 0.21871240319907098
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6038091575732218,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6822127075447869
+        }
+      }
+    },
+    "identity_masked": {
+      "round": "0256_query_strict_mass_mask_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04360330092390447,
+          "top1": 0.0155,
+          "top5": 0.083,
+          "top25": 0.13,
+          "conditional_mrr25": 0.21966398450329708
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6038221421011317,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6822273780906547
+        }
+      }
+    }
+  },
+  "chemical_minus_mask_unknown_mrr25": -0.00018888888888889122,
+  "strict_minus_unrestricted_chemical_unknown_mrr25": -0.00021984519104083916,
+  "scope": "Matched fixed training rows/capacity/steps/gate; CE excludes pinned hard negatives outside observed35ppm/floor.006Da. No new negatives, candidates or labels for evaluation selection. Repeated complete development comparison, no fresh acceptance."
+}
