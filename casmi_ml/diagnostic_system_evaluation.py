@@ -1,0 +1,177 @@
+"""Local full181 comparison using observable actual deployment logic and fixed baseline."""
+
+import argparse
+import json
+import time
+from pathlib import Path
+
+import pandas as pd
+import torch
+from rdkit import Chem
+
+from casmi_ml.chembl_routed_inference import extend
+from casmi_ml.chemistry_experiment import candidate_lookup
+from casmi_ml.data import write_json
+from casmi_ml.generated_score_combination import GENERATED
+from casmi_ml.metfrag import digest
+from casmi_ml.ranking import ReferenceIndex, metrics
+from casmi_ml.research_protocol import ROOT, freeze
+
+BASE = Path("artifacts/research_loop/rounds/0149_chembl_routed_combination")
+BEST = Path("artifacts/research_loop/rounds/0181_high_strong_slot_full")
+
+
+def run(output, encoder, proposals, control=False):
+    output, encoder, proposals = Path(output), Path(encoder), Path(proposals)
+    output.mkdir(parents=True, exist_ok=True)
+    config = json.loads((BEST / "external_config.json").read_text())
+    original_critic = Path(config["critic"])
+    weights = torch.load(original_critic, map_location="cpu", weights_only=True)
+    weights["encoder_sha256"] = digest(encoder)
+    critic = output / "critic_binding.pt"
+    if not critic.exists():
+        torch.save(weights, critic)
+    config.update(
+        encoder=str(encoder),
+        encoder_sha256=digest(encoder),
+        critic=str(critic),
+        critic_sha256=digest(critic),
+    )
+    freeze(
+        output / "protocol.json",
+        {
+            "control": control,
+            "source_sha256": digest(__file__),
+            "inference_source_sha256": digest("casmi_ml/chembl_routed_inference.py"),
+            "encoder_sha256": digest(encoder),
+            "critic_original_sha256": digest(original_critic),
+            "config": config,
+            "incumbent_report_sha256": digest(BEST / "report.json"),
+            "baseline_full_sha256": digest(BASE / "low_rankings.json"),
+            "proposal_sha256": digest(proposals),
+            "development_sha256": digest(ROOT / "researchdev.parquet"),
+            "rule": "Freeze0062 full baseline and exact181 observable rule; only residual fingerprint prediction changes candidate preselection. Critic latent, original generation, references and scientific gates frozen.",
+            "cohort": "repeated_development",
+            "independent_acceptance": False,
+            "holdout_used": False,
+            "resource_scope": "Cached full local development accuracy evaluation, not cold inference proof",
+            "empty_baseline_policy": "Five original empty unknown rankings remain empty; excluded only from CSV validator, restored before full2000 metrics.",
+        },
+    )
+    originals = json.loads((BASE / "low_rankings.json").read_text())["baseline"]
+    frame = pd.read_parquet(ROOT / "researchdev.parquet")
+    generated = {
+        r["key"]: {x["key"]: x["smiles"] for x in r["candidates"]}
+        for r in json.loads(GENERATED.read_text())
+    }
+    proposal_data = json.loads(proposals.read_text())
+    report, selected = {}, {}
+    for mode in ["unknown", "known"]:
+        original = originals[mode]
+        directory = output / mode
+        directory.mkdir(exist_ok=True)
+        lookup = candidate_lookup(ROOT, "researchdev", mode)
+        for row in pd.read_parquet(
+            "external/pubchemlite/structures.parquet",
+            columns=["inchikey14", "normalized_smiles"],
+        ).itertuples():
+            lookup.setdefault(row.inchikey14, row.normalized_smiles)
+        full = []
+        for key, keys in original.items():
+            if not keys:
+                continue
+            smiles = [generated[key].get(k, lookup.get(k)) for k in keys]
+            if any(s is None for s in smiles):
+                raise ValueError("Original baseline representation missing")
+            full.append({"molecule_id": key, "smiles": smiles})
+        ids = {r["molecule_id"] for r in full}
+        test = (
+            frame[frame.inchikey14.isin(ids)]
+            .drop(
+                columns=[
+                    c
+                    for c in ["normalized_smiles", "fingerprint", "molecular_formula"]
+                    if c in frame
+                ]
+            )
+            .rename(columns={"inchikey14": "molecule_id"})
+        )
+        test.to_parquet(directory / "test.parquet", index=False)
+        write_json(directory / "baseline_full.json", full)
+        pd.DataFrame(
+            [
+                {"molecule_id": r["molecule_id"], "smiles": ";".join(r["smiles"][:25])}
+                for r in full
+            ]
+        ).to_csv(directory / "baseline.csv", index=False)
+        confidence = {
+            r["key"]: r["confidence"]
+            for r in json.loads(
+                (ROOT / f"researchdev_{mode}_chemical.json").read_text()
+            )
+        }
+        pd.DataFrame(
+            [{"molecule_id": k, "confidence": confidence[k]} for k in ids]
+        ).to_csv(directory / "routing.csv", index=False)
+        started = time.monotonic()
+        extend(
+            directory / "test.parquet",
+            directory / "baseline.csv",
+            directory / "baseline_full.json",
+            directory / "routing.csv",
+            directory / "selected.csv",
+            Path("."),
+            config,
+            deadline=started + 3600,
+            fragment_deadline=started + 1200,
+            java="external/metfrag/java21/jdk-21.0.12.1+1-jre/bin/java",
+            cache="artifacts/chemistry_20261001/chembl_metfrag_cache",
+            output_full_rankings=directory / "full.json",
+            reference=ReferenceIndex(
+                "artifacts/research_loop/rounds/0001_mass_v2/reference/" + mode
+            ),
+        )
+        ranks = {
+            r["molecule_id"]: [
+                Chem.MolToInchiKey(Chem.MolFromSmiles(s))[:14] for s in r["smiles"]
+            ]
+            for r in json.loads((directory / "full.json").read_text())
+        }
+        ranks.update({k: [] for k, keys in original.items() if not keys})
+        if set(ranks) != set(original):
+            raise ValueError("Full cohort keys differ")
+        pools = {k: list(set(original[k]) | set(proposal_data[k])) for k in ranks}
+        selected[mode] = ranks
+        report[mode] = {}
+        baseline = json.loads((BEST / "selected_rankings.json").read_text())[mode]
+        if control:
+            mismatches = [k for k in baseline if baseline[k] != ranks[k]]
+            if mismatches:
+                write_json(directory / "private_control_mismatches.json", mismatches)
+                raise ValueError(
+                    "Full original181 observable inference control differs; inspect before evaluating residual models"
+                )
+        for name, values in [("baseline", baseline), ("diagnostic_residual", ranks)]:
+            m, per = metrics(values, pools)
+            report[mode][name] = m
+            per.to_csv(output / f"{mode}_{name}.csv", index=False)
+        print(mode, report[mode], flush=True)
+    write_json(output / "selected_rankings.json", selected)
+    report.update(
+        diagnostic_only=control, independent_acceptance=False, local_only=True
+    )
+    write_json(output / "report.json", report)
+    return report
+
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--output", type=Path, required=True)
+    p.add_argument("--encoder", type=Path, required=True)
+    p.add_argument("--proposals", type=Path, required=True)
+    p.add_argument("--control", action="store_true")
+    print(json.dumps(run(**vars(p.parse_args())), indent=2))
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,23 @@
+{
+  "local_only": true,
+  "status": "running",
+  "training_rounds": [
+    "0186_diagnostic_residual_coarse",
+    "0187_diagnostic_residual_exact"
+  ],
+  "candidate_followups": [
+    "0188_diagnostic_coarse_proposals",
+    "0189_diagnostic_exact_proposals"
+  ],
+  "full_inference_control": "0190_full181_inference_control",
+  "baseline": "0181_high_strong_slot_full",
+  "acceptance_thresholds": {
+    "minimum_molecules": 2000,
+    "minimum_absolute_gain": 0.0005,
+    "minimum_relative_gain": 0.02,
+    "known_mrr_tolerance": 0.001,
+    "known_top1_tolerance": 0.005,
+    "folds": 5
+  },
+  "scope": "Precise ion and precursor/peak losses compared with a coarse tolerance matched control; full external diagnostics followed by same scientific final system evaluation; no remote publication."
+}

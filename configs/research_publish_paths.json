@@ -332,7 +332,9 @@
     "tests/test_strong_slot_runtime_activation.py",
     "tests/test_local_only_policy.py",
     "tests/test_strong_slot_backfill.py",
-    "tests/test_diagnostic_residual.py"
+    "tests/test_diagnostic_residual.py",
+    "casmi_ml/diagnostic_proposal_followup.py",
+    "casmi_ml/diagnostic_system_evaluation.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
