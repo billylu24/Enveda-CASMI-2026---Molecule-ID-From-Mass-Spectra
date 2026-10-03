@@ -251,7 +251,8 @@
     "tests/test_chembl_routed_inference.py",
     "casmi_ml/chembl_high_fragment_pilot.py",
     "casmi_ml/chembl_high_pool_expansion.py",
-    "tests/test_high_fragment_representation.py"
+    "tests/test_high_fragment_representation.py",
+    "casmi_ml/chembl_high_score_fusion.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

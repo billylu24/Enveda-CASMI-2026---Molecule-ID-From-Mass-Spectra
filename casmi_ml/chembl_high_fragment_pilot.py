@@ -132,6 +132,7 @@ def run(output, incumbent, limit=200):
     started = time.monotonic()
     report = {}
     counts = {}
+    all_selected = {}
     for mode in ("unknown", "known"):
         if mode == "known":
             original_lookup.update(candidate_lookup(ROOT, "researchdev", "known"))
@@ -228,7 +229,12 @@ def run(output, incumbent, limit=200):
                         counts[mode]["tail_removed"] += 1
                 else:
                     counts[mode]["missing_evidence_fallback"] += 1
+            if result[:10] != current[:10]:
+                raise ValueError("Protected first10 changed")
+            if confidence[key] < 0.5 and result != current:
+                raise ValueError("Frozen low arm changed")
             selected[key] = result
+        all_selected[mode] = selected
         report[mode] = {}
         for name, ranking in [
             ("baseline", {k: baseline[mode][k] for k in selected}),
@@ -272,6 +278,7 @@ def run(output, incumbent, limit=200):
             "independent_acceptance": False,
         },
     )
+    write_json(output / "selected_rankings.json", all_selected)
     write_json(output / "report.json", report)
     return report
 
