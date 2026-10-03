@@ -55,7 +55,7 @@ def load_deployment_checkpoint(path, family='fingerprint'):
     model = ScaleModel(checkpoint['architecture'], checkpoint['metadata_dim'])
     if checkpoint.get('diagnostic_residual'):
         from casmi_ml.diagnostic_residual import DiagnosticResidual
-        model = DiagnosticResidual(model)
+        model = DiagnosticResidual(model, contextual=checkpoint["diagnostic_residual"].get("contextual", False))
     model.load_state_dict(checkpoint['state_dict'])
     return model.eval(), checkpoint
 

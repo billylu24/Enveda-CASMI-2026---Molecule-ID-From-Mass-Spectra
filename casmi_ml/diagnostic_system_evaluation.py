@@ -91,9 +91,16 @@ def run(
                 raise ValueError(
                     "Persisted local incremental runtime proof does not bind current adapter"
                 )
+            incremental_runtime = runtime
+            failure_file = verified / "private_incremental_failures.json"
+            if digest(failure_file) != runtime["failures_sha256"]:
+                raise ValueError("Local controlled failure context changed")
+            inherited_failure_hashes = set(json.loads(failure_file.read_text()))
             incremental_benchmark = runtime["benchmark_directory"]
     comparison = BEST
     incremental_instances = []
+    inherited_failure_hashes = set()
+    incremental_runtime = None
     incremental_type = None
 
     def incremental_engine(*args, **kwargs):
@@ -159,6 +166,11 @@ def run(
                 Path(incremental_benchmark) / "report.json"
             )
             if incremental_benchmark
+            else None,
+            "development_incremental_controlled_failures_sha256": incremental_runtime[
+                "failures_sha256"
+            ]
+            if incremental_runtime
             else None,
             "development_incremental_source_sha256": digest(
                 "casmi_ml/development_incremental_metfrag.py"
@@ -401,8 +413,14 @@ def run(
     report["development_incremental_stats"] = [
         engine.incremental_stats for engine in incremental_instances
     ]
-    incomplete_incremental = sum(
-        engine.incremental_stats["failed_requests"] for engine in incremental_instances
+    failure_hashes = set().union(
+        *(engine.failed_physical_requests for engine in incremental_instances)
+    )
+    write_json(output / "private_incremental_failures.json", sorted(failure_hashes))
+    incomplete_incremental = len(failure_hashes - inherited_failure_hashes)
+    report["incremental_new_failure_contexts"] = incomplete_incremental
+    report["incremental_inherited_failure_contexts"] = len(
+        failure_hashes & inherited_failure_hashes
     )
     if paired and (budget_fallbacks or incomplete_incremental):
         report["diagnostic_only"] = True

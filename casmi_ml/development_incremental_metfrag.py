@@ -98,6 +98,7 @@ class DevelopmentIncrementalMetFrag(PersistentMonomerMetFrag):
         self.index = self.cache / "development_incremental_evidence_v1"
         self.index.mkdir(exist_ok=True)
         self.require_existing = False
+        self.failed_physical_requests = set()
         self.incremental_stats = {
             "seed_full_requests": 0,
             "reused_candidates": 0,
@@ -168,6 +169,7 @@ class DevelopmentIncrementalMetFrag(PersistentMonomerMetFrag):
                     self.incremental_stats["incremental_requests"] += 1
                     if result.get("status") != "complete":
                         self.incremental_stats["failed_requests"] += 1
+                        self.failed_physical_requests.add(complete_path.stem)
                         return result
                     verify_complete(result, missing)
                     provenance = digest(

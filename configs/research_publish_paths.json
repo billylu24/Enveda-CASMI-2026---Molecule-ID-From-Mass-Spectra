@@ -345,7 +345,8 @@
     "tests/test_incremental_score_reuse.py",
     "casmi_ml/development_incremental_metfrag.py",
     "casmi_ml/development_incremental_seed.py",
-    "tests/test_development_incremental_metfrag.py"
+    "tests/test_development_incremental_metfrag.py",
+    "tests/test_diagnostic_context_residual.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

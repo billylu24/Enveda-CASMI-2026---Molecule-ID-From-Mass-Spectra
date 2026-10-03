@@ -20,7 +20,7 @@ from casmi_ml.secondary_inference import load_deployment_checkpoint
 from casmi_ml.training import configure
 
 
-def run(output, precise=False):
+def run(output, precise=False, contextual=False):
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     configure(42, threads=4)
@@ -34,6 +34,7 @@ def run(output, precise=False):
             "training_sha256": digest(TRAIN),
             "development_sha256": digest(ROOT / "researchdev.parquet"),
             "precise": precise,
+            "contextual": contextual,
             "width": 64,
             "feature_dim": DIM,
             "epochs": 3,
@@ -52,7 +53,9 @@ def run(output, precise=False):
     budget = StageBudget(
         output,
         "representation",
-        "diagnostic_residual_fixed3",
+        "diagnostic_context_residual_fixed3"
+        if contextual
+        else "diagnostic_residual_fixed3",
         86400,
         lock_path=output / "representation.lock",
     )
@@ -89,6 +92,7 @@ def run(output, precise=False):
         base, saved = load_deployment_checkpoint(ENCODER, "scale")
         base.eval().to("cuda")
         baseline = np.zeros((60000, 2048), np.float32)
+        contexts = np.zeros((60000, 768), np.float32) if contextual else None
         with torch.inference_mode():
             for start in range(0, len(ids), 256):
                 batch = {
@@ -97,14 +101,21 @@ def run(output, precise=False):
                     )
                     for name, a in arrays.items()
                 }
-                baseline[start : start + 256] = base(batch).cpu().numpy()
+                if contextual:
+                    latent = base.encoder(
+                        torch.cat([batch["hist"], batch["meta"], batch["loss"]], -1)
+                    )
+                    contexts[start : start + 256] = latent.cpu().numpy()
+                    baseline[start : start + 256] = base.head(latent).cpu().numpy()
+                else:
+                    baseline[start : start + 256] = base(batch).cpu().numpy()
         targets = np.stack(
             [
                 np.unpackbits(np.frombuffer(v, dtype=np.uint8))
                 for v in chosen.fingerprint
             ]
         ).astype(np.float32)
-        model = DiagnosticResidual(base).to("cuda")
+        model = DiagnosticResidual(base, contextual=contextual).to("cuda")
         optimizer = torch.optim.AdamW(
             model.correction.parameters(), lr=0.001, weight_decay=0.01
         )
@@ -119,7 +130,12 @@ def run(output, precise=False):
                 y = torch.from_numpy(targets[indexes]).to("cuda")
                 logits = torch.from_numpy(baseline[indexes]).to(
                     "cuda"
-                ) + model.residual(x)
+                ) + model.residual(
+                    x,
+                    torch.from_numpy(contexts[indexes]).to("cuda")
+                    if contextual
+                    else None,
+                )
                 loss = F.binary_cross_entropy_with_logits(logits, y)
                 if not torch.isfinite(loss):
                     raise FloatingPointError("Nonfinite training")
@@ -142,6 +158,7 @@ def run(output, precise=False):
         saved["diagnostic_residual"] = {
             "precise": precise,
             "dimension": DIM,
+            "contextual": contextual,
             "base_sha256": digest(ENCODER),
         }
         saved["preprocessing"] = dict(
@@ -155,6 +172,7 @@ def run(output, precise=False):
             "train_development_overlap": 0,
             "precise": precise,
             "base_encoder_exact": True,
+            "contextual": contextual,
             "evidence_nonempty": int((chemical.max(1) > 0).sum()),
             "seconds": time.monotonic() - started,
             "encoder_sha256": digest(output / "model.pt"),
@@ -172,6 +190,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--precise", action="store_true")
+    p.add_argument("--contextual", action="store_true")
     print(json.dumps(run(**vars(p.parse_args())), indent=2))
 
 

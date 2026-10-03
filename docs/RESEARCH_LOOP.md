@@ -545,3 +545,6 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 206严格审计控制通过：unknown2000/known1340完整rank逐项与216预期exact，known缓存执行352.63秒、无budget。207粗容差完整系统已启动，208顺序跟进。218本地增量证据索引47.30秒，已有2191个complete物理请求，覆盖unknown1085/known756个有分数组，new Java0；源码及benchmark SHA、精确物理context、候选key+实际SMILES与每份source SHA保留私有。217因bundled jar文件名不同却digest相同被guard拒绝，无评分；219因临时构造函数替换后lazy加载派生class失败，无模型结果，修正为先加载class后作用域覆盖。220以独立完整原控制再次验证增量adapter，不改部署源码或冻结配置，仅本地评价显式启用；若有request失败或budget，模型只诊断、不更新best。284项回归通过。
+
+
+220增量adapter完整原模型unknown2000/known1340排名逐项exact，无budget；unknown576.92秒/known379.23秒均cached共享主机诊断，不称cold。共3486个原完整物理请求作为full cache来源，1个22候选请求仍失败但与非增量原控制共同保守回退，不能无条件宣布无物理失败。新manifest按精确physical请求hash保留失败scope，模型只容许已审计共同失败；任何新失败hash或budget仍只诊断。221当前源码严格原控制再次collect失败manifest，成功才本地持久启用，不更改科学配置。287项回归通过；上下文残差接口及匹配3epoch训练实现已准备，训练尚未启动，必须先记录当前粗/精确完整系统结果。

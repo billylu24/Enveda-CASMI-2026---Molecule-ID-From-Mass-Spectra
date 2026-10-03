@@ -1,0 +1,56 @@
+import tempfile
+import unittest
+from pathlib import Path
+
+import torch
+
+from casmi_ml.diagnostic_residual import DIM, DiagnosticResidual
+from casmi_ml.scale_models import ScaleModel
+from casmi_ml.secondary_inference import load_deployment_checkpoint
+
+
+class ContextualDiagnosticTests(unittest.TestCase):
+    def fixture(self):
+        torch.manual_seed(42)
+        base = ScaleModel("wide_enhanced", 7).eval()
+        model = DiagnosticResidual(base, contextual=True).eval()
+        batch = {
+            "hist": torch.randn(2, 1250),
+            "loss": torch.randn(2, 1250),
+            "meta": torch.randn(2, 7),
+            "chemical": torch.ones(2, DIM),
+        }
+        return base, model, batch
+
+    def test_zero_initialization_and_no_evidence_preserve_base_and_latent_exact(self):
+        base, model, batch = self.fixture()
+        with torch.inference_mode():
+            torch.testing.assert_close(model(batch), base(batch), rtol=0, atol=0)
+            model.correction[-1].bias.fill_(1)
+            batch["chemical"].zero_()
+            torch.testing.assert_close(model(batch), base(batch), rtol=0, atol=0)
+        self.assertIs(model.encoder, base.encoder)
+        self.assertTrue(all(not p.requires_grad for p in base.parameters()))
+
+    def test_contextual_checkpoint_roundtrip_uses_matching_input_dimensions(self):
+        _, model, batch = self.fixture()
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d) / "model.pt"
+            torch.save(
+                {
+                    "architecture": "wide_enhanced",
+                    "metadata_dim": 7,
+                    "state_dict": model.state_dict(),
+                    "diagnostic_residual": {"contextual": True},
+                },
+                path,
+            )
+            loaded, _ = load_deployment_checkpoint(path, "scale")
+            with torch.inference_mode():
+                torch.testing.assert_close(loaded(batch), model(batch), rtol=0, atol=0)
+            self.assertEqual(loaded.correction[0].in_features, DIM + 768)
+
+    def test_nonzero_contextual_correction_requires_original_latent(self):
+        _, model, _ = self.fixture()
+        with self.assertRaisesRegex(ValueError, "frozen768"):
+            model.residual(torch.ones(2, DIM))
