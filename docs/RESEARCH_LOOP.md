@@ -548,3 +548,6 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 220增量adapter完整原模型unknown2000/known1340排名逐项exact，无budget；unknown576.92秒/known379.23秒均cached共享主机诊断，不称cold。共3486个原完整物理请求作为full cache来源，1个22候选请求仍失败但与非增量原控制共同保守回退，不能无条件宣布无物理失败。新manifest按精确physical请求hash保留失败scope，模型只容许已审计共同失败；任何新失败hash或budget仍只诊断。221当前源码严格原控制再次collect失败manifest，成功才本地持久启用，不更改科学配置。287项回归通过；上下文残差接口及匹配3epoch训练实现已准备，训练尚未启动，必须先记录当前粗/精确完整系统结果。
+
+
+222增量adapter独立fresh验证通过：固定12query/15merged谱完整dict15/15 exact、13complete/2unsupported、fail0，adapter实际14个seed读取/12次增量请求，复用1176候选/新增36，无失败。221收集完整control的精确失败请求hash后才启用持久local runtime，任何新failed context/budget仍禁止提升。207首轮unknown0.040940821但812分支budgetfallback，不能据此归因模型净损失；完整报告只diagnostic，然后以已验证增量证据补齐后新root回放，对206及181共同门槛。

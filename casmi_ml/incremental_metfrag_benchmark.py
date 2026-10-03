@@ -29,7 +29,7 @@ def reuse_scores(seed, target, missing):
     return values
 
 
-def run(output, control, proposals, target_proposals, limit=12):
+def run(output, control, proposals, target_proposals, limit=12, adapter_benchmark=None):
     output, control = Path(output), Path(control)
     if limit != 12:
         raise ValueError("Fixed observable hash12 verification required")
@@ -66,6 +66,14 @@ def run(output, control, proposals, target_proposals, limit=12):
         output / "protocol.json",
         {
             "source_sha256": digest(__file__),
+            "adapter_benchmark_sha256": digest(Path(adapter_benchmark) / "report.json")
+            if adapter_benchmark
+            else None,
+            "adapter_source_sha256": digest(
+                "casmi_ml/development_incremental_metfrag.py"
+            )
+            if adapter_benchmark
+            else None,
             "control_protocol_sha256": digest(control / "protocol.json"),
             "test_sha256": digest(control / "unknown/test.parquet"),
             "baseline_full_sha256": digest(control / "unknown/baseline_full.json"),
@@ -104,6 +112,20 @@ def run(output, control, proposals, target_proposals, limit=12):
         )
         for name in ("seed", "full", "incremental")
     }
+    adapter = None
+    if adapter_benchmark:
+        from casmi_ml.development_incremental_metfrag import (
+            DevelopmentIncrementalMetFrag,
+        )
+
+        adapter = DevelopmentIncrementalMetFrag(
+            JAR,
+            output / "adapter_fresh_cache",
+            java=str(JAVA),
+            classes=CLASSES,
+            threads=2,
+            benchmark=adapter_benchmark,
+        )
     if any(list(engine.cache.glob("*.json")) for engine in engines.values()):
         raise ValueError("Benchmark requires independent empty physical caches")
     started = time.monotonic()
@@ -159,9 +181,20 @@ def run(output, control, proposals, target_proposals, limit=12):
                 seed = {
                     k: v for k, v in results["seed"]["scores"].items() if k in reusable
                 }
-                reconstructed = reuse_scores(
-                    seed, target, results["incremental"]["scores"]
-                )
+                if adapter is not None:
+                    import shutil
+
+                    for source in engines["seed"].cache.glob("*.threads2.json"):
+                        destination = adapter.cache / source.name
+                        if not destination.exists():
+                            shutil.copy2(source, destination)
+                    adapter.score(row, old)
+                    results["adapter"] = adapter.score(row, target)
+                    reconstructed = results["adapter"]["scores"]
+                else:
+                    reconstructed = reuse_scores(
+                        seed, target, results["incremental"]["scores"]
+                    )
                 equal = reconstructed == results["full"]["scores"]
                 compatible = results["seed"]["status"] == results["full"][
                     "status"
@@ -169,6 +202,11 @@ def run(output, control, proposals, target_proposals, limit=12):
                     not missing
                     or results["incremental"]["status"] == results["full"]["status"]
                 )
+                if adapter is not None:
+                    compatible = (
+                        compatible
+                        and results["adapter"]["status"] == results["full"]["status"]
+                    )
                 failed = any(
                     v["status"]
                     not in ("complete", "unsupported_ion_or_resolution", "empty")
@@ -204,6 +242,8 @@ def run(output, control, proposals, target_proposals, limit=12):
     finally:
         for engine in engines.values():
             engine.close()
+        if adapter is not None:
+            adapter.close()
     report = {
         "diagnostic_only": True,
         "local_only": True,
@@ -216,6 +256,7 @@ def run(output, control, proposals, target_proposals, limit=12):
         "seconds_total": time.monotonic() - started,
         "parent_peak_rss_mib": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
         / 1024,
+        "adapter_stats": adapter.incremental_stats if adapter else None,
         "scope": "Fresh physics scoring benchmark only; no cold full-system or accuracy claim. Seed preparation excluded from incremental runtime and reported separately.",
     }
     write_json(output / "private_rows.json", private)
@@ -232,6 +273,7 @@ def main():
     p.add_argument("--proposals", required=True)
     p.add_argument("--target-proposals", required=True)
     p.add_argument("--limit", type=int, default=12)
+    p.add_argument("--adapter-benchmark", type=Path)
     print(json.dumps(run(**vars(p.parse_args())), indent=2))
 
 
