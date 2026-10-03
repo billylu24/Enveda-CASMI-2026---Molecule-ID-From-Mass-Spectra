@@ -288,7 +288,14 @@
     "casmi_ml/reference_membership_benchmark.py",
     "tests/test_observed_reference_keys.py",
     "casmi_ml/chembl_high_reference_prefix.py",
-    "tests/test_high_reference_prefix.py"
+    "tests/test_high_reference_prefix.py",
+    "kaggle_release_high_fragment_0163_fastpoll_v2/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_high_fragment_0163_fastpoll_v2/notebook/kernel-metadata.json",
+    "kaggle_release_high_fragment_0163_fastpoll_v2/status.json",
+    "kaggle_release_high_fragment_0163_fastpoll_v2/verification.json",
+    "kaggle_release_high_fragment_0163_fastpoll_v2/implementation_replay.json",
+    "kaggle_release_high_fragment_0163_fastpoll_v2/kaggle_verification.json",
+    "kaggle_release_high_fragment_0163/platform_failure.json"
   ],
   "aggregate_directories": [
     "results/research_loop",

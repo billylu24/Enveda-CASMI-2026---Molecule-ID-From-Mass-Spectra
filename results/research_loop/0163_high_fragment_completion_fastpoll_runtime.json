@@ -1,0 +1,58 @@
+{
+  "round": "0163_high_fragment_completion",
+  "amendment": {
+    "old_release": "kaggle_release_high_fragment_0163",
+    "new_release": "kaggle_release_high_fragment_0163_fastpoll_v2",
+    "old_identity": "c5f816155637fbedb7882679f7f87240119846577cf83724bd4b4dba119d0311",
+    "new_identity": "9d035819b855d600890901238843b970f4fd49d395a7a12d841f8abf82555390",
+    "old_remote_release": {
+      "kernel": "giaok246/casmi26-research-0163-high-fragmen-06db0238",
+      "version": 1
+    },
+    "reason": "Same frozen163 ranking rules/models and400 exact local ranks; verified threads2+10ms runtime only",
+    "changed_at": "2026-10-03T05:23:56Z",
+    "aggregate": "results/research_loop/0163_high_fragment_completion_fastpoll_runtime.json"
+  },
+  "local_verification": {
+    "valid": true,
+    "identity": "9d035819b855d600890901238843b970f4fd49d395a7a12d841f8abf82555390",
+    "seconds": 675.4227123080054,
+    "peak_rss_mib": 6043.09765625,
+    "molecules": 400,
+    "independent_acceptance": false,
+    "previous_local_full_top25_matches": 400,
+    "frozen_models_match": true,
+    "science_recipe_unchanged": true,
+    "implementation_replay_matches": 75
+  },
+  "implementation_replay": {
+    "valid": true,
+    "molecules": 75,
+    "full_rank_matches": 75,
+    "fresh_fragment_cache": true,
+    "seconds": 65.65758018899942,
+    "parent_peak_rss_mib": 1471.40234375,
+    "status_counts": {
+      "fragment_evidence_fallback": 30,
+      "critic_gate_fallback": 21,
+      "high_fragment_inserted": 19,
+      "high_fragment_remove_tail": 3,
+      "low_fragment_inserted": 2
+    },
+    "source_sha256": "203a526dd835620fffbde9023f779c89fd6bc86b82396d158405feca5fb1875b",
+    "bundle_sums_sha256": "48d9843aac51786fe7d892a421956eeaab4a0ccaf99447d5573f808fa10173c8",
+    "independent_acceptance": false,
+    "scope": "Same75 actual label-free generator handoff, complete ranks unchanged; cold400 and platform400 still required."
+  },
+  "changed_paths": [
+    "casmi_ml/chembl_routed_inference.py",
+    "casmi_ml/metfrag_persistent.py",
+    "casmi_ml/metfrag_polling_patch.py",
+    "deployment_recipe.json",
+    "java_classes/de/ipbhalle/metfraglib/process/CombinedMetFragProcess.class",
+    "metfrag_attribution/runtime_change.json"
+  ],
+  "platform_verification_pending": true,
+  "independent_acceptance": false,
+  "new_accuracy_claim": false
+}

@@ -1,0 +1,18 @@
+{
+  "valid": false,
+  "round": "0163_high_fragment_completion",
+  "identity": "c5f816155637fbedb7882679f7f87240119846577cf83724bd4b4dba119d0311",
+  "molecules": 400,
+  "local_full_top25_matches": 246,
+  "seconds": 1371.252607722,
+  "parent_peak_rss_mib": 3193.2734375,
+  "status_counts": {
+    "critic_gate_fallback": 207,
+    "high_fragment_budget_keep_tail": 154,
+    "high_fragment_remove_tail": 32,
+    "high_fragment_inserted": 7
+  },
+  "reason": "154 high groups hit shared1200sec fragment deadline on slower platform; exact ranking gate failed, never submitted to competition",
+  "source_config_bindings_match": true,
+  "independent_acceptance": false
+}
