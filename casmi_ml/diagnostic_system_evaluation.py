@@ -101,6 +101,8 @@ def run(
     paired_control=None,
     incremental_benchmark=None,
 ):
+    from casmi_ml.research_loop import Controller
+
     if control and audit_control:
         raise ValueError("Strict control and audit-only modes are mutually exclusive")
     incremental_benchmark, inherited_failure_hashes, incremental_runtime = (
@@ -168,6 +170,9 @@ def run(
     freeze(
         output / "protocol.json",
         {
+            "local_candidate_runtime": Controller()
+            .read()
+            .get("local_candidate_runtime"),
             "critic_frozen_base_verification": base_binding,
             "development_incremental_benchmark_sha256": digest(
                 Path(incremental_benchmark) / "report.json"

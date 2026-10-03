@@ -56,6 +56,7 @@ def run(output, critic, control=False):
         output / "protocol.json",
         {
             "source_sha256": digest(__file__),
+            "local_candidate_runtime": c.read().get("local_candidate_runtime"),
             "inference_source_sha256": digest("casmi_ml/chembl_routed_inference.py"),
             "query_source_sha256": digest("casmi_ml/diagnostic_query_ranker.py"),
             "query_residual_sha256": digest("casmi_ml/diagnostic_query_residual.py"),
