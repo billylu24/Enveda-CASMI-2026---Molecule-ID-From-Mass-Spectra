@@ -262,7 +262,9 @@
     "casmi_ml/java/MetFragWorker.java",
     "tests/test_metfrag_persistent.py",
     "casmi_ml/chembl_high_fragment_replay.py",
-    "tests/test_chembl_high_release_gate.py"
+    "tests/test_chembl_high_release_gate.py",
+    "casmi_ml/dimer_input_view.py",
+    "tests/test_dimer_input_view.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

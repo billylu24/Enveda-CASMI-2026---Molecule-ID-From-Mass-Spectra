@@ -176,6 +176,9 @@ def clean_spectrum(row):
 
 
 def features(row, config):
+    if config.get('dimer_product_input', False):
+        from casmi_ml.dimer_input_view import input_view
+        row, _ = input_view(row)
     mz, weights = clean_spectrum(row)
     hist = np.zeros(1250, np.float32)
     np.maximum.at(hist, mz.astype(int), weights)

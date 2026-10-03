@@ -10,7 +10,9 @@ import pandas as pd
 import torch
 from torch.nn import functional as F
 
+from casmi_ml.data import features as spectrum_features
 from casmi_ml.data import write_json
+from casmi_ml.dimer_input_view import input_view
 from casmi_ml.direct_experiment import ROOT as DIRECT
 from casmi_ml.direct_experiment import train_data
 from casmi_ml.direct_models import DirectRanker
@@ -85,7 +87,7 @@ def validate_hard_table(hard, data):
         raise ValueError("Hard negatives outside frozen training mass pool")
 
 
-def freeze_protocol(output, contrastive=False, train_critic=False):
+def freeze_protocol(output, contrastive=False, train_critic=False, dimer_input=False):
     if train_critic and not contrastive:
         raise ValueError("Joint critic training requires contrastive pairs")
     output = Path(output)
@@ -108,6 +110,11 @@ def freeze_protocol(output, contrastive=False, train_critic=False):
                 for name in ("hist", "meta", "loss")
             },
             "contrastive": contrastive,
+            "dimer_product_input": dimer_input,
+            "dimer_view_source_sha256": digest("casmi_ml/dimer_input_view.py"),
+            "dimer_transform_source_sha256": digest("casmi_ml/metfrag_dimer.py"),
+            "feature_source_sha256": digest("casmi_ml/data.py"),
+            "input_view": "Measured monomer marker>=.05 at exact precursor composition/10ppm or.002Da, singly charged dimer, supported alias/high resolution; retain original CE/ionization/instrument metadata; products strictly below virtual monomer precursor. Otherwise exact original input",
             "loss": "Fingerprint BCE plus0.1 training-only15 hard near-mass negative listwise CE",
             "critic_trainable": train_critic,
             "contrastive_weight": 0.1 if contrastive else 0.0,
@@ -130,9 +137,9 @@ def freeze_protocol(output, contrastive=False, train_critic=False):
     )
 
 
-def run(output, contrastive=False, train_critic=False):
+def run(output, contrastive=False, train_critic=False, dimer_input=False):
     output = Path(output)
-    freeze_protocol(output, contrastive, train_critic)
+    freeze_protocol(output, contrastive, train_critic, dimer_input)
     configure(42, threads=4)
     if not torch.cuda.is_available():
         raise RuntimeError("GPU required for matched encoder control")
@@ -178,6 +185,61 @@ def run(output, contrastive=False, train_critic=False):
             or data["fps"].dtype != np.float32
         ):
             raise ValueError("Training feature/fingerprint dimensions differ")
+        transformed_rows = 0
+        if dimer_input:
+            view_dir = output / "input_features"
+            view_dir.mkdir(exist_ok=True)
+            view_arrays = {}
+            for name in ("hist", "loss", "meta"):
+                path = view_dir / f"{name}.npy"
+                if path.exists():
+                    raise ValueError("Input view preparation requires a fresh run root")
+                view_arrays[name] = np.lib.format.open_memmap(
+                    path, mode="w+", dtype=np.float32, shape=arrays[name].shape
+                )
+                view_arrays[name][:] = arrays[name]
+            spectral_columns = [
+                "adduct",
+                "precursor_mz",
+                "instrument_type",
+                "ionization_mode",
+                "ms2_mzs",
+                "ms2_normalized_intensities",
+                "collision_energy_ev",
+            ]
+            raw = pd.read_parquet(TRAIN, columns=spectral_columns)
+            for index in np.flatnonzero(
+                raw.adduct.str.startswith("[2M", na=False).to_numpy()
+            ):
+                if not budget.checkpoint():
+                    raise TimeoutError("Input view preparation budget exhausted")
+                row = raw.iloc[index].to_dict()
+                view, changed = input_view(row)
+                if changed:
+                    hist, loss, meta, _, _ = spectrum_features(view, saved["preprocessing"])
+                    for name, value in (("hist", hist), ("loss", loss), ("meta", meta)):
+                        view_arrays[name][index] = value
+                    transformed_rows += 1
+            for array in view_arrays.values():
+                array.flush()
+            arrays.update(view_arrays)
+            # Exactly the same transformation is activated during model inference.
+            saved["preprocessing"] = dict(
+                saved["preprocessing"], dimer_product_input=True
+            )
+            write_json(
+                view_dir / "manifest.json",
+                {
+                    "training_sha256": digest(TRAIN),
+                    "rows": len(training),
+                    "transformed_rows": transformed_rows,
+                    "source_sha256": digest("casmi_ml/dimer_input_view.py"),
+                    "array_sha256": {
+                        name: digest(view_dir / f"{name}.npy") for name in view_arrays
+                    },
+                },
+            )
+            del raw
         parameters = list(model.parameters()) + (
             list(critic.parameters()) if train_critic else []
         )
@@ -269,6 +331,8 @@ def run(output, contrastive=False, train_critic=False):
         result = {
             "diagnostic_only": True,
             "contrastive": contrastive,
+            "dimer_product_input": dimer_input,
+            "transformed_training_spectra": transformed_rows,
             "train_molecules": 60000,
             "train_spectra": len(training),
             "train_development_overlap": 0,
@@ -294,8 +358,14 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--contrastive", action="store_true")
     parser.add_argument("--train-critic", action="store_true")
+    parser.add_argument("--dimer-input", action="store_true")
     args = parser.parse_args()
-    print(json.dumps(run(args.output, args.contrastive, args.train_critic), indent=2))
+    print(
+        json.dumps(
+            run(args.output, args.contrastive, args.train_critic, args.dimer_input),
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":

@@ -1,0 +1,47 @@
+{
+  "round": "0164_input_view_control",
+  "direction": "representation",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "contrastive": false,
+    "dimer_product_input": false,
+    "transformed_training_spectra": 0,
+    "train_molecules": 60000,
+    "train_spectra": 214804,
+    "train_development_overlap": 0,
+    "epochs": 3,
+    "critic_state_dict_unchanged": true,
+    "critic_trainable": false,
+    "seconds": 15.09064066899009,
+    "gpu_peak_mib": 291.5009765625,
+    "encoder_sha256": "1141eee171df0a43132698454b9634dc751b0e9c0f475f70cab8f271d505f3e1",
+    "critic_sha256": "122e9a4a51e1973ab1cbd62c59c85caadca99a282eee9d8fd670588d11da325a",
+    "history": [
+      {
+        "epoch": 1,
+        "fingerprint_bce": 0.04685490997011728,
+        "frozen_critic_pair_ce": 0.6977774460178449,
+        "seconds": 9.052123625995591
+      },
+      {
+        "epoch": 2,
+        "fingerprint_bce": 0.04636468929744987,
+        "frozen_critic_pair_ce": 0.6902637816568428,
+        "seconds": 12.028411150007742
+      },
+      {
+        "epoch": 3,
+        "fingerprint_bce": 0.04609016034362921,
+        "frozen_critic_pair_ce": 0.6762786036742522,
+        "seconds": 14.976298574008979
+      }
+    ],
+    "independent_acceptance": false,
+    "next_gate": "Complete external and combined scoring against0062 required; training loss cannot qualify release"
+  },
+  "protocol_sha256": "79a854a5a2a0611ffea20b63e43eef78050babe85c1c12223f1289b3837d5bad",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
