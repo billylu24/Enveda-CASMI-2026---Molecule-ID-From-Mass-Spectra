@@ -390,3 +390,11 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 第138完整corrected preselect+原critic：前100库外真值20→29，但critic Top3仅3，预选prefix5未知0.039101低于0062、known0.604107保护通过，所有旧变体门槛失败。第139同hash200+merged fragment仍与122相同prefix3 0.030939、known不变，新真值2，不扩大相同critic融合。
 
 第140hash200校准证据评分独立替换预登记：corrected-only全质量窗前100仍固定，但候选排序与actual first比较均用训练边际扣除native fingerprint证据，不再用旧近质量cosine critic；原0062生成前置gate仍原critic不变。新proposal score只要求严格大于actual first（两量同单位，校准per-bit evidence不能套cosine .05），仍要求真实片段正且有区分度、严格大于first fragment、RRF.5/prefix3/3slots/merged union/1200秒/skip-impossible。先samehash200对139，唯一因素为proposal scoring type；没有拟合开发阈值/权重，新cache score_type/encoder/prior SHA分离，prior同60K且TRAIN/catalog/cohort/model绑定验证。小试验若无增益不扩大。不是取消化学门控/对抗训练。
+
+
+第140校准proposal评分hash200对照：unknown prefix3 0.029891低于139 critic0.030939、同baseline0.028855；known不变、新增真值1而139为2、13.8秒/0budget回退。不扩大calibrated-native fragment；取消critic绝对margin不是可靠增益，候选独立排序提升仍不代表完整system提升。
+
+第141近质量pair联合微调新因素预登记：第125只更新encoder而critic固定，在candidate-only Top3改善但fragment融合不复现；第83/84只更新critic也没过门槛。新假设联合对齐两端可避免单端适配旧空间瓶颈。沿用原60K/214804谱、原encoder与critic初始化、原训练内15hard表、same3epoch/batch128/lr1e-5/seed42、BCE+0.1CE，仅增加critic可训练；critic仍eval模式保持dropout/RNG与125相同，encoder保留原dropout。两个模块使用同optimizer/总grad norm1，批量与训练label均相同、hard表不重挖、不用开发选择epoch，不训练decoder/GAN。最终weights finite/new critic显式绑定new encoder，新cache独立，原0062不变。先训练diagnostic，再完整candidate与samehash fragment单因素验证，不把loss降低当提交。
+
+
+第142同source frozen critic控制同步预登记：与141同新模块/source/初始weights/RNG/epoch/训练/两项forward，仍BCE+0.1CE仅冻结critic；对比141只critic_trainable/critic_frozen两个字段变化，可核对125旧实现控制state_dict是否复现以审计新增开关。单GPU顺序、两臂各24h上限，不用旧125做唯一无重跑训练控制。最终143/144完整proposal native100分别冻结control和joint，用原0062门槛，预选prefix5；samehash fragment是否扩展先看候选诊断，GAN仍无生成更新。

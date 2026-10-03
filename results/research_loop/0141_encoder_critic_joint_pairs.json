@@ -1,0 +1,45 @@
+{
+  "round": "0141_encoder_critic_joint_pairs",
+  "direction": "representation",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "contrastive": true,
+    "train_molecules": 60000,
+    "train_spectra": 214804,
+    "train_development_overlap": 0,
+    "epochs": 3,
+    "critic_state_dict_unchanged": false,
+    "critic_trainable": true,
+    "seconds": 15.383698708988959,
+    "gpu_peak_mib": 303.5380859375,
+    "encoder_sha256": "8efe259f88216cd284ce0dd4f30cc13b78eee9e004306eac43faf6321e612155",
+    "critic_sha256": "3d7e685a195b423d797134b7447ee1dd9aded3bda249eef863d4575abc17ea76",
+    "history": [
+      {
+        "epoch": 1,
+        "fingerprint_bce": 0.04709887084390309,
+        "frozen_critic_pair_ce": 0.6464366687259187,
+        "seconds": 8.980892655003117
+      },
+      {
+        "epoch": 2,
+        "fingerprint_bce": 0.04678971669090582,
+        "frozen_critic_pair_ce": 0.6044419167646721,
+        "seconds": 12.13390461099334
+      },
+      {
+        "epoch": 3,
+        "fingerprint_bce": 0.046628356583591206,
+        "frozen_critic_pair_ce": 0.5722064690422147,
+        "seconds": 15.271306634997018
+      }
+    ],
+    "independent_acceptance": false,
+    "next_gate": "Complete external and combined scoring against0062 required; training loss cannot qualify release"
+  },
+  "protocol_sha256": "8ed88a93a3f18a2dc5d8f1b0f2d29f9de6c31f6b26ac380581ca6fca02f0b190",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

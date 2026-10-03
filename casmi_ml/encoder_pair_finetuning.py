@@ -85,7 +85,9 @@ def validate_hard_table(hard, data):
         raise ValueError("Hard negatives outside frozen training mass pool")
 
 
-def freeze_protocol(output, contrastive=False):
+def freeze_protocol(output, contrastive=False, train_critic=False):
+    if train_critic and not contrastive:
+        raise ValueError("Joint critic training requires contrastive pairs")
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     return freeze(
@@ -106,7 +108,8 @@ def freeze_protocol(output, contrastive=False):
                 for name in ("hist", "meta", "loss")
             },
             "contrastive": contrastive,
-            "loss": "Fingerprint BCE plus0.1 training-only15 hard near-mass negative listwise CE, frozen original critic",
+            "loss": "Fingerprint BCE plus0.1 training-only15 hard near-mass negative listwise CE",
+            "critic_trainable": train_critic,
             "contrastive_weight": 0.1 if contrastive else 0.0,
             "epochs": 3,
             "batch_size": 128,
@@ -114,7 +117,7 @@ def freeze_protocol(output, contrastive=False):
             "weight_decay": 1e-4,
             "seed": 42,
             "matched_control": "Same initial encoder/critic, one equally weighted spectrum per training molecule per epoch, same hard table, positive/permutation/dropout RNG and both forwards",
-            "critic_frozen": True,
+            "critic_frozen": not train_critic,
             "encoder_trainable": True,
             "head_fingerprint_anchor": True,
             "selection": "Fixed epoch3; development labels not used for training or checkpoint selection",
@@ -127,9 +130,9 @@ def freeze_protocol(output, contrastive=False):
     )
 
 
-def run(output, contrastive=False):
+def run(output, contrastive=False, train_critic=False):
     output = Path(output)
-    freeze_protocol(output, contrastive)
+    freeze_protocol(output, contrastive, train_critic)
     configure(42, threads=4)
     if not torch.cuda.is_available():
         raise RuntimeError("GPU required for matched encoder control")
@@ -156,7 +159,9 @@ def run(output, contrastive=False):
             or weights["architecture"] != "fingerprint"
         ):
             raise ValueError("Initial critic/encoder binding failed")
-        critic = DirectRanker("fingerprint").to(device).eval().requires_grad_(False)
+        critic = (
+            DirectRanker("fingerprint").to(device).eval().requires_grad_(train_critic)
+        )
         critic.load_state_dict(weights["state_dict"])
         arrays = {
             name: np.load(FEATURES / f"{name}.npy", mmap_mode="r")
@@ -173,7 +178,10 @@ def run(output, contrastive=False):
             or data["fps"].dtype != np.float32
         ):
             raise ValueError("Training feature/fingerprint dimensions differ")
-        optimizer = torch.optim.AdamW(model.parameters(), lr=1e-5, weight_decay=1e-4)
+        parameters = list(model.parameters()) + (
+            list(critic.parameters()) if train_critic else []
+        )
+        optimizer = torch.optim.AdamW(parameters, lr=1e-5, weight_decay=1e-4)
         rng = np.random.default_rng(42)
         history = []
         for epoch in range(1, 4):
@@ -214,7 +222,7 @@ def run(output, contrastive=False):
                         "Nonfinite encoder anchored contrastive loss"
                     )
                 loss.backward()
-                torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+                torch.nn.utils.clip_grad_norm_(parameters, 1.0)
                 optimizer.step()
                 bces.append(float(anchor.detach()))
                 pairs.append(float(pair.detach()))
@@ -227,7 +235,7 @@ def run(output, contrastive=False):
             history.append(row)
             write_json(output / "history.json", history)
             print(json.dumps(row), flush=True)
-        if any(
+        if not train_critic and any(
             not torch.equal(value.detach().cpu(), weights["state_dict"][key])
             for key, value in critic.state_dict().items()
         ):
@@ -247,7 +255,14 @@ def run(output, contrastive=False):
         _, reloaded = load_deployment_checkpoint(output / "model.pt", "scale")
         if reloaded["preprocessing"] != saved["preprocessing"]:
             raise ValueError("Final encoder preprocessing changed")
-        # Same critic weights; updated binding describes the new scoring encoder.
+        weights["state_dict"] = {
+            key: value.detach().cpu() for key, value in critic.state_dict().items()
+        }
+        if any(
+            not torch.isfinite(value).all() for value in weights["state_dict"].values()
+        ):
+            raise FloatingPointError("Nonfinite final critic weights")
+        # Scoring critic always binds the resulting encoder.
         weights["encoder_sha256"] = digest(output / "model.pt")
         weights["original_critic_sha256"] = digest(CRITIC)
         torch.save(weights, output / "critic.pt")
@@ -258,7 +273,8 @@ def run(output, contrastive=False):
             "train_spectra": len(training),
             "train_development_overlap": 0,
             "epochs": 3,
-            "critic_state_dict_unchanged": True,
+            "critic_state_dict_unchanged": not train_critic,
+            "critic_trainable": train_critic,
             "seconds": time.monotonic() - started,
             "gpu_peak_mib": torch.cuda.max_memory_allocated() / 2**20,
             "encoder_sha256": digest(output / "model.pt"),
@@ -277,8 +293,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--contrastive", action="store_true")
+    parser.add_argument("--train-critic", action="store_true")
     args = parser.parse_args()
-    print(json.dumps(run(args.output, args.contrastive), indent=2))
+    print(json.dumps(run(args.output, args.contrastive, args.train_critic), indent=2))
 
 
 if __name__ == "__main__":
