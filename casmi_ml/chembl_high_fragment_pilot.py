@@ -12,6 +12,7 @@ import pandas as pd
 from casmi_ml.chembl_catalog import DERIVED
 from casmi_ml.chembl_critic_slots import score_cache_key
 from casmi_ml.chembl_fragment_pilot import informative_fragments
+from casmi_ml.chembl_tail_controls import validate_tail
 from casmi_ml.chemistry import rerank
 from casmi_ml.chemistry_experiment import candidate_lookup
 from casmi_ml.data import write_json
@@ -73,6 +74,9 @@ def run(output, incumbent, limit=200):
             "critic_sha256": config["critic_sha256"],
             "encoder_sha256": config["encoder_sha256"],
             "dependencies_sha256": dependencies,
+            "tail_verification_source_sha256": digest(
+                "casmi_ml/chembl_tail_controls.py"
+            ),
             "first_representation": "Per-query generated SMILES if present, otherwise original candidate lookup with PubChemLite setdefault; identical to original high critic scoring. External representation never overwrites actual first.",
             "limit": limit,
             "pilot_selector": "hash256 fragment-representative-20261003:",
@@ -229,10 +233,7 @@ def run(output, incumbent, limit=200):
                         counts[mode]["tail_removed"] += 1
                 else:
                     counts[mode]["missing_evidence_fallback"] += 1
-            if result[:10] != current[:10]:
-                raise ValueError("Protected first10 changed")
-            if confidence[key] < 0.5 and result != current:
-                raise ValueError("Frozen low arm changed")
+            validate_tail(prior, current, result, confidence[key])
             selected[key] = result
         all_selected[mode] = selected
         report[mode] = {}

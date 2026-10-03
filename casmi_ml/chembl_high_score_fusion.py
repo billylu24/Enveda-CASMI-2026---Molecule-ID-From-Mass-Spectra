@@ -8,6 +8,7 @@ import pandas as pd
 
 from casmi_ml.chembl_critic_slots import score_cache_key
 from casmi_ml.chembl_routed_combination import HIGH
+from casmi_ml.chembl_tail_controls import validate_tail
 from casmi_ml.data import write_json
 from casmi_ml.generation_slots import insert_generated
 from casmi_ml.metfrag import digest
@@ -36,6 +37,9 @@ def run(output, incumbent):
         {
             "version": 1,
             "source_sha256": digest(Path(__file__)),
+            "tail_verification_source_sha256": digest(
+                "casmi_ml/chembl_tail_controls.py"
+            ),
             "development_sha256": digest(ROOT / "researchdev.parquet"),
             "incumbent_report_sha256": digest(incumbent / "report.json"),
             "incumbent_rankings_sha256": digest(incumbent / "selected_rankings.json"),
@@ -87,10 +91,7 @@ def run(output, incumbent):
                 values = pairs[score_cache_key(key, prior[0], native, binding)]
                 result, passed = fused_tail(prior, current, native, values)
                 statistics[mode]["fused_margin_pass"] += passed
-            if result[:10] != current[:10] or (
-                confidence[key] < 0.5 and result != current
-            ):
-                raise ValueError("Protected ranks changed")
+            validate_tail(prior, current, result, confidence[key])
             selected[mode][key] = result
             statistics[mode]["changed_groups"] += result != current
         report[mode] = {}
