@@ -1,0 +1,16 @@
+{
+  "local_only": true,
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "unknown": {
+    "molecules": 2000,
+    "full_rank_changed": 380,
+    "first_changed": 21,
+    "top25_changed": 380
+  },
+  "known_phase_pending": true,
+  "unknown_mrr25": 0.04363425722605642,
+  "known_protection_unassessed": true,
+  "current_best_unknown_mrr25": 0.04397830092390447,
+  "scope": "Repeated unknown stage only, before final complete-system decision; observable rank changes aggregated without truth-selected groups."
+}
