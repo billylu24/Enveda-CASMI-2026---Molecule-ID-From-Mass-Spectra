@@ -20,7 +20,11 @@ from casmi_ml.secondary_inference import load_deployment_checkpoint
 from casmi_ml.training import configure
 
 
-def run(output, precise=False, contextual=False):
+def run(output, precise=False, contextual=False, mask_chemical_channels=False):
+    if mask_chemical_channels and (not contextual or not precise):
+        raise ValueError(
+            "Matched chemical-channel mask requires precise contextual arm"
+        )
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     configure(42, threads=4)
@@ -35,6 +39,7 @@ def run(output, precise=False, contextual=False):
             "development_sha256": digest(ROOT / "researchdev.parquet"),
             "precise": precise,
             "contextual": contextual,
+            "mask_chemical_channels": mask_chemical_channels,
             "width": 64,
             "feature_dim": DIM,
             "epochs": 3,
@@ -115,7 +120,9 @@ def run(output, precise=False, contextual=False):
                 for v in chosen.fingerprint
             ]
         ).astype(np.float32)
-        model = DiagnosticResidual(base, contextual=contextual).to("cuda")
+        model = DiagnosticResidual(
+            base, contextual=contextual, mask_chemical_channels=mask_chemical_channels
+        ).to("cuda")
         optimizer = torch.optim.AdamW(
             model.correction.parameters(), lr=0.001, weight_decay=0.01
         )
@@ -159,6 +166,7 @@ def run(output, precise=False, contextual=False):
             "precise": precise,
             "dimension": DIM,
             "contextual": contextual,
+            "mask_chemical_channels": mask_chemical_channels,
             "base_sha256": digest(ENCODER),
         }
         saved["preprocessing"] = dict(
@@ -173,6 +181,7 @@ def run(output, precise=False, contextual=False):
             "precise": precise,
             "base_encoder_exact": True,
             "contextual": contextual,
+            "mask_chemical_channels": mask_chemical_channels,
             "evidence_nonempty": int((chemical.max(1) > 0).sum()),
             "seconds": time.monotonic() - started,
             "encoder_sha256": digest(output / "model.pt"),
@@ -191,6 +200,7 @@ def main():
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--precise", action="store_true")
     p.add_argument("--contextual", action="store_true")
+    p.add_argument("--mask-chemical-channels", action="store_true")
     print(json.dumps(run(**vars(p.parse_args())), indent=2))
 
 

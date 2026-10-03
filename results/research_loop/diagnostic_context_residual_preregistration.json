@@ -39,5 +39,12 @@
     "known_top1_drop_max": 0.005
   },
   "remote_publication": false,
-  "gan_dino": "No expansion without a concrete new paired hypothesis and full-system evidence; existing cross-CE DINO negative result retained."
+  "gan_dino": "No expansion without a concrete new paired hypothesis and full-system evidence; existing cross-CE DINO negative result retained.",
+  "attribution_control": {
+    "arm": "context_precise_evidence_channels_masked",
+    "same_network_capacity": true,
+    "same_training_rows_steps_optimizer": true,
+    "policy": "Retain the same precise evidence-presence strength gate, but zero24 chemical identity channels before the correction MLP; frozen768 context remains. This separates chemical-channel information from additional contextual head calibration under identical gating.",
+    "interpretation": "A contextual system may improve best but chemical-specific benefit requires it to outperform this matched mask control; this is an attribution diagnostic, not an excuse to bypass paired deployment gates."
+  }
 }

@@ -566,3 +566,6 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 208精确首轮全2000/1340：unknown0.042688618、known0.604600574/Top1 .565671642、budget0；原模型完整controlunknown0.042728301，精确残差仍未达双门槛。增量复用127088个候选score、新增3025，成功减少物理重算；原进程reset共同失败清单导致1个原控制失败误记newfailure，仅diagnostic。223修复逻辑重评粗已启动，protocol正确绑定commonfailure SHA；随后224精确重评，再按既有配对上下文协议推进。未知best181保持、无远端发布。
+
+
+上下文实验增加同容量归因臂：保留精确诊断强度gate和768谱图context，把24种化学identity输入置零，网络、初始化shape、训练代表谱、3epoch及optimizer完全匹配；233 masked训练/234 proposals/235完整系统在230完整结果后由单独锁driver顺序启动，不能把额外head校准收益都归为诊断离子/丢失具体身份。所有实际性能仍按历史best+完整原控制门槛更新；归因与独立验收分开。mask控制featuregate不清零、无证据残差仍0，292回归通过，masked训练尚未启动。

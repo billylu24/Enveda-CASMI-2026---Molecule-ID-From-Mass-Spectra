@@ -30,10 +30,15 @@ def evidence_features(row, precise=True):
 
 
 class DiagnosticResidual(nn.Module):
-    def __init__(self, base, contextual=False):
+    def __init__(self, base, contextual=False, mask_chemical_channels=False):
         super().__init__()
         self.base = base.requires_grad_(False)
         self.contextual = contextual
+        self.mask_chemical_channels = mask_chemical_channels
+        if mask_chemical_channels and not contextual:
+            raise ValueError(
+                "Chemical-channel attribution mask requires contextual residual"
+            )
         if contextual and getattr(base, "architecture", None) != "wide_enhanced":
             raise ValueError(
                 "Contextual residual requires the frozen wide_enhanced base"
@@ -52,13 +57,15 @@ class DiagnosticResidual(nn.Module):
 
     def residual(self, chemical, context=None):
         # No evidence means exactly no alteration to the original encoder.
-        features = chemical
+        features = (
+            torch.zeros_like(chemical) if self.mask_chemical_channels else chemical
+        )
         if self.contextual:
             if context is None or context.shape[-1] != 768:
                 raise ValueError(
                     "Contextual evidence correction needs frozen768 latent"
                 )
-            features = torch.cat([chemical, context], -1)
+            features = torch.cat([features, context], -1)
         return self.correction(features) * chemical.amax(-1, keepdim=True)
 
     def forward(self, batch):

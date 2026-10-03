@@ -50,6 +50,24 @@ class ContextualDiagnosticTests(unittest.TestCase):
                 torch.testing.assert_close(loaded(batch), model(batch), rtol=0, atol=0)
             self.assertEqual(loaded.correction[0].in_features, DIM + 768)
 
+    def test_mask_control_retains_strength_gate_and_removes_chemical_identity(self):
+        base, _, _ = self.fixture()
+        model = DiagnosticResidual(base, contextual=True, mask_chemical_channels=True)
+        model.correction[-1].bias.data.fill_(1)
+        context = torch.ones(2, 768)
+        chemical = torch.zeros(2, DIM)
+        chemical[:, 0] = 1
+        first = model.residual(chemical, context)
+        chemical[:, 0] = 0
+        chemical[:, 5] = 1
+        torch.testing.assert_close(
+            model.residual(chemical, context), first, rtol=0, atol=0
+        )
+        chemical.zero_()
+        torch.testing.assert_close(
+            model.residual(chemical, context), torch.zeros_like(first), rtol=0, atol=0
+        )
+
     def test_nonzero_contextual_correction_requires_original_latent(self):
         _, model, _ = self.fixture()
         with self.assertRaisesRegex(ValueError, "frozen768"):
