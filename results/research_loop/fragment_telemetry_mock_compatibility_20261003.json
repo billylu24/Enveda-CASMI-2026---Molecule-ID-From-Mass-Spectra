@@ -1,0 +1,10 @@
+{
+  "round": "fragment_telemetry_mock_compatibility_20261003",
+  "status": "recorded",
+  "change": "Telemetry reads instance attributes explicitly so mocks do not synthesize status counters; statusless legacy scorers are recorded as unspecified without changing ranking.",
+  "verification": {
+    "tests": 181,
+    "status": "passed"
+  },
+  "independent_acceptance": false
+}

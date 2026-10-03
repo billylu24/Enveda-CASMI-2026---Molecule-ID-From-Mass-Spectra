@@ -164,7 +164,7 @@ class MetFrag:
 
 
 def record_status(fragmenter, result):
-    counts = getattr(fragmenter, "status_counts", {})
+    counts = vars(fragmenter).get("status_counts", {})
     status = result.get("status", "unspecified")
     counts[status] = counts.get(status, 0) + 1
     fragmenter.status_counts = counts
