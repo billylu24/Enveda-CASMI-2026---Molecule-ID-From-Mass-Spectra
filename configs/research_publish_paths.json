@@ -301,7 +301,9 @@
     "casmi_ml/chembl_high_joint_evidence.py",
     "tests/test_high_joint_evidence.py",
     "casmi_ml/chembl_high_strong_reference.py",
-    "tests/test_high_strong_reference.py"
+    "tests/test_high_strong_reference.py",
+    "casmi_ml/chembl_high_strong_slots.py",
+    "tests/test_high_strong_slots.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
