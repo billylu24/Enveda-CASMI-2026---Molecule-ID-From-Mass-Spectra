@@ -1,0 +1,11 @@
+{
+  "local_only": true,
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "training_molecules": 60000,
+  "target_fingerprint_matrix_exact": true,
+  "hard_negatives_per_positive": 15,
+  "hard_table_valid_training_mass_pool": true,
+  "row_order_and_representative_rng_match": true,
+  "scope": "Read-only target mapping audit before queued query residual training; no development labels or holdout used for training."
+}

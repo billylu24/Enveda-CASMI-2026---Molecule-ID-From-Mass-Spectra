@@ -1,0 +1,14 @@
+{
+  "status": "complete",
+  "local_only": true,
+  "independent_acceptance": false,
+  "remote_publication": false,
+  "evidence_only_complete": [
+    "0223_diagnostic_coarse_complete_system",
+    "0224_diagnostic_exact_complete_system"
+  ],
+  "contextual_systems": [
+    "0229_diagnostic_context_coarse_system",
+    "0230_diagnostic_context_exact_system"
+  ]
+}
