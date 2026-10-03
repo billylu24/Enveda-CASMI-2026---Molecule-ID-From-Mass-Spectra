@@ -57,6 +57,21 @@ class FrozenQueryCriticTests(unittest.TestCase):
             torch.save(weights, path)
             loaded, _ = load_query_ranker(path, original)
             self.assertIsInstance(loaded, DiagnosticQueryRanker)
+            weights["diagnostic_query_residual"].update(
+                strong_peak_losses=True,
+                strength_transform_sha256="changed",
+            )
+            torch.save(weights, path)
+            with self.assertRaisesRegex(ValueError, "feature source binding"):
+                load_query_ranker(path, original)
+            weights["diagnostic_query_residual"].update(
+                strength_transform_sha256=digest(
+                    "casmi_ml/diagnostic_strength_transform.py"
+                )
+            )
+            torch.save(weights, path)
+            strong, _ = load_query_ranker(path, original)
+            self.assertTrue(strong.query_residual.strong_peak_losses)
             weights["state_dict"]["base.log_scale"] += 1
             torch.save(weights, path)
             with self.assertRaisesRegex(ValueError, "critic tensor changed"):

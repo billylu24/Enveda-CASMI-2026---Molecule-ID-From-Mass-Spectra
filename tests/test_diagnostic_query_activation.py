@@ -69,6 +69,22 @@ class QueryActivationTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Incomplete query evidence"):
                 activate(c, output, result)
 
+    def test_transform_source_requires_matching_zero_control(self):
+        with tempfile.TemporaryDirectory() as directory:
+            c, output, result, state = self.fixture(Path(directory))
+            protocol = json.loads((output / "protocol.json").read_text())
+            protocol["strength_transform_sha256"] = digest(
+                "casmi_ml/diagnostic_strength_transform.py"
+            )
+            (output / "protocol.json").write_text(json.dumps(protocol))
+            with self.assertRaisesRegex(ValueError, "zero control source differs"):
+                activate(c, output, result)
+            self.assertNotIn("local_verified_inference", state)
+            protocol["strength_transform_sha256"] = "changed"
+            (output / "protocol.json").write_text(json.dumps(protocol))
+            with self.assertRaisesRegex(ValueError, "transform source changed"):
+                activate(c, output, result)
+
     def test_missing_control_never_activates_a_candidate(self):
         with tempfile.TemporaryDirectory() as directory:
             c, output, result, state = self.fixture(Path(directory))

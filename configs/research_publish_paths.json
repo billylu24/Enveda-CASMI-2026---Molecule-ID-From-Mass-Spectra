@@ -421,7 +421,14 @@
     "casmi_ml/diagnostic_strength_transform.py",
     "tests/test_diagnostic_strength_transform.py",
     "casmi_ml/diagnostic_query_strong_peak_followup.py",
-    "tests/test_strong_peak_query_compatibility.py"
+    "tests/test_strong_peak_query_compatibility.py",
+    "casmi_ml/cached_structure_keys.py",
+    "casmi_ml/structure_key_benchmark.py",
+    "tests/test_cached_structure_keys.py",
+    "casmi_ml/structure_key_full_replay.py",
+    "casmi_ml/structure_key_activation.py",
+    "casmi_ml/structure_key_followup.py",
+    "tests/test_structure_key_activation.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

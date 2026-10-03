@@ -1,0 +1,42 @@
+{
+  "round": "0285_actual_structure_key_cache_benchmark",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "unknown": {
+      "input_strings": 233538,
+      "groups": 1995,
+      "all_actual_structure_keys_exact": true,
+      "legacy_seconds": 57.96444258399424,
+      "cached_seconds": 46.91820390097564,
+      "cache_info": {
+        "hits": 57371,
+        "misses": 176167,
+        "maxsize": 100000,
+        "currsize": 100000
+      }
+    },
+    "known": {
+      "input_strings": 142444,
+      "groups": 1340,
+      "all_actual_structure_keys_exact": true,
+      "legacy_seconds": 35.1985263019742,
+      "cached_seconds": 23.07662157100276,
+      "cache_info": {
+        "hits": 40578,
+        "misses": 101866,
+        "maxsize": 100000,
+        "currsize": 100000
+      }
+    },
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "activated": false,
+    "scope": "Identity conversion segment only; full3340 inference control and source amendment required for activation"
+  },
+  "protocol_sha256": "a6debb064dd509f6a4e7db1f71dd953395d824fe6f274b3672f34159ac23c96e",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

@@ -13,7 +13,7 @@
     "budget_fallbacks": 861,
     "diagnostic_only": true
   },
-  "next_sequence": "Complete274/275 balancing attribution and activate exact object runtime276/277. New optional strong-peak input needs280 source-bound zero control, then281/282 same-pair training and283/284 complete matched systems. Only complete frozen gate winners replace best.",
+  "next_sequence": "280 optional strong-peak zero control exact3340,281/282 training complete;283/284 paired full systems ongoing. After science finalization286 actualSMILES identity cache trial requires all3340 current-best exact ranks before source amendment and287 current-source query zero control. Only frozen gate winners replace best.",
   "independent_acceptance": false,
   "precision_first_pass": {
     "unknown_mrr25": 0.04268861838422192,
@@ -24,7 +24,7 @@
     "raw_candidates_reused": 127088,
     "new_candidates_scored": 3025
   },
-  "active_round": "0280_query_strong_peak_zero_control",
+  "active_round": "0284_query_strong_peak_mask_system",
   "coarse_complete": {
     "unknown_mrr25": 0.04268861838422192,
     "known_mrr25": 0.6046005738683694,
@@ -36,7 +36,7 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0280_query_strong_peak_zero_control"
+    "0284_query_strong_peak_mask_system"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -326,8 +326,8 @@
       "original_critic_tensors_exact": true
     }
   },
-  "updated_at": "2026-10-03T13:01:28Z",
-  "current_query_zero_control": "artifacts/research_loop/rounds/0259_query_array_zero_control",
+  "updated_at": "2026-10-03T13:13:11Z",
+  "current_query_zero_control": "artifacts/research_loop/rounds/0280_query_strong_peak_zero_control",
   "local_verified_evidence_round": "0258_array_order_full_inference_control",
   "multispectrum_attribution": {
     "local_only": true,
