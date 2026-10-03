@@ -313,3 +313,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 逐谱执行状态观测补充：未来max_raw与mean_normalized scorer记录实际遍历complete/unsupported/empty/timeout/failed等状态，不改变分数/门槛/预算回退；report明确只覆盖增量谱遍历，complete可能为内容cache复用，不能称cold Java工作。112/113仍执行修改前已加载实现，保存engine源与冻结protocol SHA逐项吻合；旧runner在report生成时重读磁盘源SHA，执行时磁盘已可前进，旧report字段以protocol/source_at_start为实际来源，不重新改写实验protocol。新runner在启动时捕获源码SHA并固定沿用到报告。181回归通过。
+
+
+第113完整sequence query+fragment排序：unknown0.039516（增0.000305/+0.777%）、known0.604974（降0.000009）、Top1不变，门槛失败；1206.2秒/3138MiB、625缓存组191非空、78budget回退、75unknown/4known查询插入、新真值5。第116同规则预算完成诊断：仅复制547个完整组、剔除78个budget回退，允许同1200秒新轮预算继续完成；sequence file/ratio0/critic+.05/fragment.5/actual first comparison/prefix3/3slots/skip-impossible不变。不会把缓存追加耗时视为新冷运行，也不能把多轮缓存拼成一次1200秒保证；若排序eligible仍需独立真实推理/冷总资源验证。增加逐谱execution status数据以识别未匹配与Java失败，公开仅汇总。

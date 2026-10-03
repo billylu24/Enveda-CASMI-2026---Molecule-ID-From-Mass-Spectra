@@ -13,6 +13,7 @@ from casmi_ml.chembl_fragment_pilot import (
     relative_supported_proposals,
     score_cache_key,
 )
+from casmi_ml.chembl_sequence_pilot import reorder_scoreable
 from casmi_ml.chemistry import rerank
 from casmi_ml.data import write_json
 from casmi_ml.generated_first_critic import promotion_prefix
@@ -37,11 +38,18 @@ def run(directory, output):
         protocol["limit"] != 2000
         or not protocol["compare_current_first_fragment"]
         or protocol["candidate_gate"]
-        or protocol.get("sequence_ranking", False)
         or protocol.get("chemical_prior", False)
         or protocol.get("fragment_gate_only", False)
     ):
         raise ValueError("Audit requires complete relative-fragment/critic experiment")
+    sequence_values = {}
+    if protocol.get("sequence_ranking"):
+        sequence_path = Path(
+            "artifacts/research_loop/rounds/0110_chembl_sequence_score_full/scores.json"
+        )
+        if digest(sequence_path) != protocol["sequence_scores_sha256"]:
+            raise ValueError("Sequence audit cache differs from frozen experiment")
+        sequence_values = json.loads(sequence_path.read_text())
     fragment_scores = json.loads((directory / "fragment_scores.json").read_text())
     pair_scores = json.loads((directory / "critic_scores.json").read_text())
     proposals = json.loads(
@@ -121,9 +129,14 @@ def run(directory, output):
                 ck = score_cache_key(key, current[0], native)
                 if native:
                     critic = pair_scores[ck]
-                    shortlist = sorted(native, key=lambda k: (-critic[k], k))[
-                        : protocol["fragment_limit"]
-                    ]
+                    shortlist = sorted(native, key=lambda k: (-critic[k], k))
+                    if protocol.get("sequence_ranking"):
+                        shortlist = reorder_scoreable(
+                            shortlist,
+                            sequence_values.get(key, {}),
+                            protocol["sequence_ratio_weight"],
+                        )
+                    shortlist = shortlist[: protocol["fragment_limit"]]
                     counts["novel_truth_in_critic_shortlist"] += key in shortlist
                     possible = possible_critic_gate(
                         shortlist, critic, current[0], spec[0]
