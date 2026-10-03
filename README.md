@@ -23,8 +23,7 @@ GPU notebook version 2 completed in **5h 37m 32s** and was actually submitted.
 Kaggle is rerunning it against hidden tests (**Notebook Running**, no new score yet).
 The actual report and both selected checkpoints were reviewed: GAN adds
 unknown MRR +0.000146 versus the matched routed supervised control, with a
-95% interval crossing zero; graph edits add no exact truth coverage. Full case
-recomputation remains pending. See [the GAN release](kaggle_release_gan/README.md)
+95% interval crossing zero; graph edits add no exact truth coverage. All retained case ranks/identities and intervals were independently rechecked. See [the GAN release](kaggle_release_gan/README.md)
 and [measured validation](kaggle_release_gan/validation_summary.json).
 The previous chemical-prior score of 0.176 does not establish GAN effectiveness.
 

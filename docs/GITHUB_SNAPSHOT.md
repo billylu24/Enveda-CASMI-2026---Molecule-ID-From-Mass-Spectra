@@ -77,7 +77,7 @@ are not chemical generalization results. The actual formal aggregate report and
 both selected checkpoint binaries are now reviewed: unknown routed MRR is
 0.016693 supervised / 0.016840 GAN, known MRR 0.782591 / 0.781980. Both
 GAN-minus-supervised paired 95% intervals cross zero; graph-only new truth
-coverage is zero. Full case identity/bootstrap recomputation remains pending.
+coverage is zero. All retained case identities/ranks and bootstrap intervals were independently rechecked.
 See [validation summary](../kaggle_release_gan/validation_summary.json). The [runtime audit](RUNTIME_REVIEW_20261002.md)
 documents repeated CPU structure work and constraints for a later inference-only release.
 

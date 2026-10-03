@@ -8,7 +8,7 @@
   "gan_trained_on_competition_data": true,
   "generated_new_molecular_graphs": 36676,
   "historical_best_public_score": 0.176,
-  "note": "Formal V2 completed and actual aggregate report plus both selected model binaries were reviewed. GAN incremental CI versus matched supervised crosses zero. Competition accepted the submission and is still Notebook Running; no new public score. Full case archives and independent recomputation remain pending.",
+  "note": "Formal V2 full 104.25 MB output archive verified against both selected checkpoints and report. Independently canonicalized 68,155 unique SMILES, rechecked all case ranks/metrics and paired confidence intervals, and verified all 400 visible submission rows. GAN incremental CI versus matched supervised crosses zero; graph-only exact new truth coverage is zero. Competition remains Notebook Running with no new public score.",
   "embedded_source_sha256": "ee7ccca6b373156e81522dea9598ccf4aeae1fe4eae1c4f827bc4383b4a2f93d",
   "engineering_smoke": "actual synthetic prepare/train/checkpoint/reload/evaluate/inference completed; not generalization evidence",
   "accelerator_requested": "GPU T4 x2",
@@ -18,7 +18,7 @@
     "skipped": 1,
     "subtests_passed": 10
   },
-  "observed_at_utc": "2026-10-03T04:17:49.118292+00:00",
+  "observed_at_utc": "2026-10-03T04:38:31.502777+00:00",
   "notebook_version": 2,
   "notebook_script_version_id": 354698716,
   "frozen_source_commit": "a45c65e9f16501c554dfd4a12679003d630cb0ff",
@@ -66,11 +66,11 @@
   "competition_submission_status": "Notebook Running",
   "formal_notebook_runtime_seconds": 20252.3,
   "independent_acceptance_outputs_verified": true,
-  "full_output_downloaded": false,
+  "full_output_downloaded": true,
   "formal_run_proof": "kaggle_run_success.png",
   "competition_submission_description": "Frozen source a45c65e9: real conditional fingerprint GAN, matched supervised control, official identity holdouts and shared bounded graph edits. Both arms 12 epochs; GAN 4520 discriminator updates. Guard 0.75, neural RRF 0.35, chemical weight 0.1. Experimental GAN arm; fingerprints generated, no learned molecular graph decoder.",
-  "acceptance_verification_scope": "actual aggregate report and both selected checkpoints; full case recomputation pending",
-  "full_case_audit_complete": false,
+  "acceptance_verification_scope": "complete formal output archive, both checkpoints, all retained case ranks/identities, all paired intervals and visible CSV independently checked",
+  "full_case_audit_complete": true,
   "generated_graph_count_unit": "unique candidate graphs per query, summed across cohorts; not globally unique molecules",
   "graph_only_newcoverage_unknown": 0,
   "graph_only_newcoverage_known": 0,
@@ -113,5 +113,21 @@
       "last_log_elapsed_seconds": 13767.1
     },
     "runtime_elapsed_seconds_at_observation": 14049.6
+  },
+  "output_archive_sha256": "fb00c9daca9f7dd612084d6e3447a22164f089202bc82941a5d7ca133c67c0ed",
+  "output_archive_bytes": 58617569,
+  "submission_csv_sha256": "99aeb79b39717a9ae20bab5e16586fd1a3a54262603c6a75e3f58b518caebc36",
+  "submission_csv_verified": {
+    "molecules": 400,
+    "columns": [
+      "molecule_id",
+      "smiles"
+    ],
+    "sha256": "99aeb79b39717a9ae20bab5e16586fd1a3a54262603c6a75e3f58b518caebc36",
+    "all_smiles_valid_and_official_identities_unique": true,
+    "min_candidates": 4,
+    "max_candidates": 25,
+    "ids_match_actual_runtime_audit": true,
+    "ids_match_external_hidden_test": "not observable"
   }
 }

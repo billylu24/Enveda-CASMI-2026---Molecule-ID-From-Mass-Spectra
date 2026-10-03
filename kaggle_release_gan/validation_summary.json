@@ -1,9 +1,9 @@
 {
-  "status": "actual_V2_aggregate_report_and_both_checkpoints_verified_public_score_pending",
+  "status": "formal_V2_full_outputs_checkpoints_and_all_retained_cases_verified_hidden_score_pending",
   "notebook_script_version_id": 354698716,
   "frozen_source_commit": "a45c65e9f16501c554dfd4a12679003d630cb0ff",
   "report_sha256": "27b315bdd0bf8fa91ad522492ced9edf95ba1018adf073cf8a09c9de172cdebe",
-  "observed_at_utc": "2026-10-03T04:17:49.118292+00:00",
+  "observed_at_utc": "2026-10-03T04:38:31.502777+00:00",
   "competition_submitted": true,
   "competition_submission_status": "Notebook Running",
   "public_score": null,
@@ -64,7 +64,7 @@
     "excluded_identities_count": 680,
     "unlabeled_test_identities_fully_reconstructed": false,
     "all_copied_visible_signatures_excluded_from_fitting": true,
-    "full_case_identity_reaudit_complete": false
+    "full_case_identity_reaudit_complete": true
   },
   "unknown_acceptance": {
     "metrics": {
@@ -689,7 +689,7 @@
   "selected_case_examples_observed": [
     {
       "identity": "AAKGQCRLAXUVQW",
-      "source": "formal V2 acceptance_cases.json visible preview, not full case archive",
+      "source": "full formal V2 acceptance_cases.json independently rechecked",
       "original_pool_size": 590,
       "newgraph_count": 32,
       "pool_size": 622,
@@ -697,11 +697,19 @@
       "graph_only_newcoverage": false,
       "protected": false,
       "confidence": 0.4741186499595642,
-      "scaffold_stratum": "unseen_scaffold"
+      "scaffold_stratum": "unseen_scaffold",
+      "rr": {
+        "historical": 0.0,
+        "expanded_chemistry": 0.0,
+        "baseline_raw": 0.0,
+        "baseline_routed": 0.0,
+        "cgan_raw": 0.0,
+        "cgan_routed": 0.0
+      }
     },
     {
       "identity": "ABLMUCSYDQOWAQ",
-      "source": "formal V2 acceptance_cases.json visible preview, not full case archive",
+      "source": "full formal V2 acceptance_cases.json independently rechecked",
       "original_pool_size": 656,
       "newgraph_count": 32,
       "pool_size": 688,
@@ -709,11 +717,19 @@
       "graph_only_newcoverage": false,
       "protected": false,
       "confidence": 0.6661377519369125,
-      "scaffold_stratum": "unseen_scaffold"
+      "scaffold_stratum": "unseen_scaffold",
+      "rr": {
+        "historical": 0.0,
+        "expanded_chemistry": 0.0,
+        "baseline_raw": 0.0,
+        "baseline_routed": 0.0,
+        "cgan_raw": 0.0,
+        "cgan_routed": 0.0
+      }
     },
     {
       "identity": "ACHUYSGABSEHJM",
-      "source": "formal V2 acceptance_cases.json visible preview, not full case archive",
+      "source": "full formal V2 acceptance_cases.json independently rechecked",
       "original_pool_size": 316,
       "newgraph_count": 0,
       "pool_size": 316,
@@ -721,7 +737,15 @@
       "graph_only_newcoverage": false,
       "protected": true,
       "confidence": 0.7607573539018632,
-      "scaffold_stratum": "seen_scaffold"
+      "scaffold_stratum": "seen_scaffold",
+      "rr": {
+        "historical": 0.0,
+        "expanded_chemistry": 0.0,
+        "baseline_raw": 0.0,
+        "baseline_routed": 0.0,
+        "cgan_raw": 0.0,
+        "cgan_routed": 0.0
+      }
     }
   ],
   "acceptance_interpretation": {
@@ -732,10 +756,303 @@
     "parameters_changed_after_observing_results": false
   },
   "verification_limits": [
-    "Aggregate metrics and intervals come from the actual formal gan_report.json, not yet recomputed from the full case archives.",
-    "Both selected model binaries were downloaded and loaded with weights_only=True; metadata and finite tensors were checked.",
-    "Bulk JSON/ZIP downloads remain incomplete; full case identity and paired-bootstrap re-audit still pending.",
-    "Public hidden rerun is still Notebook Running; no new competition score exists.",
-    "No learned molecular graph decoder; graph novelty is local to the supplied per-query pool."
+    "Retained output does not include all individual fitted training rows; separation is checked against the frozen deterministic identity-split code and actual acceptance identities.",
+    "Candidate recall is reaggregated from actual per-arm coverage flags; the full pre-Top25 mass pools are not retained.",
+    "Scaffold stratum labels are retained from the formal run; training scaffold sets are not included in the archive.",
+    "These are formal visible-run outputs; the competition hidden rerun score remains pending.",
+    "Official hidden test labels and the final private leaderboard are not observable; these are proxy tasks."
+  ],
+  "full_output_downloaded": true,
+  "full_case_audit_complete": true,
+  "independent_output_recheck": {
+    "status": "complete",
+    "rdkit_version": "2026.03.3",
+    "source_files_match_frozen_commit": {
+      "baseline.py": "0c18125a6885c956e3249393c80da18727c1756fada947fb65501ba689f19758",
+      "casmi_ml/__init__.py": "2846e0d884c10437752b006de2ba55158698576006aefeb2c76ee46f0cd1b73c",
+      "casmi_ml/adversarial.py": "d1c10be1f36205619df5178e3c2931d0c0eb935d696b1f2828e49e7624fd1208",
+      "casmi_ml/adversarial_release.py": "91231ef3a34b023312c315a97b222db0ad00dbb432fb15c90b192eeec55161bc",
+      "casmi_ml/chemical_priors.py": "768dd08154af9190bddfd4c20796ebcfc113c33a57d367146925117fc1dec74c",
+      "casmi_ml/data.py": "28bbdcff19ca470264e98cac757872c967f4397cd4089a95da9061079a617cda",
+      "casmi_ml/failure_audit.py": "40cac5f54e298aabb00b51880796d2f8a0860a84223f7ccacdd5b9735db35685",
+      "casmi_ml/graph_candidates.py": "84feed3fe2e7ca1eb4c7d16d760d724d525091a2d882abb2ed2637c77bb68146",
+      "casmi_ml/hybrid_chemistry.py": "520c73f719b6e1a896024fba0b724807e08110a3a8ac4af0727025d4b0f6287e",
+      "hybrid.py": "31aceb88d728a43936a327204c405bfe778d86633d8cb5c1a5c818c2503fc3cc"
+    },
+    "unique_canonical_structures_rechecked": 68155,
+    "cohorts": {
+      "unknown": {
+        "molecules": 994,
+        "all_truth_and_ranked_candidate_identities_recomputed": true,
+        "all_acceptance_hash_buckets_at_least_9000": true,
+        "no_acceptance_identity_in_excluded_fitting_set": true,
+        "all_rank_lists_unique_and_at_most_25": true,
+        "all_rank_values_and_metrics_match_report": true,
+        "all_five_paired_intervals_recomputed_match": true,
+        "paired_intervals": {
+          "cgan_vs_supervised_raw": {
+            "difference": 0.00041192827934139983,
+            "ci95": [
+              -0.001742408379025514,
+              0.0024839092998253636
+            ]
+          },
+          "cgan_vs_supervised_routed": {
+            "difference": 0.00014611578373440164,
+            "ci95": [
+              -0.0006565168233647104,
+              0.0010705308127427497
+            ]
+          },
+          "cgan_vs_historical": {
+            "difference": 0.0028291434242472273,
+            "ci95": [
+              0.0007491159852182394,
+              0.004883768037643589
+            ]
+          },
+          "supervised_vs_expanded_chemistry": {
+            "difference": 0.001859608867002197,
+            "ci95": [
+              -0.0002129783939054899,
+              0.003924161926922246
+            ]
+          },
+          "cgan_vs_expanded_chemistry": {
+            "difference": 0.0020057246507365987,
+            "ci95": [
+              -0.00010853279062323021,
+              0.004122612713092867
+            ]
+          }
+        },
+        "generated_graph_candidates": 16807,
+        "generated_graph_exact_truth_hits": 0
+      },
+      "known": {
+        "molecules": 880,
+        "all_truth_and_ranked_candidate_identities_recomputed": true,
+        "all_acceptance_hash_buckets_at_least_9000": true,
+        "no_acceptance_identity_in_excluded_fitting_set": true,
+        "all_rank_lists_unique_and_at_most_25": true,
+        "all_rank_values_and_metrics_match_report": true,
+        "all_five_paired_intervals_recomputed_match": true,
+        "paired_intervals": {
+          "cgan_vs_supervised_raw": {
+            "difference": 0.0009905413536412003,
+            "ci95": [
+              -0.008069607648111932,
+              0.010823178232813433
+            ]
+          },
+          "cgan_vs_supervised_routed": {
+            "difference": -0.0006108799162028827,
+            "ci95": [
+              -0.0016392745413925465,
+              0.00044205082893047443
+            ]
+          },
+          "cgan_vs_historical": {
+            "difference": 0.004597678653027623,
+            "ci95": [
+              0.0022567033180555776,
+              0.007117811399365317
+            ]
+          },
+          "supervised_vs_expanded_chemistry": {
+            "difference": 0.005208558569230506,
+            "ci95": [
+              0.0026917884075739807,
+              0.007969979061616906
+            ]
+          },
+          "cgan_vs_expanded_chemistry": {
+            "difference": 0.004597678653027623,
+            "ci95": [
+              0.0022567033180555776,
+              0.007117811399365317
+            ]
+          }
+        },
+        "generated_graph_candidates": 3872,
+        "generated_graph_exact_truth_hits": 0
+      }
+    },
+    "known_identities_subset_of_unknown": true,
+    "submission": {
+      "molecules": 400,
+      "columns": [
+        "molecule_id",
+        "smiles"
+      ],
+      "sha256": "99aeb79b39717a9ae20bab5e16586fd1a3a54262603c6a75e3f58b518caebc36",
+      "all_smiles_valid_and_official_identities_unique": true,
+      "min_candidates": 4,
+      "max_candidates": 25,
+      "ids_match_actual_runtime_audit": true,
+      "ids_match_external_hidden_test": "not observable"
+    },
+    "seconds": 75.28197250002995,
+    "limits": [
+      "Retained output does not include all individual fitted training rows; separation is checked against the frozen deterministic identity-split code and actual acceptance identities.",
+      "Candidate recall is reaggregated from actual per-arm coverage flags; the full pre-Top25 mass pools are not retained.",
+      "Scaffold stratum labels are retained from the formal run; training scaffold sets are not included in the archive.",
+      "These are formal visible-run outputs; the competition hidden rerun score remains pending."
+    ]
+  },
+  "archive": {
+    "notebook_script_version_id": 354698716,
+    "archive_sha256": "fb00c9daca9f7dd612084d6e3447a22164f089202bc82941a5d7ca133c67c0ed",
+    "archive_bytes": 58617569
+  },
+  "output_files": {
+    "acceptance_cases.json": {
+      "bytes": 30215099,
+      "sha256": "0e43fbb95fb870527d1df5b6f4f30864c7ba81b54bc188ba50c72df351edc1a8"
+    },
+    "known_acceptance_cases.json": {
+      "bytes": 24924404,
+      "sha256": "487d13ad35014dcf0a5a385ca763a7f989307abdbafde1998f84df6f6b4d623b"
+    },
+    "submission.csv": {
+      "bytes": 467180,
+      "sha256": "99aeb79b39717a9ae20bab5e16586fd1a3a54262603c6a75e3f58b518caebc36"
+    },
+    "gan_report.json": {
+      "bytes": 169329,
+      "sha256": "27b315bdd0bf8fa91ad522492ced9edf95ba1018adf073cf8a09c9de172cdebe"
+    },
+    "prepared_manifest.json": {
+      "bytes": 53069,
+      "sha256": "52af5d1624b396bd95dd5761c739858cbc81f77a97e7cb3196a4055b3e429289"
+    },
+    "models/baseline/model.pt": {
+      "bytes": 5408597,
+      "sha256": "6447eb4df6e0641e01edd2d29cbfcffec15c25095c5754408139b1077ac811de"
+    },
+    "models/cgan/model.pt": {
+      "bytes": 10742773,
+      "sha256": "c4591135018b6dd97ed3bd3839d6dfb32df730ef44003e9b36bf816303c0ab4b"
+    }
+  },
+  "actual_rank_failure_examples": [
+    {
+      "identity": "CJGRGYBLAHPYOM",
+      "truth_smiles": "O=C(C=Cc1ccccc1)OC1OC(CO)C(O)C(O)C1O",
+      "confidence": 0.49833750128746035,
+      "protected": false,
+      "original_pool_size": 365,
+      "newgraph_count": 32,
+      "rr": {
+        "historical": 0.0,
+        "expanded_chemistry": 0.0,
+        "baseline_raw": 0.5,
+        "baseline_routed": 0.0,
+        "cgan_raw": 1.0,
+        "cgan_routed": 0.0
+      },
+      "covered_by_arm": {
+        "historical": true,
+        "expanded_chemistry": true,
+        "baseline_raw": true,
+        "baseline_routed": true,
+        "cgan_raw": true,
+        "cgan_routed": true
+      },
+      "cohort": "unknown",
+      "chemical_audit": {
+        "mode_counts": {
+          "positive": 2
+        },
+        "adduct_counts": {
+          "[M+NH4]+": 1,
+          "[M+Na]+": 1
+        },
+        "strict_rule_matches": 0,
+        "truth_supported_rule_ids": [
+          "o_hexoside_loss_162"
+        ]
+      },
+      "hexoside_gate": {
+        "rule_id": "o_hexoside_loss_162",
+        "truth_motif_supported": true,
+        "spectra": 2,
+        "mode_eligible": 2,
+        "adduct_eligible": 0,
+        "joint_eligible": 0,
+        "alias_joint_eligible": 0,
+        "mass_match_ignoring_mode_adduct": 2
+      }
+    },
+    {
+      "identity": "FQNCLVJEQCJWSU",
+      "truth_smiles": "Cc1cc2ncc(-c3ccccc3)nc2cc1C",
+      "confidence": 0.9170495837926864,
+      "protected": true,
+      "original_pool_size": 32,
+      "newgraph_count": 0,
+      "rr": {
+        "historical": 0.0,
+        "expanded_chemistry": 0.1,
+        "baseline_raw": 1.0,
+        "baseline_routed": 0.0,
+        "cgan_raw": 1.0,
+        "cgan_routed": 0.0
+      },
+      "covered_by_arm": {
+        "historical": false,
+        "expanded_chemistry": true,
+        "baseline_raw": true,
+        "baseline_routed": false,
+        "cgan_raw": true,
+        "cgan_routed": false
+      },
+      "cohort": "unknown",
+      "chemical_audit": {
+        "mode_counts": {
+          "positive": 2
+        },
+        "adduct_counts": {
+          "[M+H]+": 2
+        },
+        "strict_rule_matches": 0,
+        "truth_supported_rule_ids": []
+      }
+    },
+    {
+      "identity": "CZIOOOMHRYWTQF",
+      "truth_smiles": "CCc1cccc(S(=O)(=O)Nc2c(C#N)cnn2C)c1",
+      "confidence": 0.6939296007156371,
+      "protected": false,
+      "original_pool_size": 321,
+      "newgraph_count": 32,
+      "rr": {
+        "historical": 0.14285714285714285,
+        "expanded_chemistry": 0.14285714285714285,
+        "baseline_raw": 0.05555555555555555,
+        "baseline_routed": 0.5,
+        "cgan_raw": 0.0,
+        "cgan_routed": 0.3333333333333333
+      },
+      "covered_by_arm": {
+        "historical": true,
+        "expanded_chemistry": true,
+        "baseline_raw": true,
+        "baseline_routed": true,
+        "cgan_raw": true,
+        "cgan_routed": true
+      },
+      "cohort": "known",
+      "chemical_audit": {
+        "mode_counts": {
+          "positive": 2
+        },
+        "adduct_counts": {
+          "[M+H]+": 2
+        },
+        "strict_rule_matches": 0,
+        "truth_supported_rule_ids": []
+      }
+    }
   ]
 }
