@@ -1,0 +1,29 @@
+{
+  "round": "high_fragment_deployment_replay_0161",
+  "diagnostic_only": true,
+  "status": "recorded",
+  "implementation_replay": {
+    "valid": true,
+    "molecules": 75,
+    "full_rank_matches": 75,
+    "unlabeled_input": true,
+    "real_frozen_generator_baseline": true,
+    "external_source_sha256": "e56271e287c56e1f6034b3dae411be72695463f6f86765809d585b42b40fdad4",
+    "protocol_sha256": "10ab364fbf8054c49862a2145948761f38ec48aa9e2a80c3aad48975b3bd2317",
+    "seconds": 20.646894197998336,
+    "peak_rss_mib": 1341.40625,
+    "status_counts": {
+      "fragment_evidence_fallback": 30,
+      "critic_gate_fallback": 21,
+      "high_fragment_inserted": 19,
+      "high_fragment_remove_tail": 3,
+      "low_fragment_inserted": 2
+    },
+    "independent_acceptance": false,
+    "resource_scope": "75-query implementation replay with content cache; full uncached package/platform resources still required"
+  },
+  "development_eligible": false,
+  "submitted": false,
+  "scope": "Actual full75 unlabeled high_fragment implementation replay, not an accepted model; release still requires gate",
+  "independent_acceptance": false
+}

@@ -260,7 +260,9 @@
     "casmi_ml/metfrag_persistent.py",
     "casmi_ml/metfrag_worker_benchmark.py",
     "casmi_ml/java/MetFragWorker.java",
-    "tests/test_metfrag_persistent.py"
+    "tests/test_metfrag_persistent.py",
+    "casmi_ml/chembl_high_fragment_replay.py",
+    "tests/test_chembl_high_release_gate.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

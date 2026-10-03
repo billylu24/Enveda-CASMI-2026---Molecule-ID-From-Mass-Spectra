@@ -20,7 +20,8 @@ def prepare(directory, output, base=Path("kaggle_release_gate_0062_runtime313"))
     if (
         not decision["winner"]
         or not decision["winner"]["gate"]["eligible"]
-        or decision["direction"] != "chembl_routed_combination"
+        or decision["direction"]
+        not in ("chembl_routed_combination", "chembl_high_fragment")
     ):
         raise ValueError("Frozen routed-combination development gate required")
     verification = json.loads((directory / "replay.json").read_text())
@@ -55,6 +56,27 @@ def prepare(directory, output, base=Path("kaggle_release_gate_0062_runtime313"))
             shutil.copy2(src, dest)
         config[name] = target
         config[name + "_sha256"] = digest(dest)
+    if source.get("high_fragment"):
+        high = source["high_fragment"]
+        if (
+            high.get("prefix") != 3
+            or high.get("backend") != "persistent"
+            or high.get("weight") != 0.5
+        ):
+            raise ValueError("Unsupported high fragment release rule")
+        worker_src = Path(high["worker_class"])
+        if digest(worker_src) != high["worker_class_sha256"]:
+            raise ValueError("Java worker checksum changed")
+        worker_dest = bundle / "java_classes/MetFragWorker.class"
+        worker_dest.parent.mkdir()
+        shutil.copy2(worker_src, worker_dest)
+        worker_source = Path("casmi_ml/java/MetFragWorker.java")
+        if digest(worker_source) != high["worker_source_sha256"]:
+            raise ValueError("Java worker source changed")
+        shutil.copy2(worker_source, worker_dest.parent / "MetFragWorker.java")
+        config["high_fragment"] = dict(
+            high, worker_class="java_classes/MetFragWorker.class"
+        )
     attribution = bundle / "chembl_attribution"
     attribution.mkdir()
     for name in (

@@ -457,3 +457,5 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 第161同155有限预算scores仅prefix3重放：unknown0.040726（对149+0.000398/+0.988%），known0.604435（降0.000126）、Top1不变；绝对与relative门槛失败。无新增Java，保留155所有budget fallback，不称cold；前3保护通过。第162预登记同科学规则prefix3、1200秒追加评分预算，改用160证明exact的persistent JVM，复用155已完成/排除budget fallback的group cache及原内容cache，绑定backend source/java bytecode，但physical structures/jar/alias/depth/ppm保持相同。动机为当前只约三分之一high实际完成，先判断完成度提高能否复现收益；不以多轮缓存拼成单次1200保证。完整2000/1340对149，若eligible也需新的实际无标签/单冷整包/平台验证，149已验证待发布包不改。除backend无新权重/候选/阈值，prefix3由161唯一预选不再调参。
 
 为162可能达标预备真实无标签high fragment推理：config无新field继续原149行为，有明确high_fragment/backend/worker SHA才启用严格first比较、critic+.05、prefix3；informative但不支持回原0062，missing/tied/budget保留原149tail。5项新规则回归验证fallback/相对actual first/critic/首3保护。未改已验证149bundle/notebook/identity，当前无新release或Kaggle上传。准备旧配置75真实完整排名回归，新的开发gate/replay/cold/platform仍分别执行，未授权以未完成开发证据发布。
+
+旧配置实际无标签回归75/75完整SMILES排名逐字相同，新增optional high fragment不改变149语义，215回归通过；已验证149bundle/source SHA保持原资产，未来新包使用新source需单独验证。高fragment replay/worker打包实现已准备，尚无162完整指标或新release，不能跳过门槛。README/下一轮方向改为最新151至162状态，历史段落明确保留来源。
