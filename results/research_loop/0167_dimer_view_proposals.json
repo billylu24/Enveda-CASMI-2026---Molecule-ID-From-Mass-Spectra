@@ -1,0 +1,66 @@
+{
+  "round": "0167_dimer_view_proposals",
+  "direction": "diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "external_only": {
+      "native": {
+        "molecules": 2000,
+        "candidate_recall": 0.1165,
+        "mrr25": 0.02667382079716024,
+        "top1": 0.016,
+        "top5": 0.038,
+        "top25": 0.0625,
+        "conditional_mrr25": 0.22895983516875745
+      },
+      "corrected_fusion": {
+        "molecules": 2000,
+        "candidate_recall": 0.119,
+        "mrr25": 0.037947744936204515,
+        "top1": 0.0255,
+        "top5": 0.0525,
+        "top25": 0.075,
+        "conditional_mrr25": 0.3188886129092817
+      },
+      "corrected_only": {
+        "molecules": 2000,
+        "candidate_recall": 0.1195,
+        "mrr25": 0.04333680399859932,
+        "top1": 0.029,
+        "top5": 0.06,
+        "top25": 0.0815,
+        "conditional_mrr25": 0.3626510794861868
+      }
+    },
+    "coverage_counts": {
+      "native": {
+        "25": 125,
+        "100": 175,
+        "500": 233
+      },
+      "corrected_fusion": {
+        "25": 150,
+        "100": 201,
+        "500": 238
+      },
+      "corrected_only": {
+        "25": 163,
+        "100": 207,
+        "500": 239
+      }
+    },
+    "all_queries": true,
+    "scored_queries": 1984,
+    "scored_candidates": 1779260,
+    "seconds": 330.3217712890182,
+    "parent_peak_rss_mib": 1605.1171875,
+    "prior_sha256": "320b15ff66309f8cdb5aa79c8a166f46de756d2f81ee841eeed08ed57a5f505f",
+    "independent_acceptance": false,
+    "next_gate": "Proposal coverage/ranking cannot qualify release; full combined0062 and known protection required"
+  },
+  "protocol_sha256": "8493c0f98829289735e2800599172645bfd8ca5b0397bffa634c6d64daaaafe4",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
