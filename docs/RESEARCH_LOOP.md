@@ -276,3 +276,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第103轮完整2000/1340：unknown0.039742（增0.000531/+1.354%）、known0.604974（降0.000009）、Top1不变，relative门槛失败并同步GitHub；662.2秒、2929.6MiB为缓存增量耗时，不能当cold部署。707缓存组270非空、预算回退0；实际unknown跳过172个不可能critic组，剩562组均完成，9个库外真值有正分且fragment超过当前首位、7个进入前三名，插入查询由57增到99，净MRR未改善。完整排序独立审计再次复算吻合；诊断支持检验减少无支持连带插入，而不再把预算回退当主因。
+
+
+第104轮每候选相对fragment支持fixed200：所有prefix未知/已知指标与第99轮完全相同，14/2查询插入，新真值1；没有新改善，不扩大。第105轮只改变外部结构排序权重0.5→1.0，保留query首候选critic margin0.05、当前首位相对fragment比较与informative gate、100候选和最多3插入，取消critic原顺序在fragment RRF中的0.5份额。动机为第103审计9个库外真值fragment超过首位、仅7入前三；检查化学排序证据是否被原critic秩稀释，而非放宽所有门控。固定同200/88评分缓存、prefix2/3/5/10，无新增评分/训练；only positive/known保护才扩大。variant命名fragment1绑定protocol实际权重。

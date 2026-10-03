@@ -1,0 +1,174 @@
+{
+  "round": "0105_chembl_fragment_rank_pilot",
+  "direction": "chembl_fragment_slots",
+  "status": "diagnostic_complete",
+  "report": {
+    "unknown": {
+      "baseline": {
+        "molecules": 200,
+        "candidate_recall": 0.135,
+        "mrr25": 0.037996678974620154,
+        "top1": 0.02,
+        "top5": 0.06,
+        "top25": 0.1,
+        "conditional_mrr25": 0.2814568812934826
+      },
+      "fragment1": {
+        "molecules": 200,
+        "candidate_recall": 0.135,
+        "mrr25": 0.037996678974620154,
+        "top1": 0.02,
+        "top5": 0.06,
+        "top25": 0.1,
+        "conditional_mrr25": 0.2814568812934826
+      },
+      "fragment1_prefix3": {
+        "molecules": 200,
+        "candidate_recall": 0.135,
+        "mrr25": 0.037996678974620154,
+        "top1": 0.02,
+        "top5": 0.06,
+        "top25": 0.1,
+        "conditional_mrr25": 0.2814568812934826
+      },
+      "fragment1_prefix5": {
+        "molecules": 200,
+        "candidate_recall": 0.135,
+        "mrr25": 0.037996678974620154,
+        "top1": 0.02,
+        "top5": 0.06,
+        "top25": 0.1,
+        "conditional_mrr25": 0.2814568812934826
+      },
+      "fragment1_prefix10": {
+        "molecules": 200,
+        "candidate_recall": 0.135,
+        "mrr25": 0.037996678974620154,
+        "top1": 0.02,
+        "top5": 0.06,
+        "top25": 0.1,
+        "conditional_mrr25": 0.2814568812934826
+      }
+    },
+    "known": {
+      "baseline": {
+        "molecules": 131,
+        "candidate_recall": 1.0,
+        "mrr25": 0.6069206239053567,
+        "top1": 0.5648854961832062,
+        "top5": 0.6335877862595419,
+        "top25": 0.7557251908396947,
+        "conditional_mrr25": 0.6069206239053567
+      },
+      "fragment1": {
+        "molecules": 131,
+        "candidate_recall": 1.0,
+        "mrr25": 0.6068244022105719,
+        "top1": 0.5648854961832062,
+        "top5": 0.6335877862595419,
+        "top25": 0.7557251908396947,
+        "conditional_mrr25": 0.6068244022105719
+      },
+      "fragment1_prefix3": {
+        "molecules": 131,
+        "candidate_recall": 1.0,
+        "mrr25": 0.6068244022105719,
+        "top1": 0.5648854961832062,
+        "top5": 0.6335877862595419,
+        "top25": 0.7557251908396947,
+        "conditional_mrr25": 0.6068244022105719
+      },
+      "fragment1_prefix5": {
+        "molecules": 131,
+        "candidate_recall": 1.0,
+        "mrr25": 0.6068244022105719,
+        "top1": 0.5648854961832062,
+        "top5": 0.6335877862595419,
+        "top25": 0.7557251908396947,
+        "conditional_mrr25": 0.6068244022105719
+      },
+      "fragment1_prefix10": {
+        "molecules": 131,
+        "candidate_recall": 1.0,
+        "mrr25": 0.6068244022105719,
+        "top1": 0.5648854961832062,
+        "top5": 0.6335877862595419,
+        "top25": 0.7557251908396947,
+        "conditional_mrr25": 0.6068244022105719
+      }
+    },
+    "diagnostic_only": true,
+    "diagnostics": {
+      "molecules": 200,
+      "fragment_groups": 88,
+      "fragment_groups_with_scores": 36,
+      "fragment_adapter": "exact_monomer",
+      "fragment_budget_fallbacks": 0,
+      "scope": "fixed200 structural pilot; no publication eligibility",
+      "seconds": 3.619086319988128,
+      "parent_peak_rss_mib": 2863.5,
+      "proposal_queries_scored": 762,
+      "proposal_limit": 100,
+      "fragment_limit": 100,
+      "evidence_only": true,
+      "candidate_gate": false,
+      "relative_candidate_gate": false,
+      "fragment_weight": 1.0,
+      "compare_current_first_fragment": true,
+      "fragment_gate_only": false,
+      "skip_impossible_critic_gate": false,
+      "evidence_gate": "Positive proposed first fragment score and distinct finite fragment scores required; missing/all tied scores never enable insertion",
+      "variants": {
+        "unknown": {
+          "baseline": {
+            "queries_with_inserted_candidates": 0,
+            "novel_inserted_truths": 0
+          },
+          "fragment1": {
+            "queries_with_inserted_candidates": 6,
+            "novel_inserted_truths": 0
+          },
+          "fragment1_prefix3": {
+            "queries_with_inserted_candidates": 6,
+            "novel_inserted_truths": 0
+          },
+          "fragment1_prefix5": {
+            "queries_with_inserted_candidates": 6,
+            "novel_inserted_truths": 0
+          },
+          "fragment1_prefix10": {
+            "queries_with_inserted_candidates": 6,
+            "novel_inserted_truths": 0
+          }
+        },
+        "known": {
+          "baseline": {
+            "queries_with_inserted_candidates": 0,
+            "novel_inserted_truths": 0
+          },
+          "fragment1": {
+            "queries_with_inserted_candidates": 1,
+            "novel_inserted_truths": 0
+          },
+          "fragment1_prefix3": {
+            "queries_with_inserted_candidates": 1,
+            "novel_inserted_truths": 0
+          },
+          "fragment1_prefix5": {
+            "queries_with_inserted_candidates": 1,
+            "novel_inserted_truths": 0
+          },
+          "fragment1_prefix10": {
+            "queries_with_inserted_candidates": 1,
+            "novel_inserted_truths": 0
+          }
+        }
+      },
+      "independent_acceptance": false
+    }
+  },
+  "protocol_sha256": "1553f51677ee853932325477d5bcf38e014a69d2bf11f12c7858c2122f84cf0c",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

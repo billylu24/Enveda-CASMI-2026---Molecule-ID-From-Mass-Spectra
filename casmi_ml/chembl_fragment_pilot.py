@@ -102,7 +102,10 @@ def run(
     fragment_gate_only=False,
     skip_impossible=False,
     relative_candidate_gate=False,
+    fragment_weight=0.5,
 ):
+    if fragment_weight not in (0.5, 1.0):
+        raise ValueError("Fragment weight must be 0.5 or 1.0")
     if relative_candidate_gate and (
         not compare_first or not evidence_only or candidate_gate
     ):
@@ -152,14 +155,29 @@ def run(
             "fragment05_prefix5": (0.05, 5, 3, 0.5),
             "fragment05_prefix10": (0.05, 10, 3, 0.5),
         }
+    if evidence_only:
+        variants = {
+            name: None if spec is None else (*spec[:3], fragment_weight)
+            for name, spec in variants.items()
+        }
     if limit == 2000:
         variants = {
             name: spec for name, spec in variants.items() if name != "fragment1"
         }
+    if evidence_only and fragment_weight == 1.0:
+        variants = {
+            name.replace("fragment05", "fragment1"): spec
+            for name, spec in variants.items()
+        }
     if limit == 2000 and evidence_only:
         variants = {
             "baseline": None,
-            f"fragment05_prefix{prefix}": (0.05, prefix, 3, 0.5),
+            f"{'fragment1' if fragment_weight == 1.0 else 'fragment05'}_prefix{prefix}": (
+                0.05,
+                prefix,
+                3,
+                fragment_weight,
+            ),
         }
     if not 1 <= limit <= 2000:
         raise ValueError("Pilot limit must be in[1,2000]")
@@ -196,6 +214,7 @@ def run(
             "evidence_only": evidence_only,
             "candidate_gate": candidate_gate,
             "relative_candidate_gate": relative_candidate_gate,
+            "fragment_weight": fragment_weight,
             "compare_current_first_fragment": compare_first,
             "fragment_gate_only": fragment_gate_only,
             "skip_impossible_critic_gate": skip_impossible,
@@ -619,6 +638,7 @@ def run(
             "evidence_only": evidence_only,
             "candidate_gate": candidate_gate,
             "relative_candidate_gate": relative_candidate_gate,
+            "fragment_weight": fragment_weight,
             "compare_current_first_fragment": compare_first,
             "fragment_gate_only": fragment_gate_only,
             "skip_impossible_critic_gate": skip_impossible,
@@ -651,6 +671,7 @@ def main():
     p.add_argument("--fragment-gate-only", action="store_true")
     p.add_argument("--skip-impossible", action="store_true")
     p.add_argument("--relative-candidate-gate", action="store_true")
+    p.add_argument("--fragment-weight", type=float, choices=(0.5, 1.0), default=0.5)
     a = p.parse_args()
     print(
         json.dumps(
@@ -670,6 +691,7 @@ def main():
                 a.fragment_gate_only,
                 a.skip_impossible,
                 a.relative_candidate_gate,
+                a.fragment_weight,
             ),
             indent=2,
         )
