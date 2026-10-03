@@ -265,7 +265,13 @@
     "tests/test_chembl_high_release_gate.py",
     "casmi_ml/dimer_input_view.py",
     "tests/test_dimer_input_view.py",
-    "tests/test_proposal_encoder_binding.py"
+    "tests/test_proposal_encoder_binding.py",
+    "tests/test_high_fragment_controller.py",
+    "kaggle_release_high_fragment_0163/status.json",
+    "kaggle_release_high_fragment_0163/verification.json",
+    "kaggle_release_high_fragment_0163/kaggle_verification.json",
+    "kaggle_release_high_fragment_0163/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_high_fragment_0163/notebook/kernel-metadata.json"
   ],
   "aggregate_directories": [
     "results/research_loop",

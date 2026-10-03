@@ -1,0 +1,57 @@
+{
+  "valid": true,
+  "round": "0163_high_fragment_completion",
+  "checks": {
+    "unknown": {
+      "molecules": 2000,
+      "changed_full_rankings": 982,
+      "short_original_high_rankings": 6,
+      "metrics": {
+        "mrr25": 0.041610624156227724,
+        "top1": 0.014,
+        "top5": 0.08,
+        "top25": 0.13
+      },
+      "csv_exact_rank_metrics": true,
+      "low_full_ranking_frozen": true,
+      "high_available_original_first3_frozen": true
+    },
+    "known": {
+      "molecules": 1340,
+      "changed_full_rankings": 267,
+      "short_original_high_rankings": 6,
+      "metrics": {
+        "mrr25": 0.604673242666079,
+        "top1": 0.5656716417910448,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701
+      },
+      "csv_exact_rank_metrics": true,
+      "low_full_ranking_frozen": true,
+      "high_available_original_first3_frozen": true
+    }
+  },
+  "rankings_sha256": "874441c58bdfe9d51800f5b1b11ecd6c6ed467519c4d89c36f35997a0918bc08",
+  "replay": {
+    "valid": true,
+    "molecules": 75,
+    "full_rank_matches": 75,
+    "unlabeled_input": true,
+    "real_frozen_generator_baseline": true,
+    "external_source_sha256": "e56271e287c56e1f6034b3dae411be72695463f6f86765809d585b42b40fdad4",
+    "protocol_sha256": "fb7bef0e9ba8c8a367b2c7eac9a7210cac345e24a5cfaf9971b0c83543fe1c62",
+    "seconds": 20.088127172988607,
+    "peak_rss_mib": 1324.28515625,
+    "status_counts": {
+      "fragment_evidence_fallback": 30,
+      "critic_gate_fallback": 21,
+      "high_fragment_inserted": 19,
+      "high_fragment_remove_tail": 3,
+      "low_fragment_inserted": 2
+    },
+    "independent_acceptance": false,
+    "resource_scope": "75-query implementation replay with content cache; full uncached package/platform resources still required"
+  },
+  "independent_acceptance": false,
+  "scope": "Independent implementation reconstruction of the same repeated development cohort; cached replay is not cold resource evidence."
+}

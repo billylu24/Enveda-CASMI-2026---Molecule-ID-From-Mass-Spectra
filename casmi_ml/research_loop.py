@@ -984,6 +984,7 @@ class Controller:
                 "generated_first_gate",
                 "protected_generation",
                 "chembl_routed_combination",
+                "chembl_high_fragment",
             ]:
                 outcome = self.release_round(identifier)
                 if outcome in [
@@ -1146,8 +1147,31 @@ class Controller:
                         return result
                 finally:
                     gpu.close()
+        if r["direction"] in ("chembl_routed_combination", "chembl_high_fragment"):
+            self.mark_round(identifier, requires_platform_verification=True)
+            directory = Path(r["report"]).parent
+            if (
+                r["direction"] == "chembl_high_fragment"
+                and not (directory / "replay.json").exists()
+            ):
+                result = self.job(
+                    [
+                        ".venv/bin/python",
+                        "-m",
+                        "casmi_ml.chembl_high_fragment_replay",
+                        "--directory",
+                        str(directory),
+                        "--output",
+                        str(directory / "unlabeled_replay"),
+                    ],
+                    directory / "replay.log",
+                    1800,
+                    auxiliary_key="replay-" + identifier,
+                )
+                if result != "complete":
+                    return result
         if not release.exists():
-            if r["direction"] == "chembl_routed_combination":
+            if r["direction"] in ("chembl_routed_combination", "chembl_high_fragment"):
                 from casmi_ml.chembl_routed_release import prepare
 
                 prepare(Path(r["report"]).parent, release)
@@ -1168,6 +1192,7 @@ class Controller:
                 "generated_first_gate",
                 "protected_generation",
                 "chembl_routed_combination",
+                "chembl_high_fragment",
             ]:
                 gpu = (self.root / "gpu.lock").open("a")
                 try:
@@ -1193,6 +1218,7 @@ class Controller:
                             "generated_first_gate",
                             "protected_generation",
                             "chembl_routed_combination",
+                            "chembl_high_fragment",
                         ]
                         else ".venv/bin/python",
                         "-m",
