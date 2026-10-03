@@ -1,8 +1,8 @@
 {
-  "status": "runtime_prepared_not_activated",
+  "status": "platform_rank_mismatch",
   "identity": "9d035819b855d600890901238843b970f4fd49d395a7a12d841f8abf82555390",
   "development_eligible": true,
   "independent_acceptance": false,
-  "uploaded": false,
+  "uploaded": true,
   "submitted": false
 }

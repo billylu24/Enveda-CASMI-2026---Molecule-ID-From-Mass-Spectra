@@ -303,7 +303,12 @@
     "casmi_ml/chembl_high_strong_reference.py",
     "tests/test_high_strong_reference.py",
     "casmi_ml/chembl_high_strong_slots.py",
-    "tests/test_high_strong_slots.py"
+    "tests/test_high_strong_slots.py",
+    "kaggle_release_high_fragment_0163_fastpoll_v2/platform_failure.json",
+    "casmi_ml/strong_slot_inference.py",
+    "casmi_ml/reference_handoff.py",
+    "tests/test_strong_slot_inference.py",
+    "tests/test_reference_handoff.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

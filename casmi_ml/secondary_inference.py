@@ -173,6 +173,9 @@ def predict(recipe_path, data_dir, coconut_path, output, full_rankings=None):
             all_centers.update(mass_centers(query, 'charge_aware_union'))
         adaptive_records, _ = load_candidates(train_path, np.array(sorted(all_centers)))
         adaptive_observed = {r[1] for r in adaptive_records}
+        if recipe.get('external_routed', {}).get('high_fragment', {}).get('strong_slots'):
+            from casmi_ml.reference_handoff import save_reference
+            save_reference(adaptive_records, str(output) + '.external_reference')
         del adaptive_records
     model = checkpoint = candidates = reference = lookup = expanded = None
     cache, rows, audit, full_rows = {}, [], [], []

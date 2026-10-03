@@ -82,6 +82,7 @@ def extend(
     java="java",
     cache=None,
     output_full_rankings=None,
+    reference=None,
 ):
     root, output = Path(root), Path(output)
     configure(threads=4)
@@ -140,6 +141,15 @@ def extend(
         engine_class = PersistentMonomerMetFrag
         engine_options = {"classes": worker.parent}
         engine_options.update(runtime_options(root, high_fragment, worker))
+        if high_fragment.get("strong_slots"):
+            if high_fragment["strong_slots"] != {
+                "reference_threshold": 0.5,
+                "original_prefix": 3,
+                "slots": 3,
+            }:
+                raise ValueError("Only frozen181 strong-slot rules supported")
+            if reference is None:
+                raise ValueError("Actual unlabeled spectral reference required for181")
     fragmenter = engine_class(
         paths["jar"],
         cache or str(output) + ".external_fragment_cache",
@@ -231,6 +241,53 @@ def extend(
                                         fragments,
                                         fallback,
                                     )
+                                    if (
+                                        status == "high_fragment_inserted"
+                                        and high_fragment.get("strong_slots")
+                                    ):
+                                        from casmi_ml.strong_slot_inference import (
+                                            reference_supported_keys,
+                                            select_strong_slots,
+                                        )
+
+                                        original_fragments, original_fallback = (
+                                            score_group_merged(
+                                                fragmenter,
+                                                query.to_dict("records"),
+                                                {k: lookup[k] for k in current[:3]},
+                                                deadline=fragment_deadline,
+                                            )
+                                        )
+                                        if (
+                                            not original_fallback
+                                            and original_fragments
+                                            and original_fragments.get(current[0], 0)
+                                            != fragments.get(current[0], 0)
+                                        ):
+                                            raise ValueError(
+                                                "Actual-first original pool score differs"
+                                            )
+                                        observed = reference_supported_keys(
+                                            reference, query
+                                        )
+                                        proposed = rerank(
+                                            candidates,
+                                            {},
+                                            [],
+                                            0.5,
+                                            top_n=len(candidates),
+                                            fragment_scores=fragments,
+                                        )
+                                        result, inserted, status = select_strong_slots(
+                                            current,
+                                            result,
+                                            proposed,
+                                            scores,
+                                            fragments,
+                                            original_fragments,
+                                            original_fallback,
+                                            observed,
+                                        )
                         else:
                             fragments, fallback = score_group_merged(
                                 fragmenter,

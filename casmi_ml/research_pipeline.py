@@ -62,6 +62,11 @@ def predict(recipe_path, data_dir, coconut, output):
     if external:
         from casmi_ml.chembl_routed_inference import extend
 
+        reference = None
+        if external.get("high_fragment", {}).get("strong_slots"):
+            from casmi_ml.ranking import ReferenceIndex
+
+            reference = ReferenceIndex(str(baseline) + ".external_reference")
         result = extend(
             test,
             generated_output,
@@ -72,6 +77,7 @@ def predict(recipe_path, data_dir, coconut, output):
             external,
             deadline=started + generation["total_seconds"],
             fragment_deadline=started + recipe["chemistry"]["fragment_seconds"],
+            reference=reference,
         )
         report["external_routed"] = json.loads(
             Path(str(output) + ".external.report.json").read_text()
