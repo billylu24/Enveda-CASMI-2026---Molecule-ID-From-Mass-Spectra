@@ -398,3 +398,6 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 第142同source frozen critic控制同步预登记：与141同新模块/source/初始weights/RNG/epoch/训练/两项forward，仍BCE+0.1CE仅冻结critic；对比141只critic_trainable/critic_frozen两个字段变化，可核对125旧实现控制state_dict是否复现以审计新增开关。单GPU顺序、两臂各24h上限，不用旧125做唯一无重跑训练控制。最终143/144完整proposal native100分别冻结control和joint，用原0062门槛，预选prefix5；samehash fragment是否扩展先看候选诊断，GAN仍无生成更新。
+
+
+第141/142 matched训练完成15.4/14.6秒，joint critic11 tensors实际变化且finite、新encoder binding正确；142 frozen模型state_dict与旧125逐tensor完全一致，开关重构未改变control训练过程。第143/144完整native100 candidate: control Top3 9/Top10 12/Top25 15，joint9/13/15；预选prefix5 MRR0.039351→0.039359仅+0.000009、known0.604201→0.604248，均未过0062门槛。训练CE joint0.572206低于control0.604951仍不能视为系统收益。第145/146 samehash200 merged fragment matched双臂预登记：原0062/native100/first相对fragment/score margin.05/RRF.5/prefix3/3slots/skip-impossible/1200秒，全保持；只对比冻结与joint scorer，用同源码/独立模型绑定缓存。仅若joint比matched control改善且known保护才考虑full，不从143/144选择新prefix。
