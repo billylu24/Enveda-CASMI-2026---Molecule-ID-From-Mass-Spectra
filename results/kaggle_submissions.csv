@@ -1,4 +1,5 @@
 ref,fileName,date,description,status,publicScore,privateScore
+56786923,submission.csv,2026-10-03 01:47:44.940000,Research 0024_single_decoder_full dev-experimental a6d6f571b12489f4,SubmissionStatus.PENDING,,
 56786330,submission.csv,2026-10-03 01:11:33.267000,Research 0017_generation_position dev-experimental e4b8eae36a7b3fc8,SubmissionStatus.COMPLETE,0.174,
 56785643,submission.csv,2026-10-03 00:36:17.293000,Research 0013_reference_generation dev-experimental d7ff96ab39bfe45a,SubmissionStatus.COMPLETE,0.175,
 56784251,submission.csv,2026-10-03 00:00:25.187000,Research 0012_protected_generation dev-experimental c1526ab3072f4242,SubmissionStatus.COMPLETE,0.175,
