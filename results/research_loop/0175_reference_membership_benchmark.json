@@ -1,0 +1,27 @@
+{
+  "round": "0175_reference_membership_benchmark",
+  "direction": "runtime_benchmark",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "molecules": 400,
+    "reference_spectra": 556890,
+    "reference_keys": 74956,
+    "full_key_set_exact": true,
+    "target_mass_centers": 1182,
+    "key_set_sha256": "20ec5dc390475e975417854c72178c27cbeb92ec174938c67ca9c1a6a48f460f",
+    "seconds": {
+      "original": 31.19136774499202,
+      "membership": 22.333052429021336
+    },
+    "speedup": 1.3966459732329062,
+    "parent_peak_rss_mib": 5114.40234375,
+    "independent_acceptance": false,
+    "unlabeled_input": true,
+    "scope": "Runtime-only full-library membership, no accuracy improvement; timings include materialization and page cache may differ between arms."
+  },
+  "protocol_sha256": "a209c3722bb0135fc6d0bad71d0080d05e9a241ee7eac2532d4f5d994a4c2d1e",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

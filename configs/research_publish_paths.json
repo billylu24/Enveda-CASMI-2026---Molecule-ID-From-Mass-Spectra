@@ -283,7 +283,10 @@
     "casmi_ml/fragment_runtime_release.py",
     "casmi_ml/fragment_runtime_verification.py",
     "tests/test_fragment_runtime_binding.py",
-    "tests/test_fragment_runtime_release.py"
+    "tests/test_fragment_runtime_release.py",
+    "casmi_ml/observed_reference_keys.py",
+    "casmi_ml/reference_membership_benchmark.py",
+    "tests/test_observed_reference_keys.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
