@@ -1,0 +1,61 @@
+{
+  "valid": true,
+  "repeated_development": true,
+  "independent_acceptance": false,
+  "rank_reconstruction": {
+    "unknown": {
+      "molecules": 2000,
+      "metrics": {
+        "molecules": 2000,
+        "candidate_recall": 0.1785,
+        "mrr25": 0.042545811746415294,
+        "top1": 0.014,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.23835188653453943
+      },
+      "csv_rows_exact": 2000,
+      "unchanged_low_arm": true,
+      "original_first_protected": true,
+      "changed_rankings": 505
+    },
+    "known": {
+      "molecules": 1340,
+      "metrics": {
+        "molecules": 1340,
+        "candidate_recall": 1.0,
+        "mrr25": 0.6046255906927774,
+        "top1": 0.5656716417910448,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6046255906927774
+      },
+      "csv_rows_exact": 1340,
+      "unchanged_low_arm": true,
+      "original_first_protected": true,
+      "changed_rankings": 104
+    }
+  },
+  "unlabeled_replay": {
+    "valid": true,
+    "molecules": 75,
+    "full_rank_matches": 75,
+    "unlabeled_input": true,
+    "real_frozen_generator_baseline": true,
+    "external_source_sha256": "ada379c92c84df57ac5f3e6e573e2ba94521cc79421ff092d6c57b9cce50a4e8",
+    "protocol_sha256": "25e9af3c3610ebad53c3cf6e88323339b891ebe796540b78d537c86edad07939",
+    "seconds": 67.63003671501065,
+    "peak_rss_mib": 1863.5234375,
+    "status_counts": {
+      "fragment_evidence_fallback": 30,
+      "critic_gate_fallback": 21,
+      "high_strong_slot_inserted": 16,
+      "high_fragment_remove_tail": 3,
+      "strong_original_gate_fallback": 3,
+      "low_fragment_inserted": 2
+    },
+    "independent_acceptance": false,
+    "resource_scope": "75 real implementation replay with existing100 evidence cache; actual400 cold reference handoff/runtime/platform still required."
+  },
+  "cold400_and_platform_still_required": true
+}

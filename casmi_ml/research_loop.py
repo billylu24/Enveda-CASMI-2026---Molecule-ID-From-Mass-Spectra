@@ -985,6 +985,7 @@ class Controller:
                 "protected_generation",
                 "chembl_routed_combination",
                 "chembl_high_fragment",
+                "chembl_high_strong_slots",
             ]:
                 outcome = self.release_round(identifier)
                 if outcome in [
@@ -1147,22 +1148,31 @@ class Controller:
                         return result
                 finally:
                     gpu.close()
-        if r["direction"] in ("chembl_routed_combination", "chembl_high_fragment"):
+        if r["direction"] in (
+            "chembl_routed_combination",
+            "chembl_high_fragment",
+            "chembl_high_strong_slots",
+        ):
             self.mark_round(identifier, requires_platform_verification=True)
             directory = Path(r["report"]).parent
             if (
-                r["direction"] == "chembl_high_fragment"
+                r["direction"] in ("chembl_high_fragment", "chembl_high_strong_slots")
                 and not (directory / "replay.json").exists()
             ):
                 result = self.job(
                     [
                         ".venv/bin/python",
                         "-m",
-                        "casmi_ml.chembl_high_fragment_replay",
+                        "casmi_ml.strong_slot_replay"
+                        if r["direction"] == "chembl_high_strong_slots"
+                        else "casmi_ml.chembl_high_fragment_replay",
                         "--directory",
                         str(directory),
-                        "--output",
-                        str(directory / "unlabeled_replay"),
+                        *(
+                            []
+                            if r["direction"] == "chembl_high_strong_slots"
+                            else ["--output", str(directory / "unlabeled_replay")]
+                        ),
                     ],
                     directory / "replay.log",
                     1800,
@@ -1171,7 +1181,11 @@ class Controller:
                 if result != "complete":
                     return result
         if not release.exists():
-            if r["direction"] in ("chembl_routed_combination", "chembl_high_fragment"):
+            if r["direction"] in (
+                "chembl_routed_combination",
+                "chembl_high_fragment",
+                "chembl_high_strong_slots",
+            ):
                 from casmi_ml.chembl_routed_release import prepare
 
                 prepare(Path(r["report"]).parent, release)
@@ -1193,6 +1207,7 @@ class Controller:
                 "protected_generation",
                 "chembl_routed_combination",
                 "chembl_high_fragment",
+                "chembl_high_strong_slots",
             ]:
                 gpu = (self.root / "gpu.lock").open("a")
                 try:
@@ -1219,6 +1234,7 @@ class Controller:
                             "protected_generation",
                             "chembl_routed_combination",
                             "chembl_high_fragment",
+                            "chembl_high_strong_slots",
                         ]
                         else ".venv/bin/python",
                         "-m",

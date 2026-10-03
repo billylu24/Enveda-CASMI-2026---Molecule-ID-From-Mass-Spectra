@@ -21,7 +21,11 @@ def prepare(directory, output, base=Path("kaggle_release_gate_0062_runtime313"))
         not decision["winner"]
         or not decision["winner"]["gate"]["eligible"]
         or decision["direction"]
-        not in ("chembl_routed_combination", "chembl_high_fragment")
+        not in (
+            "chembl_routed_combination",
+            "chembl_high_fragment",
+            "chembl_high_strong_slots",
+        )
     ):
         raise ValueError("Frozen routed-combination development gate required")
     verification = json.loads((directory / "replay.json").read_text())
@@ -77,6 +81,28 @@ def prepare(directory, output, base=Path("kaggle_release_gate_0062_runtime313"))
         config["high_fragment"] = dict(
             high, worker_class="java_classes/MetFragWorker.class"
         )
+        if high.get("runtime"):
+            from casmi_ml.metfrag_polling_patch import CLASS_NAME, PATCHED_SHA
+
+            runtime = high["runtime"]
+            process_source = Path(runtime["process_class"])
+            if (
+                digest(process_source) != PATCHED_SHA
+                or runtime["process_class_sha256"] != PATCHED_SHA
+            ):
+                raise ValueError("Verified derived runtime process required")
+            process = worker_dest.parent / CLASS_NAME
+            process.parent.mkdir(parents=True)
+            shutil.copy2(process_source, process)
+            config["high_fragment"]["runtime"] = dict(
+                runtime, process_class=str(process.relative_to(bundle))
+            )
+        if (
+            high.get("strong_slots")
+            != {"reference_threshold": 0.5, "original_prefix": 3, "slots": 3}
+            and decision["direction"] == "chembl_high_strong_slots"
+        ):
+            raise ValueError("Frozen181 strong slot recipe required")
     attribution = bundle / "chembl_attribution"
     attribution.mkdir()
     for name in (

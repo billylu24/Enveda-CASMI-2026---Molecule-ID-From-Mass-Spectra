@@ -9,6 +9,9 @@ from casmi_ml.research_loop import Controller
 
 
 class HighFragmentControllerTests(unittest.TestCase):
+    direction = "chembl_high_fragment"
+    replay_module = "casmi_ml.chembl_high_fragment_replay"
+
     def controller(self, root):
         config = json.loads(Path("configs/research_loop.json").read_text())
         config.update(root=str(root / "state"), automatic_github_sync=False)
@@ -24,7 +27,7 @@ class HighFragmentControllerTests(unittest.TestCase):
                 },
             },
         )
-        controller.register_round("high", "chembl_high_fragment", [], report)
+        controller.register_round("high", self.direction, [], report)
         controller.mark_round(
             "high", status="eligible", decision=str(report.parent / "decision.json")
         )
@@ -49,7 +52,7 @@ class HighFragmentControllerTests(unittest.TestCase):
                 patch.object(c, "publish_prepared") as publish,
             ):
                 self.assertEqual(c.release_round("high"), "budget_exhausted")
-            self.assertIn("casmi_ml.chembl_high_fragment_replay", job.call_args.args[0])
+            self.assertIn(self.replay_module, job.call_args.args[0])
             prepare.assert_not_called()
             publish.assert_not_called()
             self.assertTrue(c.read()["rounds"][0]["requires_platform_verification"])
@@ -81,3 +84,8 @@ class HighFragmentControllerTests(unittest.TestCase):
             self.assertEqual(job.call_args.args[2], 1800)
             self.assertTrue(c.read()["rounds"][0]["requires_platform_verification"])
             publish.assert_called_once_with("high", release)
+
+
+class StrongSlotsControllerTests(HighFragmentControllerTests):
+    direction = "chembl_high_strong_slots"
+    replay_module = "casmi_ml.strong_slot_replay"
