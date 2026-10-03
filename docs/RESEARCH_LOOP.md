@@ -425,3 +425,5 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 第150same hash200 high-tail片段支持预登记，对新的开发最佳149：只已由原high critic+.05允许的100候选组评分，与actual original0062 first同组exact monomer+merged peak union；high原first10始终保持。若完整fragment有区分度/正分且新first严格高于原first fragment与critic+.05，则RRF.5选top3替换149tail；若有informative但无法支持，则移除该tail回0062该high分支；missing/unsupported/tied/budget保持149原tail不变。low123和所有未插入high query均不改变，所有候选仍在149已考虑pool，完整cohort/source/proposal/critic冻结。1200秒Java/同hash200，只正向/known保护才full。动机为high tail1038未知query插入仅17新truth且knownMRR降.000422，测试真实片段支持能否减少低效插入与找回更好的候选，不依靠开发label挑query。平台149 notebook在后台运行，未来增益门槛都对149。
 
 第150起点源码已恢复核对：Ruff移除import后额外空行导致磁盘SHA变化，仅空行差异。private source_at_start.py与冻结protocol SHA逐字节匹配；不修改原protocol或正在运行的实现。README与下一轮方向已更新为149当前开发最佳、当前无待评分比赛提交和UTC10月4日额度等待；早期62状态标为历史。
+
+第151高置信corrected预筛扩大完整对照预登记：仅将148高分支前100改为前500，原encoder/critic、完整observable质量窗、confidence>=.5、actual first critic+.05、prefix10/3slots完全固定；149低置信123峰并集分支逐项保持。生成/检索不重训、不新增谱样本或改变质量窗口。已有147 Top100→Top500额外33个truth仅是覆盖诊断，不能当净收益；完整2000/1340配对门槛对149。新worker先重建0062，再保存完整rank验证first10与CSV逐项一致；3600秒CPU预算、单一预选variant，不按full挑prefix/threshold。扩大候选的竞争与资源成本必须计入最终评价，达标也需新的真实无标签与冷平台验证。

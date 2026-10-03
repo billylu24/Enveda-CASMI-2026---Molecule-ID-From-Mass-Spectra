@@ -1,0 +1,76 @@
+{
+  "round": "0150_high_tail_fragment_pilot",
+  "direction": "chembl_high_fragment",
+  "status": "diagnostic_complete",
+  "report": {
+    "unknown": {
+      "baseline": {
+        "molecules": 200,
+        "candidate_recall": 0.2,
+        "mrr25": 0.03139321789321789,
+        "top1": 0.005,
+        "top5": 0.07,
+        "top25": 0.135,
+        "conditional_mrr25": 0.15696608946608945
+      },
+      "high_relative_fragment": {
+        "molecules": 200,
+        "candidate_recall": 0.2,
+        "mrr25": 0.031777833277833276,
+        "top1": 0.005,
+        "top5": 0.07,
+        "top25": 0.14,
+        "conditional_mrr25": 0.15888916638916636
+      }
+    },
+    "known": {
+      "baseline": {
+        "molecules": 118,
+        "candidate_recall": 1.0,
+        "mrr25": 0.5692271711339507,
+        "top1": 0.5254237288135594,
+        "top5": 0.6016949152542372,
+        "top25": 0.711864406779661,
+        "conditional_mrr25": 0.5692271711339507
+      },
+      "high_relative_fragment": {
+        "molecules": 118,
+        "candidate_recall": 1.0,
+        "mrr25": 0.5694292363895397,
+        "top1": 0.5254237288135594,
+        "top5": 0.6016949152542372,
+        "top25": 0.711864406779661,
+        "conditional_mrr25": 0.5694292363895397
+      }
+    },
+    "diagnostic_only": true,
+    "diagnostics": {
+      "counts": {
+        "unknown": {
+          "eligible_high_groups": 95,
+          "informative_groups": 92,
+          "tail_removed": 32,
+          "tail_reranked": 60,
+          "missing_evidence_fallback": 3,
+          "budget_fallback": 0
+        },
+        "known": {
+          "eligible_high_groups": 61,
+          "informative_groups": 60,
+          "tail_removed": 45,
+          "tail_reranked": 15,
+          "missing_evidence_fallback": 1,
+          "budget_fallback": 0
+        }
+      },
+      "fragment_groups": 136,
+      "seconds": 705.934386242996,
+      "parent_peak_rss_mib": 2175.96484375,
+      "independent_acceptance": false
+    }
+  },
+  "protocol_sha256": "2f90495835b4fca982a5aec5c6fa7eaed0ff379c3570d07eecddd1a1b94a59f7",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
