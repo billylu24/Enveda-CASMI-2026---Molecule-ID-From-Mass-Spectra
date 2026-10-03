@@ -1,0 +1,28 @@
+{
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "cohort": "repeated_development",
+  "truth_used_only_in_aggregate_diagnosis": true,
+  "report_sha256": "bca480067c586c7d2de331736d4186229fa241610255221c5bc55e70e4f2acd3",
+  "aggregate": {
+    "native": {
+      "novel_pool_truths": 38,
+      "novel_pool_reciprocal_rank_sum": 3.3736111111111104,
+      "novel_pool_top25": 11,
+      "novel_pool_top1": 2
+    },
+    "query": {
+      "novel_pool_truths": 38,
+      "novel_pool_reciprocal_rank_sum": 5.805978260869565,
+      "novel_pool_top25": 13,
+      "novel_pool_top1": 4
+    },
+    "conditional_ratio": {
+      "novel_pool_truths": 38,
+      "novel_pool_reciprocal_rank_sum": 5.0,
+      "novel_pool_top25": 8,
+      "novel_pool_top1": 4
+    }
+  },
+  "interpretation": "Conditional ratio failed preselected full expansion; direct conditional likelihood is a separate exploratory follow-up, no retrospective release qualification."
+}

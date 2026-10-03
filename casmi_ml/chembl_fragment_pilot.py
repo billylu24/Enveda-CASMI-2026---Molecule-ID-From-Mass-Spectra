@@ -107,7 +107,10 @@ def run(
     chemical_prior=False,
     fragment_depth=2,
     sequence_scores=None,
+    sequence_ratio=1.0,
 ):
+    if sequence_ratio not in (0.0, 1.0):
+        raise ValueError("Sequence ratio weight must be 0 or 1")
     if type(fragment_depth) is not int or fragment_depth not in (2, 3):
         raise ValueError("Fragment depth must be 2 or 3")
     if fragment_weight not in (0.5, 1.0):
@@ -292,7 +295,7 @@ def run(
             "sequence_protocol_sha256": digest(sequence_scores.parent / "protocol.json")
             if sequence_scores
             else None,
-            "sequence_ratio_weight": 1.0 if sequence_scores else None,
+            "sequence_ratio_weight": sequence_ratio if sequence_scores else None,
             "sequence_fusion_weight": 0.5 if sequence_scores else None,
             "new_sampling": False,
             "truth_used_only_in_metrics": True,
@@ -525,7 +528,9 @@ def run(
                             from casmi_ml.chembl_sequence_pilot import reorder_scoreable
 
                             candidates_external = reorder_scoreable(
-                                candidates_external, sequence_values.get(key, {}), 1.0
+                                candidates_external,
+                                sequence_values.get(key, {}),
+                                sequence_ratio,
                             )
                         candidates_external = candidates_external[:fragment_limit]
                 if (
@@ -781,6 +786,7 @@ def main():
     p.add_argument("--fragment-gate-only", action="store_true")
     p.add_argument("--skip-impossible", action="store_true")
     p.add_argument("--relative-candidate-gate", action="store_true")
+    p.add_argument("--sequence-ratio", type=float, choices=(0.0, 1.0), default=1.0)
     p.add_argument("--sequence-scores", type=Path)
     p.add_argument("--fragment-depth", type=int, choices=(2, 3), default=2)
     p.add_argument("--chemical-prior", action="store_true")
@@ -810,6 +816,7 @@ def main():
                 a.chemical_prior,
                 a.fragment_depth,
                 a.sequence_scores,
+                a.sequence_ratio,
             ),
             indent=2,
         )

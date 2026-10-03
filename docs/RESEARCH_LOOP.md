@@ -296,3 +296,11 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 第109外部500排序pilot完成：固定200中87个查询有提案、33584候选/33554词表长度可评分，pool真值4；native MRR0.001667、query mean logp0.001146、conditional ratio0.005000（1个Top1），candidate recall均0.02。20.0秒/GPU140MiB、父进程2225MiB，无训练/采样。只有候选排序诊断正向，不是完整组合提升；第110轮同协议扩展2000外部候选诊断，复用109完整query分数，3600秒总budget/单GPU，variant比例1.0与fusion0.5固定，不再按full挑ratio。随后若正向才开发完整unknown/known保护融合。
+
+
+第110完整外部排序诊断：pool recall0.045（90真值/2000），native MRR0.010153、query mean logp0.011666、预选conditional ratio0.009923；ratio未复现pilot收益，停止该分支，不能事后将其他variant称其成功。直接query排序在当前0062未覆盖38真值子集RR总和3.374→5.806、Top25 11→13、Top1 2→4，来源仅aggregate诊断。第111轮单独探索直接query似然融合：原native500→冻结critic排序→以0.5 RRF融合query-only(sequence_ratio0)→前100→原MetFrag0.5，仍要求重排后实际首候选critic+.05/fragment严格超过当前首位/informative，最多3名。评分文件必须完整2000且绑定encoder/catalog/dev SHA，协议绑定score/protocol SHA；没有分数/非法词表者原槽位保持。fixed200、prefix2/3/5/10、depth2、单体、无新增训练/GPU；改变shortlist的组按实际候选内容独立Java评分，不额外改门槛。这是受完整开发启发的新探索，不是独立验收或ratio成功。
+
+第108深度3fixed200：prefix3 unknown0.037997→0.038997（增0.001000，比depth2 pilot多0.000167），known仅降0.000096，positive保护通过；prefix2已知保护失败。67组20非空、686.999秒、2867MiB、无总预算回退，Java深度3成本很高，后续扩展需固定prefix3与同1200秒预算，不能把缓存增量当冷推理。Kaggle56784251 COMPLETE0.175，公共最佳仍0.176；下一预合格56785643已接受PENDING，禁止重复。
+
+
+第112轮深度3完整扩展预注册：只保留pilot通过的prefix3，depth3/native100/critic+.05/相对实际首位fragment/fragment0.5/3slots/skip-impossible全部固定，same2000/1340，对0062。复用108完整67组、深度绑定逐谱cache，1200秒总预算（不足整组回退）、60秒单Java和1GiB heap不变，不根据truth优先安排组。先检查真实有限预算能否改善完整指标，深度3高成本可能使覆盖回退；若门槛失败不发布，不以去除预算改变目标。
