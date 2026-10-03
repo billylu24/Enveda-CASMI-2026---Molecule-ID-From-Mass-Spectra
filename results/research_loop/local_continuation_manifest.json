@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03T14:48:38Z",
+  "updated_at": "2026-10-03T15:01:40Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -102,22 +102,16 @@
   },
   "active_rounds": [
     {
-      "id": "0311_blas_candidate_score_benchmark",
-      "direction": "runtime_diagnostic",
-      "status": "queued",
-      "report": "artifacts/research_loop/rounds/0311_blas_candidate_score_benchmark/report.json"
-    },
-    {
-      "id": "0312_single_blas_full_ranking_control",
-      "direction": "runtime_diagnostic",
-      "status": "queued",
-      "report": "artifacts/research_loop/rounds/0312_single_blas_full_ranking_control/report.json"
-    },
-    {
-      "id": "0310_extended_candidate_mask_system",
+      "id": "0313_intensity_candidate_zero_control",
       "direction": "implementation_control",
       "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0310_extended_candidate_mask_system/report.json"
+      "report": "artifacts/research_loop/rounds/0313_intensity_candidate_zero_control/report.json"
+    },
+    {
+      "id": "0318_actual_submission_validation_cache_benchmark",
+      "direction": "runtime_diagnostic",
+      "status": "queued",
+      "report": "artifacts/research_loop/rounds/0318_actual_submission_validation_cache_benchmark/report.json"
     }
   ],
   "local_candidate_runtime": {
@@ -192,9 +186,10 @@
     "diagnostic_query_admission_followup_v2.log",
     "diagnostic_query_all_spectra_followup.log",
     "candidate_compatibility_followup.log",
-    "extended_candidate_followup.log"
+    "extended_candidate_followup.log",
+    "intensity_candidate_followup.log"
   ],
-  "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306 zero control,307/308 fixed bounded60D fitting,309/310 full paired systems. No added feature runtime active. 311 score-window BLAS24/1 paired microbenchmark and312 full current-best exact control pending science completion. Only frozen gate winners replace best.",
+  "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306/310 zero/mask complete3340 exact;309 extended candidate MRR.043994968 rejected.311 BLAS score microbenchmark then312 current-best full exact control.313-317 intensity-weighted candidate hypothesis prepared after runtime checks; no added feature runtime active. 311 BLAS1 changed6 intermediate candidate orders,312 failed preflight, no activation.313-317 intensity weighting control/train/full systems active;318 pure SMILES validation memoization benchmark queued. Only frozen gate winners replace best.",
   "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
   "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
   "independent_acceptance": false,
@@ -1259,9 +1254,9 @@
     {
       "id": "0311_blas_candidate_score_benchmark",
       "direction": "runtime_diagnostic",
-      "status": "queued",
-      "decision": null,
-      "local_recorded": false
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0311_blas_candidate_score_benchmark.json",
+      "local_recorded": true
     },
     {
       "id": "0309_extended_candidate_chemical_system",
@@ -1273,14 +1268,28 @@
     {
       "id": "0312_single_blas_full_ranking_control",
       "direction": "runtime_diagnostic",
-      "status": "queued",
+      "status": "failed",
       "decision": null,
-      "local_recorded": false
+      "local_recorded": true
     },
     {
       "id": "0310_extended_candidate_mask_system",
       "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0310_extended_candidate_mask_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0313_intensity_candidate_zero_control",
+      "direction": "implementation_control",
       "status": "external_running",
+      "decision": null,
+      "local_recorded": false
+    },
+    {
+      "id": "0318_actual_submission_validation_cache_benchmark",
+      "direction": "runtime_diagnostic",
+      "status": "queued",
       "decision": null,
       "local_recorded": false
     }

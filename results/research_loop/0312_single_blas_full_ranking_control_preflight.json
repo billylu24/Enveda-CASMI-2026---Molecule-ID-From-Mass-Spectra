@@ -1,0 +1,11 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "round": "0312_single_blas_full_ranking_control",
+  "status": "failed_preflight",
+  "activated": false,
+  "candidate_score_benchmark_round": "0311_blas_candidate_score_benchmark",
+  "reason": "BLAS1 changed6 candidate score-window orders at maximum numerical difference5.55e-17; frozen rank-exact precondition failed. Complete3340 run intentionally did not start; no runtime activation.",
+  "full_ranking_control_completed": false
+}

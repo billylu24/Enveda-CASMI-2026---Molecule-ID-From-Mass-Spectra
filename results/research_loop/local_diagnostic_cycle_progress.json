@@ -13,7 +13,7 @@
     "budget_fallbacks": 861,
     "diagnostic_only": true
   },
-  "next_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306 zero control,307/308 fixed bounded60D fitting,309/310 full paired systems. No added feature runtime active. 311 score-window BLAS24/1 paired microbenchmark and312 full current-best exact control pending science completion. Only frozen gate winners replace best.",
+  "next_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306/310 zero/mask complete3340 exact;309 extended candidate MRR.043994968 rejected.311 BLAS score microbenchmark then312 current-best full exact control.313-317 intensity-weighted candidate hypothesis prepared after runtime checks; no added feature runtime active. 311 BLAS1 changed6 intermediate candidate orders,312 failed preflight, no activation.313-317 intensity weighting control/train/full systems active;318 pure SMILES validation memoization benchmark queued. Only frozen gate winners replace best.",
   "independent_acceptance": false,
   "precision_first_pass": {
     "unknown_mrr25": 0.04268861838422192,
@@ -24,7 +24,7 @@
     "raw_candidates_reused": 127088,
     "new_candidates_scored": 3025
   },
-  "active_round": "0310_extended_candidate_mask_system",
+  "active_round": "0318_actual_submission_validation_cache_benchmark",
   "coarse_complete": {
     "unknown_mrr25": 0.04268861838422192,
     "known_mrr25": 0.6046005738683694,
@@ -36,9 +36,8 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0311_blas_candidate_score_benchmark",
-    "0312_single_blas_full_ranking_control",
-    "0310_extended_candidate_mask_system"
+    "0313_intensity_candidate_zero_control",
+    "0318_actual_submission_validation_cache_benchmark"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -328,7 +327,7 @@
       "original_critic_tensors_exact": true
     }
   },
-  "updated_at": "2026-10-03T14:48:38Z",
+  "updated_at": "2026-10-03T15:01:40Z",
   "current_query_zero_control": "artifacts/research_loop/rounds/0287_query_identity_runtime_zero_control",
   "local_verified_evidence_round": "0286_structure_identity_full_control",
   "multispectrum_attribution": {
@@ -709,6 +708,65 @@
       },
       "identity_masked": {
         "round": "0303_candidate_compatibility_mask_system",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.04397830092390447,
+            "top1": 0.016,
+            "top5": 0.0825,
+            "top25": 0.13,
+            "conditional_mrr25": 0.22155315326904013
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6037921161569266,
+            "top1": 0.564179104477612,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.6821934533307603
+          }
+        },
+        "winner": null,
+        "runtime_activation_required": false
+      }
+    },
+    "chemical_minus_mask_unknown_mrr25": 1.666666666666483e-05,
+    "scope": "Complete repeated development3340 with bounded candidate SMARTS-conditioned observed chemistry, unchanged original encoder/critic and physical routing. Mask equals original critic; not independent acceptance or cold inference."
+  },
+  "extended_candidate_attribution": {
+    "local_only": true,
+    "remote_publication": false,
+    "independent_acceptance": false,
+    "arms": {
+      "chemical": {
+        "round": "0309_extended_candidate_chemical_system",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.04399496759057114,
+            "top1": 0.016,
+            "top5": 0.083,
+            "top25": 0.13,
+            "conditional_mrr25": 0.2216371163252954
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6037921161569266,
+            "top1": 0.564179104477612,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.6821934533307603
+          }
+        },
+        "winner": null,
+        "runtime_activation_required": false
+      },
+      "identity_masked": {
+        "round": "0310_extended_candidate_mask_system",
         "metrics": {
           "unknown": {
             "molecules": 2000,

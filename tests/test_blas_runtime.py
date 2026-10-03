@@ -98,9 +98,11 @@ class BlasRuntimeTests(unittest.TestCase):
                 "architecture": "x",
                 "filepath": "path",
             }
-            with patch("casmi_ml.blas_runtime.threadpool_info", return_value=[library]):
-                with self.assertRaisesRegex(ValueError, "library identity"):
-                    resolve(c)
+            with (
+                patch("casmi_ml.blas_runtime.threadpool_info", return_value=[library]),
+                self.assertRaisesRegex(ValueError, "library identity"),
+            ):
+                resolve(c)
             state["development_best"]["round"] = "new_best"
             with resolve(c):
                 pass

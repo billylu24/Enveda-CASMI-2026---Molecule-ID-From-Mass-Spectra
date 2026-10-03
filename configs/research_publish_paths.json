@@ -463,7 +463,17 @@
     "casmi_ml/blas_runtime_control.py",
     "casmi_ml/blas_candidate_benchmark.py",
     "casmi_ml/blas_runtime.py",
-    "tests/test_blas_runtime.py"
+    "tests/test_blas_runtime.py",
+    "casmi_ml/intensity_candidate_compatibility.py",
+    "casmi_ml/intensity_candidate_activation.py",
+    "casmi_ml/intensity_candidate_training.py",
+    "casmi_ml/intensity_candidate_system.py",
+    "casmi_ml/intensity_candidate_followup.py",
+    "tests/test_intensity_candidate_compatibility.py",
+    "tests/test_intensity_candidate_activation.py",
+    "casmi_ml/cached_submission_validation.py",
+    "casmi_ml/validation_cache_benchmark.py",
+    "tests/test_cached_submission_validation.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

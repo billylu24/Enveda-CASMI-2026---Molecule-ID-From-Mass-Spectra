@@ -199,6 +199,25 @@
         }
       },
       "chemical_minus_mask_unknown_mrr25": 1.666666666666483e-05
+    },
+    "extended_candidate_chemistry": {
+      "arms": {
+        "chemical": {
+          "round": "0309_extended_candidate_chemical_system",
+          "unknown_mrr25": 0.04399496759057114,
+          "known_mrr25": 0.6037921161569266,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": 1.666666666666483e-05
+        },
+        "identity_masked": {
+          "round": "0310_extended_candidate_mask_system",
+          "unknown_mrr25": 0.04397830092390447,
+          "known_mrr25": 0.6037921161569266,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": 0.0
+        }
+      },
+      "chemical_minus_mask_unknown_mrr25": 1.666666666666483e-05
     }
   },
   "scope": "Finalized complete repeated development arms only; training-only diagnostics and incomplete systems excluded, no independent generalization claim",

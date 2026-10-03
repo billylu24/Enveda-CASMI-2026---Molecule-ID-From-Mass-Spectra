@@ -1,0 +1,26 @@
+{
+  "round": "0311_blas_candidate_score_benchmark",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "windows": 200,
+    "candidate_rows": 183382,
+    "score_value_mismatched_windows": 166,
+    "score_max_absolute_difference": 5.551115123125783e-17,
+    "candidate_ranking_mismatches": 6,
+    "score_seconds_two_repetitions": {
+      "blas24": 4.114512476924574,
+      "blas1": 1.314435990556376
+    },
+    "value_exact": false,
+    "activated": false,
+    "scope": "Score-only BLAS concurrency microbenchmark; full3340 exact control required, not cold pipeline or accuracy gain"
+  },
+  "protocol_sha256": "d457a8ae0ae32ac179cfdc77f945abe7f2b36ad08f1c3170cb0a45a9db1bc409",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

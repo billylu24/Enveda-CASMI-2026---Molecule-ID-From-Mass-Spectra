@@ -106,6 +106,21 @@ def run(test, baseline, full, routing, reference, output):
                     "casmi_ml.chembl_routed_inference.score_group", new=extended_score
                 )
             )
+        from casmi_ml.intensity_candidate_activation import (
+            resolve_score as resolve_intensity_score,
+        )
+
+        intensity_score = resolve_intensity_score(config, proof)
+        if intensity_score is not None:
+            if compatibility_score is not None or extended_score is not None:
+                raise ValueError(
+                    "Only one verified candidate chemistry bank may be active"
+                )
+            stack.enter_context(
+                patch(
+                    "casmi_ml.chembl_routed_inference.score_group", new=intensity_score
+                )
+            )
         query_spec = config.get("query_residual")
         if query_spec:
             from casmi_ml.diagnostic_query_ranker import (
