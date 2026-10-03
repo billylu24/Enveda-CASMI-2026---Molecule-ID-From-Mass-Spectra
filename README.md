@@ -137,9 +137,8 @@ Added precise diagnostic-ion and neutral-loss-combination evidence, offline
 MetFrag reranking, matched fresh cohorts, three controlled peak-encoder training
 methods (supervised/masked/DINO), and spectrum-conditioned SMILES generation with
 predicted formula conditions. Each stage has frozen configuration, reproducible
-checksums, and a shared bounded training ledger. Independent acceptance remains
-required before local release preparation; no upload or competition submission is
-automated. See [the research guide](docs/RESEARCH_20261001.md) for commands,
+checksums, and a shared bounded training ledger. The continuous loop now uses the explicitly authorized development gate for
+experimental publication; independent acceptance is reported separately. See [the research guide](docs/RESEARCH_20261001.md) for commands,
 assumptions, GAN feasibility, and the distinction between generation pilots and
 full performance acceptance.
 
@@ -151,4 +150,4 @@ v4; current status is recorded in `kaggle_release_chemistry/status.json`.
 See [the next-round improvement plan](docs/NEXT_IMPROVEMENTS_20261002.md) for
 candidate coverage, mass-hypothesis, and generation-ranking priorities.
 
-持续研究循环：参见 [运行与停止说明](docs/RESEARCH_LOOP.md)、[冻结配置](configs/research_loop.json) 和 [汇总研究结果](results/research_loop)。最新已评分提交 56771973 为 0.173，历史公共最佳 0.176 保留。当前重复开发最佳第62轮：2,000未知MRR@25为0.039211，1,340已知MRR0.604984、Top1为0.565672；相对第47轮未知提升3.41%，通过冻结开发门槛，没有新增独立验收。75项真实三分支重放全部一致，22项实际前置生成；新Python3.13离线包Kaggle400完整排名与本地相同，740.6秒/父进程峰值2906.7MiB。达标版本按顺序等待UTC2026-10-03 00:00比赛额度，平台运行成功不代表新比赛评分。ChEMBL37全量覆盖审计增105个质量窗口真值，但原指纹/critic提案插入均未提升；保护前10名的碎裂200小试验有正向信号，正在按固定门槛扩展完整开发评价。
+持续研究循环：参见 [运行与停止说明](docs/RESEARCH_LOOP.md)、[冻结配置](configs/research_loop.json) 和 [汇总研究结果](results/research_loop)。当前重复开发最佳第149轮：2,000未知分子MRR@25为0.040328，相对第62轮增加0.001117（+2.85%）；1,340已知分子MRR为0.604561，下降0.000422，Top1保持0.565672。低置信分支使用实际碎裂证据，高置信分支保护前10名并添加候选尾部。75项真实无标签完整排名重放全部一致，本地400行冷推理286.8秒、父进程峰值6048MiB；Kaggle平台验证正在运行，尚未比赛提交。最近兼容版本第12/13/17/24轮公共分数分别为0.175/0.175/0.174/0.175，历史公共最佳0.176保留。每日额度下一次在UTC2026-10-04 00:00恢复，已合格版本按顺序发布，每次仅一个比赛提交待评分。第150轮正在检查高置信候选尾部的相对碎裂支持；后续完整开发提升均对第149轮评价。这些持续选择属于重复开发，未新增独立验收。

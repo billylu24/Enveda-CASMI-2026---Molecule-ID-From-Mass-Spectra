@@ -1,0 +1,22 @@
+{
+  "round": "research_status_20261003_0305",
+  "diagnostic_only": true,
+  "status": "recorded",
+  "development_best": "0149_chembl_routed_combination",
+  "unknown_mrr25": 0.040327761879615426,
+  "known_mrr25": 0.6045611459591912,
+  "known_top1": 0.5656716417910448,
+  "public_best": 0.176,
+  "pending_accepted_competition_submission": false,
+  "submit_after": "2026-10-04T00:00:00Z",
+  "platform_0149_status": "RUNNING",
+  "research_0150_status": "running",
+  "source_0150_launch_matches_protocol": true,
+  "source_0150_launch_sha256": "ea550cc2bddbada41e1cb2596115c0fdc9a66a8f1c9ca7cdb2a2564f57dd6605",
+  "regression_tests": {
+    "unittest_passed": 192,
+    "ruff_passed": true
+  },
+  "independent_acceptance": false,
+  "evaluation": "Repeated development; platform execution and Kaggle accuracy tracked separately"
+}

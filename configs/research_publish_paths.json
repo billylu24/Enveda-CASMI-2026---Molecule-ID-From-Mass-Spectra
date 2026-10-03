@@ -248,7 +248,8 @@
     "kaggle_release_routed_0149/status.json",
     "kaggle_release_routed_0149/verification.json",
     "kaggle_release_routed_0149/kaggle_verification.json",
-    "tests/test_chembl_routed_inference.py"
+    "tests/test_chembl_routed_inference.py",
+    "casmi_ml/chembl_high_fragment_pilot.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

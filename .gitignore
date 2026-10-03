@@ -39,3 +39,5 @@ kaggle_release*/dataset_files.csv
 kaggle_release*/job.lock
 kaggle_release*/training_budget.json
 kaggle_release*/training_budget.lock
+
+kaggle_release*/launch.lock

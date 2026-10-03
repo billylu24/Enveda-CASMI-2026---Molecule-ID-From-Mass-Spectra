@@ -420,3 +420,8 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 第149整包本地400冷运行通过：286.76秒/父进程峰6048.0MiB、submission400全合法；无test label、完整source/weight/catalog/prior SHA及新release identity绑定。统一1800总deadline与1200 shared wall fragment deadline，实际base扫描与生成全流程包含资源，不能把此前75query外部阶段当此冷验证。私有Kaggle平台新kernel尚未验证，requires_platform_verification强制阻止competition submit；今日quota恢复UTC10月4日00:00后仅平台完整400排名/规则/资源匹配才能顺序提交一次。
+
+
+第150same hash200 high-tail片段支持预登记，对新的开发最佳149：只已由原high critic+.05允许的100候选组评分，与actual original0062 first同组exact monomer+merged peak union；high原first10始终保持。若完整fragment有区分度/正分且新first严格高于原first fragment与critic+.05，则RRF.5选top3替换149tail；若有informative但无法支持，则移除该tail回0062该high分支；missing/unsupported/tied/budget保持149原tail不变。low123和所有未插入high query均不改变，所有候选仍在149已考虑pool，完整cohort/source/proposal/critic冻结。1200秒Java/同hash200，只正向/known保护才full。动机为high tail1038未知query插入仅17新truth且knownMRR降.000422，测试真实片段支持能否减少低效插入与找回更好的候选，不依靠开发label挑query。平台149 notebook在后台运行，未来增益门槛都对149。
+
+第150起点源码已恢复核对：Ruff移除import后额外空行导致磁盘SHA变化，仅空行差异。private source_at_start.py与冻结protocol SHA逐字节匹配；不修改原protocol或正在运行的实现。README与下一轮方向已更新为149当前开发最佳、当前无待评分比赛提交和UTC10月4日额度等待；早期62状态标为历史。
