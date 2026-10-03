@@ -1,0 +1,33 @@
+{
+  "round": "0160_persistent_jvm_benchmark",
+  "direction": "diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "molecules": 12,
+    "exact_score_dictionary_matches": 12,
+    "fresh_cache_per_arm": true,
+    "seconds": {
+      "cli": 70.32115703698946,
+      "persistent": 57.95222362197819
+    },
+    "speedup": 1.2134332842117277,
+    "spectrum_status_counts": {
+      "cli": {
+        "unsupported_ion_or_resolution": 3,
+        "complete": 19
+      },
+      "persistent": {
+        "unsupported_ion_or_resolution": 3,
+        "complete": 19
+      }
+    },
+    "parent_peak_rss_mib": 2062.57421875,
+    "independent_acceptance": false,
+    "scope": "Runtime benchmark only; no new accuracy/release claim"
+  },
+  "protocol_sha256": "6bfb3a734ced5f44b8291c72aab02f1223e4ef25d0a4379386a20b65294cc67d",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
