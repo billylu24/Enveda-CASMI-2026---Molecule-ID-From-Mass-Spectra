@@ -1,4 +1,4 @@
-"""Expand only the calibrated high-confidence shortlist; freeze the0149 low arm."""
+"""Matched high-confidence encoder/preselection controls; freeze the0149 low arm."""
 
 import argparse
 import json
@@ -9,20 +9,47 @@ import pandas as pd
 
 from casmi_ml import chembl_critic_slots
 from casmi_ml.chembl_routed_combination import HIGH
+from casmi_ml.chembl_tail_controls import validate_tail
 from casmi_ml.data import write_json
+from casmi_ml.generated_first_critic import CRITIC
 from casmi_ml.metfrag import digest
-from casmi_ml.research_protocol import ROOT, freeze
+from casmi_ml.research_protocol import ENCODER, ROOT, freeze
 
 ORIGINAL = Path("artifacts/research_loop/rounds/0062_generated_first_gate")
 
 
-def run(output, incumbent):
+def run(
+    output,
+    incumbent,
+    proposal_path=None,
+    proposal_encoder=ENCODER,
+    critic_checkpoint=CRITIC,
+    proposal_limit=500,
+):
+    if proposal_limit not in (100, 500):
+        raise ValueError("Predeclared shortlist100 or500 required")
     output, incumbent = Path(output), Path(incumbent)
     output.mkdir(parents=True, exist_ok=True)
     old = json.loads((HIGH / "protocol.json").read_text())
-    proposals = Path(old["proposal_path"])
+    proposals = Path(proposal_path or old["proposal_path"])
+    proposal_encoder, critic_checkpoint = (
+        Path(proposal_encoder),
+        Path(critic_checkpoint),
+    )
+    custom = proposal_path is not None
+    if custom:
+        p = json.loads((proposals.parent / "protocol.json").read_text())
+        if (
+            not p.get("all_queries")
+            or p["development_sha256"] != old["development_sha256"]
+            or p["catalog_sha256"] != old["catalog_sha256"]
+            or p["encoder_sha256"] != digest(proposal_encoder)
+        ):
+            raise ValueError(
+                "Custom preselection source must bind complete cohort/catalog/scoring encoder"
+            )
     for path, expected in (
-        (proposals, old["native_proposals_sha256"]),
+        (proposals, digest(proposals) if custom else old["native_proposals_sha256"]),
         (ROOT / "researchdev.parquet", old["development_sha256"]),
         (ORIGINAL / "report.json", old["incumbent_report_sha256"]),
     ):
@@ -40,11 +67,16 @@ def run(output, incumbent):
             "original_report_sha256": digest(ORIGINAL / "report.json"),
             "high_protocol_sha256": digest(HIGH / "protocol.json"),
             "proposal_sha256": digest(proposals),
-            "proposal_limit": 500,
+            "proposal_limit": proposal_limit,
+            "proposal_source_protocol_sha256": digest(
+                proposals.parent / "protocol.json"
+            ),
+            "proposal_encoder_sha256": digest(proposal_encoder),
+            "critic_sha256": digest(critic_checkpoint),
             "prefix": 10,
             "slots": 3,
             "critic_margin": 0.05,
-            "rule": "Only increase high confidence>=.5 corrected preselection100 to500; original0062 high retrieval/generation/first10 unchanged, critic+.05 to actual first, original critic ordering and3 tail slots unchanged. Preserve0149 low arm exactly.",
+            "rule": "High confidence>=.5 fixed corrected preselection with frozen limit and explicitly bound scorer encoder/critic; original0062 retrieval/generation/available first10 unchanged, critic+.05 to actual first, critic ordering and3 tail slots unchanged. Preserve0149 low arm exactly.",
             "new_training": False,
             "new_sampling": False,
             "truth_used_only_in_metrics": True,
@@ -59,7 +91,9 @@ def run(output, incumbent):
         chembl_critic_slots.run(
             worker,
             ORIGINAL,
-            proposal_limit=500,
+            proposal_limit=proposal_limit,
+            proposal_encoder=proposal_encoder,
+            critic_checkpoint=critic_checkpoint,
             proposal_path=proposals,
             confidence_scope="high",
         )
@@ -100,8 +134,12 @@ def run(output, incumbent):
                 if conf[key] < 0.5
                 else new_ranks[mode]["margin005_prefix10"][key]
             )
-            if ranks[key][:10] != baseline_ranks[mode][key][:10]:
-                raise ValueError("Protected first10 differs")
+            validate_tail(
+                new_ranks[mode]["baseline"][key],
+                baseline_ranks[mode][key],
+                ranks[key],
+                conf[key],
+            )
             position = ranks[key].index(key) + 1 if key in ranks[key] else 0
             expected = 1 / position if 0 < position <= 25 else 0
             if abs(chosen.loc[key, "reciprocal_rank"] - expected) > 1e-12:
@@ -109,7 +147,7 @@ def run(output, incumbent):
         selected_ranks[mode] = ranks
         changes[mode] = sum(ranks[k] != baseline_ranks[mode][k] for k in ranks)
         report[mode] = {}
-        for name, frame in (("baseline", base), ("high_pool500", chosen)):
+        for name, frame in (("baseline", base), ("high_encoder_tail", chosen)):
             report[mode][name] = {
                 "molecules": len(frame),
                 "candidate_recall": float(frame.covered.mean()),
@@ -140,8 +178,24 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--incumbent", type=Path, required=True)
+    p.add_argument("--proposal-path", type=Path)
+    p.add_argument("--proposal-encoder", type=Path, default=ENCODER)
+    p.add_argument("--critic-checkpoint", type=Path, default=CRITIC)
+    p.add_argument("--proposal-limit", type=int, choices=(100, 500), default=500)
     a = p.parse_args()
-    print(json.dumps(run(a.output, a.incumbent), indent=2))
+    print(
+        json.dumps(
+            run(
+                a.output,
+                a.incumbent,
+                a.proposal_path,
+                a.proposal_encoder,
+                a.critic_checkpoint,
+                a.proposal_limit,
+            ),
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":
