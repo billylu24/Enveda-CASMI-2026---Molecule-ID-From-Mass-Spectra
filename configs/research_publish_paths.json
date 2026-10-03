@@ -254,7 +254,9 @@
     "tests/test_high_fragment_representation.py",
     "casmi_ml/chembl_high_score_fusion.py",
     "casmi_ml/chembl_tail_controls.py",
-    "tests/test_chembl_tail_controls.py"
+    "tests/test_chembl_tail_controls.py",
+    "casmi_ml/chembl_mass_prior.py",
+    "tests/test_mass_conditioned_prior.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
