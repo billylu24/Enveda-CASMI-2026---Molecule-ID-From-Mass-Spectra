@@ -1,5 +1,5 @@
 {
-  "status": "platform_verified_quota_wait",
+  "status": "quota_wait",
   "identity": "120c1444f0a8bad78bf59cf7cdc67f6fb31eab8db00e3c60b64187cd31f77ad2",
   "development_eligible": true,
   "independent_acceptance": false,
@@ -7,5 +7,9 @@
   "submitted": false,
   "dataset_uploaded": true,
   "kernel": "giaok246/casmi26-research-0044-generated-po-137523c1",
-  "kernel_version": 1
+  "kernel_version": 1,
+  "submission_id": null,
+  "submission_status": "quota_wait",
+  "public_score": null,
+  "retry_at": "2026-10-04T00:00:00Z"
 }
