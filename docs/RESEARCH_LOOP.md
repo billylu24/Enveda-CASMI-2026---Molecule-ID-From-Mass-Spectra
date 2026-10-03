@@ -267,3 +267,6 @@ Kaggle真实并发限制返回Maximum batch GPU session count of 2 reached，第
 
 
 2026-10-03 调度竞态修复：第103轮辅助真实作业登记期间，主入口使用发布前旧快照再次启动；第二进程在fragment score锁之前退出，原有效作业继续，未产生第二份评分。现所有job使用同目录共享launch.lock，从PID登记覆盖到子进程回收，CPU无wall budget也适用；主入口发布后重新读取状态并核对实际/proc argv，锁冲突不再写failed。竞态临时失败记录移入controller_launch_ownership_20261003汇总，第103轮恢复external_running；新增并发回归，173项测试通过。第24/44轮双ABI平台全部400排名一致，分别576.5/558.6秒、2871/2935MiB；第12轮比赛提交56784251已接受，待评分，不重复提交。
+
+
+第100轮逐阶段汇总审计（只用于诊断，不改选择规则）：741个低置信未知查询，native100中20个库外真值，critic shortlist仍20；15个所在组有候选可能超过首位critic+0.05，但20个中10个fragment预算回退。只有6个真值得到正碎裂并超过首位fragment，最终插入6个；known没有新真值，只有3查询插入。新chembl_fragment_audit独立重建排序，未知/已知MRR及Top1与冻结原报告1e-12内一致；stage counts有重叠，不能相加，全部为重复开发且不公开逐分子信息。这支持先完成第103轮预算优先化，而非仅放宽critic或继续增大训练。
