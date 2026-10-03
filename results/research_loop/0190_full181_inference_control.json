@@ -1,0 +1,20 @@
+{
+  "status": "implementation_control_failed",
+  "local_only": true,
+  "unknown_mismatches": 179,
+  "budget_mismatches": 174,
+  "nonbudget_mismatches": 5,
+  "tail_only_identifier_representation_mismatches": 4,
+  "nonbudget_top25_mismatches": 1,
+  "known_control_not_run": true,
+  "residual_system_evaluations_not_started": true,
+  "reason": "Most mismatch is incomplete development evidence before1200s; four normalized representation key changes beyond25 and one original frozen high fallback/removal discrepancy require diagnosis. No accuracy result or best update.",
+  "same_input_missing_evidence_diagnosis": {
+    "merged_spectra": 1,
+    "legacy_physical_cache_present": false,
+    "current_physical_status": "complete",
+    "current_candidate_scores": 101,
+    "truth_used_to_change_behavior": false,
+    "reason": "Frozen empty aggregated evidence has no underlying legacy physical result; exact historical failure cannot be claimed equivalent to completed current execution."
+  }
+}

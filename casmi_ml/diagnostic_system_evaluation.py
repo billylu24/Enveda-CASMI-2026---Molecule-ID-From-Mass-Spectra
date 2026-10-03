@@ -21,7 +21,24 @@ BASE = Path("artifacts/research_loop/rounds/0149_chembl_routed_combination")
 BEST = Path("artifacts/research_loop/rounds/0181_high_strong_slot_full")
 
 
-def run(output, encoder, proposals, control=False):
+def run(
+    output,
+    encoder,
+    proposals,
+    control=False,
+    audit_control=False,
+    control_reference=None,
+):
+    if control and audit_control:
+        raise ValueError("Strict control and audit-only modes are mutually exclusive")
+    comparison = BEST
+    if control_reference is not None:
+        if not control:
+            raise ValueError("Audited reference is only permitted for strict control")
+        comparison = Path(control_reference)
+        audit = json.loads((comparison / "report.json").read_text())
+        if not audit.get("control_passed"):
+            raise ValueError("Independent control attribution did not pass")
     output, encoder, proposals = Path(output), Path(encoder), Path(proposals)
     output.mkdir(parents=True, exist_ok=True)
     config = json.loads((BEST / "external_config.json").read_text())
@@ -41,6 +58,9 @@ def run(output, encoder, proposals, control=False):
         output / "protocol.json",
         {
             "control": control,
+            "audit_control": audit_control,
+            "control_reference": str(comparison),
+            "control_reference_sha256": digest(comparison / "selected_rankings.json"),
             "source_sha256": digest(__file__),
             "inference_source_sha256": digest("casmi_ml/chembl_routed_inference.py"),
             "encoder_sha256": digest(encoder),
@@ -144,12 +164,28 @@ def run(output, encoder, proposals, control=False):
         selected[mode] = ranks
         report[mode] = {}
         baseline = json.loads((BEST / "selected_rankings.json").read_text())[mode]
-        if control:
-            mismatches = [k for k in baseline if baseline[k] != ranks[k]]
+        if control or audit_control:
+            expected = json.loads((comparison / "selected_rankings.json").read_text())[
+                mode
+            ]
+            mismatches = [k for k in expected if expected[k] != ranks[k]]
             if mismatches:
                 write_json(directory / "private_control_mismatches.json", mismatches)
-                raise ValueError(
-                    "Full original181 observable inference control differs; inspect before evaluating residual models"
+                if control:
+                    raise ValueError(
+                        "Full original181 observable inference control differs; inspect before evaluating residual models"
+                    )
+            if audit_control:
+                write_json(
+                    directory / "private_control_audit.json",
+                    {
+                        "cohort": len(ranks),
+                        "full_ranking_mismatches": mismatches,
+                        "top25_mismatches": [
+                            k for k in mismatches if baseline[k][:25] != ranks[k][:25]
+                        ],
+                        "strict_control_passed": not mismatches,
+                    },
                 )
         for name, values in [("baseline", baseline), ("diagnostic_residual", ranks)]:
             m, per = metrics(values, pools)
@@ -158,7 +194,9 @@ def run(output, encoder, proposals, control=False):
         print(mode, report[mode], flush=True)
     write_json(output / "selected_rankings.json", selected)
     report.update(
-        diagnostic_only=control, independent_acceptance=False, local_only=True
+        diagnostic_only=control or audit_control,
+        independent_acceptance=False,
+        local_only=True,
     )
     write_json(output / "report.json", report)
     return report
@@ -169,7 +207,10 @@ def main():
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--encoder", type=Path, required=True)
     p.add_argument("--proposals", type=Path, required=True)
-    p.add_argument("--control", action="store_true")
+    modes = p.add_mutually_exclusive_group()
+    modes.add_argument("--control", action="store_true")
+    modes.add_argument("--audit-control", action="store_true")
+    p.add_argument("--control-reference", type=Path)
     print(json.dumps(run(**vars(p.parse_args())), indent=2))
 
 

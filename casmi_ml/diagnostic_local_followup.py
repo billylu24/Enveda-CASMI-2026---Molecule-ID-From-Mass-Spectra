@@ -1,0 +1,131 @@
+"""Sequential local-only residual evaluation after independent complete control audit."""
+
+import fcntl
+import json
+from pathlib import Path
+
+from casmi_ml.diagnostic_system_followup import wait_for_report
+from casmi_ml.research_loop import Controller
+
+
+def execute(c, rid, module, arguments, direction):
+    out = c.root / "rounds" / rid
+    c.register_round(
+        rid,
+        direction,
+        [".venv/bin/python", "-u", "-m", module, "--output", str(out), *arguments],
+        out / "report.json",
+    )
+    c.run_auxiliary(rid)
+    report = out / "report.json"
+    if not report.exists():
+        raise RuntimeError("Required local evaluation did not produce report: " + rid)
+    result = c.evaluate_round(rid)
+    c.complete_round(rid)
+    return out, result
+
+
+def main():
+    c = Controller()
+    if not c.local_only():
+        raise RuntimeError("This driver requires persistent local-only mode")
+    with (c.root / "diagnostic_local_followup.lock").open("a") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        if not wait_for_report(c, "0193_full181_cached_control_audit"):
+            return
+        audit, _ = execute(
+            c,
+            "0194_full181_independent_control_attribution",
+            "casmi_ml.diagnostic_control_audit",
+            ["--observed", str(c.root / "rounds/0193_full181_cached_control_audit")],
+            "implementation_control_audit",
+        )
+        if not json.loads((audit / "report.json").read_text()).get("control_passed"):
+            raise RuntimeError("Independent complete control attribution failed")
+        # Attribution must not introduce any measured gain/loss from changing inputs.
+        observed = json.loads(
+            (
+                c.root / "rounds/0193_full181_cached_control_audit/report.json"
+            ).read_text()
+        )
+        for mode in ("unknown", "known"):
+            for metric in ("mrr25", "top1", "top25"):
+                if observed[mode]["baseline"].get(metric) != observed[mode][
+                    "diagnostic_residual"
+                ].get(metric):
+                    raise RuntimeError(
+                        "Audited control changes measured accuracy; resolve before model selection"
+                    )
+        if c.stopped():
+            return
+        execute(
+            c,
+            "0195_full181_audited_exact_control",
+            "casmi_ml.diagnostic_system_evaluation",
+            [
+                "--encoder",
+                "artifacts/scale_20260929/runs/wide_enhanced_60000/model.pt",
+                "--proposals",
+                str(
+                    c.root
+                    / "rounds/0147_chembl_all_query_proposals/corrected_only_proposals.json"
+                ),
+                "--control",
+                "--control-reference",
+                str(audit),
+            ],
+            "implementation_control",
+        )
+        for model, proposals, rid in [
+            (
+                "0186_diagnostic_residual_coarse",
+                "0188_diagnostic_coarse_proposals",
+                "0196_diagnostic_coarse_system",
+            ),
+            (
+                "0187_diagnostic_residual_exact",
+                "0189_diagnostic_exact_proposals",
+                "0197_diagnostic_exact_system",
+            ),
+        ]:
+            if c.stopped():
+                return
+            if not c.local_only():
+                raise RuntimeError("Local-only mode changed during evaluation")
+            _, result = execute(
+                c,
+                rid,
+                "casmi_ml.diagnostic_system_evaluation",
+                [
+                    "--encoder",
+                    str(c.root / "rounds" / model / "model.pt"),
+                    "--proposals",
+                    str(
+                        c.root / "rounds" / proposals / "corrected_only_proposals.json"
+                    ),
+                ],
+                "diagnostic_residual_system",
+            )
+            print("Local full system gate", rid, result["winner"], flush=True)
+        Path(
+            "results/research_loop/diagnostic_residual_local_followup.json"
+        ).write_text(
+            json.dumps(
+                {
+                    "status": "complete",
+                    "local_only": True,
+                    "control": "0195_full181_audited_exact_control",
+                    "arms": [
+                        "0196_diagnostic_coarse_system",
+                        "0197_diagnostic_exact_system",
+                    ],
+                    "remote_publication": False,
+                },
+                indent=2,
+            )
+            + "\n"
+        )
+
+
+if __name__ == "__main__":
+    main()
