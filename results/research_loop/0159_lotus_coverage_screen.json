@@ -1,0 +1,23 @@
+{
+  "round": "0159_lotus_coverage_screen",
+  "diagnostic_only": true,
+  "status": "recorded",
+  "source": {
+    "doi": "10.5281/zenodo.19360665",
+    "published": "2026-04-13",
+    "license": "CC-BY-4.0",
+    "core_md5_verified": true,
+    "metadata_md5_verified": true,
+    "source_manifest_sha256": "7ee9580afe4129f32a6bdfeabacbc679cda0bc1a9aa7217b86010af0bf108c41"
+  },
+  "lotus_declared_connectivity_identities": 151895,
+  "existing_scope": "Train-only library catalog + full public COCONUT/PubChemLite/ChEMBL37 catalogs; no dev labels added as catalog candidates",
+  "additional_declared_identities": 138,
+  "development_molecules": 2000,
+  "additional_development_truth_identity_upper_bound": 0,
+  "structure_normalization_performed": false,
+  "mass_window_recall_measured": false,
+  "evaluation": "Declared key screen only, not usable normalized candidate coverage or ranking improvement",
+  "decision": "No development coverage signal for catalog expansion; do not add extra deployment catalog or select subset by truth",
+  "independent_acceptance": false
+}
