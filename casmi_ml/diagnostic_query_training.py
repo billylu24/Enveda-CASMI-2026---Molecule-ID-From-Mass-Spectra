@@ -28,6 +28,7 @@ from casmi_ml.encoder_pair_finetuning import (
 )
 from casmi_ml.generated_first_critic import CRITIC
 from casmi_ml.metfrag import digest
+from casmi_ml.query_admission_objective import admission_logits
 from casmi_ml.query_modality_balance import balanced_query, fit_scales, fold_scales
 from casmi_ml.research_budget import StageBudget
 from casmi_ml.research_protocol import ENCODER, ROOT, TRAIN, freeze
@@ -45,7 +46,17 @@ def run(
     chemical_only_correction=False,
     balance_modalities=False,
     strong_peak_losses=False,
+    admission_margin=False,
 ):
+    if admission_margin and (
+        strong_peak_losses
+        or balance_modalities
+        or chemical_only_correction
+        or strict_mass_negatives
+    ):
+        raise ValueError(
+            "Admission-margin objective is a separate raw contextual hypothesis"
+        )
     if strong_peak_losses and (balance_modalities or chemical_only_correction):
         raise ValueError(
             "Strong-peak input is a separate hypothesis from normalization and context removal"
@@ -75,6 +86,13 @@ def run(
             "chemical_only_correction": chemical_only_correction,
             "balance_modalities": balance_modalities,
             "strong_peak_losses": strong_peak_losses,
+            "admission_margin": admission_margin,
+            "admission_rule": "Positive cosine minus frozen deployed.05 before original scale; all15 negatives unchanged, same CE+.1 anchor. Inference graph and existing gate unchanged."
+            if admission_margin
+            else "Original listwise logits",
+            "admission_objective_sha256": digest(
+                "casmi_ml/query_admission_objective.py"
+            ),
             "strength_transform_sha256": digest(
                 "casmi_ml/diagnostic_strength_transform.py"
             ),
@@ -235,9 +253,13 @@ def run(
                 )
                 query = corrected.reshape(len(index), rows_per_molecule, 128).mean(1)
                 selected = torch.cat([index[:, None], hard[index]], -1)
-                logits = (query[:, None] * molecules[selected]).sum(
-                    -1
-                ) * model.log_scale.exp().clamp(max=50)
+                cosine = (query[:, None] * molecules[selected]).sum(-1)
+                scale = model.log_scale.exp().clamp(max=50)
+                logits = (
+                    admission_logits(cosine, scale)
+                    if admission_margin
+                    else cosine * scale
+                )
                 if strict_mass_negatives:
                     admissible = torch.cat(
                         [
@@ -311,6 +333,10 @@ def run(
             "chemical_only_correction": chemical_only_correction,
             "balance_modalities": balance_modalities,
             "strong_peak_losses": strong_peak_losses,
+            "admission_margin": admission_margin,
+            "admission_objective_sha256": digest(
+                "casmi_ml/query_admission_objective.py"
+            ),
             "strength_transform_sha256": digest(
                 "casmi_ml/diagnostic_strength_transform.py"
             ),
@@ -330,6 +356,10 @@ def run(
             "chemical_only_correction": chemical_only_correction,
             "balance_modalities": balance_modalities,
             "strong_peak_losses": strong_peak_losses,
+            "admission_margin": admission_margin,
+            "admission_objective_sha256": digest(
+                "casmi_ml/query_admission_objective.py"
+            ),
             "strength_transform_sha256": digest(
                 "casmi_ml/diagnostic_strength_transform.py"
             ),
@@ -363,6 +393,7 @@ def main():
     parser.add_argument("--chemical-only-correction", action="store_true")
     parser.add_argument("--balance-modalities", action="store_true")
     parser.add_argument("--strong-peak-losses", action="store_true")
+    parser.add_argument("--admission-margin", action="store_true")
     print(json.dumps(run(**vars(parser.parse_args())), indent=2))
 
 

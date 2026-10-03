@@ -1,0 +1,63 @@
+{
+  "round": "0288_training_query_admission_margin_audit",
+  "direction": "training_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "train_development_overlap": 0,
+    "arms": {
+      "frozen_baseline": {
+        "molecules": 60000,
+        "positive_above_all_pinned_negatives": 51380,
+        "positive_above_all_by_deployed_margin": 46973,
+        "rank_correct_but_gap_at_most_deployed_margin": 4407,
+        "hardest_gap_quantiles": [
+          -0.6129572987556458,
+          -0.030467158555984492,
+          0.20075789093971252,
+          0.4152923762798309,
+          0.9144668579101562
+        ],
+        "per_negative_margin_violations": 53973
+      },
+      "paired_contextual": {
+        "molecules": 60000,
+        "positive_above_all_pinned_negatives": 52089,
+        "positive_above_all_by_deployed_margin": 47995,
+        "rank_correct_but_gap_at_most_deployed_margin": 4094,
+        "hardest_gap_quantiles": [
+          -0.6129572987556458,
+          -0.021954470872879023,
+          0.21081684529781342,
+          0.41898869872093203,
+          0.9144668579101562
+        ],
+        "per_negative_margin_violations": 51868
+      },
+      "chemical_only": {
+        "molecules": 60000,
+        "positive_above_all_pinned_negatives": 51518,
+        "positive_above_all_by_deployed_margin": 47138,
+        "rank_correct_but_gap_at_most_deployed_margin": 4380,
+        "hardest_gap_quantiles": [
+          -0.6129572987556458,
+          -0.02927069067955016,
+          0.20311805605888367,
+          0.4184838235378265,
+          0.9144668579101562
+        ],
+        "per_negative_margin_violations": 53623
+      }
+    },
+    "identical_positive_negative_fingerprint_pairs": 665,
+    "seconds": 33.13820519199362,
+    "scope": "Cosine-margin training diagnostic; no development checkpoint selection or full-system gain claim"
+  },
+  "protocol_sha256": "c91c8905931402f02bcb4d81ea2de054dfdb7f92c9f0bc671a27c43c7f8ffab1",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

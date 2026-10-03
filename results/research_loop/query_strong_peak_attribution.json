@@ -1,0 +1,56 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "arms": {
+    "chemical": {
+      "round": "0283_query_strong_peak_chemical_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04362036833716754,
+          "top1": 0.016,
+          "top5": 0.0825,
+          "top25": 0.129,
+          "conditional_mrr25": 0.21974996643409336
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6037997528856134,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6822020816751451
+        }
+      }
+    },
+    "identity_masked": {
+      "round": "0284_query_strong_peak_mask_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.0434495350038342,
+          "top1": 0.0155,
+          "top5": 0.0825,
+          "top25": 0.1295,
+          "conditional_mrr25": 0.21888934510747707
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6037997528856134,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6822020816751451
+        }
+      }
+    }
+  },
+  "chemical_minus_mask_unknown_mrr25": 0.00017083333333333534,
+  "strong_minus_raw_chemical_unknown_mrr25": -0.00020857142857142602,
+  "scope": "Same original paired contextual training as260/261, only peak-loss feature identity transform relu(x-.3)/.7; raw evidence maximum-strength gate preserved in both arms, ion/precursor-loss channels untouched. Training-only279 motivated fixed transform, no development threshold fitting; repeated full3340 evaluation, no independent acceptance."
+}

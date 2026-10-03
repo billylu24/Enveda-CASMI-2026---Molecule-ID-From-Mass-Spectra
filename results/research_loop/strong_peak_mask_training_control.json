@@ -1,0 +1,11 @@
+{
+  "local_only": true,
+  "independent_acceptance": false,
+  "baseline_round": "0261_query_multispectrum_mask_control",
+  "strong_peak_mask_round": "0282_query_strong_peak_mask",
+  "all_tensor_keys_equal": true,
+  "all_tensors_exact": true,
+  "tensor_count": 15,
+  "mismatched_tensor_count": 0,
+  "reason": "Identity mask keeps raw strength gate and same RNG/steps; optional transformation only affects chemical identities, so masked training should reproduce original masked arm. Full rankings still required."
+}

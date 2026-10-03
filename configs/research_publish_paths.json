@@ -428,7 +428,11 @@
     "casmi_ml/structure_key_full_replay.py",
     "casmi_ml/structure_key_activation.py",
     "casmi_ml/structure_key_followup.py",
-    "tests/test_structure_key_activation.py"
+    "tests/test_structure_key_activation.py",
+    "casmi_ml/training_query_margin_audit.py",
+    "casmi_ml/query_admission_objective.py",
+    "tests/test_query_admission_objective.py",
+    "casmi_ml/diagnostic_query_admission_followup.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

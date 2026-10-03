@@ -17,12 +17,16 @@
     "Balanced modality inputs274/275 chemical MRR.044060091 vs mask.043463023, identity difference+.000597067; chemical gain vs unbalanced+.000231151, but incumbent gain+.000081790 fails frozen absolute and relative gates.",
     "Current three chemical query variants improve/regress only7/6-10 of2000 ranks and paired bootstrap95 intervals crosszero; repetitive development evidence cannot establish broad generalization.",
     "Object candidate storage controls276 all3340 fullranks exact,0budget/newfailure, plus277 three complete2000 proposal dictionaries exact; local-only runtime enabled after275 science arms completed.",
-    "Training-only279 eight broad SMARTS rule association audit shows weak peak-loss lift often nearzero or negative while stronger>.3 evidence lifts increase; used to preregister optional fixed strong-peak identity transform, rawstrength gate retained."
+    "Training-only279 eight broad SMARTS rule association audit shows weak peak-loss lift often nearzero or negative while stronger>.3 evidence lifts increase; used to preregister optional fixed strong-peak identity transform, rawstrength gate retained.",
+    "Strong peak-loss input283 chemical unknownMRR.043620368 vs masked284.043449535; identity difference+.000170833 but chemical below original paired262 by-.000208571, failed incumbent gate; do not expand this transform.",
+    "Strong masked training282 every critic/residual tensor equals prior paired masked261, and all3340 full ranks284 equal263; raw evidence gate preserved as intended.",
+    "Training-only288 original60K paired query margin audit: rank-correct51380 vs deployed+.05-admitted46973;4407 rank-correct below margin.Exact identical positive/negative2048 fingerprints665 pairs; residual cannot resolve this aliasing."
   ],
   "current_sequence": [
-    "New strong-peak source-bound zero280 full3340 exact before architecture training",
-    "281/282 matched raw-context measured-pair training with optional peak-loss-only relu(x-.3)/.7 identity input; original max-strength gate, ion/precursor-loss inputs unchanged",
-    "283/284 complete paired full-system controls, full comparison to current best+0206+181; failed gate retains current model"
+    "286 isolated actualSMILES identity cache full3340 control then amend core only if exact",
+    "287 current-source zero query control after identity source amendment",
+    "289/290 matched original raw contextual paired training with deployed cosine+.05 additive positive-margin CE; same labels/negatives/steps",
+    "291/292 complete full systems and identity+objective attribution, retain incumbent unless all frozen gates pass"
   ],
   "gan": {
     "status": "not_expanded",

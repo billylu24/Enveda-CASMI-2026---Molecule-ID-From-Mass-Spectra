@@ -44,8 +44,9 @@ def refresh():
             "object_candidate_followup.log",
             "diagnostic_query_strong_peak_followup.log",
             "structure_key_followup_v2.log",
+            "diagnostic_query_admission_followup.log",
         ],
-        "pending_sequence": "280 optional strong-peak zero control exact3340,281/282 training complete;283/284 paired full systems ongoing. After science finalization286 actualSMILES identity cache trial requires all3340 current-best exact ranks before source amendment and287 current-source query zero control. Only frozen gate winners replace best.",
+        "pending_sequence": "Strong-peak283/284 complete rejected.286 actualSMILES identity cache full3340 current-best exact before source amendment and287 current-source zero.289/290 training-only additive deployed+.05 admission-margin CE, then291/292 complete matched systems. Only frozen gate winners replace best.",
         "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
         "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
         "independent_acceptance": False,
@@ -85,6 +86,7 @@ def refresh():
         ("chemical_only_attribution", "query_chemical_only_attribution.json"),
         ("balanced_attribution", "query_balanced_attribution.json"),
         ("strong_peak_attribution", "query_strong_peak_attribution.json"),
+        ("admission_margin_attribution", "query_admission_attribution.json"),
     ]:
         report = Path("results/research_loop") / filename
         if report.exists():

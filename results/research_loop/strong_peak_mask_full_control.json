@@ -1,0 +1,12 @@
+{
+  "local_only": true,
+  "independent_acceptance": false,
+  "reference": "0263_query_multispectrum_mask_system",
+  "current": "0284_query_strong_peak_mask_system",
+  "full_rank_matches": {
+    "unknown": 2000,
+    "known": 1340
+  },
+  "all_complete_rankings_exact": true,
+  "scope": "Matches original masked head tensor-exact training; strong transform input only changes chemical identities, raw gate retained. Same complete3340 ranks prove masked control remained equivalent with new optional path/object storage."
+}

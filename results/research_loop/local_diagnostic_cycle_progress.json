@@ -13,7 +13,7 @@
     "budget_fallbacks": 861,
     "diagnostic_only": true
   },
-  "next_sequence": "280 optional strong-peak zero control exact3340,281/282 training complete;283/284 paired full systems ongoing. After science finalization286 actualSMILES identity cache trial requires all3340 current-best exact ranks before source amendment and287 current-source query zero control. Only frozen gate winners replace best.",
+  "next_sequence": "Strong-peak283/284 complete rejected.286 actualSMILES identity cache full3340 current-best exact before source amendment and287 current-source zero.289/290 training-only additive deployed+.05 admission-margin CE, then291/292 complete matched systems. Only frozen gate winners replace best.",
   "independent_acceptance": false,
   "precision_first_pass": {
     "unknown_mrr25": 0.04268861838422192,
@@ -24,7 +24,7 @@
     "raw_candidates_reused": 127088,
     "new_candidates_scored": 3025
   },
-  "active_round": "0284_query_strong_peak_mask_system",
+  "active_round": "0286_structure_identity_full_control",
   "coarse_complete": {
     "unknown_mrr25": 0.04268861838422192,
     "known_mrr25": 0.6046005738683694,
@@ -36,7 +36,7 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0284_query_strong_peak_mask_system"
+    "0286_structure_identity_full_control"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -326,7 +326,7 @@
       "original_critic_tensors_exact": true
     }
   },
-  "updated_at": "2026-10-03T13:13:11Z",
+  "updated_at": "2026-10-03T13:23:40Z",
   "current_query_zero_control": "artifacts/research_loop/rounds/0280_query_strong_peak_zero_control",
   "local_verified_evidence_round": "0258_array_order_full_inference_control",
   "multispectrum_attribution": {
@@ -506,5 +506,61 @@
     "chemical_minus_mask_unknown_mrr25": 0.0005970674132630624,
     "balanced_minus_unbalanced_unknown_mrr25": 0.00023115079365079727,
     "scope": "Same120K measured pair rows, capacity/steps/labels and verified inference graph as260/261. Each unmasked input block scaled to training-only unit mean squared L2 energy; same factors in identity mask arm, original maximum-strength gate untouched. Scalars folded into first input weights for original forward graph; floating equivalence checked<=1e-6. Repeated full3340 evidence; no fresh acceptance."
+  },
+  "strong_peak_attribution": {
+    "local_only": true,
+    "remote_publication": false,
+    "independent_acceptance": false,
+    "arms": {
+      "chemical": {
+        "round": "0283_query_strong_peak_chemical_system",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.04362036833716754,
+            "top1": 0.016,
+            "top5": 0.0825,
+            "top25": 0.129,
+            "conditional_mrr25": 0.21974996643409336
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6037997528856134,
+            "top1": 0.564179104477612,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.6822020816751451
+          }
+        }
+      },
+      "identity_masked": {
+        "round": "0284_query_strong_peak_mask_system",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.0434495350038342,
+            "top1": 0.0155,
+            "top5": 0.0825,
+            "top25": 0.1295,
+            "conditional_mrr25": 0.21888934510747707
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6037997528856134,
+            "top1": 0.564179104477612,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.6822020816751451
+          }
+        }
+      }
+    },
+    "chemical_minus_mask_unknown_mrr25": 0.00017083333333333534,
+    "strong_minus_raw_chemical_unknown_mrr25": -0.00020857142857142602,
+    "scope": "Same original paired contextual training as260/261, only peak-loss feature identity transform relu(x-.3)/.7; raw evidence maximum-strength gate preserved in both arms, ion/precursor-loss channels untouched. Training-only279 motivated fixed transform, no development threshold fitting; repeated full3340 evaluation, no independent acceptance."
   }
 }

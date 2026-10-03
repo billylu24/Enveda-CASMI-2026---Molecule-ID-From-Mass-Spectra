@@ -1,0 +1,17 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "evidence": "288 all60K training-only pairs and frozen pinned15 audit. Baseline51380 molecules rank positive above negatives but46973 clear deployed cosine+.05, leaving4407 rank-correct below gate; paired contextual4094, chemical-only4380.665 positive/negative2048 fingerprint identical pairs remain inherently indistinguishable, retained as original training CE control; no claim this objective solves collisions.",
+  "hypothesis": "Train existing raw contextual paired query head with additive positive cosine margin. Subtract exactly deployed .05 from positive cosine before original frozen log_scale; negative logits unchanged. This aligns listwise objective with existing gate rather than changing inference threshold.",
+  "training": "Same original60K labels,120K fixed same-ion pair rows,15 unrestricted pinned training negatives, fixed3epochs235steps AdamW.001 wd.01 CE+.1 displacement anchor; frozen original encoder/critic. Original strength gate and raw24 inputs unchanged. Chemical and matched mask have same capacity/steps and loss.",
+  "inference": "Forward graph unchanged; current source-bound287 zero query exact required after identity runtime286 activation. No gate loosening or arbitrary development tuning of margin; .05 copied from frozen deployment gate.",
+  "sequence": [
+    "Finish284 strong-peak paired negative result",
+    "286 exact current-best identity runtime amendment,287 current-source full3340 zero query control",
+    "289/290 same-pair matched fixed additive admission-margin training",
+    "291/292 complete paired full-system evaluations with bounded physical completion"
+  ],
+  "gates": "Current best unknown absolute+.0005 and relative+2%, knownMRRdrop<=.001 Top1drop<=.005; protect original0206 and181. No budgetfallback/newfailure.1200s fragmentation per scenario,24hGPU per arm maximum.",
+  "claim": "Training rank/margin diagnostics and shifted loss do not prove full-system gain, data generalization or independent acceptance."
+}
