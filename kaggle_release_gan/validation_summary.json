@@ -760,7 +760,8 @@
     "Candidate recall is reaggregated from actual per-arm coverage flags; the full pre-Top25 mass pools are not retained.",
     "Scaffold stratum labels are retained from the formal run; training scaffold sets are not included in the archive.",
     "These are formal visible-run outputs; the competition hidden rerun score remains pending.",
-    "Official hidden test labels and the final private leaderboard are not observable; these are proxy tasks."
+    "Official hidden test labels and the final private leaderboard are not observable; these are proxy tasks.",
+    "The competition reruns training on substituted hidden test inputs. Content-match exclusions may change fitted identities; downloaded checkpoints and acceptance counts describe the saved visible run, not a verified hidden-rerun checkpoint."
   ],
   "full_output_downloaded": true,
   "full_case_audit_complete": true,
