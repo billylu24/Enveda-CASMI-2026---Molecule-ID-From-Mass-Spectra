@@ -477,7 +477,14 @@
     "casmi_ml/local_candidate_completion.py",
     "casmi_ml/validation_cache_full_control.py",
     "casmi_ml/validation_cache_runtime.py",
-    "tests/test_validation_cache_runtime.py"
+    "tests/test_validation_cache_runtime.py",
+    "casmi_ml/max_candidate_training.py",
+    "casmi_ml/max_candidate_system.py",
+    "casmi_ml/max_candidate_followup.py",
+    "casmi_ml/max_candidate_activation.py",
+    "casmi_ml/max_candidate_compatibility.py",
+    "tests/test_max_candidate_activation.py",
+    "tests/test_max_candidate_compatibility.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

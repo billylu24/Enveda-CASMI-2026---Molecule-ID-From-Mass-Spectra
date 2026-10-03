@@ -17,6 +17,8 @@ CYCLES = {
     "all_measured_group": "query_all_spectra_attribution.json",
     "candidate_structural_compatibility": "candidate_compatibility_attribution.json",
     "extended_candidate_chemistry": "extended_candidate_attribution.json",
+    "intensity_candidate_chemistry": "intensity_candidate_attribution.json",
+    "max_candidate_chemistry": "max_candidate_attribution.json",
 }
 
 

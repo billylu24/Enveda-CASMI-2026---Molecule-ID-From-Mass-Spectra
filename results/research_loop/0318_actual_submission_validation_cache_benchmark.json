@@ -1,0 +1,53 @@
+{
+  "round": "0318_actual_submission_validation_cache_benchmark",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "verified_all_actual_input_and_output_rows": true,
+    "timings": [
+      {
+        "implementation": "legacy",
+        "seconds": 36.70098349498585,
+        "validated_rows": 6670,
+        "cache_info": null
+      },
+      {
+        "implementation": "cache",
+        "seconds": 11.221265486994525,
+        "validated_rows": 6670,
+        "cache_info": {
+          "hits": 113151,
+          "misses": 48013,
+          "maxsize": 100000,
+          "currsize": 48013
+        }
+      },
+      {
+        "implementation": "cache",
+        "seconds": 11.212047727021854,
+        "validated_rows": 6670,
+        "cache_info": {
+          "hits": 113151,
+          "misses": 48013,
+          "maxsize": 100000,
+          "currsize": 48013
+        }
+      },
+      {
+        "implementation": "legacy",
+        "seconds": 36.710639280005125,
+        "validated_rows": 6670,
+        "cache_info": null
+      }
+    ],
+    "activated": false,
+    "scope": "Pure per-SMILES validity and connectivity memoization; validation-only paired timing, full3340 inference exact control still required; no scientific or cold pipeline gain"
+  },
+  "protocol_sha256": "89a4c431b3ff345a6b9c4ba7dd451042409411fe225e27be44ca737b2b338fd3",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

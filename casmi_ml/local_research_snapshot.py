@@ -36,6 +36,7 @@ def refresh():
         "local_array_runtime": state.get("local_array_runtime"),
         "local_object_candidate_runtime": state.get("local_object_candidate_runtime"),
         "local_blas_runtime": state.get("local_blas_runtime"),
+        "local_validation_runtime": state.get("local_validation_runtime"),
         "local_proposal_runtime": state.get("local_proposal_runtime"),
         "local_query_zero_control": state.get("local_query_zero_control"),
         "drivers": [
@@ -50,8 +51,9 @@ def refresh():
             "candidate_compatibility_followup.log",
             "extended_candidate_followup.log",
             "intensity_candidate_followup.log",
+            "max_candidate_followup.log",
         ],
-        "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306/310 zero/mask complete3340 exact;309 extended candidate MRR.043994968 rejected.311 BLAS score microbenchmark then312 current-best full exact control.313-317 intensity-weighted candidate hypothesis prepared after runtime checks; no added feature runtime active. 311 BLAS1 changed6 intermediate candidate orders,312 failed preflight, no activation.313-317 intensity weighting control/train/full systems active;318 pure SMILES validation memoization benchmark queued. Only frozen gate winners replace best.",
+        "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero and303 mask complete3340 exact;302 raw candidate interaction gain+.000016667 rejected.305 additional ion/loss train specificity supports preregistered306/310 zero/mask complete3340 exact;309 extended candidate MRR.043994968 rejected.311 BLAS score microbenchmark then312 current-best full exact control.313-317 intensity-weighted candidate hypothesis prepared after runtime checks; no added feature runtime active. 311 BLAS1 changed6 intermediate candidate orders,312 failed preflight, no activation.313/317 zero/mask exact3340;316 intensity weighting unchanged best metrics, rejected.318 validation-only paired speed36.70->11.22s,319 full current-best control active.320-324 max across chemical spectra staged after319, original critic mean unchanged. Only frozen gate winners replace best.",
         "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
         "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
         "independent_acceptance": False,
@@ -95,6 +97,8 @@ def refresh():
         ("all_spectra_attribution", "query_all_spectra_attribution.json"),
         ("candidate_compatibility_attribution", "candidate_compatibility_attribution.json"),
         ("extended_candidate_attribution", "extended_candidate_attribution.json"),
+        ("intensity_candidate_attribution", "intensity_candidate_attribution.json"),
+        ("max_candidate_attribution", "max_candidate_attribution.json"),
     ]:
         report = Path("results/research_loop") / filename
         if report.exists():
