@@ -436,7 +436,9 @@
     "casmi_ml/charged_catalog_coverage_audit.py",
     "casmi_ml/training_query_groups.py",
     "tests/test_training_query_groups.py",
-    "casmi_ml/diagnostic_query_all_spectra_followup.py"
+    "casmi_ml/diagnostic_query_all_spectra_followup.py",
+    "casmi_ml/query_cycle_aggregate.py",
+    "casmi_ml/query_system_movement_audit.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

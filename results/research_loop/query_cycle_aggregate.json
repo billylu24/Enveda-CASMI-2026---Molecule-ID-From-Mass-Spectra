@@ -1,0 +1,168 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "current_best": {
+    "round": "0236_low_supported_leader_first",
+    "variant": "supported_leader_replay",
+    "directory": "artifacts/research_loop/rounds/0237_low_leader_full_unlabeled_replay",
+    "metrics": {
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.1985,
+        "mrr25": 0.04397830092390447,
+        "top1": 0.016,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.22155315326904013
+      },
+      "known": {
+        "molecules": 1340,
+        "candidate_recall": 0.8850746268656716,
+        "mrr25": 0.6037921161569266,
+        "top1": 0.564179104477612,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6821934533307603
+      }
+    },
+    "evidence_amendment": "results/research_loop/low_leader_evidence_amendment.json"
+  },
+  "cycles": {
+    "single_contextual": {
+      "arms": {
+        "chemical": {
+          "round": "0247_diagnostic_query_chemical_system",
+          "unknown_mrr25": 0.04363425722605642,
+          "known_mrr25": 0.6037966434328772,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": -0.0003440436978480524
+        },
+        "identity_masked": {
+          "round": "0248_diagnostic_query_mask_system",
+          "unknown_mrr25": 0.043422352464151666,
+          "known_mrr25": 0.6037997528856134,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": -0.0005559484597528058
+        }
+      },
+      "chemical_minus_mask_unknown_mrr25": 0.00021190476190475344
+    },
+    "strict_mass": {
+      "arms": {
+        "chemical": {
+          "round": "0255_query_strict_mass_chemical_system",
+          "unknown_mrr25": 0.04341441203501558,
+          "known_mrr25": 0.6038091575732218,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": -0.0005638888888888915
+        },
+        "identity_masked": {
+          "round": "0256_query_strict_mass_mask_system",
+          "unknown_mrr25": 0.04360330092390447,
+          "known_mrr25": 0.6038221421011317,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": -0.00037500000000000033
+        }
+      },
+      "chemical_minus_mask_unknown_mrr25": -0.00018888888888889122
+    },
+    "same_ion_measured_pair": {
+      "arms": {
+        "chemical": {
+          "round": "0262_query_multispectrum_chemical_system",
+          "unknown_mrr25": 0.04382893976573896,
+          "known_mrr25": 0.6037997528856134,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": -0.0001493611581655091
+        },
+        "identity_masked": {
+          "round": "0263_query_multispectrum_mask_system",
+          "unknown_mrr25": 0.0434495350038342,
+          "known_mrr25": 0.6037997528856134,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": -0.0005287659200702705
+        }
+      },
+      "chemical_minus_mask_unknown_mrr25": 0.00037940476190476136
+    },
+    "chemical_only_correction": {
+      "arms": {
+        "chemical": {
+          "round": "0268_query_chemical_only_system",
+          "unknown_mrr25": 0.04412516600326956,
+          "known_mrr25": 0.60394136988827,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": 0.00014686507936508691
+        },
+        "identity_masked": {
+          "round": "0269_query_chemical_only_mask_system",
+          "unknown_mrr25": 0.04390885647946003,
+          "known_mrr25": 0.6037873323834861,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": -6.944444444444142e-05
+        }
+      },
+      "chemical_minus_mask_unknown_mrr25": 0.00021630952380952834
+    },
+    "balanced_modalities": {
+      "arms": {
+        "chemical": {
+          "round": "0274_query_balanced_chemical_system",
+          "unknown_mrr25": 0.04406009055938976,
+          "known_mrr25": 0.6037977890207273,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": 8.178963548528817e-05
+        },
+        "identity_masked": {
+          "round": "0275_query_balanced_mask_system",
+          "unknown_mrr25": 0.0434630231461267,
+          "known_mrr25": 0.6037992638599698,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": -0.0005152777777777742
+        }
+      },
+      "chemical_minus_mask_unknown_mrr25": 0.0005970674132630624
+    },
+    "weak_peak_loss_attenuation": {
+      "arms": {
+        "chemical": {
+          "round": "0283_query_strong_peak_chemical_system",
+          "unknown_mrr25": 0.04362036833716754,
+          "known_mrr25": 0.6037997528856134,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": -0.0003579325867369351
+        },
+        "identity_masked": {
+          "round": "0284_query_strong_peak_mask_system",
+          "unknown_mrr25": 0.0434495350038342,
+          "known_mrr25": 0.6037997528856134,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": -0.0005287659200702705
+        }
+      },
+      "chemical_minus_mask_unknown_mrr25": 0.00017083333333333534
+    },
+    "deployed_admission_margin": {
+      "arms": {
+        "chemical": {
+          "round": "0291_query_admission_chemical_system",
+          "unknown_mrr25": 0.04365945171755526,
+          "known_mrr25": 0.6038028430249788,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": -0.00031884920634921154
+        },
+        "identity_masked": {
+          "round": "0292_query_admission_mask_system",
+          "unknown_mrr25": 0.04391028505088859,
+          "known_mrr25": 0.6038028430249788,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": -6.801587301587947e-05
+        }
+      },
+      "chemical_minus_mask_unknown_mrr25": -0.0002508333333333321
+    }
+  },
+  "scope": "Finalized complete repeated development arms only; training-only diagnostics and incomplete systems excluded, no independent generalization claim",
+  "gates": "Unknown absolute+.0005 AND relative+2% vs current best; known MRRdrop<=.001 andTop1drop<=.005, completed0206/historical181 protection, no budgetfallback or newfailed physical contexts"
+}

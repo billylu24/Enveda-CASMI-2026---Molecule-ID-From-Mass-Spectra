@@ -1,0 +1,56 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "arms": {
+    "chemical": {
+      "round": "0291_query_admission_chemical_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04365945171755526,
+          "top1": 0.016,
+          "top5": 0.0815,
+          "top25": 0.129,
+          "conditional_mrr25": 0.21994686003806177
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6038028430249788,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6822055730636354
+        }
+      }
+    },
+    "identity_masked": {
+      "round": "0292_query_admission_mask_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04391028505088859,
+          "top1": 0.016,
+          "top5": 0.082,
+          "top25": 0.1295,
+          "conditional_mrr25": 0.22121050403470327
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6038028430249788,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6822055730636354
+        }
+      }
+    }
+  },
+  "chemical_minus_mask_unknown_mrr25": -0.0002508333333333321,
+  "admission_minus_original_ce_unknown_mrr25": -0.00016948804818370244,
+  "scope": "Same raw contextual measured-pair head, labels, pinned15 negatives and steps as260/261. Positive cosine-.05 before frozen scale in listwise training CE, exactly existing inference admission margin; gate and inference graph unchanged, original encoder/critic tensors frozen. Matched chemical identity mask retains raw strength gate. Repeated full3340 paired systems, no fresh acceptance."
+}

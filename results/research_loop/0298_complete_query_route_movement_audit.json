@@ -1,0 +1,401 @@
+{
+  "round": "0298_complete_query_route_movement_audit",
+  "direction": "feature_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "strata": {
+      "unknown": {
+        "paired_raw": {
+          "high:evidence": {
+            "molecules": 1126,
+            "full_rank_changes": 351,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 6,
+            "negative_mrr_changes": 9,
+            "total_mrr_delta": -0.2765000941087895
+          },
+          "low:evidence": {
+            "molecules": 225,
+            "full_rank_changes": 43,
+            "top1_identity_changes": 18,
+            "positive_mrr_changes": 1,
+            "negative_mrr_changes": 1,
+            "total_mrr_delta": -0.022222222222222088
+          },
+          "low:no_evidence": {
+            "molecules": 516,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "high:no_evidence": {
+            "molecules": 128,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "empty:no_evidence": {
+            "molecules": 5,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          }
+        },
+        "chemical_only": {
+          "high:evidence": {
+            "molecules": 1126,
+            "full_rank_changes": 249,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 5,
+            "negative_mrr_changes": 3,
+            "total_mrr_delta": 0.3349999999999999
+          },
+          "low:evidence": {
+            "molecules": 225,
+            "full_rank_changes": 37,
+            "top1_identity_changes": 16,
+            "positive_mrr_changes": 2,
+            "negative_mrr_changes": 3,
+            "total_mrr_delta": -0.041269841269840984
+          },
+          "low:no_evidence": {
+            "molecules": 516,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "high:no_evidence": {
+            "molecules": 128,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "empty:no_evidence": {
+            "molecules": 5,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          }
+        },
+        "modality_balanced": {
+          "high:evidence": {
+            "molecules": 1126,
+            "full_rank_changes": 319,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 6,
+            "negative_mrr_changes": 4,
+            "total_mrr_delta": 0.22865863604994033
+          },
+          "low:evidence": {
+            "molecules": 225,
+            "full_rank_changes": 46,
+            "top1_identity_changes": 16,
+            "positive_mrr_changes": 1,
+            "negative_mrr_changes": 2,
+            "total_mrr_delta": -0.06507936507936488
+          },
+          "low:no_evidence": {
+            "molecules": 516,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "high:no_evidence": {
+            "molecules": 128,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "empty:no_evidence": {
+            "molecules": 5,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          }
+        },
+        "strong_peak_losses": {
+          "high:evidence": {
+            "molecules": 1126,
+            "full_rank_changes": 359,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 4,
+            "negative_mrr_changes": 9,
+            "total_mrr_delta": -0.6103096179183134
+          },
+          "low:evidence": {
+            "molecules": 225,
+            "full_rank_changes": 45,
+            "top1_identity_changes": 23,
+            "positive_mrr_changes": 1,
+            "negative_mrr_changes": 2,
+            "total_mrr_delta": -0.1055555555555554
+          },
+          "low:no_evidence": {
+            "molecules": 516,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "high:no_evidence": {
+            "molecules": 128,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "empty:no_evidence": {
+            "molecules": 5,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          }
+        },
+        "admission_margin": {
+          "high:evidence": {
+            "molecules": 1126,
+            "full_rank_changes": 368,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 2,
+            "negative_mrr_changes": 7,
+            "total_mrr_delta": -0.6154761904761906
+          },
+          "low:evidence": {
+            "molecules": 225,
+            "full_rank_changes": 40,
+            "top1_identity_changes": 15,
+            "positive_mrr_changes": 1,
+            "negative_mrr_changes": 1,
+            "total_mrr_delta": -0.022222222222222088
+          },
+          "low:no_evidence": {
+            "molecules": 516,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "high:no_evidence": {
+            "molecules": 128,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "empty:no_evidence": {
+            "molecules": 5,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          }
+        }
+      },
+      "known": {
+        "paired_raw": {
+          "high:evidence": {
+            "molecules": 934,
+            "full_rank_changes": 98,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 3,
+            "negative_mrr_changes": 2,
+            "total_mrr_delta": 0.010233216440310187
+          },
+          "low:no_evidence": {
+            "molecules": 272,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "high:no_evidence": {
+            "molecules": 125,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "low:evidence": {
+            "molecules": 9,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          }
+        },
+        "chemical_only": {
+          "high:evidence": {
+            "molecules": 934,
+            "full_rank_changes": 71,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 1,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.2
+          },
+          "low:no_evidence": {
+            "molecules": 272,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "high:no_evidence": {
+            "molecules": 125,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "low:evidence": {
+            "molecules": 9,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          }
+        },
+        "modality_balanced": {
+          "high:evidence": {
+            "molecules": 934,
+            "full_rank_changes": 89,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 2,
+            "negative_mrr_changes": 2,
+            "total_mrr_delta": 0.007601637492941793
+          },
+          "low:no_evidence": {
+            "molecules": 272,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "high:no_evidence": {
+            "molecules": 125,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "low:evidence": {
+            "molecules": 9,
+            "full_rank_changes": 1,
+            "top1_identity_changes": 1,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          }
+        },
+        "strong_peak_losses": {
+          "high:evidence": {
+            "molecules": 934,
+            "full_rank_changes": 98,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 3,
+            "negative_mrr_changes": 2,
+            "total_mrr_delta": 0.010233216440310187
+          },
+          "low:no_evidence": {
+            "molecules": 272,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "high:no_evidence": {
+            "molecules": 125,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "low:evidence": {
+            "molecules": 9,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          }
+        },
+        "admission_margin": {
+          "high:evidence": {
+            "molecules": 934,
+            "full_rank_changes": 99,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 3,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.014374003189792588
+          },
+          "low:no_evidence": {
+            "molecules": 272,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "high:no_evidence": {
+            "molecules": 125,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          },
+          "low:evidence": {
+            "molecules": 9,
+            "full_rank_changes": 0,
+            "top1_identity_changes": 0,
+            "positive_mrr_changes": 0,
+            "negative_mrr_changes": 0,
+            "total_mrr_delta": 0.0
+          }
+        }
+      }
+    },
+    "scope": "Descriptive repeated-development architecture movement and gain concentration; no stratum-based rule fitting or accuracy qualification"
+  },
+  "protocol_sha256": "9982dc745cb3d7c22564e706450a92f03b5ed741780cc080bb658ecd31e8e35a",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

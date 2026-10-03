@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03T13:41:18Z",
+  "updated_at": "2026-10-03T13:50:24Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -102,10 +102,10 @@
   },
   "active_rounds": [
     {
-      "id": "0292_query_admission_mask_system",
+      "id": "0296_query_all_spectra_chemical_system",
       "direction": "chemical_query_critic",
       "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0292_query_admission_mask_system/report.json"
+      "report": "artifacts/research_loop/rounds/0296_query_all_spectra_chemical_system/report.json"
     }
   ],
   "local_candidate_runtime": {
@@ -1132,9 +1132,37 @@
     {
       "id": "0292_query_admission_mask_system",
       "direction": "chemical_query_critic",
+      "status": "rejected",
+      "decision": "results/research_loop/0292_query_admission_mask_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0294_query_all_spectra_chemical",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0294_query_all_spectra_chemical.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0295_query_all_spectra_mask",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0295_query_all_spectra_mask.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0296_query_all_spectra_chemical_system",
+      "direction": "chemical_query_critic",
       "status": "external_running",
       "decision": null,
       "local_recorded": false
+    },
+    {
+      "id": "0298_complete_query_route_movement_audit",
+      "direction": "feature_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0298_complete_query_route_movement_audit.json",
+      "local_recorded": true
     }
   ]
 }

@@ -1,0 +1,64 @@
+{
+  "round": "0294_query_all_spectra_chemical",
+  "direction": "representation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "train_development_overlap": 0,
+    "precise": true,
+    "mask_chemical_channels": false,
+    "strict_mass_negatives": false,
+    "multispectrum": false,
+    "all_spectra": true,
+    "query_group_source_sha256": "3ee734c27746cf37ccf6c8b9afc4be2fdc77603f2b88a52563829ee618eab4ee",
+    "chemical_only_correction": false,
+    "balance_modalities": false,
+    "strong_peak_losses": false,
+    "admission_margin": false,
+    "admission_objective_sha256": "3c77300ccf84c21a4acf5ca98f2571fd41bf6680cc0dcfa8e8e1cb8a3a58ac2d",
+    "strength_transform_sha256": "714203ffcd9820126bb4ba915f99e34f6f509d8b300ec4307fcfd7cdd7987c5d",
+    "folded_input_scales": null,
+    "fold_max_abs_query_error": null,
+    "correction_latent_nonzero_weights": 49152,
+    "strict_inside_hard_negatives": 720198,
+    "distinct_same_ion_training_pairs": 0,
+    "rows_per_training_molecule": 4,
+    "spectrum_slots_are_padded": true,
+    "actual_rows_per_molecule_histogram": {
+      "1": 3632,
+      "2": 3525,
+      "3": 7250,
+      "4": 45593
+    },
+    "measured_training_rows_used": 214804,
+    "original_critic_tensors_exact": true,
+    "original_encoder_frozen": true,
+    "history": [
+      {
+        "epoch": 1,
+        "listwise_ce": 0.35447284870959345,
+        "query_anchor": 0.016110333975434224
+      },
+      {
+        "epoch": 2,
+        "listwise_ce": 0.34424205701401894,
+        "query_anchor": 0.027417586712127035
+      },
+      {
+        "epoch": 3,
+        "listwise_ce": 0.3376983988792338,
+        "query_anchor": 0.03364320384695175
+      }
+    ],
+    "seconds": 60.19908299401868,
+    "model_sha256": "5a45bd03f170f2f97fa03fc4cf6819145a506483746150c68777c67b838e844b",
+    "scope": "Training diagnostic only; complete paired full-system inference and matched chemical-mask attribution required"
+  },
+  "protocol_sha256": "57a2029fcfd1225307cdafea98a93810a7e7f87fcda9827d809701848ba65fd5",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

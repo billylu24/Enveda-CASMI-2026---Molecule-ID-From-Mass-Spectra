@@ -1,6 +1,8 @@
 # 持续研究循环
 
-用户已授权持续诊断、实验、评估、达到开发门槛后提交 Kaggle、每个完整轮次同步 GitHub，直到用户明确停止。配置在 `configs/research_loop.json`，持久状态在 `artifacts/research_loop/state.json`。
+用户最新要求：只在本地持续诊断、实验和评估，直到用户明确停止；不上传或提交 Kaggle、不推送 GitHub。`state.local_only=true` 持久保护使 Controller 的远端入口直接返回本地状态。代码和安全汇总可本地提交。配置在 `configs/research_loop.json`，实时状态在 `artifacts/research_loop/state.json`；后文提交与平台记录仅是历史，不是当前授权或待执行任务。
+
+当前科学最佳236，完整指标证据237；缓存指纹、对象候选表、数组排序和实际 SMILES 身份 memoization 已分别通过完整排名或完整提案一致性控制。实际本地入口 `casmi_ml.local_verified_extension` 当前绑定运行时证据286，零query控制287通过。详细现状见 `results/research_loop/local_continuation_manifest.json`，已完成架构比较见 `results/research_loop/query_cycle_aggregate.json`。科学最佳只在当前最佳、证据完整原模型206和历史181的冻结门槛全部通过后更新。
 
 ```bash
 .venv/bin/python -m casmi_ml.research_loop status
