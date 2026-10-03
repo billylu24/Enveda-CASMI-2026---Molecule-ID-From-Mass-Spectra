@@ -1,7 +1,7 @@
 {
   "local_only": true,
   "remote_publication": false,
-  "status": "complete_evidence_replay_running",
+  "status": "precise_corrected_replay_running",
   "best_round": "0181_high_strong_slot_full",
   "original_completed_control": {
     "unknown_mrr25": 0.04272830092390447,
@@ -30,5 +30,15 @@
     "raw_candidates_reused": 127088,
     "new_candidates_scored": 3025
   },
-  "active_round": "0223_diagnostic_coarse_complete_system"
+  "active_round": "0224_diagnostic_exact_complete_system",
+  "coarse_complete": {
+    "unknown_mrr25": 0.04268861838422192,
+    "known_mrr25": 0.6046005738683694,
+    "budget_fallbacks": 0,
+    "new_failure_contexts": 0,
+    "inherited_failure_contexts": 1,
+    "eligible": false,
+    "absolute_gain_vs181": 0.00014280663780662922,
+    "absolute_gain_vs_complete_control": -3.968253968254787e-05
+  }
 }
