@@ -57,6 +57,16 @@ def run(test, baseline, full, routing, reference, output):
         stack.enter_context(
             patch("casmi_ml.metfrag_persistent.PersistentMonomerMetFrag", new=engine)
         )
+        from casmi_ml.packed_candidate_runtime import resolve as resolve_candidates
+
+        candidate_constructor = resolve_candidates(c, config["catalog_sha256"])
+        if candidate_constructor is not None:
+            stack.enter_context(
+                patch(
+                    "casmi_ml.chembl_routed_inference.CandidateIndex",
+                    new=candidate_constructor,
+                )
+            )
         query_spec = config.get("query_residual")
         if query_spec:
             from casmi_ml.diagnostic_query_ranker import (

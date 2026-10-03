@@ -380,7 +380,11 @@
     "casmi_ml/ranking_runtime_profile.py",
     "casmi_ml/packed_candidate_cache.py",
     "casmi_ml/packed_candidate_benchmark.py",
-    "tests/test_packed_candidate_cache.py"
+    "tests/test_packed_candidate_cache.py",
+    "casmi_ml/packed_candidate_runtime.py",
+    "casmi_ml/packed_candidate_verification.py",
+    "casmi_ml/packed_candidate_followup.py",
+    "tests/test_packed_candidate_runtime.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

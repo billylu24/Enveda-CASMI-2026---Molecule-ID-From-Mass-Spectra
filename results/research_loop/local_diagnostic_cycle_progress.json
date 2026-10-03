@@ -41,9 +41,9 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0234_diagnostic_context_mask_proposals",
+    "0235_diagnostic_context_mask_system",
     "0244_diagnostic_query_zero_control",
-    "0249_local_ranking_runtime_profile"
+    "0250_local_packed_candidate_preparation"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -94,7 +94,9 @@
     "0245_diagnostic_query_chemical",
     "0246_diagnostic_query_mask_control",
     "0247_diagnostic_query_chemical_system",
-    "0248_diagnostic_query_mask_system"
+    "0248_diagnostic_query_mask_system",
+    "0251_packed_candidate_window_benchmark",
+    "0252_packed_candidate_full_inference_control"
   ],
   "coarse_context_complete": {
     "unknown": {
@@ -154,5 +156,11 @@
     "eligible": false,
     "budget_fallbacks": 0,
     "new_failure_contexts": 0
+  },
+  "candidate_runtime_work": {
+    "identified_hotspot": "Candidate fingerprint recomputation and pandas access dominate fixed profile; packed source-bound binary2048 fingerprints prototype only",
+    "activation_gate": "Every candidate bit exact + all3340 full-rank exact, no budget or new failure",
+    "accuracy_gain_claim": false,
+    "activated": false
   }
 }
