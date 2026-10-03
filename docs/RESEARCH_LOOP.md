@@ -487,3 +487,7 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 下一项运行时方向准备：检查pinned jar字节码与来源发现每个candidate线程池结束检查使用1000ms轮询，每谱含固定等待开销；并行候选未必有效。先以与160相同12个observable hash组、两臂独立freshcache、同100+actual first/merged/depth2，比较persistent JVM NumberThreads1 vs2完整真实浮点字典。超时/失败或任意浮点差异不进入部署；heap1GiB/单请求60秒/共享600秒、所有模型不变。引擎新增bounded可选threads参数，default1保留163行为；163bundle保持冻结，源码变动不修改运行中资产。等163cold完成再执行Java benchmark，避免两轮Java争用影响冷资源测量。
 
 第163单次完整400冷部署通过1136.30秒/父RSS6058.55MiB；fresh retrieval与external缓存，fragment共享1200/总1800截止，193原high插入组172移除tail、21fragment-supported前移，207原critic fallback，无fragment budget fallback。旧149的193high新增组全排名发生变化，故新的平台完整400逐排名验证必须完成，不能因149已通过而替代。私有平台包准备由Controller上传，当前额度等待且无competition pending。232回归通过（含线程参数/default1及跨执行variant缓存隔离）；第172fresh单线程vs2线程Javabenchmark现在启动，原163包source/worker/identity未改。
+
+第1722threads鲜缓存实际评分12/12字典逐float exact，19complete/3unsupported两臂一致、timeout/failed0，单线程58.91秒→双线程37.91秒（1.554倍）、parent2057MiB；仅runtime基准，不是新开发accuracy或直接修改163包。
+
+第173轮询间隔runtime预登记：pinned jar SHA绑定，其CombinedMetFragProcess唯一CONSTANT_Long1000是candidate线程池isTerminated后Thread.sleep轮询，javap验证引用，评分/碎裂代码不变。私有派生class仅该常量改10，原jar保持未修改，class大小/其他字节不变；classes前置+原MetFragWorker，原class/派生class SHA绑定。与172同12hash组/独立freshcache/两臂NumberThreads2/同heap1GiB/request60秒/共享600秒，完整真实浮点字典必须exact、执行状态一致且无失败，才可考虑新的runtime适配；无准确率宣称。两个class parser绑定/唯一常量及拒绝用例通过。不会更改163正在Kaggle运行的bundle/identity。

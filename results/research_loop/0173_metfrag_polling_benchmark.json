@@ -1,0 +1,33 @@
+{
+  "round": "0173_metfrag_polling_benchmark",
+  "direction": "runtime_benchmark",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "molecules": 12,
+    "exact_score_dictionary_matches": 12,
+    "fresh_cache_per_arm": true,
+    "seconds": {
+      "poll1000": 36.895776008983376,
+      "poll10": 24.585623767983634
+    },
+    "speedup": 1.5007053047411596,
+    "spectrum_status_counts": {
+      "poll1000": {
+        "unsupported_ion_or_resolution": 3,
+        "complete": 19
+      },
+      "poll10": {
+        "unsupported_ion_or_resolution": 3,
+        "complete": 19
+      }
+    },
+    "parent_peak_rss_mib": 2101.53125,
+    "independent_acceptance": false,
+    "scope": "Runtime benchmark only; no new accuracy/release claim"
+  },
+  "protocol_sha256": "3e42b3d32a5e31596ec9b1904b5c1a7e3756baa2643f2bee3f454ea9aab2f912",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

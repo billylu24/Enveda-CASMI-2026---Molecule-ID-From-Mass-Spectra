@@ -276,7 +276,10 @@
     "tests/test_high_slot_support.py",
     "casmi_ml/chembl_high_prefix1.py",
     "tests/test_high_prefix1.py",
-    "casmi_ml/metfrag_thread_benchmark.py"
+    "casmi_ml/metfrag_thread_benchmark.py",
+    "casmi_ml/metfrag_polling_patch.py",
+    "casmi_ml/metfrag_polling_benchmark.py",
+    "tests/test_metfrag_polling_patch.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
