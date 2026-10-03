@@ -161,6 +161,25 @@
         }
       },
       "chemical_minus_mask_unknown_mrr25": -0.0002508333333333321
+    },
+    "all_measured_group": {
+      "arms": {
+        "chemical": {
+          "round": "0296_query_all_spectra_chemical_system",
+          "unknown_mrr25": 0.04368802314612669,
+          "known_mrr25": 0.6039485175913131,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": -0.00029027777777778513
+        },
+        "identity_masked": {
+          "round": "0297_query_all_spectra_mask_system",
+          "unknown_mrr25": 0.04362492790803145,
+          "known_mrr25": 0.6039426645038095,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": -0.0003533730158730222
+        }
+      },
+      "chemical_minus_mask_unknown_mrr25": 6.30952380952371e-05
     }
   },
   "scope": "Finalized complete repeated development arms only; training-only diagnostics and incomplete systems excluded, no independent generalization claim",

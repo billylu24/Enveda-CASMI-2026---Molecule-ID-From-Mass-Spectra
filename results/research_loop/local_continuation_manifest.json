@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-03T13:50:24Z",
+  "updated_at": "2026-10-03T14:10:18Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -102,10 +102,10 @@
   },
   "active_rounds": [
     {
-      "id": "0296_query_all_spectra_chemical_system",
-      "direction": "chemical_query_critic",
+      "id": "0299_candidate_compatibility_zero_control",
+      "direction": "implementation_control",
       "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0296_query_all_spectra_chemical_system/report.json"
+      "report": "artifacts/research_loop/rounds/0299_candidate_compatibility_zero_control/report.json"
     }
   ],
   "local_candidate_runtime": {
@@ -177,9 +177,10 @@
     "diagnostic_query_strong_peak_followup.log",
     "structure_key_followup_v2.log",
     "diagnostic_query_admission_followup_v2.log",
-    "diagnostic_query_all_spectra_followup.log"
+    "diagnostic_query_all_spectra_followup.log",
+    "candidate_compatibility_followup.log"
   ],
-  "pending_sequence": "286 identity runtime active,287 current-source zero exact.291/292 additive admission CE systems followed by294/295 fixed all original measured training spectra group means and296/297 matched full systems. Only frozen gate winners replace best.",
+  "pending_sequence": "286 identity runtime active;287 zero query exact.296/297 all measured group arms complete and rejected.299 zero candidate bonus full control precedes300/301 bounded train-only SMARTS interactions and302/303 full paired systems. Only frozen gate winners replace best.",
   "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
   "runtime_claims": "Exact packed candidate and array-order all3340 cached rankings, proposal three full2000 dictionaries; no cold inference proof or independent acceptance",
   "independent_acceptance": false,
@@ -1153,9 +1154,9 @@
     {
       "id": "0296_query_all_spectra_chemical_system",
       "direction": "chemical_query_critic",
-      "status": "external_running",
-      "decision": null,
-      "local_recorded": false
+      "status": "rejected",
+      "decision": "results/research_loop/0296_query_all_spectra_chemical_system.json",
+      "local_recorded": true
     },
     {
       "id": "0298_complete_query_route_movement_audit",
@@ -1163,6 +1164,20 @@
       "status": "diagnostic_complete",
       "decision": "results/research_loop/0298_complete_query_route_movement_audit.json",
       "local_recorded": true
+    },
+    {
+      "id": "0297_query_all_spectra_mask_system",
+      "direction": "chemical_query_critic",
+      "status": "rejected",
+      "decision": "results/research_loop/0297_query_all_spectra_mask_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0299_candidate_compatibility_zero_control",
+      "direction": "implementation_control",
+      "status": "external_running",
+      "decision": null,
+      "local_recorded": false
     }
   ]
 }

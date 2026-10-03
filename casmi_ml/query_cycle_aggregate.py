@@ -15,6 +15,7 @@ CYCLES = {
     "weak_peak_loss_attenuation": "query_strong_peak_attribution.json",
     "deployed_admission_margin": "query_admission_attribution.json",
     "all_measured_group": "query_all_spectra_attribution.json",
+    "candidate_structural_compatibility": "candidate_compatibility_attribution.json",
 }
 
 

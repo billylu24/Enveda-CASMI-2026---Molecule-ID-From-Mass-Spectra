@@ -1,0 +1,56 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "arms": {
+    "chemical": {
+      "round": "0296_query_all_spectra_chemical_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04368802314612669,
+          "top1": 0.0155,
+          "top5": 0.083,
+          "top25": 0.13,
+          "conditional_mrr25": 0.2200907967059279
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6039485175913131,
+          "top1": 0.564179104477612,
+          "top5": 0.6343283582089553,
+          "top25": 0.7402985074626866,
+          "conditional_mrr25": 0.6823701632144684
+        }
+      }
+    },
+    "identity_masked": {
+      "round": "0297_query_all_spectra_mask_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04362492790803145,
+          "top1": 0.0155,
+          "top5": 0.082,
+          "top25": 0.13,
+          "conditional_mrr25": 0.21977293656439018
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6039426645038095,
+          "top1": 0.564179104477612,
+          "top5": 0.6343283582089553,
+          "top25": 0.7402985074626866,
+          "conditional_mrr25": 0.6823635501139163
+        }
+      }
+    }
+  },
+  "chemical_minus_mask_unknown_mrr25": 6.30952380952371e-05,
+  "all_spectra_minus_same_ion_pair_unknown_mrr25": -0.00014091661961227603,
+  "scope": "Same raw contextual correction head, labels, original unrestricted15 CE and3epochs235steps as260/261; train mean of all1-4 original measured rows per molecule across observed adduct/mode with zero-weight padding. Original encoder/critic frozen and inference graph unchanged, matched identity mask preserves raw strength gate. All214804 actual training rows now used versus fixed120K pair slots; row increase is the aggregation intervention, no extra optimizer updates. Repeated full3340 comparison, no fresh acceptance."
+}

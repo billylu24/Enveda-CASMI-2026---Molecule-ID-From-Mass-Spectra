@@ -438,7 +438,14 @@
     "tests/test_training_query_groups.py",
     "casmi_ml/diagnostic_query_all_spectra_followup.py",
     "casmi_ml/query_cycle_aggregate.py",
-    "casmi_ml/query_system_movement_audit.py"
+    "casmi_ml/query_system_movement_audit.py",
+    "casmi_ml/candidate_diagnostic_compatibility.py",
+    "casmi_ml/candidate_compatibility_training.py",
+    "casmi_ml/candidate_compatibility_system.py",
+    "casmi_ml/candidate_compatibility_followup.py",
+    "tests/test_candidate_diagnostic_compatibility.py",
+    "tests/test_candidate_compatibility_training.py",
+    "tests/test_candidate_compatibility_binding.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
