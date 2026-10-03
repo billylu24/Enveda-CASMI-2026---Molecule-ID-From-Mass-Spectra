@@ -347,7 +347,10 @@
     "casmi_ml/development_incremental_seed.py",
     "tests/test_development_incremental_metfrag.py",
     "tests/test_diagnostic_context_residual.py",
-    "casmi_ml/diagnostic_next_cycle.py"
+    "casmi_ml/diagnostic_next_cycle.py",
+    "casmi_ml/diagnostic_feature_runtime.py",
+    "casmi_ml/diagnostic_feature_audit.py",
+    "tests/test_diagnostic_feature_runtime.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

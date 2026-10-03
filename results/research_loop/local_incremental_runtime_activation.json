@@ -1,0 +1,8 @@
+{
+  "local_only": true,
+  "control": "0221_incremental_failure_context_control",
+  "fresh_verification": "0222_incremental_adapter_fresh_verification",
+  "source_sha256": "883bd80ae634ca231d796aec4281c95d7b93b72521973bc354ce65fb444bb8bd",
+  "inherited_failure_contexts": 1,
+  "remote_publication": false
+}
