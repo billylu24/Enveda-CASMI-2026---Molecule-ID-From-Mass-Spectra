@@ -1,0 +1,349 @@
+{
+  "round": "0249_local_ranking_runtime_profile",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "unknown": {
+      "molecules": 100,
+      "full_rank_matches": 100,
+      "seconds_with_profile": 49.32996567199007,
+      "top_cumulative_functions": [
+        {
+          "file": "mass_candidates.py",
+          "line": 26,
+          "function": "candidate_window",
+          "calls": 100,
+          "self_seconds": 0.003409432,
+          "cumulative_seconds": 20.091742976000003
+        },
+        {
+          "file": "ranking.py",
+          "line": 36,
+          "function": "fps",
+          "calls": 100,
+          "self_seconds": 0.6437998580000001,
+          "cumulative_seconds": 19.73339868
+        },
+        {
+          "file": "indexing.py",
+          "line": 1192,
+          "function": "__getitem__",
+          "calls": 120782,
+          "self_seconds": 0.16361420000000002,
+          "cumulative_seconds": 11.963546889000002
+        },
+        {
+          "file": "data.py",
+          "line": 35,
+          "function": "fingerprint",
+          "calls": 92482,
+          "self_seconds": 10.622419653000001,
+          "cumulative_seconds": 10.629034342
+        },
+        {
+          "file": "indexing.py",
+          "line": 1740,
+          "function": "_getitem_axis",
+          "calls": 120582,
+          "self_seconds": 0.23844467600000002,
+          "cumulative_seconds": 9.228844051000001
+        },
+        {
+          "file": "frame.py",
+          "line": 4292,
+          "function": "_ixs",
+          "calls": 120844,
+          "self_seconds": 0.171903043,
+          "cumulative_seconds": 7.823302579000001
+        },
+        {
+          "file": "managers.py",
+          "line": 1153,
+          "function": "fast_xs",
+          "calls": 113328,
+          "self_seconds": 0.939025227,
+          "cumulative_seconds": 6.4562220130000005
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.sorted>",
+          "calls": 821,
+          "self_seconds": 0.075810587,
+          "cumulative_seconds": 5.939378663
+        },
+        {
+          "file": "chembl_routed_inference.py",
+          "line": 199,
+          "function": "<lambda>",
+          "calls": 56664,
+          "self_seconds": 0.093893162,
+          "cumulative_seconds": 5.831619752
+        },
+        {
+          "file": "generic.py",
+          "line": 6179,
+          "function": "__getattr__",
+          "calls": 367958,
+          "self_seconds": 0.33463465800000003,
+          "cumulative_seconds": 4.603573606
+        },
+        {
+          "file": "frame.py",
+          "line": 1538,
+          "function": "iterrows",
+          "calls": 85047,
+          "self_seconds": 0.195604509,
+          "cumulative_seconds": 4.560871451000001
+        },
+        {
+          "file": "series.py",
+          "line": 369,
+          "function": "__init__",
+          "calls": 86002,
+          "self_seconds": 0.444704305,
+          "cumulative_seconds": 4.068507515
+        },
+        {
+          "file": "inchi.py",
+          "line": 382,
+          "function": "MolToInchiKey",
+          "calls": 15369,
+          "self_seconds": 2.8587377230000004,
+          "cumulative_seconds": 2.8587377230000004
+        },
+        {
+          "file": "base.py",
+          "line": 5446,
+          "function": "_can_hold_identifiers_and_holds_name",
+          "calls": 281956,
+          "self_seconds": 0.27901515000000005,
+          "cumulative_seconds": 2.772510941
+        },
+        {
+          "file": "module.py",
+          "line": 1779,
+          "function": "_wrapped_call_impl",
+          "calls": 6800,
+          "self_seconds": 0.006674888,
+          "cumulative_seconds": 2.6340531310000004
+        },
+        {
+          "file": "module.py",
+          "line": 1787,
+          "function": "_call_impl",
+          "calls": 6800,
+          "self_seconds": 0.011547486000000001,
+          "cumulative_seconds": 2.63339185
+        },
+        {
+          "file": "container.py",
+          "line": 254,
+          "function": "forward",
+          "calls": 1000,
+          "self_seconds": 0.008411132,
+          "cumulative_seconds": 2.5909681630000003
+        },
+        {
+          "file": "array.py",
+          "line": 1625,
+          "function": "take",
+          "calls": 784,
+          "self_seconds": 0.010997158,
+          "cumulative_seconds": 2.5762650550000004
+        },
+        {
+          "file": "compute.py",
+          "line": 467,
+          "function": "take",
+          "calls": 784,
+          "self_seconds": 2.539151302,
+          "cumulative_seconds": 2.5398325390000003
+        },
+        {
+          "file": "managers.py",
+          "line": 813,
+          "function": "reindex_indexer",
+          "calls": 307,
+          "self_seconds": 0.005958658,
+          "cumulative_seconds": 2.5367674350000002
+        }
+      ]
+    },
+    "known": {
+      "molecules": 100,
+      "full_rank_matches": 100,
+      "seconds_with_profile": 52.6550587459933,
+      "top_cumulative_functions": [
+        {
+          "file": "mass_candidates.py",
+          "line": 26,
+          "function": "candidate_window",
+          "calls": 100,
+          "self_seconds": 0.003995457,
+          "cumulative_seconds": 22.472618729
+        },
+        {
+          "file": "ranking.py",
+          "line": 36,
+          "function": "fps",
+          "calls": 100,
+          "self_seconds": 0.722605111,
+          "cumulative_seconds": 22.116163943
+        },
+        {
+          "file": "indexing.py",
+          "line": 1192,
+          "function": "__getitem__",
+          "calls": 141207,
+          "self_seconds": 0.180072152,
+          "cumulative_seconds": 13.393784875000001
+        },
+        {
+          "file": "data.py",
+          "line": 35,
+          "function": "fingerprint",
+          "calls": 103979,
+          "self_seconds": 11.925307892000001,
+          "cumulative_seconds": 11.932630150000001
+        },
+        {
+          "file": "indexing.py",
+          "line": 1740,
+          "function": "_getitem_axis",
+          "calls": 141007,
+          "self_seconds": 0.249169461,
+          "cumulative_seconds": 10.589751229
+        },
+        {
+          "file": "frame.py",
+          "line": 4292,
+          "function": "_ixs",
+          "calls": 141270,
+          "self_seconds": 0.21821456,
+          "cumulative_seconds": 9.216433027
+        },
+        {
+          "file": "managers.py",
+          "line": 1153,
+          "function": "fast_xs",
+          "calls": 135058,
+          "self_seconds": 1.103805481,
+          "cumulative_seconds": 7.713580619000001
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.sorted>",
+          "calls": 682,
+          "self_seconds": 0.10376634900000001,
+          "cumulative_seconds": 7.253821977
+        },
+        {
+          "file": "chembl_routed_inference.py",
+          "line": 199,
+          "function": "<lambda>",
+          "calls": 67529,
+          "self_seconds": 0.108960317,
+          "cumulative_seconds": 7.116966652
+        },
+        {
+          "file": "generic.py",
+          "line": 6179,
+          "function": "__getattr__",
+          "calls": 427568,
+          "self_seconds": 0.40866558000000003,
+          "cumulative_seconds": 5.403572525
+        },
+        {
+          "file": "frame.py",
+          "line": 1538,
+          "function": "iterrows",
+          "calls": 98535,
+          "self_seconds": 0.21866802700000001,
+          "cumulative_seconds": 5.232555272
+        },
+        {
+          "file": "series.py",
+          "line": 369,
+          "function": "__init__",
+          "calls": 99378,
+          "self_seconds": 0.51459323,
+          "cumulative_seconds": 4.6235504380000005
+        },
+        {
+          "file": "base.py",
+          "line": 5446,
+          "function": "_can_hold_identifiers_and_holds_name",
+          "calls": 328190,
+          "self_seconds": 0.322840218,
+          "cumulative_seconds": 3.310458612
+        },
+        {
+          "file": "inchi.py",
+          "line": 382,
+          "function": "MolToInchiKey",
+          "calls": 17213,
+          "self_seconds": 3.242332658,
+          "cumulative_seconds": 3.242332658
+        },
+        {
+          "file": "managers.py",
+          "line": 111,
+          "function": "interleaved_dtype",
+          "calls": 135158,
+          "self_seconds": 0.058831054,
+          "cumulative_seconds": 2.9547420030000002
+        },
+        {
+          "file": "cast.py",
+          "line": 1306,
+          "function": "find_common_type",
+          "calls": 135158,
+          "self_seconds": 0.36127182500000005,
+          "cumulative_seconds": 2.881002253
+        },
+        {
+          "file": "module.py",
+          "line": 1779,
+          "function": "_wrapped_call_impl",
+          "calls": 6800,
+          "self_seconds": 0.00966442,
+          "cumulative_seconds": 2.7812477610000004
+        },
+        {
+          "file": "module.py",
+          "line": 1787,
+          "function": "_call_impl",
+          "calls": 6800,
+          "self_seconds": 0.011782029000000001,
+          "cumulative_seconds": 2.7805549590000003
+        },
+        {
+          "file": "container.py",
+          "line": 254,
+          "function": "forward",
+          "calls": 1000,
+          "self_seconds": 0.0055028690000000005,
+          "cumulative_seconds": 2.734909072
+        },
+        {
+          "file": "~",
+          "line": 0,
+          "function": "<built-in method builtins.isinstance>",
+          "calls": 17154714,
+          "self_seconds": 1.9274434020000002,
+          "cumulative_seconds": 2.515301287
+        }
+      ]
+    },
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "new_failure_contexts": 0
+  },
+  "protocol_sha256": "fdba72ddbda8653669befc4d2ac6f84c1f42ab83419de1c5a897343f8e12f758",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

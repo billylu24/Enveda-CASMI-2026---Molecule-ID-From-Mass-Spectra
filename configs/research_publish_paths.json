@@ -377,7 +377,10 @@
     "tests/test_diagnostic_query_ranker.py",
     "casmi_ml/diagnostic_query_activation.py",
     "tests/test_diagnostic_query_activation.py",
-    "casmi_ml/ranking_runtime_profile.py"
+    "casmi_ml/ranking_runtime_profile.py",
+    "casmi_ml/packed_candidate_cache.py",
+    "casmi_ml/packed_candidate_benchmark.py",
+    "tests/test_packed_candidate_cache.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
