@@ -1,0 +1,32 @@
+{
+  "round": "0251_packed_candidate_window_benchmark",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "verified": true,
+    "counts": {
+      "unknown": {
+        "queries": 100,
+        "candidate_fingerprint_rows": 84947,
+        "every_candidate_and_float32_bit_exact": true,
+        "legacy_seconds": 14.293808690010337,
+        "packed_seconds_including_exact_checks": 3.0153883270104416
+      },
+      "known": {
+        "queries": 100,
+        "candidate_fingerprint_rows": 98435,
+        "every_candidate_and_float32_bit_exact": true,
+        "legacy_seconds": 15.835071416018764,
+        "packed_seconds_including_exact_checks": 2.8589582100103144
+      }
+    },
+    "scope": "Matched cached windows200 opaque queries; includes equality checks in packed timing. Complete3340 full inference replay still required before local activation."
+  },
+  "protocol_sha256": "8b4186e5c9a185e372fce6f81f8dbf643cf2553d171e816f6f98f531e091c94c",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

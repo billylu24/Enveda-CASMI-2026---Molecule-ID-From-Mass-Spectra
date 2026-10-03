@@ -1,0 +1,23 @@
+{
+  "round": "0250_local_packed_candidate_preparation",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "molecules": 2616801,
+    "valid": 2616801,
+    "invalid": 0,
+    "every_packed_fingerprint_exact": true,
+    "seconds": 447.6945350379974,
+    "fingerprints_sha256": "2e915f85c68bcae2bbeb8f499bbe61c25c266be3c17e984df4db62175f012b49",
+    "valid_sha256": "c9e35d84be119455f2154f693af96926f034780d42beb78ae2658f6634b3662b",
+    "source_catalog_sha256": "3cfa1f39ee99bab83861609fb36ead49fa138b191955c0428504f88bd55178da",
+    "sorted_catalog_identity": "0a1c3b2d1b182eac5f34ce7d4a2d6347baf7f778753d1cb919944906eda5fb8a"
+  },
+  "protocol_sha256": "d34885c1a3bf3701fe068ba63b1f4143ae985f2337e843728c5a5e4833dc0938",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

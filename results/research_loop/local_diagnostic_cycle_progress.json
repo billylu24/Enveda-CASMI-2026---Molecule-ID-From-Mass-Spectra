@@ -42,8 +42,7 @@
   },
   "active_rounds": [
     "0235_diagnostic_context_mask_system",
-    "0244_diagnostic_query_zero_control",
-    "0250_local_packed_candidate_preparation"
+    "0252_packed_candidate_full_inference_control"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -161,6 +160,32 @@
     "identified_hotspot": "Candidate fingerprint recomputation and pandas access dominate fixed profile; packed source-bound binary2048 fingerprints prototype only",
     "activation_gate": "Every candidate bit exact + all3340 full-rank exact, no budget or new failure",
     "accuracy_gain_claim": false,
-    "activated": false
+    "activated": false,
+    "prepared_candidates": 2616801,
+    "every_source_fingerprint_exact": true,
+    "window_benchmark": {
+      "unknown": {
+        "queries": 100,
+        "candidate_fingerprint_rows": 84947,
+        "every_candidate_and_float32_bit_exact": true,
+        "legacy_seconds": 14.293808690010337,
+        "packed_seconds_including_exact_checks": 3.0153883270104416
+      },
+      "known": {
+        "queries": 100,
+        "candidate_fingerprint_rows": 98435,
+        "every_candidate_and_float32_bit_exact": true,
+        "legacy_seconds": 15.835071416018764,
+        "packed_seconds_including_exact_checks": 2.8589582100103144
+      }
+    },
+    "activation_full_control_pending": true
+  },
+  "zero_query_control": {
+    "round": "0244_diagnostic_query_zero_control",
+    "control_passed": true,
+    "full_rank_matches": 3340,
+    "budget_fallbacks": 0,
+    "new_failure_contexts": 0
   }
 }
