@@ -533,3 +533,6 @@ Kaggle第17轮56786330已评分0.174，不超过独立公共最佳0.176；预合
 
 
 193 unknown缓存完整回放626.97秒，无fragment预算回退；完整rank33处不同：4处实际SMILES身份、1处原empty证据、28处原163预算fallback已完成。原模型unknown MRR0.042728301（对181+0.000182489），不能把补齐证据算为残差收益，未更新最佳。known重建遗漏来源导致193失败；198仅routing CSV行序哈希不同而拒绝复用，199保留unknown来源兼容但还有3个dev结构遗漏；3个结构从原0001 known真实参考SMILES恢复，不使用query truth或重建公式。新204复用已证明输入相同的unknown原模型输出，继续known；205独立归因所有活跃原empty或budget组，206必须完整rank exact，之后207/208残差对照。Controller要求同时通过历史181和206证据完整原模型门槛，且逐分子CSV与报告一致；失败或未知差异均保留，不降低门槛。
+
+
+本地critic重绑定加固：残差模型base_sha、全部24原张量、architecture/metadata_dim及除diagnostic_precision外全部预处理必须exact，任何改变拒绝复用原critic。新模型完整cached开发结果若有任意budget状态，仅作diagnostic_complete、禁止升级最佳，先完成有界证据准备再重跑；不延长部署1200秒、也不把已有缓存计时当cold。278项回归测试通过；本地提交保留、无远端push。

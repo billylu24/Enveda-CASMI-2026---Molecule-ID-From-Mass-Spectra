@@ -22,6 +22,37 @@ BASE = Path("artifacts/research_loop/rounds/0149_chembl_routed_combination")
 BEST = Path("artifacts/research_loop/rounds/0181_high_strong_slot_full")
 
 
+def validate_residual_binding(encoder, original):
+    """Critic rebinding is valid only when every original encoder tensor is frozen."""
+    base = torch.load(original, map_location="cpu", weights_only=True)
+    residual = torch.load(encoder, map_location="cpu", weights_only=True)
+    metadata = residual.get("diagnostic_residual", {})
+    if (
+        metadata.get("base_sha256") != digest(original)
+        or metadata.get("dimension") != 24
+    ):
+        raise ValueError("Diagnostic residual base binding differs")
+    original_state, state = base["state_dict"], residual["state_dict"]
+    expected = {"base." + k for k in original_state}
+    if {k for k in state if k.startswith("base.")} != expected:
+        raise ValueError("Diagnostic residual base tensor keys differ")
+    for key, value in original_state.items():
+        if not torch.equal(value, state["base." + key]):
+            raise ValueError("Diagnostic residual changed frozen base tensor: " + key)
+    prep = dict(residual["preprocessing"])
+    precision = prep.pop("diagnostic_precision", None)
+    if prep != base["preprocessing"] or precision is not metadata.get("precise"):
+        raise ValueError("Diagnostic residual preprocessing differs")
+    for key in ("architecture", "metadata_dim"):
+        if residual[key] != base[key]:
+            raise ValueError("Diagnostic residual architecture differs")
+    return {
+        "base_sha256": digest(original),
+        "base_tensor_count": len(original_state),
+        "all_base_tensors_exact": True,
+    }
+
+
 def run(
     output,
     encoder,
@@ -58,6 +89,9 @@ def run(
         raise ValueError("Replay reuse is only permitted for original control")
     reuse = Path(reuse_unknown) if reuse_unknown else None
     config = json.loads((BEST / "external_config.json").read_text())
+    base_binding = (
+        validate_residual_binding(encoder, config["encoder"]) if paired else None
+    )
     original_critic = Path(config["critic"])
     weights = torch.load(original_critic, map_location="cpu", weights_only=True)
     weights["encoder_sha256"] = digest(encoder)
@@ -73,6 +107,7 @@ def run(
     freeze(
         output / "protocol.json",
         {
+            "critic_frozen_base_verification": base_binding,
             "control": control,
             "audit_control": audit_control,
             "control_reference": str(comparison),
@@ -113,7 +148,7 @@ def run(
         for r in json.loads(GENERATED.read_text())
     }
     proposal_data = json.loads(proposals.read_text())
-    report, selected = {}, {}
+    report, selected, execution = {}, {}, {}
     lookup = candidate_lookup(ROOT, "researchdev", "unknown")
     for mode in ["unknown", "known"]:
         original = originals[mode]
@@ -233,6 +268,9 @@ def run(
                     "artifacts/research_loop/rounds/0001_mass_v2/reference/" + mode
                 ),
             )
+        execution[mode] = json.loads(
+            (directory / "selected.csv.external.report.json").read_text()
+        )
         ranks = {
             r["molecule_id"]: [
                 Chem.MolToInchiKey(Chem.MolFromSmiles(s))[:14] for s in r["smiles"]
@@ -280,6 +318,25 @@ def run(
         independent_acceptance=False,
         local_only=True,
     )
+    report["execution_diagnostics"] = {
+        mode: {
+            k: value[k]
+            for k in ("molecules", "seconds", "parent_peak_rss_mib", "status_counts")
+        }
+        for mode, value in execution.items()
+    }
+    budget_fallbacks = sum(
+        count
+        for value in execution.values()
+        for status, count in value["status_counts"].items()
+        if "budget" in status
+    )
+    report["development_budget_fallbacks"] = budget_fallbacks
+    if paired and budget_fallbacks:
+        report["diagnostic_only"] = True
+        report["promotion_blocked_reason"] = (
+            "Incomplete physical evidence under cached development deadline; repeat bounded run after cache preparation before accuracy selection"
+        )
     if paired:
         paired_report = json.loads((paired / "report.json").read_text())
         report["required_comparators"] = {
