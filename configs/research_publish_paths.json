@@ -617,7 +617,12 @@
     "kaggle_release_verified_best_0236_reference_once/platform_failure.json",
     "kaggle_release_verified_best_0236_reference_once/physical_dictionary_verification.json",
     "casmi_ml/mass_candidate_capacity_audit.py",
-    "tests/test_mass_candidate_capacity_audit.py"
+    "tests/test_mass_candidate_capacity_audit.py",
+    "casmi_ml/mass_candidate_training.py",
+    "casmi_ml/mass_candidate_compatibility.py",
+    "casmi_ml/mass_candidate_system.py",
+    "casmi_ml/mass_candidate_followup.py",
+    "tests/test_mass_candidate_binding.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

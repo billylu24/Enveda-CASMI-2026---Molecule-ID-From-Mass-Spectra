@@ -179,3 +179,8 @@ unknown原交接中的248个真值＝所选检索排名173个＋5个生成槽位
 362训练谱参考缓存控制通过：缓存只读取整个supplied训练集，不读取query；2423299条可用谱／46079297个CSR条目。actual400选出的556890条谱、10027422个CSR条目（data／indices／indptr）及74956个observed keys与原扫描逐项exact。原扫描31.207秒、缓存7.357秒仅是参考构建单次控制计时；不称整管线配对提速或准确率收益。冻结reference包fresh75全rank exact／预算0；cold400进行中，之后须通过原完整排名、物理字典、资源和平台门槛才能提交这一次236。此前streaming平台1200秒末端物理timeout，尚未发送比赛POST。
 
 363预注册训练容量探针：保持原60000分子、120000 measured pair slots、60D、pinned15、原encoder／critic、sum<=2.0／L2=.01／200次优化，仅在训练softmax分母排除不符合已有35ppm／.006Da质量约束的负例。正例始终保留，全部60000等权，不重采样；无相容负例的query贡献零CE。比较原权重与新权重在同一masked objective上的差异，禁止把不同分母的loss直接当提升。新权重仅私有保存，输出仍为原有效模型，不评价开发集、不自动启用。需后续独立完整zero／chemical／mask两臂验证才能判断科学收益。新reference缓存及mass探针回归共441项通过，ruff通过。
+
+
+reference236冷400完成：409.738秒／4276.563MiB、预算0；完整400 Top25和全部265个原serial物理请求字典exact。私有数据集已上传，Kaggle Notebook `giaok246/casmi26-236-reference-verified-best` v1于UTC 03:01运行，尚无competition提交ID。发布源码保持冻结。
+
+363完成：同masked objective上原权重.490072745005353、新权重.4900526217589283，收益.0000201232464248（很小）；30个非零通道、权重和1.55874。保留原模型。364–368固定完整对照已启动：364原zero全3340 exact先行，365/366相同denominator chemical／全化学mask训练，367/368两臂完整物理系统；全部通过后评价原236／206／181保护，不自动部署、不提交、不push。新训练模型必须额外绑定optimizer／mass mask／pinned negatives／训练wrapper来源，原encoder／critic／60D推理binding仍强制。444项回归通过、ruff通过。
