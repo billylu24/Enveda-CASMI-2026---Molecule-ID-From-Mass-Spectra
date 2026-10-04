@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-04T03:52:47Z",
+  "updated_at": "2026-10-04T04:11:26Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -102,10 +102,10 @@
   },
   "active_rounds": [
     {
-      "id": "0378_forward_augmented_chemical",
+      "id": "0383_energy_conditioned_diagnostic_audit",
       "direction": "representation_diagnostic",
       "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0378_forward_augmented_chemical/report.json"
+      "report": "artifacts/research_loop/rounds/0383_energy_conditioned_diagnostic_audit/report.json"
     }
   ],
   "local_candidate_runtime": {
@@ -215,18 +215,24 @@
     "forward_candidate_capacity_followup.log",
     "forward_augmented_capacity_followup.log",
     "forward_augmented_followup.log",
+    "resume_forward_augmented_cycle.log",
+    "diagnostic_energy_stability_followup.log",
+    "energy_conditioned_diagnostic_followup.log",
     "parallel_generation_followup.log",
     "parallel_generation_corrected_followup.log",
     "finish_dualgen_once236.log",
     "finish_dualgen_once236_v2.log"
   ],
-  "pending_sequence": "Scientific236/evidence286 retained;319 exact3340 validation cache active. Count337, connected344, aromaticH351, five-slot356, individual-gate361 all rejected by frozen promotion gate.359 scorer trace full3340 exact:116unknown available but absent finally,44outside actual100,72scored,22pass original first critic and physical gates. Streaming platform failed physical timeout under original1200s deadline; no competition POST.362 full-train reference cache built without queries, selected556890 rows and10027422 CSR entries plus74956 observed keys exact; source-bound reference fresh75 exact. Reference cold400409.738s/4276.563MiB/zero budget/all400Top25+265rawdict exact passed; platform timeout1250s, no competition POST. Actual assigned T4x2, metadataP100 unavailable; parallel generation375 CLI defect retained;376 corrected independent-seeded whole-molecule400 control underway, fresh source-bound75/cold400/dualGPUplatform400 gates required.363 same-mask training capacity gain.000020123 complete, no accuracy claim.364zero/368mask all3340 exact0budget/newfail;367mass-compatible chemistryunknownMRR.044144968 knownunchanged+.379% rejected.372 train-internal fp->diagnostic prediction heldoutMSE8.8% better than20SMARTS, not accuracy.373 direct forward-strength support replacement capacity worse.003135074; do not run dev systems. 369 original2048 exact665 train-pair aliases all distinct actual graph;576mass-compatible, larger4096/8192bits separate0, radius2counts separate108.370 sparse count radius3/4/6/8 separate310/450/526/572 of576, representation availability only. Persistent local_only; no future submissions or GitHub push.",
+  "pending_sequence": "Scientific236/evidence286 retained;319 exact3340 validation cache active. Count337, connected344, aromaticH351, five-slot356, individual-gate361 all rejected by frozen promotion gate.359 scorer trace full3340 exact:116unknown available but absent finally,44outside actual100,72scored,22pass original first critic and physical gates. Streaming platform failed physical timeout under original1200s deadline; no competition POST.362 full-train reference cache built without queries, selected556890 rows and10027422 CSR entries plus74956 observed keys exact; source-bound reference fresh75 exact. Reference cold400409.738s/4276.563MiB/zero budget/all400Top25+265rawdict exact passed; platform timeout1250s, no competition POST. Actual assigned T4x2, metadataP100 unavailable; parallel generation375 CLI defect retained;376 corrected independent-seeded whole-molecule400 CSV/audit/fullhandoff exact; frozenfresh75exact and forced partition cold400460.713s/3397.641MiB/zero budget/all400Top25+265rawdict exact passed. Dualgen private upload completed and Notebook v1 running; actualdualGPUplatform400 gates still required before the single authorized competition submission. Current status is in one_time_kaggle below.363 same-mask training capacity gain.000020123 complete, no accuracy claim.364zero/368mask all3340 exact0budget/newfail;367mass-compatible chemistryunknownMRR.044144968 knownunchanged+.379% rejected.372 train-internal fp->diagnostic prediction heldoutMSE8.8% better than20SMARTS, not accuracy.373 direct forward-strength support replacement capacity worse.003135074; do not run dev systems. 369 original2048 exact665 train-pair aliases all distinct actual graph;576mass-compatible, larger4096/8192bits separate0, radius2counts separate108.370 sparse count radius3/4/6/8 separate310/450/526/572 of576, representation availability only. 377zero/381mask full3340exact0budget/newfail;380120Dchemical+.379% unknownMRR rejected, knownunchanged. Parent termination recovered original child without retraining or budget refund.382 measured CE audit complete:nonempty Jaccard .598544 different singletonCE vs .800985 sameCE, observational only.383 fixed train-internal molecular-holdout CE-conditioned fp/context ridge and fp*CE interaction audit running; no DINO expansion or accuracy activation. Persistent local_only; no future submissions or GitHub push.",
   "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
   "runtime_claims": "Exact packed/object/array all3340 cached ranks and proposal three full2000 dictionaries. Separate scientific236 one-time release cold400 resource/physical/ranking verified; no paired whole-pipeline speed or independent accuracy claim.",
   "one_time_kaggle": {
     "identity": "2318af9cf3242020638a7cd83ed9c6ba1c92daaf886a65c6e9f288c4fe52eb57",
-    "status": "upload_intent",
-    "remote": null,
+    "status": "notebook_running",
+    "remote": {
+      "kernel": "giaok246/casmi26-236-dualgen-verified-best",
+      "version": 1
+    },
     "submission_id": null,
     "public_score": null,
     "automatic_future_submissions": false
@@ -1775,6 +1781,41 @@
     },
     {
       "id": "0378_forward_augmented_chemical",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0378_forward_augmented_chemical.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0379_forward_augmented_mask",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0379_forward_augmented_mask.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0380_forward_augmented_chemical_system",
+      "direction": "candidate_chemistry_compatibility",
+      "status": "rejected",
+      "decision": "results/research_loop/0380_forward_augmented_chemical_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0381_forward_augmented_mask_system",
+      "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0381_forward_augmented_mask_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0382_diagnostic_energy_stability_audit",
+      "direction": "representation_diagnostic",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0382_diagnostic_energy_stability_audit.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0383_energy_conditioned_diagnostic_audit",
       "direction": "representation_diagnostic",
       "status": "external_running",
       "decision": null,

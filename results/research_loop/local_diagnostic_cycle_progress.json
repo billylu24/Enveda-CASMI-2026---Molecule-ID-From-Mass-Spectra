@@ -13,7 +13,7 @@
     "budget_fallbacks": 861,
     "diagnostic_only": true
   },
-  "next_sequence": "Scientific236/evidence286 retained;319 exact3340 validation cache active. Count337, connected344, aromaticH351, five-slot356, individual-gate361 all rejected by frozen promotion gate.359 scorer trace full3340 exact:116unknown available but absent finally,44outside actual100,72scored,22pass original first critic and physical gates. Streaming platform failed physical timeout under original1200s deadline; no competition POST.362 full-train reference cache built without queries, selected556890 rows and10027422 CSR entries plus74956 observed keys exact; source-bound reference fresh75 exact. Reference cold400409.738s/4276.563MiB/zero budget/all400Top25+265rawdict exact passed; platform timeout1250s, no competition POST. Actual assigned T4x2, metadataP100 unavailable; parallel generation375 CLI defect retained;376 corrected independent-seeded whole-molecule400 control underway, fresh source-bound75/cold400/dualGPUplatform400 gates required.363 same-mask training capacity gain.000020123 complete, no accuracy claim.364zero/368mask all3340 exact0budget/newfail;367mass-compatible chemistryunknownMRR.044144968 knownunchanged+.379% rejected.372 train-internal fp->diagnostic prediction heldoutMSE8.8% better than20SMARTS, not accuracy.373 direct forward-strength support replacement capacity worse.003135074; do not run dev systems. 369 original2048 exact665 train-pair aliases all distinct actual graph;576mass-compatible, larger4096/8192bits separate0, radius2counts separate108.370 sparse count radius3/4/6/8 separate310/450/526/572 of576, representation availability only. Persistent local_only; no future submissions or GitHub push.",
+  "next_sequence": "Scientific236/evidence286 retained;319 exact3340 validation cache active. Count337, connected344, aromaticH351, five-slot356, individual-gate361 all rejected by frozen promotion gate.359 scorer trace full3340 exact:116unknown available but absent finally,44outside actual100,72scored,22pass original first critic and physical gates. Streaming platform failed physical timeout under original1200s deadline; no competition POST.362 full-train reference cache built without queries, selected556890 rows and10027422 CSR entries plus74956 observed keys exact; source-bound reference fresh75 exact. Reference cold400409.738s/4276.563MiB/zero budget/all400Top25+265rawdict exact passed; platform timeout1250s, no competition POST. Actual assigned T4x2, metadataP100 unavailable; parallel generation375 CLI defect retained;376 corrected independent-seeded whole-molecule400 CSV/audit/fullhandoff exact; frozenfresh75exact and forced partition cold400460.713s/3397.641MiB/zero budget/all400Top25+265rawdict exact passed. Dualgen private upload completed and Notebook v1 running; actualdualGPUplatform400 gates still required before the single authorized competition submission. Current status is in one_time_kaggle below.363 same-mask training capacity gain.000020123 complete, no accuracy claim.364zero/368mask all3340 exact0budget/newfail;367mass-compatible chemistryunknownMRR.044144968 knownunchanged+.379% rejected.372 train-internal fp->diagnostic prediction heldoutMSE8.8% better than20SMARTS, not accuracy.373 direct forward-strength support replacement capacity worse.003135074; do not run dev systems. 369 original2048 exact665 train-pair aliases all distinct actual graph;576mass-compatible, larger4096/8192bits separate0, radius2counts separate108.370 sparse count radius3/4/6/8 separate310/450/526/572 of576, representation availability only. 377zero/381mask full3340exact0budget/newfail;380120Dchemical+.379% unknownMRR rejected, knownunchanged. Parent termination recovered original child without retraining or budget refund.382 measured CE audit complete:nonempty Jaccard .598544 different singletonCE vs .800985 sameCE, observational only.383 fixed train-internal molecular-holdout CE-conditioned fp/context ridge and fp*CE interaction audit running; no DINO expansion or accuracy activation. Persistent local_only; no future submissions or GitHub push.",
   "independent_acceptance": false,
   "precision_first_pass": {
     "unknown_mrr25": 0.04268861838422192,
@@ -24,7 +24,7 @@
     "raw_candidates_reused": 127088,
     "new_candidates_scored": 3025
   },
-  "active_round": "0378_forward_augmented_chemical",
+  "active_round": "0383_energy_conditioned_diagnostic_audit",
   "coarse_complete": {
     "unknown_mrr25": 0.04268861838422192,
     "known_mrr25": 0.6046005738683694,
@@ -36,7 +36,7 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0378_forward_augmented_chemical"
+    "0383_energy_conditioned_diagnostic_audit"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -326,7 +326,7 @@
       "original_critic_tensors_exact": true
     }
   },
-  "updated_at": "2026-10-04T03:52:47Z",
+  "updated_at": "2026-10-04T04:11:26Z",
   "current_query_zero_control": "artifacts/research_loop/rounds/0287_query_identity_runtime_zero_control",
   "local_verified_evidence_round": "0286_structure_identity_full_control",
   "multispectrum_attribution": {
@@ -1137,5 +1137,117 @@
     "chemical_minus_mask_unknown_mrr25": 9.999999999999593e-05,
     "winner": false,
     "scope": "Complete repeated development60D aromatic original-H diagnostic-ion comparison, matched exact controls; no independent accuracy claim."
+  },
+  "mass_candidate_attribution": {
+    "local_only": true,
+    "remote_publication": false,
+    "independent_acceptance": false,
+    "arms": {
+      "chemical": {
+        "round": "0367_mass_candidate_chemical_system",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.04414496759057114,
+            "top1": 0.016,
+            "top5": 0.083,
+            "top25": 0.1305,
+            "conditional_mrr25": 0.2223927838315926
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6037921161569266,
+            "top1": 0.564179104477612,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.6821934533307603
+          }
+        }
+      },
+      "identity_masked": {
+        "round": "0368_mass_candidate_mask_system",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.04397830092390447,
+            "top1": 0.016,
+            "top5": 0.0825,
+            "top25": 0.13,
+            "conditional_mrr25": 0.22155315326904013
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6037921161569266,
+            "top1": 0.564179104477612,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.6821934533307603
+          }
+        }
+      }
+    },
+    "chemical_minus_mask_unknown_mrr25": 0.00016666666666666913,
+    "winner": false,
+    "scope": "Complete repeated development original60D chemistry with mass-admissible training denominator, matched exact zero/mask controls. Small training gain is not independent accuracy evidence; no remote publication or runtime activation."
+  },
+  "forward_augmented_attribution": {
+    "local_only": true,
+    "remote_publication": false,
+    "independent_acceptance": false,
+    "arms": {
+      "chemical": {
+        "round": "0380_forward_augmented_chemical_system",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.04414496759057114,
+            "top1": 0.016,
+            "top5": 0.083,
+            "top25": 0.1305,
+            "conditional_mrr25": 0.2223927838315926
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6037921161569266,
+            "top1": 0.564179104477612,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.6821934533307603
+          }
+        }
+      },
+      "identity_masked": {
+        "round": "0381_forward_augmented_mask_system",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.04397830092390447,
+            "top1": 0.016,
+            "top5": 0.0825,
+            "top25": 0.13,
+            "conditional_mrr25": 0.22155315326904013
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6037921161569266,
+            "top1": 0.564179104477612,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.6821934533307603
+          }
+        }
+      }
+    },
+    "chemical_minus_mask_unknown_mrr25": 0.00016666666666666913,
+    "winner": false,
+    "scope": "Complete repeated development fixed120D original binary+predicted measured diagnostic candidate support, matched exact zero/mask controls. Recovery adopts original successful0380, no retraining/reexecution or budget reset. No automatic runtime activation or publication."
   }
 }

@@ -217,3 +217,13 @@ reference平台运行失败，prefetched physical timeout在1250.58秒附近（�
 
 
 dualgen强制分组冷400完整通过：460.713357秒、父进程峰值3397.641MiB、预算0；全部400 Top25和全部265原serial raw request dictionaries exact。generation报告明确本地1GPU、2分组各200、顺序执行，127.532秒，仅identity验证，不称双GPU速度。新单次授权runtime amendment已写、私有数据集上传开始；尚无competition提交ID。377zero全3340 exact／0budget/newfail完成，378chemical训练启动。
+
+
+382原60000同离子训练谱对能量稳定性审计完成：11595重复单行、2179记录仪器不同、3698能量缺失、22352多能量signature、19343不同单一CE、833相同单一CE。有观测证据谱对的通道Jaccard分别.598544／.800985，strength MSE.003839929／.000372289；分组分子构成和采集条件不同，不能解释为随机CE因果对照。高CE相对低CE，phenyl离子平均+.07516、benzyl+.06783、water precursor-loss-.02791；说明不宜直接假设所有诊断证据跨能量不变。后续先固定训练内按分子留出的能量条件预测对照，避免按开发排名调参或盲目扩大DINO。新增审计及原能量／pair／120D回归8项通过，ruff通过。
+
+本地377–381原driver在380运行时终止，380子进程独立完成，预算/新增物理失败0；recovery只接续381与评价，不重训、不重复380、不退款/重置崩溃wall reservation。单次236发布dualgen Notebook自UTC03:54:33运行，平台400门槛尚待通过。
+
+
+377–381已完整结束：377zero／381mask全部3340fullrank exact，预算／新增失败0。380chemical unknown MRR.04414496759057114，相对236+.000166667／+0.379%；known MRR.6037921161569266／Top1不变。unknown241完整rank／15first变，但仅1个真值RR改善，0退步；bootstrap95[0,.0005]，未晋升。保留236，不启用120D容量模型。
+
+383固定训练内部能量条件签名审计启动：同372按分子hash留出，原120Kpair slots中仅有限非负单一CE，排除合并／缺失；每个eligible分子等权。两臂均原2048fp＋仅fit建立adduct/instrument类别＋CE/100，一臂额外2048fp×CE/100，同.01ridge／无罚截距／clamp[0,1]，不使用开发排名、不按结果调维度或超参。GPU分块积累矩避免大型120K×4096tensor。新streaming ridge与dense reference一致、heldout targets改变不影响fit/model、结构CEinteraction回归6项通过。只判断条件签名预测，不宣称完整ranking收益。

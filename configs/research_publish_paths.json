@@ -649,7 +649,11 @@
     "casmi_ml/forward_augmented_training.py",
     "casmi_ml/forward_augmented_system.py",
     "casmi_ml/forward_augmented_followup.py",
-    "tests/test_forward_augmented_compatibility.py"
+    "tests/test_forward_augmented_compatibility.py",
+    "casmi_ml/diagnostic_energy_stability_audit.py",
+    "tests/test_diagnostic_energy_stability_audit.py",
+    "casmi_ml/energy_conditioned_diagnostic_audit.py",
+    "tests/test_energy_conditioned_diagnostic_audit.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
