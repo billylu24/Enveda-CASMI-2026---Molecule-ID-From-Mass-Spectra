@@ -101,6 +101,12 @@ def resolve_score(config, proof):
     spec = proof.get("extended_candidate_compatibility")
     if not spec:
         return None
+    if spec.get("variant") == "aromatic_original_h":
+        from casmi_ml.aromatic_h_candidate_activation import (
+            resolve_score as resolve_aromatic_h,
+        )
+
+        return resolve_aromatic_h(config, proof)
     if spec.get("variant") == "connected_ion":
         from casmi_ml.connected_candidate_activation import (
             resolve_score as resolve_connected,

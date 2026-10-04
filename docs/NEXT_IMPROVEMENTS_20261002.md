@@ -134,3 +134,11 @@ P0 和 P1 可准备数据和基线，但单项开发选择需分开，之后再�
 第二次平台Notebook在候选加载时因pandas2.x不接受`select_dtypes(include=[str,string])`而失败，未评分／未发送比赛POST。保留旧对象存储源码与其本地完整控制绑定，发布wrapper新增PortableObjectPackedCandidateIndex，只对`isinstance(dtype,pd.StringDtype)`列转object，已测object／NA-string／nan-string的值、索引和质量列exact；新portable包再次冷400／fresh75核验。未改变科学模型／recipe／预算。
 
 发布兼容性补充核验：独立pandas2.3.3安装于私有审计目录，未改变主环境。在冻结portable bundle工作目录下，pandas3.0.6与2.3.3两套fresh75均完整rank75/75 exact、预算0、绑定同bundle SHA；并保留先前从repo启动的回放记录，不把它充当冻结bundle源码核验。
+
+341–345完整对照完成：341zero／345mask全部3340完整rank exact，预算／新增物理失败0；344chemical unknownMRR .044061634、known .603792116不变，仅+.000083333（+0.189%），未晋升。unknown228完整rank／11首位身份变化，但真值1改善／2退步；paired-bootstrap95%[-.000166667,.0005]。known65rank变、真值全部不变。346仅训练集审计原图氢数与六种观测离子目标氢数组成，不按断键后默认饱和H计算；比较精确原H／固定±1／重原子支持，先记录训练质量相容正负关联，不直接拟合。
+
+portable236冷400完成：682.080秒／5554.004MiB，预算0；与旧科学local完整400排名exact后开始同一次授权的修订上传。两种pandas75回放分别104.68／108.82秒，只核验兼容性，不据并发计时宣称提速。
+
+346训练氢审计完成：benzyl exactH正例优势21880／负例16990，benzoyl1739／571，benzoate581／103；phenyl29141／29246无明显正向，phosphate exactH支持全为0（原图脱质子过程未建模）。347固定60D训练容量探针仅对这三个芳香离子取exactH交集，其他原离子／损失通道不变。原2.0／L2／critic／pinned15预算不变，保留原有效模型，探针权重仅私有输出，不查看开发分数。
+
+347固定60D容量探针：目标.524647178→.524326126，rawCE.523511346→.523159618，3通道非零、训练修改236863个interaction元素。348–352完整原门槛对照启动，先新源码zero3340 exact再训练；两臂完整物理证据且maskexact前不评价晋升。科学最佳236不变。portable发布私有Notebook v1已经启动，比赛POST尚未发送。

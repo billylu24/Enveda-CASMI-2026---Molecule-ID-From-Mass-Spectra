@@ -1,0 +1,57 @@
+{
+  "round": "0347_aromatic_h_capacity_audit",
+  "direction": "diagnostic_audit",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "train_development_overlap": 0,
+    "capacity_probe": {
+      "original": {
+        "initial_ce": 0.5295985417218343,
+        "final_objective": 0.5246471778145301,
+        "optimizer_iterations": 45,
+        "sum_nonnegative_cosine_weights": 1.7151858236430644,
+        "maximum_possible_bonus": 2.0
+      },
+      "aromatic_h_refinement": {
+        "initial_ce": 0.5295985417218343,
+        "final_objective": 0.5243261255171068,
+        "optimizer_iterations": 48,
+        "sum_nonnegative_cosine_weights": 1.7693683178886377,
+        "maximum_possible_bonus": 2.0
+      },
+      "objective_gain": 0.00032105229742329655,
+      "original_unregularized_ce": 0.5235113460006161,
+      "refined_unregularized_ce": 0.5231596182185275,
+      "refined_ion_weight_sum": 0.1735279771902132,
+      "active_refined_ion_channels": 3,
+      "modified_interaction_elements": 236863
+    },
+    "original_preparation": {
+      "diagnostic_only": true,
+      "local_only": true,
+      "independent_acceptance": false,
+      "training_molecules": 60000,
+      "train_development_overlap": 0,
+      "original_encoder_and_critic_frozen": true,
+      "history": {
+        "initial_ce": 0.5295985417218343,
+        "final_objective": 0.5246471778145301,
+        "optimizer_iterations": 45,
+        "sum_nonnegative_cosine_weights": 1.7151858236430644,
+        "maximum_possible_bonus": 2.0
+      },
+      "seconds": 72.60035136900842,
+      "model_sha256": "a6b4ec0168af2016f859201c1201dce3b37a58253abaaf4871240d24194d27f4",
+      "scope": "Bounded extended candidate chemistry fitting only; current-best complete zero control and paired full3340 systems required"
+    },
+    "scope": "Training-only matched60D aromatic original-H refinement capacity. No scored development or model activation; training objective is not accuracy proof."
+  },
+  "protocol_sha256": "ca5aa6e216779df0aa382094c025244448b5b4890f607f738b1ed52c0f23250d",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

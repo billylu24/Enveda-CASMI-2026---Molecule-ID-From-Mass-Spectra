@@ -551,7 +551,18 @@
     "kaggle_release_verified_best_0236_portable_once/notebook/casmi_chemistry.ipynb",
     "kaggle_release_verified_best_0236_portable_once/notebook/kernel-metadata.json",
     "kaggle_release_verified_best_0236_portable_once/platform_failure.json",
-    "kaggle_release_verified_best_0236_portable_once/implementation_replay_pandas23.json"
+    "kaggle_release_verified_best_0236_portable_once/implementation_replay_pandas23.json",
+    "casmi_ml/fragment_hydrogen_audit.py",
+    "tests/test_fragment_hydrogen_audit.py",
+    "casmi_ml/aromatic_h_capacity_audit.py",
+    "tests/test_aromatic_h_capacity_audit.py",
+    "casmi_ml/aromatic_h_candidate_compatibility.py",
+    "casmi_ml/aromatic_h_candidate_training.py",
+    "casmi_ml/aromatic_h_candidate_system.py",
+    "casmi_ml/aromatic_h_candidate_activation.py",
+    "casmi_ml/aromatic_h_candidate_followup.py",
+    "tests/test_aromatic_h_candidate_compatibility.py",
+    "tests/test_aromatic_h_candidate_activation.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

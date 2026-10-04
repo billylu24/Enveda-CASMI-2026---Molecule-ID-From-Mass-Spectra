@@ -1,0 +1,200 @@
+{
+  "round": "0346_fragment_hydrogen_training_audit",
+  "direction": "diagnostic_audit",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "train_development_overlap": 0,
+    "channels": [
+      {
+        "channel": "phenyl_ion",
+        "observed_compatible_pairs": 310213,
+        "observed_positive_offset_component_occurrences": {
+          "0": 2926,
+          "2": 2,
+          "4": 34,
+          "6": 170,
+          "8": 55
+        },
+        "contrasts": {
+          "heavy_only": {
+            "positive_advantage": 30696,
+            "negative_advantage": 31400,
+            "ties": 248117,
+            "observed_positive_supported": 3126
+          },
+          "original_h_exact": {
+            "positive_advantage": 29141,
+            "negative_advantage": 29246,
+            "ties": 251826,
+            "observed_positive_supported": 2926
+          },
+          "original_h_plus_minus1": {
+            "positive_advantage": 29141,
+            "negative_advantage": 29246,
+            "ties": 251826,
+            "observed_positive_supported": 2926
+          }
+        }
+      },
+      {
+        "channel": "benzyl_tropylium_ion",
+        "observed_compatible_pairs": 294335,
+        "observed_positive_offset_component_occurrences": {
+          "0": 1960,
+          "2": 2,
+          "4": 39,
+          "6": 65,
+          "8": 112
+        },
+        "contrasts": {
+          "heavy_only": {
+            "positive_advantage": 22771,
+            "negative_advantage": 18270,
+            "ties": 253294,
+            "observed_positive_supported": 2144
+          },
+          "original_h_exact": {
+            "positive_advantage": 21880,
+            "negative_advantage": 16990,
+            "ties": 255465,
+            "observed_positive_supported": 1960
+          },
+          "original_h_plus_minus1": {
+            "positive_advantage": 21880,
+            "negative_advantage": 16990,
+            "ties": 255465,
+            "observed_positive_supported": 1960
+          }
+        }
+      },
+      {
+        "channel": "benzoyl_ion",
+        "observed_compatible_pairs": 105090,
+        "observed_positive_offset_component_occurrences": {
+          "0": 163,
+          "2": 85,
+          "6": 2,
+          "8": 12
+        },
+        "contrasts": {
+          "heavy_only": {
+            "positive_advantage": 2924,
+            "negative_advantage": 1712,
+            "ties": 100454,
+            "observed_positive_supported": 255
+          },
+          "original_h_exact": {
+            "positive_advantage": 1739,
+            "negative_advantage": 571,
+            "ties": 102780,
+            "observed_positive_supported": 163
+          },
+          "original_h_plus_minus1": {
+            "positive_advantage": 1739,
+            "negative_advantage": 571,
+            "ties": 102780,
+            "observed_positive_supported": 163
+          }
+        }
+      },
+      {
+        "channel": "benzoate_ion",
+        "observed_compatible_pairs": 7522,
+        "observed_positive_offset_component_occurrences": {
+          "0": 47,
+          "2": 5,
+          "6": 1,
+          "8": 1
+        },
+        "contrasts": {
+          "heavy_only": {
+            "positive_advantage": 614,
+            "negative_advantage": 111,
+            "ties": 6797,
+            "observed_positive_supported": 51
+          },
+          "original_h_exact": {
+            "positive_advantage": 581,
+            "negative_advantage": 103,
+            "ties": 6838,
+            "observed_positive_supported": 47
+          },
+          "original_h_plus_minus1": {
+            "positive_advantage": 581,
+            "negative_advantage": 103,
+            "ties": 6838,
+            "observed_positive_supported": 47
+          }
+        }
+      },
+      {
+        "channel": "phosphate_ion",
+        "observed_compatible_pairs": 1385,
+        "observed_positive_offset_component_occurrences": {
+          "2": 18
+        },
+        "contrasts": {
+          "heavy_only": {
+            "positive_advantage": 61,
+            "negative_advantage": 3,
+            "ties": 1321,
+            "observed_positive_supported": 18
+          },
+          "original_h_exact": {
+            "positive_advantage": 0,
+            "negative_advantage": 0,
+            "ties": 1385,
+            "observed_positive_supported": 0
+          },
+          "original_h_plus_minus1": {
+            "positive_advantage": 0,
+            "negative_advantage": 0,
+            "ties": 1385,
+            "observed_positive_supported": 0
+          }
+        }
+      },
+      {
+        "channel": "dihydrogen_phosphate_ion",
+        "observed_compatible_pairs": 730,
+        "observed_positive_offset_component_occurrences": {
+          "0": 15
+        },
+        "contrasts": {
+          "heavy_only": {
+            "positive_advantage": 40,
+            "negative_advantage": 2,
+            "ties": 688,
+            "observed_positive_supported": 15
+          },
+          "original_h_exact": {
+            "positive_advantage": 40,
+            "negative_advantage": 2,
+            "ties": 688,
+            "observed_positive_supported": 15
+          },
+          "original_h_plus_minus1": {
+            "positive_advantage": 40,
+            "negative_advantage": 2,
+            "ties": 688,
+            "observed_positive_supported": 15
+          }
+        }
+      }
+    ],
+    "seconds": 20.945951577014057,
+    "private_input_sha256": {
+      "private_exact_h_support.npy": "afc757ad3444de1966ae85f39847c605b708c68f31c9df8069e7bc8037eeabfc",
+      "private_near_h_support.npy": "afc757ad3444de1966ae85f39847c605b708c68f31c9df8069e7bc8037eeabfc"
+    },
+    "scope": "Training-only available original-H component composition and association; no fitted scoring or validated mechanism. Fixed ±1 probe is a descriptive band, not chosen deployment tolerance. No development score or newly opened holdout."
+  },
+  "protocol_sha256": "382c93781a4346686587c686683958b6635193b308ed44645e12e61c79fbbb24",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

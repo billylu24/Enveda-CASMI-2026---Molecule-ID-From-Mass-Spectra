@@ -4,8 +4,8 @@
   "maximum_accepted_submissions": 1,
   "github_pushes": false,
   "automatic_future_submissions": false,
-  "identity": "100b7ebea97e11015cdabf4f1e96bcca63fdf301aa4a988843ca82ac5266d0f3",
-  "status": "platform_verification_failed",
+  "identity": "6355fa4eb47f1e3b970575478c98b30552b4904bbdf33558015ce81a30d4886c",
+  "status": "notebook_running",
   "amendments": [
     {
       "identity": "b27505dc6c850055920a15238846cb969e6b88e220ca89bb84e95620779f36c2",
@@ -34,13 +34,59 @@
         "parent_peak_rss_mib": 3259.1875,
         "cause": "Same model/source/recipe but physical scene budget exhausted on platform; no competition POST sent. Rankings differ in105 groups. Preserve original1200s budget and improve runtime before new platform proof."
       }
+    },
+    {
+      "authorized_at": "2026-10-03T23:16:30Z",
+      "authorization": "User: 现在先交一版本 给 kaggle 然后继续本地提升不需要提交",
+      "maximum_accepted_submissions": 1,
+      "github_pushes": false,
+      "automatic_future_submissions": false,
+      "identity": "100b7ebea97e11015cdabf4f1e96bcca63fdf301aa4a988843ca82ac5266d0f3",
+      "release": "/home/giaok/PycharmProjects/Enveda CASMI 2026/kaggle_release_verified_best_0236_packed_once",
+      "status": "platform_verification_failed",
+      "amendments": [
+        {
+          "identity": "b27505dc6c850055920a15238846cb969e6b88e220ca89bb84e95620779f36c2",
+          "release": "/home/giaok/PycharmProjects/Enveda CASMI 2026/kaggle_release_verified_best_0236_once",
+          "status": "platform_verification_failed",
+          "authorized_at": "2026-10-03T23:16:30Z",
+          "maximum_accepted_submissions": 1,
+          "github_pushes": false,
+          "automatic_future_submissions": false,
+          "authorization": "User: 现在先交一版本 给 kaggle 然后继续本地提升不需要提交",
+          "updated_at": "2026-10-03T23:47:47Z",
+          "dataset_uploaded": true,
+          "remote": {
+            "kernel": "giaok246/casmi26-236-verified-local-best",
+            "version": 1
+          },
+          "error": "All400 platform Top25 must match local verified release",
+          "platform_failure": {
+            "valid": false,
+            "submitted": false,
+            "local_full_top25_matches": 295,
+            "molecules": 400,
+            "top1_identity_matches": 400,
+            "budget_fallback_molecules": 105,
+            "seconds": 1291.576875313,
+            "parent_peak_rss_mib": 3259.1875,
+            "cause": "Same model/source/recipe but physical scene budget exhausted on platform; no competition POST sent. Rankings differ in105 groups. Preserve original1200s budget and improve runtime before new platform proof."
+          }
+        }
+      ],
+      "updated_at": "2026-10-04T00:14:47Z",
+      "dataset_uploaded": true,
+      "remote": {
+        "kernel": "giaok246/casmi26-236-packed-verified-best",
+        "version": 1
+      },
+      "error": "Platform pandas string dtype selector incompatible: select_dtypes(include=[str,string]) raises TypeError before external candidate scoring. Existing model/science unchanged, no competition POST sent."
     }
   ],
-  "updated_at": "2026-10-04T00:14:47Z",
+  "updated_at": "2026-10-04T00:30:57Z",
   "dataset_uploaded": true,
   "remote": {
-    "kernel": "giaok246/casmi26-236-packed-verified-best",
+    "kernel": "giaok246/casmi26-236-portable-verified-best",
     "version": 1
-  },
-  "error": "Platform pandas string dtype selector incompatible: select_dtypes(include=[str,string]) raises TypeError before external candidate scoring. Existing model/science unchanged, no competition POST sent."
+  }
 }

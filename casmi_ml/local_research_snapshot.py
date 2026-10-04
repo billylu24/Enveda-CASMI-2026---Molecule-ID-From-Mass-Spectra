@@ -55,8 +55,9 @@ def refresh():
             "full_gap_candidate_followup_v2.log",
             "candidate_count_followup.log",
             "connected_candidate_followup.log",
+            "aromatic_h_candidate_followup.log",
         ],
-        "pending_sequence": "Scientific236/evidence286 retained.319 exact3340 validation cache active.329full-gap +0.379% and337motif-count +0.436% fail unchanged promotion gates; zero334/mask338 all3340 exact, both full physical systems complete.339 training audit67665 broad aliases separated;340 same60D refined-ion objective gain.000292897, rawCEgain.000314444.341-345 fixed60D connected-ion full zero/chemical/mask cycle, exact controls and both complete physical arms required before evaluation. All losses unchanged, no new holdout. Separate explicitly requested single236 Kaggle publication: original platform failed105 budget fallbacks; amended packed/object cold400604.5s/5704MiB/zero budget/all400Top25exact, fresh75exact; packed platform rejected pandas string-selector TypeError before scoring. Portable dtype amendment cold400/fresh75 rerunning; no competition POST yet. Persistent local_only and no GitHub push.",
+        "pending_sequence": "Scientific236/evidence286 retained.319 exact3340 validation cache active.329full-gap +0.379% and337motif-count +0.436% fail unchanged promotion gates; zero334/mask338 all3340 exact, both full physical systems complete.339 training audit67665 broad aliases separated;340 same60D refined-ion objective gain.000292897, rawCEgain.000314444.341-345 completed:zero/mask all3340exact,344chemical+.000083333/+0.189% rejected;unknown1trueRRbetter/2worse.346 training-only H audit complete:exactH suppresses all phosphate support, aromatic channels have directional contrasts.347 same60D aromatic exactH objective gain.000321052/rawCEgain.000351728;348-352 full zero/chemical/mask cycle, other ions/losses unchanged and both full physical arms/exactmask required before evaluation. All losses unchanged, no new holdout. Separate explicitly requested single236 Kaggle publication: original platform failed105 budget fallbacks; amended packed/object cold400604.5s/5704MiB/zero budget/all400Top25exact, fresh75exact; packed platform rejected pandas string-selector TypeError before scoring. Portable dtype amendment cold400682s/5554MiB/zero budget passed; pd3+pd2.3 fresh75exact; private upload complete, portable platformNotebookv1 running; no competition POST yet. Persistent local_only and no GitHub push.",
         "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
         "runtime_claims": "Exact packed/object/array all3340 cached ranks and proposal three full2000 dictionaries. Separate scientific236 one-time release cold400 resource/physical/ranking verified; no paired whole-pipeline speed or independent accuracy claim.",
         "one_time_kaggle": {
@@ -119,6 +120,7 @@ def refresh():
         ("full_gap_candidate_attribution", "full_gap_candidate_attribution.json"),
         ("candidate_count_attribution", "candidate_count_attribution.json"),
         ("connected_candidate_attribution", "connected_candidate_attribution.json"),
+        ("aromatic_h_candidate_attribution", "aromatic_h_candidate_attribution.json"),
     ]:
         report = Path("results/research_loop") / filename
         if report.exists():

@@ -1,0 +1,45 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "round": "0344_connected_candidate_chemical_system",
+  "variant": "connected_candidate_compatibility",
+  "baseline_rankings_sha256": "0a138e378dde6e21de266950251ec6d1d02245450ca73a3187d5f03df64c530b",
+  "rankings_sha256": "8e31d965b3d666c4886c50736142983c01b3e829ada9c24720d44b24d5bbd93a",
+  "report_sha256": "3b7efb5184074b4f46e6fc31b88358875d9377d44bb8363d1fc906a52abdd7f5",
+  "bootstrap_seed": 20261003,
+  "bootstrap_samples": 10000,
+  "cohorts": {
+    "unknown": {
+      "molecules": 2000,
+      "full_rank_changes": 228,
+      "first_identity_changes": 11,
+      "true_rr_improvements": 1,
+      "true_rr_regressions": 2,
+      "true_rr_unchanged": 1997,
+      "new_true_top25": 1,
+      "lost_true_top25": 0,
+      "paired_mrr_gain": 8.333333333333334e-05,
+      "paired_bootstrap95_gain_interval": [
+        -0.00016666666666666663,
+        0.0005
+      ]
+    },
+    "known": {
+      "molecules": 1340,
+      "full_rank_changes": 65,
+      "first_identity_changes": 0,
+      "true_rr_improvements": 0,
+      "true_rr_regressions": 0,
+      "true_rr_unchanged": 1340,
+      "new_true_top25": 0,
+      "lost_true_top25": 0,
+      "paired_mrr_gain": 0.0,
+      "paired_bootstrap95_gain_interval": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "scope": "Aggregate attribution on completed repeated development cohorts. Bootstrap describes this cohort, not unseen-data acceptance. No per-molecule truth or ranking export, no new model or promotion."
+}
