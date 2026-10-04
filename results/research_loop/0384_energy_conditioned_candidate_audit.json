@@ -1,0 +1,41 @@
+{
+  "round": "0384_energy_conditioned_candidate_audit",
+  "direction": "representation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "query_molecules": 9758,
+    "equal_weight_query_row_slots": 19516,
+    "both_molecules_heldout_mass_pair_slots": 51014,
+    "heldout_targets_used_for_fit": false,
+    "train_development_overlap": 0,
+    "arms": {
+      "additive_ce_context": {
+        "pairs": 51014,
+        "positive_bonus_larger": 22369,
+        "negative_bonus_larger": 14684,
+        "bonus_ties": 13961,
+        "mean_positive_minus_negative": 0.0002143075595380087,
+        "molecules_with_any_positive_advantage": 10103,
+        "molecules_with_any_negative_advantage": 7653
+      },
+      "ce_interaction": {
+        "pairs": 51014,
+        "positive_bonus_larger": 22650,
+        "negative_bonus_larger": 14404,
+        "bonus_ties": 13960,
+        "mean_positive_minus_negative": 0.00024373901927082035,
+        "molecules_with_any_positive_advantage": 10151,
+        "molecules_with_any_negative_advantage": 7569
+      }
+    },
+    "seconds": 17.81796257098904,
+    "scope": "Train-internal candidate diagnostics only. Each molecule contributes two eligible weighted slots, so pair counts are slot counts not independent molecules. Candidates share query CE/adduct/instrument; fixed mean-dot cannot demonstrate critic-calibrated final ranking value. Reuses383 model choices fixed before dev; no fitting or activation."
+  },
+  "protocol_sha256": "59941592232d345afb0c05aeab22a19f7e1c002e6ed8110acc0f166e2dddcd6d",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

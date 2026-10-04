@@ -227,3 +227,11 @@ dualgen强制分组冷400完整通过：460.713357秒、父进程峰值3397.641M
 377–381已完整结束：377zero／381mask全部3340fullrank exact，预算／新增失败0。380chemical unknown MRR.04414496759057114，相对236+.000166667／+0.379%；known MRR.6037921161569266／Top1不变。unknown241完整rank／15first变，但仅1个真值RR改善，0退步；bootstrap95[0,.0005]，未晋升。保留236，不启用120D容量模型。
 
 383固定训练内部能量条件签名审计启动：同372按分子hash留出，原120Kpair slots中仅有限非负单一CE，排除合并／缺失；每个eligible分子等权。两臂均原2048fp＋仅fit建立adduct/instrument类别＋CE/100，一臂额外2048fp×CE/100，同.01ridge／无罚截距／clamp[0,1]，不使用开发排名、不按结果调维度或超参。GPU分块积累矩避免大型120K×4096tensor。新streaming ridge与dense reference一致、heldout targets改变不影响fit/model、结构CEinteraction回归6项通过。只判断条件签名预测，不宣称完整ranking收益。
+
+
+383完成：48564eligible单一CE分子，38806fit／9758heldout，97128等分子权重row slots。additive fp+context+CE heldoutMSE.002800916854456941，追加fp×CE interaction .002735631731882882，下降2.33%；fitMSE.002643649／.002563996。不是与372 mean-target的同cohort／同target指标比较，不称完整ranking提升。384不重训，使用冻结两臂模型，全部正负候选使用同一query CE/adduct/instrument，只改实际candidate fp，固定positive-only mean-dot，双方heldout且原质量相容的pinned15比较。无额外权重／开发调参／架构激活。
+
+
+384固定候选条件对照完成：9758query分子、19516等分子权重观测row slots，双方heldout且mass相容51014pinned pair slots。additiveCE正优势22369／负14684／tie13961，CEinteraction22650／14404／13960；mean正减负.000214308→.000243739。原contrast_summary中的molecules_with字段在此调用实际是row-slot数量，不能当独立分子；scope保留该解释。预测MSE与固定dot区分略有改善，仍未证明critic calibrated完整排序收益，不直接启用。
+
+dualgen平台失败：实际2worker concurrent T4x2、生成217.295秒、检索63.263秒，但原共享1200秒末端physical timeout，Notebook1253秒失败，比赛POST未发送。状态已只读确认ERROR且无对应competition submission，标记platform_verification_failed。385仅外部Torch CPU评分4→1以减少与2JVM×2candidate threads竞争，并在规划／消费两次extend间复用同调用完整catalog/index；不改BLAS（此前311因浮点/order不exact拒绝）、模型／原候选order／评分图／物理线程数／时限。先3340完整rankexact，再新source-bound75和cold400全部265原rawdict／Top25／预算／RSSexact，以及平台400证明才上传同一次236比赛提交。新调度／恢复回归5项通过、ruff通过。

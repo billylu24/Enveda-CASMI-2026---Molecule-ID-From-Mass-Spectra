@@ -6,7 +6,7 @@
   "automatic_future_submissions": false,
   "identity": "2318af9cf3242020638a7cd83ed9c6ba1c92daaf886a65c6e9f288c4fe52eb57",
   "release": "/home/giaok/PycharmProjects/Enveda CASMI 2026/kaggle_release_verified_best_0236_dualgen_once",
-  "status": "notebook_running",
+  "status": "platform_verification_failed",
   "amendments": [
     {
       "identity": "b27505dc6c850055920a15238846cb969e6b88e220ca89bb84e95620779f36c2",
@@ -1563,10 +1563,36 @@
       }
     }
   ],
-  "updated_at": "2026-10-04T03:54:33Z",
+  "updated_at": "2026-10-04T04:21:55Z",
   "dataset_uploaded": true,
   "remote": {
     "kernel": "giaok246/casmi26-236-dualgen-verified-best",
     "version": 1
+  },
+  "error": "Actual dualT4 original generation217.295s/retrieval63.263s still reaches original shared1200-second physical deadline; Notebook failed prefetched physical timeout at1245.30s including setup. No competition POST. Preserve all original ranks/resource/physical gates and repair remaining external/physical runtime.",
+  "platform_failure": {
+    "valid": false,
+    "submitted": false,
+    "molecules": 400,
+    "cause": "Actual dualT4 original generation217.295s/retrieval63.263s still reaches original shared1200-second physical deadline; Notebook failed prefetched physical timeout at1245.30s including setup. No competition POST. Preserve all original ranks/resource/physical gates and repair remaining external/physical runtime.",
+    "retrieval_seconds": 63.263079319999974,
+    "generation_seconds": 217.29547618000004,
+    "parallel_generation": {
+      "workers": 2,
+      "concurrent": true,
+      "molecules_per_partition": [
+        200,
+        200
+      ],
+      "shared_original_deadline": true,
+      "source_sha256": "209a2714b2953254843aa77af5e3a3086389d951e684515c9d3bb7d154bbe8c3",
+      "original_generation_source_sha256": "3aca1f215a83ce773a148864310288accf4997290c099f0e9e8e7b1e81c4e47d",
+      "worker_peak_rss_mib": [
+        1744.18359375,
+        1744.18359375
+      ],
+      "scope": "Original single-molecule condition/decoder/sample count/independent spectrum seed/critic/insertion unchanged. Whole molecules partitioned, outputs restored to original order. OneGPU forced partitions sequential for identity verification; twoGPU partitions concurrent. No query predictions packaged and original global physical deadline unchanged."
+    },
+    "platform_log": "artifacts/research_loop/dualgen_platform_progress/casmi26-236-dualgen-verified-best.log"
   }
 }
