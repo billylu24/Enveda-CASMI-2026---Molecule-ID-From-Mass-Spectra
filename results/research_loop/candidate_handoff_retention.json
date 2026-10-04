@@ -1,0 +1,48 @@
+{
+  "diagnostic_only": true,
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "source_sha256": "6a426afadbb0a235c62c1f570c4e45ac10b364c66d725952e44ca19774649e8b",
+  "identity_source_sha256": "e5ecca9173b0be7aab94b3037bacfda5c6a2787a3ba0f38677b9349f4a664b5d",
+  "final_rankings_sha256": "0a138e378dde6e21de266950251ec6d1d02245450ca73a3187d5f03df64c530b",
+  "input_sha256": {
+    "unknown": {
+      "legacy_metrics_sha256": "14227af4aa5b881dae5e878a3f531100d9d9b9d5a2226ce6555bd09e5ff132a7",
+      "original_handoff_sha256": "e225c869893f0a2c7c368012ba0ae66de7b79d1404d260c0d1c0c17284774dbc"
+    },
+    "known": {
+      "legacy_metrics_sha256": "e6df02ac385ca8c4bd77262ca51558e567e2a9910a89fb046a0c5d399c1978f3",
+      "original_handoff_sha256": "9956cbe9b566006d19a26cb2bb89a0aadde6217b9cfc4a277e301aa05b3eede0"
+    }
+  },
+  "cohorts": {
+    "unknown": {
+      "molecules": 2000,
+      "legacy_candidate_availability_count": 397,
+      "original_handoff_rows": 1995,
+      "original_handoff_missing_rows": 5,
+      "truth_in_original_full_handoff": 248,
+      "truth_in_final_full_list": 281,
+      "truth_newly_added_by_external_path": 33,
+      "original_handoff_truth_removed_by_external_path": 0,
+      "legacy_available_but_not_in_original_handoff": 149,
+      "legacy_available_but_not_in_final_list": 116,
+      "original_handoff_truth_outside_legacy_available": 0
+    },
+    "known": {
+      "molecules": 1340,
+      "legacy_candidate_availability_count": 1186,
+      "original_handoff_rows": 1340,
+      "original_handoff_missing_rows": 0,
+      "truth_in_original_full_handoff": 1183,
+      "truth_in_final_full_list": 1184,
+      "truth_newly_added_by_external_path": 1,
+      "original_handoff_truth_removed_by_external_path": 0,
+      "legacy_available_but_not_in_original_handoff": 3,
+      "legacy_available_but_not_in_final_list": 2,
+      "original_handoff_truth_outside_legacy_available": 0
+    }
+  },
+  "scope": "Completed repeated-development attribution only. Legacy covered is inherited availability; this traces original stored label-free generated/retrieval handoff and final complete236 lists. Does not determine a specific earlier gate or permit truth-based candidate selection. No new model, threshold, holdout or deployment."
+}

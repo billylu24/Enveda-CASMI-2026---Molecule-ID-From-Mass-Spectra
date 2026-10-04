@@ -46,11 +46,13 @@
     "Portable frozen236 candidate storage verified fresh75 full ranks in both pandas3.0.6 and isolated2.3.3,0budget, same frozen bundle SHA. New cold400 still required; compatibility proof is not accuracy improvement.",
     "341-345 complete:zero341/mask345 full3340 exact0budget/newfailure;344chemicalMRR.044061634 known.603792116 unchanged,+.189% fails gates.unknown1RRbetter/2worse,bootstrap95[-.000166667,.0005]. Do not activate connected heavy-only refinement.",
     "346 training H audit:benzyl exactH positive21880/negative16990,benzoyl1739/571,benzoate581/103;phenyl near neutral,phosphate exactH supports0 due original graph proton mismatch. No universal exact-H rule or mechanism claim.",
-    "347 same60D training aromatic exactH objective.524647178->.524326126/rawCE.523511346->.523159618,3active channels, no development scores or deployment. All other ions/losses retained."
+    "347 same60D training aromatic exactH objective.524647178->.524326126/rawCE.523511346->.523159618,3active channels, no development scores or deployment. All other ions/losses retained.",
+    "348/352 all3340 zero/mask exact0budget/newfail;351 aromaticHMRR.044078301 known.603792116 unchanged,+.227% rejected.unknown2RRbetter/2worse bootstrap95[-.000166667,.0005]. No aromatic exactH activation.",
+    "Original handoff diagnosis unknown248 truth members vs final281,external adds33/removes0;149 legacy available truths not in original handoff,116 missing finally. Does not attribute missing candidates to a specific earlier gate or permit truth-driven selection."
   ],
   "current_sequence": [
-    "Single requested scientific236 submission still unconsumed. First platform105 budget fallbacks, packed platform failed pandas string-selector incompatibility before scoring. Portable dtype runtime amendment cold400/fresh75 reverify, all400 exact unchanged recipe/models and budgets before next platform run; failed versions retained.",
-    "348-352 complete aromatic original-H cycle running:zero348 all3340 exact before349/350 matched60K paired chemical/mask fitting;351/352 fullphysical2000+1340 and maskexact BEFORE scienceevaluation/activation. Source-bound original60D/allotherions/losses/critic/2.0/L2.01/margin.05/gates unchanged. No new holdout/publication."
+    "Single requested236 competition POST still unconsumed; portable platform105 budget fallbacks despite1229s runtime, fullrank gate rejects. New two-JVM request scheduling with original per-request2threads/models/science/shareddeadlines needs corrected354 all3340 control,cold400,fresh75/fullphysicaldict exact and platform400 before one submission.",
+    "Scientific scores337/344/351 all rejected after complete matching controls. Continue local direction from source-bound original candidate handoff/retention diagnosis; no dev-selected weights, new holdout or automatic remote publication."
   ],
   "gan": {
     "status": "not_expanded",

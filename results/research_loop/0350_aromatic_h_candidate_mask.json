@@ -1,0 +1,27 @@
+{
+  "round": "0350_aromatic_h_candidate_mask",
+  "direction": "representation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "train_development_overlap": 0,
+    "original_encoder_and_critic_frozen": true,
+    "history": {
+      "initial_ce": 0.5295985417218343,
+      "final_objective": 0.5295985417218343,
+      "optimizer_iterations": 1,
+      "sum_nonnegative_cosine_weights": 0.0,
+      "maximum_possible_bonus": 2.0
+    },
+    "seconds": 65.21011882499442,
+    "model_sha256": "1f5c0a19de039a3603918791291f1d33c7d0d88a1a182542a5be309ce9a1f93f",
+    "scope": "Matched60D connected-ion fit only; zero and exact masked complete physical systems required before scientific evaluation."
+  },
+  "protocol_sha256": "75a2d7341c396e2eaf37056298c3199db0ac15bda3909b591403166e98c5813c",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

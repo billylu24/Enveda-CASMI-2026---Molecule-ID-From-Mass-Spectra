@@ -1,0 +1,56 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "arms": {
+    "chemical": {
+      "round": "0351_aromatic_h_candidate_chemical_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04407830092390447,
+          "top1": 0.016,
+          "top5": 0.0835,
+          "top25": 0.1305,
+          "conditional_mrr25": 0.2220569316065716
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6037921161569266,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6821934533307603
+        }
+      }
+    },
+    "identity_masked": {
+      "round": "0352_aromatic_h_candidate_mask_system",
+      "metrics": {
+        "unknown": {
+          "molecules": 2000,
+          "candidate_recall": 0.1985,
+          "mrr25": 0.04397830092390447,
+          "top1": 0.016,
+          "top5": 0.0825,
+          "top25": 0.13,
+          "conditional_mrr25": 0.22155315326904013
+        },
+        "known": {
+          "molecules": 1340,
+          "candidate_recall": 0.8850746268656716,
+          "mrr25": 0.6037921161569266,
+          "top1": 0.564179104477612,
+          "top5": 0.6335820895522388,
+          "top25": 0.7395522388059701,
+          "conditional_mrr25": 0.6821934533307603
+        }
+      }
+    }
+  },
+  "chemical_minus_mask_unknown_mrr25": 9.999999999999593e-05,
+  "winner": false,
+  "scope": "Complete repeated development60D aromatic original-H diagnostic-ion comparison, matched exact controls; no independent accuracy claim."
+}

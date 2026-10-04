@@ -562,7 +562,22 @@
     "casmi_ml/aromatic_h_candidate_activation.py",
     "casmi_ml/aromatic_h_candidate_followup.py",
     "tests/test_aromatic_h_candidate_compatibility.py",
-    "tests/test_aromatic_h_candidate_activation.py"
+    "tests/test_aromatic_h_candidate_activation.py",
+    "casmi_ml/candidate_handoff_retention_audit.py",
+    "casmi_ml/portable_fragment_prefetch.py",
+    "casmi_ml/fragment_prefetch_control.py",
+    "casmi_ml/portable_prefetch_pipeline.py",
+    "casmi_ml/portable_prefetch_release.py",
+    "tests/test_portable_fragment_prefetch.py",
+    "kaggle_release_verified_best_0236_prefetch_once/status.json",
+    "kaggle_release_verified_best_0236_prefetch_once/verification.json",
+    "kaggle_release_verified_best_0236_prefetch_once/implementation_replay.json",
+    "kaggle_release_verified_best_0236_prefetch_once/kaggle_verification.json",
+    "kaggle_release_verified_best_0236_prefetch_once/one_time_submission.json",
+    "kaggle_release_verified_best_0236_prefetch_once/runtime_amendment.json",
+    "kaggle_release_verified_best_0236_prefetch_once/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_verified_best_0236_prefetch_once/notebook/kernel-metadata.json",
+    "kaggle_release_verified_best_0236_prefetch_once/platform_failure.json"
   ],
   "aggregate_directories": [
     "results/research_loop",

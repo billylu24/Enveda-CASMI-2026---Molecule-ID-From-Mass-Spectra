@@ -1,0 +1,9 @@
+{
+  "valid": false,
+  "submitted": false,
+  "molecules": 400,
+  "local_full_top25_matches": 295,
+  "budget_fallback_molecules": 105,
+  "seconds": 1229.400447582,
+  "cause": "Portable selector compatibility fixed; platform still exhausts original1200-second physical scene deadline. Preserve fullrank/resource/budget gates; no competition POST."
+}

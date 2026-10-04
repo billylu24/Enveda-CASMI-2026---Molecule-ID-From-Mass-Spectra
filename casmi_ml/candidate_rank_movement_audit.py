@@ -54,8 +54,18 @@ def run(directory, variant, output):
                 for _ in range(100)
             ]
         )
+        legacy_available = set(a.index[a.covered > 0])
+        retained_truth = {key for key, ranks in actual[mode].items() if key in ranks}
         summary[mode] = {
             "molecules": expected,
+            "legacy_candidate_availability_count": len(legacy_available),
+            "truth_retained_in_full_list": len(retained_truth),
+            "legacy_available_truth_not_retained": len(
+                legacy_available - retained_truth
+            ),
+            "retained_truth_not_legacy_available": len(
+                retained_truth - legacy_available
+            ),
             "full_rank_changes": sum(
                 actual[mode][k] != baseline[mode][k] for k in actual[mode]
             ),
@@ -88,7 +98,7 @@ def run(directory, variant, output):
         "bootstrap_seed": 20261003,
         "bootstrap_samples": 10000,
         "cohorts": summary,
-        "scope": "Aggregate attribution on completed repeated development cohorts. Bootstrap describes this cohort, not unseen-data acceptance. No per-molecule truth or ranking export, no new model or promotion.",
+        "scope": "Aggregate attribution on completed repeated development cohorts. Inherited covered flag is legacy candidate availability, not an audit of every current retrieval stage; retention is exact truth membership in full stored output list. Does not attribute exclusion to a specific gate. Bootstrap describes this cohort, not unseen-data acceptance. No per-molecule truth or ranking export, no new model or promotion.",
     }
     write_json(output, result)
     return result
