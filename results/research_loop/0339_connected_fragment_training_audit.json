@@ -1,0 +1,386 @@
+{
+  "round": "0339_connected_fragment_training_audit",
+  "direction": "diagnostic_audit",
+  "status": "diagnostic_complete",
+  "report": {
+    "all12_broad_alias_pairs": 259855,
+    "aliases_separated_by_connected_refinement": 67665,
+    "unique_broad_patterns": 41,
+    "unique_refined_patterns": 54,
+    "channels": [
+      {
+        "channel": "phenyl_ion:ion",
+        "observed_compatible_pairs": 310213,
+        "broad_ties": 224066,
+        "broad_ties_separated": 46738,
+        "separated_ties_positive_advantage": 22994,
+        "separated_ties_negative_advantage": 23744,
+        "refined_positive_advantage": 30696,
+        "refined_negative_advantage": 31400
+      },
+      {
+        "channel": "phenyl_ion:precursor_loss",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "phenyl_ion:peak_loss",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "benzyl_tropylium_ion:ion",
+        "observed_compatible_pairs": 294335,
+        "broad_ties": 214183,
+        "broad_ties_separated": 32422,
+        "separated_ties_positive_advantage": 17681,
+        "separated_ties_negative_advantage": 14741,
+        "refined_positive_advantage": 22771,
+        "refined_negative_advantage": 18270
+      },
+      {
+        "channel": "benzyl_tropylium_ion:precursor_loss",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "benzyl_tropylium_ion:peak_loss",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "benzoyl_ion:ion",
+        "observed_compatible_pairs": 105090,
+        "broad_ties": 76311,
+        "broad_ties_separated": 1118,
+        "separated_ties_positive_advantage": 621,
+        "separated_ties_negative_advantage": 497,
+        "refined_positive_advantage": 2924,
+        "refined_negative_advantage": 1712
+      },
+      {
+        "channel": "benzoyl_ion:precursor_loss",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "benzoyl_ion:peak_loss",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "benzoate_ion:ion",
+        "observed_compatible_pairs": 7522,
+        "broad_ties": 6130,
+        "broad_ties_separated": 46,
+        "separated_ties_positive_advantage": 29,
+        "separated_ties_negative_advantage": 17,
+        "refined_positive_advantage": 614,
+        "refined_negative_advantage": 111
+      },
+      {
+        "channel": "benzoate_ion:precursor_loss",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "benzoate_ion:peak_loss",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "phosphate_ion:ion",
+        "observed_compatible_pairs": 1385,
+        "broad_ties": 1277,
+        "broad_ties_separated": 2,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 2,
+        "refined_positive_advantage": 61,
+        "refined_negative_advantage": 3
+      },
+      {
+        "channel": "phosphate_ion:precursor_loss",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "phosphate_ion:peak_loss",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "dihydrogen_phosphate_ion:ion",
+        "observed_compatible_pairs": 730,
+        "broad_ties": 664,
+        "broad_ties_separated": 1,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 1,
+        "refined_positive_advantage": 40,
+        "refined_negative_advantage": 2
+      },
+      {
+        "channel": "dihydrogen_phosphate_ion:precursor_loss",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "dihydrogen_phosphate_ion:peak_loss",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "methanol:ion",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "methanol:precursor_loss",
+        "observed_compatible_pairs": 48159,
+        "broad_ties": 23039,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 23327,
+        "refined_negative_advantage": 1793
+      },
+      {
+        "channel": "methanol:peak_loss",
+        "observed_compatible_pairs": 433456,
+        "broad_ties": 335127,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 54009,
+        "refined_negative_advantage": 44320
+      },
+      {
+        "channel": "sulfur_dioxide:ion",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "sulfur_dioxide:precursor_loss",
+        "observed_compatible_pairs": 18924,
+        "broad_ties": 9585,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "sulfur_dioxide:peak_loss",
+        "observed_compatible_pairs": 352165,
+        "broad_ties": 294768,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "sulfur_trioxide:ion",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "sulfur_trioxide:precursor_loss",
+        "observed_compatible_pairs": 4953,
+        "broad_ties": 4895,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 53,
+        "refined_negative_advantage": 4
+      },
+      {
+        "channel": "sulfur_trioxide:peak_loss",
+        "observed_compatible_pairs": 312917,
+        "broad_ties": 312522,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 137,
+        "refined_negative_advantage": 230
+      },
+      {
+        "channel": "phosphoric_acid:ion",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "phosphoric_acid:precursor_loss",
+        "observed_compatible_pairs": 7676,
+        "broad_ties": 7120,
+        "broad_ties_separated": 2,
+        "separated_ties_positive_advantage": 2,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 498,
+        "refined_negative_advantage": 16
+      },
+      {
+        "channel": "phosphoric_acid:peak_loss",
+        "observed_compatible_pairs": 317417,
+        "broad_ties": 316299,
+        "broad_ties_separated": 2,
+        "separated_ties_positive_advantage": 2,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 549,
+        "refined_negative_advantage": 356
+      },
+      {
+        "channel": "metaphosphoric_acid:ion",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "metaphosphoric_acid:precursor_loss",
+        "observed_compatible_pairs": 6682,
+        "broad_ties": 6530,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 133,
+        "refined_negative_advantage": 16
+      },
+      {
+        "channel": "metaphosphoric_acid:peak_loss",
+        "observed_compatible_pairs": 326655,
+        "broad_ties": 325705,
+        "broad_ties_separated": 2,
+        "separated_ties_positive_advantage": 2,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 337,
+        "refined_negative_advantage": 383
+      },
+      {
+        "channel": "acetic_acid:ion",
+        "observed_compatible_pairs": 0,
+        "broad_ties": 0,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 0,
+        "refined_negative_advantage": 0
+      },
+      {
+        "channel": "acetic_acid:precursor_loss",
+        "observed_compatible_pairs": 48619,
+        "broad_ties": 47870,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 628,
+        "refined_negative_advantage": 121
+      },
+      {
+        "channel": "acetic_acid:peak_loss",
+        "observed_compatible_pairs": 415015,
+        "broad_ties": 413188,
+        "broad_ties_separated": 0,
+        "separated_ties_positive_advantage": 0,
+        "separated_ties_negative_advantage": 0,
+        "refined_positive_advantage": 923,
+        "refined_negative_advantage": 904
+      }
+    ],
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "train_development_overlap": 0,
+    "disconnected_training_molecules": 0,
+    "private_support_sha256": "1ac35f8ca9b15416a79928a74c2b1ed5da140b0d512796908935d7c2ae33f7df",
+    "seconds": 21.91914397198707,
+    "scope": "Training-only heavy atom connectivity refinement availability/association. Directional contrasts are observational, not a chemical mechanism or predictive gain. No best/model update; no new holdout or publication."
+  },
+  "protocol_sha256": "8d60ace8da6eca398202424ef0ccc8a3ad50d2a85ceb8c9aa8ae4d2637d705b7",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

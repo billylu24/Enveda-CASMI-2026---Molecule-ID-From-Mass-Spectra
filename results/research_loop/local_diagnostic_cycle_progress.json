@@ -13,7 +13,7 @@
     "budget_fallbacks": 861,
     "diagnostic_only": true
   },
-  "next_sequence": "Scientific236/evidence286 retained.319 exact3340 validation cache active.323max and329full-gap rejected; latter gain+.000166667/+0.379% from1/2000 true rank change.331 broad chemistry ties43.64%,332 counts separate42503 broad aliases,333 fixed120D training objective gain.000073151.334-338 new count cycle: all3340 zero exact, paired60K chemical/mask fit, both complete full physical systems and exactmask before scientific evaluation/activation. Separate explicitly requested single236 Kaggle publication and verification; local_only research and no GitHub push persist.",
+  "next_sequence": "Scientific236/evidence286 retained.319 exact3340 validation cache active.329full-gap +0.379% and337motif-count +0.436% fail unchanged promotion gates; zero334/mask338 all3340 exact, both full physical systems complete.339 training audit67665 broad aliases separated;340 same60D refined-ion objective gain.000292897, rawCEgain.000314444.341-345 fixed60D connected-ion full zero/chemical/mask cycle, exact controls and both complete physical arms required before evaluation. All losses unchanged, no new holdout. Separate explicitly requested single236 Kaggle publication: original platform failed105 budget fallbacks; amended packed/object cold400604.5s/5704MiB/zero budget/all400Top25exact, fresh75exact; uploaded platform400 verification running. Persistent local_only and no GitHub push.",
   "independent_acceptance": false,
   "precision_first_pass": {
     "unknown_mrr25": 0.04268861838422192,
@@ -24,7 +24,7 @@
     "raw_candidates_reused": 127088,
     "new_candidates_scored": 3025
   },
-  "active_round": "0334_candidate_count_zero_control",
+  "active_round": "0341_connected_candidate_zero_control",
   "coarse_complete": {
     "unknown_mrr25": 0.04268861838422192,
     "known_mrr25": 0.6046005738683694,
@@ -36,7 +36,7 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0334_candidate_count_zero_control"
+    "0341_connected_candidate_zero_control"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -326,7 +326,7 @@
       "original_critic_tensors_exact": true
     }
   },
-  "updated_at": "2026-10-03T23:26:49Z",
+  "updated_at": "2026-10-04T00:02:55Z",
   "current_query_zero_control": "artifacts/research_loop/rounds/0287_query_identity_runtime_zero_control",
   "local_verified_evidence_round": "0286_structure_identity_full_control",
   "multispectrum_attribution": {
@@ -969,5 +969,61 @@
     },
     "chemical_minus_mask_unknown_mrr25": 0.00016666666666666913,
     "scope": "Complete repeated development3340 with bounded candidate SMARTS-conditioned observed chemistry, unchanged original encoder/critic and physical routing. Mask equals original critic; not independent acceptance or cold inference."
+  },
+  "candidate_count_attribution": {
+    "local_only": true,
+    "remote_publication": false,
+    "independent_acceptance": false,
+    "arms": {
+      "chemical": {
+        "round": "0337_candidate_count_chemical_system",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.04416996759057113,
+            "top1": 0.016,
+            "top5": 0.083,
+            "top25": 0.1305,
+            "conditional_mrr25": 0.22251872841597548
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6037921161569266,
+            "top1": 0.564179104477612,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.6821934533307603
+          }
+        }
+      },
+      "identity_masked": {
+        "round": "0338_candidate_count_mask_system",
+        "metrics": {
+          "unknown": {
+            "molecules": 2000,
+            "candidate_recall": 0.1985,
+            "mrr25": 0.04397830092390447,
+            "top1": 0.016,
+            "top5": 0.0825,
+            "top25": 0.13,
+            "conditional_mrr25": 0.22155315326904013
+          },
+          "known": {
+            "molecules": 1340,
+            "candidate_recall": 0.8850746268656716,
+            "mrr25": 0.6037921161569266,
+            "top1": 0.564179104477612,
+            "top5": 0.6335820895522388,
+            "top25": 0.7395522388059701,
+            "conditional_mrr25": 0.6821934533307603
+          }
+        }
+      }
+    },
+    "chemical_minus_mask_unknown_mrr25": 0.00019166666666665944,
+    "winner": false,
+    "scope": "Complete repeated development120D motif presence/multiplicity comparison, matched exact controls; no independent accuracy claim."
   }
 }

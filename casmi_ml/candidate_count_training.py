@@ -58,6 +58,17 @@ def run(output, mask_chemical_channels=False):
             mask,
             checkpoint,
         )
+        updated = dict(updated)
+        updated["regularization_penalty"] = float(0.005 * (weights @ weights))
+        updated["unregularized_training_ce"] = (
+            updated["final_objective"] - updated["regularization_penalty"]
+        )
+        updated["original60_regularization_penalty"] = float(
+            0.005 * (original @ original)
+        )
+        updated["original60_unregularized_training_ce"] = (
+            history["final_objective"] - updated["original60_regularization_penalty"]
+        )
         fitted.update(weights=weights, history=updated)
         return original, history
 

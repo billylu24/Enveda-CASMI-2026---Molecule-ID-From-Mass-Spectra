@@ -1,9 +1,16 @@
 {
-  "status": "prepared",
+  "status": "platform_verification_failed",
   "identity": "b27505dc6c850055920a15238846cb969e6b88e220ca89bb84e95620779f36c2",
   "scientific_round": "0236_low_supported_leader_first",
   "development_eligible": true,
   "independent_acceptance": false,
-  "uploaded": false,
-  "submitted": false
+  "uploaded": true,
+  "submitted": false,
+  "submission_id": null,
+  "public_score": null,
+  "remote_release": {
+    "kernel": "giaok246/casmi26-236-verified-local-best",
+    "version": 1
+  },
+  "automatic_future_submissions": false
 }

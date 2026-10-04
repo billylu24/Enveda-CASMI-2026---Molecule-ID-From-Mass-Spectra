@@ -111,6 +111,74 @@ def authorize(release, c=None):
     return c.change(operation)
 
 
+def amend_unsubmitted(release, c=None):
+    """Repair the same requested science version without consuming another submission."""
+    c = c or Controller()
+    if not c.local_only():
+        raise ValueError("Persistent local-only research policy required")
+    release = Path(release).resolve()
+    identity = check_release(release, c)
+    previous = c.read()["one_time_kaggle"]
+    old = Path(previous["release"])
+    if (
+        previous["status"] != "platform_verification_failed"
+        or previous.get("submission_id") is not None
+    ):
+        raise ValueError(
+            "Only a definitely unsubmitted platform failure may be amended"
+        )
+    old_sums, new_sums = [
+        json.loads((p / "bundle/SHA256SUMS.json").read_text()) for p in (old, release)
+    ]
+    models = {name: sha for name, sha in old_sums.items() if Path(name).suffix == ".pt"}
+    new_models = {
+        name: sha for name, sha in new_sums.items() if Path(name).suffix == ".pt"
+    }
+    if not models or models != new_models:
+        raise ValueError("Frozen model assets must remain identical")
+    if digest(old / "bundle/deployment_recipe.json") != digest(
+        release / "bundle/deployment_recipe.json"
+    ):
+        raise ValueError("Frozen scientific recipe must remain identical")
+    old_rows, new_rows = [
+        pd.read_csv(p / "local_output/submission.csv")
+        .set_index("molecule_id")
+        .sort_index()
+        for p in (old, release)
+    ]
+    if len(old_rows) != 400 or not old_rows.equals(new_rows):
+        raise ValueError("All400 original complete local rankings must remain exact")
+
+    def operation(state):
+        current = state["one_time_kaggle"]
+        if (
+            current != previous
+            or state.get("pending_submission") is not None
+            or current["identity"] in state["submissions"]
+        ):
+            raise ValueError("Accepted or ambiguous submission cannot be amended")
+        updated = {
+            key: current[key]
+            for key in (
+                "authorized_at",
+                "authorization",
+                "maximum_accepted_submissions",
+                "github_pushes",
+                "automatic_future_submissions",
+            )
+        }
+        updated.update(
+            identity=identity,
+            release=str(release),
+            status="authorized",
+            amendments=[*current.get("amendments", []), current],
+        )
+        state["one_time_kaggle"] = updated
+        return updated
+
+    return c.change(operation)
+
+
 def update(c, **fields):
     c.change(lambda s: s["one_time_kaggle"].update(fields, updated_at=now()))
     value = c.read()["one_time_kaggle"]
@@ -245,7 +313,7 @@ def step(c, api):
             raise ValueError("Remote submission identifier changed")
         c.finish_submission(value["identity"], row.ref)
         remote_status = str(row.status).split(".")[-1].upper()
-        score = float(row.public_score) if row.public_score is not None else None
+        score = float(row.public_score) if row.public_score not in (None, "") else None
         c.update_submission(value["identity"], remote_status, score)
         update(c, status=remote_status, submission_id=int(row.ref), public_score=score)
         return remote_status
@@ -307,6 +375,7 @@ def step(c, api):
         api.kernels_output(
             value["remote"]["kernel"],
             str(release / "kaggle_output"),
+            file_pattern=r"(^|/)(submission\.csv(?:\.report\.json|\.external\.report\.json)?|retrieval\.csv\.report\.json)$",
             force=True,
             quiet=True,
         )
@@ -366,6 +435,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--release", type=Path)
     p.add_argument("--authorize", action="store_true")
+    p.add_argument("--amend-unsubmitted", action="store_true")
     p.add_argument("--loop", action="store_true")
     args = p.parse_args()
     c = Controller()
@@ -373,6 +443,10 @@ def main():
         if args.release is None:
             p.error("--release required for explicit authorization")
         authorize(args.release, c)
+    if args.amend_unsubmitted:
+        if args.release is None:
+            p.error("--release required for runtime amendment")
+        amend_unsubmitted(args.release, c)
     api = KaggleApi()
     api.authenticate()
     with (c.root / "one_time_kaggle.lock").open("a") as lock:

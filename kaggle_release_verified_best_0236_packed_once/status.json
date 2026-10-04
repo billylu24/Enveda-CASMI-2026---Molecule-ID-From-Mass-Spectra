@@ -1,0 +1,16 @@
+{
+  "status": "notebook_running",
+  "identity": "100b7ebea97e11015cdabf4f1e96bcca63fdf301aa4a988843ca82ac5266d0f3",
+  "scientific_round": "0236_low_supported_leader_first",
+  "development_eligible": true,
+  "independent_acceptance": false,
+  "uploaded": true,
+  "submitted": false,
+  "submission_id": null,
+  "public_score": null,
+  "remote_release": {
+    "kernel": "giaok246/casmi26-236-packed-verified-best",
+    "version": 1
+  },
+  "automatic_future_submissions": false
+}

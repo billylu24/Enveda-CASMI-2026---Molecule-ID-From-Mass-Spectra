@@ -1,0 +1,19 @@
+{
+  "valid": true,
+  "molecules": 75,
+  "full_rank_matches": 75,
+  "fresh_fragment_cache": true,
+  "development_budget_fallbacks": 0,
+  "seconds": 67.06740525001078,
+  "status_counts": {
+    "fragment_evidence_fallback": 30,
+    "critic_gate_fallback": 21,
+    "high_strong_slot_inserted": 16,
+    "high_fragment_remove_tail": 3,
+    "strong_original_gate_fallback": 3,
+    "low_supported_leader_first": 2
+  },
+  "bundle_sums_sha256": "91b4fb49e272fb1ce13f9a6135fc04d2240a961659d6ce7bf56af08a51b77b5b",
+  "independent_acceptance": false,
+  "scope": "All75 original label-free handoffs, fresh physical cache, source-bound frozen236 full ranks; implementation check, no new accuracy acceptance."
+}

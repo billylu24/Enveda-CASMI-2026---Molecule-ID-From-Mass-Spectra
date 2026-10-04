@@ -1,0 +1,11 @@
+{
+  "valid": false,
+  "submitted": false,
+  "local_full_top25_matches": 295,
+  "molecules": 400,
+  "top1_identity_matches": 400,
+  "budget_fallback_molecules": 105,
+  "seconds": 1291.576875313,
+  "parent_peak_rss_mib": 3259.1875,
+  "cause": "Same model/source/recipe but physical scene budget exhausted on platform; no competition POST sent. Rankings differ in105 groups. Preserve original1200s budget and improve runtime before new platform proof."
+}

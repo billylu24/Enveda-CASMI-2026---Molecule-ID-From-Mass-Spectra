@@ -101,6 +101,12 @@ def resolve_score(config, proof):
     spec = proof.get("extended_candidate_compatibility")
     if not spec:
         return None
+    if spec.get("variant") == "connected_ion":
+        from casmi_ml.connected_candidate_activation import (
+            resolve_score as resolve_connected,
+        )
+
+        return resolve_connected(config, proof)
     if spec.get("variant") == "motif_count":
         from casmi_ml.candidate_count_activation import resolve_score as resolve_count
 

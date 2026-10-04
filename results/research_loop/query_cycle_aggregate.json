@@ -29,6 +29,25 @@
     "evidence_amendment": "results/research_loop/low_leader_evidence_amendment.json"
   },
   "cycles": {
+    "candidate_motif_counts": {
+      "arms": {
+        "chemical": {
+          "round": "0337_candidate_count_chemical_system",
+          "unknown_mrr25": 0.04416996759057113,
+          "known_mrr25": 0.6037921161569266,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": 0.00019166666666665944
+        },
+        "identity_masked": {
+          "round": "0338_candidate_count_mask_system",
+          "unknown_mrr25": 0.04397830092390447,
+          "known_mrr25": 0.6037921161569266,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": 0.0
+        }
+      },
+      "chemical_minus_mask_unknown_mrr25": 0.00019166666666665944
+    },
     "single_contextual": {
       "arms": {
         "chemical": {
