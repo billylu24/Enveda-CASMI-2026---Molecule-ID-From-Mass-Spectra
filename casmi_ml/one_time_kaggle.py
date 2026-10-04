@@ -205,6 +205,13 @@ def update(c, **fields):
 
 def verify_runtime_bindings(local, platform):
     """Bind optional runtime amendments without changing original science gates."""
+    if "mass_reuse_runtime" in local:
+        expected = local["mass_reuse_runtime"]
+        if (
+            not expected.get("original_deadlines_retained")
+            or platform.get("mass_reuse_runtime") != expected
+        ):
+            raise ValueError("Platform mass-reuse runtime/source/classes differ")
     if "generation_cpu_runtime" in local:
         expected = local["generation_cpu_runtime"]
         if (
@@ -224,6 +231,37 @@ def verify_runtime_bindings(local, platform):
         ):
             if expected.get(key) != actual.get(key):
                 raise ValueError("Platform generation overlap source/events differ")
+
+
+def verify_physical_dictionaries(root):
+    """New derived runtime requires complete exact platform physical evidence."""
+    root = Path(root)
+    results = [
+        {
+            p.name: json.loads(p.read_text())
+            for p in (root / folder / "submission.csv.external_fragment_cache").glob(
+                "*.json"
+            )
+        }
+        for folder in ("local_output", "kaggle_output")
+    ]
+    local, platform = results
+    if len(local) != 265 or len(platform) != 265 or local != platform:
+        raise ValueError(
+            "All265 original platform raw physical dictionaries must be exact"
+        )
+    if any(r.get("status") != "complete" for r in platform.values()):
+        raise ValueError("Platform physical evidence incomplete")
+    write_json(
+        root / "platform_physical_dictionary_verification.json",
+        {
+            "valid": True,
+            "complete_requests": 265,
+            "all_original_raw_dictionaries_exact": True,
+            "floating_tolerance_used": False,
+            "independent_acceptance": False,
+        },
+    )
 
 
 def verify_platform(release, remote, c):
@@ -262,6 +300,8 @@ def verify_platform(release, remote, c):
         or b["peak_rss_mib"] > c.config["inference_rss_mib"]
     ):
         raise ValueError("Platform resource gate failed")
+    if "mass_reuse_runtime" in a:
+        verify_physical_dictionaries(root)
     result = {
         "valid": True,
         "identity": check_release(root, c),
@@ -396,12 +436,21 @@ def step(c, api):
             return "failed"
         if remote_status != "COMPLETE":
             return "notebook_running"
+        pattern = r"(^|/)(submission\.csv(?:\.report\.json|\.external\.report\.json)?|retrieval\.csv\.report\.json)$"
+        local_report = json.loads(
+            (release / "local_output/submission.csv.report.json").read_text()
+        )
+        if "mass_reuse_runtime" in local_report:
+            pattern += (
+                r"|(^|/)submission\.csv\.external_fragment_cache/[^/]+\.threads2\.json$"
+            )
         api.kernels_output(
             value["remote"]["kernel"],
             str(release / "kaggle_output"),
-            file_pattern=r"(^|/)(submission\.csv(?:\.report\.json|\.external\.report\.json)?|retrieval\.csv\.report\.json)$",
+            file_pattern=pattern,
             force=True,
             quiet=True,
+            page_size=100,
         )
         verify_platform(release, value["remote"], c)
         message = (

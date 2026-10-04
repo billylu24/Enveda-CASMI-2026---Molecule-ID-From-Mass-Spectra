@@ -1,0 +1,13 @@
+{
+  "updated_at": "2026-10-04T08:42:48Z",
+  "remote": {
+    "kernel": "giaok246/casmi26-236-overlap-cpu-verified-best",
+    "version": 1
+  },
+  "notebook_api_status": "ERROR",
+  "platform_verification_complete": false,
+  "competition_submission_id": null,
+  "competition_post_sent": false,
+  "scope": "CPUrelease terminalERROR physicaltimeout confirmed, all400generationexact,229physicalrawdict223exact6tinyfloatmismatches preserved; nocompetitionPOST/id. PrivateunchangedCPUobserverCOMPLETEbut372/400/28budget rejected. Current authorizedruntimeamendment local0424identitypassed/425sourcecontrolrunning; persistentlocalonly.",
+  "pending": false
+}

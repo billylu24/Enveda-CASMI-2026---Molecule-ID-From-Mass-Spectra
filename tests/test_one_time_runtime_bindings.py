@@ -48,5 +48,27 @@ class RuntimeSourceBindingTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "source/events differ"):
             verify_runtime_bindings(local, platform)
 
+    def test_mass_reuse_classes_sources_and_deadlines_are_bound(self):
+        local = {
+            "mass_reuse_runtime": {
+                "classes": {"fragment": "sha"},
+                "sources": {"pipeline": "sha"},
+                "original_deadlines_retained": True,
+            }
+        }
+        verify_runtime_bindings(local, copy.deepcopy(local))
+        for key, changed in (
+            ("classes", {"fragment": "other"}),
+            ("sources", {"pipeline": "other"}),
+            ("original_deadlines_retained", False),
+        ):
+            with self.subTest(key=key):
+                platform = copy.deepcopy(local)
+                platform["mass_reuse_runtime"][key] = changed
+                with self.assertRaisesRegex(ValueError, "mass-reuse"):
+                    verify_runtime_bindings(local, platform)
+        with self.assertRaises(ValueError):
+            verify_runtime_bindings(local, {})
+
     def test_older_runtime_still_uses_original_gates(self):
         verify_runtime_bindings({}, {})

@@ -327,3 +327,16 @@ cpubal平台最终API ERROR，原shared1200秒末端prefetched physical timeout�
 
 
 0419完成且拒绝扩展：200原baseline候选/stats/hypotheses对原cacheexact；original/neuralbudget/frequencybudget massunique311/693/645、candidatequery100/156/153，graph9/9/8。neural包含8原hit+1新hit-1丢失，frequency7原+1新-2丢失，并非保留全部旧命中后的新增。valid23553/15116/14935，658.382秒，比较416约194.760秒只是非配对时序观察。重原子约束显著扩大质量相容coverage，却没有净结构准确率收益且合法性/运行代价退化，不扩2000、不启用、不降低sample/validity/gate。保持236。511全回归通过。
+
+
+2026-10-04更新：CPU overlap236平台v1最终ERROR：retrieval107.920514秒/generation286.113687秒，400生成CSV/audit/完整handoff exact；原prefetched physical timeout在session1291.550320秒首次记录。最终下载229个complete rawdict，223 exact，6个存在14处浮点差异，最大绝对差1.1368683772161603e-13，candidate keysets均一致；不放宽exact门槛。已确认无POST/pending/registeredidentity/submission ID/matching competition submission，one-time授权unused、persistent local_only。新私有giaok246/casmi26-236-overlap-cpu-observation v1仅观察原400请求/主线程栈/heartbeat，运行中，无competition提交绑定或重试。
+
+0420本地原重请求JFR观察：固定407十个最慢且有已捕获输入的请求，原Java21/defaultGC/1GiB/twoJVM×two候选线程/60秒不变；仅外部profile，逐请求原rawdict严格exact后才接受方法级采样汇总，不以profile时间声称速度改进。所有请求输入/JFR/rawdict仅私有本地保存，不打包查询依赖数据。
+
+
+新CPU私有原400诊断v1 COMPLETE但拒绝：372/400Top25 exact，28预算回退；228complete请求+2exceptions，1204.551秒/2719.25MiB；generation298.894秒、原生成CSV/audit exact。两物理失败globalremaining8.484秒/.142秒，观察支持总1200预算耗尽，不把COMPLETE当release通过，也不替代先前CPUERROR/早期individualtimeout证据。
+
+0420十请求rawdict全部exact但JFR.dump含空格路径未产生指定文件，汇总拒绝；0421只修dump文件路径，10请求rawdict全部exact，10138execution samples中matchToPeak叶5968/getMonoisotopicMass叶2666，GC事件sum3.360秒(非wall)。0422原/reuse/reuse/原固定4CPU双JVM ABBA各10请求、40rawdict全部exact：36.801/24.161/23.116/36.116秒，mean36.458→23.639(-35.16%)。只是同十请求本地配对运行时信号，非完整400或平台收益；113400原match与新增overload边界对照exact。0423新冷400原Top25/265rawdict/generatedCSV-audit-fullhandoff身份核验正在运行，保留原60/1200/1800/8192门槛和科学236，未启用/未发布新运行时。
+
+
+0423推理完成252.915秒/3171.23MiB、400Top25/生成CSV-audit/265rawdict exact且0budget，但验证器读已自动删除的内部fullhandoff文件失败，保留失败记录，不声称完整通过。0424新目录完全相同fresh400仅增加清理前只读捕获：251.752秒/3166.285MiB，完整400Top25/生成CSV-audit-fullhandoff/265rawdict exact，0budget。0425同来源完整3340 cached评分control进行中；任何新包仍须frozen75/newfrozencold400/platform400。完整518项回归通过，新增发布gate绑定JVM衍生类/源码/原deadline，platform原265rawdict不允许容差。0426仅诊断已有6platform/raw浮点差异的baseline与禁用pow intrinsic，独立CPU4–7，不启用flag/舍入/容差。

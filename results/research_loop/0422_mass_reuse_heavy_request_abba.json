@@ -1,0 +1,46 @@
+{
+  "round": "0422_mass_reuse_heavy_request_abba",
+  "direction": "implementation_control",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "arms": [
+      {
+        "arm": "baseline",
+        "wall_seconds": 36.80117867299123,
+        "requests": 10,
+        "raw_dictionary_matches": 10
+      },
+      {
+        "arm": "reuse",
+        "wall_seconds": 24.160819786018692,
+        "requests": 10,
+        "raw_dictionary_matches": 10
+      },
+      {
+        "arm": "reuse",
+        "wall_seconds": 23.116355549020227,
+        "requests": 10,
+        "raw_dictionary_matches": 10
+      },
+      {
+        "arm": "baseline",
+        "wall_seconds": 36.11572941101622,
+        "requests": 10,
+        "raw_dictionary_matches": 10
+      }
+    ],
+    "mean_wall_seconds": {
+      "baseline": 36.45845404200372,
+      "reuse": 23.63858766751946
+    },
+    "reuse_over_baseline_ratio": 0.6483705436408653,
+    "scope": "Matched ten-request4CPU local ABBA observation only; all40 raw dictionaries exact. No full400/source/resources/platform acceptance or accuracy improvement. Private derived runtime not activated."
+  },
+  "protocol_sha256": "9b01a0808e65c76ffc25baad7a74079f207eb3867611f2985c725209cdba8877",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

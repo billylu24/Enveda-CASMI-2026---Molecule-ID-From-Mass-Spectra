@@ -1,0 +1,30 @@
+{
+  "scientific_round": "0236_low_supported_leader_first",
+  "remote": {
+    "kernel": "giaok246/casmi26-236-overlap-cpu-observation",
+    "version": 1
+  },
+  "notebook_status": "COMPLETE",
+  "accepted": false,
+  "diagnostic_only": true,
+  "competition_post_sent": false,
+  "molecules": 400,
+  "full400_top25_matches": 372,
+  "budget_fallbacks": 28,
+  "runtime_summary_sha256": "6b21c433ff0f8b11b9622140052c26379c396f1e09a0ad852b3ae39392b191cc",
+  "request_events_sha256": "e6f376c0337547944d5c7f08ecb7b5f528e88f082019b3b6f1e356c8d0d1e0b9",
+  "observed_request_status_counts": {
+    "complete": 228,
+    "exception": 2
+  },
+  "complete_requests_duration_sum_seconds": 1912.5072854320006,
+  "failed_requests_global_remaining_seconds": [
+    8.4843861559998,
+    0.1421554720000131
+  ],
+  "wall_seconds": 1204.550619526,
+  "parent_peak_rss_mib": 2719.25,
+  "generation_seconds": 298.8943485609999,
+  "generation_csv_exact": true,
+  "scope": "Unchanged CPU236 observer COMPLETE but physical failures/budget fallbacks; rejected release evidence. Two observedphysicalfailures remainingglobalbudget8.484/.142seconds, not full60s isolatedrequest. No retry/limitsrelaxed/competitionPOST. Prior CPUrelease ERROR separately retained; Notebook COMPLETE alone never proves acceptedrelease."
+}

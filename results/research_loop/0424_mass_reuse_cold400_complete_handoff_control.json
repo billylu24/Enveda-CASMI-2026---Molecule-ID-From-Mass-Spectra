@@ -1,0 +1,23 @@
+{
+  "round": "0424_mass_reuse_cold400_complete_handoff_control",
+  "direction": "implementation_control",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "valid": true,
+    "molecules": 400,
+    "all400_top25_exact": true,
+    "all400_generation_csv_audit_fullhandoffs_exact": true,
+    "all265_raw_physical_dictionaries_exact": true,
+    "development_budget_fallbacks": 0,
+    "seconds": 251.75150072103133,
+    "parent_peak_rss_mib": 3166.28515625,
+    "scope": "Fresh original400 local4CPU massreuse runtime identity only. Originalsource/generation/deadlines intact; derived JVM classes only. No paired/platform speed or scientificaccuracy acceptance, no activation/publication."
+  },
+  "protocol_sha256": "8811a23760e73e480ae76d04ece5ede432d699f5ee5d48c258455da86c7d6353",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

@@ -1,0 +1,30 @@
+{
+  "scientific_round": "0236_low_supported_leader_first",
+  "identity": "31b26da3816ff87ac5e455e6199fd9f8ea19a3ba0afa517672283f9d1696a519",
+  "remote": {
+    "kernel": "giaok246/casmi26-236-overlap-cpu-verified-best",
+    "version": 1
+  },
+  "notebook_status": "ERROR",
+  "competition_post_sent": false,
+  "matching_competition_submissions": 0,
+  "registered_submission_identity": false,
+  "pending_submission": false,
+  "retrieval_seconds": 107.92051365799989,
+  "generation_seconds": 286.11368653299996,
+  "all400_generation_identity": {
+    "generated_base.csv": true,
+    "generated_base.csv.generation.csv": true,
+    "complete_generated_handoffs": true
+  },
+  "available_complete_physical_dictionaries": 229,
+  "available_physical_dictionaries_exact": 223,
+  "physical_dictionary_mismatches": 6,
+  "different_score_values": 14,
+  "max_absolute_score_delta": 1.1368683772161603e-13,
+  "different_candidate_keysets": 0,
+  "physical_failure": "Prefetched physical request failed: timeout",
+  "first_logged_failure_session_seconds": 1291.550320182,
+  "raw_log_sha256": "021acdf3303d05cdd3bd478f81fc376722f150b4044848f290dd596c1ff970fa",
+  "scope": "Reject release: incomplete physical evidence, six observed rawdict float differences are retained without tolerance. Generation complete and exact; APIterminal/log propagation lagged, not generator hang. Exception near original1200physical end but request traces absent, individual/global attribution awaits new private observation. Original60/1200/1800/8192 retained; same one-time authorization unused, persistentlocal_only."
+}

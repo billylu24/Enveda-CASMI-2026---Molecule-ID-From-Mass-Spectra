@@ -1,0 +1,14 @@
+{
+  "round": "0423_mass_reuse_cold400_identity_control",
+  "status": "failed_verifier",
+  "all400_top25_exact": true,
+  "all265_raw_physical_dictionaries_exact": true,
+  "all400_generation_csv_audit_exact": true,
+  "seconds": 252.9146384530468,
+  "parent_peak_rss_mib": 3171.234375,
+  "development_budget_fallbacks": 0,
+  "error": "Verifier attempted to read pipeline deleted generated_base_full.json after successful inference; fullhandoff not observed in this run, no complete acceptance.",
+  "followup": "0424 fresh same inference with pre-unlink read-only handoff capture, no algorithm change",
+  "local_only": true,
+  "independent_acceptance": false
+}

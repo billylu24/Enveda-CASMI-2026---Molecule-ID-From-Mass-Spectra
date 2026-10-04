@@ -5,7 +5,7 @@
   "github_pushes": false,
   "automatic_future_submissions": false,
   "identity": "31b26da3816ff87ac5e455e6199fd9f8ea19a3ba0afa517672283f9d1696a519",
-  "status": "notebook_running",
+  "status": "platform_verification_failed",
   "amendments": [
     {
       "identity": "b27505dc6c850055920a15238846cb969e6b88e220ca89bb84e95620779f36c2",
@@ -12707,10 +12707,12 @@
       }
     }
   ],
-  "updated_at": "2026-10-04T07:21:48Z",
+  "updated_at": "2026-10-04T08:05:20Z",
   "dataset_uploaded": true,
   "remote": {
     "kernel": "giaok246/casmi26-236-overlap-cpu-verified-best",
     "version": 1
-  }
+  },
+  "error": "Original prefetched physical timeout; privateCPU observation running, no competitionPOST",
+  "failure_proof_sha256": "b5f6a53e745ca9789d14bdd2f53a7a46c7812ff84927769b0a271fddd1762034"
 }

@@ -1,0 +1,9 @@
+{
+  "round": "0420_original_heavy_metfrag_jfr_observation",
+  "status": "failed",
+  "complete_requests": 10,
+  "raw_dictionaries_exact": 10,
+  "error": "JFR.dump target containing spaces parsed by jcmd, recording not available at requested filename. Original requests complete/exact, no hotspot summary accepted.",
+  "local_only": true,
+  "independent_acceptance": false
+}

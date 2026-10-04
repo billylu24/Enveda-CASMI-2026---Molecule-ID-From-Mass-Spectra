@@ -1,0 +1,33 @@
+{
+  "round": "0426_original_physical_float_observation",
+  "direction": "implementation_control",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "observations": [
+      {
+        "arm": "baseline",
+        "complete_requests": 6,
+        "exact_old_local_requests": 6,
+        "exact_old_platform_requests": 0,
+        "different_values_to_old_local": 0,
+        "different_values_to_old_platform": 14
+      },
+      {
+        "arm": "no_pow_intrinsic",
+        "complete_requests": 6,
+        "exact_old_local_requests": 0,
+        "exact_old_platform_requests": 0,
+        "different_values_to_old_local": 80,
+        "different_values_to_old_platform": 72
+      }
+    ],
+    "scope": "Original six tiny platform/local score mismatches only, no tolerance/rounding or activation. NativeMath.pow CPU/JIT hypothesis diagnostic; differing output doesnot qualify any JVMflag release. No full400 speed/accuracy/platform acceptance."
+  },
+  "protocol_sha256": "678fce18e2f2eaeeda3fbff19e9a35234e10584eac3c14219c348fa588df1b43",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

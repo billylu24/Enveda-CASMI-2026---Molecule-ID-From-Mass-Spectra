@@ -1,0 +1,49 @@
+{
+  "round": "0427_original_physical_cpu_instruction_observation",
+  "direction": "implementation_control",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "observations": [
+      {
+        "arm": "no_fma",
+        "complete_requests": 6,
+        "exact_old_local_requests": 6,
+        "exact_old_platform_requests": 0,
+        "different_values_to_old_local": 0,
+        "different_values_to_old_platform": 14
+      },
+      {
+        "arm": "avx2",
+        "complete_requests": 6,
+        "exact_old_local_requests": 6,
+        "exact_old_platform_requests": 0,
+        "different_values_to_old_local": 0,
+        "different_values_to_old_platform": 14
+      },
+      {
+        "arm": "avx1",
+        "complete_requests": 6,
+        "exact_old_local_requests": 6,
+        "exact_old_platform_requests": 0,
+        "different_values_to_old_local": 0,
+        "different_values_to_old_platform": 14
+      },
+      {
+        "arm": "avx0",
+        "complete_requests": 6,
+        "exact_old_local_requests": 6,
+        "exact_old_platform_requests": 0,
+        "different_values_to_old_local": 0,
+        "different_values_to_old_platform": 14
+      }
+    ],
+    "scope": "Original six tiny platform/local score mismatches only, no tolerance/rounding or activation. NativeMath.pow CPU-instruction/JIT hypothesis diagnostic; differing output doesnot qualify any JVMflag release. No full400 speed/accuracy/platform acceptance."
+  },
+  "protocol_sha256": "3644999595fa326715a8e842be8d9dd21f0c91c3bf0a6f3205bd9507bcb9b789",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

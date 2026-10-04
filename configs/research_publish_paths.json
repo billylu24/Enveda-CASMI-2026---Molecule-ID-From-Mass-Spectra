@@ -741,7 +741,18 @@
     "casmi_ml/formula_budget_sampling.py",
     "tests/test_formula_budget_sampling.py",
     "casmi_ml/formula_token_budget_audit.py",
-    "casmi_ml/mass_formula_budget_pilot.py"
+    "casmi_ml/mass_formula_budget_pilot.py",
+    "casmi_ml/metfrag_jfr_observation.py",
+    "casmi_ml/metfrag_mass_reuse_probe.py",
+    "casmi_ml/java/MetFragMassReusePatcher.java",
+    "casmi_ml/java/MetFragMassReuseCheck.java",
+    "tests/test_metfrag_jfr_observation.py",
+    "casmi_ml/mass_reuse_fragment_runtime.py",
+    "casmi_ml/mass_reuse_scoring_control.py",
+    "casmi_ml/portable_mass_reuse_pipeline.py",
+    "casmi_ml/portable_mass_reuse_release.py",
+    "tests/test_mass_reuse_fragment_runtime.py",
+    "tests/test_platform_physical_dictionary_verification.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
