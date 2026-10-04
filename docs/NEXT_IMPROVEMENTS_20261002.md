@@ -211,3 +211,9 @@ reference平台运行失败，prefetched physical timeout在1250.58秒附近（�
 376完整400生成控制通过：先原reference检索400独立重建CSV exact，再原serial与顺序两分组生成的全部CSV／generation audit／完整handoffs exact，serial CSV对冻结reference包也exact。新parallel源SHA209a2714b2953254843aa77af5e3a3086389d951e684515c9d3bb7d154bbe8c3。新dualgen包准备中，仍须source-boundfresh75＋强制分组新冷400完整Top25/265原字典/预算/RSS＋平台双T4全400核验，不把本地顺序验证称实际双GPU速度证据。
 
 377–381互补诊断完整系统固定对照已启动：377zero全3340 exact后训练378chemical／379mask，380／381两臂物理完整、mask exact后才评价236／206／181门槛。120D总bonus仍2，原60D结构支持保留、只补60D观测query×预测候选强度；无观测峰不能产生bonus或负扣分；新增模型文件、前向ridge、训练wrapper、原core、critic/encoder/训练源均显式绑定。未运行开发前置调参、不自动激活，不提交/push。
+
+
+新dualgen冻结包identity2318af9cf3242020638a7cd83ed9c6ba1c92daaf886a65c6e9f288c4fe52eb57，fresh75完整rank exact／预算0，绑定bundle SHA6363281b92e9ebefd0e517eec88af5f6f004e10da23180890a611cd0914eb71c。仅当完整400 forced-partition cold排名/265字典/原资源gate及平台实际dualT4全部通过时才比赛POST。代码和科学模型已冻结，后续研究只本地。456项回归通过。
+
+
+dualgen强制分组冷400完整通过：460.713357秒、父进程峰值3397.641MiB、预算0；全部400 Top25和全部265原serial raw request dictionaries exact。generation报告明确本地1GPU、2分组各200、顺序执行，127.532秒，仅identity验证，不称双GPU速度。新单次授权runtime amendment已写、私有数据集上传开始；尚无competition提交ID。377zero全3340 exact／0budget/newfail完成，378chemical训练启动。

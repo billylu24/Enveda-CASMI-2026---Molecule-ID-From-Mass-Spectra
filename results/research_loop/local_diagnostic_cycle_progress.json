@@ -24,7 +24,7 @@
     "raw_candidates_reused": 127088,
     "new_candidates_scored": 3025
   },
-  "active_round": "0377_forward_augmented_zero_control",
+  "active_round": "0378_forward_augmented_chemical",
   "coarse_complete": {
     "unknown_mrr25": 0.04268861838422192,
     "known_mrr25": 0.6046005738683694,
@@ -36,7 +36,7 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0377_forward_augmented_zero_control"
+    "0378_forward_augmented_chemical"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -326,7 +326,7 @@
       "original_critic_tensors_exact": true
     }
   },
-  "updated_at": "2026-10-04T03:43:15Z",
+  "updated_at": "2026-10-04T03:52:47Z",
   "current_query_zero_control": "artifacts/research_loop/rounds/0287_query_identity_runtime_zero_control",
   "local_verified_evidence_round": "0286_structure_identity_full_control",
   "multispectrum_attribution": {

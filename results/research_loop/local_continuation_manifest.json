@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-04T03:43:15Z",
+  "updated_at": "2026-10-04T03:52:47Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -102,10 +102,10 @@
   },
   "active_rounds": [
     {
-      "id": "0377_forward_augmented_zero_control",
-      "direction": "implementation_control",
+      "id": "0378_forward_augmented_chemical",
+      "direction": "representation_diagnostic",
       "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0377_forward_augmented_zero_control/report.json"
+      "report": "artifacts/research_loop/rounds/0378_forward_augmented_chemical/report.json"
     }
   ],
   "local_candidate_runtime": {
@@ -224,12 +224,9 @@
   "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
   "runtime_claims": "Exact packed/object/array all3340 cached ranks and proposal three full2000 dictionaries. Separate scientific236 one-time release cold400 resource/physical/ranking verified; no paired whole-pipeline speed or independent accuracy claim.",
   "one_time_kaggle": {
-    "identity": "1d2253f9f83fa07a6bc7ab39b097062f567a43af225a1054cbfd342dfcf1fb87",
-    "status": "platform_verification_failed",
-    "remote": {
-      "kernel": "giaok246/casmi26-236-reference-verified-best",
-      "version": 1
-    },
+    "identity": "2318af9cf3242020638a7cd83ed9c6ba1c92daaf886a65c6e9f288c4fe52eb57",
+    "status": "upload_intent",
+    "remote": null,
     "submission_id": null,
     "public_score": null,
     "automatic_future_submissions": false
@@ -1772,6 +1769,13 @@
     {
       "id": "0377_forward_augmented_zero_control",
       "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0377_forward_augmented_zero_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0378_forward_augmented_chemical",
+      "direction": "representation_diagnostic",
       "status": "external_running",
       "decision": null,
       "local_recorded": false
