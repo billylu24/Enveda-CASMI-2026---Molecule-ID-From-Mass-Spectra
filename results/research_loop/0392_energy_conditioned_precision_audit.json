@@ -1,0 +1,67 @@
+{
+  "round": "0392_energy_conditioned_precision_audit",
+  "direction": "representation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "query_molecules": 9758,
+    "equal_weight_query_row_slots": 19516,
+    "both_molecules_heldout_mass_pair_slots": 51014,
+    "heldout_targets_used_for_fit": false,
+    "train_development_overlap": 0,
+    "arms": {
+      "additive_ce_context": {
+        "pairs": 51014,
+        "positive_bonus_larger": 22369,
+        "negative_bonus_larger": 14684,
+        "bonus_ties": 13961,
+        "mean_positive_minus_negative": 0.0002143075595380087,
+        "molecules_with_any_positive_advantage": 10103,
+        "molecules_with_any_negative_advantage": 7653
+      },
+      "ce_interaction": {
+        "pairs": 51014,
+        "positive_bonus_larger": 22650,
+        "negative_bonus_larger": 14404,
+        "bonus_ties": 13960,
+        "mean_positive_minus_negative": 0.00024373901927082035,
+        "molecules_with_any_positive_advantage": 10151,
+        "molecules_with_any_negative_advantage": 7569
+      }
+    },
+    "seconds": 29.875653949042317,
+    "scope": "Exact original384 fixed-model train-heldout contrast reconstruction with molecule-block bootstrap for MSE and conditional positive-negative pair margin. Counts are whole eligible molecules for bootstrap. Precision conditional on repeatedly inspected training split; no external acceptance, calibrated full ranking, dev score or new model activation.",
+    "precision": {
+      "additive_minus_interaction_mse": {
+        "molecules": 9758,
+        "paired_difference": 6.52851225740589e-05,
+        "paired_molecule_bootstrap95": [
+          6.004427041728345e-05,
+          7.060622820881973e-05
+        ],
+        "molecules_with_positive_contribution": 5782,
+        "molecules_with_negative_contribution": 3976,
+        "zero_contribution_molecules": 0
+      },
+      "interaction_minus_additive_same_query_pair_margin": {
+        "molecules": 9758,
+        "paired_difference": 2.943145973281161e-05,
+        "paired_molecule_bootstrap95": [
+          2.6466124271478565e-05,
+          3.2480257670101585e-05
+        ],
+        "molecules_with_positive_contribution": 3766,
+        "molecules_with_negative_contribution": 2657,
+        "zero_contribution_molecules": 3335
+      }
+    },
+    "bootstrap_seed": 20261003,
+    "bootstrap_samples": 10000
+  },
+  "protocol_sha256": "8a679a33c2f95cb6682034358e788ad4ba1ddd9b269c2a14d4e14d950dfb0df0",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

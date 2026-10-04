@@ -245,3 +245,6 @@ dualgen平台失败：实际2worker concurrent T4x2、生成217.295秒、检索6
 cpubal冷4004CPU验证完成：434.995333秒／3081.590MiB／0budget，全部400Top25和265原serial rawphysicaldict exact，identity da2a737f0d4679f7a0900b22fc6655a20db2b7845e2914234f0246457b01098c。私有dataset上传完成，平台实际slug giaok246/casmi26-236-cpu-balanced-verified-best v1自UTC04:47:53运行，尚无competition提交ID。所有排名／原deadline／资源门槛保持。
 
 386完成：原同目标.5246471778145301→conditional120D .5240684177250712，gain.0005787600894588962；18原／11新channel有效，extra权重和.65479，总2。原有效模型仍返回；增维训练目标收益不能证明系统提升。387–391正式固定对照已启动：387source-bound零bonus全部3340 exact后388化学／389全bonus屏蔽训练；390／391完整物理证据且mask exact后评价236／206／181保护门槛。新模型明确绑定conditionalridge、vocab、wrapper、capacity、原encoder／critic／training／evidence来源；missing／mergedCE仅extra0，原binary60保留。mask／zero／无observed证据原score exact、原pair分母、总bonus未加倍回归9项通过。
+
+
+387新conditional120D零加分控制全3340fullrank exact／0budget／newfail0完成，388化学／389屏蔽训练开始。392不重训地完整重建384两臂候选对照，arms逐项exact；按9758整个分子block／固定seed20261003／10000draws，MSEgain.00006528512，95[.00006004427,.00007060623]；同query条件pair-margin gain.00002943146，95[.00002646612,.00003248026]。这是已反复检查的训练内条件统计，不能当新数据或完整ranking acceptance；零证据／无相容候选分子也保留在cluster重采样内，不按观测挑成功分子。39x科学晋升门槛不变。

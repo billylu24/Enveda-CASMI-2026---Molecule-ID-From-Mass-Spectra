@@ -677,7 +677,9 @@
     "casmi_ml/energy_conditioned_training.py",
     "casmi_ml/energy_conditioned_system.py",
     "casmi_ml/energy_conditioned_followup.py",
-    "tests/test_energy_conditioned_compatibility.py"
+    "tests/test_energy_conditioned_compatibility.py",
+    "casmi_ml/energy_conditioned_precision_audit.py",
+    "tests/test_energy_conditioned_precision_audit.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
