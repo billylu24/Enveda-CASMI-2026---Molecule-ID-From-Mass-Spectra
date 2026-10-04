@@ -128,3 +128,9 @@ P0 和 P1 可准备数据和基线，但单项开发选择需分开，之后再�
 340同容量60D训练审计完成：目标.524647178→.524354281，未正则化CE .523511346→.523196902，6个离子细化通道均有非零权重。341–345正式完整对照已启动：新源码zero全部3340完整排名exact后训练两臂；化学／屏蔽两臂均完成物理证据且屏蔽exact之后才评价晋升。沿用236／206／181保护，不根据部分开发结果更新最佳。
 
 236修订发布包冷400核验：604.514秒／5704.277MiB，预算回退0、全部400完整Top25与首包原local exact；fresh75全部完整rank exact，67.07秒。私有数据集上传和Notebook v1运行已启动，尚无比赛提交ID；等待平台400检查，之后仅提交一次。
+
+337数量实验收益归因：unknown222完整rank／10个首位身份改变，但真值RR只有2/2000改善、0退步；1个新增前25命中。固定seed20261003／10000次paired bootstrap95%增益区间[0,.00055]。known64完整rank变、真值RR全部1340不变。收益稀疏，继续保留236。341新源码zero完整3340rank exact、预算回退／新增物理失败0，342／343化学与屏蔽训练开始。
+
+第二次平台Notebook在候选加载时因pandas2.x不接受`select_dtypes(include=[str,string])`而失败，未评分／未发送比赛POST。保留旧对象存储源码与其本地完整控制绑定，发布wrapper新增PortableObjectPackedCandidateIndex，只对`isinstance(dtype,pd.StringDtype)`列转object，已测object／NA-string／nan-string的值、索引和质量列exact；新portable包再次冷400／fresh75核验。未改变科学模型／recipe／预算。
+
+发布兼容性补充核验：独立pandas2.3.3安装于私有审计目录，未改变主环境。在冻结portable bundle工作目录下，pandas3.0.6与2.3.3两套fresh75均完整rank75/75 exact、预算0、绑定同bundle SHA；并保留先前从repo启动的回放记录，不把它充当冻结bundle源码核验。

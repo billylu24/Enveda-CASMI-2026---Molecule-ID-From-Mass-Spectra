@@ -5,7 +5,7 @@
   "github_pushes": false,
   "automatic_future_submissions": false,
   "identity": "100b7ebea97e11015cdabf4f1e96bcca63fdf301aa4a988843ca82ac5266d0f3",
-  "status": "notebook_running",
+  "status": "platform_verification_failed",
   "amendments": [
     {
       "identity": "b27505dc6c850055920a15238846cb969e6b88e220ca89bb84e95620779f36c2",
@@ -36,10 +36,11 @@
       }
     }
   ],
-  "updated_at": "2026-10-04T00:00:19Z",
+  "updated_at": "2026-10-04T00:14:47Z",
   "dataset_uploaded": true,
   "remote": {
     "kernel": "giaok246/casmi26-236-packed-verified-best",
     "version": 1
-  }
+  },
+  "error": "Platform pandas string dtype selector incompatible: select_dtypes(include=[str,string]) raises TypeError before external candidate scoring. Existing model/science unchanged, no competition POST sent."
 }

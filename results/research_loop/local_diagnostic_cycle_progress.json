@@ -13,7 +13,7 @@
     "budget_fallbacks": 861,
     "diagnostic_only": true
   },
-  "next_sequence": "Scientific236/evidence286 retained.319 exact3340 validation cache active.329full-gap +0.379% and337motif-count +0.436% fail unchanged promotion gates; zero334/mask338 all3340 exact, both full physical systems complete.339 training audit67665 broad aliases separated;340 same60D refined-ion objective gain.000292897, rawCEgain.000314444.341-345 fixed60D connected-ion full zero/chemical/mask cycle, exact controls and both complete physical arms required before evaluation. All losses unchanged, no new holdout. Separate explicitly requested single236 Kaggle publication: original platform failed105 budget fallbacks; amended packed/object cold400604.5s/5704MiB/zero budget/all400Top25exact, fresh75exact; uploaded platform400 verification running. Persistent local_only and no GitHub push.",
+  "next_sequence": "Scientific236/evidence286 retained.319 exact3340 validation cache active.329full-gap +0.379% and337motif-count +0.436% fail unchanged promotion gates; zero334/mask338 all3340 exact, both full physical systems complete.339 training audit67665 broad aliases separated;340 same60D refined-ion objective gain.000292897, rawCEgain.000314444.341-345 fixed60D connected-ion full zero/chemical/mask cycle, exact controls and both complete physical arms required before evaluation. All losses unchanged, no new holdout. Separate explicitly requested single236 Kaggle publication: original platform failed105 budget fallbacks; amended packed/object cold400604.5s/5704MiB/zero budget/all400Top25exact, fresh75exact; packed platform rejected pandas string-selector TypeError before scoring. Portable dtype amendment cold400/fresh75 rerunning; no competition POST yet. Persistent local_only and no GitHub push.",
   "independent_acceptance": false,
   "precision_first_pass": {
     "unknown_mrr25": 0.04268861838422192,
@@ -24,7 +24,7 @@
     "raw_candidates_reused": 127088,
     "new_candidates_scored": 3025
   },
-  "active_round": "0341_connected_candidate_zero_control",
+  "active_round": "0345_connected_candidate_mask_system",
   "coarse_complete": {
     "unknown_mrr25": 0.04268861838422192,
     "known_mrr25": 0.6046005738683694,
@@ -36,7 +36,7 @@
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
   "active_rounds": [
-    "0341_connected_candidate_zero_control"
+    "0345_connected_candidate_mask_system"
   ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
@@ -326,7 +326,7 @@
       "original_critic_tensors_exact": true
     }
   },
-  "updated_at": "2026-10-04T00:02:55Z",
+  "updated_at": "2026-10-04T00:19:49Z",
   "current_query_zero_control": "artifacts/research_loop/rounds/0287_query_identity_runtime_zero_control",
   "local_verified_evidence_round": "0286_structure_identity_full_control",
   "multispectrum_attribution": {

@@ -1,0 +1,10 @@
+{
+  "valid": false,
+  "submitted": false,
+  "cause": "Platform pandas string dtype selector incompatible: select_dtypes(include=[str,string]) raises TypeError before external candidate scoring. Existing model/science unchanged, no competition POST sent.",
+  "error_log_sha256": "310673d3178abdd3e541e9cc0fe6de3cb4b546b975e6793f46598ce19944d6be",
+  "remote": {
+    "kernel": "giaok246/casmi26-236-packed-verified-best",
+    "version": 1
+  }
+}

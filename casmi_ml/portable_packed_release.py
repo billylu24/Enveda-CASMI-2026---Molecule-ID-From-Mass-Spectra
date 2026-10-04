@@ -13,7 +13,12 @@ from casmi_ml.research_loop import Controller, release_identity
 from casmi_ml.verified_best_release import VARIANT
 
 
-def prepare(old, output):
+def prepare(
+    old,
+    output,
+    dataset_id="giaok246/casmi26-236-packed-best-bundle",
+    kernel_id="giaok246/casmi26-236-packed-verified-best",
+):
     c = Controller()
     state = c.read()
     old, output = Path(old), Path(output)
@@ -57,10 +62,9 @@ def prepare(old, output):
     )
     write_json(notebook_path, notebook)
     metadata = json.loads((output / "notebook/kernel-metadata.json").read_text())
-    dataset_id = "giaok246/casmi26-236-packed-best-bundle"
     metadata.update(
-        id="giaok246/casmi26-236-packed-verified-best",
-        title="CASMI26 236 Packed Verified Best",
+        id=kernel_id,
+        title=kernel_id.split("/")[-1].replace("-", " "),
         dataset_sources=[dataset_id, "aidensong123/casmi26-coconut-202609"],
     )
     write_json(output / "notebook/kernel-metadata.json", metadata)
@@ -113,6 +117,8 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--old", required=True, type=Path)
     p.add_argument("--output", required=True, type=Path)
+    p.add_argument("--dataset-id", default="giaok246/casmi26-236-packed-best-bundle")
+    p.add_argument("--kernel-id", default="giaok246/casmi26-236-packed-verified-best")
     print(prepare(**vars(p.parse_args())))
 
 

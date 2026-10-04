@@ -538,7 +538,20 @@
     "casmi_ml/connected_candidate_activation.py",
     "casmi_ml/connected_candidate_followup.py",
     "tests/test_connected_candidate_compatibility.py",
-    "tests/test_connected_candidate_activation.py"
+    "tests/test_connected_candidate_activation.py",
+    "casmi_ml/candidate_rank_movement_audit.py",
+    "tests/test_portable_packed_pipeline.py",
+    "kaggle_release_verified_best_0236_packed_once/platform_failure.json",
+    "kaggle_release_verified_best_0236_portable_once/status.json",
+    "kaggle_release_verified_best_0236_portable_once/verification.json",
+    "kaggle_release_verified_best_0236_portable_once/implementation_replay.json",
+    "kaggle_release_verified_best_0236_portable_once/kaggle_verification.json",
+    "kaggle_release_verified_best_0236_portable_once/one_time_submission.json",
+    "kaggle_release_verified_best_0236_portable_once/runtime_amendment.json",
+    "kaggle_release_verified_best_0236_portable_once/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_verified_best_0236_portable_once/notebook/kernel-metadata.json",
+    "kaggle_release_verified_best_0236_portable_once/platform_failure.json",
+    "kaggle_release_verified_best_0236_portable_once/implementation_replay_pandas23.json"
   ],
   "aggregate_directories": [
     "results/research_loop",
