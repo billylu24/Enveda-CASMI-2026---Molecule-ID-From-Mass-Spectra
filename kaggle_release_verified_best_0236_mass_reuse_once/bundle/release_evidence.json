@@ -1,0 +1,250 @@
+{
+  "verified_inference": {
+    "scientific_round": "0236_low_supported_leader_first",
+    "evidence_round": "0286_structure_identity_full_control",
+    "previous_metrics": {
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.1785,
+        "mrr25": 0.043795811746415295,
+        "top1": 0.016,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.2453546876549876
+      },
+      "known": {
+        "molecules": 1340,
+        "candidate_recall": 1.0,
+        "mrr25": 0.6038171329813347,
+        "top1": 0.564179104477612,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6038171329813347
+      }
+    },
+    "metrics": {
+      "unknown": {
+        "molecules": 2000,
+        "candidate_recall": 0.1985,
+        "mrr25": 0.04397830092390447,
+        "top1": 0.016,
+        "top5": 0.0825,
+        "top25": 0.13,
+        "conditional_mrr25": 0.22155315326904013
+      },
+      "known": {
+        "molecules": 1340,
+        "candidate_recall": 0.8850746268656716,
+        "mrr25": 0.6037921161569266,
+        "top1": 0.564179104477612,
+        "top5": 0.6335820895522388,
+        "top25": 0.7395522388059701,
+        "conditional_mrr25": 0.6821934533307603
+      }
+    },
+    "gates": {
+      "historical181": {
+        "eligible": true,
+        "absolute_gain": 0.0014324891774891782,
+        "relative_gain": 0.033669334740331354,
+        "reasons": [],
+        "evidence": "development_experimental; not independent acceptance"
+      },
+      "completed_original": {
+        "eligible": true,
+        "absolute_gain": 0.0012500000000000011,
+        "relative_gain": 0.02925461516071389,
+        "reasons": [],
+        "evidence": "development_experimental; not independent acceptance"
+      }
+    },
+    "replay_report_sha256": "f3c5c45580ba54ada8f9f123f406a3d32d93c9d8effc3e16565e4c7fe4be449b",
+    "rankings_sha256": "0a138e378dde6e21de266950251ec6d1d02245450ca73a3187d5f03df64c530b",
+    "external_config_sha256": "81ccd363a0b2cc17d9f69a1aabd8363752a75922ce09ef1ca33ed64aa19e1da1",
+    "inference_sha256": "e3ecb9cc491fcf42d7a245ed65aa8c4dc5e4a4c215bf4b65628125b0a4637ed3",
+    "low_leader_source_sha256": "c0045fc1f4ae4b7e434ad50d9700f00cec08661b56012631412c2ba5d9e1af6b",
+    "local_only": true,
+    "remote_publication": false,
+    "independent_acceptance": false,
+    "scope": "Same current scientific best every3340 full rank and all models/scores/evidence; bounded actualSMILES identity runtime cache only, no accuracy gain or cold acceptance",
+    "external_config": "artifacts/research_loop/rounds/0237_low_leader_full_unlabeled_replay/external_config.json",
+    "array_source_sha256": "28926c166dbb88701c8676a8fd2e34b94b104029c43706da7c56f172b1876a41",
+    "identity_source_sha256": "e5ecca9173b0be7aab94b3037bacfda5c6a2787a3ba0f38677b9349f4a664b5d"
+  },
+  "validation_runtime": {
+    "enabled": true,
+    "local_only": true,
+    "scientific_round": "0236_low_supported_leader_first",
+    "control_directory": "artifacts/research_loop/rounds/0319_validation_cache_full_ranking_control",
+    "control_report_sha256": "67ff7af4c1985aad02f5b7a6805cccf93687cc188a55d0a377d0348539ec0e0e",
+    "control_protocol_sha256": "e94719253a2c9741abc29816e3099100b81889ae24e0b5997f893ab1c1dd2cfe",
+    "cache_source_sha256": "418edd4c836891db752726f9634311cfbc970581000610cf959e224e7460c748",
+    "original_validator_source_sha256": "97c5c228bbf13a324e58461fb4a2a57076b9043275af6bf424742ba9b7baf560",
+    "entry_source_sha256": "fa5ecc29f008abdc9b9214b8ba80ad0efaef0a305e9746e753301e11f391f831",
+    "runtime_source_sha256": "4e6429ffd9eb184fccbb328aef3774ab7046297e92f7cdae7801f9e16cccb39a",
+    "scope": "Pure SMILES validity/identity memoization with all3340 cached inference full ranks exact and validation-only paired timing; no accuracy or cold pipeline gain claim"
+  },
+  "scope": "Frozen scientific236; portable exact array/identity/validation memoization only. No development physical caches or test truth packaged. New cold/platform verification required.",
+  "portable_packed_runtime": {
+    "packed_source_sha256": "744848689ef00b4874e8f4c987d70425326fc8069fa89a04d6cdd5f322248477",
+    "object_source_sha256": "c8246d805511cb652745a32739813e0d749abf57eb7e5cf33b261815cb640bbb",
+    "full_rank_matches": {
+      "unknown": 2000,
+      "known": 1340
+    },
+    "packed_local_proof": {
+      "enabled": true,
+      "local_only": true,
+      "store": "artifacts/research_loop/rounds/0250_local_packed_candidate_preparation",
+      "control_directory": "artifacts/research_loop/rounds/0252_packed_candidate_full_inference_control",
+      "catalog_sha256": "3cfa1f39ee99bab83861609fb36ead49fa138b191955c0428504f88bd55178da",
+      "source_sha256": "744848689ef00b4874e8f4c987d70425326fc8069fa89a04d6cdd5f322248477",
+      "control_report_sha256": "919de453ef681df82de5a071a068293a4279285b3e48a093bbda7f3e0778c178",
+      "scope": "Exact all3340 full-ranking local runtime cache; candidate bit values and ordering unchanged, no accuracy increase or cold runtime acceptance claim"
+    },
+    "object_local_proof": {
+      "enabled": true,
+      "local_only": true,
+      "control_directory": "artifacts/research_loop/rounds/0276_object_candidate_full_control",
+      "proposal_directory": "artifacts/research_loop/rounds/0277_object_candidate_proposal_control",
+      "source_sha256": "c8246d805511cb652745a32739813e0d749abf57eb7e5cf33b261815cb640bbb",
+      "candidate_runtime": {
+        "enabled": true,
+        "local_only": true,
+        "store": "artifacts/research_loop/rounds/0250_local_packed_candidate_preparation",
+        "control_directory": "artifacts/research_loop/rounds/0252_packed_candidate_full_inference_control",
+        "catalog_sha256": "3cfa1f39ee99bab83861609fb36ead49fa138b191955c0428504f88bd55178da",
+        "source_sha256": "744848689ef00b4874e8f4c987d70425326fc8069fa89a04d6cdd5f322248477",
+        "control_report_sha256": "919de453ef681df82de5a071a068293a4279285b3e48a093bbda7f3e0778c178",
+        "scope": "Exact all3340 full-ranking local runtime cache; candidate bit values and ordering unchanged, no accuracy increase or cold runtime acceptance claim"
+      },
+      "report_sha256": "67cc6d336ed0141630aed65dec6a53fe34ab7609781b2f3f42a04fa44a5972cf",
+      "protocol_sha256": "37dea50f37caecc2d36f0842de1c5555020d2de96c20363a66f7fd8c975495a9",
+      "proposal_report_sha256": "4af8544241feb2dfe593d095c89f82ca77755e442897ffb3a50e3d0e492d473e",
+      "proposal_protocol_sha256": "cb3d110e40eb21526a4e4c91df7af4743630d1209ef35a3a08644d31ab5e3dfa",
+      "scope": "Every3340 best full rank and three full2000 original proposal dictionaries exact; storage runtime only, no accuracy or cold acceptance gain"
+    },
+    "scope": "Pure molecular fingerprints derived from original catalog; no query-dependent or physical evidence cache. Original frozen science recipe/models unchanged; new cold400+fresh75+platform400 proof required."
+  },
+  "portable_fragment_prefetch": {
+    "source_sha256": "3f4e8e2c3bca1a68544506f75f0067583444f3e5fa98687612a7c282629e3b38",
+    "control_report_sha256": "b7e155369bf62a92ce495923089010a3c1e45f1884deb94002956ee217daa291",
+    "full_rank_matches": {
+      "unknown": 2000,
+      "known": 1340
+    },
+    "physical_workers": 2,
+    "scope": "Only original request scheduling and same-invocation critic/probability memoization. Original models/science/request dictionaries/thread2/deadlines unchanged. No precomputed query-dependent fragments or predictions included. New cold400+fresh75+platform400 resource and exact-rank checks required."
+  },
+  "streaming_fragment_prefetch": {
+    "source_sha256": "2c19a333e67cfebab6e88b46ee446dee4ff25b742c31a7e6aceb0222c6afd973",
+    "prefetch_source_sha256": "3f4e8e2c3bca1a68544506f75f0067583444f3e5fa98687612a7c282629e3b38",
+    "control_report_sha256": "638ecba5e0d37117298bed02dd85dadfb8651058ce8c72d503df3de719be76ae",
+    "full_rank_matches": {
+      "unknown": 2000,
+      "known": 1340
+    },
+    "physical_workers": 2,
+    "scope": "Runtime-only overlap of unchanged physical request discovery and execution. Same original model/science/deadline/timeout/threads2. New fresh75+cold400+platform400 fullrank/resource proof required; no query-dependent cache packaged."
+  },
+  "train_reference_runtime": {
+    "source_sha256": "3e6fb87cc4908aea35c00f4ae4129b7d76e544432e92792bfaf4b45b76e9cbc1",
+    "verification_report_sha256": "e35ebfd4a9c519551e74e235caa67825a7ece0a4a54211906585478cfedb9bd0",
+    "store_report_sha256": "a62268ef54f3f764638b0741c9a14717a988637e67f404c6b39d35086d900e0b",
+    "full400_rows_sparse_entries_and_members_exact": true,
+    "train_sha256": "9423f90ec08b941a9646b535bf0606183e86ff0c5a297978f5a70693d41bcd98",
+    "query_dependent_cache": false,
+    "scope": "Only full original training library formula/vector/quality preprocessing; query-dependent subsets selected at runtime with original arithmetic. No packaged query predictions, mass subsets or physical scores. Same models/science/deadlines. Fresh75/cold400/platform400 remain required."
+  },
+  "parallel_generation_runtime": {
+    "valid": true,
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "molecules": 400,
+    "full400_generation_handoffs_exact": true,
+    "original_generated_csv_exact": true,
+    "all_generation_audits_exact": true,
+    "source_sha256": "209a2714b2953254843aa77af5e3a3086389d951e684515c9d3bb7d154bbe8c3",
+    "original_generation_source_sha256": "3aca1f215a83ce773a148864310288accf4997290c099f0e9e8e7b1e81c4e47d",
+    "forced_oneGPU_partitions_sequential": true,
+    "scope": "Complete original400 generation handoff and audit exact against independent sequential whole-molecule partition control. Same single-molecule forward graph/model/sample count/independent spectrum seed/insertion/deadlines. Use both assigned GPUs when available, oneGPU original path by default; no query prediction or physical cache packaged. New source-bound75/cold400/platform400 proof required.",
+    "verification_report_sha256": "1fde03c37b1492a4805cdc2b24b12f7d831ee25ad98b8776e9150ce374708c8f"
+  },
+  "balanced_cpu_runtime": {
+    "runtime_source_sha256": "e289395ee75d797cd4d0d6e7b3bc73000f6e1e4665ab56e86649b2231ac51744",
+    "control_source_sha256": "d35d41ca76994982b54a0e7f13b8962790b844e17b7e9212bd0dd4815b3d99b8",
+    "control_report_sha256": "f40a30ec1907a28c30a8f9e649b1b77fa8abc66dde5d5281370db67e4abdc2dd",
+    "full3340_rank_identity": true,
+    "full_rank_matches": {
+      "unknown": 2000,
+      "known": 1340
+    },
+    "scope": "Only external torch scoring concurrency4->1, same-invocation complete catalog/index reuse; same original seeds/scoring graph/models/candidates/order, two JVMs each2candidate threads and shared deadlines. Fresh source-bound75/cold400 raw dictionary/resource/rank proof and platform400 still required. No query evidence packaged."
+  },
+  "overlap_runtime": {
+    "sources": {
+      "generation_handoff_stream": "5e1516d92a1a8e23d71702551d6d5b0d0b5b14d78ec506ebf276b6aa83c72964",
+      "generation_fragment_overlap": "3c5107430bc5c246dea46b223a549929c7c5ad728ffce6893e547d1a2d77ce2c",
+      "portable_overlap_pipeline": "1d6b952af1dac7dd858219b76eeb7d3fb6207620b71be4f1bd5191d6fade3f1b"
+    },
+    "full_rank_matches": {
+      "unknown": 2000,
+      "known": 1340
+    },
+    "control_report_sha256": "e715dd312d4aa2d86ad475163091e92f1cadc780ef50908ece96b35bc5b2c8b4",
+    "control_source_sha256": "70f0f9191c84e9dbae1d3dc27013782e323505e376800676cb0dc09b34d6bfac",
+    "all400_original_generation_handoffs_and_events_exact": true,
+    "generation_control_report_sha256": "b012a9de84e081c9f3d545d798317ee74ad7ce8f014ebb0cd4bba7e9256c71dd",
+    "original_generation_source_sha256": "3aca1f215a83ce773a148864310288accf4997290c099f0e9e8e7b1e81c4e47d",
+    "preliminary_cold400_control_sha256": "57450e12bf587790d86c110e4a7a52a8b7a6c3497b6a31a69477ff82ef219885",
+    "scope": "Original models/recipe/candidates/scores/per-molecule seeds/physical dictionaries/heap/twoJVM/two candidate threads/shared deadlines unchanged. Runtime-only completed handoffs overlap physical discovery with generation; exact immutable catalog/encoder/score/digest memo within invocation. No query predictions/caches packaged. Still require frozen75/newcold400/platform400 source/resource/physical/ranking proof before single authorized competition POST; no accuracy or paired speed claim."
+  },
+  "generation_cpu_runtime": {
+    "sources": {
+      "generation_handoff_cpu_worker": "e80a118d2819fc8801d3079f1b204bd84adb26fae146cab44edc273f469671ab",
+      "portable_overlap_cpu_pipeline": "97b58e8d6793eea4e11f61c98205f96227311a8cb875a07caf5181ca0d6bfa84",
+      "portable_verified_overlap_cpu_pipeline": "e1bd39188e816841f4af184466a90812c7698b0f884afc675ca49be422e76cb7"
+    },
+    "torch_cpu_threads": 1,
+    "full_rank_matches": {
+      "unknown": 2000,
+      "known": 1340
+    },
+    "all400_generation_events_exact": true,
+    "all400_generation_csv_audit_fullhandoffs_exact": true,
+    "all400_top25_exact": true,
+    "all265_raw_physical_dictionaries_exact": true,
+    "generation_control_sha256": "5c91e4dda0f2bc12ebcd2719eb669c3a862642597ee0f0df3d88025b1f7c2e93",
+    "cold_control_sha256": "6c1cb163baf8ffc555ee9aa63b30d451f614818203bba5ba80681de39f0930b7",
+    "scoring_control_sha256": "dd42649450e9e6f81f5dfe3748ae5b4d604a9084aa8022ac89d18acc639d4fca",
+    "cpu_control_sources_sha256": "c39e552a38f6349520085c38e0e9ba225ecf55150aa05387f2b546a92395719c",
+    "scope": "Original scientific236 models/recipe/seed/128samples/scores/critic/candidates and twoJVM/two candidate threads unchanged. Only original generator Torch CPU threads4->1. No query-dependent assets packaged. Original60s request/1200s physical/1800s total/8192MiB parentRSS retained. Separate frozen75/newcold400/platform400 proof required before the same unused one-time POST; no accuracy or paired speed claim."
+  },
+  "mass_reuse_runtime": {
+    "sources": {
+      "mass_reuse_fragment_runtime": "55bceb7f98afec1b95be08cd723d888447df52063f1d2a57f81ed859c85fe24d",
+      "portable_mass_reuse_pipeline": "4f7b3f68fb9927f88338a3cf27698bcd5fa8d77f7c0c750253e594367253f638"
+    },
+    "classes": {
+      "MetFragWorker.class": "495acee14ed0d74ddd0f80e5f15bbcf355403bbd208eef052b3b64166819c025",
+      "de/ipbhalle/metfraglib/fragment/DefaultBitArrayFragment.class": "fa6d98c5e102050b3ecbae2fc8fbe0d3c4f052ccf45f575bde5bb97d7907b9d0",
+      "de/ipbhalle/metfraglib/fragmenterassignerscorer/TopDownFragmenterAssignerScorer.class": "5da78af07ec75ed1f0db693772e8bdf692485d83a6a350ad9e739f913b7d8ea0",
+      "de/ipbhalle/metfraglib/process/CombinedMetFragProcess.class": "effe991f7a9028eb471b9cf66f9873283383cfe60a255bae43ade45d893ef9bf"
+    },
+    "full_rank_matches": {
+      "unknown": 2000,
+      "known": 1340
+    },
+    "all400_generation_csv_audit_fullhandoffs_exact": true,
+    "all400_top25_exact": true,
+    "all265_raw_physical_dictionaries_exact": true,
+    "boundary_match_comparisons_exact": 113400,
+    "cold_control_sha256": "128a52a141e891ac3dbf76b1154b93c5a368dc03d72b05f082d0192997563da5",
+    "scoring_control_sha256": "e4f919f0e0f574d3b587acd3d2f1f48a0702c30e15c5b75c0af321b7e9c924aa",
+    "control_sources_sha256": "632590371cfb6a8491b44411ec324489e86ae1e3fa2da4e0bdff9c2dd9ca8e4c",
+    "patcher_source_sha256": "1385f75bbbf54e06fed60d5b0e1957b1b128ddc0d3a08c65d3430ea22a4a4784",
+    "boundary_check_source_sha256": "8f4e6eb2e967b13a3957d8ede08b7d485839f1a5607dab588148da73475d01c9",
+    "scope": "Original pinned jar/recipe/models/seeds/128samples/critic/peaks/candidates/scoring remain unchanged. A private classpath derivative adds the same matching method with explicit original ordered mass sum reused only within one unchanged fragment peak loop. Retained original methods instruction-identical except one calculate loop callsite, no persistent mass cache. Original60/1200/1800/8192 limits. Full3340/newcold400 local controls, separate frozen75/newfrozen400/platform400 proof required before unused singlecompetitionPOST. No query predictions/physics caches/labels/input-derived reference subset packaged."
+  }
+}

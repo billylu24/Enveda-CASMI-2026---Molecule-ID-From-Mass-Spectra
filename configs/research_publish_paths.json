@@ -752,7 +752,21 @@
     "casmi_ml/portable_mass_reuse_pipeline.py",
     "casmi_ml/portable_mass_reuse_release.py",
     "tests/test_mass_reuse_fragment_runtime.py",
-    "tests/test_platform_physical_dictionary_verification.py"
+    "tests/test_platform_physical_dictionary_verification.py",
+    "casmi_ml/decoder_mixed_formula_training_audit.py",
+    "tests/test_decoder_mixed_formula_training_audit.py",
+    "kaggle_release_verified_best_0236_mass_reuse_once/status.json",
+    "kaggle_release_verified_best_0236_mass_reuse_once/runtime_amendment.json",
+    "kaggle_release_verified_best_0236_mass_reuse_once/verification.json",
+    "kaggle_release_verified_best_0236_mass_reuse_once/implementation_replay.json",
+    "kaggle_release_verified_best_0236_mass_reuse_once/physical_dictionary_verification.json",
+    "kaggle_release_verified_best_0236_mass_reuse_once/kaggle_verification.json",
+    "kaggle_release_verified_best_0236_mass_reuse_once/platform_physical_dictionary_verification.json",
+    "kaggle_release_verified_best_0236_mass_reuse_once/one_time_submission.json",
+    "kaggle_release_verified_best_0236_mass_reuse_once/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_verified_best_0236_mass_reuse_once/notebook/kernel-metadata.json",
+    "kaggle_release_verified_best_0236_mass_reuse_once/bundle/release_evidence.json",
+    "kaggle_release_verified_best_0236_mass_reuse_once/bundle/SHA256SUMS.json"
   ],
   "aggregate_directories": [
     "results/research_loop",

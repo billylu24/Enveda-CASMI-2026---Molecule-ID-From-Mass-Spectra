@@ -1,0 +1,16 @@
+{
+  "status": "notebook_running",
+  "identity": "d3bc8f152e1a22b8e506df3f004a8f20ee404cdd9336b45af9652cfd657c93e4",
+  "scientific_round": "0236_low_supported_leader_first",
+  "development_eligible": true,
+  "independent_acceptance": false,
+  "uploaded": true,
+  "submitted": false,
+  "submission_id": null,
+  "public_score": null,
+  "remote_release": {
+    "kernel": "giaok246/casmi26-236-mass-reuse-verified-best",
+    "version": 1
+  },
+  "automatic_future_submissions": false
+}

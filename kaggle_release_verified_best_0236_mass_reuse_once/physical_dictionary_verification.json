@@ -1,0 +1,9 @@
+{
+  "valid": true,
+  "complete_request_dictionaries": 265,
+  "all_original_serial_request_dictionaries_exact": true,
+  "full400_top25_matches": 400,
+  "fresh_fragment_cache": true,
+  "independent_acceptance": false,
+  "scope": "New frozen massreuse cold400 exact original236 Top25 and265 rawphysics dictionaries. Original60/1200/1800/8192 limits; no query evidence packaged, not paired/platform speed or accuracy acceptance."
+}

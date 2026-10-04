@@ -1,0 +1,83 @@
+{
+  "round": "0428_decoder_mixed_formula_training_audit",
+  "direction": "generation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "fit_molecules": 47994,
+    "fit_supported_encodable": 47970,
+    "heldout_molecules": 12006,
+    "heldout_supported_encodable": 12002,
+    "fit_excluded": 24,
+    "heldout_excluded": 4,
+    "fit_integer_condition_molecules": 23991,
+    "multiple_recorded_formula_fit": 7,
+    "multiple_recorded_formula_heldout": 0,
+    "arms": {
+      "initial": {
+        "soft": 0.20308445309799544,
+        "training_integer": 0.20275653173868124
+      },
+      "soft_control": {
+        "soft": 0.1869497799175737,
+        "training_integer": 0.18657744298053547
+      },
+      "mixed_integer": {
+        "soft": 0.18692892918753062,
+        "training_integer": 0.1865063655549872
+      }
+    },
+    "mixed_over_soft_control_nll_reductions": {
+      "soft": {
+        "molecules": 12002,
+        "mean_loss_reduction": 2.0850730043074087e-05,
+        "paired_bootstrap95_loss_reduction": [
+          1.0795776371128203e-05,
+          3.1093207600845736e-05
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      },
+      "training_integer": {
+        "molecules": 12002,
+        "mean_loss_reduction": 7.107742554825523e-05,
+        "paired_bootstrap95_loss_reduction": [
+          6.12700326126148e-05,
+          8.103522563250675e-05
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      }
+    },
+    "history": {
+      "soft_control": [
+        {
+          "epoch": 1,
+          "fit_molecular_nll": 0.23507733058999025
+        },
+        {
+          "epoch": 2,
+          "fit_molecular_nll": 0.2286609418365591
+        }
+      ],
+      "mixed_integer": [
+        {
+          "epoch": 1,
+          "fit_molecular_nll": 0.2348613201739367
+        },
+        {
+          "epoch": 2,
+          "fit_molecular_nll": 0.2284311419058174
+        }
+      ]
+    },
+    "seconds": 111.38231646397617,
+    "scope": "Matched fixed twoepoch finetuning training-only diagnostic on previously all60K-pretrained models. Integer-condition NLL is teacher forcing with training labels, never oracle dev/test generation. No graph/ranking/independent accuracy claim or deployment; unsupported identities remain in declared denominator."
+  },
+  "protocol_sha256": "bdf38ce6d73e3a17144f06608e2284b18b97ff0f0e957bbb781f9b9edd3af5db",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

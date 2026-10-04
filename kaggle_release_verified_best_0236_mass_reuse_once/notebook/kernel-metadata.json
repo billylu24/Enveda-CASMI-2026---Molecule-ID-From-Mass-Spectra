@@ -1,0 +1,21 @@
+{
+  "id": "giaok246/casmi26-236-mass-reuse-verified-best",
+  "title": "CASMI26 236 Mass Reuse Verified Best",
+  "code_file": "casmi_chemistry.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "competition_sources": [
+    "enveda-CASMI26-molecule-id-mass-spectra"
+  ],
+  "dataset_sources": [
+    "giaok246/casmi26-236-mass-reuse-best-bundle",
+    "aidensong123/casmi26-coconut-202609"
+  ],
+  "kernel_sources": [],
+  "model_sources": [],
+  "machine_shape": "NvidiaTeslaT4"
+}

@@ -1,0 +1,6 @@
+{
+  "old_release": "/home/giaok/PycharmProjects/Enveda CASMI 2026/kaggle_release_verified_best_0236_overlap_cpu_once",
+  "new_release": "/home/giaok/PycharmProjects/Enveda CASMI 2026/kaggle_release_verified_best_0236_mass_reuse_once",
+  "science_recipe_unchanged": true,
+  "reason": "Same ordered fragment mass sum reused within each unchanged peak loop; no score/input/recipe/deadline change, cold400/3340 exact. Single unused explicit236 submission request; future localonly."
+}
