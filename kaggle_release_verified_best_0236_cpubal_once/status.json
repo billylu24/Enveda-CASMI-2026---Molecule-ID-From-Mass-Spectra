@@ -1,9 +1,16 @@
 {
-  "status": "runtime_amendment_prepared",
+  "status": "notebook_running",
   "identity": "da2a737f0d4679f7a0900b22fc6655a20db2b7845e2914234f0246457b01098c",
   "scientific_round": "0236_low_supported_leader_first",
   "development_eligible": true,
   "independent_acceptance": false,
-  "uploaded": false,
-  "submitted": false
+  "uploaded": true,
+  "submitted": false,
+  "submission_id": null,
+  "public_score": null,
+  "remote_release": {
+    "kernel": "giaok246/casmi26-236-cpu-balanced-verified-best",
+    "version": 1
+  },
+  "automatic_future_submissions": false
 }

@@ -672,7 +672,12 @@
     "kaggle_release_verified_best_0236_cpubal_once/notebook/casmi_chemistry.ipynb",
     "kaggle_release_verified_best_0236_cpubal_once/notebook/kernel-metadata.json",
     "casmi_ml/energy_conditioned_capacity_audit.py",
-    "tests/test_energy_conditioned_capacity_audit.py"
+    "tests/test_energy_conditioned_capacity_audit.py",
+    "casmi_ml/energy_conditioned_compatibility.py",
+    "casmi_ml/energy_conditioned_training.py",
+    "casmi_ml/energy_conditioned_system.py",
+    "casmi_ml/energy_conditioned_followup.py",
+    "tests/test_energy_conditioned_compatibility.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

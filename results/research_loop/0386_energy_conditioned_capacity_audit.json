@@ -1,0 +1,54 @@
+{
+  "round": "0386_energy_conditioned_capacity_audit",
+  "direction": "representation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "capacity_probe": {
+      "original": {
+        "initial_ce": 0.5295985417218343,
+        "final_objective": 0.5246471778145301,
+        "optimizer_iterations": 45,
+        "sum_nonnegative_cosine_weights": 1.7151858236430644,
+        "maximum_possible_bonus": 2.0
+      },
+      "conditioned": {
+        "initial_ce": 0.5295985417218343,
+        "final_objective": 0.5240684177250712,
+        "optimizer_iterations": 61,
+        "sum_nonnegative_cosine_weights": 2.0,
+        "maximum_possible_bonus": 2.0
+      },
+      "same_objective_gain": 0.0005787600894588962,
+      "active_original_channels": 18,
+      "active_conditional_channels": 11,
+      "conditional_weight_sum": 0.6547912330311657,
+      "eligible_training_molecules": 48564
+    },
+    "original_preparation": {
+      "diagnostic_only": true,
+      "local_only": true,
+      "independent_acceptance": false,
+      "training_molecules": 60000,
+      "train_development_overlap": 0,
+      "original_encoder_and_critic_frozen": true,
+      "history": {
+        "initial_ce": 0.5295985417218343,
+        "final_objective": 0.5246471778145301,
+        "optimizer_iterations": 45,
+        "sum_nonnegative_cosine_weights": 1.7151858236430644,
+        "maximum_possible_bonus": 2.0
+      },
+      "seconds": 86.19285784300882,
+      "model_sha256": "a6b4ec0168af2016f859201c1201dce3b37a58253abaaf4871240d24194d27f4",
+      "scope": "Bounded extended candidate chemistry fitting only; current-best complete zero control and paired full3340 systems required"
+    },
+    "scope": "Training-only conditional120D capacity probe; larger model embeds original feasible solution. Internalheldout MSE/pair advantage and training objective do not establish complete ranking gain. Original valid model retained; new weights never activated."
+  },
+  "protocol_sha256": "ca5aa6e216779df0aa382094c025244448b5b4890f607f738b1ed52c0f23250d",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

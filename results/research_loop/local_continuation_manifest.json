@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-04T04:44:23Z",
+  "updated_at": "2026-10-04T04:51:39Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -102,10 +102,10 @@
   },
   "active_rounds": [
     {
-      "id": "0386_energy_conditioned_capacity_audit",
-      "direction": "representation_diagnostic",
-      "status": "queued",
-      "report": "artifacts/research_loop/rounds/0386_energy_conditioned_capacity_audit/report.json"
+      "id": "0387_energy_conditioned_zero_control",
+      "direction": "implementation_control",
+      "status": "external_running",
+      "report": "artifacts/research_loop/rounds/0387_energy_conditioned_zero_control/report.json"
     }
   ],
   "local_candidate_runtime": {
@@ -223,19 +223,20 @@
     "finish_cpubal_once236.log",
     "finish_cpubal_once236_v2.log",
     "energy_conditioned_capacity_followup.log",
+    "energy_conditioned_followup.log",
     "parallel_generation_followup.log",
     "parallel_generation_corrected_followup.log",
     "finish_dualgen_once236.log",
     "finish_dualgen_once236_v2.log"
   ],
-  "pending_sequence": "Scientific236/evidence286 retained;319 exact3340 validation cache active. Count337, connected344, aromaticH351, five-slot356, individual-gate361 all rejected by frozen promotion gate.359 scorer trace full3340 exact:116unknown available but absent finally,44outside actual100,72scored,22pass original first critic and physical gates. Streaming platform failed physical timeout under original1200s deadline; no competition POST.362 full-train reference cache built without queries, selected556890 rows and10027422 CSR entries plus74956 observed keys exact; source-bound reference fresh75 exact. Reference cold400409.738s/4276.563MiB/zero budget/all400Top25+265rawdict exact passed; platform timeout1250s, no competition POST. Actual assigned T4x2, metadataP100 unavailable; parallel generation375 CLI defect retained;376 corrected independent-seeded whole-molecule400 CSV/audit/fullhandoff exact; frozenfresh75exact and forced partition cold400460.713s/3397.641MiB/zero budget/all400Top25+265rawdict exact passed. Dualgen platformfailed original1200s physical timeout; actualgeneration217.295s/retrieval63.263s, no competition POST. BalancedCPU385 originalfull3340 exact0budget/newfail passed. Frozen cpubal source-bound75 ranks exact0budget44.413s; cold400 under4CPU affinity running, same-science allrawdict/Top25/resources then platform400 required before unused single authorized submission.386 conditioned120D train-only capacity probe queued behind cold400 GPU lock; retains original valid model and total2 bonus budget. Current status is in one_time_kaggle below.363 same-mask training capacity gain.000020123 complete, no accuracy claim.364zero/368mask all3340 exact0budget/newfail;367mass-compatible chemistryunknownMRR.044144968 knownunchanged+.379% rejected.372 train-internal fp->diagnostic prediction heldoutMSE8.8% better than20SMARTS, not accuracy.373 direct forward-strength support replacement capacity worse.003135074; do not run dev systems. 369 original2048 exact665 train-pair aliases all distinct actual graph;576mass-compatible, larger4096/8192bits separate0, radius2counts separate108.370 sparse count radius3/4/6/8 separate310/450/526/572 of576, representation availability only. 377zero/381mask full3340exact0budget/newfail;380120Dchemical+.379% unknownMRR rejected, knownunchanged. Parent termination recovered original child without retraining or budget refund.382 measured CE audit complete:nonempty Jaccard .598544 different singletonCE vs .800985 sameCE, observational only.383 fixed train-internal molecular-holdout CE-conditioned fp/context ridge MSE.002800917 vs fp*CE .002735632(-2.33%),9758heldout eligible molecules; no dev accuracy claim.384 complete same-query CE/context bothheldout mass-compatible51014 row-slot pairs:baseline positive22369/negative14684/tie13961,CEinteraction22650/14404/13960. Mean positive-minus-negative .000214308->.000243739; no fitting/dev ranking or activation. Counts from contrast_summary are row slots, not independent molecules. Persistent local_only; no future submissions or GitHub push.",
+  "pending_sequence": "Scientific236/evidence286 retained;319 exact3340 validation cache active. Count337, connected344, aromaticH351, five-slot356, individual-gate361 all rejected by frozen promotion gate.359 scorer trace full3340 exact:116unknown available but absent finally,44outside actual100,72scored,22pass original first critic and physical gates. Streaming platform failed physical timeout under original1200s deadline; no competition POST.362 full-train reference cache built without queries, selected556890 rows and10027422 CSR entries plus74956 observed keys exact; source-bound reference fresh75 exact. Reference cold400409.738s/4276.563MiB/zero budget/all400Top25+265rawdict exact passed; platform timeout1250s, no competition POST. Actual assigned T4x2, metadataP100 unavailable; parallel generation375 CLI defect retained;376 corrected independent-seeded whole-molecule400 CSV/audit/fullhandoff exact; frozenfresh75exact and forced partition cold400460.713s/3397.641MiB/zero budget/all400Top25+265rawdict exact passed. Dualgen platformfailed original1200s physical timeout; actualgeneration217.295s/retrieval63.263s, no competition POST. BalancedCPU385 originalfull3340 exact0budget/newfail passed. Frozen cpubal75 exact0budget44.413s; newcold4004CPU434.995s/3081.590MiB/0budget/full400Top25 and265rawdict exact passed. Private Notebook giaok246/casmi26-236-cpu-balanced-verified-best v1 running since04:47:53UTC; platform400 required before unused single authorized submission.386 conditioned120D capacity objective.524647178->.524068418 gain.000578760089, total2.387zero exact control running before388chemical/389mask fits and390/391 complete physical systems; no auto activation/publication. Current status is in one_time_kaggle below.363 same-mask training capacity gain.000020123 complete, no accuracy claim.364zero/368mask all3340 exact0budget/newfail;367mass-compatible chemistryunknownMRR.044144968 knownunchanged+.379% rejected.372 train-internal fp->diagnostic prediction heldoutMSE8.8% better than20SMARTS, not accuracy.373 direct forward-strength support replacement capacity worse.003135074; do not run dev systems. 369 original2048 exact665 train-pair aliases all distinct actual graph;576mass-compatible, larger4096/8192bits separate0, radius2counts separate108.370 sparse count radius3/4/6/8 separate310/450/526/572 of576, representation availability only. 377zero/381mask full3340exact0budget/newfail;380120Dchemical+.379% unknownMRR rejected, knownunchanged. Parent termination recovered original child without retraining or budget refund.382 measured CE audit complete:nonempty Jaccard .598544 different singletonCE vs .800985 sameCE, observational only.383 fixed train-internal molecular-holdout CE-conditioned fp/context ridge MSE.002800917 vs fp*CE .002735632(-2.33%),9758heldout eligible molecules; no dev accuracy claim.384 complete same-query CE/context bothheldout mass-compatible51014 row-slot pairs:baseline positive22369/negative14684/tie13961,CEinteraction22650/14404/13960. Mean positive-minus-negative .000214308->.000243739; no fitting/dev ranking or activation. Counts from contrast_summary are row slots, not independent molecules. Persistent local_only; no future submissions or GitHub push.",
   "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
   "runtime_claims": "Exact packed/object/array all3340 cached ranks and proposal three full2000 dictionaries. Separate scientific236 one-time release cold400 resource/physical/ranking verified; no paired whole-pipeline speed or independent accuracy claim.",
   "one_time_kaggle": {
-    "identity": "2318af9cf3242020638a7cd83ed9c6ba1c92daaf886a65c6e9f288c4fe52eb57",
-    "status": "platform_verification_failed",
+    "identity": "da2a737f0d4679f7a0900b22fc6655a20db2b7845e2914234f0246457b01098c",
+    "status": "notebook_running",
     "remote": {
-      "kernel": "giaok246/casmi26-236-dualgen-verified-best",
+      "kernel": "giaok246/casmi26-236-cpu-balanced-verified-best",
       "version": 1
     },
     "submission_id": null,
@@ -1843,7 +1844,14 @@
     {
       "id": "0386_energy_conditioned_capacity_audit",
       "direction": "representation_diagnostic",
-      "status": "queued",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0386_energy_conditioned_capacity_audit.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0387_energy_conditioned_zero_control",
+      "direction": "implementation_control",
+      "status": "external_running",
       "decision": null,
       "local_recorded": false
     }
