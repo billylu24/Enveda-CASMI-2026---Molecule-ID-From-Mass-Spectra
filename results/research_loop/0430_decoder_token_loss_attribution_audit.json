@@ -1,0 +1,289 @@
+{
+  "round": "0430_decoder_token_loss_attribution_audit",
+  "direction": "generation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "heldout_molecules": 12006,
+    "supported_encodable": 12002,
+    "excluded": 4,
+    "all_three_originalsoft_molecular_nll_arrays_exact428": true,
+    "all_nonpadding_labels_partitioned": true,
+    "arms": {
+      "initial": {
+        "full_nll": 0.20308445309799544,
+        "categories": {
+          "atom": {
+            "molecules_with_tokens": 12002,
+            "tokens": 299862,
+            "eligible_molecular_nll": 0.24355185455225248
+          },
+          "bond_separator": {
+            "molecules_with_tokens": 11246,
+            "tokens": 23617,
+            "eligible_molecular_nll": 0.15008563262964203
+          },
+          "branch": {
+            "molecules_with_tokens": 11950,
+            "tokens": 101202,
+            "eligible_molecular_nll": 0.17531480370031255
+          },
+          "ring": {
+            "molecules_with_tokens": 11407,
+            "tokens": 67332,
+            "eligible_molecular_nll": 0.11351357887857373
+          },
+          "stereo": {
+            "molecules_with_tokens": 0,
+            "tokens": 0,
+            "eligible_molecular_nll": null
+          },
+          "eos": {
+            "molecules_with_tokens": 12002,
+            "tokens": 12002,
+            "eligible_molecular_nll": 0.021427557486425896
+          }
+        }
+      },
+      "soft_control": {
+        "full_nll": 0.1869497799175737,
+        "categories": {
+          "atom": {
+            "molecules_with_tokens": 12002,
+            "tokens": 299862,
+            "eligible_molecular_nll": 0.22264753482532415
+          },
+          "bond_separator": {
+            "molecules_with_tokens": 11246,
+            "tokens": 23617,
+            "eligible_molecular_nll": 0.1441267600336312
+          },
+          "branch": {
+            "molecules_with_tokens": 11950,
+            "tokens": 101202,
+            "eligible_molecular_nll": 0.16744133313090048
+          },
+          "ring": {
+            "molecules_with_tokens": 11407,
+            "tokens": 67332,
+            "eligible_molecular_nll": 0.1031392929253904
+          },
+          "stereo": {
+            "molecules_with_tokens": 0,
+            "tokens": 0,
+            "eligible_molecular_nll": null
+          },
+          "eos": {
+            "molecules_with_tokens": 12002,
+            "tokens": 12002,
+            "eligible_molecular_nll": 0.017938045386772506
+          }
+        }
+      },
+      "mixed_integer": {
+        "full_nll": 0.18692892918753062,
+        "categories": {
+          "atom": {
+            "molecules_with_tokens": 12002,
+            "tokens": 299862,
+            "eligible_molecular_nll": 0.22267203940950528
+          },
+          "bond_separator": {
+            "molecules_with_tokens": 11246,
+            "tokens": 23617,
+            "eligible_molecular_nll": 0.14416070050295782
+          },
+          "branch": {
+            "molecules_with_tokens": 11950,
+            "tokens": 101202,
+            "eligible_molecular_nll": 0.16729042278591347
+          },
+          "ring": {
+            "molecules_with_tokens": 11407,
+            "tokens": 67332,
+            "eligible_molecular_nll": 0.10305424701000823
+          },
+          "stereo": {
+            "molecules_with_tokens": 0,
+            "tokens": 0,
+            "eligible_molecular_nll": null
+          },
+          "eos": {
+            "molecules_with_tokens": 12002,
+            "tokens": 12002,
+            "eligible_molecular_nll": 0.017799261873810403
+          }
+        }
+      }
+    },
+    "paired_category_nll_reductions": {
+      "soft_control_over_initial": {
+        "atom": {
+          "molecules": 12002,
+          "mean_loss_reduction": 0.02090431972692837,
+          "paired_bootstrap95_loss_reduction": [
+            0.020362527536154373,
+            0.021438637387713864
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "bond_separator": {
+          "molecules": 11246,
+          "mean_loss_reduction": 0.00595887259601084,
+          "paired_bootstrap95_loss_reduction": [
+            0.004501135485186763,
+            0.0073809407482799535
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "branch": {
+          "molecules": 11950,
+          "mean_loss_reduction": 0.007873470569412051,
+          "paired_bootstrap95_loss_reduction": [
+            0.00709710288583249,
+            0.008656154844419728
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "ring": {
+          "molecules": 11407,
+          "mean_loss_reduction": 0.010374285953183354,
+          "paired_bootstrap95_loss_reduction": [
+            0.009610397906171552,
+            0.011136552715002806
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "stereo": null,
+        "eos": {
+          "molecules": 12002,
+          "mean_loss_reduction": 0.003489512099653385,
+          "paired_bootstrap95_loss_reduction": [
+            0.0028578252645550897,
+            0.004146803186194459
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        }
+      },
+      "mixed_integer_over_initial": {
+        "atom": {
+          "molecules": 12002,
+          "mean_loss_reduction": 0.02087981514274722,
+          "paired_bootstrap95_loss_reduction": [
+            0.020337900470965124,
+            0.02141353413972011
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "bond_separator": {
+          "molecules": 11246,
+          "mean_loss_reduction": 0.0059249321266842455,
+          "paired_bootstrap95_loss_reduction": [
+            0.004466325336453027,
+            0.007352371925335366
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "branch": {
+          "molecules": 11950,
+          "mean_loss_reduction": 0.008024380914399068,
+          "paired_bootstrap95_loss_reduction": [
+            0.007246869508556392,
+            0.008802931794033577
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "ring": {
+          "molecules": 11407,
+          "mean_loss_reduction": 0.010459331868565526,
+          "paired_bootstrap95_loss_reduction": [
+            0.009694241446159532,
+            0.011224048569631112
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "stereo": null,
+        "eos": {
+          "molecules": 12002,
+          "mean_loss_reduction": 0.0036282956126154906,
+          "paired_bootstrap95_loss_reduction": [
+            0.003003424542128562,
+            0.004276599500746326
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        }
+      },
+      "mixed_integer_over_soft_control": {
+        "atom": {
+          "molecules": 12002,
+          "mean_loss_reduction": -2.4504584181152723e-05,
+          "paired_bootstrap95_loss_reduction": [
+            -3.950228136177674e-05,
+            -9.923790747481291e-06
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "bond_separator": {
+          "molecules": 11246,
+          "mean_loss_reduction": -3.394046932659542e-05,
+          "paired_bootstrap95_loss_reduction": [
+            -7.283579021202764e-05,
+            5.985306611228018e-06
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "branch": {
+          "molecules": 11950,
+          "mean_loss_reduction": 0.00015091034498701484,
+          "paired_bootstrap95_loss_reduction": [
+            0.00012388225957295402,
+            0.00017921080683313718
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "ring": {
+          "molecules": 11407,
+          "mean_loss_reduction": 8.504591538216977e-05,
+          "paired_bootstrap95_loss_reduction": [
+            5.784218668347063e-05,
+            0.00011214361253332608
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "stereo": null,
+        "eos": {
+          "molecules": 12002,
+          "mean_loss_reduction": 0.0001387835129621056,
+          "paired_bootstrap95_loss_reduction": [
+            3.7061770687309214e-05,
+            0.00024141819522914562
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        }
+      }
+    },
+    "seconds": 21.076163679012097,
+    "scope": "Training-side teacherforced token attribution, all models initially pretrainedall60K. Category eligible molecular denominators explicit; bracket stereo belongs atom category. No free generation, structural recall, model promotion or independent acceptance; rejected429 unchanged."
+  },
+  "protocol_sha256": "a193a6ba8d411e3f5c6fe322af24654dee95c5ee9826b00d1a460bb2800cd6df",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

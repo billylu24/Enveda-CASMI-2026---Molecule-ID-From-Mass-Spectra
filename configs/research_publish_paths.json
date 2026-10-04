@@ -766,7 +766,9 @@
     "kaggle_release_verified_best_0236_mass_reuse_once/notebook/casmi_chemistry.ipynb",
     "kaggle_release_verified_best_0236_mass_reuse_once/notebook/kernel-metadata.json",
     "kaggle_release_verified_best_0236_mass_reuse_once/bundle/release_evidence.json",
-    "kaggle_release_verified_best_0236_mass_reuse_once/bundle/SHA256SUMS.json"
+    "kaggle_release_verified_best_0236_mass_reuse_once/bundle/SHA256SUMS.json",
+    "casmi_ml/decoder_mixed_formula_structure_pilot.py",
+    "casmi_ml/decoder_token_loss_attribution_audit.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

@@ -1,0 +1,68 @@
+{
+  "round": "0429_decoder_mixed_formula_structure_pilot",
+  "direction": "generation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "molecules": 200,
+    "all200_original_candidates_stats_hypotheses_exact": true,
+    "samples_per_query_per_arm": 128,
+    "original_soft_condition_rows_per_query": 64,
+    "queries_with_proposals": 183,
+    "arms": {
+      "original": {
+        "samples": 25600,
+        "terminated": 25599,
+        "valid": 23553,
+        "mass_matching": 490,
+        "unique_mass_matching": 311,
+        "queries_with_candidates": 100,
+        "exact_structure_hits": 9
+      },
+      "soft_control_soft": {
+        "samples": 25600,
+        "terminated": 25599,
+        "valid": 23557,
+        "mass_matching": 498,
+        "unique_mass_matching": 332,
+        "queries_with_candidates": 104,
+        "exact_structure_hits": 7
+      },
+      "mixed_trained_soft": {
+        "samples": 25600,
+        "terminated": 25599,
+        "valid": 23540,
+        "mass_matching": 499,
+        "unique_mass_matching": 329,
+        "queries_with_candidates": 102,
+        "exact_structure_hits": 7
+      },
+      "soft_control_proposals": {
+        "samples": 25600,
+        "terminated": 25599,
+        "valid": 23506,
+        "mass_matching": 492,
+        "unique_mass_matching": 328,
+        "queries_with_candidates": 100,
+        "exact_structure_hits": 7
+      },
+      "mixed_trained_proposals": {
+        "samples": 25600,
+        "terminated": 25599,
+        "valid": 23513,
+        "mass_matching": 496,
+        "unique_mass_matching": 331,
+        "queries_with_candidates": 101,
+        "exact_structure_hits": 7
+      }
+    },
+    "seconds": 318.94422196701635,
+    "scope": "Fixed five-arm repeateddevelopment structural pilot after frozen matched training. Formula targets never enter proposals. Compare integer training against matched soft-only finetuning, no structure-ranking/independent accuracy acceptance, physics or activation; best236 retained."
+  },
+  "protocol_sha256": "753a4b68b59857168ea5b77af14df16f9652e9b6f9da5ae0465a5aafdd50e128",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

@@ -351,3 +351,12 @@ cpubal平台最终API ERROR，原shared1200秒末端prefetched physical timeout�
 
 
 新massreuse236冻结4CPU冷400通过：248.941秒/3145.387MiB，完整400Top25/265原raw物理字典exact、0budget；identity d3bc8f152e1a22b8e506df3f004a8f20ee404cdd9336b45af9652cfd657c93e4。相对既有338.824秒只是独立运行观察，不当完整流水线配对提速证明。新release保持原所有模型和deployment_recipe SHA不变，单次unused授权已重新绑定；private dataset上传进行中，尚无competitionPOST或ID。后续提升继续local_only/noGitHubpush。0428fixedmatcheddecoder训练审计已启动，原encoder/formula/decoder pretrainingall60K限制保留。
+
+
+新私有Notebook giaok246/casmi26-236-mass-reuse-verified-best v1已RUNNING，browser确认真实T4x2、Logs245.7s但只显示debugger前置日志；APIlogs_stream HTTP500。没有competitionPOST/ID，不能用running/页面进度代替完整platform400验证。0428固定两epoch训练完成111.382秒；47970supportedfit/12002supportedheldout，24/4excluded，完整47994/12006分母保留。initial softNLL.203084→softcontrol.186950，mixedtrained.186929；mixed相对control soft仅+.00002085195[.000010796,.000031093]，traininginteger+.00007107795[.000061270,.000081035]，未当结构收益。0429固定五臂first200/128结构pilot运行中：originalsoft/controlsoft/mixedsoft/controlproposals/mixedproposals，same415nonoracle massformula top5、未加重原子约束/样本/调温度；original完整200cacheexact前不接受摘要，比较matchedfinetuning以分离普通微调和整数条件效果。521完整回归通过。
+
+
+0429五臂完整结束：固定200/每臂128采样，原候选/stats/hypotheses全部exact；原graph9，四个新臂均7。四臂均保留7个原命中、丢失2个，没有新增命中。普通soft微调和整数条件混合微调、质量formula proposal均未带来结构收益，拒绝扩展/激活，不按开发结果调epoch/blend/温度。之前overlap摘要误把字符串key与candidate字典直接比较，已按candidate[key]更正并与原summarize核对；不影响0429原报告。521完整回归通过。单次massreuse236私有Notebook v1仍RUNNING、真实T4x2、检索400已完成；API实时日志重试恢复，尚无competition POST/ID。
+
+
+0430固定训练内token loss归因完成21.076秒：完整12006留出代表，12002 supported/可编码、4 exclusions，三个模型原soft条件逐分子NLL全部exact重现428，非padding token分类完整且重构总loss。mixed相对matched softcontrol的原子token NLL恶化0.000024505（95[-0.000039502,-0.000009924]的loss reduction）；branch/ring/EOS分别改善0.000150910/0.000085046/0.000138784；bond/separator差异95跨0。统计按含该类token的等权分子，显式stereo token为0，bracket立体标记归atom，不能声称全部立体化学已审计。总体NLL微降没有原子token改善，更不能等同正确结构收益；429拒绝仍有效。该诊断不训练、不用dev/test输入、不生成、不启用。下一训练目标应先检验质量/元素组合与结构连接的一致性，不能只优化teacherforcing平均损失或扩GAN/DINO。

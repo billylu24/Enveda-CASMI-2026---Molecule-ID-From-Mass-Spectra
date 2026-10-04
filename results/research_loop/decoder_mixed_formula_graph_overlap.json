@@ -1,0 +1,40 @@
+{
+  "local_only": true,
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "arms": {
+    "original": {
+      "hits": 9,
+      "preserved_original": 9,
+      "new_vs_original": 0,
+      "lost_original": 0
+    },
+    "soft_control_soft": {
+      "hits": 7,
+      "preserved_original": 7,
+      "new_vs_original": 0,
+      "lost_original": 2
+    },
+    "mixed_trained_soft": {
+      "hits": 7,
+      "preserved_original": 7,
+      "new_vs_original": 0,
+      "lost_original": 2
+    },
+    "soft_control_proposals": {
+      "hits": 7,
+      "preserved_original": 7,
+      "new_vs_original": 0,
+      "lost_original": 2
+    },
+    "mixed_trained_proposals": {
+      "hits": 7,
+      "preserved_original": 7,
+      "new_vs_original": 0,
+      "lost_original": 2
+    }
+  },
+  "source_sha256": "779b533a9746ddef2c4d1b909510e5187297584810a7c620635fbd8215fbae5c",
+  "scope": "Fixed200 graph overlap aggregate only. Reject expansion/activation; no repeated development checkpoint/condition tuning, no labels/IDs exported.",
+  "correction": "Earlier aggregate compared string key to candidate dictionaries and incorrectly reported zero; corrected using candidate key field and checked against authoritative summarize()."
+}
