@@ -1,0 +1,50 @@
+{
+  "round": "0416_mass_formula_structure_pilot",
+  "direction": "generation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "molecules": 200,
+    "all200_original_candidates_stats_hypotheses_exact": true,
+    "samples_per_query_per_arm": 128,
+    "original_soft_condition_rows_per_query": 64,
+    "queries_with_proposals": 183,
+    "arms": {
+      "original": {
+        "samples": 25600,
+        "terminated": 25599,
+        "valid": 23553,
+        "mass_matching": 490,
+        "unique_mass_matching": 311,
+        "queries_with_candidates": 100,
+        "exact_structure_hits": 9
+      },
+      "neural_mass": {
+        "samples": 25600,
+        "terminated": 25599,
+        "valid": 23532,
+        "mass_matching": 484,
+        "unique_mass_matching": 304,
+        "queries_with_candidates": 98,
+        "exact_structure_hits": 9
+      },
+      "frequency_mass": {
+        "samples": 25600,
+        "terminated": 25599,
+        "valid": 23540,
+        "mass_matching": 485,
+        "unique_mass_matching": 306,
+        "queries_with_candidates": 97,
+        "exact_structure_hits": 9
+      }
+    },
+    "seconds": 194.75958322302904,
+    "scope": "Repeated-development fixed paired structural recall pilot. Formula targets never enter proposal inputs. No structure-ranking/independent accuracy acceptance, physics or activation; best236 retained."
+  },
+  "protocol_sha256": "917b060784bb2c11d2b99cc07f7f8abf0bb3b9d34a719a729f1a8f6f8e44e6ac",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

@@ -1,0 +1,9 @@
+{
+  "diagnostic_only": true,
+  "local_only": true,
+  "independent_acceptance": false,
+  "round": "0413_mass_formula_training_proposal_audit",
+  "status": "failed_before_training",
+  "source_sha256": "006e862f37d3f55f6c628b29a4ebf25e90282831796c017a5347a57bf96cefec",
+  "reason": "Driver held globalGPU lock, childStageBudget tried same lock separately. No training updates/holdout assessment/model activation. Preserve oldprotocol/log/ledger; corrected415removes parentGPU lock, childbudget exclusively owns it, same science/source/hyperparameters/seed/split."
+}

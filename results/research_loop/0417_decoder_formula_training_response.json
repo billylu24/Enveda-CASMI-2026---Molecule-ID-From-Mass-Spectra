@@ -1,0 +1,76 @@
+{
+  "round": "0417_decoder_formula_training_response",
+  "direction": "training_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "molecules": 200,
+    "teacher_forced_supported_molecules": 200,
+    "unsupported_or_unencodable_molecules": 0,
+    "arms": {
+      "original": {
+        "nll": 0.20779339196160435,
+        "base_to_arm_kl": 0.0,
+        "argmax_change_rate": 0.0,
+        "memory_delta_rms": 0.0
+      },
+      "training_true_formula": {
+        "nll": 0.20751932728104294,
+        "base_to_arm_kl": 7.734551182114302e-05,
+        "argmax_change_rate": 0.0008573838882148265,
+        "memory_delta_rms": 0.004855753775482299
+      },
+      "zero_formula": {
+        "nll": 0.2233188741002232,
+        "base_to_arm_kl": 0.014354879874153993,
+        "argmax_change_rate": 0.0179585890378803,
+        "memory_delta_rms": 0.05969053774140775
+      },
+      "shuffled_training_formula": {
+        "nll": 0.21133432450704276,
+        "base_to_arm_kl": 0.003136112814673879,
+        "argmax_change_rate": 0.0051730751805007455,
+        "memory_delta_rms": 0.02605837875395082
+      }
+    },
+    "paired_nll_reductions": {
+      "training_true_formula": {
+        "molecules": 200,
+        "mean_loss_reduction": 0.0002740646805614233,
+        "paired_bootstrap95_loss_reduction": [
+          2.4711380479857328e-05,
+          0.0005568821851629763
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      },
+      "zero_formula": {
+        "molecules": 200,
+        "mean_loss_reduction": -0.015525482138618827,
+        "paired_bootstrap95_loss_reduction": [
+          -0.019543867541244254,
+          -0.011751516673481094
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      },
+      "shuffled_training_formula": {
+        "molecules": 200,
+        "mean_loss_reduction": -0.003540932545438409,
+        "paired_bootstrap95_loss_reduction": [
+          -0.005596260051708668,
+          -0.0017801631032489248
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      }
+    },
+    "scope": "Frozen training-only decoder sensitivity observation. Training trueformula is only a diagnostic intervention, not inference proposal/structure generation. All models pretrainedall60K; no independent generalization or scientific promotion. NLL/KL response cannot establish graph recall gain."
+  },
+  "protocol_sha256": "08705ea024525233d81fb5086ff3f317412a90787e2dd5a9bc47c51152a7423f",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

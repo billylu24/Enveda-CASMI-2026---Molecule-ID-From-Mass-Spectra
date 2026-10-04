@@ -21,6 +21,26 @@ class MassFormulaProposalTest(unittest.TestCase):
         )
         self.assertEqual((proposal, n), (["C2H6O"], 1))
 
+    def test_mass_only_control_uses_the_same_candidate_window(self):
+        formulas = ["C2H6O", "CH4O2"]
+        masses = np.array([100.0, 100.0001])
+        counts = np.stack([formula_counts(f) for f in formulas])
+        logits = np.zeros((len(ELEMENTS), 257))
+        neural, n = mass_proposals(logits, 100, masses, counts, formulas, k=1)
+        prior, other_n = mass_proposals(
+            logits,
+            100,
+            masses,
+            counts,
+            formulas,
+            k=1,
+            formula_log_prior=np.log([0.1, 0.9]),
+        )
+        self.assertEqual(n, other_n)
+        self.assertEqual(n, 2)
+        self.assertEqual(neural, ["C2H6O"])
+        self.assertEqual(prior, ["CH4O2"])
+
     def test_no_candidate_and_missing_mass_keep_empty_proposals(self):
         formulas = ["CH4"]
         counts = np.stack([formula_counts("CH4")])

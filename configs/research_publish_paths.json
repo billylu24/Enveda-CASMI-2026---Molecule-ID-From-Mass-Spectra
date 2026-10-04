@@ -733,7 +733,11 @@
     "kaggle_release_verified_best_0236_overlap_cpu_once/notebook/kernel-metadata.json",
     "tests/test_one_time_runtime_bindings.py",
     "casmi_ml/mass_formula_proposal_audit.py",
-    "tests/test_mass_formula_proposal_audit.py"
+    "tests/test_mass_formula_proposal_audit.py",
+    "casmi_ml/physical_request_cost_audit.py",
+    "casmi_ml/mass_formula_generation_pilot.py",
+    "tests/test_mass_formula_generation_pilot.py",
+    "casmi_ml/decoder_formula_response_audit.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

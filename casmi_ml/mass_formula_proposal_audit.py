@@ -3,6 +3,7 @@
 import argparse
 import json
 import time
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
@@ -49,7 +50,15 @@ def joint_beam(logp, k=5):
     return [count_formula(counts) for counts, _ in beam]
 
 
-def mass_proposals(logp, center, catalog_masses, catalog_counts, catalog_formulas, k=5):
+def mass_proposals(
+    logp,
+    center,
+    catalog_masses,
+    catalog_counts,
+    catalog_formulas,
+    k=5,
+    formula_log_prior=None,
+):
     """Rank all fit-only empirical formulas in the original observed mass window."""
     if center is None or not np.isfinite(center) or center <= 0:
         return [], 0
@@ -59,7 +68,11 @@ def mass_proposals(logp, center, catalog_masses, catalog_counts, catalog_formula
     counts = catalog_counts[start:end]
     if not len(counts):
         return [], 0
-    scores = np.asarray(logp)[np.arange(len(ELEMENTS))[None, :], counts].sum(1)
+    scores = (
+        np.asarray(logp)[np.arange(len(ELEMENTS))[None, :], counts].sum(1)
+        if formula_log_prior is None
+        else np.asarray(formula_log_prior)[start:end]
+    )
     ids = np.argsort(-scores, kind="stable")[:k]
     return [catalog_formulas[start + int(i)] for i in ids], len(counts)
 
@@ -112,6 +125,10 @@ def run(output):
         {count_formula(labels[i]) for i in fit}, key=lambda f: (composition_mass(f), f)
     )
     empirical_set = set(empirical)
+    fit_formula_counts = Counter(count_formula(labels[i]) for i in fit)
+    fit_log_prior = np.asarray(
+        [np.log(fit_formula_counts[f] / len(fit)) for f in empirical]
+    )
     cat_counts = np.stack([formula_counts(f) for f in empirical])
     cat_masses = np.asarray([composition_mass(f) for f in empirical])
     freeze(
@@ -130,7 +147,7 @@ def run(output):
             "batch_size": 256,
             "learning_rate": 0.001,
             "weight_decay": 0.0001,
-            "rule": "Fresh random formula head, fit only original47994 molecule side supported element labels; fixed12 epochs, no holdout-selected checkpoint. Existing encoder pretrained on all60K, NOT independent end-to-end generalization. Mean original observable rows per molecule; original mass median/35ppm or.006Da. The first recorded row provides the representative formula label; retain and count identities with multiple recorded formulas, no exclusion. Candidate formulas ONLY unique fit-side representative empirical formulas, no holdout/dev labels/catalog. Compare unchanged original independent element top5 beam with all fit-catalog mass-window formulas ranked by the SAME head count log probabilities. Formula labels used only training fit or final aggregate metrics, never query proposal inputs. Retain all12006 holdout identities including unsupported/no-mass/no-candidates. No decoder training, structure inference, deployment, dev tuning or accuracy claim.",
+            "rule": "Fresh random formula head, fit only original47994 molecule side supported element labels; fixed12 epochs, no holdout-selected checkpoint. Existing encoder pretrained on all60K, NOT independent end-to-end generalization. Mean original observable rows per molecule; original mass median/35ppm or.006Da. The first recorded row provides the representative formula label; retain and count identities with multiple recorded formulas, no exclusion. Candidate formulas ONLY unique fit-side representative empirical formulas, no holdout/dev labels/catalog. Compare unchanged original independent element top5 beam with all fit-catalog mass-window formulas ranked by the SAME head count log probabilities and a matched mass-only fit-frequency prior control. No formula frequency from heldout labels. Formula labels used only training fit or final aggregate metrics, never query proposal inputs. Retain all12006 holdout identities including unsupported/no-mass/no-candidates. No decoder training, structure inference, deployment, dev tuning or accuracy claim.",
             "local_only": True,
             "independent_acceptance": False,
         },
@@ -177,6 +194,7 @@ def run(output):
             true_in_fit,
             ce,
         ) = [], [], [], [], [], []
+        frequency_hits = []
         with torch.inference_mode():
             for offset in range(0, len(held), 128):
                 if c.stopped() or not budget.checkpoint():
@@ -193,7 +211,18 @@ def run(output):
                     proposals, n = mass_proposals(
                         probabilities, centers[i], cat_masses, cat_counts, empirical
                     )
+                    frequency, frequency_n = mass_proposals(
+                        probabilities,
+                        centers[i],
+                        cat_masses,
+                        cat_counts,
+                        empirical,
+                        formula_log_prior=fit_log_prior,
+                    )
+                    if frequency_n != n:
+                        raise ValueError("Matched mass-only proposal candidates differ")
                     truth = count_formula(labels[i]) if supported[i] else None
+                    frequency_hits.append(bool(truth and truth in frequency))
                     baseline_hits.append(bool(truth and truth in base))
                     projected_hits.append(bool(truth and truth in proposals))
                     mass_support.append(
@@ -222,6 +251,7 @@ def run(output):
             output / "private_holdout_observations.npz",
             baseline_top5=baseline_hits,
             projected_top5=projected_hits,
+            mass_frequency_top5=frequency_hits,
             proposal_counts=proposal_counts,
             true_formula_in_fit=true_in_fit,
             observed_mass_compatible=mass_support,
@@ -252,6 +282,10 @@ def run(output):
             ).tolist(),
             "unconstrained_top5_hits": int(baseline_hits.sum()),
             "mass_projected_top5_hits": int(projected_hits.sum()),
+            "mass_only_fit_frequency_top5_hits": int(sum(frequency_hits)),
+            "neural_over_frequency_recall_gain": molecular_bootstrap_gain(
+                1 - np.asarray(frequency_hits, float), 1 - projected_hits.astype(float)
+            ),
             "improvements": int((projected_hits & ~baseline_hits).sum()),
             "regressions": int((baseline_hits & ~projected_hits).sum()),
             "paired_formula_recall_gain": molecular_bootstrap_gain(

@@ -1,0 +1,250 @@
+{
+  "round": "0414_physical_request_cost_observation",
+  "direction": "runtime_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "overall": {
+      "requests": 227,
+      "platform_seconds_sum": 1917.27926367,
+      "local_same_request_seconds_sum": 440.59275103226537,
+      "platform_duration_quantiles": [
+        0.03166980200012404,
+        5.1191852570000265,
+        20.21313389280001,
+        43.35348902776004,
+        54.31165917800001
+      ],
+      "platform_over_local_ratio_quantiles": [
+        0.2244806137888534,
+        3.9594200786701625,
+        5.979976966613117,
+        10.702856629934923,
+        11.536531639849299
+      ]
+    },
+    "prespecified_bins": {
+      "start_during_generation": {
+        "requests": 34,
+        "platform_seconds_sum": 485.74555450599985,
+        "local_same_request_seconds_sum": 68.50071372388629,
+        "platform_duration_quantiles": [
+          1.5768353400000024,
+          8.871752429999987,
+          27.442716303700013,
+          53.73169269068001,
+          54.31165917800001
+        ],
+        "platform_over_local_ratio_quantiles": [
+          4.536810224280938,
+          7.838248846876476,
+          10.522799236799928,
+          11.292369902605095,
+          11.536531639849299
+        ]
+      },
+      "start_after_generation": {
+        "requests": 193,
+        "platform_seconds_sum": 1431.5337091640004,
+        "local_same_request_seconds_sum": 372.0920373083791,
+        "platform_duration_quantiles": [
+          0.03166980200012404,
+          4.593632652999986,
+          17.19649943239997,
+          38.38486471043983,
+          44.02534164400004
+        ],
+        "platform_over_local_ratio_quantiles": [
+          0.2244806137888534,
+          3.696469687447256,
+          5.098889847124723,
+          6.591408383772747,
+          7.509181295358199
+        ]
+      },
+      "first_after_jvm_start": {
+        "requests": 4,
+        "platform_seconds_sum": 106.0069352459999,
+        "local_same_request_seconds_sum": 20.02415141306119,
+        "platform_duration_quantiles": [
+          10.099867299999914,
+          20.797704383999985,
+          44.466401130799994,
+          53.327133373280006,
+          54.31165917800001
+        ],
+        "platform_over_local_ratio_quantiles": [
+          4.555185245464628,
+          5.266871052286998,
+          6.870251677626249,
+          7.445288333585004,
+          7.509181295358199
+        ]
+      },
+      "other_jvm_requests": {
+        "requests": 223,
+        "platform_seconds_sum": 1811.2723284240003,
+        "local_same_request_seconds_sum": 420.5685996192042,
+        "platform_duration_quantiles": [
+          0.03166980200012404,
+          4.968281495000042,
+          19.801430958399994,
+          40.71040806553994,
+          52.55418497400001
+        ],
+        "platform_over_local_ratio_quantiles": [
+          0.2244806137888534,
+          3.9448210313361067,
+          5.954405995107107,
+          10.70679524481335,
+          11.536531639849299
+        ]
+      },
+      "candidates_le25": {
+        "requests": 26,
+        "platform_seconds_sum": 5.446648673000368,
+        "local_same_request_seconds_sum": 2.232667177217081,
+        "platform_duration_quantiles": [
+          0.03166980200012404,
+          0.11417273000000705,
+          0.4550686349999751,
+          0.7955501354999797,
+          0.8323316419999855
+        ],
+        "platform_over_local_ratio_quantiles": [
+          0.2244806137888534,
+          3.1790765364702307,
+          4.981599868863834,
+          6.3638779085408,
+          6.552236736430917
+        ]
+      },
+      "candidates_26_100": {
+        "requests": 4,
+        "platform_seconds_sum": 49.056093710999676,
+        "local_same_request_seconds_sum": 9.81640964304097,
+        "platform_duration_quantiles": [
+          0.608093967999821,
+          5.164455707999991,
+          28.894961041399945,
+          37.196675598439874,
+          38.11908832699987
+        ],
+        "platform_over_local_ratio_quantiles": [
+          2.8841807027886075,
+          3.8476900764110677,
+          5.392186197111108,
+          5.721925289532195,
+          5.758562966467872
+        ]
+      },
+      "candidates_gt100": {
+        "requests": 197,
+        "platform_seconds_sum": 1862.7765212860002,
+        "local_same_request_seconds_sum": 428.5436742120073,
+        "platform_duration_quantiles": [
+          0.5349904669999432,
+          6.165023231000021,
+          21.108505306399984,
+          44.36649537719997,
+          54.31165917800001
+        ],
+        "platform_over_local_ratio_quantiles": [
+          1.689656599617782,
+          4.044623808885647,
+          6.413307687197294,
+          10.731185225082678,
+          11.536531639849299
+        ]
+      },
+      "peaks_1_100": {
+        "requests": 51,
+        "platform_seconds_sum": 92.56321747999965,
+        "local_same_request_seconds_sum": 23.920761563116685,
+        "platform_duration_quantiles": [
+          0.03166980200012404,
+          1.6820038239999349,
+          3.6024700680000024,
+          5.239408616500015,
+          5.359631976000003
+        ],
+        "platform_over_local_ratio_quantiles": [
+          1.1965306958954738,
+          3.392746742795836,
+          5.384911626816437,
+          9.971881325720153,
+          10.796647587594132
+        ]
+      },
+      "peaks_101_300": {
+        "requests": 55,
+        "platform_seconds_sum": 231.13698123300026,
+        "local_same_request_seconds_sum": 52.129981329024304,
+        "platform_duration_quantiles": [
+          0.03570471099999395,
+          3.2830503150000823,
+          8.068968364200034,
+          17.747669624320032,
+          20.10127641400004
+        ],
+        "platform_over_local_ratio_quantiles": [
+          1.704187921579593,
+          4.110927678622631,
+          6.800876918021739,
+          9.31650793012149,
+          9.581720485611665
+        ]
+      },
+      "peaks_301_600": {
+        "requests": 59,
+        "platform_seconds_sum": 448.42507282700063,
+        "local_same_request_seconds_sum": 105.90708098106552,
+        "platform_duration_quantiles": [
+          0.11868083599995316,
+          7.014707211000086,
+          14.948896212799946,
+          20.86659250112004,
+          21.78640976600002
+        ],
+        "platform_over_local_ratio_quantiles": [
+          0.2244806137888534,
+          3.827116776394687,
+          5.351741863145071,
+          10.422752420108115,
+          10.629992254684014
+        ]
+      },
+      "peaks_601_inf": {
+        "requests": 62,
+        "platform_seconds_sum": 1145.1539921299998,
+        "local_same_request_seconds_sum": 258.63492715905886,
+        "platform_duration_quantiles": [
+          0.2940584670000135,
+          16.281936625000014,
+          34.00483011459998,
+          53.23959991356001,
+          54.31165917800001
+        ],
+        "platform_over_local_ratio_quantiles": [
+          1.955755820276452,
+          4.672470116750855,
+          5.983598459349937,
+          11.043606491794495,
+          11.536531639849299
+        ]
+      }
+    },
+    "observational_spearman_duration": {
+      "peak_count": 0.7178506750464665,
+      "candidate_count": 0.5238333724242674,
+      "local_cost": 0.9440957467545126
+    },
+    "scope": "Original failed acceptance diagnosis request cost observations. Bins have different inputs and workload; during/after generation or JVM-start association is not CPU contention causality. Sums overlap and are not total inference time. No timeout extension, request omission, physical/model/recipe changes or deployment."
+  },
+  "protocol_sha256": "8dd2c4f1796eebc5e31da040ac5ebb092fc87c9555b02fc7d85148c8a75039c6",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

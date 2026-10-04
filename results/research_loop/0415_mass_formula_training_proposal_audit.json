@@ -1,0 +1,111 @@
+{
+  "round": "0415_mass_formula_training_proposal_audit",
+  "direction": "training_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "molecules": 60000,
+    "multiple_recorded_formula_molecules": 7,
+    "heldout_multiple_recorded_formula_molecules": 0,
+    "fit_supported_molecules": 47989,
+    "heldout_molecules": 12006,
+    "heldout_supported_molecules": 12006,
+    "empirical_fit_formulas": 18988,
+    "heldout_truth_formula_in_fit_catalog": 9012,
+    "heldout_truth_formula_in_observed_mass_window": 11877,
+    "heldout_truth_available_in_empirical_mass_window": 8952,
+    "heldout_queries_with_empirical_mass_proposals": 11310,
+    "proposal_count_quantiles": [
+      0.0,
+      8.0,
+      16.0,
+      22.0,
+      31.0
+    ],
+    "unconstrained_top5_hits": 1292,
+    "mass_projected_top5_hits": 8922,
+    "mass_only_fit_frequency_top5_hits": 7519,
+    "neural_over_frequency_recall_gain": {
+      "molecules": 12006,
+      "mean_loss_reduction": 0.11685823754789272,
+      "paired_bootstrap95_loss_reduction": [
+        0.11102781942362153,
+        0.12277194735965351
+      ],
+      "seed": 20261004,
+      "draws": 10000
+    },
+    "improvements": 7725,
+    "regressions": 95,
+    "paired_formula_recall_gain": {
+      "molecules": 12006,
+      "mean_loss_reduction": 0.6355155755455606,
+      "paired_bootstrap95_loss_reduction": [
+        0.6266866566716641,
+        0.644344494419457
+      ],
+      "seed": 20261004,
+      "draws": 10000
+    },
+    "mean_supported_count_nll": 0.5126680406137827,
+    "epochs": 12,
+    "fit_history": [
+      {
+        "epoch": 1,
+        "fit_count_ce": 0.793513942768158
+      },
+      {
+        "epoch": 2,
+        "fit_count_ce": 0.5206678074784247
+      },
+      {
+        "epoch": 3,
+        "fit_count_ce": 0.49043886078549437
+      },
+      {
+        "epoch": 4,
+        "fit_count_ce": 0.46991128139540167
+      },
+      {
+        "epoch": 5,
+        "fit_count_ce": 0.45338140102804914
+      },
+      {
+        "epoch": 6,
+        "fit_count_ce": 0.4380612418854482
+      },
+      {
+        "epoch": 7,
+        "fit_count_ce": 0.42509723601197863
+      },
+      {
+        "epoch": 8,
+        "fit_count_ce": 0.4115714496774194
+      },
+      {
+        "epoch": 9,
+        "fit_count_ce": 0.40075982816047084
+      },
+      {
+        "epoch": 10,
+        "fit_count_ce": 0.3893583907920383
+      },
+      {
+        "epoch": 11,
+        "fit_count_ce": 0.379227407221204
+      },
+      {
+        "epoch": 12,
+        "fit_count_ce": 0.36942117410607944
+      }
+    ],
+    "seconds": 5.900773671048228,
+    "scope": "Training-internal formula proposal recall only. Empirical formula catalog upper bound and all60K-pretrained encoder limit generalization interpretation. No structure or complete ranking accuracy acceptance; fresh formula model private, not activated. Missing empirical formulas cannot be recovered by this search."
+  },
+  "protocol_sha256": "4027d2013bd4ffa1a6b56c41f629fe1fa1470be0795d673a5773892b3e76fcfc",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

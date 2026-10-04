@@ -305,3 +305,16 @@ cpubal平台最终API ERROR，原shared1200秒末端prefetched physical timeout�
 0413下一项训练内实验：固定原47994/12006分子拆分，新随机初始化FormulaPredictor仅fit侧公式标签训练12epochs、不按留出选择checkpoint；fit侧unique公式词表、原neutral-mass median/35ppm或.006Da窗口、同一预测头count log-probability排序，与原独立count top5 beam对照。完整12006保留unsupported/no-mass/no-proposals分母。既有encoder训练过全部60K，因此不是端到端独立泛化；经验公式词表缺失的公式无法由此召回。只验证formula proposal，不训练decoder、不启用新模型、不改变236。科学GPU阶段排在发布包冷400完成后。
 
 0412 complete，完整原3340 ranks exact、0预算/新增失败；新冻结CPU包fresh75全rank exact、0预算，42.815秒，SHA256SUMS SHA `bdc44c2240e161b4167a2fa7c04b5b7ba800c6dc04ec0bada64c130d0ceec3e9`。新冻结4CPU冷400正在验证。训练数据检查发现7/60000结构身份记录了多个formula，0413遵守原first-row representative标签并保留全部分母/单列计数，不过滤这些分子或以holdout truth扩充候选词表。
+
+
+0414只读原platform/local227complete paired请求成本拆分：生成阶段34请求sum485.746秒/本地68.501秒、median ratio7.838；之后193请求sum1431.534/372.092秒、median ratio3.696。请求输入与负载不同，不能据此证明CPU争用因果。>600peak的62请求sum1145.154秒，占227complete耗时sum59.73%；>100候选197请求sum1862.777秒。peak-count与duration Spearman .718，原localcost与platformduration .944；说明重请求在哪些输入，但不裁剪峰/候选、不改算法。新CPU线程1版本的真实平台完整验证仍是决定性gate。
+
+新CPU冻结冷400完整通过，338.824秒/3163.031MiB，原400Top25/265raw物理字典exact、预算0；身份`31b26da3816ff87ac5e455e6199fd9f8ea19a3ba0afa517672283f9d1696a519`。单次请求保持unused、local_only不变，私有dataset已上传。0413因driver与child StageBudget分别获取同一GPU锁，在任何训练update和holdout评估前退出；保留失败source/protocol/log/ledger，0415去掉父进程重复锁，仅child StageBudget持锁，科学源/超参/seed/拆分原样。固定mass-only fit-frequency对照与neural臂共享完全相同mass候选，避免把质量筛选或词表先验当神经增益。
+
+
+0415完整训练内formula留出结果：fit47989supported/heldout12006(全supported)、18988fit-only经验公式，原unconstrained top5命中1292(10.76%)、质量窗口neural top5 8922(74.31%)、同窗口fit-frequency对照7519(62.63%)。神经相对frequency +11.686pp，固定分子bootstrap95[11.103,12.277]pp；质量/词表availability8952，说明大部分mass-projected gain来自质量候选空间，模型贡献须与frequency分开。95个原top5命中被mass词表过滤丢失，不能全量硬替换。原encoder训练过all60K，所以不是端到端独立泛化；经验词表缺失也限制可迁移性。
+
+0416预注册固定原sorted first200 dev结构pilot，每臂128sample/.8temperature/同spectrum seed。original128 baseline要求200完整candidate/stats/hypotheses对原cacheexact；另两臂均first64原softformula条件、后64平均分配预测top5质量相容formula/32，neural与mass-onlyfrequency候选词表完全相同。没有新增sample、token constraints、decoder重训或oracle公式，缺候选保留原128。全部臂固定后再看metrics，既有encoder/decoder未改变；只要pilot不通过就不扩完整开发系统、不按结果调blend/temperature。Kaggle私有CPUv1运行中，实时logs接口500不改变推理或提交gate。
+
+
+0416完成并拒绝扩展：200原baseline candidates/stats/hypotheses对原cache全部exact。每臂25600采样，original/neuralmass/frequencymass exactgraph均9；质量matching490/484/485，unique311/304/306、有候选query100/98/97。没有结构召回收益，停掉直接替换部分softformula条件路线，不因为415 formula top5大增就扩2000/调blend或启用模型。局部CUDA allocator回收warning后仍完成，未改变采样数/结果gate。0417固定训练内heldout侧first200 teacher-forcing响应诊断：原soft/训练已知truecounts/zero/固定滚动错配counts，只观测NLL/KL/argmax/memory差值；这些训练标签只用于诊断输入和teacher-forcing，不进入dev/test生成。无训练更新/部署/独立泛化声明。
