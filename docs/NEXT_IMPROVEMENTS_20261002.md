@@ -324,3 +324,6 @@ cpubal平台最终API ERROR，原shared1200秒末端prefetched physical timeout�
 
 
 旧0015质量ceiling pilot正确graph8→8，0016RDKit精确mass EOS rejection8→6且1588秒/终止509/25600，不机械重复。0418新的heavy-token计数全60000训练代表检查：59972完整heavy-count exact、23词表/长度不可编码、5不支持元素、0计数mismatch；全部分母保留。采样budgetinactive单元对原decoder tokens/likelihood/finished逐tensor exact，active验证不能早EOS/不能超heavy-count；implicit及bracket H无约束，unsupported Se/se禁止于active。0419新的固定200/每臂128 pilot只在后64 proposal轨迹限制heavy-atom上限、EOS在heavycounts完成后允许；没有RDKit EOS rejection/resampling，原RDKit/连通性/精确质量最终验证不变。first64原条件/概率约束保留，top5来自训练fit词表+观察mass，不输入query真式。正在运行，尚无收益声明，保持236。
+
+
+0419完成且拒绝扩展：200原baseline候选/stats/hypotheses对原cacheexact；original/neuralbudget/frequencybudget massunique311/693/645、candidatequery100/156/153，graph9/9/8。neural包含8原hit+1新hit-1丢失，frequency7原+1新-2丢失，并非保留全部旧命中后的新增。valid23553/15116/14935，658.382秒，比较416约194.760秒只是非配对时序观察。重原子约束显著扩大质量相容coverage，却没有净结构准确率收益且合法性/运行代价退化，不扩2000、不启用、不降低sample/validity/gate。保持236。511全回归通过。

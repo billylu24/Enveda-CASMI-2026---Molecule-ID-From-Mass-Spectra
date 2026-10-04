@@ -1,0 +1,24 @@
+{
+  "diagnostic_only": true,
+  "local_only": true,
+  "independent_acceptance": false,
+  "source_arms_sha256": "c9007d818b526d853d9689324ac48993dedd304df82f4f0617d252effd3bb2cd",
+  "graph_hit_overlap": {
+    "original": {
+      "original_hits_retained": 9,
+      "new_graph_hits": 0,
+      "lost_graph_hits": 0
+    },
+    "neural_mass": {
+      "original_hits_retained": 8,
+      "new_graph_hits": 1,
+      "lost_graph_hits": 1
+    },
+    "frequency_mass": {
+      "original_hits_retained": 7,
+      "new_graph_hits": 1,
+      "lost_graph_hits": 2
+    }
+  },
+  "decision": "Do not expand or activate fixed128 heavybudget: neural graph recall unchanged, frequency worse, validity and runtime regress. Larger massmatching unique pool is not structure-ranking accuracy."
+}
