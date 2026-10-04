@@ -1,0 +1,8 @@
+{
+  "diagnostic_only": true,
+  "accepted": false,
+  "local_only": true,
+  "reason": "Audit initially assumed all2000 unknown molecules have query rows, but original observable parquet has1995 and frozen ranking denominator2000 with5empty. Original guard failed before aggregate; no prediction/physical rerun. Preserve failedsource/protocol/log,406 corrects by explicit no_observable_query_rows bucket with original/conditional rankings empty, no denominator reduction.",
+  "failed_source_sha256": "b909fe8be9bea33cdbb9ebcdc9c14e039d99785cf4d904bb7a32a041ed8a1f09",
+  "failure_log_sha256": "1a02a29087d31a87f9fa8932cb6bff13d9b69833f39ac10d7728cce31fc5ebf3"
+}

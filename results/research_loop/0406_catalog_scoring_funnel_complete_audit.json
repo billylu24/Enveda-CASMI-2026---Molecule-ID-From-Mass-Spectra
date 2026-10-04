@@ -1,0 +1,128 @@
+{
+  "round": "0406_catalog_scoring_funnel_complete_audit",
+  "direction": "training_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "remote_publication": false,
+    "independent_acceptance": false,
+    "catalog_molecules": 2616801,
+    "original3340_predictions_unchanged": true,
+    "new_physical_requests": 0,
+    "cohorts": {
+      "unknown": {
+        "molecules": 2000,
+        "no_observable_query_rows": 5,
+        "truth_in_external_catalog": 254,
+        "original_current_empty": 5,
+        "truth_in_valid_mass_window": 251,
+        "truth_in_original_current": 248,
+        "truth_in_actual_scored_list": 131,
+        "exclusive_buckets": {
+          "no_observable_query_rows": {
+            "queries": 5
+          },
+          "original_first": {
+            "queries": 28,
+            "original_final_top25": 28,
+            "conditional_final_top25": 28,
+            "rr_improved_queries": 0,
+            "rr_regressed_queries": 0,
+            "rr_delta_sum": 0.0
+          },
+          "original_current_other": {
+            "queries": 220,
+            "original_final_top25": 199,
+            "conditional_final_top25": 199,
+            "rr_improved_queries": 0,
+            "rr_regressed_queries": 0,
+            "rr_delta_sum": 0.0
+          },
+          "external_scored": {
+            "queries": 105,
+            "original_final_top25": 33,
+            "conditional_final_top25": 34,
+            "rr_improved_queries": 1,
+            "rr_regressed_queries": 0,
+            "rr_delta_sum": 0.3333333333333333
+          },
+          "valid_mass_window_unscored": {
+            "queries": 44,
+            "original_final_top25": 0,
+            "conditional_final_top25": 0,
+            "rr_improved_queries": 0,
+            "rr_regressed_queries": 0,
+            "rr_delta_sum": 0.0
+          },
+          "catalog_outside_valid_mass_window": {
+            "queries": 1,
+            "original_final_top25": 0,
+            "conditional_final_top25": 0,
+            "rr_improved_queries": 0,
+            "rr_regressed_queries": 0,
+            "rr_delta_sum": 0.0
+          },
+          "absent_external_catalog_and_original_current": {
+            "queries": 1597,
+            "original_final_top25": 0,
+            "conditional_final_top25": 0,
+            "rr_improved_queries": 0,
+            "rr_regressed_queries": 0,
+            "rr_delta_sum": 0.0
+          }
+        }
+      },
+      "known": {
+        "molecules": 1340,
+        "truth_in_external_catalog": 169,
+        "truth_in_valid_mass_window": 169,
+        "truth_in_original_current": 1183,
+        "truth_in_actual_scored_list": 758,
+        "original_current_empty": 0,
+        "exclusive_buckets": {
+          "no_observable_query_rows": {},
+          "original_first": {
+            "queries": 758,
+            "original_final_top25": 758,
+            "conditional_final_top25": 758,
+            "rr_improved_queries": 0,
+            "rr_regressed_queries": 0,
+            "rr_delta_sum": 0.0
+          },
+          "original_current_other": {
+            "queries": 425,
+            "original_final_top25": 232,
+            "conditional_final_top25": 232,
+            "rr_improved_queries": 0,
+            "rr_regressed_queries": 0,
+            "rr_delta_sum": 0.0
+          },
+          "external_scored": {
+            "queries": 3,
+            "original_final_top25": 1,
+            "conditional_final_top25": 1,
+            "rr_improved_queries": 0,
+            "rr_regressed_queries": 0,
+            "rr_delta_sum": 0.0
+          },
+          "valid_mass_window_unscored": {},
+          "catalog_outside_valid_mass_window": {},
+          "absent_external_catalog_and_original_current": {
+            "queries": 154,
+            "original_final_top25": 0,
+            "conditional_final_top25": 0,
+            "rr_improved_queries": 0,
+            "rr_regressed_queries": 0,
+            "rr_delta_sum": 0.0
+          }
+        }
+      }
+    },
+    "scope": "Repeated-development exact original external catalog/window/current/scored funnel only. External catalog coverage is not overall training/reference/generator coverage. Windowunscored is not a per-candidate rejection reason. No prediction, counterfactual accuracy, new acceptance cohort, tuning, activation or remote publication."
+  },
+  "protocol_sha256": "551bf461adf3f67e5200f6ab09de462a1cb93f30142bc1b5eb6c0f4c5b8ca87c",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

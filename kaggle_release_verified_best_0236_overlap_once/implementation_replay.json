@@ -1,0 +1,27 @@
+{
+  "valid": true,
+  "molecules": 75,
+  "full_rank_matches": 75,
+  "fresh_fragment_cache": true,
+  "development_budget_fallbacks": 0,
+  "seconds": 52.46322665002663,
+  "status_counts": {
+    "fragment_evidence_fallback": 30,
+    "critic_gate_fallback": 21,
+    "high_strong_slot_inserted": 16,
+    "high_fragment_remove_tail": 3,
+    "strong_original_gate_fallback": 3,
+    "low_supported_leader_first": 2
+  },
+  "bundle_sums_sha256": "75b9eaaea0372bcee898922bf2fa9a2bd1c29063975e1c43cc604421f9978ad6",
+  "prefetch_source_sha256": "3f4e8e2c3bca1a68544506f75f0067583444f3e5fa98687612a7c282629e3b38",
+  "streaming_source_sha256": "2c19a333e67cfebab6e88b46ee446dee4ff25b742c31a7e6aceb0222c6afd973",
+  "overlap_sources_sha256": {
+    "generation_handoff_stream.py": "5e1516d92a1a8e23d71702551d6d5b0d0b5b14d78ec506ebf276b6aa83c72964",
+    "generation_fragment_overlap.py": "3c5107430bc5c246dea46b223a549929c7c5ad728ffce6893e547d1a2d77ce2c",
+    "portable_overlap_pipeline.py": "1d6b952af1dac7dd858219b76eeb7d3fb6207620b71be4f1bd5191d6fade3f1b",
+    "overlap_scoring_full_control.py": "70f0f9191c84e9dbae1d3dc27013782e323505e376800676cb0dc09b34d6bfac"
+  },
+  "independent_acceptance": false,
+  "scope": "All75 original label-free handoffs, fresh physical cache, source-bound frozen236 full ranks; implementation check, no new accuracy acceptance."
+}

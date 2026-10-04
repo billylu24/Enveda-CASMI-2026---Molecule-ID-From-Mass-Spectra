@@ -275,3 +275,18 @@ cpubal平台最终API ERROR，原shared1200秒末端prefetched physical timeout�
 0401 conditional390评分观测完整系统3340 rank exact／预算及新增失败0，但最终Counter里的numpy.int64不能JSON序列化，故未接受aggregate归因。保留source快照／成功科学report／失败日志；0403显式新目录只修summary整数转换，并在聚合前私有保存score observations，重做完全相同的390观测，没有重训或改模型／科学规则。
 
 新overlap冻结bundle identity `49df0d40ca9b62b5eba4624f14732332309f7cab6fb388fca7b9778b9eae7f92`，SHA256SUMS SHA `75b9eaaea0372bcee898922bf2fa9a2bd1c29063975e1c43cc604421f9978ad6`。冻结fresh75全rank exact／0budget，52.463227秒；新4CPU冷400进行中，不把包准备或私有上传称比赛提交。485项完整回归通过，ruff通过；新测试覆盖原AST删callback后的严格一致、atomic事件exact／去重、最终consumer复用唯一early pool、release源绑定与单GPU回退，以及heldout统计分母／bootstrap。
+
+
+403条件诊断gate归因完成：3340完整rank对390 exact，预算/新增失败0。未知1981条实际评分query列表中，仅131条包含真值，1850条不包含；这不是完整catalog覆盖率。1328条critic候选order改变、495条top3改变，但真值critic top3仍27/top25仍63，只有2个真值跨过原first+.05 margin。53真值满足individual firstcritic+physical比较，其中23在fused top3外且最终不入列；此条件不等于strong-prefix准入条件，不据此放松gate。优先训练内结构证据与候选漏失归因，避免依开发真值调阈值。
+
+冻结overlap236 fresh75 exact/0budget52.463秒；4CPU冷400386.253秒/3185.078MiB/0budget，全部400Top25和265原raw physical dictionaries exact。私有dataset已上传，giaok246/casmi26-236-overlap-verified-best v1运行中；平台完整rank/来源/预算/资源gate未通过前不发送比赛POST。保留单次授权与local_only，不再提交后续提升、不pushGitHub。
+
+404固定训练内邻域审计已启动：重新构建372原三臂摘要并要求exact；原2048binary之外两臂固定2048维radius2/radius3 log1p(count)，相同60000/47994fit/12006留出分子、原60D双实测谱mean targets、.01ridge/无罚截距/clamp[0,1]、原pinned15。radius2count对radius3count为相同count变换/维度下邻域深度对照；全部12006分子bootstrap包括无相容负例者。保持训练内诊断，不按开发排名选超参、不直接替换critic、不宣称完整ranking提升。新增及相关回归8项通过，ruff通过。
+
+
+404完成并停止这条替换路线：372所有原摘要臂exact。原radius2 binary heldoutMSE .002855580，radius2 logcount .002862278、radius3 logcount .002865183；相对binary，两count臂MSE和双方留出质量相容pair mean margin均恶化。radius3对radius2count的margin仅+.000004538，95[.000000259,.000008801]，MSE变化95跨0；不能宣称收益或继续开发系统调参。此前深邻域能区分结构alias只是表示可用性，未转化成诊断谱证据。保持236。405不重跑物理/critic，使用403冻结私有观测，重建全部原external catalog与有效mass窗口，独立拆分原first/current/实际评分/窗口未评分/库内窗口外/库外各阶段漏失；truth仅在最终aggregate，不写逐query公共结果。
+
+
+405因错误假设2000未知都有query行而在聚合前失败，source/protocol/log保留；实际1995可观测行组+5原空rank分子。406单列no_observable_query_rows并保留完整2000分母，3340漏斗完成：unknown 5无行/28原first/220原current其他/105external实际评分/44有效窗口未评分/1库内窗口外/1597库和current均无。完整外部库含254真值、有效窗口251、原current248；220真值已有current，因此“评分真值只有131”不能当总体recall。known 758first/425current其他/3external/154库和current均无。390唯一RR改善来自105external评分组。最大观测缺口在可用候选召回/生成，纯重排序可改善范围有限；不按truth筛输入或盲目扩shortlist。
+
+单次236 overlap平台失败：session约452.65秒发生individual physical timeout，尚未到原1200全局deadline；检索58.89746秒、生成313.86565秒，全部400生成CSV与本地exact。API最终ERROR，确认无intent/pending/ID/registeredidentity/matching competition submission，标记platform_verification_failed，同一次授权未消费。不要把此原因写成总deadline耗尽，不延长60秒单请求或1200秒总时限。私有giaok246/casmi26-236-overlap-request-diagnosis v1对原冻结包完整400记录请求开始/结束/配置60秒/全局余量/候选和峰数；异常照原样传播、不重试、不替换失败结果、不比赛POST。0407本地4CPU fresh400观察同时进行，额外要求全部Top25/265rawdict/source/预算/RSSexact。

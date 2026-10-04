@@ -1,0 +1,415 @@
+{
+  "round": "0404_neighborhood_diagnostic_training_audit",
+  "direction": "training_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "fit_molecules": 47994,
+    "internal_holdout_molecules": 12006,
+    "train_development_overlap": 0,
+    "internal_holdout_target_used_for_fit": false,
+    "arms": {
+      "training_mean": {
+        "heldout_mse": 0.0032969340682029724,
+        "channel_heldout_mse": [
+          0.0,
+          0.010232627391815186,
+          0.02285161428153515,
+          0.0,
+          0.0038807035889476538,
+          0.018442170694470406,
+          0.0,
+          0.002331289229914546,
+          0.03625500947237015,
+          0.0,
+          0.00930112972855568,
+          0.011150193400681019,
+          0.0,
+          0.0009639087948016822,
+          0.001577210845425725,
+          0.0,
+          0.000940876139793545,
+          0.0017618515994399786,
+          0.0,
+          0.001267569954507053,
+          0.0020588841289281845,
+          0.00047921400982886553,
+          0.0,
+          0.0,
+          0.011093398556113243,
+          0.0,
+          0.0,
+          0.02380358800292015,
+          0.0,
+          0.0,
+          0.003435384016484022,
+          0.0,
+          0.0,
+          0.0007973656756803393,
+          0.0,
+          0.0,
+          0.0002470998733770102,
+          0.0,
+          0.0,
+          9.599070472177118e-05,
+          0.0,
+          0.0,
+          0.0,
+          0.003432398196309805,
+          0.009484310634434223,
+          0.0,
+          0.0010346982162445784,
+          0.007178948726505041,
+          0.0,
+          0.0001778875448508188,
+          0.00097454315982759,
+          0.0,
+          0.0005745961680077016,
+          0.001174483448266983,
+          0.0,
+          0.00037915745633654296,
+          0.0011611295631155372,
+          0.0,
+          0.0032748670782893896,
+          0.005999980494379997
+        ],
+        "positive_evidence_contrasts": {
+          "unrestricted": {
+            "pairs": 180090,
+            "positive_bonus_larger": 0,
+            "negative_bonus_larger": 0,
+            "bonus_ties": 180090,
+            "mean_positive_minus_negative": 0.0,
+            "molecules_with_any_positive_advantage": 0,
+            "molecules_with_any_negative_advantage": 0
+          },
+          "mass_compatible": {
+            "pairs": 144448,
+            "positive_bonus_larger": 0,
+            "negative_bonus_larger": 0,
+            "bonus_ties": 144448,
+            "mean_positive_minus_negative": 0.0,
+            "molecules_with_any_positive_advantage": 0,
+            "molecules_with_any_negative_advantage": 0
+          }
+        },
+        "both_molecules_heldout_mass_contrasts": {
+          "pairs": 28806,
+          "positive_bonus_larger": 0,
+          "negative_bonus_larger": 0,
+          "bonus_ties": 28806,
+          "mean_positive_minus_negative": 0.0,
+          "molecules_with_any_positive_advantage": 0,
+          "molecules_with_any_negative_advantage": 0
+        }
+      },
+      "broad_motif_ridge": {
+        "heldout_mse": 0.003130326674416868,
+        "channel_heldout_mse": [
+          0.0,
+          0.009754975555860438,
+          0.022219566082979474,
+          0.0,
+          0.0038181296123599028,
+          0.017409594429442236,
+          0.0,
+          0.002318208146509878,
+          0.03508787188847488,
+          0.0,
+          0.00849140909144853,
+          0.010340694819103874,
+          0.0,
+          0.0009541817779295814,
+          0.0015637625190399991,
+          0.0,
+          0.0009376166153691524,
+          0.0017498131407833713,
+          0.0,
+          0.001254496051488857,
+          0.0020473357375418314,
+          0.00046004247718977947,
+          0.0,
+          0.0,
+          0.010813494817397616,
+          0.0,
+          0.0,
+          0.022969684748696297,
+          0.0,
+          0.0,
+          0.003349825466072225,
+          0.0,
+          0.0,
+          0.0007924614646372803,
+          0.0,
+          0.0,
+          0.00023890132510139925,
+          0.0,
+          0.0,
+          9.486923756047104e-05,
+          0.0,
+          0.0,
+          0.0,
+          0.003140932582962314,
+          0.00845472960823351,
+          0.0,
+          0.0009954637140795718,
+          0.005326314565752369,
+          0.0,
+          0.0001670713466182398,
+          0.0009475398103061088,
+          0.0,
+          0.0005428485351382744,
+          0.0011463426003092863,
+          0.0,
+          0.0003756537760516199,
+          0.0011453640751503073,
+          0.0,
+          0.003168116221631564,
+          0.005742288623792179
+        ],
+        "positive_evidence_contrasts": {
+          "unrestricted": {
+            "pairs": 180090,
+            "positive_bonus_larger": 75232,
+            "negative_bonus_larger": 39516,
+            "bonus_ties": 65342,
+            "mean_positive_minus_negative": 0.00010483711708176639,
+            "molecules_with_any_positive_advantage": 8315,
+            "molecules_with_any_negative_advantage": 7146
+          },
+          "mass_compatible": {
+            "pairs": 144448,
+            "positive_bonus_larger": 60569,
+            "negative_bonus_larger": 32862,
+            "bonus_ties": 51017,
+            "mean_positive_minus_negative": 0.00010011719340582716,
+            "molecules_with_any_positive_advantage": 7712,
+            "molecules_with_any_negative_advantage": 6449
+          }
+        },
+        "both_molecules_heldout_mass_contrasts": {
+          "pairs": 28806,
+          "positive_bonus_larger": 11937,
+          "negative_bonus_larger": 6690,
+          "bonus_ties": 10179,
+          "mean_positive_minus_negative": 9.960118374339215e-05,
+          "molecules_with_any_positive_advantage": 5663,
+          "molecules_with_any_negative_advantage": 3776
+        }
+      },
+      "fingerprint_ridge": {
+        "heldout_mse": 0.002855580359036249,
+        "channel_heldout_mse": [
+          0.0,
+          0.00918956643519106,
+          0.020765608266462027,
+          0.0,
+          0.003265244121800681,
+          0.01579572265519408,
+          0.0,
+          0.0021779703315223877,
+          0.032553355194103496,
+          0.0,
+          0.007664992224847995,
+          0.009687041688863349,
+          0.0,
+          0.0009182258753809473,
+          0.0014678371977940522,
+          0.0,
+          0.0009168415519076617,
+          0.0016481879763833261,
+          0.0,
+          0.0011636441150770934,
+          0.0019335479499380302,
+          0.00045431526647612085,
+          0.0,
+          0.0,
+          0.00984891761000706,
+          0.0,
+          0.0,
+          0.01900762668201126,
+          0.0,
+          0.0,
+          0.0030344484744954745,
+          0.0,
+          0.0,
+          0.0007832685599077689,
+          0.0,
+          0.0,
+          0.00023901907539839584,
+          0.0,
+          0.0,
+          9.323921944751233e-05,
+          0.0,
+          0.0,
+          0.0,
+          0.0028396405612229167,
+          0.007703497385284079,
+          0.0,
+          0.0009635792451336248,
+          0.004830015126424403,
+          0.0,
+          0.00015555776402253799,
+          0.0009047724396892417,
+          0.0,
+          0.000437688807332747,
+          0.0010630685832511407,
+          0.0,
+          0.000366799400423633,
+          0.001088435649536703,
+          0.0,
+          0.0030233584091162906,
+          0.0053497876985277165
+        ],
+        "positive_evidence_contrasts": {
+          "unrestricted": {
+            "pairs": 180090,
+            "positive_bonus_larger": 84431,
+            "negative_bonus_larger": 43787,
+            "bonus_ties": 51872,
+            "mean_positive_minus_negative": 0.00028330915263666555,
+            "molecules_with_any_positive_advantage": 8364,
+            "molecules_with_any_negative_advantage": 7213
+          },
+          "mass_compatible": {
+            "pairs": 144448,
+            "positive_bonus_larger": 68499,
+            "negative_bonus_larger": 37114,
+            "bonus_ties": 38835,
+            "mean_positive_minus_negative": 0.0002646165221601366,
+            "molecules_with_any_positive_advantage": 7862,
+            "molecules_with_any_negative_advantage": 6628
+          }
+        },
+        "both_molecules_heldout_mass_contrasts": {
+          "pairs": 28806,
+          "positive_bonus_larger": 13698,
+          "negative_bonus_larger": 7361,
+          "bonus_ties": 7747,
+          "mean_positive_minus_negative": 0.0002653396434803347,
+          "molecules_with_any_positive_advantage": 6031,
+          "molecules_with_any_negative_advantage": 3980
+        }
+      }
+    },
+    "scope": "Fixed training-internal molecular holdout diagnostic prediction and positive-only pair contrast, no critic fitting or calibrated ranking. Radius/count/hashed representation effects do not establish fragmentation mechanisms or full-system accuracy. Repeatedly inspected training split, no independent end-to-end acceptance, deployment or publication.",
+    "original372_all_summary_arms_exact": true,
+    "neighborhood_arms": {
+      "radius2_binary": {
+        "heldout_mse": 0.0028555803590362486,
+        "both_heldout_mass_contrasts": {
+          "pairs": 28806,
+          "positive_bonus_larger": 13698,
+          "negative_bonus_larger": 7361,
+          "bonus_ties": 7747,
+          "mean_positive_minus_negative": 0.0002653396434803347,
+          "molecules_with_any_positive_advantage": 6031,
+          "molecules_with_any_negative_advantage": 3980
+        }
+      },
+      "radius2_log_count": {
+        "heldout_mse": 0.002862277929522789,
+        "both_heldout_mass_contrasts": {
+          "pairs": 28806,
+          "positive_bonus_larger": 13879,
+          "negative_bonus_larger": 7183,
+          "bonus_ties": 7744,
+          "mean_positive_minus_negative": 0.0002457858760334947,
+          "molecules_with_any_positive_advantage": 6098,
+          "molecules_with_any_negative_advantage": 3954
+        }
+      },
+      "radius3_log_count": {
+        "heldout_mse": 0.002865183138719356,
+        "both_heldout_mass_contrasts": {
+          "pairs": 28806,
+          "positive_bonus_larger": 13709,
+          "negative_bonus_larger": 7353,
+          "bonus_ties": 7744,
+          "mean_positive_minus_negative": 0.00025032409822943566,
+          "molecules_with_any_positive_advantage": 6065,
+          "molecules_with_any_negative_advantage": 4017
+        }
+      }
+    },
+    "neighborhood_comparisons": {
+      "radius2_binary_to_radius2_log_count": {
+        "mse_reduction": {
+          "molecules": 12006,
+          "mean_loss_reduction": -6.697570486540756e-06,
+          "paired_bootstrap95_loss_reduction": [
+            -1.0970961358789398e-05,
+            -2.494446713331437e-06
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "pair_margin_gain": {
+          "molecules": 12006,
+          "paired_difference": -1.9553767446839945e-05,
+          "paired_molecule_bootstrap95": [
+            -2.3018066094139306e-05,
+            -1.6160680692153428e-05
+          ],
+          "molecules_with_positive_contribution": 3308,
+          "molecules_with_negative_contribution": 4025,
+          "zero_contribution_molecules": 4673
+        }
+      },
+      "radius2_binary_to_radius3_log_count": {
+        "mse_reduction": {
+          "molecules": 12006,
+          "mean_loss_reduction": -9.602779683108165e-06,
+          "paired_bootstrap95_loss_reduction": [
+            -1.6237496093125998e-05,
+            -3.0075076243240364e-06
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "pair_margin_gain": {
+          "molecules": 12006,
+          "paired_difference": -1.5015545250899e-05,
+          "paired_molecule_bootstrap95": [
+            -2.06828054908683e-05,
+            -9.406953388695376e-06
+          ],
+          "molecules_with_positive_contribution": 3460,
+          "molecules_with_negative_contribution": 3874,
+          "zero_contribution_molecules": 4672
+        }
+      },
+      "radius2_log_count_to_radius3_log_count": {
+        "mse_reduction": {
+          "molecules": 12006,
+          "mean_loss_reduction": -2.9052091965674092e-06,
+          "paired_bootstrap95_loss_reduction": [
+            -7.77032100865027e-06,
+            1.9455258607033516e-06
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "pair_margin_gain": {
+          "molecules": 12006,
+          "paired_difference": 4.538222195940943e-06,
+          "paired_molecule_bootstrap95": [
+            2.5878462816752337e-07,
+            8.801003743979159e-06
+          ],
+          "molecules_with_positive_contribution": 3630,
+          "molecules_with_negative_contribution": 3704,
+          "zero_contribution_molecules": 4672
+        }
+      }
+    },
+    "heldout_molecules_without_eligible_negatives": 1936
+  },
+  "protocol_sha256": "27bf63b840bc6b18d79989130499cd5581b00b4f483e93e6ca51d6570202289b",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

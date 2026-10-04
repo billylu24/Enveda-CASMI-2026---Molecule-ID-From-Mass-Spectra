@@ -1,0 +1,14 @@
+{
+  "valid": false,
+  "submitted": false,
+  "molecules": 400,
+  "cause": "Overlap original236 Notebook finalERROR at ~452.65s session elapsed from individual physical request timeout, before shared1200s deadline. Retrieval58.89746s/generation313.86565s, full400generation CSV exact. No intent/pending/id or matching competition submission. Exactfailed request and concurrent load not yet observed; do not label as global deadline exhaustion or extend timeout. Preserve immutable bundle/full400 gates; instrument unchanged request/runtime locally and private platform diagnosis.",
+  "first_timeout_session_seconds": 452.652071148,
+  "retrieval_seconds": 58.89745807299997,
+  "generation_seconds": 313.86564654700004,
+  "full400_generation_csv_exact": true,
+  "no_competition_post_confirmed": true,
+  "platform_log": "artifacts/research_loop/overlap_platform_progress/casmi26-236-overlap-verified-best.log",
+  "global_deadline_exhaustion": false,
+  "individual_physical_timeout": true
+}

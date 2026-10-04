@@ -704,7 +704,13 @@
     "kaggle_release_verified_best_0236_overlap_once/physical_dictionary_verification.json",
     "kaggle_release_verified_best_0236_overlap_once/platform_failure.json",
     "kaggle_release_verified_best_0236_overlap_once/notebook/casmi_chemistry.ipynb",
-    "kaggle_release_verified_best_0236_overlap_once/notebook/kernel-metadata.json"
+    "kaggle_release_verified_best_0236_overlap_once/notebook/kernel-metadata.json",
+    "casmi_ml/neighborhood_diagnostic_audit.py",
+    "tests/test_neighborhood_diagnostic_audit.py",
+    "casmi_ml/catalog_scoring_funnel_audit.py",
+    "tests/test_catalog_scoring_funnel_audit.py",
+    "casmi_ml/overlap_request_runtime_audit.py",
+    "tests/test_overlap_request_runtime_audit.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
