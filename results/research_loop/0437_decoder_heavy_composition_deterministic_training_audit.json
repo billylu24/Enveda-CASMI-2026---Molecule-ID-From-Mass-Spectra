@@ -1,0 +1,114 @@
+{
+  "round": "0437_decoder_heavy_composition_deterministic_training_audit",
+  "direction": "generation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "fit_molecules": 47994,
+    "fit_supported_encodable": 47970,
+    "heldout_molecules": 12006,
+    "heldout_supported_encodable": 12002,
+    "fit_excluded": 24,
+    "heldout_excluded": 4,
+    "all_supported_heavy_label_counts_exact": true,
+    "all_deterministic_control_replica_tensors_and_assessments_exact": true,
+    "deterministic_algorithms": true,
+    "cublas_workspace_config": ":4096:8",
+    "multiple_recorded_formula_fit": 7,
+    "multiple_recorded_formula_heldout": 0,
+    "arms": {
+      "initial": {
+        "soft": 0.20308445309799544,
+        "training_integer": 0.20275653173868124,
+        "soft_normalized_heavy_l1": 0.0903296649938284
+      },
+      "soft_control": {
+        "soft": 0.18694978045889232,
+        "training_integer": 0.18657744243260166,
+        "soft_normalized_heavy_l1": 0.08724154842775025
+      },
+      "soft_control_repeat": {
+        "soft": 0.18694978045889232,
+        "training_integer": 0.18657744243260166,
+        "soft_normalized_heavy_l1": 0.08724154842775025
+      },
+      "heavy_auxiliary": {
+        "soft": 0.18709785728689365,
+        "training_integer": 0.18673338387447438,
+        "soft_normalized_heavy_l1": 0.08536999863669852
+      }
+    },
+    "auxiliary_over_soft_control_reductions": {
+      "soft": {
+        "molecules": 12002,
+        "mean_loss_reduction": -0.0001480768280013169,
+        "paired_bootstrap95_loss_reduction": [
+          -0.0001807457119843703,
+          -0.00011651506212922838
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      },
+      "training_integer": {
+        "molecules": 12002,
+        "mean_loss_reduction": -0.00015594144187274178,
+        "paired_bootstrap95_loss_reduction": [
+          -0.00018853341546865642,
+          -0.0001246693307970966
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      },
+      "soft_normalized_heavy_l1": {
+        "molecules": 12002,
+        "mean_loss_reduction": 0.0018715497910517383,
+        "paired_bootstrap95_loss_reduction": [
+          0.001801943003394017,
+          0.001941545859555596
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      }
+    },
+    "history": {
+      "soft_control": [
+        {
+          "epoch": 1,
+          "fit_molecular_nll": 0.23507732998238817
+        },
+        {
+          "epoch": 2,
+          "fit_molecular_nll": 0.22866094255226216
+        }
+      ],
+      "soft_control_repeat": [
+        {
+          "epoch": 1,
+          "fit_molecular_nll": 0.23507732998238817
+        },
+        {
+          "epoch": 2,
+          "fit_molecular_nll": 0.22866094255226216
+        }
+      ],
+      "heavy_auxiliary": [
+        {
+          "epoch": 1,
+          "fit_molecular_nll": 0.2430910233360841
+        },
+        {
+          "epoch": 2,
+          "fit_molecular_nll": 0.23653526165621067
+        }
+      ]
+    },
+    "seconds": 177.24923013098305,
+    "scope": "Matched fixed twoepoch finetuning training-only diagnostic on previously all60K-pretrained models. Integer-condition evaluation remains training-only teacher forcing, never oracle dev/test generation. Auxiliary count targets used fit training gradients only. No graph/ranking/independent accuracy claim or deployment; unsupported identities remain in declared denominator."
+  },
+  "protocol_sha256": "54d826113a42024ea8adf93d56117941d85bb9a5e0b279375b053ee6bc30eada",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

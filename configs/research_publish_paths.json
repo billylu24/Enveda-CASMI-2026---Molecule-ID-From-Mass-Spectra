@@ -773,7 +773,10 @@
     "kaggle_release_verified_best_0236_mass_reuse_once/platform_failure.json",
     "casmi_ml/decoder_composition_expectation_audit.py",
     "casmi_ml/decoder_heavy_composition_training_audit.py",
-    "tests/test_decoder_heavy_composition_training_audit.py"
+    "tests/test_decoder_heavy_composition_training_audit.py",
+    "casmi_ml/decoder_heavy_composition_structure_pilot.py",
+    "casmi_ml/platform_numeric_equivalence_audit.py",
+    "tests/test_platform_numeric_equivalence_audit.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

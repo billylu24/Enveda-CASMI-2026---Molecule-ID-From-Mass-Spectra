@@ -1,0 +1,17 @@
+{
+  "valid": true,
+  "requests": 265,
+  "candidate_scores": 24067,
+  "complete_all_requests": true,
+  "same_non_score_fields_and_keysets": true,
+  "all_candidate_orders_exact": true,
+  "all_raw_dictionaries_exact": false,
+  "different_values": 18,
+  "max_ulp_distance": 2,
+  "max_relative_difference": 2.5797257130523354e-16,
+  "max_absolute_difference": 1.1368683772161603e-13,
+  "explicit_max_ulp": 2,
+  "explicit_max_relative": 1e-15,
+  "publisher_authorization": false,
+  "scope": "Review-only comparison, not publication authorization. Publisher strict default remains unchanged pending user choice."
+}

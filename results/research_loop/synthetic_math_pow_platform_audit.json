@@ -1,0 +1,21 @@
+{
+  "diagnostic_only": true,
+  "local_only": true,
+  "independent_acceptance": false,
+  "synthetic_pairs": 108000,
+  "native_pow_raw_bit_mismatch_pairs": 6,
+  "strict_pow_raw_bit_mismatch_pairs": 0,
+  "native_pow_max_ulp_difference": 1,
+  "native_pow_mismatch_by_exponent": {
+    "0.59": 4,
+    "0.47": 1,
+    "1.84": 1
+  },
+  "java_archive_sha256": "2413149700df0f7d440500a84a8f764c535f21e5a5e87d38328b64eec2c5b500",
+  "class_sha256": "f672d6d7efb0be12b16f27882ebe86a5005ac84ccac2aebbd803244ea95efc2f",
+  "local_grid_sha256": "c539b0e0b0e44ae66111a85fe5e9e86fc763662d9a767b6d3e1619347fd93a09",
+  "platform_grid_sha256": "acd63a51d1a016126f200c616ed411d39d0855816c328def153fc14416d227ac",
+  "local_cpu": "AMD Ryzen 9 7900X",
+  "platform_cpu": "Intel(R) Xeon(R) CPU @ 2.20GHz",
+  "scope": "Exact same Java21 binary/class/synthetic operands, defaultCPU warmedMath.pow andStrictMath.pow. NativeMath.pow platform sensitivity directly observed if mismatch nonzero; no molecules/queryscore reproduction or inferenceflag/scorealgorithm deployment. Does not by itself prove all18 physical-score mismatches originate here. User strictgate preference pending, no competition POST."
+}

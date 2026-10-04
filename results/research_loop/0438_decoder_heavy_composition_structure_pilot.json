@@ -1,0 +1,66 @@
+{
+  "round": "0438_decoder_heavy_composition_structure_pilot",
+  "direction": "generation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "molecules": 200,
+    "all200_original_candidates_stats_hypotheses_exact": true,
+    "samples_per_query_per_arm": 128,
+    "original_soft_condition_rows_per_query": 128,
+    "arms": {
+      "original": {
+        "samples": 25600,
+        "terminated": 25599,
+        "valid": 23553,
+        "mass_matching": 490,
+        "unique_mass_matching": 311,
+        "queries_with_candidates": 100,
+        "exact_structure_hits": 9
+      },
+      "soft_control_soft": {
+        "samples": 25600,
+        "terminated": 25599,
+        "valid": 23557,
+        "mass_matching": 498,
+        "unique_mass_matching": 332,
+        "queries_with_candidates": 104,
+        "exact_structure_hits": 7
+      },
+      "heavy_auxiliary_soft": {
+        "samples": 25600,
+        "terminated": 25599,
+        "valid": 23514,
+        "mass_matching": 504,
+        "unique_mass_matching": 334,
+        "queries_with_candidates": 103,
+        "exact_structure_hits": 7
+      }
+    },
+    "seconds": 193.14605561597273,
+    "scope": "Fixed three-arm repeateddevelopment structural pilot after frozen437 deterministic replicated control training. Query formula targets never enter conditions. Compare training composition auxiliary objective against matched soft-only finetuning, no structure-ranking/independent accuracy acceptance, physics or activation; best236 retained.",
+    "graph_hit_overlap": {
+      "original": {
+        "preserved_original": 9,
+        "new_vs_original": 0,
+        "lost_original": 0
+      },
+      "soft_control_soft": {
+        "preserved_original": 7,
+        "new_vs_original": 0,
+        "lost_original": 2
+      },
+      "heavy_auxiliary_soft": {
+        "preserved_original": 7,
+        "new_vs_original": 0,
+        "lost_original": 2
+      }
+    }
+  },
+  "protocol_sha256": "a32b44362f73050d247badb9c37bb38574eeacc532a96acd8dd7e6e75f14c7d7",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}
