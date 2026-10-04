@@ -1,0 +1,53 @@
+{
+  "round": "0373_forward_candidate_capacity_audit",
+  "direction": "training_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "capacity_probe": {
+      "original": {
+        "initial_ce": 0.5295985417218343,
+        "final_objective": 0.5246471778145301,
+        "optimizer_iterations": 45,
+        "sum_nonnegative_cosine_weights": 1.7151858236430644,
+        "maximum_possible_bonus": 2.0
+      },
+      "forward_candidate": {
+        "initial_ce": 0.5295985417218343,
+        "final_objective": 0.527782251624626,
+        "optimizer_iterations": 21,
+        "sum_nonnegative_cosine_weights": 1.9432394501163262,
+        "maximum_possible_bonus": 2.0
+      },
+      "same_objective_gain": -0.003135073810095923,
+      "active_forward_channels": 33,
+      "private_forward_sha256": "4a8dad8d84410aa456ae41f68885063272b172a5fc091a753f74c8666869a88e",
+      "private_bonus_sha256": "c6ed2feb74dbb21791671dabd5decd4f1f9f0399025adfca04089ce0493d81ae"
+    },
+    "original_preparation": {
+      "diagnostic_only": true,
+      "local_only": true,
+      "independent_acceptance": false,
+      "training_molecules": 60000,
+      "train_development_overlap": 0,
+      "original_encoder_and_critic_frozen": true,
+      "history": {
+        "initial_ce": 0.5295985417218343,
+        "final_objective": 0.5246471778145301,
+        "optimizer_iterations": 45,
+        "sum_nonnegative_cosine_weights": 1.7151858236430644,
+        "maximum_possible_bonus": 2.0
+      },
+      "seconds": 88.43180098198354,
+      "model_sha256": "a6b4ec0168af2016f859201c1201dce3b37a58253abaaf4871240d24194d27f4",
+      "scope": "Bounded extended candidate chemistry fitting only; current-best complete zero control and paired full3340 systems required"
+    },
+    "scope": "Fixed original60D capacity test, forward marginal diagnostic strength is not charge/energy-specific spectrum simulation. Full-training objective benefit can overfit and is not development accuracy. Original valid model retained; new private weights never deployed. Requires matched complete controls and full systems before scientific evaluation."
+  },
+  "protocol_sha256": "ca5aa6e216779df0aa382094c025244448b5b4890f607f738b1ed52c0f23250d",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

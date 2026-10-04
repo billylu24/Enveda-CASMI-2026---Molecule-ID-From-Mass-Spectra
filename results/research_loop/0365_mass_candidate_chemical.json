@@ -1,0 +1,31 @@
+{
+  "round": "0365_mass_candidate_chemical",
+  "direction": "representation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "train_development_overlap": 0,
+    "original_encoder_and_critic_frozen": true,
+    "history": {
+      "initial_objective": 0.49437006169471037,
+      "final_objective": 0.4900526217589283,
+      "same_mask_objective_gain": 0.004317439935782097,
+      "optimizer_iterations": 46,
+      "weight_sum": 1.558740094777894,
+      "compatible_pairs": 720198,
+      "queries_with_compatible_negative": 57260,
+      "query_weighting": "All original60000 equal; no-compatible query contributes zero CE, not resampled"
+    },
+    "seconds": 66.09794568800135,
+    "model_sha256": "556d3019d002b5711f0813ddde860d2688774926b4c5a1f81f23e4e9bb556a7e",
+    "scope": "Fixed training-only mass-admissible chemistry fit. Same-mask objective is not accuracy gain. Requires source-bound complete zero/mask controls and both full3340 physical systems; no automatic activation or remote publication.",
+    "mass_admissible_denominator": true
+  },
+  "protocol_sha256": "ca5aa6e216779df0aa382094c025244448b5b4890f607f738b1ed52c0f23250d",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

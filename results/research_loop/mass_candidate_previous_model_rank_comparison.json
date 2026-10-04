@@ -1,0 +1,19 @@
+{
+  "local_only": true,
+  "independent_acceptance": false,
+  "original_unrestricted_round": "0329_full_gap_candidate_chemical_system",
+  "mass_denominator_round": "0367_mass_candidate_chemical_system",
+  "original_rankings_sha256": "77774eabe1e5b59a291ae99a343772f0ef7a4a4ad8fd44f408e5b771700a148b",
+  "mass_rankings_sha256": "0a07e1ee163533aeb9c2b883083f2de65a7ed5ba969e1cc0b7073bafe9a98d0b",
+  "cohorts": {
+    "unknown": {
+      "full_ranks_different": 26,
+      "first_identity_different": 2
+    },
+    "known": {
+      "full_ranks_different": 5,
+      "first_identity_different": 0
+    }
+  },
+  "scope": "Completed repeated-development original unrestricted versus mass-denominator training fullrank comparison, not new accuracy acceptance or parameter tuning."
+}

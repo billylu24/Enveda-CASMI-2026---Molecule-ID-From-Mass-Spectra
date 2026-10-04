@@ -1,0 +1,35 @@
+{
+  "round": "0370_training_alias_radius_audit",
+  "direction": "training_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "train_development_overlap": 0,
+    "contrasts": {
+      "unrestricted": {
+        "pairs": 665,
+        "radius2_count_separated": 197,
+        "radius3_count_separated": 399,
+        "radius4_count_separated": 539,
+        "radius6_count_separated": 615,
+        "radius8_count_separated": 661
+      },
+      "mass_compatible": {
+        "pairs": 576,
+        "radius2_count_separated": 108,
+        "radius3_count_separated": 310,
+        "radius4_count_separated": 450,
+        "radius6_count_separated": 526,
+        "radius8_count_separated": 572
+      }
+    },
+    "scope": "Availability audit on original fingerprint aliases, no matched neural accuracy, no mechanism proof or whole-pool upper bound. Signature inequality can distinguish this pair; signature equality need not imply actual graph equality. No model replacement."
+  },
+  "protocol_sha256": "7117c0cf67cfba5318e8e892bb3cd633dc5140b9695b7ccc7969835d15f57fea",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

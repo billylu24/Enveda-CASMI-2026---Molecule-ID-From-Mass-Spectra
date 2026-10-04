@@ -184,3 +184,20 @@ unknown原交接中的248个真值＝所选检索排名173个＋5个生成槽位
 reference236冷400完成：409.738秒／4276.563MiB、预算0；完整400 Top25和全部265个原serial物理请求字典exact。私有数据集已上传，Kaggle Notebook `giaok246/casmi26-236-reference-verified-best` v1于UTC 03:01运行，尚无competition提交ID。发布源码保持冻结。
 
 363完成：同masked objective上原权重.490072745005353、新权重.4900526217589283，收益.0000201232464248（很小）；30个非零通道、权重和1.55874。保留原模型。364–368固定完整对照已启动：364原zero全3340 exact先行，365/366相同denominator chemical／全化学mask训练，367/368两臂完整物理系统；全部通过后评价原236／206／181保护，不自动部署、不提交、不push。新训练模型必须额外绑定optimizer／mass mask／pinned negatives／训练wrapper来源，原encoder／critic／60D推理binding仍强制。444项回归通过、ruff通过。
+
+
+369仅训练集指纹别名审计：原900000个pinned pairs有665对original2048bit完全相同，全部实际canonical non-stereo graph不同；质量相容576对。增4096／8192bit均区分0，unfolded radius2 count区分108／576，其余468对仍alias。370同原alias cohort的radius2／3／4／6／8 sparse count分别区分108／310／450／526／572对。这只是结构表示的可区分性，不是谱图含有对应结构证据，不是总体候选覆盖或准确率上限；不能据此直接部署更大模型。固定位置异构长链的单元验证显示bit扩大仍alias，而radius3可区分；canonical重排与立体配置均保持签名不变。优先考虑有训练内独立对照的结构邻域实验，暂不因架构名称扩大GAN／DINO。
+
+363训练本身成功，但私有driver在写安全摘要时误用了不存在的Controller.public属性。保留错误日志；修正记录路径后直接从冻结成功report重新记录，未重复训练或改变科学结果。
+
+
+0371保留370原source_snapshot后，只改dictionary iteration风格，按当前源码独立重做同665对训练审计；完整report与370 exact，安全proof记录来源。0372固定训练内部hash split：47994分子fit／12006留出，每分子原双谱60D诊断强度，所有超参固定L2=.01；训练mean MSE .003296934，20SMARTS ridge .003130327，2048fp ridge .002855580。正负双方都heldout且质量相容28806对：20SMARTS正例分数优势11937／负优势6690／tie10179；fp正优势13698／负7361／tie7747。结构预测60通道的正向观测dot评分，不给未观测峰扣分；不读取开发排名、不模拟特定CE／adduct碎裂。fp MSE对20SMARTS约下降8.8%，仅训练内可泛化信号，不是完整系统提升。后续固定source-bound全训练ridge预测候选支持，须先同预算容量探针，再完整zero／chemical／mask物理系统。
+
+
+373固定训练容量探针已启动：原60K／120K measured mean／60D／pinned15／原critic与encoder／sum2／L2=.01／200iter／原unrestricted denominator均保持；唯一变动是候选binary SMARTS支持改为全原训练集拟合的fp->60D诊断强度ridge支持（预测clamp[0,1]）。化学query观测强度仍原值，只能加正向观测支持，不因未观测峰扣分；不叠加mass mask、不新增维度、不调开发阈值。原报告/原有效模型仍返回，预测模型与新bonus权重仅私有保存；同目标gain若无改善则暂停这条线，不跑开发候选系统。内部留出目标不参与372拟合的隔离测试、同分子hash一侧测试、未观测峰不能产生bonus测试通过。
+
+
+373完成并拒绝直接替换：原训练目标.5246471778145301，forward支持.527782251624626（恶化.003135073810096）；33通道有效、权重和1.94324接近2.0。全训练拟合强度预测具有更低heldout MSE并不代表固定critic候选排序收益；连续强度与binary结构支持的幅度/条件区分不同。未跑开发系统、不启用。只能先做训练内尺度/互补信息诊断，不能据此提高预算或按开发调乘数。450项回归通过、ruff通过。
+
+
+364–368完整完成：364zero及368mask全部3340 fullrank exact、预算/新增物理失败0；367chemical unknownMRR .04414496759057114（对236+.000166667/+0.379%）、knownMRR .6037921161569266／Top1 .564179104477612不变；失败晋升门槛。质量mask只用于训练denominator，最终收益与原329汇总相同，需逐分子排名归因而不能称“训练负例不相容是已解决的主要瓶颈”。继续236，不启用mass模型。

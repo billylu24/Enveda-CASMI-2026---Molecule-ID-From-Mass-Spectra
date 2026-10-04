@@ -1,0 +1,33 @@
+{
+  "round": "0369_training_fingerprint_alias_audit",
+  "direction": "training_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "training_molecules": 60000,
+    "train_development_overlap": 0,
+    "total_pinned_pairs": 900000,
+    "unique_alias_molecules": 469,
+    "contrasts": {
+      "unrestricted": {
+        "identical_original2048_pairs": 665,
+        "distinct_actual_graph": 665,
+        "unfolded_radius2_counts_separated": 197,
+        "distinct_graph_unfolded_radius2_count_alias": 468
+      },
+      "mass_compatible": {
+        "identical_original2048_pairs": 576,
+        "distinct_actual_graph": 576,
+        "unfolded_radius2_counts_separated": 108,
+        "distinct_graph_unfolded_radius2_count_alias": 468
+      }
+    },
+    "scope": "Exact original fingerprint training aliases only, not all candidate-pool collisions or accuracy upper bound. Canonical non-stereo graph equality is not a verdict about supplied identity labels. A larger bit/count/graph representation needs matched training and full system qualification before activation."
+  },
+  "protocol_sha256": "57fb8d227bec9b7f0adf516db94a2ea14d2072283114be462fcc14445374f174",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

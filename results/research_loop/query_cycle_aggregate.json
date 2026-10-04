@@ -29,6 +29,44 @@
     "evidence_amendment": "results/research_loop/low_leader_evidence_amendment.json"
   },
   "cycles": {
+    "connected_diagnostic_ion_refinement": {
+      "arms": {
+        "chemical": {
+          "round": "0344_connected_candidate_chemical_system",
+          "unknown_mrr25": 0.044061634257237796,
+          "known_mrr25": 0.6037921161569266,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": 8.333333333332416e-05
+        },
+        "identity_masked": {
+          "round": "0345_connected_candidate_mask_system",
+          "unknown_mrr25": 0.04397830092390447,
+          "known_mrr25": 0.6037921161569266,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": 0.0
+        }
+      },
+      "chemical_minus_mask_unknown_mrr25": 8.333333333332416e-05
+    },
+    "aromatic_original_h_refinement": {
+      "arms": {
+        "chemical": {
+          "round": "0351_aromatic_h_candidate_chemical_system",
+          "unknown_mrr25": 0.04407830092390447,
+          "known_mrr25": 0.6037921161569266,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": 9.999999999999593e-05
+        },
+        "identity_masked": {
+          "round": "0352_aromatic_h_candidate_mask_system",
+          "unknown_mrr25": 0.04397830092390447,
+          "known_mrr25": 0.6037921161569266,
+          "known_top1": 0.564179104477612,
+          "unknown_gain_vs_current_best": 0.0
+        }
+      },
+      "chemical_minus_mask_unknown_mrr25": 9.999999999999593e-05
+    },
     "candidate_motif_counts": {
       "arms": {
         "chemical": {

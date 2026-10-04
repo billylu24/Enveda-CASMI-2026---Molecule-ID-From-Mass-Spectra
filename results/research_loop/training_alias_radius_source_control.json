@@ -1,0 +1,9 @@
+{
+  "valid": true,
+  "complete_report_exact": true,
+  "original_round": "0370_training_alias_radius_audit",
+  "current_source_round": "0371_training_alias_radius_source_control",
+  "local_only": true,
+  "independent_acceptance": false,
+  "scope": "Pure dictionary iteration style correction; same complete train-only alias cohort and all aggregate radius counts exact. Original source archived with old protocol, no accuracy claim."
+}

@@ -622,7 +622,14 @@
     "casmi_ml/mass_candidate_compatibility.py",
     "casmi_ml/mass_candidate_system.py",
     "casmi_ml/mass_candidate_followup.py",
-    "tests/test_mass_candidate_binding.py"
+    "tests/test_mass_candidate_binding.py",
+    "casmi_ml/training_fingerprint_alias_audit.py",
+    "casmi_ml/training_alias_radius_audit.py",
+    "tests/test_training_alias_radius_audit.py",
+    "casmi_ml/forward_diagnostic_training_audit.py",
+    "tests/test_forward_diagnostic_training_audit.py",
+    "casmi_ml/forward_candidate_capacity_audit.py",
+    "tests/test_forward_candidate_capacity_audit.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
