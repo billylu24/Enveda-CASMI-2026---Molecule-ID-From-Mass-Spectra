@@ -1,0 +1,21 @@
+{
+  "round": "0418_formula_token_training_accounting",
+  "direction": "training_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "counts": {
+      "molecules": 60000,
+      "exact_heavy_atom_accounting": 59972,
+      "unencodable_sequence": 23,
+      "unsupported_formula": 5
+    },
+    "scope": "Training heavy-atom token accounting feasibility only. No guarantee of grammar validity/implicithydrogen/exact mass/graphrecall; no query oracle target or deployment. Unsupported cases must remain original unconstrained trajectories, finaloriginal RDKit validation mandatory."
+  },
+  "protocol_sha256": "8cc55ff113ebc689a347051b82dee055f44ef72a448cac08e3e45228438df887",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

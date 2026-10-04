@@ -737,7 +737,11 @@
     "casmi_ml/physical_request_cost_audit.py",
     "casmi_ml/mass_formula_generation_pilot.py",
     "tests/test_mass_formula_generation_pilot.py",
-    "casmi_ml/decoder_formula_response_audit.py"
+    "casmi_ml/decoder_formula_response_audit.py",
+    "casmi_ml/formula_budget_sampling.py",
+    "tests/test_formula_budget_sampling.py",
+    "casmi_ml/formula_token_budget_audit.py",
+    "casmi_ml/mass_formula_budget_pilot.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

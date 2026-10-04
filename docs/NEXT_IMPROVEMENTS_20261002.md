@@ -318,3 +318,9 @@ cpubal平台最终API ERROR，原shared1200秒末端prefetched physical timeout�
 
 
 0416完成并拒绝扩展：200原baseline candidates/stats/hypotheses对原cache全部exact。每臂25600采样，original/neuralmass/frequencymass exactgraph均9；质量matching490/484/485，unique311/304/306、有候选query100/98/97。没有结构召回收益，停掉直接替换部分softformula条件路线，不因为415 formula top5大增就扩2000/调blend或启用模型。局部CUDA allocator回收warning后仍完成，未改变采样数/结果gate。0417固定训练内heldout侧first200 teacher-forcing响应诊断：原soft/训练已知truecounts/zero/固定滚动错配counts，只观测NLL/KL/argmax/memory差值；这些训练标签只用于诊断输入和teacher-forcing，不进入dev/test生成。无训练更新/部署/独立泛化声明。
+
+
+0417训练内固定200全部可编码/元素supported，原teacher-forcing NLL.207793，truecounts.207519(+.000274065，95[.000024711,.000556882])；zero.223319、shuffle.211334均明显恶化。原→truecounts KL.0000773455/token-argmax改变.0857%，zero对应KL.014355/1.7959%。decoder会用formula，不应称完全忽视，但训练known counts替代原soft的响应小，也不能当自由生成graph改善或端到端泛化。下一方向须有真实sequence constraint或matched训练目标，不按dev放大权重或扩大GAN/DINO。508完整回归通过。
+
+
+旧0015质量ceiling pilot正确graph8→8，0016RDKit精确mass EOS rejection8→6且1588秒/终止509/25600，不机械重复。0418新的heavy-token计数全60000训练代表检查：59972完整heavy-count exact、23词表/长度不可编码、5不支持元素、0计数mismatch；全部分母保留。采样budgetinactive单元对原decoder tokens/likelihood/finished逐tensor exact，active验证不能早EOS/不能超heavy-count；implicit及bracket H无约束，unsupported Se/se禁止于active。0419新的固定200/每臂128 pilot只在后64 proposal轨迹限制heavy-atom上限、EOS在heavycounts完成后允许；没有RDKit EOS rejection/resampling，原RDKit/连通性/精确质量最终验证不变。first64原条件/概率约束保留，top5来自训练fit词表+观察mass，不输入query真式。正在运行，尚无收益声明，保持236。
