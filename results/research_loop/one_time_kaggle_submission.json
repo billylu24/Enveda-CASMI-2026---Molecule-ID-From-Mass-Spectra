@@ -5,7 +5,7 @@
   "github_pushes": false,
   "automatic_future_submissions": false,
   "identity": "1d2253f9f83fa07a6bc7ab39b097062f567a43af225a1054cbfd342dfcf1fb87",
-  "status": "notebook_running",
+  "status": "platform_verification_failed",
   "amendments": [
     {
       "identity": "b27505dc6c850055920a15238846cb969e6b88e220ca89bb84e95620779f36c2",
@@ -770,10 +770,22 @@
       }
     }
   ],
-  "updated_at": "2026-10-04T03:01:00Z",
+  "updated_at": "2026-10-04T03:25:52Z",
   "dataset_uploaded": true,
   "remote": {
     "kernel": "giaok246/casmi26-236-reference-verified-best",
     "version": 1
+  },
+  "error": "Reference-cache release Notebook ERROR from prefetched physical timeout near original shared1200s deadline. Retrieval64.086s vs streaming194.943s, generation364.965s. Preserve original ranks/resource/budget gates; no competition POST.",
+  "platform_failure": {
+    "valid": false,
+    "submitted": false,
+    "molecules": 400,
+    "cause": "Reference-cache release Notebook ERROR from prefetched physical timeout near original shared1200s deadline. Retrieval64.086s vs streaming194.943s, generation364.965s. Preserve original ranks/resource/budget gates; no competition POST.",
+    "platform_log": "artifacts/research_loop/reference_platform_progress/casmi26-236-reference-verified-best.log",
+    "retrieval_seconds": 64.085909989,
+    "generation_seconds": 364.964748417,
+    "local_cold_seconds": 409.73832952597877,
+    "local_parent_rss_mib": 4276.5625
   }
 }

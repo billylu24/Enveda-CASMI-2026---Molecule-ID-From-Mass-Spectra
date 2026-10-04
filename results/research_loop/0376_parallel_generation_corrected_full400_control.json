@@ -1,0 +1,23 @@
+{
+  "round": "0376_parallel_generation_corrected_full400_control",
+  "direction": "implementation_control",
+  "status": "diagnostic_complete",
+  "report": {
+    "valid": true,
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "molecules": 400,
+    "full400_generation_handoffs_exact": true,
+    "original_generated_csv_exact": true,
+    "all_generation_audits_exact": true,
+    "source_sha256": "209a2714b2953254843aa77af5e3a3086389d951e684515c9d3bb7d154bbe8c3",
+    "original_generation_source_sha256": "3aca1f215a83ce773a148864310288accf4997290c099f0e9e8e7b1e81c4e47d",
+    "forced_oneGPU_partitions_sequential": true,
+    "scope": "Same per-molecule seeded original forward graph, serial versus partitioned full400 exact. On one localGPU partitions sequential; no dualGPU timing claim. Platform all400 Top25/physical/budget/resource proof required."
+  },
+  "protocol_sha256": "ef39657e304380488c0fbcd137cc91733dc6a5f6412ff9237a9b97418c705114",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

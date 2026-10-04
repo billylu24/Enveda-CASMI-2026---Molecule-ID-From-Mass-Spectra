@@ -1,0 +1,6 @@
+{
+  "old_release": "/home/giaok/PycharmProjects/Enveda CASMI 2026/kaggle_release_verified_best_0236_reference_once",
+  "new_release": "/home/giaok/PycharmProjects/Enveda CASMI 2026/kaggle_release_verified_best_0236_dualgen_once",
+  "science_recipe_unchanged": true,
+  "reason": "Reference platform64s retrieval+365s generation still exhausted original1200s physical deadline. Platform providesT4x2; independent original molecule-seeded generation partitions use both GPUs while all models/recipe/resource/physical/ranking gates stay unchanged. No new competition submission authorization."
+}

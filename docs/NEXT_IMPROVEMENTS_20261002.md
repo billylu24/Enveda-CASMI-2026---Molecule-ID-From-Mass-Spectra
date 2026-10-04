@@ -201,3 +201,13 @@ reference236冷400完成：409.738秒／4276.563MiB、预算0；完整400 Top25�
 
 
 364–368完整完成：364zero及368mask全部3340 fullrank exact、预算/新增物理失败0；367chemical unknownMRR .04414496759057114（对236+.000166667/+0.379%）、knownMRR .6037921161569266／Top1 .564179104477612不变；失败晋升门槛。质量mask只用于训练denominator，最终收益与原329汇总相同，需逐分子排名归因而不能称“训练负例不相容是已解决的主要瓶颈”。继续236，不启用mass模型。
+
+
+reference平台运行失败，prefetched physical timeout在1250.58秒附近（约含38秒setup+原1200 deadline）；retrieval64.086秒、generation364.965秒，尚无competition POST。平台页面明确实际GPU T4x2，可用菜单仅None/T4x2/TPU；原metadata P100并未分配。新并行生成只按完整分子奇偶分组，保留原每分子seed/条件/样本数/decoder/critic/insertion，输出按原顺序还原，两worker共享原剩余generation deadline，原物理deadline不延后；平台使用两张GPU，本地1张GPU强制顺序分组做identity核验。0375在CLIworker参数名错误退出，失败保留、未用作proof；修正+CLI回归后0376全400控制重做。新发布wrapper和包必须通过full400 generated CSV/audit/fullhandoff exact、source-bound75、forced-partition cold400 rank/265rawdict/resources及平台400原预算门槛后，才能继续同一次236提交。
+
+0374固定互补容量探针：保持原60通道binary支持，补60通道fp预测诊断强度；总nonnegative bonus仍2.0／L2=.01／原critic与pinned15。原目标.524647178→.523612107，gain.001035071，14原通道／11新通道有效，新增权重和.79955、总权重触2.0。多维模型包含原模型可行解，因此训练gain也可能只是容量；内部留出预测MSE并非该120D ranking头的独立泛化证明。新120D私有权重仅审计，不直接传给原60D推理；后续需明确新绑定及完整matched zero/chemical/mask两臂系统，不按开发挑维度/倍率。
+
+
+376完整400生成控制通过：先原reference检索400独立重建CSV exact，再原serial与顺序两分组生成的全部CSV／generation audit／完整handoffs exact，serial CSV对冻结reference包也exact。新parallel源SHA209a2714b2953254843aa77af5e3a3086389d951e684515c9d3bb7d154bbe8c3。新dualgen包准备中，仍须source-boundfresh75＋强制分组新冷400完整Top25/265原字典/预算/RSS＋平台双T4全400核验，不把本地顺序验证称实际双GPU速度证据。
+
+377–381互补诊断完整系统固定对照已启动：377zero全3340 exact后训练378chemical／379mask，380／381两臂物理完整、mask exact后才评价236／206／181门槛。120D总bonus仍2，原60D结构支持保留、只补60D观测query×预测候选强度；无观测峰不能产生bonus或负扣分；新增模型文件、前向ridge、训练wrapper、原core、critic/encoder/训练源均显式绑定。未运行开发前置调参、不自动激活，不提交/push。

@@ -1,0 +1,11 @@
+{
+  "valid": false,
+  "submitted": false,
+  "molecules": 400,
+  "cause": "Reference-cache release Notebook ERROR from prefetched physical timeout near original shared1200s deadline. Retrieval64.086s vs streaming194.943s, generation364.965s. Preserve original ranks/resource/budget gates; no competition POST.",
+  "platform_log": "artifacts/research_loop/reference_platform_progress/casmi26-236-reference-verified-best.log",
+  "retrieval_seconds": 64.085909989,
+  "generation_seconds": 364.964748417,
+  "local_cold_seconds": 409.73832952597877,
+  "local_parent_rss_mib": 4276.5625
+}

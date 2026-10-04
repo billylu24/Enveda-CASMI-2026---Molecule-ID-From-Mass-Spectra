@@ -1,5 +1,5 @@
 {
-  "status": "notebook_running",
+  "status": "platform_verification_failed",
   "identity": "1d2253f9f83fa07a6bc7ab39b097062f567a43af225a1054cbfd342dfcf1fb87",
   "scientific_round": "0236_low_supported_leader_first",
   "development_eligible": true,
