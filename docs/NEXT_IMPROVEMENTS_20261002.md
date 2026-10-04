@@ -171,3 +171,11 @@ unknown原交接中的248个真值＝所选检索排名173个＋5个生成槽位
 359逐候选gate记录按unknown/known隔离，原3340完整rank exact，预算/新增失败0；358发现跨模式记录覆盖风险主动终止并保留，未使用其结果。unknown缺失的116个legacy可用真值中44不在实际critic shortlist、72已被评分；38通过个体critic+.05，43有正fragment支持、37超过原首位fragment、22同时通过两项原首位条件。fragment融合排名中仅6在first3、12在first5；query status不能作单独候选拒绝原因。
 
 360–361固定本地实验：先原规则3340完整exact控制；再在高分支相同100提案中先做逐候选资格筛选、后选最多3槽位，不由不合格fusion leader否决其他合格候选。保留全池informativeness、原critic+.05、原首位fragment比较、strong原first3最大值和参考前缀保护；low/critic整组可能性/物理fallback规则不变。可能新增原first3物理请求，必须完整两臂且新增失败和budget0后才统计收益；不自动晋升、部署、提交或push。Kaggle版本始终是原236，仅调度运行时修订。
+
+
+360原规则3340完整rank exact、预算/新增失败0；361逐候选资格先于槽位的完整两臂结果unknown .043999486（对236+.000021186/+0.048%）、known .603565359（-.000226757），未晋升。继续236，条件诊断不能代替完整收益；插入数量/顺序的修改到此暂停，后续优先提高评分辨别力。
+
+
+362训练谱参考缓存控制通过：缓存只读取整个supplied训练集，不读取query；2423299条可用谱／46079297个CSR条目。actual400选出的556890条谱、10027422个CSR条目（data／indices／indptr）及74956个observed keys与原扫描逐项exact。原扫描31.207秒、缓存7.357秒仅是参考构建单次控制计时；不称整管线配对提速或准确率收益。冻结reference包fresh75全rank exact／预算0；cold400进行中，之后须通过原完整排名、物理字典、资源和平台门槛才能提交这一次236。此前streaming平台1200秒末端物理timeout，尚未发送比赛POST。
+
+363预注册训练容量探针：保持原60000分子、120000 measured pair slots、60D、pinned15、原encoder／critic、sum<=2.0／L2=.01／200次优化，仅在训练softmax分母排除不符合已有35ppm／.006Da质量约束的负例。正例始终保留，全部60000等权，不重采样；无相容负例的query贡献零CE。比较原权重与新权重在同一masked objective上的差异，禁止把不同分母的loss直接当提升。新权重仅私有保存，输出仍为原有效模型，不评价开发集、不自动启用。需后续独立完整zero／chemical／mask两臂验证才能判断科学收益。新reference缓存及mass探针回归共441项通过，ruff通过。

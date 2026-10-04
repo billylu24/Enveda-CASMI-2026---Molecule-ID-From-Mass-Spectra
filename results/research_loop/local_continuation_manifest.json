@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-04T02:34:38Z",
+  "updated_at": "2026-10-04T02:56:05Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -100,7 +100,14 @@
     "array_source_sha256": "28926c166dbb88701c8676a8fd2e34b94b104029c43706da7c56f172b1876a41",
     "identity_source_sha256": "e5ecca9173b0be7aab94b3037bacfda5c6a2787a3ba0f38677b9349f4a664b5d"
   },
-  "active_rounds": [],
+  "active_rounds": [
+    {
+      "id": "0363_mass_candidate_capacity_audit",
+      "direction": "training_diagnostic",
+      "status": "queued",
+      "report": "artifacts/research_loop/rounds/0363_mass_candidate_capacity_audit/report.json"
+    }
+  ],
   "local_candidate_runtime": {
     "enabled": true,
     "local_only": true,
@@ -196,14 +203,17 @@
     "high_slot_depth_followup.log",
     "streaming_prefetch_control.log",
     "finish_streaming_once236.log",
-    "candidate_gate_trace_v2.log"
+    "candidate_gate_trace_v2.log",
+    "individual_gate_followup.log",
+    "finish_reference_once236.log",
+    "mass_capacity_followup.log"
   ],
-  "pending_sequence": "Scientific236/evidence286 retained.319 exact3340 validation cache active.337count+.436%,344connected-ion+.189%,351aromaticH+.227% all rejected with complete matching zero/mask/physical controls. Candidate handoff and3340exact stage audit:unknown248 original truths retained, external adds33/removes0; inherited covered397 equals original+all corrected proposals, not retrieval coverage.149 available truths absent at original handoff:133 outside chosen retrieval/generation,16 selected retrieval-pool-only.116 absent finally:44 outside actual100,72 within100.355exact3340 three-slot control passed;356fiveslot unknown+.000163252/+.371%,known-.000080875 rejected;4newTop25 vs20unknown/12known RRregressions.357streaming same-request scheduling all3340exact0budget/newfailure passed, no source activation.358trace aborted to correct unknown/known record scope, preserved;359original scorer/physics observation running with separate cohort records and all3340 exact control requirement.353 prefetch control failed missing model path, retained;354 corrected all3340 exact same-science two-JVM control passed0budget/newfailure; fresh75 fullranks exact and57physical dictionaries equal serial. New prefetch cold400473.84s/5614MiB/zero budget and400Top25/265rawdicts exact vs serial; source-boundfresh75exact60.2s. Prefetch platform274/400Top25exact with125budget fallbacks after729.59s frontend, no competition POST; streaming original request discovery optimization under same1200s deadline pending new proofs. Separate requested one236 competition submission still unconsumed: original/portable platform105 physical budget fallbacks, packed pandas incompatibility fixed. New prefetch cold400/fresh75/platform400 proof required; persistent local_only and no GitHub push.",
+  "pending_sequence": "Scientific236/evidence286 retained;319 exact3340 validation cache active. Count337, connected344, aromaticH351, five-slot356, individual-gate361 all rejected by frozen promotion gate.359 scorer trace full3340 exact:116unknown available but absent finally,44outside actual100,72scored,22pass original first critic and physical gates. Streaming platform failed physical timeout under original1200s deadline; no competition POST.362 full-train reference cache built without queries, selected556890 rows and10027422 CSR entries plus74956 observed keys exact; source-bound reference fresh75 exact. New reference cold400 and platform400 must preserve all Top25/physical/resource gates before consuming the single236 submission.363 training-only same60K/120K/60D mass-compatible denominator capacity probe; compare objectives on the identical mask, no development evaluation or activation. Persistent local_only; no future submissions or GitHub push.",
   "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
   "runtime_claims": "Exact packed/object/array all3340 cached ranks and proposal three full2000 dictionaries. Separate scientific236 one-time release cold400 resource/physical/ranking verified; no paired whole-pipeline speed or independent accuracy claim.",
   "one_time_kaggle": {
     "identity": "962add7e63884583f4dfe0915b68f8c8fd5dd351de128666de5658db19883b9e",
-    "status": "notebook_running",
+    "status": "platform_verification_failed",
     "remote": {
       "kernel": "giaok246/casmi26-236-streaming-verified-best",
       "version": 1
@@ -1634,6 +1644,27 @@
       "status": "diagnostic_complete",
       "decision": "results/research_loop/0360_individual_gate_original_control.json",
       "local_recorded": true
+    },
+    {
+      "id": "0361_individual_gate_candidate_system",
+      "direction": "candidate_individual_gate",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0361_individual_gate_candidate_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0362_train_reference_cache_exact_subset",
+      "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0362_train_reference_cache_exact_subset.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0363_mass_candidate_capacity_audit",
+      "direction": "training_diagnostic",
+      "status": "queued",
+      "decision": null,
+      "local_recorded": false
     }
   ]
 }

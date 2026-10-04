@@ -1,0 +1,6 @@
+{
+  "old_release": "/home/giaok/PycharmProjects/Enveda CASMI 2026/kaggle_release_verified_best_0236_streaming_once",
+  "new_release": "/home/giaok/PycharmProjects/Enveda CASMI 2026/kaggle_release_verified_best_0236_reference_once",
+  "science_recipe_unchanged": true,
+  "reason": "Streaming platform physical timeout near original shared1200s deadline. Reuse source-bound complete train-only vectors with full400 exact reference subset proof; all model/scientific/runtime budget gates retained."
+}

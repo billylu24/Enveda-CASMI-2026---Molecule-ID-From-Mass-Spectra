@@ -1,0 +1,36 @@
+{
+  "round": "0362_train_reference_cache_exact_subset",
+  "direction": "implementation_control",
+  "status": "diagnostic_complete",
+  "report": {
+    "valid": true,
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "reference_counts": {
+      "legacy": {
+        "rows": 556890,
+        "nonzero": 10027422,
+        "every_sparse_entry_exact": true
+      },
+      "union": {
+        "rows": 556890,
+        "nonzero": 10027422,
+        "every_sparse_entry_exact": true
+      }
+    },
+    "observed_members": 74956,
+    "seconds": {
+      "original_scan": 31.207241388008697,
+      "query_independent_train_cache": 7.356659179000417
+    },
+    "source_sha256": "f37bfbd63fcea3cab88730f9b80ae378e6eefc4a15cc2d8355994208888be04b",
+    "cache_source_sha256": "3e6fb87cc4908aea35c00f4ae4129b7d76e544432e92792bfaf4b45b76e9cbc1",
+    "store_report_sha256": "a62268ef54f3f764638b0741c9a14717a988637e67f404c6b39d35086d900e0b",
+    "scope": "Full400 library construction exactness only; no query labels, packaged query subsets or prediction cache. Fresh75+cold400+platform400 remain required before any release."
+  },
+  "protocol_sha256": "4fa14d6ab7483906d56be1a138755aaa09ffb30caafb8ae1052fe3a69d980f39",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

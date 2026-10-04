@@ -1,0 +1,37 @@
+{
+  "candidate_metrics": {
+    "unknown": {
+      "molecules": 2000,
+      "candidate_recall": 0.1985,
+      "mrr25": 0.04399948644128564,
+      "top1": 0.016,
+      "top5": 0.082,
+      "top25": 0.1305,
+      "conditional_mrr25": 0.22165988131630046
+    },
+    "known": {
+      "molecules": 1340,
+      "candidate_recall": 0.8850746268656716,
+      "mrr25": 0.6035653593769663,
+      "top1": 0.564179104477612,
+      "top5": 0.6328358208955224,
+      "top25": 0.7380597014925373,
+      "conditional_mrr25": 0.6819372525844306
+    }
+  },
+  "gate_against_best236": {
+    "eligible": false,
+    "absolute_gain": 2.118551738116564e-05,
+    "relative_gain": 0.00048172660007540725,
+    "reasons": [
+      "absolute_gain_below_gate",
+      "relative_gain_below_gate"
+    ],
+    "evidence": "development_experimental; not independent acceptance"
+  },
+  "local_only": true,
+  "remote_publication": false,
+  "scientific_best_changed": false,
+  "independent_acceptance": false,
+  "scope": "Complete exact-control local repeated-development experiment; no automatic promotion. Require all frozen comparators plus new actual implementation/cold resource proof if promising."
+}

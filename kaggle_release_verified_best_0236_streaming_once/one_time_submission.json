@@ -6,7 +6,7 @@
   "automatic_future_submissions": false,
   "identity": "962add7e63884583f4dfe0915b68f8c8fd5dd351de128666de5658db19883b9e",
   "release": "/home/giaok/PycharmProjects/Enveda CASMI 2026/kaggle_release_verified_best_0236_streaming_once",
-  "status": "notebook_running",
+  "status": "platform_verification_failed",
   "amendments": [
     {
       "identity": "b27505dc6c850055920a15238846cb969e6b88e220ca89bb84e95620779f36c2",
@@ -377,10 +377,18 @@
       }
     }
   ],
-  "updated_at": "2026-10-04T02:18:22Z",
+  "updated_at": "2026-10-04T02:42:59Z",
   "dataset_uploaded": true,
   "remote": {
     "kernel": "giaok246/casmi26-236-streaming-verified-best",
     "version": 1
+  },
+  "error": "Streaming platform Notebook ERROR after physical timeout near original shared1200s deadline, strict prefetched physical failure raised. No competition POST. Preserve immutable package/proofs and original budget; optimize query-independent train-reference preprocessing next.",
+  "platform_failure": {
+    "valid": false,
+    "submitted": false,
+    "molecules": 400,
+    "cause": "Streaming platform Notebook ERROR after physical timeout near original shared1200s deadline, strict prefetched physical failure raised. No competition POST. Preserve immutable package/proofs and original budget; optimize query-independent train-reference preprocessing next.",
+    "platform_log": "artifacts/research_loop/streaming_platform_progress/casmi26-236-streaming-verified-best.log"
   }
 }

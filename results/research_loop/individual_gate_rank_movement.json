@@ -1,0 +1,53 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "round": "0361_individual_gate_candidate_system",
+  "variant": "individual_high_candidate_gates",
+  "baseline_rankings_sha256": "0a138e378dde6e21de266950251ec6d1d02245450ca73a3187d5f03df64c530b",
+  "rankings_sha256": "19e97a72d0bbddb30318d7ffe101312af72168ef1a26c20f06d5aa377bcd9e02",
+  "report_sha256": "c13f7055d632a699313bd5c8eeb8595369100bd6a56b48722329ea33aa154b89",
+  "bootstrap_seed": 20261003,
+  "bootstrap_samples": 10000,
+  "cohorts": {
+    "unknown": {
+      "molecules": 2000,
+      "legacy_candidate_availability_count": 397,
+      "truth_retained_in_full_list": 282,
+      "legacy_available_truth_not_retained": 115,
+      "retained_truth_not_legacy_available": 0,
+      "full_rank_changes": 321,
+      "first_identity_changes": 0,
+      "true_rr_improvements": 7,
+      "true_rr_regressions": 11,
+      "true_rr_unchanged": 1982,
+      "new_true_top25": 3,
+      "lost_true_top25": 2,
+      "paired_mrr_gain": 2.1185517381169528e-05,
+      "paired_bootstrap95_gain_interval": [
+        -0.0004974712968191229,
+        0.0005392028427490387
+      ]
+    },
+    "known": {
+      "molecules": 1340,
+      "legacy_candidate_availability_count": 1186,
+      "truth_retained_in_full_list": 1183,
+      "legacy_available_truth_not_retained": 3,
+      "retained_truth_not_legacy_available": 0,
+      "full_rank_changes": 130,
+      "first_identity_changes": 0,
+      "true_rr_improvements": 6,
+      "true_rr_regressions": 9,
+      "true_rr_unchanged": 1325,
+      "new_true_top25": 0,
+      "lost_true_top25": 2,
+      "paired_mrr_gain": -0.0002267567799604412,
+      "paired_bootstrap95_gain_interval": [
+        -0.0006668824053469277,
+        2.8613593489003624e-05
+      ]
+    }
+  },
+  "scope": "Aggregate attribution on completed repeated development cohorts. Inherited covered flag is legacy candidate availability, not an audit of every current retrieval stage; retention is exact truth membership in full stored output list. Does not attribute exclusion to a specific gate. Bootstrap describes this cohort, not unseen-data acceptance. No per-molecule truth or ranking export, no new model or promotion."
+}
