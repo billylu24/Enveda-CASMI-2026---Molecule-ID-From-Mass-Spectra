@@ -32,8 +32,14 @@ def prepare(old, output):
         "casmi_ml/balanced_cpu_fragment_control.py"
     ):
         raise ValueError("Source-bound current CPU runtime/control required")
+    actual = json.loads((CONTROL / "selected_rankings.json").read_text())
+    original = json.loads(
+        Path(
+            "artifacts/research_loop/rounds/0237_low_leader_full_unlabeled_replay/selected_rankings.json"
+        ).read_text()
+    )
     if any(
-        report[mode]["full_rank_matches"] != count
+        len(actual[mode]) != count or actual[mode] != original[mode]
         for mode, count in [("unknown", 2000), ("known", 1340)]
     ):
         raise ValueError("All3340 original rankings must be exact")

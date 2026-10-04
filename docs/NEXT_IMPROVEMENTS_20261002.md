@@ -235,3 +235,8 @@ dualgen强制分组冷400完整通过：460.713357秒、父进程峰值3397.641M
 384固定候选条件对照完成：9758query分子、19516等分子权重观测row slots，双方heldout且mass相容51014pinned pair slots。additiveCE正优势22369／负14684／tie13961，CEinteraction22650／14404／13960；mean正减负.000214308→.000243739。原contrast_summary中的molecules_with字段在此调用实际是row-slot数量，不能当独立分子；scope保留该解释。预测MSE与固定dot区分略有改善，仍未证明critic calibrated完整排序收益，不直接启用。
 
 dualgen平台失败：实际2worker concurrent T4x2、生成217.295秒、检索63.263秒，但原共享1200秒末端physical timeout，Notebook1253秒失败，比赛POST未发送。状态已只读确认ERROR且无对应competition submission，标记platform_verification_failed。385仅外部Torch CPU评分4→1以减少与2JVM×2candidate threads竞争，并在规划／消费两次extend间复用同调用完整catalog/index；不改BLAS（此前311因浮点/order不exact拒绝）、模型／原候选order／评分图／物理线程数／时限。先3340完整rankexact，再新source-bound75和cold400全部265原rawdict／Top25／预算／RSSexact，以及平台400证明才上传同一次236比赛提交。新调度／恢复回归5项通过、ruff通过。
+
+
+385完整3340原236fullrank exact、预算／新增物理失败0；发布prepare误读不存在的full_rank_matches字段而停止，未写包／上传；修正为直接独立比较385selected_rankings与237全部2000／1340原rank，不重做成功控制。新cpubal冻结fresh75全部rankexact，44.413秒／预算0，当前4CPU affinity冷400进行中。另从失败dualgen平台取全部retrieval／generated CSV／audit／fullhandoff，与本地400逐项exact，确认前端科学身份不变。466项全回归通过；后加capacity交互分解／缺失CE／无观测回归8项通过。
+
+386训练容量预注册：原60K／120K／pinned15／原encoder+critic／总bonus2／L2.01／200iter／unrestricted分母，保留原binary60，补60个逐实测row观测diag×同query CE/adduct/instrument条件候选预测强度，原双slot均值；missing／mergedCE补通道0，不改变原60。全训练singletonCE ridge固定.01、eligible分子等权、clamp[0,1]；用fp分解projection快速构建原900Kpair候选特征，已对完整featuregraph测试1e-12一致。原有效60D模型仍返回，新weights仅私有容量探针；等待冷400 GPU proof释放后运行，不自动训练开发模型或激活。

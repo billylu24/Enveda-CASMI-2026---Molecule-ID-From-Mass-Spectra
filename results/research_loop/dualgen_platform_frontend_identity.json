@@ -1,0 +1,11 @@
+{
+  "valid": true,
+  "platform_submission_sent": false,
+  "molecules": 400,
+  "independent_acceptance": false,
+  "scope": "DualGPU platform retrieval/generated top25/audit/fullhandoff identity only; full external pipeline failed original1200s physical deadline, no final rank/resource proof or competition submission.",
+  "retrieval.csv": true,
+  "generated_base.csv": true,
+  "generated_base.csv.generation.csv": true,
+  "all400_full_generation_handoffs_exact": true
+}

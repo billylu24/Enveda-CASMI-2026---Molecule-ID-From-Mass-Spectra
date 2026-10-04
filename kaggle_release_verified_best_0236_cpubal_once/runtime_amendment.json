@@ -1,0 +1,6 @@
+{
+  "old_release": "/home/giaok/PycharmProjects/Enveda CASMI 2026/kaggle_release_verified_best_0236_dualgen_once",
+  "new_release": "/home/giaok/PycharmProjects/Enveda CASMI 2026/kaggle_release_verified_best_0236_cpubal_once",
+  "science_recipe_unchanged": true,
+  "reason": "DualT4 generation217s and retrieval63s still exhaust original1200s physical deadline. Reduce external CPU scoring competition with original JVMs and avoid second whole-catalog construction; same models/recipe and all resource/physical/ranking gates. Same unused single submission authorization."
+}
