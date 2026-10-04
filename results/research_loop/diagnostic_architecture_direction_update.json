@@ -101,7 +101,7 @@
     "425 sourceboundfull3340 cached scorer originalranks exact0budget/newfail complete;newmassreusefrozen75 allranks/raw57exact34.704s,newfrozencold400inprogress.428 fixedmatchedsoftcontrol/integerconditionmixture training2epochs implemented,waitingGPUproof;previousall60Kpretraining means trainingonlydiagnostic,full12006teacherforcing only,no dev/testoracle or activation.",
     "Newfrozenmassreusecold4004CPU complete248.941s/3145.387MiB/0budget/all400Top25+265originalrawdict exact,identityd3bc8f152e1a22b8e506df3f004a8f20ee404cdd9336b45af9652cfd657c93e4. Originalmodel/recipe unchanged;singleunusedauthorizationamended/privateassetuploadinprogress,nocompetitionPOST/ID.428matchedtrainingonlydecoder audit started,noactivation."
   ],
-  "current_sequence": "Massreuse236 frozen75/newcold400/source3340 passed; private Notebook v1 RUNNING/T4x2/retrieval400 complete. No competition POST or ID.428 teacherforced gain tiny;429 all four new arms lose two original graph hits with no added hits; reject expansion/activation. Persistent local-only after single authorized submission, no GitHub push.",
+  "current_sequence": "Massreuse236 privateNotebookCOMPLETE807.744s/2763.387MiB/all400Top25exact/265completephysics/0budget;8rawdict18tinyfloats mismatchstrictgate,noPOST-ID,authorizationunused.432-433CPU/JITflagsnotreproduceplatformfloats.434only768latent interventions preserve querymeta/mass/formula;sameformula donor9012 NLL.199598to.726356;noindependentaccuracyclaim.429 remainsrejected;localonly/noGitHubpush.",
   "gan": {
     "status": "not_expanded",
     "reason": "Current complete evidence identifies final rank integration and sparse candidate support as concrete bottlenecks. Adversarial discrete molecule generation would add optimization complexity and mode/validity checks without demonstrated candidate coverage or full-system gain under the existing budget.",
@@ -115,6 +115,7 @@
   },
   "limitations": "Repeated development metrics; no new untouched acceptance cohort. Gains not guaranteed. User explicitly authorized one scientific236 Kaggle submission; subsequent experiments remain local-only, no automatic submissions or GitHub push.",
   "completed_observations": [
-    "0429 fixed200 five-arm128sample: original9graph; four new arms7each, all preserve7original and lose2, no added graphs. Original200 candidates/statistics/hypotheses exact. Soft finetuning and mixed integer training/proposals rejected despite small teacherforced NLL reductions. Aggregate corrected candidate-dictionary membership mistake against authoritative summarize()."
+    "0429 fixed200 five-arm128sample: original9graph; four new arms7each, all preserve7original and lose2, no added graphs. Original200 candidates/statistics/hypotheses exact. Soft finetuning and mixed integer training/proposals rejected despite small teacherforced NLL reductions. Aggregate corrected candidate-dictionary membership mistake against authoritative summarize().",
+    "0431 intervention scope corrected: all873 observed condition includes768latent+103meta+2mass, not latent-only.0434 sourcebound full12002 original NLL exact428 and allquerymeta/mass/formula fixed;sameformula donor9012 NLL increases.52675995[.519979,.533519]. Diagnostic only/all60K pretraining; no graph/independent acceptance."
   ]
 }

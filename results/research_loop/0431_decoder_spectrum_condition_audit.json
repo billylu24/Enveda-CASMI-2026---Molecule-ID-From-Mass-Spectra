@@ -1,0 +1,84 @@
+{
+  "round": "0431_decoder_spectrum_condition_audit",
+  "direction": "generation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "heldout_molecules": 12006,
+    "supported_encodable": 12002,
+    "excluded": 4,
+    "same_formula_fit_donor_available": 9012,
+    "same_formula_fit_donor_missing": 2990,
+    "original_molecular_nll_exact428": true,
+    "arms": {
+      "original": {
+        "molecules": 12002,
+        "nll": 0.20308445309799544,
+        "base_to_arm_kl": 0.0,
+        "argmax_change_rate": 0.0
+      },
+      "zero_spectrum": {
+        "molecules": 12002,
+        "nll": 0.8941552158773511,
+        "base_to_arm_kl": 0.6157911671131571,
+        "argmax_change_rate": 0.25069206984817033
+      },
+      "shuffled_spectrum": {
+        "molecules": 12002,
+        "nll": 1.3784240261005811,
+        "base_to_arm_kl": 1.1028782679809395,
+        "argmax_change_rate": 0.3163238782192
+      },
+      "same_formula_fit_spectrum": {
+        "molecules": 9012,
+        "nll": 0.732864554612238,
+        "base_to_arm_kl": 0.48707077342007377,
+        "argmax_change_rate": 0.20044033400238195
+      },
+      "original_same_formula_eligible": {
+        "molecules": 9012,
+        "nll": 0.19959762017940172
+      }
+    },
+    "paired_nll_reductions": {
+      "zero_spectrum": {
+        "molecules": 12002,
+        "mean_loss_reduction": -0.6910707627793558,
+        "paired_bootstrap95_loss_reduction": [
+          -0.6978357660376346,
+          -0.6844137184305081
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      },
+      "shuffled_spectrum": {
+        "molecules": 12002,
+        "mean_loss_reduction": -1.1753395730025857,
+        "paired_bootstrap95_loss_reduction": [
+          -1.186461045370708,
+          -1.164442031856882
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      },
+      "same_formula_fit_spectrum": {
+        "molecules": 9012,
+        "mean_loss_reduction": -0.5332669344328362,
+        "paired_bootstrap95_loss_reduction": [
+          -0.5401739881151147,
+          -0.5263258866434526
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      }
+    },
+    "seconds": 53.42492021701764,
+    "scope": "Frozen training-side spectrum intervention with originalsoft formula fixed. Formula labels used ONLY to choose fit-side exact-formula diagnostic donors; no dev/test/oracle generation or model selection. All pretrainedall60K; cannot establish independent structural recall or architecture gain."
+  },
+  "protocol_sha256": "f0495ff1a1b815cb20dff4b5e1a306a3c3609afb781b710252716cc0871bed9f",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

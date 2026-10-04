@@ -1,0 +1,8 @@
+{
+  "local_only": true,
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "round": "0431_decoder_spectrum_condition_audit",
+  "executed_source_sha256": "380401ba887816128952aeaf47f2a0eb3b63bcdad76a265a828fc68671dbc775",
+  "correction": "0431 swaps/zeros all873 original condition dimensions: 768 encoder latent +103 metadata +2 mass channels, keeping14 softformula channels fixed. It does NOT isolate encoder latent from metadata/mass. Report numerical values remain valid as full-observable-condition interventions; no isolated spectrum claim. Preserve executed source/protocol/report.0434 newsource retains105 query metadata/mass channels while intervening only768 latent channels."
+}

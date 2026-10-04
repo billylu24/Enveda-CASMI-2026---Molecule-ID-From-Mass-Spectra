@@ -1,0 +1,53 @@
+{
+  "round": "0433_mass_reuse_float_sse_observation",
+  "direction": "implementation_control",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "observations": [
+      {
+        "arm": "sse2",
+        "complete_requests": 8,
+        "exact_old_local_requests": 8,
+        "exact_old_platform_requests": 0,
+        "different_values_to_old_local": 0,
+        "different_values_to_old_platform": 18,
+        "seconds": 10.806049123057164
+      },
+      {
+        "arm": "sse3",
+        "complete_requests": 8,
+        "exact_old_local_requests": 8,
+        "exact_old_platform_requests": 0,
+        "different_values_to_old_local": 0,
+        "different_values_to_old_platform": 18,
+        "seconds": 10.976999022008386
+      },
+      {
+        "arm": "no_libm_intrinsic",
+        "complete_requests": 8,
+        "exact_old_local_requests": 0,
+        "exact_old_platform_requests": 0,
+        "different_values_to_old_local": 125,
+        "different_values_to_old_platform": 118,
+        "seconds": 10.796193024027161
+      },
+      {
+        "arm": "tier1",
+        "complete_requests": 8,
+        "exact_old_local_requests": 8,
+        "exact_old_platform_requests": 0,
+        "different_values_to_old_local": 0,
+        "different_values_to_old_platform": 18,
+        "seconds": 19.315178332966752
+      }
+    ],
+    "scope": "SSE/libm-intrinsic/compiler-tier-only local float diagnostic, not flags deployment/accuracy/full400/platform acceptance. Strict physical gate remains; no new competition POST."
+  },
+  "protocol_sha256": "06992a9f13f2c528da3297fb5ed049b0eb0ed3ee547fad0e8ee9516dd7b66691",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

@@ -1,0 +1,123 @@
+{
+  "round": "0435_decoder_composition_expectation_audit",
+  "direction": "generation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "heldout_molecules": 12006,
+    "supported_encodable": 12002,
+    "excluded": 4,
+    "all_three_originalsoft_molecular_nll_arrays_exact428": true,
+    "all_nonpadding_labels_partitioned": true,
+    "arms": {
+      "initial": {
+        "full_nll": 0.20308445309799544,
+        "molecular_normalized_heavy_l1": 0.09032966502190608,
+        "mean_signed_heavy_total_error": -0.12011878297494898,
+        "molecular_total_heavy_absolute_error": 0.7307014753299196,
+        "element_mean_absolute_errors": [
+          0.9339421770211518,
+          0.0,
+          0.5550124596771179,
+          0.38796563518883165,
+          0.0018163524456462291,
+          0.13284533471184765,
+          0.05496868376732123,
+          0.037580467336376516,
+          0.007750800608945397,
+          0.0014995011011485477,
+          0.00010393428407453409,
+          0.00017524681872215013,
+          0.0,
+          0.0
+        ]
+      },
+      "soft_control": {
+        "full_nll": 0.1869497799175737,
+        "molecular_normalized_heavy_l1": 0.08724154887060787,
+        "mean_signed_heavy_total_error": -0.07667125297131204,
+        "molecular_total_heavy_absolute_error": 0.7073842343211583,
+        "element_mean_absolute_errors": [
+          0.9280312368371569,
+          0.0,
+          0.5367640828742325,
+          0.3632600709618356,
+          0.0018283023284640188,
+          0.12175182458229658,
+          0.04949068415745369,
+          0.03420192896288617,
+          0.007463747392934131,
+          0.0014328648535870648,
+          0.0001025076458968601,
+          0.00017680648085965093,
+          0.0,
+          0.0
+        ]
+      },
+      "mixed_integer": {
+        "full_nll": 0.18692892918753062,
+        "molecular_normalized_heavy_l1": 0.08726668224804335,
+        "mean_signed_heavy_total_error": -0.07809120493108786,
+        "molecular_total_heavy_absolute_error": 0.7080528447197183,
+        "element_mean_absolute_errors": [
+          0.928884774898414,
+          0.0,
+          0.5369041639583957,
+          0.3632391801288796,
+          0.0018319337364517928,
+          0.12163983943082478,
+          0.04942177444930705,
+          0.03414731172436293,
+          0.007462636665762568,
+          0.0014333247178607625,
+          0.00010244064195510783,
+          0.00017664914538333603,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "paired_normalized_heavy_l1_reductions": {
+      "soft_control_over_initial": {
+        "molecules": 12002,
+        "mean_loss_reduction": 0.003088116151298224,
+        "paired_bootstrap95_loss_reduction": [
+          0.0027703139871958064,
+          0.003405066195410581
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      },
+      "mixed_integer_over_initial": {
+        "molecules": 12002,
+        "mean_loss_reduction": 0.003062982773862739,
+        "paired_bootstrap95_loss_reduction": [
+          0.0027446375351850775,
+          0.0033804834161833444
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      },
+      "mixed_integer_over_soft_control": {
+        "molecules": 12002,
+        "mean_loss_reduction": -2.5133377435484984e-05,
+        "paired_bootstrap95_loss_reduction": [
+          -3.579874219396139e-05,
+          -1.4356658877582427e-05
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      }
+    },
+    "all_label_heavy_counts_exact_recorded_formulas": true,
+    "hydrogen_excluded": true,
+    "seconds": 26.46380315296119,
+    "scope": "Training-side teacherforced expected explicit heavy-atom total diagnostic, all models initially pretrainedall60K. Hydrogen excluded; atom expectations across trueprefix positions are NOT free-running graph composition or inference recall. No free generation, structural recall, model promotion or independent acceptance; rejected429 unchanged."
+  },
+  "protocol_sha256": "6ca700c23833c006b47e1e4a0b54795c21e01736eced3acf6c8a81acbdfb4d80",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

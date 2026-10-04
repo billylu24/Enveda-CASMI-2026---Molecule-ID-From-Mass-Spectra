@@ -1,0 +1,9 @@
+{
+  "local_only": true,
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "round": "0436_decoder_heavy_composition_training_audit",
+  "status": "failed_before_treatment_training",
+  "source_sha256": "533aa40e11fbe05789fa3a6aa1bfc498b131113a56441e351f79d32e6e43354f",
+  "reason": "Same428 seed/data/control training has subnanonat history drift and some weight tensors not bitexact, stopped before auxiliary arm. Prior CUDA training was not configured deterministic; training gradients may use nondeterministic kernels. Do not treat as scientific regression, successful control or tune objective. Retain failure/source/protocol/log. New437 samefixed hyperparameters with deterministic computation and two separately reseeded control replicas, require exact pair tensors and NLL before accepting treatment."
+}

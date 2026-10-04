@@ -360,3 +360,13 @@ cpubal平台最终API ERROR，原shared1200秒末端prefetched physical timeout�
 
 
 0430固定训练内token loss归因完成21.076秒：完整12006留出代表，12002 supported/可编码、4 exclusions，三个模型原soft条件逐分子NLL全部exact重现428，非padding token分类完整且重构总loss。mixed相对matched softcontrol的原子token NLL恶化0.000024505（95[-0.000039502,-0.000009924]的loss reduction）；branch/ring/EOS分别改善0.000150910/0.000085046/0.000138784；bond/separator差异95跨0。统计按含该类token的等权分子，显式stereo token为0，bracket立体标记归atom，不能声称全部立体化学已审计。总体NLL微降没有原子token改善，更不能等同正确结构收益；429拒绝仍有效。该诊断不训练、不用dev/test输入、不生成、不启用。下一训练目标应先检验质量/元素组合与结构连接的一致性，不能只优化teacherforcing平均损失或扩GAN/DINO。
+
+
+单次massreuse236私有Notebook v1 COMPLETE，807.744秒/2763.387MiB，原400Top25全部exact、265物理字典complete、0预算回退；但257rawdict exact、8份共18处浮点差异max1.1368683772161603e-13，strictgate拒绝比赛POST。已只读核对无pending/ID/registeredidentity/matching competition row，状态platform_verification_failed，single授权unused，包不变。0432八请求sorted/reverse/Xbatch四臂全部原本地exact、0平台exact；0433SSE2/SSE3/Tier1三臂均8本地exact/0平台exact，noLibmIntrinsic改动125本地/118平台values，均未部署。OpenJDK21 pow intrinsic含rcpps近似倒数指令，CPU实现差异是下一待检验假说，不先写成原因。
+
+0431完整observable condition替换实际含768latent+103meta+2mass，只固定softformula，不能单独归因谱编码；原source快照/协议/报告保留、补充范围更正。0434新固定对照只替换768latent，query103meta+2mass+softformula每臂全部exact，12002原NLL逐分子exact428；sameformula fit-only distinct donor可用9012/缺2990，原eligibleNLL.199598→donor.726356（恶化.526759，95[.519979,.533519]），zero/shuffle也恶化。说明training-side decoder依赖latent，但不是独立泛化/结构生成突破；同式donor仍可有CE差异，而latent本身含编码metadata信息，因此不声称纯化学因果。拒绝429、科学best236不变。
+
+
+0435重原子期望计数审计完整12002逐NLL exact428、全部token label heavy totals exact训练公式：原/softcontrol/mixed normalizedheavyL1 .090329665/.087241549/.087266682；mixed比control恶化.000025133（95 lossreduction[-.000035799,-.000014357]）。这是teacherforced expected totals，不能当free graph composition。0436新增一致性目标对照在treatment训练前失败：同seed/data的control训练weight存在浮点漂移，epochCE与428相差约5e-10；旧CUDA未设确定性算法，不把该失败当科学退化或调整目标权重。source/protocol/ledger/followup异常记录保留，workerlog新轮误覆盖已声明、补充恢复tool excerpt。0437新protocol设deterministicalgorithms+CUBLAS_WORKSPACE_CONFIG=:4096:8，两份重新seed普通softcontrol要求所有weight及NLL/count assessment exact；第三臂相同初始化/data/batches/2epochs，新增0.1 normalizedheavySmoothL1（beta.01）辅助loss。fit count targets为训练标签、head/encoder冻结/原softcondition不变，不用dev/test真式。此为新matched内部diagnostic，无自动激活。新增3项padding gradient/期望计数/等分子归一化/非法target检查通过，完整524项回归通过。
+
+只读数值差异进一步审计：265原物理请求/24067候选分数只有18值不同，max2ULP/relative2.5797e-16；每请求候选完整排序全部exact。summary中的strict rawphysics门槛仍保留，已向用户提供“完整物理+排名一致、允许有界尾差”与“继续逐位相同”选择，未答复前不改变门槛/不POST。synthetic-pow私有Notebook仅人工108000正数幂及同Java21对照，不使用competition/query/label输入、无competitionPOST；用于定位CPU数学差异，而不是新科学版本提交。

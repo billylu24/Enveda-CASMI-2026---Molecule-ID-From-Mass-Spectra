@@ -1,0 +1,20 @@
+{
+  "valid": false,
+  "submitted": false,
+  "remote_status": "COMPLETE",
+  "identity": "d3bc8f152e1a22b8e506df3f004a8f20ee404cdd9336b45af9652cfd657c93e4",
+  "molecules": 400,
+  "all400_top25_exact": true,
+  "complete_physical_dictionaries": 265,
+  "exact_physical_dictionaries": 257,
+  "different_score_values": 18,
+  "maximum_absolute_score_difference": 1.1368683772161603e-13,
+  "all_candidate_keysets_exact": true,
+  "zero_budget_fallbacks": true,
+  "seconds": 807.744027436,
+  "parent_peak_rss_mib": 2763.38671875,
+  "no_competition_post_confirmed": true,
+  "publisher_log_sha256": "11aa21b92c293dc3412ecb4527e49987eaaeb48ceb8665f3d5dcc3058c8645c5",
+  "cause": "Notebook COMPLETE with all400 Top25 exact and all265 complete physical dictionaries, zero budget fallbacks, but strict raw-physics gate rejected8 dictionaries/18 score differences max1.1368683772161603e-13. No competition POST or ID; same single authorization unused. Preserve frozen bundle and strict gate.",
+  "independent_acceptance": false
+}

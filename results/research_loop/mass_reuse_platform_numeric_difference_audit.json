@@ -1,0 +1,19 @@
+{
+  "local_only": true,
+  "diagnostic_only": true,
+  "independent_acceptance": false,
+  "requests": 265,
+  "complete_all_requests": true,
+  "same_request_names": true,
+  "same_score_keysets": true,
+  "same_jar_and_non_score_fields": true,
+  "total_candidate_scores": 24067,
+  "different_values": 18,
+  "max_absolute_difference": 1.1368683772161603e-13,
+  "max_relative_difference": 2.5797257130523354e-16,
+  "max_ulp_distance": 2,
+  "all_request_candidate_score_orders_exact": true,
+  "exact_request_candidate_score_orders": 265,
+  "finite_nonnegative_all_scores": true,
+  "scope": "Read-only numeric differences diagnostic. Does not alter frozen strict gate or authorize POST."
+}

@@ -1,0 +1,57 @@
+{
+  "round": "0432_mass_reuse_float_jit_observation",
+  "direction": "implementation_control",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "observations": [
+      {
+        "arm": "default_sorted",
+        "complete_requests": 8,
+        "exact_old_local_requests": 8,
+        "exact_old_platform_requests": 0,
+        "different_values_to_old_local": 0,
+        "different_values_to_old_platform": 18,
+        "seconds": 10.497197117016185
+      },
+      {
+        "arm": "default_reverse",
+        "complete_requests": 8,
+        "exact_old_local_requests": 8,
+        "exact_old_platform_requests": 0,
+        "different_values_to_old_local": 0,
+        "different_values_to_old_platform": 18,
+        "seconds": 10.587426621059421
+      },
+      {
+        "arm": "xbatch_sorted",
+        "complete_requests": 8,
+        "exact_old_local_requests": 8,
+        "exact_old_platform_requests": 0,
+        "different_values_to_old_local": 0,
+        "different_values_to_old_platform": 18,
+        "seconds": 16.216278552950826
+      },
+      {
+        "arm": "xbatch_reverse",
+        "complete_requests": 8,
+        "exact_old_local_requests": 8,
+        "exact_old_platform_requests": 0,
+        "different_values_to_old_local": 0,
+        "different_values_to_old_platform": 18,
+        "seconds": 17.57693028304493
+      }
+    ],
+    "order_exact_pairs": {
+      "default": 8,
+      "xbatch": 8
+    },
+    "scope": "JIT timing/order-only local float diagnostic, not flags deployment/accuracy/full400/platform acceptance. Strict physical gate remains; no new competition POST."
+  },
+  "protocol_sha256": "b4b1efcaa27d19913a4d5b3b556dbd5a15d1ae4b28fe8b2b69afa7e964002ded",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

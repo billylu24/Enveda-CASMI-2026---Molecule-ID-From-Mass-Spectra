@@ -768,7 +768,12 @@
     "kaggle_release_verified_best_0236_mass_reuse_once/bundle/release_evidence.json",
     "kaggle_release_verified_best_0236_mass_reuse_once/bundle/SHA256SUMS.json",
     "casmi_ml/decoder_mixed_formula_structure_pilot.py",
-    "casmi_ml/decoder_token_loss_attribution_audit.py"
+    "casmi_ml/decoder_token_loss_attribution_audit.py",
+    "casmi_ml/decoder_spectrum_condition_audit.py",
+    "kaggle_release_verified_best_0236_mass_reuse_once/platform_failure.json",
+    "casmi_ml/decoder_composition_expectation_audit.py",
+    "casmi_ml/decoder_heavy_composition_training_audit.py",
+    "tests/test_decoder_heavy_composition_training_audit.py"
   ],
   "aggregate_directories": [
     "results/research_loop",
