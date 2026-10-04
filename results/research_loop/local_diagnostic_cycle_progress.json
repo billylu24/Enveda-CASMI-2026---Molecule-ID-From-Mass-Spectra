@@ -13,7 +13,7 @@
     "budget_fallbacks": 861,
     "diagnostic_only": true
   },
-  "next_sequence": "Scientific236/evidence286 retained.319 exact3340 validation cache active.337count+.436%,344connected-ion+.189%,351aromaticH+.227% all rejected with complete matching zero/mask/physical controls. Candidate handoff and3340exact stage audit:unknown248 original truths retained, external adds33/removes0; inherited covered397 equals original+all corrected proposals, not retrieval coverage.149 available truths absent at original handoff:133 outside chosen retrieval/generation,16 selected retrieval-pool-only.116 absent finally:44 outside actual100,72 within100.355exact3340 three-slot control passed;356fiveslot unknown+.000163252/+.371%,known-.000080875 rejected;4newTop25 vs20unknown/12known RRregressions.357streaming same-request scheduling control running, no source activation.353 prefetch control failed missing model path, retained;354 corrected all3340 exact same-science two-JVM control passed0budget/newfailure; fresh75 fullranks exact and57physical dictionaries equal serial. New prefetch cold400473.84s/5614MiB/zero budget and400Top25/265rawdicts exact vs serial; source-boundfresh75exact60.2s. Prefetch platform274/400Top25exact with125budget fallbacks after729.59s frontend, no competition POST; streaming original request discovery optimization under same1200s deadline pending new proofs. Separate requested one236 competition submission still unconsumed: original/portable platform105 physical budget fallbacks, packed pandas incompatibility fixed. New prefetch cold400/fresh75/platform400 proof required; persistent local_only and no GitHub push.",
+  "next_sequence": "Scientific236/evidence286 retained.319 exact3340 validation cache active.337count+.436%,344connected-ion+.189%,351aromaticH+.227% all rejected with complete matching zero/mask/physical controls. Candidate handoff and3340exact stage audit:unknown248 original truths retained, external adds33/removes0; inherited covered397 equals original+all corrected proposals, not retrieval coverage.149 available truths absent at original handoff:133 outside chosen retrieval/generation,16 selected retrieval-pool-only.116 absent finally:44 outside actual100,72 within100.355exact3340 three-slot control passed;356fiveslot unknown+.000163252/+.371%,known-.000080875 rejected;4newTop25 vs20unknown/12known RRregressions.357streaming same-request scheduling all3340exact0budget/newfailure passed, no source activation.358trace aborted to correct unknown/known record scope, preserved;359original scorer/physics observation running with separate cohort records and all3340 exact control requirement.353 prefetch control failed missing model path, retained;354 corrected all3340 exact same-science two-JVM control passed0budget/newfailure; fresh75 fullranks exact and57physical dictionaries equal serial. New prefetch cold400473.84s/5614MiB/zero budget and400Top25/265rawdicts exact vs serial; source-boundfresh75exact60.2s. Prefetch platform274/400Top25exact with125budget fallbacks after729.59s frontend, no competition POST; streaming original request discovery optimization under same1200s deadline pending new proofs. Separate requested one236 competition submission still unconsumed: original/portable platform105 physical budget fallbacks, packed pandas incompatibility fixed. New prefetch cold400/fresh75/platform400 proof required; persistent local_only and no GitHub push.",
   "independent_acceptance": false,
   "precision_first_pass": {
     "unknown_mrr25": 0.04268861838422192,
@@ -24,7 +24,7 @@
     "raw_candidates_reused": 127088,
     "new_candidates_scored": 3025
   },
-  "active_round": null,
+  "active_round": "0359_candidate_gate_trace_scoped_control",
   "coarse_complete": {
     "unknown_mrr25": 0.04268861838422192,
     "known_mrr25": 0.6046005738683694,
@@ -35,7 +35,9 @@
     "absolute_gain_vs181": 0.00014280663780662922,
     "absolute_gain_vs_complete_control": -3.968253968254787e-05
   },
-  "active_rounds": [],
+  "active_rounds": [
+    "0359_candidate_gate_trace_scoped_control"
+  ],
   "precise_complete": {
     "unknown_mrr25": 0.04268861838422192,
     "known_mrr25": 0.6046005738683694,
@@ -324,7 +326,7 @@
       "original_critic_tensors_exact": true
     }
   },
-  "updated_at": "2026-10-04T02:08:03Z",
+  "updated_at": "2026-10-04T02:21:00Z",
   "current_query_zero_control": "artifacts/research_loop/rounds/0287_query_identity_runtime_zero_control",
   "local_verified_evidence_round": "0286_structure_identity_full_control",
   "multispectrum_attribution": {

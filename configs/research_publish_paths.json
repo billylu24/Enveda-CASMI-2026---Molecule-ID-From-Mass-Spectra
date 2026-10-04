@@ -597,7 +597,8 @@
     "kaggle_release_verified_best_0236_streaming_once/notebook/casmi_chemistry.ipynb",
     "kaggle_release_verified_best_0236_streaming_once/notebook/kernel-metadata.json",
     "kaggle_release_verified_best_0236_streaming_once/platform_failure.json",
-    "kaggle_release_verified_best_0236_streaming_once/physical_dictionary_verification.json"
+    "kaggle_release_verified_best_0236_streaming_once/physical_dictionary_verification.json",
+    "casmi_ml/candidate_gate_trace.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

@@ -1,0 +1,9 @@
+{
+  "valid": true,
+  "complete_request_dictionaries": 265,
+  "all_original_serial_request_dictionaries_exact": true,
+  "full400_top25_matches": 400,
+  "fresh_fragment_cache": true,
+  "independent_acceptance": false,
+  "scope": "New cold streaming400 exact raw dictionary and ranking identity vs original verified scientific236 serial400. Timing not paired benchmark or scientific accuracy gain."
+}

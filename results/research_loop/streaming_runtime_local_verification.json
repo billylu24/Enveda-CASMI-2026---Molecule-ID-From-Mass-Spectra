@@ -1,0 +1,48 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "scientific_best_unchanged": true,
+  "full3340_control_exact": true,
+  "fresh75": {
+    "valid": true,
+    "molecules": 75,
+    "full_rank_matches": 75,
+    "fresh_fragment_cache": true,
+    "development_budget_fallbacks": 0,
+    "seconds": 48.29049531297642,
+    "status_counts": {
+      "fragment_evidence_fallback": 30,
+      "critic_gate_fallback": 21,
+      "high_strong_slot_inserted": 16,
+      "high_fragment_remove_tail": 3,
+      "strong_original_gate_fallback": 3,
+      "low_supported_leader_first": 2
+    },
+    "bundle_sums_sha256": "911a853d0ae4d7bd0d7404f1bcc4cc969e9e4f8c25e2038f746d25319fdc9ff3",
+    "prefetch_source_sha256": "3f4e8e2c3bca1a68544506f75f0067583444f3e5fa98687612a7c282629e3b38",
+    "streaming_source_sha256": "2c19a333e67cfebab6e88b46ee446dee4ff25b742c31a7e6aceb0222c6afd973",
+    "independent_acceptance": false,
+    "scope": "All75 original label-free handoffs, fresh physical cache, source-bound frozen236 full ranks; implementation check, no new accuracy acceptance."
+  },
+  "cold400": {
+    "valid": true,
+    "identity": "962add7e63884583f4dfe0915b68f8c8fd5dd351de128666de5658db19883b9e",
+    "seconds": 439.7334850599873,
+    "peak_rss_mib": 5702.92578125,
+    "molecules": 400,
+    "independent_acceptance": false
+  },
+  "physical_dictionaries": {
+    "valid": true,
+    "complete_request_dictionaries": 265,
+    "all_original_serial_request_dictionaries_exact": true,
+    "full400_top25_matches": 400,
+    "fresh_fragment_cache": true,
+    "independent_acceptance": false,
+    "scope": "New cold streaming400 exact raw dictionary and ranking identity vs original verified scientific236 serial400. Timing not paired benchmark or scientific accuracy gain."
+  },
+  "platform_status": "notebook_running",
+  "competition_post_sent": false,
+  "scope": "Source-bound runtime equivalence and local cold resources; no independent accuracy or paired whole-pipeline timing gain claim."
+}

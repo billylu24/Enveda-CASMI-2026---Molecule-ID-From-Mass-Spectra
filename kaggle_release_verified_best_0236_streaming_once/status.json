@@ -1,9 +1,16 @@
 {
-  "status": "runtime_amendment_prepared",
+  "status": "notebook_running",
   "identity": "962add7e63884583f4dfe0915b68f8c8fd5dd351de128666de5658db19883b9e",
   "scientific_round": "0236_low_supported_leader_first",
   "development_eligible": true,
   "independent_acceptance": false,
-  "uploaded": false,
-  "submitted": false
+  "uploaded": true,
+  "submitted": false,
+  "submission_id": null,
+  "public_score": null,
+  "remote_release": {
+    "kernel": "giaok246/casmi26-236-streaming-verified-best",
+    "version": 1
+  },
+  "automatic_future_submissions": false
 }
