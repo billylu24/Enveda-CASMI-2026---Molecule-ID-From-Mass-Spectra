@@ -1,0 +1,21 @@
+{
+  "diagnostic_only": true,
+  "local_only": true,
+  "independent_acceptance": false,
+  "full400_top25_matches": 400,
+  "raw_physical_dictionaries_exact": 265,
+  "physical_requests_complete": 265,
+  "physical_request_seconds_sum": 520.5485590433818,
+  "physical_request_seconds_max": 10.096200063009746,
+  "generation_phase": [
+    {
+      "stage": "generation",
+      "started_seconds": 19.857362498005386,
+      "ended_seconds": 174.25632472801954
+    }
+  ],
+  "pipeline_seconds": 342.98094679799397,
+  "parent_peak_rss_mib": 3170.47265625,
+  "runtime_summary_sha256": "1fc562ea42ee08f268e25253477885e639a42110c9c8ddfdd362992074bd367e",
+  "scope": "Unchanged frozen236 request instrumentation identity control. Overlapping physical request sum is not wall duration; oneGPU forcedsequential local partitions, no paired speed or twoGPU/platform performance proof. Local private original requests retained for exact request failure diagnosis only, never packaged/exported."
+}

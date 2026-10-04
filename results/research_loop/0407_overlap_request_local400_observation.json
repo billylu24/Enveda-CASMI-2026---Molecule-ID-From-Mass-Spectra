@@ -1,0 +1,21 @@
+{
+  "round": "0407_overlap_request_local400_observation",
+  "direction": "implementation_control",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "full400_top25_matches": 400,
+    "physical_dictionaries_exact": 265,
+    "seconds": 342.98094679799397,
+    "peak_rss_mib": 3170.47265625,
+    "zero_budget_fallbacks": true,
+    "request_summary_sha256": "1fc562ea42ee08f268e25253477885e639a42110c9c8ddfdd362992074bd367e",
+    "scope": "Original frozen236 full400 request runtime observation only. No paired speed or independent accuracy acceptance."
+  },
+  "protocol_sha256": "ac8ab5205873ed006d69557a3317320044dd1007c119eed2849c9ae8966b32a8",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

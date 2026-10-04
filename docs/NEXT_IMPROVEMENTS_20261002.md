@@ -290,3 +290,18 @@ cpubal平台最终API ERROR，原shared1200秒末端prefetched physical timeout�
 405因错误假设2000未知都有query行而在聚合前失败，source/protocol/log保留；实际1995可观测行组+5原空rank分子。406单列no_observable_query_rows并保留完整2000分母，3340漏斗完成：unknown 5无行/28原first/220原current其他/105external实际评分/44有效窗口未评分/1库内窗口外/1597库和current均无。完整外部库含254真值、有效窗口251、原current248；220真值已有current，因此“评分真值只有131”不能当总体recall。known 758first/425current其他/3external/154库和current均无。390唯一RR改善来自105external评分组。最大观测缺口在可用候选召回/生成，纯重排序可改善范围有限；不按truth筛输入或盲目扩shortlist。
 
 单次236 overlap平台失败：session约452.65秒发生individual physical timeout，尚未到原1200全局deadline；检索58.89746秒、生成313.86565秒，全部400生成CSV与本地exact。API最终ERROR，确认无intent/pending/ID/registeredidentity/matching competition submission，标记platform_verification_failed，同一次授权未消费。不要把此原因写成总deadline耗尽，不延长60秒单请求或1200秒总时限。私有giaok246/casmi26-236-overlap-request-diagnosis v1对原冻结包完整400记录请求开始/结束/配置60秒/全局余量/候选和峰数；异常照原样传播、不重试、不替换失败结果、不比赛POST。0407本地4CPU fresh400观察同时进行，额外要求全部Top25/265rawdict/source/预算/RSSexact。
+
+
+407请求观察full400通过：342.981秒/3170.473MiB/0budget，全部400Top25及265原rawdict exact；265请求均complete、最长10.096秒，overlapping physical请求耗时sum520.549秒不能当wall。1GPU强制顺序分组、观察I/O开销，仅identity/runtime diagnosis，不宣称配对提速。408补充完整现有train-only library+全COCONUT/PubChemLite/ChEMBL共3546326结构：未知365库内、358声明质量窗口内、248原current、424 current或声明窗口；1570真值同时缺完整库和current，前1597缺external+current中27在其他库窗口内、3库内窗口外。此为declared identity/mass upper bound，不验证valid fp/shortlist，不因真值筛库或启用候选。下一阶段优先拆formula/mass与structure generation召回，再讨论架构。
+
+
+409原固定nonoracle128sample完整2000漏斗完成：256000采样、234124 valid(91.45%)、5104质量相容(1.99%)、3026 unique；999 query有质量候选、694含正确formula候选、86含exact graph，83仍入236 final/3最终丢失。预测top5formula命中116(5.8%)，仅152query有任一top5质量相容formula；86exact graph中71个的真formula不在top5。当前decoder用softformula不是hardtop5，不能盲目以现有top5硬限制生成，否则可能切掉已正确候选。优先训练内质量相容formula proposal calibration与正确formula下结构多样性，再设计matched complete系统。没有新的准确率突破或模型启用。
+
+
+2026-10-04：私有原400请求诊断已COMPLETE，但371/400Top25 exact、29预算回退，1204.521秒/2723.992MiB，因此拒绝作为提交证据。227complete请求overlapping耗时sum1917.279秒，相同227本地440.593秒；不能把sum当wall或配对提速。它未复现先前约452.65秒individual timeout，两种失败分别保留。不延长60秒单请求、1200物理、1800推理或8192MiB父RSS门槛。
+
+0410生成器TorchCPU4→1原400 CSV/audit/fullhandoffs/events全部exact；0411新4CPU冷400原Top25和265raw物理字典全部exact、预算0，335.195秒/3182.520MiB。两GPU分组在本地单GPU顺序执行，只证明identity/resource，不能称平台或配对提速。0412完整3340原评分source-bound控制进行中；新隔离overlap_cpu冻结包仍需fresh75/newcold400/platform400，全部通过才可消耗同一次236提交授权。增加提交平台CPU线程数、worker/pipeline SHA和400交接事件绑定，不放宽原科学/物理gate。502全回归通过，新增formula helper相关6项通过。
+
+0413下一项训练内实验：固定原47994/12006分子拆分，新随机初始化FormulaPredictor仅fit侧公式标签训练12epochs、不按留出选择checkpoint；fit侧unique公式词表、原neutral-mass median/35ppm或.006Da窗口、同一预测头count log-probability排序，与原独立count top5 beam对照。完整12006保留unsupported/no-mass/no-proposals分母。既有encoder训练过全部60K，因此不是端到端独立泛化；经验公式词表缺失的公式无法由此召回。只验证formula proposal，不训练decoder、不启用新模型、不改变236。科学GPU阶段排在发布包冷400完成后。
+
+0412 complete，完整原3340 ranks exact、0预算/新增失败；新冻结CPU包fresh75全rank exact、0预算，42.815秒，SHA256SUMS SHA `bdc44c2240e161b4167a2fa7c04b5b7ba800c6dc04ec0bada64c130d0ceec3e9`。新冻结4CPU冷400正在验证。训练数据检查发现7/60000结构身份记录了多个formula，0413遵守原first-row representative标签并保留全部分母/单列计数，不过滤这些分子或以holdout truth扩充候选词表。

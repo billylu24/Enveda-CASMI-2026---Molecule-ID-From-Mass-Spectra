@@ -1,0 +1,34 @@
+{
+  "round": "0408_full_existing_catalog_availability_audit",
+  "direction": "coverage_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "remote_publication": false,
+    "independent_acceptance": false,
+    "complete_catalog_molecules": 3546326,
+    "counts": {
+      "molecules": 2000,
+      "truth_in_complete_catalog": 365,
+      "truth_in_original_current": 248,
+      "truth_in_declared_mass_window_upper_bound": 358,
+      "truth_in_current_or_declared_mass_window_upper_bound": 424,
+      "declared_window_available_truth_absent_current": 176,
+      "window_absent_current_present_final": 33,
+      "no_observable_query_rows": 5
+    },
+    "external_current_absence_breakdown": {
+      "absent_current_and_complete_catalog": 1570,
+      "absent_current_and_external_but_available_other_catalog_window": 27,
+      "absent_current_and_external_in_complete_catalog_outside_window": 3
+    },
+    "predictions_unchanged": true,
+    "new_physical_requests": 0,
+    "scope": "Declared identity/mass availability upper bound across full existing source catalogs, not valid fingerprints, neural shortlist or candidate-specific gate rejection. Missing query rows have no invented window. Repeated-development diagnosis only, no acceptance, accuracy gain or source/model activation."
+  },
+  "protocol_sha256": "57c65b73768df6a4c2c29f0af8be6d90c74dffffc86d67913e1c5a2351ae872c",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

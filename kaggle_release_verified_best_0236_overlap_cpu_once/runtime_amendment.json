@@ -1,0 +1,6 @@
+{
+  "old_release": "/home/giaok/PycharmProjects/Enveda CASMI 2026/kaggle_release_verified_best_0236_overlap_once",
+  "new_release": "/home/giaok/PycharmProjects/Enveda CASMI 2026/kaggle_release_verified_best_0236_overlap_cpu_once",
+  "science_recipe_unchanged": true,
+  "reason": "Only original seeded generator CPU4->1 after strict400 events/cold400/rawdict/full3340 controls. No change to physics/models/recipe/deadlines. Same unused explicit one-time submission request."
+}

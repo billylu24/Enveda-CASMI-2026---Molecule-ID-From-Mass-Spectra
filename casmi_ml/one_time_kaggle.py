@@ -203,6 +203,29 @@ def update(c, **fields):
     return value
 
 
+def verify_runtime_bindings(local, platform):
+    """Bind optional runtime amendments without changing original science gates."""
+    if "generation_cpu_runtime" in local:
+        expected = local["generation_cpu_runtime"]
+        if (
+            expected.get("workers") != 2
+            or expected.get("torch_cpu_threads") != 1
+            or platform.get("generation_cpu_runtime") != expected
+        ):
+            raise ValueError("Platform CPU generator runtime/source differs")
+    if "generation_physical_overlap" in local:
+        expected = local["generation_physical_overlap"]
+        actual = platform.get("generation_physical_overlap", {})
+        for key in (
+            "emitted_molecules",
+            "stream_source_sha256",
+            "overlap_source_sha256",
+            "pipeline_source_sha256",
+        ):
+            if expected.get(key) != actual.get(key):
+                raise ValueError("Platform generation overlap source/events differ")
+
+
 def verify_platform(release, remote, c):
     root = Path(release)
     local = (
@@ -222,6 +245,7 @@ def verify_platform(release, remote, c):
         json.loads((root / folder / "submission.csv.report.json").read_text())
         for folder in ("local_output", "kaggle_output")
     ]
+    verify_runtime_bindings(a, b)
     if any(a.get(k) != b.get(k) for k in BINDINGS):
         raise ValueError("Platform model or generation rule changed")
     for key in ("config", "source_sha256", "unlabeled_input"):

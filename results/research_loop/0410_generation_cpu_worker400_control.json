@@ -1,0 +1,22 @@
+{
+  "round": "0410_generation_cpu_worker400_control",
+  "direction": "implementation_control",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "valid": true,
+    "molecules": 400,
+    "all_generation_csv_audit_fullhandoffs_exact": true,
+    "all400_completed_events_exact": true,
+    "original_generation_source_sha256": "3aca1f215a83ce773a148864310288accf4997290c099f0e9e8e7b1e81c4e47d",
+    "cpu_worker_source_sha256": "e80a118d2819fc8801d3079f1b204bd84adb26fae146cab44edc273f469671ab",
+    "seconds": 112.99534209899139,
+    "scope": "Original400 generatorCPU4->1 strict identity control; not paired speed or accuracy proof. Fresh75/full3340/frozenbundle/cold400resource/rawdict/platform gates still required before unused one-time236 POST."
+  },
+  "protocol_sha256": "73a8505171fcacf517d396e8d0ac0ce636d189928f7f9e3a5c88143d7eda9010",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

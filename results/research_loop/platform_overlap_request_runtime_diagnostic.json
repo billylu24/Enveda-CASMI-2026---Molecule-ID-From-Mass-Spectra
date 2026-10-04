@@ -1,0 +1,28 @@
+{
+  "diagnostic_only": true,
+  "competition_submission": false,
+  "independent_acceptance": false,
+  "notebook_status": "COMPLETE",
+  "original400_inference_returned": true,
+  "complete_physical_acceptance": false,
+  "full400_top25_matches": 371,
+  "budget_fallback_molecules": 29,
+  "pipeline_seconds": 1204.521160722,
+  "parent_peak_rss_mib": 2723.9921875,
+  "observed_requests": 231,
+  "complete_requests": 227,
+  "global_deadline_timeouts": 4,
+  "early_individual_timeout_reproduced": false,
+  "paired_key_complete_requests_with_local": 227,
+  "platform_complete_request_seconds_sum": 1917.27926367,
+  "local_same_request_seconds_sum": 440.59275103226537,
+  "platform_generation_phase": [
+    {
+      "stage": "generation",
+      "started_seconds": 69.73801877800003,
+      "ended_seconds": 377.277425232
+    }
+  ],
+  "runtime_summary_sha256": "11149a4ec548c54e9fe68da3a6e0ca9fed143f35d83316799ab0aaaca88d5d81",
+  "scope": "Private unchanged236 originalfull400 physical observations, original1200s global deadline/60s request bounds. COMPLETE Notebook does not imply release eligibility:29budgetfallback ranks differ. Platform/local identical request digest but differing hardware/oneGPU localsequential shards/concurrenttiming; descriptive cost only, not paired optimization gain. Earlier release earlytimeout not reproduced; still no competitionPOST."
+}
