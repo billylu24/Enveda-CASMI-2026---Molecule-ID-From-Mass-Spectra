@@ -1,0 +1,11 @@
+{
+  "valid": false,
+  "submitted": false,
+  "local_full_top25_matches": 274,
+  "top1_identity_matches": 400,
+  "molecules": 400,
+  "budget_fallback_molecules": 125,
+  "seconds": 1218.967783349,
+  "parent_peak_rss_mib": 3624.9453125,
+  "cause": "Parallel original physical request scheduling exact locally; platform frontend consumed729.59s before external extension, leaving470.41s of original1200s deadline.125 budget fallbacks and one strong-original-evidence fallback. Preserve original deadline and full400 Top25 gate; no competition POST sent."
+}

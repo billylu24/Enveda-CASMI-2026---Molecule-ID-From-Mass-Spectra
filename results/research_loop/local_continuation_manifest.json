@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-04T01:46:46Z",
+  "updated_at": "2026-10-04T02:08:03Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -100,14 +100,7 @@
     "array_source_sha256": "28926c166dbb88701c8676a8fd2e34b94b104029c43706da7c56f172b1876a41",
     "identity_source_sha256": "e5ecca9173b0be7aab94b3037bacfda5c6a2787a3ba0f38677b9349f4a664b5d"
   },
-  "active_rounds": [
-    {
-      "id": "0355_high_slot_depth_three_control",
-      "direction": "implementation_control",
-      "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0355_high_slot_depth_three_control/report.json"
-    }
-  ],
+  "active_rounds": [],
   "local_candidate_runtime": {
     "enabled": true,
     "local_only": true,
@@ -202,12 +195,12 @@
     "aromatic_h_candidate_followup.log",
     "high_slot_depth_followup.log"
   ],
-  "pending_sequence": "Scientific236/evidence286 retained.319 exact3340 validation cache active.337count+.436%,344connected-ion+.189%,351aromaticH+.227% all rejected with complete matching zero/mask/physical controls. Candidate handoff and3340exact stage audit:unknown248 original truths retained, external adds33/removes0; inherited covered397 equals original+all corrected proposals, not retrieval coverage.149 available truths absent at original handoff:133 outside chosen retrieval/generation,16 selected retrieval-pool-only.116 absent finally:44 outside actual100,72 within100.355exact3slotcontrol precedes356frozen5slotindividual-gate test, no source activation.353 prefetch control failed missing model path, retained;354 corrected all3340 exact same-science two-JVM control passed0budget/newfailure; fresh75 fullranks exact and57physical dictionaries equal serial. New prefetch cold400473.84s/5614MiB/zero budget and400Top25/265rawdicts exact vs serial; source-boundfresh75exact60.2s. Renewed private upload/platform pending. Separate requested one236 competition submission still unconsumed: original/portable platform105 physical budget fallbacks, packed pandas incompatibility fixed. New prefetch cold400/fresh75/platform400 proof required; persistent local_only and no GitHub push.",
+  "pending_sequence": "Scientific236/evidence286 retained.319 exact3340 validation cache active.337count+.436%,344connected-ion+.189%,351aromaticH+.227% all rejected with complete matching zero/mask/physical controls. Candidate handoff and3340exact stage audit:unknown248 original truths retained, external adds33/removes0; inherited covered397 equals original+all corrected proposals, not retrieval coverage.149 available truths absent at original handoff:133 outside chosen retrieval/generation,16 selected retrieval-pool-only.116 absent finally:44 outside actual100,72 within100.355exact3340 three-slot control passed;356fiveslot unknown+.000163252/+.371%,known-.000080875 rejected;4newTop25 vs20unknown/12known RRregressions.357streaming same-request scheduling control running, no source activation.353 prefetch control failed missing model path, retained;354 corrected all3340 exact same-science two-JVM control passed0budget/newfailure; fresh75 fullranks exact and57physical dictionaries equal serial. New prefetch cold400473.84s/5614MiB/zero budget and400Top25/265rawdicts exact vs serial; source-boundfresh75exact60.2s. Prefetch platform274/400Top25exact with125budget fallbacks after729.59s frontend, no competition POST; streaming original request discovery optimization under same1200s deadline pending new proofs. Separate requested one236 competition submission still unconsumed: original/portable platform105 physical budget fallbacks, packed pandas incompatibility fixed. New prefetch cold400/fresh75/platform400 proof required; persistent local_only and no GitHub push.",
   "freeze_policy": "unknown absolute+.0005 and relative+2%, known drop<=.001/top1drop<=.005; current best, completed original0206 and historical181 protection; no new physical failed requests or budget fallback promotion",
   "runtime_claims": "Exact packed/object/array all3340 cached ranks and proposal three full2000 dictionaries. Separate scientific236 one-time release cold400 resource/physical/ranking verified; no paired whole-pipeline speed or independent accuracy claim.",
   "one_time_kaggle": {
     "identity": "b8d275348c68c01ddbaa2948fb7af4afec30239b0c30fd8918bff0369c1c70a9",
-    "status": "notebook_running",
+    "status": "platform_verification_failed",
     "remote": {
       "kernel": "giaok246/casmi26-236-prefetch-verified-best",
       "version": 1
@@ -1600,9 +1593,23 @@
     {
       "id": "0355_high_slot_depth_three_control",
       "direction": "implementation_control",
-      "status": "external_running",
-      "decision": null,
-      "local_recorded": false
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0355_high_slot_depth_three_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0356_high_slot_depth_five_system",
+      "direction": "candidate_slot_depth",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0356_high_slot_depth_five_system.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0357_streaming_prefetch_zero_control",
+      "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0357_streaming_prefetch_zero_control.json",
+      "local_recorded": true
     }
   ]
 }

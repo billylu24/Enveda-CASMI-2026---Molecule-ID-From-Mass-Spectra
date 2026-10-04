@@ -49,11 +49,12 @@
     "347 same60D training aromatic exactH objective.524647178->.524326126/rawCE.523511346->.523159618,3active channels, no development scores or deployment. All other ions/losses retained.",
     "348/352 all3340 zero/mask exact0budget/newfail;351 aromaticHMRR.044078301 known.603792116 unchanged,+.227% rejected.unknown2RRbetter/2worse bootstrap95[-.000166667,.0005]. No aromatic exactH activation.",
     "Original handoff diagnosis unknown248 truth members vs final281,external adds33/removes0;149 legacy available truths not in original handoff,116 missing finally. Does not attribute missing candidates to a specific earlier gate or permit truth-driven selection.",
-    "354 parallel scheduling all3340 complete rankings exact0budget/newfail. Source-bound package fresh75rankexact; cold400473.84s/5614MiB/zero budget,400Top25 and265raw physical request dictionaries exactly match original serial400. Models/recipe/deadlines unchanged; platform proof pending, no competition POST yet."
+    "354 parallel scheduling all3340 complete rankings exact0budget/newfail. Source-bound package fresh75rankexact; cold400473.84s/5614MiB/zero budget,400Top25 and265raw physical request dictionaries exactly match original serial400. Models/recipe/deadlines unchanged; platform proof pending, no competition POST yet.",
+    "355 stage diagnosis full3340 original handoffs exact; inherited covered=original+all corrected external proposals. Unknown116 available but absent final:44 outside actual100 and72 within100,23 in highstrong insertion groups. New frozen355three-slot exact control then356five individually-supported slots, unchanged model/physics/gates/low branch. No automatic scientific promotion or publication."
   ],
   "current_sequence": [
-    "Single requested236 competition POST still unconsumed. Parallel physical scheduling amendment local354/source-boundfresh75/cold400/full265rawdict exact passed. New private bundle upload and platform400 verification; keep original physical/resource/ranking gates and one submission maximum.",
-    "Scientific scores337/344/351 all rejected after complete matching controls. Continue local direction from source-bound original candidate handoff/retention diagnosis; no dev-selected weights, new holdout or automatic remote publication."
+    "Requested one236 competition submission remains unused: prefetch platform274/400Top25exact and125budget fallbacks.357streaming full3340 exact control passed0budget/newfailure. Source-boundfresh75, cold400 rawdict/rank/resource proof then private revised upload/platform400; preserve same1200s deadline and one submission maximum.",
+    "355original3slot3340control exact;356five individually-qualified slots unknown+.371%/known-.000080875,4newTop25 but20unknown/12known RRregressions, rejected. Retain236; continue local candidate precision and runtime diagnosis without further Kaggle or GitHub publication."
   ],
   "gan": {
     "status": "not_expanded",

@@ -5,7 +5,7 @@
   "github_pushes": false,
   "automatic_future_submissions": false,
   "identity": "b8d275348c68c01ddbaa2948fb7af4afec30239b0c30fd8918bff0369c1c70a9",
-  "status": "notebook_running",
+  "status": "platform_verification_failed",
   "amendments": [
     {
       "identity": "b27505dc6c850055920a15238846cb969e6b88e220ca89bb84e95620779f36c2",
@@ -177,10 +177,22 @@
       "error": "Portable selector compatibility fixed; platform still exhausts original1200-second physical scene deadline. Preserve fullrank/resource/budget gates; no competition POST."
     }
   ],
-  "updated_at": "2026-10-04T01:33:52Z",
+  "updated_at": "2026-10-04T01:58:00Z",
   "dataset_uploaded": true,
   "remote": {
     "kernel": "giaok246/casmi26-236-prefetch-verified-best",
     "version": 1
+  },
+  "error": "Parallel original physical request scheduling exact locally; platform frontend consumed729.59s before external extension, leaving470.41s of original1200s deadline.125 budget fallbacks and one strong-original-evidence fallback. Preserve original deadline and full400 Top25 gate; no competition POST sent.",
+  "platform_failure": {
+    "valid": false,
+    "submitted": false,
+    "local_full_top25_matches": 274,
+    "top1_identity_matches": 400,
+    "molecules": 400,
+    "budget_fallback_molecules": 125,
+    "seconds": 1218.967783349,
+    "parent_peak_rss_mib": 3624.9453125,
+    "cause": "Parallel original physical request scheduling exact locally; platform frontend consumed729.59s before external extension, leaving470.41s of original1200s deadline.125 budget fallbacks and one strong-original-evidence fallback. Preserve original deadline and full400 Top25 gate; no competition POST sent."
   }
 }

@@ -1,0 +1,40 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "candidate_metrics": {
+    "unknown": {
+      "molecules": 2000,
+      "candidate_recall": 0.1985,
+      "mrr25": 0.044141553402102594,
+      "top1": 0.016,
+      "top5": 0.0825,
+      "top25": 0.132,
+      "conditional_mrr25": 0.22237558388968565
+    },
+    "known": {
+      "molecules": 1340,
+      "candidate_recall": 0.8850746268656716,
+      "mrr25": 0.6037112413376037,
+      "top1": 0.564179104477612,
+      "top5": 0.6335820895522388,
+      "top25": 0.7395522388059701,
+      "conditional_mrr25": 0.6821020770593499
+    }
+  },
+  "gate_against_best236": {
+    "eligible": false,
+    "absolute_gain": 0.0001632524781981226,
+    "relative_gain": 0.0037121142647279144,
+    "reasons": [
+      "absolute_gain_below_gate",
+      "relative_gain_below_gate"
+    ],
+    "evidence": "development_experimental; not independent acceptance"
+  },
+  "control_round": "0355_high_slot_depth_three_control",
+  "experimental_round": "0356_high_slot_depth_five_system",
+  "control_all3340_full_ranks_exact": true,
+  "scientific_best_changed": false,
+  "scope": "Complete local cached repeated-development ranking experiment. Exact three-slot control and physical completion required; no automatic promotion or deployment. Any promising result still needs current-best/original206/historical181 gates and separate actual inference/resource verification."
+}

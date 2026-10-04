@@ -582,7 +582,22 @@
     "casmi_ml/candidate_stage_retention_audit.py",
     "casmi_ml/high_slot_depth_system.py",
     "casmi_ml/high_slot_depth_followup.py",
-    "tests/test_high_slot_depth_system.py"
+    "tests/test_high_slot_depth_system.py",
+    "casmi_ml/streaming_fragment_prefetch.py",
+    "casmi_ml/streaming_prefetch_control.py",
+    "casmi_ml/portable_streaming_pipeline.py",
+    "casmi_ml/portable_streaming_release.py",
+    "tests/test_streaming_fragment_prefetch.py",
+    "kaggle_release_verified_best_0236_streaming_once/status.json",
+    "kaggle_release_verified_best_0236_streaming_once/verification.json",
+    "kaggle_release_verified_best_0236_streaming_once/implementation_replay.json",
+    "kaggle_release_verified_best_0236_streaming_once/kaggle_verification.json",
+    "kaggle_release_verified_best_0236_streaming_once/one_time_submission.json",
+    "kaggle_release_verified_best_0236_streaming_once/runtime_amendment.json",
+    "kaggle_release_verified_best_0236_streaming_once/notebook/casmi_chemistry.ipynb",
+    "kaggle_release_verified_best_0236_streaming_once/notebook/kernel-metadata.json",
+    "kaggle_release_verified_best_0236_streaming_once/platform_failure.json",
+    "kaggle_release_verified_best_0236_streaming_once/physical_dictionary_verification.json"
   ],
   "aggregate_directories": [
     "results/research_loop",
