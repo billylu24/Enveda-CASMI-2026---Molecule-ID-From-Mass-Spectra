@@ -1,0 +1,99 @@
+{
+  "diagnostic_only": true,
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "holdout_used": false,
+  "source_sha256": "f8a6ad4aef8f28457774189461405fd67956d37a00c0d18b3c974863ed414974",
+  "input_sha256": {
+    "unknown": {
+      "records_sha256": "e6b26d3a34d45abaf04861acdd7bd2753abec2cf358aa83affa0b71c39f7008d",
+      "confidence_sha256": "39d78818ded75aa4feef5ea9354d364acb1b3e88746c5125b7a37ded95180a29",
+      "reference_sha256": "bb8b484b86763471ffdf2396a3c5e732acd071719e295e185d12341f1a1947ca",
+      "legacy_metrics_sha256": "14227af4aa5b881dae5e878a3f531100d9d9b9d5a2226ce6555bd09e5ff132a7",
+      "actual_route_audit_sha256": "a1f6f19c4c68b1179a053d960ed27712b79cc37edfb31efad2ba1fb2d4fccb5c"
+    },
+    "known": {
+      "records_sha256": "42f85bf686ba578cc7f3544d9dabd3765eb129066b796b340a8d2f93397cbe8c",
+      "confidence_sha256": "6aaf8f4dcce1455485a7f2b369326033283c88a927e8f987b3c4318cc4bfa929",
+      "reference_sha256": "8e28555d7f435a11199a9fef04a561f63ad7829694ee10dd30b6f542263bca69",
+      "legacy_metrics_sha256": "e6df02ac385ca8c4bd77262ca51558e567e2a9910a89fb046a0c5d399c1978f3",
+      "actual_route_audit_sha256": "013af57b6d037d7bba2d31edf1f761a21fb5ced1c99bc1e9e1342ae801ad8b22"
+    }
+  },
+  "shared_input_sha256": {
+    "handoff": "51ea98de4431aeeb13da57acaf727a89c97d28f391a67a32b950efc110e5e016",
+    "generated": "4314b622d6d59c6c303526bcdcaf7f204c2314d0d6ab5dd8ff0ff37895e24490",
+    "critic_scores": "7e1613c60b738f55af92d292afee62684aee27c85837fa53274ec6ab058f6819",
+    "promotion_scores": "25cc01234437d5d26759fd84201ea22a353960dbd1a699d58df02c1f09fd7e01",
+    "external_proposals": "69dddccb831e94f155c0a70cfae2f73b01174d76a337d064e45c53024a386421",
+    "native_proposals": "b16f1a4b2fe8393ba2f8c1ac6c5393bc8b8f197cc8aa21c98a485d8d78fcc3f0",
+    "final_rankings": "0a138e378dde6e21de266950251ec6d1d02245450ca73a3187d5f03df64c530b"
+  },
+  "cohorts": {
+    "unknown": {
+      "molecules": 2000,
+      "truth_in_all_external_proposals": 251,
+      "truth_in_first100_novel_external_proposals": 114,
+      "selected_pool_or_generated_available": 284,
+      "legacy_available_outside_selected_pool_and_generated": 133,
+      "selected_pool_or_generated_outside_legacy_available": 20,
+      "truth_in_actual_route_first100_novel_external": 105,
+      "full_handoff_matches": 2000,
+      "reference_protected_queries": 1813,
+      "truth_in_selected_retrieval_pool": 206,
+      "truth_in_selected_retrieval_ranking": 173,
+      "truth_in_all_generated_candidates": 86,
+      "truth_in_first_five_novel_generated": 75,
+      "truth_added_by_bounded_generation": 75,
+      "truth_in_original_handoff": 248,
+      "legacy_available": 397,
+      "missing_truth_with_reference_protection": 145,
+      "missing_truth_without_reference_protection": 4,
+      "missing_truth_with_retrieval_ranking_length_25": 95,
+      "legacy_available_but_absent_handoff_by_disjoint_origin": {
+        "outside_selected_pool_and_generated": 133,
+        "retrieval_pool_only": 16
+      },
+      "legacy_available_but_absent_final_by_actual_route": {
+        "not_in_actual_route_first100_novel_external": 44,
+        "within_first100_status_high_strong_slot_inserted": 23,
+        "within_first100_status_strong_original_gate_fallback": 5,
+        "within_first100_status_critic_gate_fallback": 14,
+        "within_first100_status_high_fragment_evidence_keep_tail": 9,
+        "within_first100_status_high_fragment_remove_tail": 13,
+        "within_first100_status_fragment_evidence_fallback": 6,
+        "within_first100_status_low_supported_leader_first": 2
+      }
+    },
+    "known": {
+      "molecules": 1340,
+      "truth_in_all_external_proposals": 169,
+      "truth_in_first100_novel_external_proposals": 3,
+      "selected_pool_or_generated_available": 1340,
+      "legacy_available_outside_selected_pool_and_generated": 0,
+      "selected_pool_or_generated_outside_legacy_available": 154,
+      "truth_in_actual_route_first100_novel_external": 3,
+      "full_handoff_matches": 1340,
+      "reference_protected_queries": 1316,
+      "truth_in_selected_retrieval_pool": 1340,
+      "truth_in_selected_retrieval_ranking": 1181,
+      "truth_in_all_generated_candidates": 44,
+      "truth_in_first_five_novel_generated": 2,
+      "truth_added_by_bounded_generation": 2,
+      "truth_in_original_handoff": 1183,
+      "legacy_available": 1186,
+      "missing_truth_with_reference_protection": 3,
+      "missing_truth_without_reference_protection": 0,
+      "missing_truth_with_retrieval_ranking_length_25": 3,
+      "legacy_available_but_absent_handoff_by_disjoint_origin": {
+        "retrieval_pool_only": 3
+      },
+      "legacy_available_but_absent_final_by_actual_route": {
+        "within_first100_status_high_strong_slot_inserted": 1,
+        "within_first100_status_high_fragment_remove_tail": 1
+      }
+    }
+  },
+  "scope": "Full3340 exact reconstruction of stored original0062 handoffs. Truth used only for aggregate diagnostics. Legacy covered exactly equals original handoff plus full corrected external proposals, not selected retrieval pool or final output; missing truth is not evidence of a live deployment truncation bug. No gate, model, threshold, prediction, holdout or scientific incumbent changed."
+}

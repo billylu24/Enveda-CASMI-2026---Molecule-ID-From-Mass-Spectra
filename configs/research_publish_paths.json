@@ -577,7 +577,12 @@
     "kaggle_release_verified_best_0236_prefetch_once/runtime_amendment.json",
     "kaggle_release_verified_best_0236_prefetch_once/notebook/casmi_chemistry.ipynb",
     "kaggle_release_verified_best_0236_prefetch_once/notebook/kernel-metadata.json",
-    "kaggle_release_verified_best_0236_prefetch_once/platform_failure.json"
+    "kaggle_release_verified_best_0236_prefetch_once/platform_failure.json",
+    "kaggle_release_verified_best_0236_prefetch_once/physical_dictionary_verification.json",
+    "casmi_ml/candidate_stage_retention_audit.py",
+    "casmi_ml/high_slot_depth_system.py",
+    "casmi_ml/high_slot_depth_followup.py",
+    "tests/test_high_slot_depth_system.py"
   ],
   "aggregate_directories": [
     "results/research_loop",

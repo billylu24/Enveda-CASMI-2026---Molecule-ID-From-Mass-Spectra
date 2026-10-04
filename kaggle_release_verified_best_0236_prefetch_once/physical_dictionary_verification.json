@@ -1,0 +1,9 @@
+{
+  "valid": true,
+  "complete_request_dictionaries": 265,
+  "all_original_serial_request_dictionaries_exact": true,
+  "full400_top25_matches": 400,
+  "fresh_fragment_cache": true,
+  "independent_acceptance": false,
+  "scope": "Cold scientific236 parallel request scheduling full dictionaries and rankings exact vs original cold serial400. Descriptive concurrent timings are not paired benchmark or independent accuracy proof."
+}
