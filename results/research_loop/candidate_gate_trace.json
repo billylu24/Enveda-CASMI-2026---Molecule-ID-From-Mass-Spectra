@@ -1,0 +1,48 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "diagnostic_only": true,
+  "control_all3340_full_ranks_exact": true,
+  "source_sha256": "20eb2076ae5596a5758e4155416839fff629eef96d76770e34370f34f8e02ee9",
+  "control_report_sha256": "a5d44918edd3fac370fa332dd1ae39774f469bffea56bd94aedc0100b27cb059",
+  "cohorts": {
+    "unknown": {
+      "molecules": 2000,
+      "legacy_available_absent_final": 116,
+      "not_scored_in_actual_shortlist": 44,
+      "scored_truth": 72,
+      "truth_passes_individual_critic_margin": 38,
+      "truth_in_critic_first3": 10,
+      "truth_in_critic_first5": 13,
+      "truth_in_critic_first10": 21,
+      "truth_in_critic_first25": 30,
+      "truth_positive_physical_score": 43,
+      "truth_beats_original_first_physical": 37,
+      "truth_passes_both_original_first_gates": 22,
+      "truth_in_fragment_fused_first3": 6,
+      "truth_in_fragment_fused_first5": 12,
+      "truth_in_fragment_fused_first10": 26,
+      "truth_in_fragment_fused_first25": 37,
+      "no_physical_dictionary_for_query": 28
+    },
+    "known": {
+      "molecules": 1340,
+      "legacy_available_absent_final": 2,
+      "scored_truth": 2,
+      "truth_passes_individual_critic_margin": 1,
+      "truth_in_critic_first3": 0,
+      "truth_in_critic_first5": 0,
+      "truth_in_critic_first10": 0,
+      "truth_in_critic_first25": 0,
+      "truth_positive_physical_score": 2,
+      "truth_beats_original_first_physical": 1,
+      "truth_passes_both_original_first_gates": 0,
+      "truth_in_fragment_fused_first3": 1,
+      "truth_in_fragment_fused_first5": 1,
+      "truth_in_fragment_fused_first10": 1,
+      "truth_in_fragment_fused_first25": 2
+    }
+  },
+  "scope": "Original unchanged scorer/physics traced before aggregate truth diagnosis. Query-level status is not per-candidate rejection reason. Scores are descriptive repeated-development evidence, no source activation or generalization claim."
+}

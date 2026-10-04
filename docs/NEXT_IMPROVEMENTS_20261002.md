@@ -166,3 +166,8 @@ unknown原交接中的248个真值＝所选检索排名173个＋5个生成槽位
 355原3槽位控制全3340完整rank exact，预算和新增失败0。356五槽位unknown MRR .044141553（对236+.000163252/+0.371%），known .603711241（-.000080875），Top1不变；未达到晋升门槛。unknown新增4个Top25命中，真值RR4改善/20退步，paired bootstrap95%[-.000142161,.000540707]；known0改善/12退步。未启用五槽位或更新科学最佳。
 
 并行prefetch包平台完成但274/400完整Top25exact、400首位exact，125碎裂budget回退和1原first3 evidence回退，整管线1218.97秒/父峰3624.95MiB，未competition POST。平台检索235.84秒，外部重排之前729.59秒；原1200共享物理deadline仅剩470.41秒。新357控制只改变调度：发现同一原physical request即启动，保留bounded2独立JVM/每JVM2线程和原60s timeout/shared1200deadline，不打包query物理缓存、不改模型/候选/门槛。完整3340、source-bound fresh75、cold400原物理dict和Top25exact及平台400全通过后才能消耗同一次授权。
+
+
+359逐候选gate记录按unknown/known隔离，原3340完整rank exact，预算/新增失败0；358发现跨模式记录覆盖风险主动终止并保留，未使用其结果。unknown缺失的116个legacy可用真值中44不在实际critic shortlist、72已被评分；38通过个体critic+.05，43有正fragment支持、37超过原首位fragment、22同时通过两项原首位条件。fragment融合排名中仅6在first3、12在first5；query status不能作单独候选拒绝原因。
+
+360–361固定本地实验：先原规则3340完整exact控制；再在高分支相同100提案中先做逐候选资格筛选、后选最多3槽位，不由不合格fusion leader否决其他合格候选。保留全池informativeness、原critic+.05、原首位fragment比较、strong原first3最大值和参考前缀保护；low/critic整组可能性/物理fallback规则不变。可能新增原first3物理请求，必须完整两臂且新增失败和budget0后才统计收益；不自动晋升、部署、提交或push。Kaggle版本始终是原236，仅调度运行时修订。

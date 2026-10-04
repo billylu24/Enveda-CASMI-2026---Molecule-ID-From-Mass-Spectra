@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-04T02:21:00Z",
+  "updated_at": "2026-10-04T02:34:38Z",
   "local_only": true,
   "remote_publication": false,
   "best": {
@@ -100,14 +100,7 @@
     "array_source_sha256": "28926c166dbb88701c8676a8fd2e34b94b104029c43706da7c56f172b1876a41",
     "identity_source_sha256": "e5ecca9173b0be7aab94b3037bacfda5c6a2787a3ba0f38677b9349f4a664b5d"
   },
-  "active_rounds": [
-    {
-      "id": "0359_candidate_gate_trace_scoped_control",
-      "direction": "implementation_control",
-      "status": "external_running",
-      "report": "artifacts/research_loop/rounds/0359_candidate_gate_trace_scoped_control/report.json"
-    }
-  ],
+  "active_rounds": [],
   "local_candidate_runtime": {
     "enabled": true,
     "local_only": true,
@@ -1631,9 +1624,16 @@
     {
       "id": "0359_candidate_gate_trace_scoped_control",
       "direction": "implementation_control",
-      "status": "external_running",
-      "decision": null,
-      "local_recorded": false
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0359_candidate_gate_trace_scoped_control.json",
+      "local_recorded": true
+    },
+    {
+      "id": "0360_individual_gate_original_control",
+      "direction": "implementation_control",
+      "status": "diagnostic_complete",
+      "decision": "results/research_loop/0360_individual_gate_original_control.json",
+      "local_recorded": true
     }
   ]
 }
