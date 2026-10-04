@@ -1,0 +1,42 @@
+{
+  "round": "0394_serial_gc_four_cpu_corrected_probe",
+  "direction": "implementation_control",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "arms": [
+      {
+        "gc": "default",
+        "seconds": 54.9087605169625,
+        "full_rank_matches": 75,
+        "raw_dictionary_matches": 57
+      },
+      {
+        "gc": "serial",
+        "seconds": 62.0705886859796,
+        "full_rank_matches": 75,
+        "raw_dictionary_matches": 57
+      },
+      {
+        "gc": "serial",
+        "seconds": 70.27303410100285,
+        "full_rank_matches": 75,
+        "raw_dictionary_matches": 57
+      },
+      {
+        "gc": "default",
+        "seconds": 49.17714491201332,
+        "full_rank_matches": 75,
+        "raw_dictionary_matches": 57
+      }
+    ],
+    "all_original_raw_dictionaries_exact": true,
+    "scope": "FourCPU original75 repeated runtime probe, same ranks and raw physical result dictionaries; GC mechanism only. Concurrent other local jobs may affect timings; not a paired whole400/platform speed proof or accuracy claim."
+  },
+  "protocol_sha256": "aa3063c9c20bb9e8d3cd315d8a09cc8fc4f2ce2012ba355646eb5534d13c58e8",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

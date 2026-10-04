@@ -1,0 +1,8 @@
+{
+  "round": "0399_generation_physical_overlap_corrected_cold400_control",
+  "status": "failed",
+  "local_only": true,
+  "competition_submission": false,
+  "cause": "Previous owned prototype GPU lock still held; no new inference launched. Fresh corrected400 round next.",
+  "independent_acceptance": false
+}

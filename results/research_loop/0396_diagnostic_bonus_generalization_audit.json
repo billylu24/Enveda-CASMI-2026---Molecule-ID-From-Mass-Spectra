@@ -1,0 +1,115 @@
+{
+  "round": "0396_diagnostic_bonus_generalization_audit",
+  "direction": "representation_diagnostic",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "fit_query_molecules": 47994,
+    "heldout_query_molecules": 12006,
+    "heldout_query_targets_used_for_bonus_fit": false,
+    "heldout_targets_used_for_forward_fit": false,
+    "frozen_critic_pretrained_on_all60000": true,
+    "restricted_pair_slots": 28806,
+    "restricted_queries_with_negatives": 10070,
+    "calibration": {
+      "binary60": {
+        "fit_objective": {
+          "initial_ce": 0.5322087228503953,
+          "final_objective": 0.5272488536131575,
+          "optimizer_iterations": 45,
+          "sum_nonnegative_cosine_weights": 1.718394374995556,
+          "maximum_possible_bonus": 2.0
+        },
+        "heldout_original15_cross_entropy": 0.5131553871000101,
+        "heldout_both_mass_compatible_cross_entropy": 0.1665555057632787,
+        "weight_sum": 1.718394374995556,
+        "active_weights": 30
+      },
+      "conditional120": {
+        "fit_objective": {
+          "initial_ce": 0.5322087228503953,
+          "final_objective": 0.5265868635656791,
+          "optimizer_iterations": 55,
+          "sum_nonnegative_cosine_weights": 2.0,
+          "maximum_possible_bonus": 2.0
+        },
+        "heldout_original15_cross_entropy": 0.5127648737952044,
+        "heldout_both_mass_compatible_cross_entropy": 0.16640072272367804,
+        "weight_sum": 2.0,
+        "active_weights": 28
+      },
+      "frozen_critic": {
+        "heldout_original15_cross_entropy": 0.5191643393993159,
+        "heldout_both_mass_compatible_cross_entropy": 0.16796495759767588
+      },
+      "binary60_minus_conditional120": {
+        "original15": {
+          "molecules": 12006,
+          "mean_loss_reduction": 0.00039051330480570205,
+          "paired_bootstrap95_loss_reduction": [
+            0.00023006087777740307,
+            0.0005533453439950124
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        },
+        "both_heldout_mass_compatible": {
+          "molecules": 12006,
+          "mean_loss_reduction": 0.00015478303960066343,
+          "paired_bootstrap95_loss_reduction": [
+            7.387837006214218e-05,
+            0.00023858678563344992
+          ],
+          "seed": 20261004,
+          "draws": 10000
+        }
+      },
+      "critic_minus_binary60": {
+        "molecules": 12006,
+        "mean_loss_reduction": 0.006008952299305819,
+        "paired_bootstrap95_loss_reduction": [
+          0.005154742843276565,
+          0.006860044047976681
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      },
+      "critic_minus_conditional120": {
+        "molecules": 12006,
+        "mean_loss_reduction": 0.006399465604111522,
+        "paired_bootstrap95_loss_reduction": [
+          0.005581154685676021,
+          0.007216386439872062
+        ],
+        "seed": 20261004,
+        "draws": 10000
+      }
+    },
+    "original_valid_model_sha256": "a6b4ec0168af2016f859201c1201dce3b37a58253abaaf4871240d24194d27f4",
+    "original_training_report": {
+      "diagnostic_only": true,
+      "local_only": true,
+      "independent_acceptance": false,
+      "training_molecules": 60000,
+      "train_development_overlap": 0,
+      "original_encoder_and_critic_frozen": true,
+      "history": {
+        "initial_ce": 0.5295985417218343,
+        "final_objective": 0.5246471778145301,
+        "optimizer_iterations": 45,
+        "sum_nonnegative_cosine_weights": 1.7151858236430644,
+        "maximum_possible_bonus": 2.0
+      },
+      "seconds": 76.01509669498773,
+      "model_sha256": "a6b4ec0168af2016f859201c1201dce3b37a58253abaaf4871240d24194d27f4",
+      "scope": "Bounded extended candidate chemistry fitting only; current-best complete zero control and paired full3340 systems required"
+    },
+    "scope": "Training-internal bonus-calibration molecular holdout, shared frozen critic trained on all60K. Private bonus fits not activated, no development or external accuracy acceptance. No fit/heldout objective comparison; loss reductions are paired on SAME heldout scores/denominator."
+  },
+  "protocol_sha256": "ca5aa6e216779df0aa382094c025244448b5b4890f607f738b1ed52c0f23250d",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

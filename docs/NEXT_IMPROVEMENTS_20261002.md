@@ -248,3 +248,30 @@ cpubal冷4004CPU验证完成：434.995333秒／3081.590MiB／0budget，全部400
 
 
 387新conditional120D零加分控制全3340fullrank exact／0budget／newfail0完成，388化学／389屏蔽训练开始。392不重训地完整重建384两臂候选对照，arms逐项exact；按9758整个分子block／固定seed20261003／10000draws，MSEgain.00006528512，95[.00006004427,.00007060623]；同query条件pair-margin gain.00002943146，95[.00002646612,.00003248026]。这是已反复检查的训练内条件统计，不能当新数据或完整ranking acceptance；零证据／无相容候选分子也保留在cluster重采样内，不按观测挑成功分子。39x科学晋升门槛不变。
+
+
+390–391条件化诊断完整系统完成：387zero／391全bonus mask全部3340 fullrank exact，390／391预算及新增物理失败均0。390 unknown MRR .04414496759057114，对236 +.000166667／+0.379%，known MRR／Top1不变，未达到原绝对+.0005且相对+2%晋升门槛。unknown218完整rank变化、14首位变化，但只有1个真值RR改善、0退步，bootstrap95[0,.0005]；known62完整rank变化、真值RR均不变。保持236，条件化签名heldout预测改善2.33%尚未转化为广泛最终排名收益，不启用120D头或扩大GAN／DINO。
+
+cpubal平台最终API ERROR，原shared1200秒末端prefetched physical timeout；retrieval77.0855秒、generation218.1313秒。已只读确认无intent／pending／submission ID／对应competition记录，未发送比赛POST；同一次明确提交授权尚未消耗。保留冻结包和完整失败证据，不放宽排名／物理／资源／时限门槛。
+
+393错误使用resolve后的venv解释器导致缺rdkit，保留失败记录。394修正使用venv实际路径后的default／SerialGC／SerialGC／default新冷75均75完整rank及57原raw physical dictionaries exact，时间54.909／62.071／70.273／49.177秒。两次SerialGC均更慢，不部署；并行研究影响时序，不能当平台配对提速证明。395先测量原请求耗时及planning／consumption阶段，并固定ABBA对照child ActiveProcessorCount2，仍两JVM×两candidate线程、1GiB heap、原算法／输入／deadline；不上传未验证变体。
+
+395完成：default／ActiveProcessorCount2／ActiveProcessorCount2／default各75完整rank及57 raw physical dictionaries exact，48.318／48.353／48.159／48.777秒，均值48.548对48.256秒，仅-0.60%，没有值得部署的本地提速证据。planning约16秒／consumption约28秒，physical request总时长约64秒，因两worker重叠不能把总时长当wall time。另私有Notebook `giaok246/casmi26-236-runtime-diagnosis` v1只诊断平台原输入前75 opaque IDs，复用不变cpubal冻结资产包；采集JVM／CPU配置、原request／phase耗时和cProfile，保留原时限。它没有绑定比赛提交授权，也不自动提交。
+
+396 bonus校准分子留出完成：47994 fit-query／12006 heldout-query，复用383仅fit分子拟合的条件化forward和vocabulary；两种bonus头只用fit-query谱目标拟合，仍sum2／L2.01／原15分母。binary60 heldout CE .513155387→conditional120 .512764874，配对loss减少.000390513，95[.000230061,.000553345]；另双方heldout且mass相容的28806 pinned pair slots，减少.000154783，95[.000073878,.000238587]。包含零相容负例查询的原12006分子bootstrap，非挑选成功分子。冻结encoder／critic原先训练过全部60000，不能称端到端独立泛化；这个小的加分头留出收益不能推翻390完整系统未晋升结论。保留原有效all-training60D输出模型，私有fit-only头未部署。
+
+367／380／390逐分子真实RR私有核对确认：三种化学头改善的是同一个unknown query，union仅1，不是三个可叠加突破；安全摘要只含计数和来源SHA，不导出标签或query身份。
+
+397流式generation交接控制：通过对原已检查函数AST仅插入“final_full append完成后写atomic事件”两处callback，删除callback后的AST与原函数逐项相同；400实际query重新生成后的CSV／generation audit／完整handoff和全部400事件与376原结果exact。没有生成模型、seed、样本数或原时限变更。398冷400重叠prototype审查发现最终consumer套入旧streaming wrapper可能建立第二pool，主动终止自有实验进程树并保留部分证据，未作为proof。399因旧prototype尚持GPU lock退出，未启动推理；0400新目录修正为同一个early两worker pool直接调用原consumer，继续冷400完整Top25／265rawdict／预算／RSS核对。此时新模块均仅实验，不修改任何冻结包。
+
+平台diagnostic v1在推理前因写死`/kaggle/input/competition/test.parquet`不存在失败，没有可用时序。保留日志／失败摘要，v2改用原locate路径解析后重新运行；只测量，不产生competition提交。
+
+0400修正后的原400冷启动重叠验证通过：4CPU affinity、本地1GPU强制顺序分片；全部400 Top25及265 raw physical dictionaries与原cpubal／串行236完全一致，预算0，363.604766秒／父峰3187.828MiB。generation加early planning约152.902秒，在generation结束时已发现238原request；强槽位等剩余原request由同pool最终消费阶段完成。相对之前434.995秒只是不同运行的观察，不能称配对稳定提速或平台证明。0402继续全部3340共享原评分缓存／完整catalog／按16完整分子batch发现的source-bound rankexact控制；仍需冻结包fresh75／新cold400绑定及平台400才能消耗同一次比赛授权。
+
+0402 source-bound完整3340共享原评分／16完整分子batch规划通过：unknown2000、known1340全部原236 fullrank exact，预算／新增物理失败0。新overlap frozen包准备后须fresh75、新cold400完整rawdict／排名／资源核验及平台400；单GPU默认回退原cpubal，验证可显式force顺序双分片，平台双T4走真实重叠。没有改任何旧冻结包／原deployment_recipe／local_verified_extension。
+
+私有平台诊断v2 COMPLETE，两臂原输入前75 Top25与原400本地版本全部exact，CPU4／affinity0–3；default/bounded各47 physical requests总时长330.19／324.90秒（两worker重叠，非wall），消费阶段170.12／172.86秒。整臂含profiling及前端约308.33／285.75秒，前端和cache warmup影响明显，不构成processor flag提速证据，不部署它。该cohort与本地development75不同，不能跨cohort比较57／47request速度。诊断不是比赛提交或完整400证据。
+
+0401 conditional390评分观测完整系统3340 rank exact／预算及新增失败0，但最终Counter里的numpy.int64不能JSON序列化，故未接受aggregate归因。保留source快照／成功科学report／失败日志；0403显式新目录只修summary整数转换，并在聚合前私有保存score observations，重做完全相同的390观测，没有重训或改模型／科学规则。
+
+新overlap冻结bundle identity `49df0d40ca9b62b5eba4624f14732332309f7cab6fb388fca7b9778b9eae7f92`，SHA256SUMS SHA `75b9eaaea0372bcee898922bf2fa9a2bd1c29063975e1c43cc604421f9978ad6`。冻结fresh75全rank exact／0budget，52.463227秒；新4CPU冷400进行中，不把包准备或私有上传称比赛提交。485项完整回归通过，ruff通过；新测试覆盖原AST删callback后的严格一致、atomic事件exact／去重、最终consumer复用唯一early pool、release源绑定与单GPU回退，以及heldout统计分母／bootstrap。

@@ -1,0 +1,61 @@
+{
+  "local_only": true,
+  "remote_publication": false,
+  "independent_acceptance": false,
+  "arms": [
+    {
+      "round": "0367_mass_candidate_chemical_system",
+      "report_sha256": "3b6c48c83f5cdfda158f8d6440f1f30bad6f9c5cc4bb35c1ff3e6f3529cbe782",
+      "rankings_sha256": "0a07e1ee163533aeb9c2b883083f2de65a7ed5ba969e1cc0b7073bafe9a98d0b",
+      "cohorts": {
+        "unknown": {
+          "rr_improvements": 1,
+          "rr_regressions": 0,
+          "mean_gain": 0.00016666666666666666
+        },
+        "known": {
+          "rr_improvements": 0,
+          "rr_regressions": 0,
+          "mean_gain": 0.0
+        }
+      }
+    },
+    {
+      "round": "0380_forward_augmented_chemical_system",
+      "report_sha256": "7c78a2be316098a602370ff835a043bb7296d77970cbe61d4af51e730967f391",
+      "rankings_sha256": "0f1243a54329badfadc8f4fa1103a491c103afbfc6b9046232e96583a98bb826",
+      "cohorts": {
+        "unknown": {
+          "rr_improvements": 1,
+          "rr_regressions": 0,
+          "mean_gain": 0.00016666666666666666
+        },
+        "known": {
+          "rr_improvements": 0,
+          "rr_regressions": 0,
+          "mean_gain": 0.0
+        }
+      }
+    },
+    {
+      "round": "0390_energy_conditioned_chemical_system",
+      "report_sha256": "8f4b8992e8cf1b7e31e22b59b94cbcf5c143b6c854242fc0068dd07c28f2f131",
+      "rankings_sha256": "aee2b69ca0f14868c7f7708ef1e409c4a6b5593bb781abf05d35c465bea5ec6c",
+      "cohorts": {
+        "unknown": {
+          "rr_improvements": 1,
+          "rr_regressions": 0,
+          "mean_gain": 0.00016666666666666666
+        },
+        "known": {
+          "rr_improvements": 0,
+          "rr_regressions": 0,
+          "mean_gain": 0.0
+        }
+      }
+    }
+  ],
+  "same_unknown_improved_molecules_in_all_three": true,
+  "union_improved_unknown_molecules": 1,
+  "scope": "Aggregate exact paired development RR-change overlap only, after complete physics. No per-molecule labels or keys exported, no model selection/activation. Repeated identical one-query gain is not cumulative across these heads."
+}

@@ -1,0 +1,44 @@
+{
+  "diagnostic_only": true,
+  "competition_submission": false,
+  "kernel": "giaok246/casmi26-236-runtime-diagnosis",
+  "version": 2,
+  "status": "COMPLETE",
+  "cpu_count": 4,
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "arms": [
+    {
+      "arm": "default",
+      "molecules": 75,
+      "all75_original400_top25_exact": true,
+      "wall_seconds_with_profiling": 308.32710244399993,
+      "phase_seconds": [
+        45.97226160900004,
+        170.117250678
+      ],
+      "physical_requests": 47,
+      "physical_overlapping_request_sum_seconds": 330.193402631,
+      "peak_rss_mib": 2516.4296875
+    },
+    {
+      "arm": "bounded",
+      "molecules": 75,
+      "all75_original400_top25_exact": true,
+      "wall_seconds_with_profiling": 285.7474837489999,
+      "phase_seconds": [
+        42.380094088999954,
+        172.86109055500003
+      ],
+      "physical_requests": 47,
+      "physical_overlapping_request_sum_seconds": 324.90494668899953,
+      "peak_rss_mib": 2746.48046875
+    }
+  ],
+  "conclusion": "Physical47 requests sum330.19s vs324.90s, consumption170.12s vs172.86s. Overall308.33s vs285.75s includes frontend/cache warmup/cProfile; no material physical improvement from ActiveProcessorCount2. No justification to deploy processor flag; overlap generation/physics remains separately controlled.",
+  "scope": "Same first75 supplied opaque IDs, complete original Top25 matches both arms. Distinct from local original development75 probe, not paired400 speed/accuracy/resource acceptance. Profiling overhead and sequential warmup. Request sums overlap; not wall time. No competition POST."
+}

@@ -1,0 +1,9 @@
+{
+  "diagnostic_only": true,
+  "competition_submission": false,
+  "kernel": "giaok246/casmi26-236-runtime-diagnosis",
+  "version": 1,
+  "status": "ERROR",
+  "source_sha256": "ea0b997b8417a0b7a2c611b51dafd847664487828c6b02e8cadd2fe726f89c2a",
+  "cause": "Diagnostic helper bypassed original locate() resolver and assumed /kaggle/input/competition/test.parquet. FileNotFoundError before any profiling/inference, no usable timing. Frozen model/bundle unchanged. Correct by original resolver, preserve v1 logs."
+}

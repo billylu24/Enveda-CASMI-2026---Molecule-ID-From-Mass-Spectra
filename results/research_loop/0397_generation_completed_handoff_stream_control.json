@@ -1,0 +1,22 @@
+{
+  "round": "0397_generation_completed_handoff_stream_control",
+  "direction": "implementation_control",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "valid": true,
+    "molecules": 400,
+    "all_generation_csv_audit_fullhandoffs_exact": true,
+    "all400_completed_events_exact": true,
+    "original_generation_source_sha256": "3aca1f215a83ce773a148864310288accf4997290c099f0e9e8e7b1e81c4e47d",
+    "stream_source_sha256": "5e1516d92a1a8e23d71702551d6d5b0d0b5b14d78ec506ebf276b6aa83c72964",
+    "seconds": 112.36055068403948,
+    "scope": "Original400 generation unchanged with only atomic completed-record callback; source AST removal equivalence tested. No physical overlap yet, no speed/accuracy/remote proof."
+  },
+  "protocol_sha256": "5075ab6d61cd71bdd22e492a71d62596086412d6d46db540b3d5d429f3829d22",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

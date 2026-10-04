@@ -1,0 +1,32 @@
+{
+  "round": "0400_generation_physical_overlap_corrected_cold400_control",
+  "direction": "implementation_control",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "valid": true,
+    "molecules": 400,
+    "all400_top25_exact": true,
+    "all265_raw_physical_dictionaries_exact": true,
+    "development_budget_fallbacks": 0,
+    "seconds": 363.60476623498835,
+    "parent_peak_rss_mib": 3187.828125,
+    "overlap": {
+      "emitted_molecules": 400,
+      "planned_requests_at_generation_end": 238,
+      "generation_and_early_planning_seconds": 152.9017298919498,
+      "original_shared_fragment_deadline": 273886.713730717,
+      "stream_source_sha256": "5e1516d92a1a8e23d71702551d6d5b0d0b5b14d78ec506ebf276b6aa83c72964",
+      "overlap_source_sha256": "3c5107430bc5c246dea46b223a549929c7c5ad728ffce6893e547d1a2d77ce2c",
+      "pipeline_source_sha256": "1d6b952af1dac7dd858219b76eeb7d3fb6207620b71be4f1bd5191d6fade3f1b",
+      "scope": "Original per-molecule sampling and complete handoffs, same physical request dictionaries/models/recipe/heap/twoJVM/two candidate threads/shared deadlines. Runtime-only in-invocation atomic events, no query evidence packaged. Experimental local-only; require full3340/fresh75/cold400/physical dictionary/source/resource proof before any future release amendment."
+    },
+    "scope": "New cold original400 local4CPU exact runtime implementation proof; oneGPU forced partitions sequential, not paired/platform speed or accuracy claim. Still needs source-boundfull3340/fresh75/frozenbundle/platform400 before one unused competition submission."
+  },
+  "protocol_sha256": "b11b9b79ac1582a2cf22e7e608c7a3ccc2ef501c0738ee2e9a37149489e6172b",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

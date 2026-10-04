@@ -1,0 +1,67 @@
+{
+  "round": "0395_jvm_processor_count_runtime_probe",
+  "direction": "implementation_control",
+  "status": "diagnostic_complete",
+  "report": {
+    "diagnostic_only": true,
+    "local_only": true,
+    "independent_acceptance": false,
+    "arms": [
+      {
+        "arm": "default",
+        "seconds": 48.31839280703571,
+        "full_rank_matches": 75,
+        "raw_dictionary_matches": 57,
+        "physical_sum_seconds": 63.47827026376035,
+        "phase_seconds": [
+          15.911597518948838,
+          27.872731355018914
+        ]
+      },
+      {
+        "arm": "bounded",
+        "seconds": 48.35343769600149,
+        "full_rank_matches": 75,
+        "raw_dictionary_matches": 57,
+        "physical_sum_seconds": 63.19172132975655,
+        "phase_seconds": [
+          15.669994975964073,
+          28.204210381023586
+        ]
+      },
+      {
+        "arm": "bounded",
+        "seconds": 48.15875901596155,
+        "full_rank_matches": 75,
+        "raw_dictionary_matches": 57,
+        "physical_sum_seconds": 63.72364140395075,
+        "phase_seconds": [
+          15.81511780701112,
+          27.843854951963294
+        ]
+      },
+      {
+        "arm": "default",
+        "seconds": 48.77705045498442,
+        "full_rank_matches": 75,
+        "raw_dictionary_matches": 57,
+        "physical_sum_seconds": 63.90283677133266,
+        "phase_seconds": [
+          16.212580088991672,
+          28.079563841980416
+        ]
+      }
+    ],
+    "mean_seconds": {
+      "default": 48.54772163101006,
+      "bounded": 48.25609835598152
+    },
+    "observed_bounded_over_default_ratio": 0.9939930595045213,
+    "all_original_raw_dictionaries_exact": true,
+    "scope": "Fresh75 ABBA fourCPU local probe only; no whole400/platform speed proof, no activation or accuracy claim. Request durations overlap; sum is not wall time."
+  },
+  "protocol_sha256": "e5aab220d6837db71e74e0500cdb376fac0c05510d3a1f0e56ea89b5801cbe36",
+  "winner": null,
+  "independent_acceptance": false,
+  "evaluation": "Development pilot diagnostics; no submission eligibility"
+}

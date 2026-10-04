@@ -1,0 +1,9 @@
+{
+  "round": "0401_conditioned_gate_impact_audit",
+  "local_only": true,
+  "competition_submission": false,
+  "all3340_repeat390_rankings_exact": true,
+  "development_budget_fallbacks": 0,
+  "incremental_new_failure_contexts": 0,
+  "cause": "Completed physical/scientific replay exact, aggregate Counter includes numpy.int64 from pandas comparisons; JSON serialization failed after report. No aggregate attribution accepted. Preserve source/logs/report, explicit corrected403 repeat; no retraining or science change."
+}

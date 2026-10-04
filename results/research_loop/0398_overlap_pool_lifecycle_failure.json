@@ -1,0 +1,8 @@
+{
+  "round": "0398_generation_physical_overlap_cold400_control",
+  "status": "failed",
+  "local_only": true,
+  "competition_submission": false,
+  "cause": "Consumer prototype would enter nested streaming wrapper creating a second physical pool. Stopped owned experimental process tree, retain partial logs/caches; correct final consumer to direct original serial_extend on same two-worker early pool. Not valid proof, no submission.",
+  "independent_acceptance": false
+}

@@ -1,0 +1,10 @@
+{
+  "valid": false,
+  "submitted": false,
+  "molecules": 400,
+  "cause": "CPU-balanced original236 Notebook ERROR from prefetched physical timeout near original shared1200s deadline; retrieval77.0855s/generation218.1313s. Final API ERROR, no intent/pending/id/matching competition submission. Preserve frozen bundle and all gates; measure remaining runtime before next amendment.",
+  "retrieval_seconds": 77.085499153,
+  "generation_seconds": 218.131274856,
+  "platform_log": "artifacts/research_loop/cpubal_platform_progress/casmi26-236-cpu-balanced-verified-best.log",
+  "no_competition_post_confirmed": true
+}

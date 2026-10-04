@@ -6,7 +6,7 @@
   "automatic_future_submissions": false,
   "identity": "da2a737f0d4679f7a0900b22fc6655a20db2b7845e2914234f0246457b01098c",
   "release": "/home/giaok/PycharmProjects/Enveda CASMI 2026/kaggle_release_verified_best_0236_cpubal_once",
-  "status": "notebook_running",
+  "status": "platform_verification_failed",
   "amendments": [
     {
       "identity": "b27505dc6c850055920a15238846cb969e6b88e220ca89bb84e95620779f36c2",
@@ -3161,10 +3161,21 @@
       }
     }
   ],
-  "updated_at": "2026-10-04T04:47:53Z",
+  "updated_at": "2026-10-04T05:17:29Z",
   "dataset_uploaded": true,
   "remote": {
     "kernel": "giaok246/casmi26-236-cpu-balanced-verified-best",
     "version": 1
+  },
+  "error": "CPU-balanced original236 Notebook ERROR from prefetched physical timeout near original shared1200s deadline; retrieval77.0855s/generation218.1313s. Final API ERROR, no intent/pending/id/matching competition submission. Preserve frozen bundle and all gates; measure remaining runtime before next amendment.",
+  "platform_failure": {
+    "valid": false,
+    "submitted": false,
+    "molecules": 400,
+    "cause": "CPU-balanced original236 Notebook ERROR from prefetched physical timeout near original shared1200s deadline; retrieval77.0855s/generation218.1313s. Final API ERROR, no intent/pending/id/matching competition submission. Preserve frozen bundle and all gates; measure remaining runtime before next amendment.",
+    "retrieval_seconds": 77.085499153,
+    "generation_seconds": 218.131274856,
+    "platform_log": "artifacts/research_loop/cpubal_platform_progress/casmi26-236-cpu-balanced-verified-best.log",
+    "no_competition_post_confirmed": true
   }
 }
