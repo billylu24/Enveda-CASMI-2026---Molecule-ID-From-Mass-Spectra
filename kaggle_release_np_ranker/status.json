@@ -1,5 +1,5 @@
 {
-  "stage": "M3_version9_running",
+  "stage": "M3_version9_failed_cache_input_unavailable",
   "M2_required_version": 355568739,
   "M2_current_status": "complete_independently_verified",
   "LOTUS_dataset": {
@@ -104,7 +104,7 @@
     "acceptance_opened": false
   },
   "version9_repair": {
-    "stage": "running",
+    "stage": "failed",
     "embedded_source_sha256": "ae00e0a8601aa9d625093f0e79323040d8f6dc6b40b7ee6d64d823b8969a8a1a",
     "reuse_from_version8": [
       "reference_rows.parquet",
@@ -127,6 +127,16 @@
     "started_at": "2026-10-08T20:39:00-07:00",
     "acceptance_opened": false,
     "candidate_freeze_created": false,
-    "submission_csv_created": false
+    "submission_csv_created": false,
+    "finished_at": "2026-10-09T17:42:24-07:00",
+    "error_type": "TimeoutError",
+    "error": "M3 candidate feature budget exhausted",
+    "reference_cache_loaded": false,
+    "reference_scan_repeated": true,
+    "training_unknown_completed": 425,
+    "training_unknown_total": 3921,
+    "training_candidate_rows": 147276,
+    "root_cause": "The self-notebook input exposed the last successful output rather than failed Version 8 artifacts, so no eligible reference cache was mounted.",
+    "next_gate": "Publish the failed-run reference cache as a hash-bound private dataset before any further M3 execution."
   }
 }
