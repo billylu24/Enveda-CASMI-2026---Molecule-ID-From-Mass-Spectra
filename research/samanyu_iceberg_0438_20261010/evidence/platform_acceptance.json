@@ -40,16 +40,16 @@
     "visible_data_note": "Visible test overlaps training; execution acceptance is not a generalization estimate."
   },
   "files_sha256": {
-    "pc_lists.json": "2bc208819aef821b8f16ad687c7a6dbb0ab3cb5a73823eb80df192aa0187904e",
-    "candidate_audit.json": "9b91fc84e46ffb996c8d8e058f7821d89f1204b826ac1b2e59019372f1e34d26",
-    "submission.csv": "880e9c85572fb8162d1fc6b0e34f0c147f8088e88845504a6fb4ed259cb57f81",
     "candidate_audit.csv": "e422b3cd6a9a0d5887eebf1024c58e2119c1906cc9c3982c5db4114b21be2c25",
+    "gl_work/gl_out.json.meta.json": "eff90da3425c3a1b06a35d13e56ced26ebebee4811294780defcf33255a9f278",
     "baseline_submission.csv": "15ebf6ffff505db312a805f02da5ddf3a074e5b773532dcbc3982af727071b1c",
-    "eng_lists.json": "9d078b390148d586eab35a6bd61a739dbf5455d020d157243064daa0a69409da",
-    "ice_work/ice_out.json.meta.json": "1abc678421e0c6f1ca9ba39e9f0a24a865278b8def1e54dafa39f715214e8da1",
-    "run_manifest.json": "d7a2da33cbb4ad5b0fef41fb6dbc81bc6b54b52d3ef0cca6c6d093c8e19b8483",
     "reproduction_acceptance.json": "664ab9ca0fcb18a5807ba525b45c7ea9441ea6e3e44e1735e3504d701b371772",
-    "gl_work/gl_out.json.meta.json": "eff90da3425c3a1b06a35d13e56ced26ebebee4811294780defcf33255a9f278"
+    "pc_lists.json": "2bc208819aef821b8f16ad687c7a6dbb0ab3cb5a73823eb80df192aa0187904e",
+    "submission.csv": "880e9c85572fb8162d1fc6b0e34f0c147f8088e88845504a6fb4ed259cb57f81",
+    "candidate_audit.json": "9b91fc84e46ffb996c8d8e058f7821d89f1204b826ac1b2e59019372f1e34d26",
+    "run_manifest.json": "d7a2da33cbb4ad5b0fef41fb6dbc81bc6b54b52d3ef0cca6c6d093c8e19b8483",
+    "eng_lists.json": "9d078b390148d586eab35a6bd61a739dbf5455d020d157243064daa0a69409da",
+    "ice_work/ice_out.json.meta.json": "1abc678421e0c6f1ca9ba39e9f0a24a865278b8def1e54dafa39f715214e8da1"
   },
-  "checked_at": "2026-10-10T10:00:15.208383+00:00"
+  "checked_at": "2026-10-10T10:04:10.391756+00:00"
 }

@@ -17,3 +17,6 @@
 .venv/bin/python research/samanyu_iceberg_0438_20261010/publish.py push
 .venv/bin/python research/samanyu_iceberg_0438_20261010/monitor.py
 ```
+
+<!-- official-result -->
+实际提交 `57038936`，状态 `COMPLETE`，public MRR@25 **0.438**。详见 [RESULTS.md](RESULTS.md)。

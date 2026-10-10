@@ -4,7 +4,7 @@ This is a mass-filtered spectral-library retrieval baseline for the [Enveda CASM
 
 ## Current results snapshot
 
-Best verified public MRR@25: **0.433** (Amanatar V18 reproduction, submission `57005627`, COMPLETE). Samanyu ICEBERG V1 reproduction passed an exact 12/12 upstream preview comparison and was submitted as `57038936`; official scoring is PENDING. See [reproduction methods and submission status](research/samanyu_iceberg_0438_20261010/RESULTS.md). The self-trained scientific research controller remains separate and in `local_only` mode; the historical snapshot below is retained.
+Best verified public MRR@25: **0.438** (submission `57038936`, COMPLETE). Latest Samanyu ICEBERG V1 reproduction: **0.438**, submission `57038936`, COMPLETE. See [reproduction methods and official results](research/samanyu_iceberg_0438_20261010/RESULTS.md). The self-trained scientific research controller remains separate and in `local_only` mode; the historical snapshot below is retained.
 
 ## Local setup
 

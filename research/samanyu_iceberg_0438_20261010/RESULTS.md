@@ -1,13 +1,20 @@
-# Samanyu ICEBERG 复现与提交记录
+# Samanyu ICEBERG 实际复现结果
 
-已提交 Kaggle，submission **57038936**，状态 **PENDING**（2026-10-10 UTC）。固定 notebook：`giaok246/casmi26-samanyu-iceberg-0-438-reproduction` V2，scriptVersionId `357007287`。
+来源：`samanyu1808/casmi26-iceberg-where-glacier-is-blind-lb-0-438` public V1。复现 notebook：`giaok246/casmi26-samanyu-iceberg-0-438-reproduction` V2。
 
-实际 public MRR@25 尚未返回；上游标题 0.438 不是本次成绩。
+Kaggle 提交 **57038936**，状态 **COMPLETE**，实际 public MRR@25 **0.438**。
 
-全部原代码单元逐字一致。公开预览处理 12 分子，候选完整排序 **12/12** 与上游一致；整个预览 CSV SHA256 同为 `880e9c85572fb8162d1fc6b0e34f0c147f8088e88845504a6fb4ed259cb57f81`。
+上游标题为 0.438，本次相对标题差值 +0.000；提交前团队最高 0.433，相对差值 +0.005。
 
-预览运行 993.78 秒，主引擎错误 0，第二引擎与 PubChem 各处理 12 分子。ICEBERG 与 GLACIER 各覆盖并评分 11 分子，预测错误为 0。每个已处理分子有 25 个有效、按原 metric identity 去重的候选。
+原始公开预览运行 993.78 秒，处理 12 分子；CSV 共 400 行，其中 388 行是原始预览占位符，未直接作为比赛预测上传。主引擎错误 0，第二引擎与 PubChem 各覆盖 12 个预览分子，12 行候选完整排名及整个预览 CSV 的 SHA256 与原 notebook 公开输出完全一致。
 
-提交的是固定 notebook 版本，正式 hidden rerun 运行原始全量预算及新增完整性断言。没有直接上传包含 388 行预览占位符的 CSV。可见预览与训练集重叠，仅用作执行和排序检查。
+已处理预览每行 25–25 个有效且按原 metric identity 去重的 SMILES。保留原 top-80 融合，其中 1 个分子走 ICEBERG-only 回退。
 
-`monitor.py` 正在轮询官方结果，完成后更新此报告、项目 README 并推送 GitHub。详见 `evidence/publication_state.json`、`evidence/platform_acceptance.json` 和 `evidence/source_preview_comparison.json`。
+主进程 RDKit 2026.03.3；模拟器 RDKit 2025.03.6。原权重、模型和阈值保留。完整源码修改范围和 SHA256 见 evidence/release_identity.json。
+
+可见数据与训练数据重叠；预览检查不是泛化评估。提交的是固定 notebook 版本，而非预览 CSV。Kaggle 正式隐藏测试使用原全量预算，并执行新增的完整性断言；hidden 输出与逐阶段覆盖数字无法从公开 preview 下载，不作虚构报告。成绩来自官方隐藏测试评分。
+
+| 模拟器 | 已评分分子 | 支持覆盖分子 | 状态 |
+|---|---:|---:|---|
+| ice | 11 | 11 | ok |
+| glacier | 11 | 11 | ok |
