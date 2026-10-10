@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "source": "samanyu1808/casmi26-iceberg-where-glacier-is-blind-lb-0-438",
+  "source_version": 1,
+  "rows": 400,
+  "processed": 12,
+  "hidden_rerun": false,
+  "preview_placeholders": 388,
+  "base_errors": 0,
+  "engine2_molecules": 12,
+  "pubchem_molecules": 12,
+  "candidate_min": 25,
+  "candidate_max": 25,
+  "rdkit": "2026.03.3",
+  "gpu": "Tesla T4",
+  "stages": {
+    "ice": {
+      "status": "ok",
+      "scored": 11,
+      "covered": 11,
+      "unsupported": []
+    },
+    "glacier": {
+      "status": "ok",
+      "scored": 11,
+      "covered": 11,
+      "unsupported": []
+    }
+  },
+  "ice_only_fusion_molecules": 1,
+  "fusion_window": 80,
+  "runtime_seconds": 993.78,
+  "submission_sha256": "880e9c85572fb8162d1fc6b0e34f0c147f8088e88845504a6fb4ed259cb57f81",
+  "visible_data_note": "Visible test overlaps training; execution acceptance is not a generalization estimate."
+}

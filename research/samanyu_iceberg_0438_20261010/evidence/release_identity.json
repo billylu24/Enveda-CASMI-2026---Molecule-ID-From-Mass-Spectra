@@ -1,0 +1,21 @@
+{
+  "source": "samanyu1808/casmi26-iceberg-where-glacier-is-blind-lb-0-438",
+  "source_version": 1,
+  "retrieved_utc": "2026-10-10T09:40:11.595603+00:00",
+  "source_sha256": "506cfb296838f152f89a7f7eb4a95d38ad6ff9411f123e8325dcdaa84b097750",
+  "source_api_sha256": "506cfb296838f152f89a7f7eb4a95d38ad6ff9411f123e8325dcdaa84b097750",
+  "changes": [
+    {
+      "cell": "added",
+      "reason": "Original code cells are identical. Verify all active molecules, stage completion, output validity and metric identity uniqueness; hidden rerun rejects unprocessed rows."
+    }
+  ],
+  "metadata_changes": [
+    "private account copy",
+    "freeze currently attached public dataset versions"
+  ],
+  "release_files": {
+    "reproduction.ipynb": "4da03489e3ef9384b3a9da8c9f612156eee6947afd872ebe64ddeb805992e046",
+    "kernel-metadata.json": "b552ca0d38024524a91879e0c4032ac12786bf1c32c4034b8d694bb0dc8e5ef6"
+  }
+}

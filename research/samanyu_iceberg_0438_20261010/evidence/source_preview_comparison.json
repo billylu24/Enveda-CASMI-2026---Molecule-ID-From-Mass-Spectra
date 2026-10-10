@@ -1,0 +1,9 @@
+{
+  "processed_reference_molecules": 12,
+  "exact_rank_matches": 12,
+  "different_ids": [],
+  "placeholder_rows_excluded": 388,
+  "upstream_preview_sha256": "880e9c85572fb8162d1fc6b0e34f0c147f8088e88845504a6fb4ed259cb57f81",
+  "reproduction_preview_sha256": "880e9c85572fb8162d1fc6b0e34f0c147f8088e88845504a6fb4ed259cb57f81",
+  "whole_preview_csv_exact": true
+}

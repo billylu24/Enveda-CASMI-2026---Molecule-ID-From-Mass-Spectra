@@ -1,0 +1,15 @@
+{
+  "ref": 57038936,
+  "totalBytes": 0,
+  "date": "2026-10-10T10:00:16.223Z",
+  "description": "Samanyu ICEBERG where GLACIER is blind public V1 reproduction; original pinned GPU image, RDKit 2026.03.3, fused top80 and fallback ICE; source-exact public12 checked; full hidden rerun with completeness assertions.",
+  "errorDescription": null,
+  "fileName": "submission.csv",
+  "publicScore": null,
+  "privateScore": null,
+  "status": "PENDING",
+  "submittedBy": "giaok246",
+  "submittedByRef": "giaok246",
+  "teamName": "Spectral_Forge",
+  "url": "/code/giaok246/casmi26-samanyu-iceberg-0-438-reproduction?scriptVersionId=357007287"
+}

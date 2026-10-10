@@ -1,0 +1,7 @@
+evidence/*pipeline*.log
+evidence/platform_output/platform_source.ipynb
+evidence/platform_output/submission.csv
+evidence/platform_output/eng_lists.json
+evidence/platform_output/pc_lists.json
+evidence/api_source.ipynb
+*.log

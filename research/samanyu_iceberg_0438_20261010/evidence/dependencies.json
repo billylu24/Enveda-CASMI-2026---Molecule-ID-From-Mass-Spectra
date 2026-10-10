@@ -1,0 +1,114 @@
+[
+  {
+    "ref": "prvsiyan/casmi26-fp-models-v2",
+    "version": 1,
+    "bytes": 288220510,
+    "license": "CC BY-NC-SA 4.0",
+    "updated": "2026-09-16 22:50:48.873000"
+  },
+  {
+    "ref": "dmitriigluzdov/casmi26-pubchem-popularity-prior",
+    "version": 4,
+    "bytes": 2761823452,
+    "license": "Other (specified in description)",
+    "updated": "2026-10-05 02:40:35.677000"
+  },
+  {
+    "ref": "prvsiyan/casmi26-ranker-features",
+    "version": 6,
+    "bytes": 9553020,
+    "license": "CC BY-NC-SA 4.0",
+    "updated": "2026-09-17 08:28:43.767000"
+  },
+  {
+    "ref": "megayak/casmi26-simulated-ranker-rows",
+    "version": 4,
+    "bytes": 365973865,
+    "license": "CC0: Public Domain",
+    "updated": "2026-09-20 14:03:38.470000"
+  },
+  {
+    "ref": "ahmedberatozer/casmi26-fpnet-full1",
+    "version": 1,
+    "bytes": 198791233,
+    "license": "Other (specified in description)",
+    "updated": "2026-09-29 10:10:49.307000"
+  },
+  {
+    "ref": "ahmedberatozer/casmi26-glacier",
+    "version": 1,
+    "bytes": 61108325,
+    "license": "Other (specified in description)",
+    "updated": "2026-09-28 09:32:41.470000"
+  },
+  {
+    "ref": "ahmedberatozer/casmi26-iceberg",
+    "version": 1,
+    "bytes": 66922972,
+    "license": "Other (specified in description)",
+    "updated": "2026-09-26 09:48:06.167000"
+  },
+  {
+    "ref": "ahmedberatozer/casmi26-pubchem-tier",
+    "version": 1,
+    "bytes": 7214128278,
+    "license": "Other (specified in description)",
+    "updated": "2026-09-23 11:12:42.060000"
+  },
+  {
+    "ref": "ahmedberatozer/casmi26-v2-pool",
+    "version": 1,
+    "bytes": 1684590501,
+    "license": "Other (specified in description)",
+    "updated": "2026-09-21 08:18:58.990000"
+  },
+  {
+    "ref": "ahmedberatozer/casmi26-v3-models",
+    "version": 4,
+    "bytes": 411860921,
+    "license": "Other (specified in description)",
+    "updated": "2026-09-23 10:45:15.137000"
+  },
+  {
+    "ref": "ahmedberatozer/casmi26-v4b-models",
+    "version": 4,
+    "bytes": 1682593139,
+    "license": "Other (specified in description)",
+    "updated": "2026-09-26 12:21:47.617000"
+  },
+  {
+    "ref": "prvsiyan/chebi-lipidmaps-casmi26",
+    "version": 1,
+    "bytes": 60447249,
+    "license": "CC BY-NC-SA 4.0",
+    "updated": "2026-09-16 16:35:44.453000"
+  },
+  {
+    "ref": "prvsiyan/coconut-casmi26-candidates",
+    "version": 2,
+    "bytes": 423346355,
+    "license": "Attribution 4.0 International (CC BY 4.0)",
+    "updated": "2026-09-15 19:42:45.477000"
+  },
+  {
+    "ref": "hengck23/hengck23-dreams-enveda-casmi26",
+    "version": 2,
+    "bytes": 6860940784,
+    "license": "MIT",
+    "updated": "2026-10-01 15:16:26.017000"
+  },
+  {
+    "ref": "metric/rdkit-2026-3-3-wheel",
+    "version": 1,
+    "bytes": 148891687,
+    "license": "Unknown",
+    "updated": "2026-09-08 22:23:23.197000"
+  },
+  {
+    "ref": "eveliaveldrine/rdkit-wheels",
+    "version": 3,
+    "bytes": 59763651,
+    "license": "Apache 2.0",
+    "updated": "2026-10-04 21:56:45.903000"
+  }
+]
