@@ -1,0 +1,27 @@
+{
+  "competition": "enveda-CASMI26-molecule-id-mass-spectra",
+  "notebook_slug": "giaok246/casmi26-samanyu-iceberg-0-438-reproduction",
+  "script_version_id": 357007287,
+  "source_notebook": "samanyu1808/casmi26-iceberg-where-glacier-is-blind-lb-0-438",
+  "source_version": 1,
+  "version_label": "Version 2",
+  "submission_description": "Samanyu ICEBERG where GLACIER is blind public V1 reproduction; original pinned GPU image, RDKit 2026.03.3, fused top80 and fallback ICE; source-exact public12 checked; full hidden rerun with completeness assertions.",
+  "run_status": "successful",
+  "submission_status": "Succeeded",
+  "public_score_mrr_at_25": 0.438,
+  "runtime_seconds_log": 1010.8,
+  "runtime_display": "16m 51s",
+  "accelerator": "GPU T4 x2",
+  "author": "yicheng lu",
+  "team": "Spectral_Forge",
+  "rank": 193,
+  "medal": "bronze",
+  "notebook_sha256": "25dceaa346d95bd0801a6bccaee838a51165fc71be09b2968ed53dec791d94c9",
+  "exported_python_sha256": "70a8ba9638dddf9c0e5824f0487dc6d5bde5c915593298b87fe7bae976fc94f1",
+  "verified_at_local_date": "2026-10-10",
+  "notes": [
+    "Reproduction of samanyu1808/casmi26-iceberg-where-glacier-is-blind-lb-0-438 V1.",
+    "Combines two-ranker engine (BIO + AFIX), Ahmed Berat Özer's v4n engine, PubChem popularity prior, ICEBERG + GLACIER spectrum simulators, and GLACIER blind-spot fallback to ICEBERG.",
+    "Achieved personal best 0.438 public MRR@25 on leaderboard."
+  ]
+}

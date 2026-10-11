@@ -567,8 +567,13 @@ PairTail 进入确认性候选的开发门槛：`net_tail_gain > 0`，`rescued@2
 | 资源 | GPU T4 x2 |
 | 输入 | 比赛数据 + 14 个数据集，共 15 个输入源 |
 | 环境 | 固定到原始 2026-06-30 环境；Internet off |
-| 初始状态 | Running |
+| 最终状态 | Successfully ran |
+| 总运行时 | 7370.8 秒（2 小时 2 分 51 秒） |
 | 初始校验 | RDKit 2026.03.3；64 个文件匹配 `MANIFEST.json`；V4/V3、pool、PubChem 与 popularity prior 均发现 |
+| 关键阶段 | 主引擎 400/400、0 errors；PubChem 400/400；ICE 71/371 covered（300 秒预算停止）；GLACIER 366/366；最终验证 400 molecules |
+| 输出文件 | `submission.csv`，393,908 bytes（页面显示 393.91 kB） |
+| 输出校验 | 400 行、400 个唯一 `molecule_id`、每题 3—25 个候选、无空 ID；Notebook 内 RDKit 最终合法性校验通过 |
+| SHA-256 | `743fcd271cb15de56121da2d58b002b94da450b9c7c0eacba2da72166e89e20d` |
 | 自动提交 | 禁止；仅生成并检查 `submission.csv` |
 
-完成后必须补录：最终状态、总耗时、`submission.csv` 行数/合法性/SHA、关键阶段日志、与原版输出的可比性，以及是否可在同一公开榜环境得到约 0.417。原版包含 400 个 `molecule_id -> top1` 的 PairTail 锁定字典，因此即使复现成功，也只把它视为“原版行为复现”；下一次正式训练必须使用第 6、11、15 节规定的动态 ID 与反查测试。
+原版行为已成功复现；但尚未提交比赛，因此不能把 0.417 榜分视为已经独立复核。原版包含 400 个 `molecule_id -> top1` 的 PairTail 锁定字典，因此本结果只视为“原版行为复现”；下一次正式训练必须使用第 6、11、15 节规定的动态 ID 与反查测试。

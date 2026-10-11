@@ -1,142 +1,164 @@
 {
-  "stage": "M3_version9_failed_cache_input_unavailable",
-  "M2_required_version": 355568739,
-  "M2_current_status": "complete_independently_verified",
-  "LOTUS_dataset": {
-    "url": "https://www.kaggle.com/datasets/xiaoyuzhoux120/casmi-np-lotus-ranker-assets-20261005",
-    "version": 1,
-    "visibility": "private",
-    "visible_unpacked_bytes_display": "17.78 MB",
-    "asset_hashes": "runtime_asset_manifest.json",
-    "creation_failure_preserved": "release CDN import internal error; stable commit-pinned raw GitHub import succeeded"
-  },
-  "tests": "56 targeted tests passed",
-  "acceptance_opened": false,
-  "competition_submitted": false,
-  "public_score": null,
-  "failure_v6": {
-    "version": 6,
-    "script_version_id": 355588750,
-    "observed_elapsed_seconds": 1932.3,
-    "reason": "research budget exhausted during structure pool identity audit",
-    "candidate_freeze_created": false,
-    "submission_csv_created": false,
-    "acceptance_opened": false,
-    "last_visible_progress": {
-      "completed": 48000,
-      "total": 134019
-    }
-  },
-  "gated_acceptance_entry": "prepared_not_executed",
-  "inference_only_entry": "prepared_not_executed",
-  "unneeded_draft_startup": {
-    "budget_allowance_seconds": 300.0,
-    "actual_worker_seconds": null,
-    "code_executed": false,
-    "session_stopped": true
-  },
-  "pre_run_feature_optimization": {
-    "training_proposal_unchanged": true,
-    "selected_features_exact_parity": true,
-    "full_evaluation_features_exact_parity": true,
-    "query_constants_hoisted": true,
-    "real_experiment_gain_measured": false,
-    "audit": "feature_runtime_equivalence.json"
-  },
-  "remaining_research_seconds_before_M3_preparation": 2369.8501735180016,
-  "version": 9,
-  "script_version_id": 356616700,
-  "notebook_url": "https://www.kaggle.com/code/xiaoyuzhoux120/casmi-np-pairtail-fpnet-20261004?scriptVersionId=356616700",
-  "source_commit": "a29408b",
-  "embedded_source_sha256": "ae00e0a8601aa9d625093f0e79323040d8f6dc6b40b7ee6d64d823b8969a8a1a",
-  "self_model_input_version": 8,
-  "editor_cells_exact_match": true,
-  "failure_v5": {
-    "version": 5,
-    "script_version_id": 355588043,
-    "seconds": 151.5,
-    "reason": "training contains unsupported charge-1 query adducts; evaluation domain already filtered",
-    "acceptance_opened": false
-  },
-  "engineering_repair": {
-    "training_only_supported_measurements": true,
-    "identity_selection_unchanged_no_backfill": true,
-    "no_truth_mass_fallback": true,
-    "development_acceptance_inference_unchanged": true,
-    "failure_seconds_carried": 151.5,
-    "tests": "26 passed"
-  },
-  "remaining_research_seconds_before_current_preparation": 1918.3501735180016,
-  "restart": {
-    "reason": "user explicitly requested a fresh restart after Version7",
-    "optimization": "reuse Version7 hash-valid completed pool; do not repeat structure audit",
-    "scientific_parameters_changed": false,
-    "tests": "25 relevant tests passed",
-    "new_run_started": true,
-    "fresh_M3_allowance_seconds": 7200,
-    "previous_failure_seconds_preserved_separately": 4314.6,
-    "version7_reusable_pool": {
-      "file": "np_pairtail_ranker/base_structure_pool.parquet",
-      "visible_size": "24.86 MB",
-      "pool_audit_completed": "134019/134019",
-      "reference_scan_progress": "819200 rows",
-      "acceptance_opened": false
+    "stage": "M3_version9_failed_cache_input_unavailable",
+    "M2_required_version": 355568739,
+    "M2_current_status": "complete_independently_verified",
+    "LOTUS_dataset": {
+        "url": "https://www.kaggle.com/datasets/xiaoyuzhoux120/casmi-np-lotus-ranker-assets-20261005",
+        "version": 1,
+        "visibility": "private",
+        "visible_unpacked_bytes_display": "17.78 MB",
+        "asset_hashes": "runtime_asset_manifest.json",
+        "creation_failure_preserved": "release CDN import internal error; stable commit-pinned raw GitHub import succeeded"
     },
-    "new_run_version": 8,
-    "new_run_script_version_id": 356186436,
-    "new_run_name": "M3 cached fresh budget ab47cc6",
-    "accelerator": "GPU T4 x2",
-    "internet": "OFF",
-    "environment": "2026-06-30",
-    "started_at": "2026-10-07T14:38:49-07:00"
-  },
-  "failure_v8": {
-    "version": 8,
-    "script_version_id": 356186436,
-    "worker_seconds": 7220.0,
-    "reason": "M3 candidate feature budget exhausted",
-    "training_unknown_completed": 400,
-    "training_unknown_total": 3921,
-    "training_candidate_rows": 135005,
-    "reference_scan_completed": true,
-    "candidate_freeze_created": false,
-    "submission_csv_created": false,
-    "acceptance_opened": false
-  },
-  "version9_repair": {
-    "stage": "failed",
-    "embedded_source_sha256": "ae00e0a8601aa9d625093f0e79323040d8f6dc6b40b7ee6d64d823b8969a8a1a",
-    "reuse_from_version8": [
-      "reference_rows.parquet",
-      "reference_metadata.parquet",
-      "reference_spectra.npz"
-    ],
-    "reuse_partial_features_models_rankings": false,
-    "reusable_tautomer_enumerator": true,
-    "training_chemical_support_selected_rows_only": true,
-    "chemical_match_cache": true,
-    "scientific_parameters_changed": false,
-    "tests": "67 passed",
+    "tests": "56 targeted tests passed",
+    "acceptance_opened": false,
+    "competition_submitted": false,
+    "public_score": 0.438,
+    "failure_v6": {
+        "version": 6,
+        "script_version_id": 355588750,
+        "observed_elapsed_seconds": 1932.3,
+        "reason": "research budget exhausted during structure pool identity audit",
+        "candidate_freeze_created": false,
+        "submission_csv_created": false,
+        "acceptance_opened": false,
+        "last_visible_progress": {
+            "completed": 48000,
+            "total": 134019
+        }
+    },
+    "gated_acceptance_entry": "prepared_not_executed",
+    "inference_only_entry": "prepared_not_executed",
+    "unneeded_draft_startup": {
+        "budget_allowance_seconds": 300.0,
+        "actual_worker_seconds": null,
+        "code_executed": false,
+        "session_stopped": true
+    },
+    "pre_run_feature_optimization": {
+        "training_proposal_unchanged": true,
+        "selected_features_exact_parity": true,
+        "full_evaluation_features_exact_parity": true,
+        "query_constants_hoisted": true,
+        "real_experiment_gain_measured": false,
+        "audit": "feature_runtime_equivalence.json"
+    },
+    "remaining_research_seconds_before_M3_preparation": 2369.8501735180016,
     "version": 9,
     "script_version_id": 356616700,
-    "run_name": "M3 cached reference repair a29408b",
+    "notebook_url": "https://www.kaggle.com/code/xiaoyuzhoux120/casmi-np-pairtail-fpnet-20261004?scriptVersionId=356616700",
     "source_commit": "a29408b",
-    "accelerator": "GPU T4 x2",
-    "internet": "OFF",
-    "environment": "2026-06-30",
-    "started_at": "2026-10-08T20:39:00-07:00",
-    "acceptance_opened": false,
-    "candidate_freeze_created": false,
-    "submission_csv_created": false,
-    "finished_at": "2026-10-09T17:42:24-07:00",
-    "error_type": "TimeoutError",
-    "error": "M3 candidate feature budget exhausted",
-    "reference_cache_loaded": false,
-    "reference_scan_repeated": true,
-    "training_unknown_completed": 425,
-    "training_unknown_total": 3921,
-    "training_candidate_rows": 147276,
-    "root_cause": "The self-notebook input exposed the last successful output rather than failed Version 8 artifacts, so no eligible reference cache was mounted.",
-    "next_gate": "Publish the failed-run reference cache as a hash-bound private dataset before any further M3 execution."
-  }
+    "embedded_source_sha256": "ae00e0a8601aa9d625093f0e79323040d8f6dc6b40b7ee6d64d823b8969a8a1a",
+    "self_model_input_version": 8,
+    "editor_cells_exact_match": true,
+    "failure_v5": {
+        "version": 5,
+        "script_version_id": 355588043,
+        "seconds": 151.5,
+        "reason": "training contains unsupported charge-1 query adducts; evaluation domain already filtered",
+        "acceptance_opened": false
+    },
+    "engineering_repair": {
+        "training_only_supported_measurements": true,
+        "identity_selection_unchanged_no_backfill": true,
+        "no_truth_mass_fallback": true,
+        "development_acceptance_inference_unchanged": true,
+        "failure_seconds_carried": 151.5,
+        "tests": "26 passed"
+    },
+    "remaining_research_seconds_before_current_preparation": 1918.3501735180016,
+    "restart": {
+        "reason": "user explicitly requested a fresh restart after Version7",
+        "optimization": "reuse Version7 hash-valid completed pool; do not repeat structure audit",
+        "scientific_parameters_changed": false,
+        "tests": "25 relevant tests passed",
+        "new_run_started": true,
+        "fresh_M3_allowance_seconds": 7200,
+        "previous_failure_seconds_preserved_separately": 4314.6,
+        "version7_reusable_pool": {
+            "file": "np_pairtail_ranker/base_structure_pool.parquet",
+            "visible_size": "24.86 MB",
+            "pool_audit_completed": "134019/134019",
+            "reference_scan_progress": "819200 rows",
+            "acceptance_opened": false
+        },
+        "new_run_version": 8,
+        "new_run_script_version_id": 356186436,
+        "new_run_name": "M3 cached fresh budget ab47cc6",
+        "accelerator": "GPU T4 x2",
+        "internet": "OFF",
+        "environment": "2026-06-30",
+        "started_at": "2026-10-07T14:38:49-07:00"
+    },
+    "failure_v8": {
+        "version": 8,
+        "script_version_id": 356186436,
+        "worker_seconds": 7220.0,
+        "reason": "M3 candidate feature budget exhausted",
+        "training_unknown_completed": 400,
+        "training_unknown_total": 3921,
+        "training_candidate_rows": 135005,
+        "reference_scan_completed": true,
+        "candidate_freeze_created": false,
+        "submission_csv_created": false,
+        "acceptance_opened": false
+    },
+    "version9_repair": {
+        "stage": "failed",
+        "embedded_source_sha256": "ae00e0a8601aa9d625093f0e79323040d8f6dc6b40b7ee6d64d823b8969a8a1a",
+        "reuse_from_version8": [
+            "reference_rows.parquet",
+            "reference_metadata.parquet",
+            "reference_spectra.npz"
+        ],
+        "reuse_partial_features_models_rankings": false,
+        "reusable_tautomer_enumerator": true,
+        "training_chemical_support_selected_rows_only": true,
+        "chemical_match_cache": true,
+        "scientific_parameters_changed": false,
+        "tests": "67 passed",
+        "version": 9,
+        "script_version_id": 356616700,
+        "run_name": "M3 cached reference repair a29408b",
+        "source_commit": "a29408b",
+        "accelerator": "GPU T4 x2",
+        "internet": "OFF",
+        "environment": "2026-06-30",
+        "started_at": "2026-10-08T20:39:00-07:00",
+        "acceptance_opened": false,
+        "candidate_freeze_created": false,
+        "submission_csv_created": false,
+        "finished_at": "2026-10-09T17:42:24-07:00",
+        "error_type": "TimeoutError",
+        "error": "M3 candidate feature budget exhausted",
+        "reference_cache_loaded": false,
+        "reference_scan_repeated": true,
+        "training_unknown_completed": 425,
+        "training_unknown_total": 3921,
+        "training_candidate_rows": 147276,
+        "root_cause": "The self-notebook input exposed the last successful output rather than failed Version 8 artifacts, so no eligible reference cache was mounted.",
+        "next_gate": "Publish the failed-run reference cache as a hash-bound private dataset before any further M3 execution."
+    },
+    "highest_verified_submission": {
+        "score": 0.438,
+        "notebook": "giaok246/casmi26-samanyu-iceberg-0-438-reproduction",
+        "script_version_id": 357007287,
+        "team": "Spectral_Forge",
+        "rank": 193,
+        "date": "2026-10-10",
+        "archive_dir": "kaggle_release_0438_iceberg"
+    },
+    "previous_verified_submissions": [
+        {
+            "score": 0.433,
+            "notebook": "CASMI26 Amanatar V18 Reproduction",
+            "date": "2026-10-08"
+        },
+        {
+            "score": 0.417,
+            "notebook": "xiaoyuzhoux120/casmi26-v44-pairtail-locked-top1",
+            "script_version_id": 355245043,
+            "date": "2026-10-04"
+        }
+    ]
 }

@@ -1,0 +1,32 @@
+{
+  "competition": "enveda-CASMI26-molecule-id-mass-spectra",
+  "notebook_slug": "xiaoyuzhoux120/casmi26-v44-pairtail-locked-top1",
+  "script_version_id": 355245043,
+  "source_version_id": 354936340,
+  "version_label": "Reproduce original V3 354936340",
+  "submission_description": "V44 PairTail Locked Top1 — exact reproduction of public V3 (354936340).",
+  "run_status": "successful",
+  "submission_status": "Succeeded",
+  "public_score_mrr_at_25": 0.417,
+  "runtime_seconds_log": 7370.8,
+  "runtime_seconds_papermill": 7356.54022,
+  "papermill_start_utc": "2026-10-04T18:29:15.523937+00:00",
+  "papermill_end_utc": "2026-10-04T20:31:52.064157+00:00",
+  "papermill_exception": null,
+  "runtime_display": "2h 2m 51s",
+  "accelerator": "GPU T4 x2",
+  "submission_rows": 400,
+  "unique_molecule_ids": 400,
+  "min_candidates": 3,
+  "max_candidates": 25,
+  "submission_sha256": "743fcd271cb15de56121da2d58b002b94da450b9c7c0eacba2da72166e89e20d",
+  "notebook_sha256": "a2e7b33b4bdf67dde29cd2773288f1a466f76d928b75de7eb7d9a301d611d16b",
+  "exported_python_sha256": "42d395c311fc4588c999f700c5f3ae00adea4f033b5a0ac3c4a96f13c0fdf348",
+  "notebook_metadata_sha256": "1d554eee9d59192365140dc6a19f7a4ebade73ef5356265efbe66167c80dd548",
+  "final_submission_selection_observed": "0/2; not manually selected",
+  "verified_at_local_date": "2026-10-05",
+  "notes": [
+    "Kaggle automatically selects best scoring submissions at deadline when fewer than two are manually selected.",
+    "Notebook contains a fixed 400-ID V29 top-1 mapping; it changed one final top-1 after fusion and is not an admissible generalization mechanism."
+  ]
+}
