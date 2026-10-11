@@ -1,5 +1,6 @@
 """Finish one source-exact Kaggle reproduction, code submission and official score."""
 import datetime
+import fcntl
 import hashlib
 import json
 import subprocess
@@ -69,6 +70,8 @@ def accept(client, version):
     write(EVID / 'platform_acceptance.json', evidence)
     print(stamp(), 'SOURCE_EXACT_ACCEPTANCE_PASSED', comparison, flush=True)
 
+lock = (EVID / 'monitor.lock').open('w')
+fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
 client = api()
 state = json.loads(STATE.read_text())
 version = state['push_response']['versionNumber']

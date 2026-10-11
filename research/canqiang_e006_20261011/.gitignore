@@ -11,3 +11,6 @@
 /evidence/source_reference/baseline_submission.csv
 /evidence/source_reference/api_metadata.json
 /evidence/github_sync.json
+/evidence/monitor.lock
+/evidence/background_monitor.json
+/evidence/rejected_push_attempt.json
