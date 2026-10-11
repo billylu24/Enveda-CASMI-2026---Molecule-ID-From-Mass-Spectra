@@ -4,11 +4,13 @@ This is a mass-filtered spectral-library retrieval baseline for the [Enveda CASM
 
 ## Current results snapshot
 
-Best verified public MRR@25: **0.438** (Leaderboard rank 193, bronze medal zone). The exact `CASMI26 Samanyu ICEBERG 0.438 Reproduction` (Kaggle script version `357007287`) completed successfully on T4 x2 in **16m 51s** and scored **0.438**, improving upon the earlier **0.433** (Amanatar V18) and **0.417** (V44 PairTail Locked Top1). The full downloaded notebook, Python export, checksums, and workflow summary are archived in [the 0.438 reproduction release](kaggle_release_0438_iceberg/README.md).
+Best verified public MRR@25: **0.440** (Canqiang E006 V1 reproduction, submitted 2026-10-10, author `yicheng lu`, team `Spectral_Forge`).
+Latest submitted version: **`CASMI26 Adaptive Simulator Fusion 0.44x`** (Adaptive Simulator Fusion 0.44x V1, author `xiaoyuzhoux120`, submitted 2026-10-11, currently evaluating on hidden test).
 
-Previous verified baseline was **0.417**. The exact V44 PairTail Locked Top1 reproduction (Kaggle script version `355245043`) completed successfully on T4 x2 in **2h 2m 51s** and its competition submission scored **0.417**. The full downloaded notebook, searchable Python export, checksums, measured stage timings and caveats are frozen in [the V44 reproduction archive](kaggle_release_v44_reproduction/README.md). The consolidated state and quantitative next-run gates are in [the 2026-10-05 project handoff](docs/PROJECT_HANDOFF_20261005.md).
-
-This 0.417 notebook includes a fixed 400-test-ID Top1 mapping inherited from V29; it changed one final Top1 after fusion. Treat 0.417 as an exact leaderboard regression baseline, not as clean evidence of generalization. The honest next-run branch must remove that mapping and pass ID-remapping invariance plus sealed-acceptance gates.
+Previous verified milestones:
+- **0.438** (`CASMI26 Samanyu ICEBERG 0.438 Reproduction`, scriptVersionId `357007287`, rank 193 bronze medal zone). Archived in [kaggle_release_0438_iceberg/](kaggle_release_0438_iceberg/README.md).
+- **0.433** (`CASMI26 Amanatar V18 Reproduction - Version 2`).
+- **0.417** (`CASMI26 V44 PairTail Locked Top1`, scriptVersionId `355245043`). Archived in [kaggle_release_v44_reproduction/](kaggle_release_v44_reproduction/README.md).
 
 The earlier in-repository research best was **0.176**. The real conditional fingerprint GAN v2 submission **Succeeded** and scored **0.171**, verified on 2026-10-03; it is 0.005 below that earlier best. The chemical-prior historical-hybrid experiment scored **0.176**, and the preceding PubChemLite experiment scored **0.171**. See [the consolidated results and repository contents](docs/GITHUB_SNAPSHOT.md) for those submissions, validation caveats, and which assets must be regenerated.
 
