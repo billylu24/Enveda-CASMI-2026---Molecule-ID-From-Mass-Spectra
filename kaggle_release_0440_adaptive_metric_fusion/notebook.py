@@ -1313,7 +1313,7 @@ def _factorial_entry(scope):
         print("FACTORIAL_VERIFICATION", json.dumps(report))
         return report
 
-    return run_overlay(scope, **{'experiment': 'E006_Adaptive_Fusion', 'window': 40, 'ice_fallback': True, 'provenance': {'base_notebook_sha256': '1f0f9b3026a93ddb5ad6fa6993c8ac0a4bfaddc54594eb1dd6dda7a20d8ef0d6', 'base_source_code_sha256': 'eee496a371fce179b4aeda1c5082a58212c724eaf1ca4ba0c943bbe8d7196ef2', 'helper_source_sha256': 'a027a69ddda2c2e14639e3ec5196d5f1eb2ab57cba10ef929723148f31fc8f34', 'source_script_version_id': 356740494, 'ice_policy_source_script_version_id': 356785434, 'ice_policy_source': 'samanyu1808/casmi26-iceberg-where-glacier-is-blind-lb-0-438/1'}})
+    return run_overlay(scope, **{'experiment': 'E006', 'window': 40, 'ice_fallback': True, 'provenance': {'base_notebook_sha256': '1f0f9b3026a93ddb5ad6fa6993c8ac0a4bfaddc54594eb1dd6dda7a20d8ef0d6', 'base_source_code_sha256': 'eee496a371fce179b4aeda1c5082a58212c724eaf1ca4ba0c943bbe8d7196ef2', 'helper_source_sha256': 'a027a69ddda2c2e14639e3ec5196d5f1eb2ab57cba10ef929723148f31fc8f34', 'source_script_version_id': 356740494, 'ice_policy_source_script_version_id': 356785434, 'ice_policy_source': 'samanyu1808/casmi26-iceberg-where-glacier-is-blind-lb-0-438/1'}})
 
 FACTORIAL_REPORT = _factorial_entry(globals())
 del _factorial_entry
