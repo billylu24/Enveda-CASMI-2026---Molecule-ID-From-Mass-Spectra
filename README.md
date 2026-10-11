@@ -158,4 +158,4 @@ candidate coverage, mass-hypothesis, and generation-ranking priorities.
 
 ### Canqiang E006 reproduction (2026-10-11)
 
-Reproduced public V1 with all 30 original code cells unchanged, the original Python 3.12 T4 image, 16 pinned datasets, candidate window 40 and ICEBERG fallback enabled. The 12-molecule preview CSV matches the source exactly; placeholders were excluded from direct submission. Official code submission **57067224**, notebook V1, is **PENDING**; the full hidden test is running and no score is available yet. [Reproduction and evidence](research/canqiang_e006_20261011/README.md); [official result](research/canqiang_e006_20261011/RESULTS.md).
+Reproduced public V1 with all 30 original code cells unchanged, the original Python 3.12 T4 image, 16 pinned datasets, candidate window 40 and ICEBERG fallback enabled. The 12-molecule preview CSV matches the source exactly; placeholders were excluded from direct submission. Official code submission **57067224**, notebook V1, completed with public MRR@25 **0.440**. [Reproduction and evidence](research/canqiang_e006_20261011/README.md); [official result](research/canqiang_e006_20261011/RESULTS.md).

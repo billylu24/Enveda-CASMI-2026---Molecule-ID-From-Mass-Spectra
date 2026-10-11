@@ -1,0 +1,19 @@
+{
+  "source": "canqiang/casmi26-e006-window-40-ice-fallback-true",
+  "source_version": 1,
+  "kernel": "giaok246/casmi26-canqiang-e006-reproduction",
+  "notebook_version": 1,
+  "submission_id": 57067224,
+  "status": "COMPLETE",
+  "public_mrr25": 0.44,
+  "source_code_exact": true,
+  "original_code_cells": 30,
+  "source_preview_exact": true,
+  "processed_preview_molecules": 12,
+  "preview_placeholders_excluded": 388,
+  "window": 40,
+  "ice_fallback": true,
+  "upstream_page_public_score": 0.44,
+  "delta_upstream_page": 0.0,
+  "note": "Official code-submission score; visible preview is not independent validation."
+}

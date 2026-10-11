@@ -21,4 +21,4 @@ E006 在同一轮模型结果上，以官方 metric identity 为单位，对两�
 `publish.py` 记录版本及提交意图，阻止盲目重复提交。`monitor.py` 验收平台预览，提交同一版本，查询官方结果，生成报告并推送本次文件到 GitHub。`check_live.py` 只读查询运行状态。大型原始数据和模型保留在 Kaggle；GitHub 保存代码、依赖版本、执行验收和结果。
 
 <!-- official-result -->
-本次提交 **57067224**，状态 **PENDING**，完整隐藏测试正在运行，尚无官方成绩。 详见 [RESULTS.md](RESULTS.md)。
+本次提交 **57067224**，状态 **COMPLETE**，public MRR@25 **0.440**。 详见 [RESULTS.md](RESULTS.md)。
