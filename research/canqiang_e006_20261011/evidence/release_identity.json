@@ -1,0 +1,17 @@
+{
+  "source": "canqiang/casmi26-e006-window-40-ice-fallback-true",
+  "source_version": 1,
+  "original_code_cells": 30,
+  "source_sha256": "ee55b55c7f5bdb08f1a8154396b18fdb0203fb7178b3a52429e0999e69ad7e53",
+  "source_code_sha256": "9a1118e0db9f9f8c4a439c8d2f716d5ed1fad06eb5deabb2f765e413a422cb20",
+  "original_code_exact": true,
+  "retrieved_utc": "2026-10-11T07:34:32.778630+00:00",
+  "changes": [
+    "Added attribution markdown and read-only final acceptance cell; all original code unchanged.",
+    "Private account copy; pin dataset versions fetched before publication."
+  ],
+  "release_files": {
+    "reproduction.ipynb": "e06dc6550afb86168d6f83d031f6e818d9ef5a0a4ffdbbbb457f7f085890a657",
+    "kernel-metadata.json": "9080bfd06b2dcf6ecb99684aa7bc021ab4753f49921541d18a1dc62e89bd1ced"
+  }
+}

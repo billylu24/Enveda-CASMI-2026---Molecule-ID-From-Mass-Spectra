@@ -1,0 +1,5414 @@
+[
+  {
+    "name": "__pycache__/probe_core2.cpython-312.pyc"
+  },
+  {
+    "name": "baseline_submission.csv"
+  },
+  {
+    "name": "candidate_audit.csv"
+  },
+  {
+    "name": "candidate_audit.json"
+  },
+  {
+    "name": "e004_candidate_inputs.json"
+  },
+  {
+    "name": "e004_verification.json"
+  },
+  {
+    "name": "eng/__pycache__/casmi_engine.cpython-312.pyc"
+  },
+  {
+    "name": "eng/__pycache__/pv.cpython-312.pyc"
+  },
+  {
+    "name": "eng/__pycache__/pv_fp.cpython-312.pyc"
+  },
+  {
+    "name": "eng/casmi_engine.py"
+  },
+  {
+    "name": "eng/eng_runner.py"
+  },
+  {
+    "name": "eng/pv.py"
+  },
+  {
+    "name": "eng/pv_fp.py"
+  },
+  {
+    "name": "eng_lists.json"
+  },
+  {
+    "name": "experiment_audit.csv"
+  },
+  {
+    "name": "experiment_audit.json"
+  },
+  {
+    "name": "experiment_audit_factorial.csv"
+  },
+  {
+    "name": "experiment_audit_factorial.json"
+  },
+  {
+    "name": "experiment_verification.json"
+  },
+  {
+    "name": "gl_work/gl_in.json"
+  },
+  {
+    "name": "gl_work/gl_out.json"
+  },
+  {
+    "name": "gl_work/gl_out.json.meta.json"
+  },
+  {
+    "name": "ice_site/.ice_site_ok"
+  },
+  {
+    "name": "ice_site/einops-0.8.2.dist-info/INSTALLER"
+  },
+  {
+    "name": "ice_site/einops-0.8.2.dist-info/METADATA"
+  },
+  {
+    "name": "ice_site/einops-0.8.2.dist-info/RECORD"
+  },
+  {
+    "name": "ice_site/einops-0.8.2.dist-info/REQUESTED"
+  },
+  {
+    "name": "ice_site/einops-0.8.2.dist-info/WHEEL"
+  },
+  {
+    "name": "ice_site/einops-0.8.2.dist-info/direct_url.json"
+  },
+  {
+    "name": "ice_site/einops-0.8.2.dist-info/licenses/LICENSE"
+  },
+  {
+    "name": "ice_site/einops/__init__.py"
+  },
+  {
+    "name": "ice_site/einops/_backends.py"
+  },
+  {
+    "name": "ice_site/einops/_torch_specific.py"
+  },
+  {
+    "name": "ice_site/einops/array_api.py"
+  },
+  {
+    "name": "ice_site/einops/einops.py"
+  },
+  {
+    "name": "ice_site/einops/experimental/__init__.py"
+  },
+  {
+    "name": "ice_site/einops/experimental/indexing.py"
+  },
+  {
+    "name": "ice_site/einops/layers/__init__.py"
+  },
+  {
+    "name": "ice_site/einops/layers/_einmix.py"
+  },
+  {
+    "name": "ice_site/einops/layers/flax.py"
+  },
+  {
+    "name": "ice_site/einops/layers/keras.py"
+  },
+  {
+    "name": "ice_site/einops/layers/oneflow.py"
+  },
+  {
+    "name": "ice_site/einops/layers/paddle.py"
+  },
+  {
+    "name": "ice_site/einops/layers/tensorflow.py"
+  },
+  {
+    "name": "ice_site/einops/layers/torch.py"
+  },
+  {
+    "name": "ice_site/einops/packing.py"
+  },
+  {
+    "name": "ice_site/einops/parsing.py"
+  },
+  {
+    "name": "ice_site/einops/py.typed"
+  },
+  {
+    "name": "ice_site/einops/tests/__init__.py"
+  },
+  {
+    "name": "ice_site/einops/tests/run_tests.py"
+  },
+  {
+    "name": "ice_site/einops/tests/test_einsum.py"
+  },
+  {
+    "name": "ice_site/einops/tests/test_examples.py"
+  },
+  {
+    "name": "ice_site/einops/tests/test_layers.py"
+  },
+  {
+    "name": "ice_site/einops/tests/test_ops.py"
+  },
+  {
+    "name": "ice_site/einops/tests/test_other.py"
+  },
+  {
+    "name": "ice_site/einops/tests/test_packing.py"
+  },
+  {
+    "name": "ice_site/einops/tests/test_parsing.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/CHANGELOG.md"
+  },
+  {
+    "name": "ice_site/lightning_fabric/__about__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/__setup__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/__version__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/_graveyard/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/_graveyard/tpu.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/accelerators/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/accelerators/accelerator.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/accelerators/cpu.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/accelerators/cuda.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/accelerators/mps.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/accelerators/registry.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/accelerators/xla.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/cli.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/connector.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/fabric.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/loggers/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/loggers/csv_logs.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/loggers/logger.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/loggers/tensorboard.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/collectives/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/collectives/collective.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/collectives/single_device.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/collectives/torch_collective.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/environments/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/environments/cluster_environment.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/environments/kubeflow.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/environments/lightning.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/environments/lsf.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/environments/mpi.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/environments/slurm.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/environments/torchelastic.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/environments/xla.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/io/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/io/checkpoint_io.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/io/torch_io.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/io/xla.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/precision/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/precision/amp.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/precision/bitsandbytes.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/precision/deepspeed.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/precision/double.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/precision/fsdp.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/precision/half.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/precision/precision.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/precision/transformer_engine.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/precision/utils.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/plugins/precision/xla.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/py.typed"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/ddp.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/deepspeed.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/dp.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/fsdp.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/launchers/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/launchers/launcher.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/launchers/multiprocessing.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/launchers/subprocess_script.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/launchers/xla.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/model_parallel.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/parallel.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/registry.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/single_device.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/single_xla.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/strategy.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/xla.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/strategies/xla_fsdp.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/apply_func.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/cloud_io.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/consolidate_checkpoint.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/data.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/device_dtype_mixin.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/device_parser.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/distributed.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/enums.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/exceptions.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/imports.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/init.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/load.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/logger.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/optimizer.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/rank_zero.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/registry.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/seed.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/spike.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/testing/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/testing/_runif.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/throughput.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/types.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/utilities/warnings.py"
+  },
+  {
+    "name": "ice_site/lightning_fabric/version.info"
+  },
+  {
+    "name": "ice_site/lightning_fabric/wrappers.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities-0.15.3.dist-info/INSTALLER"
+  },
+  {
+    "name": "ice_site/lightning_utilities-0.15.3.dist-info/METADATA"
+  },
+  {
+    "name": "ice_site/lightning_utilities-0.15.3.dist-info/RECORD"
+  },
+  {
+    "name": "ice_site/lightning_utilities-0.15.3.dist-info/REQUESTED"
+  },
+  {
+    "name": "ice_site/lightning_utilities-0.15.3.dist-info/WHEEL"
+  },
+  {
+    "name": "ice_site/lightning_utilities-0.15.3.dist-info/direct_url.json"
+  },
+  {
+    "name": "ice_site/lightning_utilities-0.15.3.dist-info/licenses/LICENSE"
+  },
+  {
+    "name": "ice_site/lightning_utilities-0.15.3.dist-info/top_level.txt"
+  },
+  {
+    "name": "ice_site/lightning_utilities/__about__.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/cli/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/cli/__main__.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/cli/dependencies.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/core/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/core/apply_func.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/core/enums.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/core/imports.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/core/inheritance.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/core/overrides.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/core/rank_zero.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/docs/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/docs/formatting.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/docs/retriever.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/install/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/install/requirements.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/py.typed"
+  },
+  {
+    "name": "ice_site/lightning_utilities/test/__init__.py"
+  },
+  {
+    "name": "ice_site/lightning_utilities/test/warning.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning-2.6.6.dist-info/INSTALLER"
+  },
+  {
+    "name": "ice_site/pytorch_lightning-2.6.6.dist-info/METADATA"
+  },
+  {
+    "name": "ice_site/pytorch_lightning-2.6.6.dist-info/RECORD"
+  },
+  {
+    "name": "ice_site/pytorch_lightning-2.6.6.dist-info/REQUESTED"
+  },
+  {
+    "name": "ice_site/pytorch_lightning-2.6.6.dist-info/WHEEL"
+  },
+  {
+    "name": "ice_site/pytorch_lightning-2.6.6.dist-info/direct_url.json"
+  },
+  {
+    "name": "ice_site/pytorch_lightning-2.6.6.dist-info/licenses/LICENSE"
+  },
+  {
+    "name": "ice_site/pytorch_lightning-2.6.6.dist-info/top_level.txt"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/CHANGELOG.md"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/MANIFEST.in"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/README.md"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/__about__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/__setup__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/__version__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/_graveyard/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/_graveyard/_torchmetrics.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/_graveyard/hpu.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/_graveyard/precision.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/_graveyard/tpu.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/accelerators/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/accelerators/accelerator.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/accelerators/cpu.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/accelerators/cuda.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/accelerators/mps.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/accelerators/xla.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/batch_size_finder.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/callback.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/checkpoint.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/device_stats_monitor.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/early_stopping.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/finetuning.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/gradient_accumulation_scheduler.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/lambda_function.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/lr_finder.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/lr_monitor.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/model_checkpoint.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/model_summary.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/on_exception_checkpoint.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/prediction_writer.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/progress/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/progress/progress_bar.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/progress/rich_progress.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/progress/tqdm_progress.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/pruning.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/rich_model_summary.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/spike.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/stochastic_weight_avg.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/throughput_monitor.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/timer.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/callbacks/weight_averaging.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/cli.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/core/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/core/datamodule.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/core/hooks.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/core/mixins/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/core/mixins/hparams_mixin.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/core/module.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/core/optimizer.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/core/saving.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/demos/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/demos/boring_classes.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/demos/lstm.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/demos/mnist_datamodule.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/demos/transformer.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loggers/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loggers/comet.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loggers/csv_logs.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loggers/litlogger.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loggers/logger.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loggers/mlflow.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loggers/neptune.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loggers/tensorboard.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loggers/utilities.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loggers/wandb.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loops/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loops/evaluation_loop.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loops/fetchers.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loops/fit_loop.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loops/loop.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loops/optimization/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loops/optimization/automatic.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loops/optimization/closure.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loops/optimization/manual.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loops/prediction_loop.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loops/progress.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loops/training_epoch_loop.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/loops/utilities.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/overrides/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/overrides/distributed.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/environments/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/io/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/io/async_plugin.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/io/checkpoint_plugin.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/io/torch_plugin.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/io/wrapper.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/io/xla_plugin.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/layer_sync.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/precision/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/precision/amp.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/precision/bitsandbytes.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/precision/deepspeed.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/precision/double.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/precision/fsdp.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/precision/half.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/precision/precision.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/precision/transformer_engine.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/plugins/precision/xla.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/profilers/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/profilers/advanced.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/profilers/base.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/profilers/profiler.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/profilers/pytorch.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/profilers/simple.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/profilers/xla.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/py.typed"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/serve/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/serve/servable_module.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/serve/servable_module_validator.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/strategies/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/strategies/ddp.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/strategies/deepspeed.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/strategies/fsdp.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/strategies/launchers/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/strategies/launchers/launcher.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/strategies/launchers/multiprocessing.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/strategies/launchers/subprocess_script.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/strategies/launchers/xla.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/strategies/model_parallel.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/strategies/parallel.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/strategies/single_device.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/strategies/single_xla.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/strategies/strategy.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/strategies/xla.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/call.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/configuration_validator.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/connectors/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/connectors/accelerator_connector.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/connectors/callback_connector.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/connectors/checkpoint_connector.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/connectors/data_connector.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/connectors/logger_connector/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/connectors/logger_connector/fx_validator.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/connectors/logger_connector/logger_connector.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/connectors/logger_connector/result.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/connectors/signal_connector.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/setup.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/states.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/trainer/trainer.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/tuner/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/tuner/batch_size_scaling.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/tuner/lr_finder.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/tuner/tuning.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/_pytree.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/argparse.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/combined_loader.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/compile.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/consolidate_checkpoint.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/data.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/deepspeed.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/enums.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/exceptions.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/grads.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/imports.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/memory.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/migration/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/migration/migration.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/migration/utils.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/model_helpers.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/model_registry.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/model_summary/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/model_summary/model_summary.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/model_summary/model_summary_deepspeed.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/parameter_tying.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/parsing.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/rank_zero.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/seed.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/signature_utils.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/testing/__init__.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/testing/_runif.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/types.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/upgrade_checkpoint.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/utilities/warnings.py"
+  },
+  {
+    "name": "ice_site/pytorch_lightning/version.info"
+  },
+  {
+    "name": "ice_site/rdkit-2025.3.6.dist-info/INSTALLER"
+  },
+  {
+    "name": "ice_site/rdkit-2025.3.6.dist-info/LICENSE.md"
+  },
+  {
+    "name": "ice_site/rdkit-2025.3.6.dist-info/METADATA"
+  },
+  {
+    "name": "ice_site/rdkit-2025.3.6.dist-info/RECORD"
+  },
+  {
+    "name": "ice_site/rdkit-2025.3.6.dist-info/REQUESTED"
+  },
+  {
+    "name": "ice_site/rdkit-2025.3.6.dist-info/WHEEL"
+  },
+  {
+    "name": "ice_site/rdkit-2025.3.6.dist-info/direct_url.json"
+  },
+  {
+    "name": "ice_site/rdkit-2025.3.6.dist-info/top_level.txt"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Avalon/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Avalon/pyAvalonTools.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/AllChem.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/AtomPairs/Pairs.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/AtomPairs/Sheridan.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/AtomPairs/Torsions.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/AtomPairs/Utils.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/AtomPairs/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/BRICS.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/BuildFragmentCatalog.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/ChemUtils/AlignDepict.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/ChemUtils/BulkTester.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/ChemUtils/DescriptorUtilities.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/ChemUtils/SDFToCSV.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/ChemUtils/TemplateExpand.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/ChemUtils/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/ChemicalFeatures.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/ChemicalForceFields.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Crippen.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Descriptors.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Descriptors3D.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Draw/MolDrawing.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Draw/SimilarityMaps.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Draw/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Draw/rdMolDraw2D.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/EState/AtomTypes.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/EState/EState.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/EState/EState_VSA.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/EState/Fingerprinter.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/EState/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/EnumerateHeterocycles.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/EnumerateStereoisomers.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/FastSDMolSupplier.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/FeatFinderCLI.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/FeatMaps/FeatMapParser.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/FeatMaps/FeatMapPoint.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/FeatMaps/FeatMapUtils.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/FeatMaps/FeatMaps.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/FeatMaps/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Features/FeatDirUtilsRD.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Features/ShowFeats.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Features/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/FilterCatalog.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Fingerprints/ClusterMols.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Fingerprints/DbFpSupplier.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Fingerprints/FingerprintMols.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Fingerprints/MolSimilarity.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Fingerprints/SimilarityScreener.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Fingerprints/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Fraggle/FraggleSim.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Fraggle/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/FragmentCatalog.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/FragmentMatcher.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Fragments.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/FunctionalGroups.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/GraphDescriptors.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Graphs.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Lipinski.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/MACCSkeys.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/MCS.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/MolCatalog.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/MolDb/FingerprintUtils.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/MolDb/Loader.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/MolDb/Loader_orig.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/MolDb/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/MolKey/InchiInfo.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/MolKey/MolKey.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/MolKey/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/MolStandardize/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/MolStandardize/rdMolStandardize.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/MolSurf.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Pharm2D/Generate.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Pharm2D/Gobbi_Pharm2D.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Pharm2D/Matcher.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Pharm2D/SigFactory.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Pharm2D/Utils.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Pharm2D/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Pharm3D/EmbedLib.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Pharm3D/ExcludedVolume.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Pharm3D/Pharmacophore.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Pharm3D/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/PropertyMol.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/PyMol.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/QED.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Randomize.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Recap.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/ReducedGraphs.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/RegistrationHash.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/SATIS.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/SaltRemover.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Scaffolds/MurckoScaffold.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Scaffolds/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Scaffolds/rdScaffoldNetwork.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/ShowMols.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/SimpleEnum/Enumerator.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/SimpleEnum/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/SpacialScore.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Subshape/BuilderUtils.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Subshape/SubshapeAligner.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Subshape/SubshapeBuilder.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Subshape/SubshapeObjects.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Subshape/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Suppliers/DbMolSupplier.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Suppliers/MolSupplier.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/Suppliers/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/TemplateAlign.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/TorsionFingerprints.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/fmcs/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/fmcs/fmcs.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/inchi.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdAbbreviations.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdCIPLabeler.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdChemDraw.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdChemReactions.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdChemicalFeatures.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdCoordGen.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdDepictor.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdDeprotect.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdDetermineBonds.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdDistGeom.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdEHTTools.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdEnumerateStereoisomers.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdFMCS.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdFingerprintGenerator.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdForceFieldHelpers.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdFreeSASA.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdGeneralizedSubstruct.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdMHFPFingerprint.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdMIF.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdMMPA.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdMolAlign.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdMolCatalog.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdMolChemicalFeatures.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdMolDescriptors.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdMolEnumerator.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdMolHash.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdMolInterchange.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdMolProcessing.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdMolTransforms.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdPartialCharges.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdRGroupDecomposition.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdRascalMCES.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdReducedGraphs.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdSLNParse.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdShapeAlign.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdShapeHelpers.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdSubstructLibrary.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdSynthonSpaceSearch.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdTautomerQuery.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdchem.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdfiltercatalog/FilterMatchOps.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdfiltercatalog/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdfragcatalog.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdinchi.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdmolfiles.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdmolops.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdqueries.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Chem/rdtrajectory.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/DataManip/Metric/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/DataManip/Metric/rdMetricMatrixCalc.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/DataManip/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/DataStructs/BitEnsemble.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/DataStructs/BitEnsembleDb.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/DataStructs/BitUtils.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/DataStructs/LazySignature.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/DataStructs/TopNContainer.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/DataStructs/VectCollection.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/DataStructs/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/DataStructs/cDataStructs.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Dbase/DbConnection.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Dbase/DbInfo.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Dbase/DbModule.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Dbase/DbResultSet.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Dbase/DbUtils.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Dbase/StorageUtils.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Dbase/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/DistanceGeometry/DistGeom.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/DistanceGeometry/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ForceField/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ForceField/rdForceField.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Geometry/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Geometry/rdGeometry.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Cluster/Butina.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Cluster/ClusterUtils.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Cluster/ClusterVis.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Cluster/Clustering.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Cluster/Clusters.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Cluster/Murtagh.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Cluster/Resemblance.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Cluster/Standardize.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Cluster/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Cluster/murtagh_test.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Data/DataUtils.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Data/FindQuantBounds.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Data/MLData.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Data/Quantize.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Data/SplitData.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Data/Stats.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Data/Transforms.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Data/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Data/cQuantize.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Descriptors/CompoundDescriptors.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Descriptors/Descriptors.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Descriptors/MoleculeDescriptors.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Descriptors/Parser.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Descriptors/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/InfoTheory/BitClusterer.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/InfoTheory/BitRank.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/InfoTheory/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/InfoTheory/entropy.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/InfoTheory/rdInfoTheory.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/MLUtils/VoteImg.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/MLUtils/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/MatOps.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/SLT/Risk.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/SLT/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Scoring/Scoring.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/Scoring/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/ML/files.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Numerics/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/Numerics/rdAlignment.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/RDConfig.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/RDLogger.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/RDPaths.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/RDRandom.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/SimDivFilters/SimilarityPickers.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/SimDivFilters/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/SimDivFilters/rdSimDivPickers.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/TestRunner.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/Filter.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/Node.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/NodeLib/DbMolSupply.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/NodeLib/DbPickleSupplier.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/NodeLib/SDSupply.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/NodeLib/SmartsMolFilter.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/NodeLib/SmartsRemover.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/NodeLib/SmilesDupeFilter.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/NodeLib/SmilesOutput.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/NodeLib/SmilesSupply.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/NodeLib/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/NodeLib/demo.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/Output.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/Supply.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/Transform.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/VLib/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/conftest.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/rdBase.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/PDF/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/PDF/pdfdoc.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/PDF/pdfgen.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/PDF/pdfgeom.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/PDF/pdfmetrics.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/PDF/pdfutils.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/PDF/pidPDF.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/PIL/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/PIL/pidPIL.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/PS/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/PS/fontinfo.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/PS/latin1MetricsCache.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/PS/pidPS.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/PS/psmetrics.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/Qt/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/ReportLab/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/SVG/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/SVG/pidSVG.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/colors.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/pagesizes.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/pid.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/tests/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/tests/pidtest.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/util/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/sping/utils.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/utils/__init__.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/utils/cactvs.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/utils/chemutils.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/utils/fileutils.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/utils/listutils.pyi"
+  },
+  {
+    "name": "ice_site/rdkit-stubs/utils/spiral.pyi"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitAbbreviations-ecc29b4e.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitAlignment-c1fc9d10.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitAvalonLib-814a2bf0.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitCIPLabeler-b735f698.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitCatalogs-978da99b.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitChemDraw-78009973.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitChemReactions-36ee05e4.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitChemTransforms-72767b20.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitChemicalFeatures-1c417f88.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitDataStructs-f77c5558.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitDepictor-0d523b4f.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitDeprotect-f26ae02b.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitDescriptors-7b45644e.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitDetermineBonds-4f9b0cef.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitDistGeomHelpers-8960fbba.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitDistGeometry-5a2b0a91.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitEHTLib-f3d4efcb.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitEigenSolvers-1ae2225f.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitEnumerateStereoisomers-aebec273.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitFMCS-ebee3b7b.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitFileParsers-4037c938.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitFilterCatalog-3295a7e1.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitFingerprints-c18807be.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitForceField-f98ca893.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitForceFieldHelpers-26b35e8c.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitFragCatalog-15f87700.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitFreeSASALib-70d20235.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitGeneralizedSubstruct-47d3db15.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitGenericGroups-6488cf04.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitGraphMol-fabc4a04.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitInchi-ce88dda3.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitInfoTheory-33e19f8d.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitMMPA-a1ba0305.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitMarvinParser-6db63a6e.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitMolAlign-120e4db3.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitMolCatalog-ed3881ea.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitMolChemicalFeatures-e1675bfc.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitMolDraw2D-b5f02d38.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitMolEnumerator-22d52b71.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitMolHash-6f1fdb1b.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitMolInteractionFields-2be845d4.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitMolInterchange-14b1e473.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitMolProcessing-fc3ebe8c.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitMolStandardize-5717aad9.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitMolTransforms-4d0411dc.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitO3AAlign-9e3fe9e8.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitOptimizer-ec9554bf.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitPartialCharges-b453f630.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitPubChemShape-8b546818.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitRDBoost-e73ba928.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitRDChemDrawLib-8c68963b.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitRDChemDrawReactionLib-a1f2f828.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitRDGeneral-a33ea80f.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitRDGeometryLib-2fc6f206.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitRDInchiLib-10ddc35e.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitRDStreams-6c025c12.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitRGroupDecomposition-7b8cd187.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitRascalMCES-df9fcdf8.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitReducedGraphs-fa277fae.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitRingDecomposerLib-ea9b2818.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitSLNParse-a7e9f7a1.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitScaffoldNetwork-285d713d.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitShapeHelpers-4b472c76.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitSimDivPickers-f935e570.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitSmilesParse-353d1eab.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitSubgraphs-057f9369.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitSubstructLibrary-28e016aa.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitSubstructMatch-b2c1341a.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitSynthonSpaceSearch-a6abe5ba.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitTautomerQuery-713a1249.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitTrajectory-cae03070.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitavalon_clib-efb5a430.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitcoordgen-a100732b.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitfreesasa_clib-b15c3bf4.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitga-5fb621c2.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKithc-b9125e9a.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitmaeparser-5257a458.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libRDKitpubchem_align3d-d023a435.so.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libXau-154567c4.so.6.0.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_atomic-c1232ae2.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_charconv-507b61cf.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_chrono-8097be0f.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_container-02da7328.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_context-bd11b519.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_contract-5dff23b4.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_coroutine-9b53920f.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_date_time-f9ed93bb.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_fiber-887f08c0.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_fiber_numa-4f4dc192.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_filesystem-1ab153c9.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_graph-2ea43761.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_iostreams-73dbb394.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_json-2e6efab4.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_locale-1eeda0d9.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_log-775a69f2.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_log_setup-30fe5293.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_math_c99-42b8764f.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_math_c99f-2e13e47d.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_math_c99l-6b9b2bf0.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_math_tr1-53d21513.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_math_tr1f-29404084.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_math_tr1l-104c6918.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_nowide-758f28e7.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_numpy312-9729602d.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_prg_exec_monitor-a725cc6e.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_program_options-52422712.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_python312-29ffbbc8.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_random-0c2bde3d.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_regex-aabdc241.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_serialization-ace5718a.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_stacktrace_addr2line-103e62f5.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_stacktrace_backtrace-6deca557.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_stacktrace_basic-49314110.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_stacktrace_from_exception-8e881d3d.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_stacktrace_noop-da1e70bc.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_thread-d273dccf.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_timer-978f286a.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_type_erasure-78c66152.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_unit_test_framework-d61b44dc.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_url-12aa66cc.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_wave-73f7bea2.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libboost_wserialization-8ec8b990.so.1.85.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libbz2-a1e77c99.so.1.0.6"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libcairo-dfbea965.so.2.11512.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libfontconfig-dcb2ce6c.so.1.12.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libfreetype-2f3b32b6.so.6.16.1"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libpixman-1-06469c37.so.0.38.4"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libpng16-748299c7.so.16.34.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libquadmath-2284e583.so.0.0.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libuuid-95b83d40.so.1.3.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libxcb-5ddf6756.so.1.1.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libxcb-render-161c0eb5.so.0.0.0"
+  },
+  {
+    "name": "ice_site/rdkit.libs/libxcb-shm-0be6dfbf.so.0.0.0"
+  },
+  {
+    "name": "ice_site/rdkit/Avalon/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Avalon/pyAvalonTools.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/AllChem.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/AtomPairs/Pairs.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/AtomPairs/Sheridan.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/AtomPairs/Torsions.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/AtomPairs/Utils.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/AtomPairs/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/BRICS.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/BuildFragmentCatalog.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/ChemUtils/AlignDepict.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/ChemUtils/BulkTester.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/ChemUtils/DescriptorUtilities.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/ChemUtils/SDFToCSV.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/ChemUtils/TemplateExpand.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/ChemUtils/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/ChemicalFeatures.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/ChemicalForceFields.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Crippen.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/DSViewer.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Descriptors.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Descriptors3D.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Draw/FreeSans.ttf"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Draw/IPythonConsole.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Draw/InteractiveRenderer.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Draw/MolDrawing.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Draw/SimilarityMaps.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Draw/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Draw/rdMolDraw2D.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/EState/AtomTypes.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/EState/EState.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/EState/EState_VSA.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/EState/Fingerprinter.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/EState/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/EnumerateHeterocycles.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/EnumerateStereoisomers.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/FastSDMolSupplier.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/FeatFinderCLI.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/FeatMaps/FeatMapParser.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/FeatMaps/FeatMapPoint.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/FeatMaps/FeatMapUtils.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/FeatMaps/FeatMaps.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/FeatMaps/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Features/FeatDirUtilsRD.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Features/ShowFeats.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Features/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/FilterCatalog.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Fingerprints/ClusterMols.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Fingerprints/DbFpSupplier.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Fingerprints/FingerprintMols.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Fingerprints/MolSimilarity.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Fingerprints/SimilarityScreener.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Fingerprints/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Fraggle/FraggleSim.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Fraggle/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/FragmentCatalog.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/FragmentMatcher.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Fragments.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/FunctionalGroups.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/GraphDescriptors.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Graphs.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Lipinski.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/MACCSkeys.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/MCS.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/MolCatalog.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/MolDb/FingerprintUtils.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/MolDb/Loader.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/MolDb/Loader_orig.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/MolDb/Loader_sa.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/MolDb/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/MolKey/InchiInfo.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/MolKey/MolKey.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/MolKey/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/MolStandardize/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/MolStandardize/rdMolStandardize.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/MolSurf.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/PandasPatcher.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/PandasTools.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Pharm2D/Generate.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Pharm2D/Gobbi_Pharm2D.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Pharm2D/LazyGenerator.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Pharm2D/Matcher.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Pharm2D/SigFactory.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Pharm2D/Utils.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Pharm2D/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Pharm3D/EmbedLib.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Pharm3D/ExcludedVolume.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Pharm3D/Pharmacophore.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Pharm3D/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/PropertyMol.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/PyMol.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/QED.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Randomize.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Recap.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/ReducedGraphs.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/RegistrationHash.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/SATIS.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/SaltRemover.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Scaffolds/MurckoScaffold.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Scaffolds/ScaffoldNetwork.ipynb"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Scaffolds/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Scaffolds/rdScaffoldNetwork.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/ShowMols.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/SimpleEnum/Enumerator.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/SimpleEnum/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/SpacialScore.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Subshape/BuilderUtils.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Subshape/SubshapeAligner.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Subshape/SubshapeBuilder.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Subshape/SubshapeObjects.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Subshape/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Subshape/demoCombined.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Suppliers/DbMolSupplier.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Suppliers/MolSupplier.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/Suppliers/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/TemplateAlign.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/TorsionFingerprints.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/fmcs/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/fmcs/fmcs"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/fmcs/fmcs.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/inchi.py"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/nbtests/ChEMBL_quinolones.tsv"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/nbtests/github4823.ipynb"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/nbtests/rdkit-structure-renderer.ipynb"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdAbbreviations.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdCIPLabeler.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdChemDraw.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdChemReactions.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdChemicalFeatures.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdCoordGen.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdDepictor.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdDeprotect.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdDetermineBonds.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdDistGeom.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdEHTTools.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdEnumerateStereoisomers.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdFMCS.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdFingerprintGenerator.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdForceFieldHelpers.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdFreeSASA.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdGeneralizedSubstruct.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdMHFPFingerprint.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdMIF.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdMMPA.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdMolAlign.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdMolCatalog.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdMolChemicalFeatures.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdMolDescriptors.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdMolEnumerator.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdMolHash.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdMolInterchange.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdMolProcessing.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdMolTransforms.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdPartialCharges.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdRGroupDecomposition.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdRascalMCES.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdReducedGraphs.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdSLNParse.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdShapeAlign.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdShapeHelpers.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdSubstructLibrary.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdSynthonSpaceSearch.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdTautomerQuery.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdchem.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdfiltercatalog.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdfragcatalog.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdinchi.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdmolfiles.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdmolops.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdqueries.so"
+  },
+  {
+    "name": "ice_site/rdkit/Chem/rdtrajectory.so"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/AtomAtomSimilarity/AtomAtomPathSimilarity.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/CMakeLists.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/CalcLigRMSD/CalcLigRMSD.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/CalcLigRMSD/README.md"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/ChiralPairs/ChiralDescriptors.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/ChiralPairs/README.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/ConformerParser/CMakeLists.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/ConformerParser/ConformerParser.cpp"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/ConformerParser/ConformerParser.h"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/ConformerParser/Wrap/CMakeLists.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/ConformerParser/Wrap/rdConformerParser.cpp"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/ConformerParser/Wrap/testConformerParser.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/ConformerParser/test.cpp"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/Fastcluster/README.md"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/Fastcluster/cdk2.smi"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/Fastcluster/centroid.tsv"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/Fastcluster/clustered.tsv"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/Fastcluster/clustered_parse.tsv"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/Fastcluster/fastcluster.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/Fastcluster/fp.tsv"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/Fastcluster/testdata/cdk2.sdf"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/Fastcluster/testdata/converted.smi"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/Fastcluster/testdata/sdf2smi.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/FreeWilson/README.md"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/FreeWilson/data/CHEMBL2321810.smi"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/FreeWilson/data/CHEMBL2321810_act.csv"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/FreeWilson/data/CHEMBL2321810_scaffold.mol"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/FreeWilson/freewilson.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/FreeWilson/pytest.ini"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/FreeWilson/requirements.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/FreeWilson/setup.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/FreeWilson/test/test_freewilson.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/Glare/README.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/Glare/glare.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/IFG/README"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/IFG/ifg.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/LEF/AddLabels.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/LEF/ClusterFps.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/LEF/CreateFps.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/LEF/DistancePlot.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/LEF/DistancePredict.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/LEF/README.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/M_Kossner/BaseFeatures_DIP2_NoMicrospecies.fdef"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/M_Kossner/Frames.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/M_Kossner/README"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/MolVS/molvs_cli.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/NIBRSubstructureFilters/README.md"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/NIBRSubstructureFilters/SubstructureFilter_HitTriaging_wPubChemExamples.csv"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/NIBRSubstructureFilters/assignSubstructureFilters.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/NP_Score/README"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/NP_Score/npscorer.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/NP_Score/publicnp.model.gz"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/PBF/Makefile"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/PBF/PBFRDKit.cpp"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/PBF/PBFRDKit.h"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/PBF/README"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/PBF/demo.cpp"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/PBF/pbf.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/PBF/testData/egfr.out"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/PBF/testData/egfr.sdf"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/RxnRoleAssignment/README.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/RxnRoleAssignment/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/RxnRoleAssignment/identifyReactants.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/RxnRoleAssignment/utils.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/SA_Score/README"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/SA_Score/UnitTestSAScore.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/SA_Score/build_sascore_db.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/SA_Score/data/zim.100.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/SA_Score/fpscores.pkl.gz"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/SA_Score/sascorer.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/efgs/README.md"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/efgs/ch33query.sql"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/efgs/efgs.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/efgs/try_efgs.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/fraggle/atomcontrib.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/fraggle/cxn_tversky.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/fraggle/data/ChEMBL_11265_actives.smi"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/fraggle/data/final_fraggle_results.csv"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/fraggle/data/fragmentation_tversky_out"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/fraggle/data/query.smi"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/fraggle/data/query_fragmentation.csv"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/fraggle/fraggle.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/fraggle/rdkit_tversky.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/fraggle/readme.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/README.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/cansmirk.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/create_mmp_db.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample.smi"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_cansmirks.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_db_input_smi.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_db_input_subs.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_db_input_subs_smarts.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_db_input_trans.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_db_input_trans_smarts.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_db_search_smi_output.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_db_search_subs_output.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_db_search_subs_smart_output.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_db_search_trans_output.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_db_search_trans_smarts_output.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_fragmented.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_mmps_default.csv"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_mmps_maxheavy.csv"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_mmps_maxratio.csv"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_mmps_sym.csv"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_mmps_sym_maxheavy.csv"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_mol_trans_output.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_smiles_mol_trans.smi"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_smirks.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_smirks_mol_trans.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/sample_transfroms.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/data/simple.smi"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/indexing.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/mol_transform.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/rfrag.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/search_mmp_db.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/mmpa/test_rfrag.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/pzc/p_con.html"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/pzc/p_con.py"
+  },
+  {
+    "name": "ice_site/rdkit/Contrib/pzc/readme.md"
+  },
+  {
+    "name": "ice_site/rdkit/Data/BaseFeatures.fdef"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Crippen.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Data/DTDs/RD_Dataset.dtd"
+  },
+  {
+    "name": "ice_site/rdkit/Data/DTDs/RD_Model.dtd"
+  },
+  {
+    "name": "ice_site/rdkit/Data/DTDs/validate.py"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Fonts/Amadeus.ttf"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Fonts/ComicNeue-Regular.ttf"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Fonts/OFL.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Fonts/Telex-Regular.ttf"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Fonts/amadeus_font_license.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Fonts/font_dumper.py"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Fonts/roboto_regular_license.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Fonts/telex_font_license.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Data/FragmentDescriptors.csv"
+  },
+  {
+    "name": "ice_site/rdkit/Data/FunctionalGroups.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Functional_Group_Hierarchy.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Data/NCI/first_200.props.sdf"
+  },
+  {
+    "name": "ice_site/rdkit/Data/NCI/first_200.tpsa.csv"
+  },
+  {
+    "name": "ice_site/rdkit/Data/NCI/first_5K.smi"
+  },
+  {
+    "name": "ice_site/rdkit/Data/NCI/first_5k.tpsa.csv"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Pains/README.md"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Pains/test_data/run_tests.py"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Pains/test_data/test_set3.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Pains/test_data/wehi_mols.csv"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Pains/wehi_pains.csv"
+  },
+  {
+    "name": "ice_site/rdkit/Data/RDData.sqlt"
+  },
+  {
+    "name": "ice_site/rdkit/Data/RDTests.sqlt"
+  },
+  {
+    "name": "ice_site/rdkit/Data/Salts.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Data/SmartsLib/RLewis_smarts.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Data/SmartsLib/patty_rules.txt"
+  },
+  {
+    "name": "ice_site/rdkit/Data/SmartsLib/tests/bench2.py"
+  },
+  {
+    "name": "ice_site/rdkit/Data/SmartsLib/tests/fps.1000.counts.pkl.gz"
+  },
+  {
+    "name": "ice_site/rdkit/Data/SmartsLib/tests/mols.1000.pkl.gz"
+  },
+  {
+    "name": "ice_site/rdkit/Data/eht_parms.dat"
+  },
+  {
+    "name": "ice_site/rdkit/Data/rddata.sql"
+  },
+  {
+    "name": "ice_site/rdkit/Data/struchk/checkfgs.chk"
+  },
+  {
+    "name": "ice_site/rdkit/Data/struchk/checkfgs.opt"
+  },
+  {
+    "name": "ice_site/rdkit/Data/struchk/checkfgs.trn"
+  },
+  {
+    "name": "ice_site/rdkit/DataManip/Metric/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/DataManip/Metric/rdMetricMatrixCalc.so"
+  },
+  {
+    "name": "ice_site/rdkit/DataManip/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/DataStructs/BitEnsemble.py"
+  },
+  {
+    "name": "ice_site/rdkit/DataStructs/BitEnsembleDb.py"
+  },
+  {
+    "name": "ice_site/rdkit/DataStructs/BitUtils.py"
+  },
+  {
+    "name": "ice_site/rdkit/DataStructs/HierarchyVis.py"
+  },
+  {
+    "name": "ice_site/rdkit/DataStructs/LazySignature.py"
+  },
+  {
+    "name": "ice_site/rdkit/DataStructs/TopNContainer.py"
+  },
+  {
+    "name": "ice_site/rdkit/DataStructs/VectCollection.py"
+  },
+  {
+    "name": "ice_site/rdkit/DataStructs/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/DataStructs/cDataStructs.so"
+  },
+  {
+    "name": "ice_site/rdkit/Dbase/DbConnection.py"
+  },
+  {
+    "name": "ice_site/rdkit/Dbase/DbInfo.py"
+  },
+  {
+    "name": "ice_site/rdkit/Dbase/DbModule.py"
+  },
+  {
+    "name": "ice_site/rdkit/Dbase/DbResultSet.py"
+  },
+  {
+    "name": "ice_site/rdkit/Dbase/DbUtils.py"
+  },
+  {
+    "name": "ice_site/rdkit/Dbase/StorageUtils.py"
+  },
+  {
+    "name": "ice_site/rdkit/Dbase/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/DistanceGeometry/DistGeom.so"
+  },
+  {
+    "name": "ice_site/rdkit/DistanceGeometry/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/ForceField/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/ForceField/rdForceField.so"
+  },
+  {
+    "name": "ice_site/rdkit/Geometry/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Geometry/rdGeometry.so"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Cluster/Butina.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Cluster/ClusterUtils.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Cluster/ClusterVis.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Cluster/Clustering.so"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Cluster/Clusters.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Cluster/Murtagh.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Cluster/Resemblance.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Cluster/Standardize.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Cluster/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Cluster/murtagh_test.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Data/DataUtils.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Data/FindQuantBounds.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Data/MLData.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Data/Quantize.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Data/SplitData.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Data/Stats.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Data/Transforms.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Data/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Data/cQuantize.so"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Descriptors/CompoundDescriptors.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Descriptors/Descriptors.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Descriptors/MoleculeDescriptors.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Descriptors/Parser.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Descriptors/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/InfoTheory/BitClusterer.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/InfoTheory/BitRank.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/InfoTheory/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/InfoTheory/entropy.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/InfoTheory/rdInfoTheory.so"
+  },
+  {
+    "name": "ice_site/rdkit/ML/MLUtils/VoteImg.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/MLUtils/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/MatOps.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/SLT/Risk.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/SLT/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Scoring/Scoring.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/Scoring/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/ML/files.py"
+  },
+  {
+    "name": "ice_site/rdkit/Numerics/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/Numerics/rdAlignment.so"
+  },
+  {
+    "name": "ice_site/rdkit/RDConfig.py"
+  },
+  {
+    "name": "ice_site/rdkit/RDLogger.py"
+  },
+  {
+    "name": "ice_site/rdkit/RDPaths.py"
+  },
+  {
+    "name": "ice_site/rdkit/RDRandom.py"
+  },
+  {
+    "name": "ice_site/rdkit/SimDivFilters/SimilarityPickers.py"
+  },
+  {
+    "name": "ice_site/rdkit/SimDivFilters/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/SimDivFilters/rdSimDivPickers.so"
+  },
+  {
+    "name": "ice_site/rdkit/TestRunner.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/Filter.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/Node.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/NodeLib/DbMolSupply.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/NodeLib/DbPickleSupplier.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/NodeLib/SDSupply.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/NodeLib/SmartsMolFilter.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/NodeLib/SmartsRemover.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/NodeLib/SmilesDupeFilter.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/NodeLib/SmilesOutput.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/NodeLib/SmilesSupply.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/NodeLib/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/NodeLib/demo.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/Output.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/Supply.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/Transform.py"
+  },
+  {
+    "name": "ice_site/rdkit/VLib/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/conftest.py"
+  },
+  {
+    "name": "ice_site/rdkit/license.txt"
+  },
+  {
+    "name": "ice_site/rdkit/pytest.ini"
+  },
+  {
+    "name": "ice_site/rdkit/rdBase.so"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PDF/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PDF/pdfdoc.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PDF/pdfgen.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PDF/pdfgeom.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PDF/pdfmetrics.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PDF/pdfutils.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PDF/pidPDF.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pidPIL.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-10.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-10.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-12.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-12.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-14.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-14.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-18.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-18.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-24.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-24.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-8.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-8.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-8.pil.1"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-bold-10.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-bold-10.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-bold-12.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-bold-12.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-bold-14.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-bold-14.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-bold-18.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-bold-18.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-bold-24.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-bold-24.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-bold-8.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/courier-bold-8.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-10.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-10.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-12.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-12.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-14.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-14.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-18.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-18.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-24.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-24.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-8.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-8.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-bold-10.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-bold-10.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-bold-12.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-bold-12.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-bold-14.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-bold-14.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-bold-18.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-bold-18.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-bold-24.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-bold-24.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-bold-8.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/helvetica-bold-8.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/metrics.dat"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/removemedium.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/symbol-10.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/symbol-10.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/symbol-12.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/symbol-12.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/symbol-14.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/symbol-14.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/symbol-18.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/symbol-18.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/symbol-24.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/symbol-24.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/symbol-8.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/symbol-8.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-10.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-10.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-12.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-12.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-14.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-14.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-18.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-18.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-24.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-24.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-8.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-8.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-bold-10.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-bold-10.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-bold-12.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-bold-12.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-bold-14.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-bold-14.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-bold-18.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-bold-18.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-bold-24.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-bold-24.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-bold-8.pbm"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PIL/pilfonts/times-bold-8.pil"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PS/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PS/fontinfo.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PS/latin1MetricsCache.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PS/pidPS.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/PS/psmetrics.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/Pyart/Fontmapping.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/Pyart/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/Pyart/pidPyart.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/Qt/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/Qt/pidQt.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/Qt/pidQt4.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/README"
+  },
+  {
+    "name": "ice_site/rdkit/sping/ReportLab/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/ReportLab/pidReportLab.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/SVG/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/SVG/pidSVG.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/TK/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/TK/pidTK.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/WX/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/WX/pidWX.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/WX/pidWxDc.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/colors.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/examples/formatted-strings.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/examples/tkCanvas-with-scrollbars.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/examples/tkCanvasPIL-with-scrollbars.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/pagesizes.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/patches/Imaging-1.1-fixplugin-path"
+  },
+  {
+    "name": "ice_site/rdkit/sping/patches/Imaging-1.1.1.diff"
+  },
+  {
+    "name": "ice_site/rdkit/sping/pid.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/stringformat.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/tests/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/tests/pidtest.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/tests/pstests.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/tests/testallps.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/util/HTMLPiddler.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/util/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/sping/utils.py"
+  },
+  {
+    "name": "ice_site/rdkit/utils/__init__.py"
+  },
+  {
+    "name": "ice_site/rdkit/utils/cactvs.py"
+  },
+  {
+    "name": "ice_site/rdkit/utils/chemdraw.py"
+  },
+  {
+    "name": "ice_site/rdkit/utils/chemdraw_qax.py"
+  },
+  {
+    "name": "ice_site/rdkit/utils/chemutils.py"
+  },
+  {
+    "name": "ice_site/rdkit/utils/fileutils.py"
+  },
+  {
+    "name": "ice_site/rdkit/utils/listutils.py"
+  },
+  {
+    "name": "ice_site/rdkit/utils/retest.txt"
+  },
+  {
+    "name": "ice_site/rdkit/utils/spiral.py"
+  },
+  {
+    "name": "ice_site/torchmetrics-1.9.0.dist-info/INSTALLER"
+  },
+  {
+    "name": "ice_site/torchmetrics-1.9.0.dist-info/METADATA"
+  },
+  {
+    "name": "ice_site/torchmetrics-1.9.0.dist-info/RECORD"
+  },
+  {
+    "name": "ice_site/torchmetrics-1.9.0.dist-info/REQUESTED"
+  },
+  {
+    "name": "ice_site/torchmetrics-1.9.0.dist-info/WHEEL"
+  },
+  {
+    "name": "ice_site/torchmetrics-1.9.0.dist-info/direct_url.json"
+  },
+  {
+    "name": "ice_site/torchmetrics-1.9.0.dist-info/licenses/LICENSE"
+  },
+  {
+    "name": "ice_site/torchmetrics-1.9.0.dist-info/top_level.txt"
+  },
+  {
+    "name": "ice_site/torchmetrics/__about__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/aggregation.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/audio/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/audio/_deprecated.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/audio/dnsmos.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/audio/nisqa.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/audio/pesq.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/audio/pit.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/audio/sdr.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/audio/snr.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/audio/srmr.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/audio/stoi.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/accuracy.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/auroc.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/average_precision.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/base.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/calibration_error.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/cohen_kappa.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/confusion_matrix.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/eer.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/exact_match.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/f_beta.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/group_fairness.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/hamming.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/hinge.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/jaccard.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/logauc.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/matthews_corrcoef.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/negative_predictive_value.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/precision_fixed_recall.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/precision_recall.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/precision_recall_curve.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/ranking.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/recall_fixed_precision.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/roc.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/sensitivity_specificity.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/specificity.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/specificity_sensitivity.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/classification/stat_scores.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/clustering/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/clustering/adjusted_mutual_info_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/clustering/adjusted_rand_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/clustering/calinski_harabasz_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/clustering/cluster_accuracy.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/clustering/davies_bouldin_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/clustering/dunn_index.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/clustering/fowlkes_mallows_index.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/clustering/homogeneity_completeness_v_measure.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/clustering/mutual_info_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/clustering/normalized_mutual_info_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/clustering/rand_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/collections.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/detection/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/detection/_deprecated.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/detection/_mean_ap.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/detection/ciou.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/detection/diou.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/detection/giou.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/detection/helpers.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/detection/iou.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/detection/mean_ap.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/detection/panoptic_qualities.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/audio/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/audio/_deprecated.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/audio/dnsmos.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/audio/nisqa.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/audio/pesq.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/audio/pit.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/audio/sdr.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/audio/snr.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/audio/srmr.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/audio/stoi.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/accuracy.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/auroc.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/average_precision.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/calibration_error.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/cohen_kappa.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/confusion_matrix.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/eer.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/exact_match.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/f_beta.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/group_fairness.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/hamming.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/hinge.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/jaccard.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/logauc.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/matthews_corrcoef.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/negative_predictive_value.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/precision_fixed_recall.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/precision_recall.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/precision_recall_curve.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/ranking.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/recall_fixed_precision.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/roc.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/sensitivity_specificity.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/specificity.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/specificity_sensitivity.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/classification/stat_scores.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/clustering/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/clustering/adjusted_mutual_info_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/clustering/adjusted_rand_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/clustering/calinski_harabasz_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/clustering/cluster_accuracy.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/clustering/davies_bouldin_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/clustering/dunn_index.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/clustering/fowlkes_mallows_index.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/clustering/homogeneity_completeness_v_measure.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/clustering/mutual_info_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/clustering/normalized_mutual_info_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/clustering/rand_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/clustering/utils.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/detection/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/detection/_deprecated.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/detection/_panoptic_quality_common.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/detection/ciou.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/detection/diou.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/detection/giou.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/detection/iou.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/detection/map.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/detection/panoptic_qualities.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/_deprecated.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/arniqa.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/d_lambda.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/d_s.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/dists.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/dists_models/weights.pt"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/ergas.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/gradients.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/lpips.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/lpips_models/alex.pth"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/lpips_models/squeeze.pth"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/lpips_models/vgg.pth"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/perceptual_path_length.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/psnr.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/psnrb.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/qnr.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/rase.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/rmse_sw.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/sam.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/scc.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/ssim.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/tv.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/uqi.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/utils.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/image/vif.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/multimodal/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/multimodal/clip_iqa.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/multimodal/clip_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/multimodal/lve.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/nominal/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/nominal/cramers.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/nominal/fleiss_kappa.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/nominal/pearson.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/nominal/theils_u.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/nominal/tschuprows.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/nominal/utils.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/pairwise/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/pairwise/cosine.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/pairwise/euclidean.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/pairwise/helpers.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/pairwise/linear.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/pairwise/manhattan.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/pairwise/minkowski.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/concordance.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/cosine_similarity.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/crps.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/csi.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/explained_variance.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/js_divergence.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/kendall.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/kl_divergence.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/log_cosh.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/log_mse.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/mae.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/mape.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/minkowski.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/mse.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/nrmse.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/pearson.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/r2.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/rse.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/spearman.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/symmetric_mape.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/tweedie_deviance.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/utils.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/regression/wmape.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/retrieval/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/retrieval/_deprecated.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/retrieval/auroc.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/retrieval/average_precision.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/retrieval/fall_out.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/retrieval/hit_rate.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/retrieval/ndcg.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/retrieval/precision.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/retrieval/precision_recall_curve.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/retrieval/r_precision.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/retrieval/recall.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/retrieval/reciprocal_rank.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/segmentation/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/segmentation/dice.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/segmentation/generalized_dice.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/segmentation/hausdorff_distance.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/segmentation/mean_iou.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/segmentation/utils.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/shape/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/shape/procrustes.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/_deprecated.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/bert.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/bleu.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/cer.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/chrf.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/edit.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/eed.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/helper.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/helper_embedding_metric.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/infolm.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/mer.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/perplexity.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/rouge.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/sacre_bleu.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/squad.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/ter.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/wer.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/wil.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/text/wip.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/video/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/functional/video/vmaf.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/_deprecated.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/arniqa.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/d_lambda.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/d_s.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/dists.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/ergas.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/fid.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/inception.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/kid.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/lpip.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/mifid.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/perceptual_path_length.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/psnr.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/psnrb.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/qnr.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/rase.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/rmse_sw.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/sam.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/scc.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/ssim.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/tv.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/uqi.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/image/vif.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/metric.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/multimodal/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/multimodal/clip_iqa.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/multimodal/clip_score.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/multimodal/lve.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/nominal/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/nominal/cramers.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/nominal/fleiss_kappa.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/nominal/pearson.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/nominal/theils_u.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/nominal/tschuprows.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/py.typed"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/concordance.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/cosine_similarity.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/crps.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/csi.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/explained_variance.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/js_divergence.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/kendall.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/kl_divergence.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/log_cosh.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/log_mse.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/mae.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/mape.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/minkowski.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/mse.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/nrmse.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/pearson.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/r2.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/rse.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/spearman.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/symmetric_mape.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/tweedie_deviance.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/regression/wmape.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/retrieval/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/retrieval/_deprecated.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/retrieval/auroc.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/retrieval/average_precision.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/retrieval/base.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/retrieval/fall_out.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/retrieval/hit_rate.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/retrieval/ndcg.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/retrieval/precision.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/retrieval/precision_recall_curve.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/retrieval/r_precision.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/retrieval/recall.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/retrieval/reciprocal_rank.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/segmentation/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/segmentation/dice.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/segmentation/generalized_dice.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/segmentation/hausdorff_distance.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/segmentation/mean_iou.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/shape/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/shape/procrustes.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/_deprecated.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/bert.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/bleu.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/cer.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/chrf.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/edit.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/eed.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/infolm.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/mer.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/perplexity.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/rouge.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/sacre_bleu.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/squad.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/ter.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/wer.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/wil.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/text/wip.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/utilities/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/utilities/checks.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/utilities/compute.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/utilities/data.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/utilities/distributed.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/utilities/enums.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/utilities/exceptions.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/utilities/imports.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/utilities/plot.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/utilities/prints.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/video/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/video/vmaf.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/wrappers/__init__.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/wrappers/abstract.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/wrappers/bootstrapping.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/wrappers/classwise.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/wrappers/feature_share.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/wrappers/minmax.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/wrappers/multioutput.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/wrappers/multitask.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/wrappers/running.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/wrappers/tracker.py"
+  },
+  {
+    "name": "ice_site/torchmetrics/wrappers/transformations.py"
+  },
+  {
+    "name": "ice_work/ice_in.json"
+  },
+  {
+    "name": "ice_work/ice_out.json"
+  },
+  {
+    "name": "ice_work/ice_out.json.meta.json"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/build.clean_block-30.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/build.clean_block-30.py312.nbi"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/frag._components-39.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/frag._components-39.py312.2.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/frag._components-39.py312.nbi"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/frag.explain_peaks-132.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/frag.explain_peaks-132.py312.nbi"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/frag.fragment_masses-73.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/frag.fragment_masses-73.py312.nbi"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/frag.subformula_masses-219.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/frag.subformula_masses-219.py312.nbi"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra._weights-57.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra._weights-57.py312.nbi"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.clean_peaks-10.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.clean_peaks-10.py312.2.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.clean_peaks-10.py312.nbi"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.cosine_sim-174.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.cosine_sim-174.py312.nbi"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.entropy_sim-125.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.entropy_sim-125.py312.nbi"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.hybrid_sim-203.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.hybrid_sim-203.py312.nbi"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.prep_query-86.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.prep_query-86.py312.2.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.prep_query-86.py312.3.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.prep_query-86.py312.nbi"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.search-273.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.search-273.py312.nbi"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.search_shift-292.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/casmi_b9cf49db12ae94cbf971aef49fbf9efdf62c29c1/spectra.search_shift-292.py312.nbi"
+  },
+  {
+    "name": "numba_cache/eng_884bb912affd25ce4436820f9e3713ae77afa665/pv._clean-30.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/eng_884bb912affd25ce4436820f9e3713ae77afa665/pv._clean-30.py312.nbi"
+  },
+  {
+    "name": "numba_cache/eng_884bb912affd25ce4436820f9e3713ae77afa665/pv.clean_store-143.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/eng_884bb912affd25ce4436820f9e3713ae77afa665/pv.clean_store-143.py312.nbi"
+  },
+  {
+    "name": "numba_cache/eng_884bb912affd25ce4436820f9e3713ae77afa665/pv.entropy_sim-69.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/eng_884bb912affd25ce4436820f9e3713ae77afa665/pv.entropy_sim-69.py312.nbi"
+  },
+  {
+    "name": "numba_cache/eng_884bb912affd25ce4436820f9e3713ae77afa665/pv.entropy_sim_shift-107.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/eng_884bb912affd25ce4436820f9e3713ae77afa665/pv.entropy_sim_shift-107.py312.nbi"
+  },
+  {
+    "name": "numba_cache/eng_884bb912affd25ce4436820f9e3713ae77afa665/pv.search-95.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/eng_884bb912affd25ce4436820f9e3713ae77afa665/pv.search-95.py312.nbi"
+  },
+  {
+    "name": "numba_cache/eng_884bb912affd25ce4436820f9e3713ae77afa665/pv.search_shift_pre-118.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/eng_884bb912affd25ce4436820f9e3713ae77afa665/pv.search_shift_pre-118.py312.nbi"
+  },
+  {
+    "name": "numba_cache/eng_884bb912affd25ce4436820f9e3713ae77afa665/pv.search_shift_rows-130.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/eng_884bb912affd25ce4436820f9e3713ae77afa665/pv.search_shift_rows-130.py312.nbi"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/frag2._acc-256.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/frag2._acc-256.py312.nbi"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/frag2._coverage-308.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/frag2._coverage-308.py312.nbi"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/frag2._excl-291.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/frag2._excl-291.py312.nbi"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/frag2._explain-222.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/frag2._explain-222.py312.nbi"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/frag2._grp-272.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/frag2._grp-272.py312.nbi"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/frag2._label-134.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/frag2._label-134.py312.2.nbc"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/frag2._label-134.py312.nbi"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/frag2.frag_masses_fast-161.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/frag2.frag_masses_fast-161.py312.nbi"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/fragnet._label2-304.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/fragnet._label2-304.py312.2.nbc"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/fragnet._label2-304.py312.nbi"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/fragnet.aggregate-593.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/fragnet.aggregate-593.py312.nbi"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/fragnet.enum_frags-330.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/fragnet.enum_frags-330.py312.nbi"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/fragnet.match_frags-420.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/fragnet.match_frags-420.py312.nbi"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/fragnet.peak_best-576.py312.1.nbc"
+  },
+  {
+    "name": "numba_cache/fams_9f84058aaaf4a5d3407874a7e98a815084cc7020/fragnet.peak_best-576.py312.nbi"
+  },
+  {
+    "name": "pc_lists.json"
+  },
+  {
+    "name": "pc_runner.py"
+  },
+  {
+    "name": "probe_core2.py"
+  },
+  {
+    "name": "run_manifest.json"
+  },
+  {
+    "name": "smoke_comp/test.parquet"
+  },
+  {
+    "name": "submission.csv"
+  },
+  {
+    "name": "submission_e004_control.csv"
+  },
+  {
+    "name": "submission_reference.csv"
+  },
+  {
+    "name": "work/spec_it.npy"
+  },
+  {
+    "name": "work/spec_meta.parquet"
+  },
+  {
+    "name": "work/spec_mz.npy"
+  },
+  {
+    "name": "work/spec_off.npy"
+  }
+]

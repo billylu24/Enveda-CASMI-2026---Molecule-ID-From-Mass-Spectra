@@ -1,0 +1,40 @@
+{
+  "id": "canqiang/casmi26-e006-window-40-ice-fallback-true",
+  "id_no": 137986804,
+  "title": "CASMI26 E006 Window 40 ICE Fallback True",
+  "code_file": "casmi26-e006-window-40-ice-fallback-true.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [
+    "gpu"
+  ],
+  "dataset_sources": [
+    "prvsiyan/casmi26-ranker-features",
+    "prvsiyan/casmi26-fp-models-v2",
+    "dmitriigluzdov/casmi26-pubchem-popularity-prior",
+    "megayak/casmi26-simulated-ranker-rows",
+    "ahmedberatozer/casmi26-fpnet-full1",
+    "ahmedberatozer/casmi26-glacier",
+    "ahmedberatozer/casmi26-iceberg",
+    "ahmedberatozer/casmi26-pubchem-tier",
+    "ahmedberatozer/casmi26-v2-pool",
+    "ahmedberatozer/casmi26-v3-models",
+    "ahmedberatozer/casmi26-v4b-models",
+    "prvsiyan/chebi-lipidmaps-casmi26",
+    "prvsiyan/coconut-casmi26-candidates",
+    "hengck23/hengck23-dreams-enveda-casmi26",
+    "metric/rdkit-2026-3-3-wheel",
+    "eveliaveldrine/rdkit-wheels"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [
+    "enveda-CASMI26-molecule-id-mass-spectra"
+  ],
+  "model_sources": [],
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+  "machine_shape": "NvidiaTeslaT4"
+}

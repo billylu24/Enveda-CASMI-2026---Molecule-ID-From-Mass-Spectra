@@ -1,0 +1,39 @@
+{
+  "id": "giaok246/casmi26-canqiang-e006-reproduction",
+  "title": "CASMI26 Canqiang E006 Reproduction",
+  "code_file": "reproduction.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [
+    "gpu"
+  ],
+  "dataset_sources": [
+    "prvsiyan/casmi26-ranker-features/6",
+    "prvsiyan/casmi26-fp-models-v2/1",
+    "dmitriigluzdov/casmi26-pubchem-popularity-prior/4",
+    "megayak/casmi26-simulated-ranker-rows/4",
+    "ahmedberatozer/casmi26-fpnet-full1/1",
+    "ahmedberatozer/casmi26-glacier/1",
+    "ahmedberatozer/casmi26-iceberg/1",
+    "ahmedberatozer/casmi26-pubchem-tier/1",
+    "ahmedberatozer/casmi26-v2-pool/1",
+    "ahmedberatozer/casmi26-v3-models/4",
+    "ahmedberatozer/casmi26-v4b-models/4",
+    "prvsiyan/chebi-lipidmaps-casmi26/1",
+    "prvsiyan/coconut-casmi26-candidates/2",
+    "hengck23/hengck23-dreams-enveda-casmi26/2",
+    "metric/rdkit-2026-3-3-wheel/1",
+    "eveliaveldrine/rdkit-wheels/3"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [
+    "enveda-CASMI26-molecule-id-mass-spectra"
+  ],
+  "model_sources": [],
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:37c64f7dd9c54116ecd1bcc88817c5469b88387388fade02bfa8bf3fc647d461",
+  "machine_shape": "NvidiaTeslaT4"
+}

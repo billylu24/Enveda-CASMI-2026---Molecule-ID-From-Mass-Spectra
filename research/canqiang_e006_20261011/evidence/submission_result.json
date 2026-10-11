@@ -1,0 +1,15 @@
+{
+  "ref": 57067224,
+  "totalBytes": 0,
+  "date": "2026-10-11T07:54:16.500Z",
+  "description": "Canqiang E006 V1 source-exact reproduction; window40 ICE fallback True; pinned original Python3.12 T4 image and datasets; exact upstream preview checked; complete hidden code rerun.",
+  "errorDescription": null,
+  "fileName": "submission.csv",
+  "publicScore": null,
+  "privateScore": null,
+  "status": "PENDING",
+  "submittedBy": "giaok246",
+  "submittedByRef": "giaok246",
+  "teamName": "Spectral_Forge",
+  "url": "/code/giaok246/casmi26-canqiang-e006-reproduction?scriptVersionId=357274214"
+}

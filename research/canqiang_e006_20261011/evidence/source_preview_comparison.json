@@ -1,0 +1,9 @@
+{
+  "source_version": 1,
+  "compared_active_molecules": 12,
+  "exact_active_rank_matches": 12,
+  "whole_preview_csv_exact": true,
+  "preview_placeholders_excluded": 388,
+  "source_sha256": "a5f021a6d43963eb681a478d2e356478e19c068b02e68d060084d5bd453f1eab",
+  "reproduction_sha256": "a5f021a6d43963eb681a478d2e356478e19c068b02e68d060084d5bd453f1eab"
+}

@@ -1,0 +1,13 @@
+/source/cell_*.py
+/evidence/api_source.ipynb
+/evidence/live_logs.json
+/evidence/monitor_status.json
+/evidence/source_pipeline.log
+/evidence/source_reference/platform_source.ipynb
+/evidence/platform_output/platform_source.ipynb
+/evidence/platform_output/submission*.csv
+/evidence/platform_output/baseline_submission.csv
+/evidence/source_reference/submission*.csv
+/evidence/source_reference/baseline_submission.csv
+/evidence/source_reference/api_metadata.json
+/evidence/github_sync.json

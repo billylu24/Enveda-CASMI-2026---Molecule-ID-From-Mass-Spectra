@@ -1,0 +1,11 @@
+{
+  "source": "canqiang/casmi26-e006-window-40-ice-fallback-true",
+  "source_version": 1,
+  "script_version_id": 356967942,
+  "displayed_public_score": 0.44,
+  "preview_runtime_seconds": 1031.9,
+  "accelerator": "GPU T4 x2",
+  "license": "Apache 2.0",
+  "observed_via": "Authenticated Kaggle notebook page accessibility state",
+  "observed_utc": "2026-10-11T07:41:44.218804+00:00"
+}

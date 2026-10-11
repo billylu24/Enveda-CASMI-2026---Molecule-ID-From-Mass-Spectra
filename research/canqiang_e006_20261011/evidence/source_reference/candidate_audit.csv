@@ -1,0 +1,13 @@
+molecule_id,original_count,original_unique,invalid_count,duplicate_count,revised_count,ranked_added,dreams_added,promoted_original,changed
+m_005e53,25,25,0,0,25,0,0,0,False
+m_006153,25,25,0,0,25,0,0,0,False
+m_00b5aa,25,25,0,0,25,0,0,0,False
+m_01e922,25,25,0,0,25,0,0,0,False
+m_0259d4,25,25,0,0,25,0,0,0,False
+m_02d188,25,25,0,0,25,0,0,0,False
+m_0318b5,25,25,0,0,25,0,0,0,False
+m_043e86,25,25,0,0,25,0,0,0,False
+m_050bf1,25,25,0,0,25,0,0,0,False
+m_05b52e,25,25,0,0,25,0,0,0,False
+m_068354,25,25,0,0,25,0,0,0,False
+m_06e13d,23,23,0,0,25,2,0,0,True

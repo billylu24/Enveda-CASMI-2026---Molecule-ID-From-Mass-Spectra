@@ -1,0 +1,44 @@
+{
+  "experiment": "E006",
+  "window": 40,
+  "ice_fallback": true,
+  "source_experiment": "E004",
+  "base_report_file": "e004_verification.json",
+  "control_file": "submission_e004_control.csv",
+  "control_sha256": "a5f021a6d43963eb681a478d2e356478e19c068b02e68d060084d5bd453f1eab",
+  "submission_sha256": "a5f021a6d43963eb681a478d2e356478e19c068b02e68d060084d5bd453f1eab",
+  "processed_ids": [
+    "m_005e53",
+    "m_006153",
+    "m_00b5aa",
+    "m_01e922",
+    "m_0259d4",
+    "m_02d188",
+    "m_0318b5",
+    "m_043e86",
+    "m_050bf1",
+    "m_05b52e",
+    "m_068354",
+    "m_06e13d"
+  ],
+  "output_rows": 400,
+  "changed_rows": 0,
+  "changed_top1": 0,
+  "fallback_rows": 1,
+  "fallback_finite_rows": 0,
+  "fallback_changed_rows": 0,
+  "fallback_changed_top1": 0,
+  "same_run_control_reconstructed": true,
+  "provenance": {
+    "base_notebook_sha256": "1f0f9b3026a93ddb5ad6fa6993c8ac0a4bfaddc54594eb1dd6dda7a20d8ef0d6",
+    "base_source_code_sha256": "eee496a371fce179b4aeda1c5082a58212c724eaf1ca4ba0c943bbe8d7196ef2",
+    "helper_source_sha256": "a027a69ddda2c2e14639e3ec5196d5f1eb2ab57cba10ef929723148f31fc8f34",
+    "source_script_version_id": 356740494,
+    "ice_policy_source_script_version_id": 356785434,
+    "ice_policy_source": "samanyu1808/casmi26-iceberg-where-glacier-is-blind-lb-0-438/1"
+  },
+  "limitations": [
+    "Visible smoke is not independent validation.",
+    "An inactive fallback in visible smoke says nothing about hidden benefit."
+  ]
+}

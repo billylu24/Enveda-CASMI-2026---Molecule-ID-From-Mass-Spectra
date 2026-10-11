@@ -153,3 +153,9 @@ candidate coverage, mass-hypothesis, and generation-ranking priorities.
 持续研究循环现为**仅本地模式**（用户于2026-10-03要求）：不上传Kaggle、不提交比赛、不推送GitHub。持久状态local_only覆盖原配置中的自动发布，重启后继续生效；执行`.venv/bin/python -m casmi_ml.research_loop local-only`可确认该模式。当前重复开发最佳181：2000 unknown MRR@25 0.042546、1340 known MRR0.604626、Top1 0.565672。原181单次400空缓存689.90秒/6186.98MiB；单次参考库复用包656.76秒/5729.88MiB、400完整排名exact，完成本地验证，未上传。183严格证据补位仅+0.12%未达门槛，184局部候选挽救无MRR收益，保留181。当前进行冻结编码器的粗容差/精确容差诊断离子与中性丢失残差匹配对照；训练损失不能当成系统提升。后续仍须至少2000分子、unknown绝对增益≥0.0005且相对≥2%，known保护通过；所有持续选择属于重复开发，不称独立验收。运行说明见[RESEARCH_LOOP](docs/RESEARCH_LOOP.md)。
 
 后续对照：第151扩大高置信预筛500无改善；第155碎裂支持完整MRR0.040489、第156排序融合0.040484、第161保护前3的碎裂前移0.040726，均未达到对149的发布门槛。质量条件训练背景校准和LOTUS目录初筛也未给出扩大依据。Java进程复用的12组fresh双臂真实碎裂分数全部相同，70.3秒→58.0秒（1.21倍）；第162轮以固定1200秒预算检查更多高置信碎裂评分，仍需完整门槛、无标签重放和新的冷资源/平台验证。所有持续选择属于重复开发，未新增独立验收；失败轮次和实现修复均保存并同步GitHub。
+
+<!-- canqiang-e006-reproduction -->
+
+### Canqiang E006 reproduction (2026-10-11)
+
+Reproduced public V1 with all 30 original code cells unchanged, the original Python 3.12 T4 image, 16 pinned datasets, candidate window 40 and ICEBERG fallback enabled. The 12-molecule preview CSV matches the source exactly; placeholders were excluded from direct submission. Official code submission **57067224**, notebook V1, is **PENDING**; the full hidden test is running and no score is available yet. [Reproduction and evidence](research/canqiang_e006_20261011/README.md); [official result](research/canqiang_e006_20261011/RESULTS.md).
