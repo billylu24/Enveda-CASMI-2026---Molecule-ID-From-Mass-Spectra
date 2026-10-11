@@ -14,6 +14,12 @@
    - **GLACIER 犹豫胶着（Margin $< 0.03$）**: 激活温和互补融合（$\lambda_{\text{ICE}} = 0.20, \lambda_{\text{GL}} = 1.0$）；
    - **GLACIER 盲区（无 `[M+H]+`）**: 100% 由 ICEBERG 兜底（$\lambda_{\text{ICE}} = 1.0, \lambda_{\text{GL}} = 0.0$）。
 
+## 运行保护
+
+- E004 对照重建固定使用原始纯 GLACIER 路径；自适应 ICEBERG 融合只在 E006 实验分支启用。
+- 可见运行仍是 12 分子的 smoke check；只有隐藏重跑才会处理完整 400 个分子。
+- 提交前必须看到运行成功，并确认 `processed=400`、`preview_placeholders=0` 与 `same_run_control_reconstructed=true`。
+
 ## 文件清单与 SHA256
 
 - `casmi26-adaptive-metric-fusion.ipynb`: 可直接上传至 Kaggle 执行的升级 Notebook

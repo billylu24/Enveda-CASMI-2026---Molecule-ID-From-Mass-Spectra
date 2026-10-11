@@ -1171,27 +1171,9 @@ def _factorial_entry(scope):
         )
         before = list(candidates)
         if ice and gl:
-            # ADAPTIVE GLACIER/ICEBERG CONFIDENCE-GATED BLEND:
-            # Compute GLACIER discrimination margin among candidate keys
-            gl_vals = [gl[k] for k in keys if k in gl and gl[k] is not None]
-            gl_margin = (sorted(gl_vals, reverse=True)[0] - sorted(gl_vals, reverse=True)[1]) if len(gl_vals) >= 2 else 0.0
-            GL_MARGIN_TAU = 0.03
-            ICE_SOFT_LAM = 0.20
-            
-            if gl_margin < GL_MARGIN_TAU:
-                # GLACIER margin is tight/uncertain -> gentle ICE blend
-                order = scope["gl_fuse"].rerank_multi(
-                    candidates,
-                    keys,
-                    scores,
-                    [scope["_form2"](s) for s in candidates],
-                    [ice, gl],
-                    [ICE_SOFT_LAM, scope["GL_LAM"]],
-                    top_n=len(candidates),
-                )
-                audit["branch"] = "adaptive_blend"
-            else:
-                # GLACIER is confident -> pure GLACIER (exact E006 behavior)
+            if not ice_fallback:
+                # Exact frozen E004 control: GLACIER only. The control
+                # reconstruction must not run the adaptive treatment.
                 order = scope["gl_fuse"].rerank_multi(
                     candidates,
                     keys,
@@ -1201,7 +1183,43 @@ def _factorial_entry(scope):
                     [scope["ICE_LAM"], scope["GL_LAM"]],
                     top_n=len(candidates),
                 )
-                audit["branch"] = "glacier"
+                audit["branch"] = "glacier_control"
+            else:
+                # ADAPTIVE GLACIER/ICEBERG CONFIDENCE-GATED BLEND:
+                # Compute GLACIER discrimination margin among candidate keys.
+                gl_vals = [gl[k] for k in keys if k in gl and gl[k] is not None]
+                gl_margin = (
+                    sorted(gl_vals, reverse=True)[0] - sorted(gl_vals, reverse=True)[1]
+                    if len(gl_vals) >= 2
+                    else 0.0
+                )
+                GL_MARGIN_TAU = 0.03
+                ICE_SOFT_LAM = 0.20
+
+                if gl_margin < GL_MARGIN_TAU:
+                    # GLACIER margin is tight/uncertain -> gentle ICE blend
+                    order = scope["gl_fuse"].rerank_multi(
+                        candidates,
+                        keys,
+                        scores,
+                        [scope["_form2"](s) for s in candidates],
+                        [ice, gl],
+                        [ICE_SOFT_LAM, scope["GL_LAM"]],
+                        top_n=len(candidates),
+                    )
+                    audit["branch"] = "adaptive_blend"
+                else:
+                    # GLACIER is confident -> pure GLACIER (exact E006 behavior)
+                    order = scope["gl_fuse"].rerank_multi(
+                        candidates,
+                        keys,
+                        scores,
+                        [scope["_form2"](s) for s in candidates],
+                        [{}, gl],
+                        [scope["ICE_LAM"], scope["GL_LAM"]],
+                        top_n=len(candidates),
+                    )
+                    audit["branch"] = "glacier"
             candidates = [candidates[i] for i in order]
         elif ice_fallback and ice and not gl:
             # Public v1 / script 356785434: ICE is used only where gl_of(mid) is empty.
