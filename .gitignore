@@ -31,3 +31,4 @@ kaggle_release*/kaggle_output*/
 *.log
 submission*.csv
 kaggle_release*/packaged_submission*
+kaggle_release*/run_cache*/

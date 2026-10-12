@@ -4,8 +4,11 @@ This is a mass-filtered spectral-library retrieval baseline for the [Enveda CASM
 
 ## Current results snapshot
 
-Best verified public MRR@25: **0.440** (Canqiang E006 V1 reproduction, submitted 2026-10-10, author `yicheng lu`, team `Spectral_Forge`).
-Latest submitted version: **`CASMI26 Adaptive Simulator Fusion 0.44x`** (Adaptive Simulator Fusion 0.44x V1, author `xiaoyuzhoux120`, submitted 2026-10-11, currently evaluating on hidden test).
+Best verified public MRR@25: **0.440** (Canqiang E006 V1 reproduction, submitted 2026-10-10, author `yicheng lu`, team `Spectral_Forge`, scriptVersionId `357274214`).
+Latest evaluated versions:
+- **0.440+ PRD specification**: [PRD Next Run 2026-10-11](docs/PRD_NEXT_RUN_20261011.md) defines the next-stage roadmap targeting 0.448~0.452+.
+- **0.434** (`CASMI26 Adaptive Simulator Fusion 0.44x`, scriptVersionId `357201889`, underperformed due to simulator margin collapse and lack of metric-identity deduplication).
+- **0.440 reproduction archived**: [kaggle_release_0440_canqiang/](kaggle_release_0440_canqiang/README.md).
 
 Previous verified milestones:
 - **0.438** (`CASMI26 Samanyu ICEBERG 0.438 Reproduction`, scriptVersionId `357007287`, rank 193 bronze medal zone). Archived in [kaggle_release_0438_iceberg/](kaggle_release_0438_iceberg/README.md).
