@@ -2,7 +2,7 @@
 
 <!-- flexonafft-v15-reproduction -->
 
-Flexonafft **Closing the Evidence Gap V15 / Iteration 07** reproduction completed on T4 with all 9 original code cells unchanged: 12 processed molecules, 388 preview placeholders, 12/12 matching top-1 and candidate sets, 11/12 matching complete rankings, and 0 Iteration 07 changed rows. One lower-rank ordering differs from upstream and is documented. No competition submission or new score. See [reproduction and measured execution results](research/flexonafft_evidence_gap_20261014/RESULTS.md).
+Flexonafft **Closing the Evidence Gap V15 / Iteration 07** reproduced with all 9 code cells unchanged. T4 preview: 12/12 matching top-1 and candidate sets, 11/12 matching complete rankings; one lower-rank ordering difference is documented. Official code submission **57217289**, notebook V1, is **PENDING**; no official score yet. [Reproduction and official result](research/flexonafft_evidence_gap_20261014/RESULTS.md).
 
 This is a mass-filtered spectral-library retrieval baseline for the [Enveda CASMI 2026 competition](https://www.kaggle.com/competitions/enveda-CASMI26-molecule-id-mass-spectra).
 

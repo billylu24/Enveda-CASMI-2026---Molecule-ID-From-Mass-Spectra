@@ -1,6 +1,6 @@
 # Flexonafft V15 / Iteration 07 复现结果
 
-本次私有 Kaggle notebook **V1** 已 **COMPLETE**，最终只读验收通过。原始 V15 的 9 个代码单元与平台实际运行源码完全相同。本次没有比赛提交，也没有本次 public MRR@25。
+本次私有 Kaggle notebook **V1** 已 **COMPLETE**，最终只读验收通过。原始 V15 的 9 个代码单元与平台实际运行源码完全相同。本文前半部分记录可见预览验收；后续官方比赛提交见文末。
 
 | 检查 | 上游 V15 预览 | 本次复现 |
 |---|---:|---:|
@@ -51,3 +51,13 @@ Iteration 07 在这个可见子集接纳 0 组，因此结果与 Initial 01 相�
 - [本次 Iteration 07 审计](evidence/platform/iteration_audit.json)
 
 上游日志内保留的 E004/旧版本标识属于继承的观察器，不应解读为本次最终 notebook 的版本。最终来源身份由 V15 源码快照、API metadata 与 release_identity.json 共同记录。
+
+<!-- official-competition-result -->
+
+## 官方比赛提交
+
+提交 **57217289**，notebook **V1**，状态 **PENDING**；当前尚无官方成绩。
+
+在用户明确要求提交后，以同一 notebook V1 发起 **code submission**，Kaggle 在隐藏测试环境重新运行完整流程。此前 12 分子预览中的 388 行占位符没有作为直接 CSV 预测上传。完整结果以官方状态和成绩为准；可见预览与上游低位排名的差异仍保留在上述审计记录中。
+
+官方返回见 [submission_result.json](evidence/submission_result.json)，提交意图和 API 回执见 [publication_state.json](evidence/publication_state.json)。

@@ -5,3 +5,7 @@ evidence/live_logs.json
 # CSVs include visible-preview placeholder predictions; runtime hashes are in reports.
 evidence/source_reference/submission*.csv
 evidence/platform/submission*.csv
+
+# Other team submissions are local reconciliation context.
+evidence/submissions_before.json
+evidence/competition_submissions.json

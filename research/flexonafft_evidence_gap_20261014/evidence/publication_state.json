@@ -35,5 +35,19 @@
   "kernel_status": {
     "status": "COMPLETE",
     "failureMessage": null
+  },
+  "submission_intent": {
+    "time": "2026-10-15T05:10:59.430723+00:00",
+    "version": 1,
+    "user_authorized": true,
+    "competition": "enveda-CASMI26-molecule-id-mass-spectra",
+    "type": "code_submission",
+    "output_file": "submission.csv",
+    "acceptance": "platform_acceptance.json",
+    "upstream_preview_hash_exact": false
+  },
+  "submission_response": {
+    "message": "",
+    "ref": 57217289
   }
 }

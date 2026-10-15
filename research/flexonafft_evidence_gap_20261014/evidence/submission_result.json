@@ -1,0 +1,15 @@
+{
+  "ref": 57217289,
+  "totalBytes": 0,
+  "date": "2026-10-15T05:10:59.950Z",
+  "description": "Flexonafft V15 Iteration07 source-exact reproduction; pinned original T4 container and 15 inputs; 12-molecule execution verified, one lower-rank preview difference documented; full hidden code rerun.",
+  "errorDescription": null,
+  "fileName": "submission.csv",
+  "publicScore": null,
+  "privateScore": null,
+  "status": "PENDING",
+  "submittedBy": "giaok246",
+  "submittedByRef": "giaok246",
+  "teamName": "Spectral_Forge",
+  "url": "/code/giaok246/casmi26-flexonafft-evidence-gap-reproduction?scriptVersionId=358545733"
+}

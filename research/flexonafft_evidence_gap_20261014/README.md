@@ -28,10 +28,27 @@
 
 原 notebook 的普通运行只实际处理 **12 个分子 / 41 条谱**，生成的 400 行 CSV 还有 **388 行占位符**。本次保留该行为；隐藏测试完整执行逻辑也原样保留。占位行不能算成已完成推理，也不能把整个预览 CSV 当作有效比赛预测提交。
 
-上游 V15 预览：11 个 GLACIER 路由、1 个碎片回退路由；Iteration 07 考察 4 个候选组，接纳 0 个，改变 0 行。页面的 **0.441 Best Score 属于 V7**，不是 V15 或本次复现的实测分数。本任务不自动提交比赛。
+上游 V15 预览：11 个 GLACIER 路由、1 个碎片回退路由；Iteration 07 考察 4 个候选组，接纳 0 个，改变 0 行。页面的 **0.441 Best Score 属于 V7**，不是 V15 或本次复现的实测分数。比赛提交需要显式运行下述 `submit` 操作；本次已按用户后续指令提交同一 V1。
 
 **实测：**12/12 首选与候选集合一致，11/12 完整排序一致；`m_068354` 有 7 个低位排名不同，未达到逐字节输出一致。GPU 流程和同轮源码对照验收通过，跨运行差异定位于主引擎候选顺序，精确成因未确定。下载服务恢复后，两份 CSV 均已下载并核对各自哈希。
+
+提交和状态查询（`submit` 会创建比赛提交，已有提交意图时会阻止重复）：
+
+```bash
+.venv/bin/python research/flexonafft_evidence_gap_20261014/publish.py submit
+.venv/bin/python research/flexonafft_evidence_gap_20261014/submission_status.py
+```
 
 本次执行结果与验收详见 [RESULTS.md](RESULTS.md)。5 项本地检查覆盖源码和附件锁定、三谱门槛与去重、中位数、共享/弱证据拒绝、预算/键数限制和候选位置保护。它们不替代 GPU 完整流程验收或独立泛化评估。
 
 已处理的 12 行预测另存为 `evidence/platform/processed_predictions.csv`；上游对应预测在 `evidence/source_reference/processed_predictions.csv`。这些文件不包含 388 行占位符。
+
+<!-- official-competition-result -->
+
+## 官方比赛提交
+
+提交 **57217289**，notebook **V1**，状态 **PENDING**；当前尚无官方成绩。
+
+在用户明确要求提交后，以同一 notebook V1 发起 **code submission**，Kaggle 在隐藏测试环境重新运行完整流程。此前 12 分子预览中的 388 行占位符没有作为直接 CSV 预测上传。完整结果以官方状态和成绩为准；可见预览与上游低位排名的差异仍保留在上述审计记录中。
+
+官方返回见 [submission_result.json](evidence/submission_result.json)，提交意图和 API 回执见 [publication_state.json](evidence/publication_state.json)。

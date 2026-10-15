@@ -72,6 +72,11 @@ Iteration 07 在这个可见子集接纳 0 组，因此结果与 Initial 01 相�
 
 上游日志内保留的 E004/旧版本标识属于继承的观察器，不应解读为本次最终 notebook 的版本。最终来源身份由 V15 源码快照、API metadata 与 release_identity.json 共同记录。
 '''
+    prior = (ROOT / 'RESULTS.md').read_text() if (ROOT / 'RESULTS.md').exists() else ''
+    marker = '<!-- official-competition-result -->'
+    if marker in prior:
+        text = text.replace('本次没有比赛提交，也没有本次 public MRR@25。', '本文前半部分记录可见预览验收；后续官方比赛提交见文末。')
+        text += '\n' + marker + prior.split(marker, 1)[1]
     (ROOT / 'RESULTS.md').write_text(text)
     project = ROOT.parents[1] / 'README.md'
     current = project.read_text()
