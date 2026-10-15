@@ -1,0 +1,7 @@
+__pycache__/
+*.log
+# Transient stream snapshots; final pipeline evidence is recorded separately.
+evidence/live_logs.json
+# CSVs include visible-preview placeholder predictions; runtime hashes are in reports.
+evidence/source_reference/submission*.csv
+evidence/platform/submission*.csv

@@ -1,0 +1,14 @@
+{
+  "source": "flexonafft/casmi26-closing-the-evidence-gap",
+  "source_version": 15,
+  "script_version_id": 358431031,
+  "displayed_best_public_score": 0.441,
+  "displayed_best_score_version": 7,
+  "displayed_best_score_version_id": 357977484,
+  "current_version_score_verified": false,
+  "preview_runtime_seconds": 1141.8,
+  "accelerator": "GPU T4 x2",
+  "license": "Apache 2.0",
+  "observed_via": "Authenticated Kaggle notebook page accessibility state",
+  "observed_utc": "2026-10-15T04:34:42.934907+00:00"
+}

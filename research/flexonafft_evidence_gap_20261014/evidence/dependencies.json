@@ -1,0 +1,122 @@
+[
+  {
+    "ref": "prvsiyan/casmi26-ranker-features",
+    "version": 6,
+    "created": "2026-09-17T08:28:43.767Z",
+    "license": "CC BY-NC-SA 4.0",
+    "dataset_id": 12039490,
+    "selection": "Latest ready data version created before source lastRunTime; original attachment version unavailable from public API"
+  },
+  {
+    "ref": "prvsiyan/casmi26-fp-models-v2",
+    "version": 1,
+    "created": "2026-09-16T22:50:48.873Z",
+    "license": "CC BY-NC-SA 4.0",
+    "dataset_id": 12054715,
+    "selection": "Latest ready data version created before source lastRunTime; original attachment version unavailable from public API"
+  },
+  {
+    "ref": "dmitriigluzdov/casmi26-pubchem-popularity-prior",
+    "version": 4,
+    "created": "2026-10-05T02:40:35.677Z",
+    "license": "Other (specified in description)",
+    "dataset_id": 12284543,
+    "selection": "Latest ready data version created before source lastRunTime; original attachment version unavailable from public API"
+  },
+  {
+    "ref": "megayak/casmi26-simulated-ranker-rows",
+    "version": 4,
+    "created": "2026-09-20T14:03:38.470Z",
+    "license": "CC0: Public Domain",
+    "dataset_id": 12057585,
+    "selection": "Latest ready data version created before source lastRunTime; original attachment version unavailable from public API"
+  },
+  {
+    "ref": "ahmedberatozer/casmi26-fpnet-full1",
+    "version": 1,
+    "created": "2026-09-29T10:10:49.307Z",
+    "license": "Other (specified in description)",
+    "dataset_id": 12268894,
+    "selection": "Latest ready data version created before source lastRunTime; original attachment version unavailable from public API"
+  },
+  {
+    "ref": "ahmedberatozer/casmi26-glacier",
+    "version": 1,
+    "created": "2026-09-28T09:32:41.470Z",
+    "license": "Other (specified in description)",
+    "dataset_id": 12248560,
+    "selection": "Latest ready data version created before source lastRunTime; original attachment version unavailable from public API"
+  },
+  {
+    "ref": "ahmedberatozer/casmi26-iceberg",
+    "version": 1,
+    "created": "2026-09-26T09:48:06.167Z",
+    "license": "Other (specified in description)",
+    "dataset_id": 12205763,
+    "selection": "Latest ready data version created before source lastRunTime; original attachment version unavailable from public API"
+  },
+  {
+    "ref": "ahmedberatozer/casmi26-pubchem-tier",
+    "version": 1,
+    "created": "2026-09-23T11:12:42.060Z",
+    "license": "Other (specified in description)",
+    "dataset_id": 12151798,
+    "selection": "Latest ready data version created before source lastRunTime; original attachment version unavailable from public API"
+  },
+  {
+    "ref": "ahmedberatozer/casmi26-v2-pool",
+    "version": 1,
+    "created": "2026-09-21T08:18:58.990Z",
+    "license": "Other (specified in description)",
+    "dataset_id": 12114353,
+    "selection": "Latest ready data version created before source lastRunTime; original attachment version unavailable from public API"
+  },
+  {
+    "ref": "ahmedberatozer/casmi26-v3-models",
+    "version": 4,
+    "created": "2026-09-23T10:45:15.137Z",
+    "license": "Other (specified in description)",
+    "dataset_id": 12122643,
+    "selection": "Latest ready data version created before source lastRunTime; original attachment version unavailable from public API"
+  },
+  {
+    "ref": "ahmedberatozer/casmi26-v4b-models",
+    "version": 4,
+    "created": "2026-09-26T12:21:47.617Z",
+    "license": "Other (specified in description)",
+    "dataset_id": 12183464,
+    "selection": "Latest ready data version created before source lastRunTime; original attachment version unavailable from public API"
+  },
+  {
+    "ref": "prvsiyan/chebi-lipidmaps-casmi26",
+    "version": 1,
+    "created": "2026-09-16T16:35:44.453Z",
+    "license": "CC BY-NC-SA 4.0",
+    "dataset_id": 12051681,
+    "selection": "Latest ready data version created before source lastRunTime; original attachment version unavailable from public API"
+  },
+  {
+    "ref": "prvsiyan/coconut-casmi26-candidates",
+    "version": 2,
+    "created": "2026-09-15T19:42:45.477Z",
+    "license": "CC BY-NC-SA 4.0",
+    "dataset_id": 12039473,
+    "selection": "Latest ready data version created before source lastRunTime; original attachment version unavailable from public API"
+  },
+  {
+    "ref": "metric/rdkit-2026-3-3-wheel",
+    "version": 1,
+    "created": "2026-09-08T22:23:23.197Z",
+    "license": "Unknown",
+    "dataset_id": 11951175,
+    "selection": "Latest ready data version created before source lastRunTime; original attachment version unavailable from public API"
+  },
+  {
+    "ref": "eveliaveldrine/rdkit-wheels",
+    "version": 3,
+    "created": "2026-10-04T21:56:45.903Z",
+    "license": "Apache 2.0",
+    "dataset_id": 12163996,
+    "selection": "Latest ready data version created before source lastRunTime; original attachment version unavailable from public API"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "experiment": "replicated_fragment_fallback",
+  "changed_rows": 0,
+  "changed_top1": 0,
+  "details": {
+    "target_groups": 4,
+    "accepted_groups": 0,
+    "errors": [],
+    "max_group_size": 8,
+    "max_bonds": 40,
+    "contrast_lambda": 1.25,
+    "min_distinct_informative_spectra": 3,
+    "aggregation": "median",
+    "budget_seconds": 120
+  },
+  "measured_score": null,
+  "control_sha256": "53779c185d601bf4a52aac6cdbbdee979a93910999e753af25ff1ee279cd659d",
+  "submission_sha256": "53779c185d601bf4a52aac6cdbbdee979a93910999e753af25ff1ee279cd659d"
+}

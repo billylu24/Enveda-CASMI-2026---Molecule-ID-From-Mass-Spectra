@@ -1,0 +1,38 @@
+{
+  "id": "giaok246/casmi26-flexonafft-evidence-gap-reproduction",
+  "title": "CASMI26 Flexonafft Evidence Gap Reproduction",
+  "code_file": "reproduction.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [
+    "gpu"
+  ],
+  "dataset_sources": [
+    "prvsiyan/casmi26-ranker-features/6",
+    "prvsiyan/casmi26-fp-models-v2/1",
+    "dmitriigluzdov/casmi26-pubchem-popularity-prior/4",
+    "megayak/casmi26-simulated-ranker-rows/4",
+    "ahmedberatozer/casmi26-fpnet-full1/1",
+    "ahmedberatozer/casmi26-glacier/1",
+    "ahmedberatozer/casmi26-iceberg/1",
+    "ahmedberatozer/casmi26-pubchem-tier/1",
+    "ahmedberatozer/casmi26-v2-pool/1",
+    "ahmedberatozer/casmi26-v3-models/4",
+    "ahmedberatozer/casmi26-v4b-models/4",
+    "prvsiyan/chebi-lipidmaps-casmi26/1",
+    "prvsiyan/coconut-casmi26-candidates/2",
+    "metric/rdkit-2026-3-3-wheel/1",
+    "eveliaveldrine/rdkit-wheels/3"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [
+    "enveda-CASMI26-molecule-id-mass-spectra"
+  ],
+  "model_sources": [],
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:2757e0c7d1e0a9cb43da657b97e223c321a98f5014bdf64f44f2f6b083ad2b2f",
+  "machine_shape": "NvidiaTeslaT4"
+}

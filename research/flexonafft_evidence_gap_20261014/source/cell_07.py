@@ -1,0 +1,2 @@
+'''6. Interpretation and next decision
+Use the official scored rerun to evaluate this experiment. A changed list is not an improved list. A smoke-run no-op does not establish hidden-set inactivity. The source public 0.441 is not our reproduced result. Keep source-verified Initial 01 separate from Initial 02; do not stack preceding unsuccessful experiments. Publish exact run settings, measured results, author links and caveats rather than treating OOP or source appearance as originality.'''

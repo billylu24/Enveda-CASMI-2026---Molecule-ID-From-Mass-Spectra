@@ -1,0 +1,44 @@
+{
+  "experiment": "initial-faithful",
+  "active_molecules": 12,
+  "output_rows": 400,
+  "source_control_reconstructed": true,
+  "changed_rows": 0,
+  "changed_top1": 0,
+  "fragment_errors": [],
+  "source_control_sha256": "53779c185d601bf4a52aac6cdbbdee979a93910999e753af25ff1ee279cd659d",
+  "submission_sha256": "53779c185d601bf4a52aac6cdbbdee979a93910999e753af25ff1ee279cd659d",
+  "group_fallback_count": 0,
+  "stages": [
+    {
+      "stage": "Runtime and verified inputs",
+      "seconds": 25.36
+    },
+    {
+      "stage": "Retrieval, fingerprints and base rankings",
+      "seconds": 919.59
+    },
+    {
+      "stage": "Simulators, PubChem gate and inherited fusion",
+      "seconds": 122.0
+    },
+    {
+      "stage": "Official identity audit and same-run source observer",
+      "seconds": 20.11
+    },
+    {
+      "stage": "MetFrag-lite molecule-gap reference",
+      "seconds": 1.84
+    },
+    {
+      "stage": "Unmodified v7c routing oracle",
+      "seconds": 15.44
+    }
+  ],
+  "routes": {
+    "glacier": 11,
+    "frag_gap": 1
+  },
+  "measured_score": null,
+  "validation_note": "Visible smoke is not independent validation; source public 0.441 is user-reported."
+}

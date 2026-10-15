@@ -1,0 +1,27 @@
+CASMI26: Closing the Evidence Gap — public V15 / Iteration 07
+Original notebook author: Igor Zharov (@flexonafft)
+Source: https://www.kaggle.com/code/flexonafft/casmi26-closing-the-evidence-gap
+Version ID: 358431031; notebook page declares Apache License 2.0.
+
+The source notebook, numerical source pack and all original credits are preserved.
+Readable cell files are generated mirrors, not independently authored algorithms.
+Reproduction additions: dependency freezing, attribution, read-only acceptance,
+focused verification, platform evidence collection and reproduction documentation.
+The release notebook appends an attribution Markdown cell and a read-only code cell.
+No original numerical source cells or ranking rules are modified.
+
+Upstream credits preserved in full in source/cell_01.py include:
+@ahmedberatozer — v4n engine/resources and v7c attribution
+@canqiang — E006 reproduction
+@samanyu1808 — ICEBERG fallback idea
+Huseyin Emre Aksoy — frag_rescore.py (Apache-2.0 as credited upstream)
+@lszlst, @skomuro, @megayak — ablations, promotion rule, Engine2 assets
+@obstacledeveloper — metric audit and safe tail source
+@bobthebot369 — inherited ensemble and confidence-promotion ideas
+@prvsiyan — analog propagation, spectral matching and fingerprint models
+Additional source attributions and links remain in the preserved notebook.
+
+Attached datasets and model assets retain their own licences, listed in
+ evidence/dependencies.json. This notebook's licence does not override them.
+Raw competition data, model weights and private credentials are not part of this
+GitHub reproduction directory.

@@ -1,0 +1,5 @@
+# Host-side tools only; inference uses the frozen Kaggle container and attached wheels.
+kaggle==2.2.4
+requests==2.34.2
+numpy==2.5.3
+pandas==3.0.6

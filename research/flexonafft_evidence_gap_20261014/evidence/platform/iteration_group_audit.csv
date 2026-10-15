@@ -1,0 +1,5 @@
+molecule_id,formula,candidates,accepted
+m_06e13d,C14H15ClN2O5S,8,False
+m_06e13d,C17H12Cl2N4O,5,False
+m_06e13d,C12H14N4O5S2,2,False
+m_06e13d,C16H15BrN4O,3,False

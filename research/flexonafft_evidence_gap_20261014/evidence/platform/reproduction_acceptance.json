@@ -1,0 +1,147 @@
+{
+  "passed": true,
+  "source": "flexonafft/casmi26-closing-the-evidence-gap",
+  "source_version": 15,
+  "original_code_cells": 9,
+  "rows": 400,
+  "processed": 12,
+  "placeholders": 388,
+  "hidden_rerun": false,
+  "python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+  "packages": {
+    "numpy": "2.1.3",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "scikit-learn": "1.6.1",
+    "numba": "0.61.2",
+    "torch": "2.11.0+cu128",
+    "rdkit": "2026.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "main_rdkit": "2026.03.3",
+  "base_errors": 0,
+  "initial01": {
+    "experiment": "initial-faithful",
+    "active_molecules": 12,
+    "output_rows": 400,
+    "source_control_reconstructed": true,
+    "changed_rows": 0,
+    "changed_top1": 0,
+    "fragment_errors": [],
+    "source_control_sha256": "d7a437210bd6a1dd9d152eb07f92f9a23f8e57cd652da5ebaa9b05e36066e366",
+    "submission_sha256": "d7a437210bd6a1dd9d152eb07f92f9a23f8e57cd652da5ebaa9b05e36066e366",
+    "group_fallback_count": 0,
+    "stages": [
+      {
+        "stage": "Runtime and verified inputs",
+        "seconds": 17.48
+      },
+      {
+        "stage": "Retrieval, fingerprints and base rankings",
+        "seconds": 856.12
+      },
+      {
+        "stage": "Simulators, PubChem gate and inherited fusion",
+        "seconds": 110.8
+      },
+      {
+        "stage": "Official identity audit and same-run source observer",
+        "seconds": 18.93
+      },
+      {
+        "stage": "MetFrag-lite molecule-gap reference",
+        "seconds": 1.56
+      },
+      {
+        "stage": "Unmodified v7c routing oracle",
+        "seconds": 14.56
+      }
+    ],
+    "routes": {
+      "glacier": 11,
+      "frag_gap": 1
+    },
+    "measured_score": null,
+    "validation_note": "Visible smoke is not independent validation; source public 0.441 is user-reported."
+  },
+  "iteration07": {
+    "experiment": "replicated_fragment_fallback",
+    "changed_rows": 0,
+    "changed_top1": 0,
+    "details": {
+      "target_groups": 4,
+      "accepted_groups": 0,
+      "errors": [],
+      "max_group_size": 8,
+      "max_bonds": 40,
+      "contrast_lambda": 1.25,
+      "min_distinct_informative_spectra": 3,
+      "aggregation": "median",
+      "budget_seconds": 120
+    },
+    "measured_score": null,
+    "control_sha256": "d7a437210bd6a1dd9d152eb07f92f9a23f8e57cd652da5ebaa9b05e36066e366",
+    "submission_sha256": "d7a437210bd6a1dd9d152eb07f92f9a23f8e57cd652da5ebaa9b05e36066e366"
+  },
+  "simulators": {
+    "ice": {
+      "status": "ok",
+      "n_mols": 12,
+      "n_mols_scored": 11,
+      "n_mols_covered": 11,
+      "n_cands": 772,
+      "n_scored": 754,
+      "errors": [],
+      "rdkit": "2025.03.6",
+      "torch": "2.11.0+cu128",
+      "device": "cuda",
+      "t_load": 19.86,
+      "n_pred": 1524,
+      "n_pred_fail": 0,
+      "t_pred": 35.79,
+      "n_bad_smiles": 0,
+      "pred_per_s": 42.59,
+      "max_mem_gb": 3.75,
+      "seconds": 61.42,
+      "log_tail": [
+        "[ice     0.2s] stubbed (absent) modules: ['pygmtools']",
+        "[ice    19.2s] ms_pred tautomer mode v2 cache /tmp/ice_ms_pred_cache",
+        "[ice    19.9s] model loaded on cuda (rdkit 2025.03.6, torch 2.11.0+cu128, numba True)",
+        "[ice    61.4s] chunk: 11 mols 1524 jobs 36.1s (11/11 covered mols scored)"
+      ]
+    },
+    "gl": {
+      "model": "glacier",
+      "status": "ok",
+      "n_mols": 11,
+      "n_mols_scored": 11,
+      "n_mols_covered": 11,
+      "n_cands": 754,
+      "n_scored": 754,
+      "errors": [],
+      "rdkit": "2025.03.6",
+      "torch": "2.11.0+cu128",
+      "device": "cuda",
+      "t_load": 14.03,
+      "n_pred": 1524,
+      "n_pred_fail": 0,
+      "n_feat_fail": 0,
+      "t_pred": 16.62,
+      "n_bad_smiles": 0,
+      "pred_per_s": 91.67,
+      "bs_final": 32,
+      "max_mem_gb": 0.32,
+      "seconds": 34.92,
+      "log_tail": [
+        "[gl     0.1s] site ready (marker matches): /kaggle/working/ice_site",
+        "[gl     0.1s] stubbed (absent) modules: ['pygmtools']",
+        "[gl    14.0s] GLACIER loaded: 15,108,154 params ",
+        "[gl    14.0s] model loaded on cuda (rdkit 2025.03.6, torch 2.11.0+cu128, numba True, threads 2)",
+        "[gl    34.9s] chunk: 11 mols 1524 jobs 17.0s (11/11 covered mols scored)"
+      ]
+    }
+  },
+  "submission_sha256": "d7a437210bd6a1dd9d152eb07f92f9a23f8e57cd652da5ebaa9b05e36066e366",
+  "measured_score": null,
+  "runtime_seconds": 1034.91
+}

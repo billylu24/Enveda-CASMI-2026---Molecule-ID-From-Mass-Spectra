@@ -1,0 +1,47 @@
+{
+  "listed_file_count": 1823,
+  "selected_files": [
+    {
+      "name": "baseline_submission.csv"
+    },
+    {
+      "name": "e004_candidate_inputs.json"
+    },
+    {
+      "name": "e004_verification.json"
+    },
+    {
+      "name": "gl_work/gl_out.json.meta.json"
+    },
+    {
+      "name": "ice_work/ice_out.json.meta.json"
+    },
+    {
+      "name": "iteration_audit.json"
+    },
+    {
+      "name": "iteration_group_audit.csv"
+    },
+    {
+      "name": "iteration_vs_0441.csv"
+    },
+    {
+      "name": "research_evidence_report.png"
+    },
+    {
+      "name": "research_routing_audit.csv"
+    },
+    {
+      "name": "research_routing_audit.json"
+    },
+    {
+      "name": "submission.csv"
+    },
+    {
+      "name": "submission_0441_control.csv"
+    },
+    {
+      "name": "submission_v7c_control.csv"
+    }
+  ]
+}

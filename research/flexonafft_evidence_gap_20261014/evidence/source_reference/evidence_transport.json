@@ -1,0 +1,94 @@
+{
+  "version": 15,
+  "logged_reports": [
+    "e004_verification.json",
+    "iteration_audit.json",
+    "research_routing_audit.json"
+  ],
+  "files": [
+    {
+      "name": "baseline_submission.csv",
+      "origin": "download",
+      "bytes": 17135,
+      "sha256": "077c138ff351b6dea445158231f4efcf7e8072259efc855c13bb004bc435d688"
+    },
+    {
+      "name": "e004_candidate_inputs.json",
+      "origin": "download",
+      "bytes": 129253,
+      "sha256": "6dad20f6a671aa91a29a4cd37122704ef574fc622526bf482329efe0b96f7ddc"
+    },
+    {
+      "name": "e004_verification.json",
+      "origin": "download",
+      "bytes": 9849,
+      "sha256": "d5d5f04d143a4ee40e6df18427a93c0dab9bc1326611f77a053002a8464bbe49"
+    },
+    {
+      "name": "gl_work/gl_out.json.meta.json",
+      "origin": "download",
+      "bytes": 754,
+      "sha256": "e689340cedf92a27be2bf81b7ace1e932e2734eff812ede66dd9294db7bc31e6"
+    },
+    {
+      "name": "ice_work/ice_out.json.meta.json",
+      "origin": "download",
+      "bytes": 640,
+      "sha256": "eb1a971c4245b444d4a059386205d050aad16985d258d995c7859afb123dde7c"
+    },
+    {
+      "name": "iteration_audit.json",
+      "origin": "download",
+      "bytes": 558,
+      "sha256": "d674481e6da41885b75cb14ab062f995b2cdbbfe9e9cb0c733dd213c05df2c08"
+    },
+    {
+      "name": "iteration_group_audit.csv",
+      "origin": "download",
+      "bytes": 160,
+      "sha256": "0f4232bab29109757798f28b1b34121c0a6a4d23f2e42ac3ec37a517959dd64b"
+    },
+    {
+      "name": "iteration_vs_0441.csv",
+      "origin": "download",
+      "bytes": 8433,
+      "sha256": "982e43da9c1e7162f6bdefa2df47043043142bc218be946158fb20da82c15755"
+    },
+    {
+      "name": "research_evidence_report.png",
+      "origin": "download",
+      "bytes": 49207,
+      "sha256": "644989c84792b5de76c3a2afc346317c496c5c8286cb178de47cf3274c309500"
+    },
+    {
+      "name": "research_routing_audit.csv",
+      "origin": "download",
+      "bytes": 24558,
+      "sha256": "0b45565c5c9e5a6c433c7028b79a167578e814456a6d6d317747df2fba8693a3"
+    },
+    {
+      "name": "research_routing_audit.json",
+      "origin": "download",
+      "bytes": 1174,
+      "sha256": "6a6ab3ffb53436a7ad6b68439e32aeb83d0f5182c1d79c22ef9e0734482a43f8"
+    },
+    {
+      "name": "submission.csv",
+      "origin": "download",
+      "bytes": 17224,
+      "sha256": "53779c185d601bf4a52aac6cdbbdee979a93910999e753af25ff1ee279cd659d"
+    },
+    {
+      "name": "submission_0441_control.csv",
+      "origin": "download",
+      "bytes": 17224,
+      "sha256": "53779c185d601bf4a52aac6cdbbdee979a93910999e753af25ff1ee279cd659d"
+    },
+    {
+      "name": "submission_v7c_control.csv",
+      "origin": "download",
+      "bytes": 17224,
+      "sha256": "53779c185d601bf4a52aac6cdbbdee979a93910999e753af25ff1ee279cd659d"
+    }
+  ]
+}

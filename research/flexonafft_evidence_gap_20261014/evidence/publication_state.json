@@ -1,0 +1,39 @@
+{
+  "kernel": "giaok246/casmi26-flexonafft-evidence-gap-reproduction",
+  "push_intent": {
+    "time": "2026-10-15T04:30:56.279162+00:00",
+    "identity": {
+      "source": "flexonafft/casmi26-closing-the-evidence-gap",
+      "source_version": 15,
+      "original_code_cells": 9,
+      "source_sha256": "02dc05d1890f728ea64369295160b9d12f3e9cc336582f991d8ff9c15794d851",
+      "original_code_exact": true,
+      "source_code_sha256": "12972eee618dec45109b0010a57ffcb9da11d47bfbd9e32dba91f7b0ac9c5011",
+      "prepared_utc": "2026-10-15T04:30:56.138259+00:00",
+      "changes": [
+        "Added attribution markdown and read-only acceptance; all original code unchanged.",
+        "Private account copy; freeze 15 dependency versions before source lastRunTime."
+      ],
+      "release_files": {
+        "reproduction.ipynb": "f7bced51205c54a1b45977a32e0db5dc82cb854cc948fedcb8a987f316b51389",
+        "kernel-metadata.json": "fa5446655c0cf46d416fddbb1a42001283d9c0b892814dc4ca57804b6c189b72"
+      }
+    }
+  },
+  "push_response": {
+    "ref": "/code/giaok246/casmi26-flexonafft-evidence-gap-reproduction",
+    "url": "https://www.kaggle.com/code/giaok246/casmi26-flexonafft-evidence-gap-reproduction",
+    "versionNumber": 1,
+    "error": null,
+    "invalidTags": [],
+    "invalidDatasetSources": [],
+    "invalidCompetitionSources": [],
+    "invalidKernelSources": [],
+    "invalidModelSources": [],
+    "kernelId": 138786447
+  },
+  "kernel_status": {
+    "status": "COMPLETE",
+    "failureMessage": null
+  }
+}
