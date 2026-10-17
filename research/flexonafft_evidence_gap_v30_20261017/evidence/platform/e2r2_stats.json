@@ -1,0 +1,23 @@
+{
+ "mode": "rank2",
+ "key": "metric_identity",
+ "is_rerun": false,
+ "rows": 400,
+ "eligible": 12,
+ "inserted": 0,
+ "moved_from": {
+  "2": 1
+ },
+ "same_as_rank1": 11,
+ "no_eng": 0,
+ "invalid_x2": 0,
+ "already_rank2": 1,
+ "skipped": 388,
+ "changed_rows": 0,
+ "tail_dropped": 0,
+ "extra_twins_dropped": 0,
+ "base_sha256": "383812e3be50974cd6f2f2959fe94a25869fa68318b248aff1454341c1cd1992",
+ "submission_sha256": "383812e3be50974cd6f2f2959fe94a25869fa68318b248aff1454341c1cd1992",
+ "status": "applied",
+ "examples": []
+}

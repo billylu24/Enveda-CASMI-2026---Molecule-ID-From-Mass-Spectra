@@ -1,0 +1,164 @@
+{
+  "passed": true,
+  "source": "flexonafft/casmi26-closing-the-evidence-gap",
+  "source_version": 30,
+  "recipe": "V22 BIO Structure Union",
+  "original_code_cells": 6,
+  "hidden_rerun": false,
+  "rows": 400,
+  "processed": 12,
+  "placeholders": 388,
+  "processed_ids": [
+    "m_005e53",
+    "m_006153",
+    "m_00b5aa",
+    "m_01e922",
+    "m_0259d4",
+    "m_02d188",
+    "m_0318b5",
+    "m_043e86",
+    "m_050bf1",
+    "m_05b52e",
+    "m_068354",
+    "m_06e13d"
+  ],
+  "base_errors": 0,
+  "python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+  "packages": {
+    "numpy": "2.1.3",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "scikit-learn": "1.6.1",
+    "numba": "0.61.2",
+    "torch": "2.11.0+cu128",
+    "rdkit": "2026.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "bio_union": {
+    "new_rows": 98433,
+    "old_rows": 62744,
+    "added_rows": 69,
+    "overlap_rows": 62675,
+    "invalid_rows": 0,
+    "seconds": 0.55,
+    "new_directory": "/kaggle/input/datasets/sergiomalv/casmi-chebi-lmsd-structures",
+    "old_meta_path": "/kaggle/input/datasets/prvsiyan/chebi-lipidmaps-casmi26/bio_meta.pkl",
+    "key_policy": "source engine2 canon_key; preserve new dataset priority",
+    "fingerprint_policy": "recalculate every added structure with engine2 fp_and_mass; never reuse old fingerprint arrays"
+  },
+  "e2r2": {
+    "mode": "rank2",
+    "key": "metric_identity",
+    "is_rerun": false,
+    "rows": 400,
+    "eligible": 12,
+    "inserted": 0,
+    "moved_from": {
+      "2": 1
+    },
+    "same_as_rank1": 11,
+    "no_eng": 0,
+    "invalid_x2": 0,
+    "already_rank2": 1,
+    "skipped": 388,
+    "changed_rows": 0,
+    "tail_dropped": 0,
+    "extra_twins_dropped": 0,
+    "base_sha256": "383812e3be50974cd6f2f2959fe94a25869fa68318b248aff1454341c1cd1992",
+    "submission_sha256": "383812e3be50974cd6f2f2959fe94a25869fa68318b248aff1454341c1cd1992",
+    "status": "applied",
+    "examples": []
+  },
+  "adaptation": {
+    "mode": "bio_union",
+    "measured_score": null,
+    "source_score_user_reported": 0.451,
+    "changed_rows_vs_same_run_source_output": 0,
+    "control_sha256": "383812e3be50974cd6f2f2959fe94a25869fa68318b248aff1454341c1cd1992",
+    "submission_sha256": "383812e3be50974cd6f2f2959fe94a25869fa68318b248aff1454341c1cd1992",
+    "details": {},
+    "stages": [
+      {
+        "stage": "Runtime, verified inputs and smoke switch",
+        "seconds": 43.55
+      },
+      {
+        "stage": "Engine2 and PubChem retrieval",
+        "seconds": 832.54
+      },
+      {
+        "stage": "Main engine and simulator evidence",
+        "seconds": 313.04
+      },
+      {
+        "stage": "rel150 promotion, fusion and official metric audit",
+        "seconds": 29.72
+      },
+      {
+        "stage": "Source fragment-gap, E006 and metric-exact rank2",
+        "seconds": 19.97
+      }
+    ]
+  },
+  "simulators": {
+    "ice": {
+      "status": "ok",
+      "n_mols": 12,
+      "n_mols_scored": 11,
+      "n_mols_covered": 11,
+      "n_cands": 771,
+      "n_scored": 753,
+      "errors": [],
+      "rdkit": "2025.03.6",
+      "torch": "2.11.0+cu128",
+      "device": "cuda",
+      "t_load": 25.28,
+      "n_pred": 1522,
+      "n_pred_fail": 0,
+      "t_pred": 38.02,
+      "n_bad_smiles": 0,
+      "pred_per_s": 40.03,
+      "max_mem_gb": 3.73,
+      "seconds": 70.14,
+      "log_tail": [
+        "[ice     0.3s] stubbed (absent) modules: ['pygmtools']",
+        "[ice    24.0s] ms_pred tautomer mode v2 cache /tmp/ice_ms_pred_cache",
+        "[ice    25.3s] model loaded on cuda (rdkit 2025.03.6, torch 2.11.0+cu128, numba True)",
+        "[ice    70.1s] chunk: 11 mols 1522 jobs 38.5s (11/11 covered mols scored)"
+      ]
+    },
+    "gl": {
+      "model": "glacier",
+      "status": "ok",
+      "n_mols": 11,
+      "n_mols_scored": 11,
+      "n_mols_covered": 11,
+      "n_cands": 753,
+      "n_scored": 753,
+      "errors": [],
+      "rdkit": "2025.03.6",
+      "torch": "2.11.0+cu128",
+      "device": "cuda",
+      "t_load": 18.16,
+      "n_pred": 1522,
+      "n_pred_fail": 0,
+      "n_feat_fail": 0,
+      "t_pred": 19.89,
+      "n_bad_smiles": 0,
+      "pred_per_s": 76.54,
+      "bs_final": 32,
+      "max_mem_gb": 0.33,
+      "seconds": 43.19,
+      "log_tail": [
+        "[gl     0.1s] site ready (marker matches): /kaggle/working/ice_site",
+        "[gl     0.2s] stubbed (absent) modules: ['pygmtools']",
+        "[gl    18.2s] GLACIER loaded: 15,108,154 params ",
+        "[gl    18.2s] model loaded on cuda (rdkit 2025.03.6, torch 2.11.0+cu128, numba True, threads 2)",
+        "[gl    43.2s] chunk: 11 mols 1522 jobs 20.3s (11/11 covered mols scored)"
+      ]
+    }
+  },
+  "submission_sha256": "383812e3be50974cd6f2f2959fe94a25869fa68318b248aff1454341c1cd1992",
+  "measured_score": null,
+  "runtime_seconds": 1238.88
+}

@@ -27,6 +27,7 @@
 .venv/bin/python research/flexonafft_evidence_gap_v30_20261017/fetch_evidence.py source
 .venv/bin/python research/flexonafft_evidence_gap_v30_20261017/fetch_evidence.py run
 .venv/bin/python research/flexonafft_evidence_gap_v30_20261017/verify_run.py
+.venv/bin/python research/flexonafft_evidence_gap_v30_20261017/finalize_report.py
 ```
 
 `push` 在已有发布意图时拒绝重复上传。迁移账户或建立另一次实验应先复制目录、修改 `prepare_release.py` 的 `KERNEL` 并建立独立状态；不要直接清除已有上传记录。`fetch_evidence.py` 只下载所选小文件，不记录签名下载 URL；版本变化时拒绝混合验收。`verify_run.py` 必须在平台 COMPLETE 且下载验收文件后运行。

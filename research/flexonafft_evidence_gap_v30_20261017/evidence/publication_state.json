@@ -34,10 +34,12 @@
     "kernelId": 139296762
   },
   "kernel_status": {
-    "status": "RUNNING",
+    "status": "COMPLETE",
     "failureMessage": null
   },
   "remote_version": 1,
   "remote_code_exact": true,
-  "checked_utc": "2026-10-17T20:54:28.344920+00:00"
+  "checked_utc": "2026-10-17T21:16:21.327045+00:00",
+  "platform_session_id": 359487061,
+  "session_identity_observed_via": "Authenticated Kaggle notebook page Edit link /edit/run/359487061"
 }

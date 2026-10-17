@@ -1,12 +1,30 @@
-"""Read a short current Kaggle log tail without changing the run."""
-import json
+"""Read the documented Kaggle REST session log stream, omitting signed endpoint details."""
+import argparse,json,time,requests
+from pathlib import Path
 from kaggle.api.kaggle_api_extended import KaggleApi
-from kagglesdk.kernels.types.kernels_api_service import ApiListKernelSessionOutputRequest
-from prepare_release import ROOT,KERNEL
-api=KaggleApi();api.authenticate();print(api.kernels_status(KERNEL))
+p=argparse.ArgumentParser();p.add_argument('--seconds',type=int,default=15);p.add_argument('--session',type=int,default=359487061);p.add_argument('--label',default='live_logs');a=p.parse_args()
+assert all(c.isalnum() or c in '_-' for c in a.label)
+root=Path(__file__).resolve().parent
+api=KaggleApi();api.authenticate();rows=[];start=time.time()
 with api.build_kaggle_client() as k:
-    req=ApiListKernelSessionOutputRequest();req.user_name,req.kernel_slug=KERNEL.split('/');req.page_size=1
-    response=k.kernels.kernels_api_client.list_kernel_session_output(req)
-(ROOT/'evidence/live_logs.json').write_text(response.log or '[]')
-for row in json.loads(response.log or '[]')[-12:]:
-    print(f"[{row.get('time',0):.1f}s] {row.get('data','')}",end='')
+ c=k._http_client;c._init_session()
+ try:
+  with c._session.get(f'https://www.kaggle.com/api/v1/kernels/sessions/{a.session}/logs/stream',params={'waitForLogsUrlSeconds':1},stream=True,timeout=(10,5)) as r:
+   r.raise_for_status()
+   for line in r.iter_lines(chunk_size=1):
+    if line.startswith(b'data: '):
+     try:rows.append(json.loads(line[6:]))
+     except ValueError:pass
+    if time.time()-start>a.seconds:break
+ except requests.RequestException as e:
+  if not rows:print('LIVE_LOG_UNAVAILABLE',type(e).__name__)
+if rows:
+ p=root/'evidence'/f'{a.label}.json'
+ previous=json.loads(p.read_text()) if p.exists() else []
+ last=max((x.get('time',0) for x in previous),default=-1)
+ new=[x for x in rows if x.get('time',0)>last]
+ p.write_text(json.dumps(rows))
+ readable=''.join(f"[{x.get('time',0):.1f}s] {x.get('data','')}" for x in rows)
+ (root/'evidence'/f'{a.label}.log').write_text(readable)
+ print('NEW_LOG_ROWS',len(new),'LATEST_TIME',max(x.get('time',0) for x in rows))
+ if new:print('LATEST', ''.join(f"[{x.get('time',0):.1f}s] {x.get('data','')}" for x in new)[-4500:])

@@ -1,0 +1,12 @@
+{
+  "new_rows": 98433,
+  "old_rows": 62744,
+  "added_rows": 69,
+  "overlap_rows": 62675,
+  "invalid_rows": 0,
+  "seconds": 0.55,
+  "new_directory": "/kaggle/input/datasets/sergiomalv/casmi-chebi-lmsd-structures",
+  "old_meta_path": "/kaggle/input/datasets/prvsiyan/chebi-lipidmaps-casmi26/bio_meta.pkl",
+  "key_policy": "source engine2 canon_key; preserve new dataset priority",
+  "fingerprint_policy": "recalculate every added structure with engine2 fp_and_mass; never reuse old fingerprint arrays"
+}

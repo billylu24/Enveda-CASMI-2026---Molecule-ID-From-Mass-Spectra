@@ -1,6 +1,7 @@
 """Verify exact remote source, runtime acceptance, BIO counts and prediction parity."""
 import hashlib
 import json
+from itertools import zip_longest
 from pathlib import Path
 import pandas as pd
 from prepare_release import ROOT,SOURCE,KERNEL,VERSION,code
@@ -26,7 +27,7 @@ def main():
     for mid in sorted(active):
         a,b=upstream.loc[mid,'smiles'].split(';'),run.loc[mid,'smiles'].split(';')
         comparison.append(dict(molecule_id=mid,top1_equal=a[0]==b[0],candidate_sets_equal=set(a)==set(b),full_ranking_equal=a==b,
-            differences=[dict(rank=i+1,upstream=x,reproduction=y) for i,(x,y) in enumerate(zip(a,b)) if x!=y],
+            differences=[dict(rank=i+1,upstream=x,reproduction=y) for i,(x,y) in enumerate(zip_longest(a,b)) if x!=y],
             upstream_candidates=len(a),reproduction_candidates=len(b)))
     sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
     assert sha(dest/'submission.csv')==accept['submission_sha256']
@@ -37,7 +38,9 @@ def main():
     for simulator,meta in accept['simulators'].items():
         assert meta['status']=='ok' and meta['device'].startswith('cuda') and meta['rdkit']=='2025.03.6'
         assert not meta.get('errors') and meta.get('n_pred_fail',0)==0 and meta.get('n_feat_fail',0)==0
-    report=dict(source=SOURCE,source_version=VERSION,kernel=KERNEL,version=version,execution_acceptance_passed=True,
+    inputs=load(dest/'e004_candidate_inputs.json'); source_inputs=load(ref/'e004_candidate_inputs.json')
+    input_agreement={name:dict(matching_molecules=sum(values.get(mid)==inputs.get(name,{}).get(mid) for mid in active),total=len(active)) for name,values in source_inputs.items()}
+    report=dict(candidate_input_comparison=input_agreement,source=SOURCE,source_version=VERSION,kernel=KERNEL,version=version,execution_acceptance_passed=True,
         original_code_exact=True,processed=len(active),rows=len(run),placeholders=accept['placeholders'],
         top1_matches=sum(r['top1_equal'] for r in comparison),candidate_set_matches=sum(r['candidate_sets_equal'] for r in comparison),
         full_ranking_matches=sum(r['full_ranking_equal'] for r in comparison),

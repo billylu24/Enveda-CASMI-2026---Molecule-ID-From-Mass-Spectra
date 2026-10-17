@@ -1,0 +1,159 @@
+{
+  "candidate_input_comparison": {
+    "prefusion": {
+      "matching_molecules": 12,
+      "total": 12
+    },
+    "engine2": {
+      "matching_molecules": 12,
+      "total": 12
+    },
+    "pubchem": {
+      "matching_molecules": 12,
+      "total": 12
+    },
+    "base_tail": {
+      "matching_molecules": 12,
+      "total": 12
+    },
+    "fusion_overflow": {
+      "matching_molecules": 12,
+      "total": 12
+    }
+  },
+  "source": "flexonafft/casmi26-closing-the-evidence-gap",
+  "source_version": 30,
+  "kernel": "giaok246/casmi26-flexonafft-v30-bio-union-reproduction",
+  "version": 1,
+  "execution_acceptance_passed": true,
+  "original_code_exact": true,
+  "processed": 12,
+  "rows": 400,
+  "placeholders": 388,
+  "top1_matches": 12,
+  "candidate_set_matches": 12,
+  "full_ranking_matches": 12,
+  "full_output_parity_passed": true,
+  "source_submission_sha256": "383812e3be50974cd6f2f2959fe94a25869fa68318b248aff1454341c1cd1992",
+  "reproduction_submission_sha256": "383812e3be50974cd6f2f2959fe94a25869fa68318b248aff1454341c1cd1992",
+  "bio_counts_exact": true,
+  "bio_counts": {
+    "new_rows": 98433,
+    "old_rows": 62744,
+    "added_rows": 69,
+    "overlap_rows": 62675,
+    "invalid_rows": 0
+  },
+  "runtime_seconds": 1238.88,
+  "measured_score": null,
+  "comparison": [
+    {
+      "molecule_id": "m_005e53",
+      "top1_equal": true,
+      "candidate_sets_equal": true,
+      "full_ranking_equal": true,
+      "differences": [],
+      "upstream_candidates": 25,
+      "reproduction_candidates": 25
+    },
+    {
+      "molecule_id": "m_006153",
+      "top1_equal": true,
+      "candidate_sets_equal": true,
+      "full_ranking_equal": true,
+      "differences": [],
+      "upstream_candidates": 25,
+      "reproduction_candidates": 25
+    },
+    {
+      "molecule_id": "m_00b5aa",
+      "top1_equal": true,
+      "candidate_sets_equal": true,
+      "full_ranking_equal": true,
+      "differences": [],
+      "upstream_candidates": 25,
+      "reproduction_candidates": 25
+    },
+    {
+      "molecule_id": "m_01e922",
+      "top1_equal": true,
+      "candidate_sets_equal": true,
+      "full_ranking_equal": true,
+      "differences": [],
+      "upstream_candidates": 25,
+      "reproduction_candidates": 25
+    },
+    {
+      "molecule_id": "m_0259d4",
+      "top1_equal": true,
+      "candidate_sets_equal": true,
+      "full_ranking_equal": true,
+      "differences": [],
+      "upstream_candidates": 25,
+      "reproduction_candidates": 25
+    },
+    {
+      "molecule_id": "m_02d188",
+      "top1_equal": true,
+      "candidate_sets_equal": true,
+      "full_ranking_equal": true,
+      "differences": [],
+      "upstream_candidates": 25,
+      "reproduction_candidates": 25
+    },
+    {
+      "molecule_id": "m_0318b5",
+      "top1_equal": true,
+      "candidate_sets_equal": true,
+      "full_ranking_equal": true,
+      "differences": [],
+      "upstream_candidates": 25,
+      "reproduction_candidates": 25
+    },
+    {
+      "molecule_id": "m_043e86",
+      "top1_equal": true,
+      "candidate_sets_equal": true,
+      "full_ranking_equal": true,
+      "differences": [],
+      "upstream_candidates": 25,
+      "reproduction_candidates": 25
+    },
+    {
+      "molecule_id": "m_050bf1",
+      "top1_equal": true,
+      "candidate_sets_equal": true,
+      "full_ranking_equal": true,
+      "differences": [],
+      "upstream_candidates": 25,
+      "reproduction_candidates": 25
+    },
+    {
+      "molecule_id": "m_05b52e",
+      "top1_equal": true,
+      "candidate_sets_equal": true,
+      "full_ranking_equal": true,
+      "differences": [],
+      "upstream_candidates": 25,
+      "reproduction_candidates": 25
+    },
+    {
+      "molecule_id": "m_068354",
+      "top1_equal": true,
+      "candidate_sets_equal": true,
+      "full_ranking_equal": true,
+      "differences": [],
+      "upstream_candidates": 25,
+      "reproduction_candidates": 25
+    },
+    {
+      "molecule_id": "m_06e13d",
+      "top1_equal": true,
+      "candidate_sets_equal": true,
+      "full_ranking_equal": true,
+      "differences": [],
+      "upstream_candidates": 25,
+      "reproduction_candidates": 25
+    }
+  ]
+}

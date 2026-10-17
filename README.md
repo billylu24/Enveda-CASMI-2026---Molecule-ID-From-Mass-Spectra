@@ -2,7 +2,7 @@
 
 <!-- flexonafft-v30-reproduction -->
 
-2026-10-17: The linked Flexonafft notebook is now **public V30 (V22 BIO Structure Union recipe)**. A separate source-exact reproduction with 16 pinned inputs has been uploaded as Kaggle notebook V1; GPU execution is in progress. [V30 reproduction and verification](research/flexonafft_evidence_gap_v30_20261017/RESULTS.md).
+2026-10-17: Reproduced Flexonafft **public V30 (V22 BIO Structure Union recipe)** with all 6 original code cells unchanged and 16 pinned inputs. Kaggle notebook V1 **COMPLETE**; preview top-1 12/12, candidate sets 12/12, full rankings 12/12 match upstream. Preview CSV is byte-identical. No new V30 competition score. [Reproduction and verification](research/flexonafft_evidence_gap_v30_20261017/RESULTS.md).
 
 <!-- flexonafft-v15-reproduction -->
 
