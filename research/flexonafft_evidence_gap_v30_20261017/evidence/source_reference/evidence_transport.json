@@ -1,0 +1,94 @@
+{
+  "version": 30,
+  "status": {
+    "status": "COMPLETE",
+    "failureMessage": null
+  },
+  "checked_utc": "2026-10-17T20:54:35.578062+00:00",
+  "files": [
+    {
+      "name": "e004_candidate_inputs.json",
+      "downloaded": true,
+      "bytes": 129253,
+      "sha256": "efe6c58b8f76c1d6cac5b36aec012f8f216f1d4e5751252273dd473f0a3aaf3e"
+    },
+    {
+      "name": "e004_verification.json",
+      "downloaded": true,
+      "bytes": 9848,
+      "sha256": "60a53a1bafdbc4421ac827a9c34e3c297a9d34db67d4defb8d2380c45964a535"
+    },
+    {
+      "name": "e2r2_stats.json",
+      "downloaded": true,
+      "bytes": 517,
+      "sha256": "e07326aec4a1def036d328b41391c7fb1c593c7d77ffc928888150b7ab849eb9"
+    },
+    {
+      "name": "eng/bio_union_audit.json",
+      "downloaded": true,
+      "bytes": 501,
+      "sha256": "ab6fbaaeb2d7eca1ffccad245f49a782eb1ae83061e48f4bebe53f1d83cccfc3"
+    },
+    {
+      "name": "experiment_audit.json",
+      "downloaded": true,
+      "bytes": 298,
+      "sha256": "7f75b5508b00fdc5ff83ba2d5352df7c446eaa1f875210dc4b0d2fd85920b960"
+    },
+    {
+      "name": "experiment_audit_factorial.json",
+      "downloaded": true,
+      "bytes": 139853,
+      "sha256": "498a861dd088e4cfbf896b3054cbab8f907125c8c75b771ecfab5c656fb741e7"
+    },
+    {
+      "name": "experiment_verification.json",
+      "downloaded": true,
+      "bytes": 1463,
+      "sha256": "5adfb472753505b3f5dee131dc2d3eb9ccffdcc8b934e8bf5e2a9fdb733ce00b"
+    },
+    {
+      "name": "gl_work/gl_out.json.meta.json",
+      "downloaded": true,
+      "bytes": 754,
+      "sha256": "12c63b6c561e592c4ae13443ede122d1a44bafcff81f0e440956fe147923ae26"
+    },
+    {
+      "name": "ice_work/ice_out.json.meta.json",
+      "downloaded": true,
+      "bytes": 639,
+      "sha256": "1057e6b6d5f29c8aba31967d5461b421f165d0d9b882a05468d405e1e80c9786"
+    },
+    {
+      "name": "submission.csv",
+      "downloaded": true,
+      "bytes": 17220,
+      "sha256": "383812e3be50974cd6f2f2959fe94a25869fa68318b248aff1454341c1cd1992"
+    },
+    {
+      "name": "submission_base_e2r2.csv",
+      "downloaded": true,
+      "bytes": 17220,
+      "sha256": "383812e3be50974cd6f2f2959fe94a25869fa68318b248aff1454341c1cd1992"
+    },
+    {
+      "name": "submission_v22_control.csv",
+      "downloaded": true,
+      "bytes": 17220,
+      "sha256": "383812e3be50974cd6f2f2959fe94a25869fa68318b248aff1454341c1cd1992"
+    },
+    {
+      "name": "v22_adaptation_audit.json",
+      "downloaded": true,
+      "bytes": 828,
+      "sha256": "d876624da1ba448415953c73b1a037f7c678213c7a571762af47a4d822a515fc"
+    },
+    {
+      "name": "v22_comparison.csv",
+      "downloaded": true,
+      "bytes": 6020,
+      "sha256": "235bc1880ab4d4bcef94500046ce1ccef816a923a0f2024c71e8ca1d73220d71"
+    }
+  ]
+}

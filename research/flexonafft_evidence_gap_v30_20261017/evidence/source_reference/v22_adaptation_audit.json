@@ -1,0 +1,31 @@
+{
+  "mode": "bio_union",
+  "measured_score": null,
+  "source_score_user_reported": 0.451,
+  "changed_rows_vs_same_run_source_output": 0,
+  "control_sha256": "383812e3be50974cd6f2f2959fe94a25869fa68318b248aff1454341c1cd1992",
+  "submission_sha256": "383812e3be50974cd6f2f2959fe94a25869fa68318b248aff1454341c1cd1992",
+  "details": {},
+  "stages": [
+    {
+      "stage": "Runtime, verified inputs and smoke switch",
+      "seconds": 26.8
+    },
+    {
+      "stage": "Engine2 and PubChem retrieval",
+      "seconds": 709.74
+    },
+    {
+      "stage": "Main engine and simulator evidence",
+      "seconds": 274.63
+    },
+    {
+      "stage": "rel150 promotion, fusion and official metric audit",
+      "seconds": 25.84
+    },
+    {
+      "stage": "Source fragment-gap, E006 and metric-exact rank2",
+      "seconds": 17.1
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+'''Inputs and runtime
+BIO union requires BOTH https://www.kaggle.com/datasets/sergiomalv/casmi-chebi-lmsd-structures AND https://www.kaggle.com/datasets/prvsiyan/chebi-lipidmaps-casmi26 . This overrides the single-BIO advice in the original source notes retained in Credits. The extra old input must be attached manually; do not assume notebook metadata adds it.
+Keep all other successful V22 inputs and compatible RDKit wheels. Python3.13 requires eveliaveldrine/rdkit-wheels with RDKit2025.3.6 cp313; main runtime uses RDKit2026.3.3. GPU T4, Internet OFF. Full data access, fingerprint generation, GPU runtime and rendered outputs are not validated locally. Original source code/data licences still apply.'''

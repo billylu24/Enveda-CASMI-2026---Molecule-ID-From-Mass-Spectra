@@ -1,14 +1,18 @@
 # Enveda CASMI 2026 — Molecule ID From Mass Spectra
 
+<!-- flexonafft-v30-reproduction -->
+
+2026-10-17: The linked Flexonafft notebook is now **public V30 (V22 BIO Structure Union recipe)**. A separate source-exact reproduction with 16 pinned inputs has been uploaded as Kaggle notebook V1; GPU execution is in progress. [V30 reproduction and verification](research/flexonafft_evidence_gap_v30_20261017/RESULTS.md).
+
 <!-- flexonafft-v15-reproduction -->
 
-Flexonafft **Closing the Evidence Gap V15 / Iteration 07** reproduced with all 9 code cells unchanged. T4 preview: 12/12 matching top-1 and candidate sets, 11/12 matching complete rankings; one lower-rank ordering difference is documented. Official code submission **57217289**, notebook V1, is **PENDING**; no official score yet. [Reproduction and official result](research/flexonafft_evidence_gap_20261014/RESULTS.md).
+Flexonafft **Closing the Evidence Gap V15 / Iteration 07** reproduced with all 9 code cells unchanged. T4 preview: 12/12 matching top-1 and candidate sets, 11/12 matching complete rankings; one lower-rank ordering difference is documented. Official code submission **57217289**, notebook V1, is **COMPLETE** with public MRR@25 **0.441**. [Reproduction and official result](research/flexonafft_evidence_gap_20261014/RESULTS.md).
 
 This is a mass-filtered spectral-library retrieval baseline for the [Enveda CASMI 2026 competition](https://www.kaggle.com/competitions/enveda-CASMI26-molecule-id-mass-spectra).
 
 ## Current results snapshot
 
-Best verified public MRR@25: **0.438** (submission `57038936`, COMPLETE). Latest Samanyu ICEBERG V1 reproduction: **0.438**, submission `57038936`, COMPLETE. See [reproduction methods and official results](research/samanyu_iceberg_0438_20261010/RESULTS.md). The self-trained scientific research controller remains separate and in `local_only` mode; the historical snapshot below is retained.
+Best verified public MRR@25: **0.441** (Flexonafft V15 submission `57217289`, COMPLETE). Latest Samanyu ICEBERG V1 reproduction: **0.438**, submission `57038936`, COMPLETE. See [reproduction methods and official results](research/samanyu_iceberg_0438_20261010/RESULTS.md). The self-trained scientific research controller remains separate and in `local_only` mode; the historical snapshot below is retained.
 
 ## Local setup
 

@@ -1,0 +1,3 @@
+'''CASMI26: Metric-Identity Fusion — Aggressive Experiment
+One vote per official metric identity per engine; compact unique ranks before the 40-candidate fusion shortlist. Preserve the existing PubChem gate and same-formula GLACIER logic. This tests duplicate-vote bias, not a coefficient search. It can change top-1 and reduce the score.
+Run the complete repaired @obstacledeveloper adaptation first, then this independent overlay. submission_reference.csv is the completed baseline from the same run; experiment_audit.csv/json record changes and file hashes. This is not stacked with the other experiment. Same 17 source inputs and GPU environment; no additional dataset required. No new public score has been measured. A visible smoke run is not validation.'''

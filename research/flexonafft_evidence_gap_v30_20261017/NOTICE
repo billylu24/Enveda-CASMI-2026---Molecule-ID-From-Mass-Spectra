@@ -1,0 +1,27 @@
+CASMI26: Closing the Evidence Gap — public notebook V30
+Original notebook author: Igor Zharov (@flexonafft)
+Source: https://www.kaggle.com/code/flexonafft/casmi26-closing-the-evidence-gap
+Retrieved October 17, 2026. Source header recipe: V22 — BIO Structure Union.
+The preserved source declares Apache-2.0; third-party assets keep their own licenses.
+
+All six original code cells, embedded engine modules, and inherited credits remain
+unchanged. Reproduction additions: attribution, dataset/version freezing,
+read-only acceptance, evidence collection, controlled tests, documentation.
+
+Full credits and inherited source notes are preserved in source/cell_01.py.
+They include @antriksharya (rank2 hedge), Omer Faruk Merey (metric-exact hedge,
+attributed upstream), @seyitkaangunes (rel150), @sergiomalv (new BIO structures),
+@ahmedberatozer (engines/resources), Huseyin Emre Aksoy (fragment kernel),
+@canqiang (E006), @samanyu1808 (ICE fallback), @flexonafft (metric fusion),
+@skomuro (promotion), @prvsiyan and @megayak (engine2 assets),
+@obstacledeveloper (metric audit), @bobthebot369 (ensemble ideas),
+@dmitriigluzdov (PubChem prior), @hengck23 (DreaMS resource),
+and coleygroup/ms-pred (simulator tooling).
+
+The upstream V22 direct uploaded source is identified only by filename and SHA256;
+its uploader identity was not independently established. Retaining these statements
+does not verify inherited leaderboard claims. No original engine/model authorship
+is claimed by this reproduction. Keep dataset ATTRIBUTION.md, where supplied.
+
+Attached dataset/model licenses are recorded in evidence/dependencies.json.
+Raw competition data, models, environments, and credentials are not distributed here.

@@ -1,0 +1,5 @@
+# Host-side release/evidence tools; inference uses the pinned Kaggle Docker image.
+kaggle==2.2.4
+requests>=2.32,<3
+numpy>=1.26
+pandas>=2.2

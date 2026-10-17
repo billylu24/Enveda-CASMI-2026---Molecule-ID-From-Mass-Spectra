@@ -1,0 +1,6 @@
+__pycache__/
+*.log
+evidence/live_logs.json
+# Preserve hashes and active predictions, excluding placeholder-filled preview CSVs.
+evidence/source_reference/submission*.csv
+evidence/platform/submission*.csv

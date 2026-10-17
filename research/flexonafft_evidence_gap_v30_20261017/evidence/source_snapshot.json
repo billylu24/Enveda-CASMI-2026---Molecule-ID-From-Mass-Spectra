@@ -1,0 +1,48 @@
+{
+  "fetched_utc": "2026-10-17T20:51:34.787961+00:00",
+  "metadata": {
+    "id": 138464665,
+    "ref": "flexonafft/casmi26-closing-the-evidence-gap",
+    "title": "CASMI26: Closing the Evidence Gap",
+    "author": "Igor Zharov",
+    "slug": "casmi26-closing-the-evidence-gap",
+    "lastRunTime": "2026-10-14T20:51:34.012Z",
+    "language": "python",
+    "kernelType": "notebook",
+    "isPrivate": false,
+    "enableGpu": true,
+    "enableInternet": false,
+    "categoryIds": [
+      "gpu"
+    ],
+    "datasetDataSources": [
+      "prvsiyan/casmi26-ranker-features",
+      "prvsiyan/casmi26-fp-models-v2",
+      "dmitriigluzdov/casmi26-pubchem-popularity-prior",
+      "megayak/casmi26-simulated-ranker-rows",
+      "ahmedberatozer/casmi26-fpnet-full1",
+      "ahmedberatozer/casmi26-glacier",
+      "ahmedberatozer/casmi26-iceberg",
+      "ahmedberatozer/casmi26-pubchem-tier",
+      "ahmedberatozer/casmi26-v2-pool",
+      "ahmedberatozer/casmi26-v3-models",
+      "ahmedberatozer/casmi26-v4b-models",
+      "prvsiyan/chebi-lipidmaps-casmi26",
+      "sergiomalv/casmi-chebi-lmsd-structures",
+      "prvsiyan/coconut-casmi26-candidates",
+      "metric/rdkit-2026-3-3-wheel",
+      "eveliaveldrine/rdkit-wheels"
+    ],
+    "kernelDataSources": [],
+    "competitionDataSources": [
+      "enveda-CASMI26-molecule-id-mass-spectra"
+    ],
+    "totalVotes": 39,
+    "modelDataSources": [],
+    "enableTpu": false,
+    "currentVersionNumber": 30,
+    "dockerImage": "gcr.io/kaggle-private-byod/python@sha256:2757e0c7d1e0a9cb43da657b97e223c321a98f5014bdf64f44f2f6b083ad2b2f",
+    "machineShape": "NvidiaTeslaT4"
+  },
+  "source_sha256": "4007e24932bd9bffa4c38e0924e05d4f59c7e94348d36b109a80651181a204be"
+}

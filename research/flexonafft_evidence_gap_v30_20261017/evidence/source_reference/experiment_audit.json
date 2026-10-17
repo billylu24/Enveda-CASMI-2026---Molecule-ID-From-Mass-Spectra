@@ -1,0 +1,8 @@
+{
+  "experiment": "metric_identity_fusion",
+  "changed_molecules": 0,
+  "changed_top1": 0,
+  "reference_sha256": "b193cf686075c83ceb7bf6de9c156a4cf9462b28167c2780d48951d0872813f6",
+  "submission_sha256": "b193cf686075c83ceb7bf6de9c156a4cf9462b28167c2780d48951d0872813f6",
+  "measured_score": null
+}

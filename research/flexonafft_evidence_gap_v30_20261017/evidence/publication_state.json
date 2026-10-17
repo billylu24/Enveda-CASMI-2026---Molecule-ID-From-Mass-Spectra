@@ -1,0 +1,43 @@
+{
+  "kernel": "giaok246/casmi26-flexonafft-v30-bio-union-reproduction",
+  "push_intent": {
+    "utc": "2026-10-17T20:54:00.932671+00:00",
+    "user_authorized": true,
+    "identity": {
+      "source": "flexonafft/casmi26-closing-the-evidence-gap",
+      "source_version": 30,
+      "source_sha256": "4007e24932bd9bffa4c38e0924e05d4f59c7e94348d36b109a80651181a204be",
+      "original_code_cells": 6,
+      "original_code_exact": true,
+      "source_code_sha256": "a01d5376cb65af57e5057cdc3639fc8d9d850ad5840148af91fe98cb3dc8ccc3",
+      "kernel": "giaok246/casmi26-flexonafft-v30-bio-union-reproduction",
+      "release_files": {
+        "reproduction.ipynb": "73a82a80e0e0c9cbc5d2a82c5a93e998fab4fe7d116f4c9f73f506c867883a87",
+        "kernel-metadata.json": "d99f60f0695833701b48ef0b3e690ac806e6d1ac0c5eafc3c554dd8630b6b211"
+      },
+      "changes": [
+        "Attribution markdown",
+        "Read-only acceptance appended; all original code unchanged"
+      ]
+    }
+  },
+  "push_response": {
+    "ref": "/code/giaok246/casmi26-flexonafft-v30-bio-union-reproduction",
+    "url": "https://www.kaggle.com/code/giaok246/casmi26-flexonafft-v30-bio-union-reproduction",
+    "versionNumber": 1,
+    "error": null,
+    "invalidTags": [],
+    "invalidDatasetSources": [],
+    "invalidCompetitionSources": [],
+    "invalidKernelSources": [],
+    "invalidModelSources": [],
+    "kernelId": 139296762
+  },
+  "kernel_status": {
+    "status": "RUNNING",
+    "failureMessage": null
+  },
+  "remote_version": 1,
+  "remote_code_exact": true,
+  "checked_utc": "2026-10-17T20:54:28.344920+00:00"
+}
